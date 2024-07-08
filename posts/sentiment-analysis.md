@@ -37,4 +37,4 @@ Transformers are all the rage for text and even vision tasks now a days. They pe
 Learn how Transformers work: [https://jalammar.github.io/illustrated-transformer/](https://jalammar.github.io/illustrated-transformer/)
 
 ## Show me the code
-Get your hands dirty and play around: <a href="https://colab.research.google.com/drive/12uq1dCjN1tJy8OsnBnNGQ7Fjog9Z9vZL" rel="noreferrer noopener" target="_blank">Python Colab Notebook</a>
+Get your hands dirty and play around: [Python Colab Notebook](https://colab.research.google.com/drive/12uq1dCjN1tJy8OsnBnNGQ7Fjog9Z9vZL)

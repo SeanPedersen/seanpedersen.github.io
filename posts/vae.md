@@ -24,7 +24,7 @@ This so called reparameterization trick enables us to take the derivatives of z 
 To prevent the variational encoder of “cheating” by placing different samples far apart from each other in z (avoiding our desired property of smooth local interpolations) we add an additional loss term to our loss function L(x, x’) : KL(gauss(z_mean, z_var) || gauss(0,1)). This additional loss term is defined as the Kullback-Leibler-divergence between gauss(z_mean, z_var) and an isotropic standard normal distribution gauss(0,1) ∈ ℝ^n forcing our latent space to be standard Gaussian distributed (achieving the desired smooth local interpolation).
 
 ## Show me the code
-Get your hands dirty and play around: <a href="https://colab.research.google.com/drive/1f73wONMp8U2LvAmN0MNGyflqGFog0g2S" rel="noreferrer noopener" target="_blank">Python Colab Notebook</a>
+Get your hands dirty and play around: [Python Colab Notebook](https://colab.research.google.com/drive/1f73wONMp8U2LvAmN0MNGyflqGFog0g2S)
 
 ## Further Questions
 
@@ -35,7 +35,7 @@ See “Invertible Autoencoders”; TODO: Lookup reversible layers
 **How is the compressed latent embedding z related with the data distribution of X (f.e. training images)?**
 
 „In fact, this simple autoencoder often ends up learning a low-dimensional representation very similar to PCAs.“ - 
-<a href="http://ufldl.stanford.edu/tutorial/unsupervised/Autoencoders/" rel="noreferrer noopener" target="_blank">http://ufldl.stanford.edu/tutorial/unsupervised/Autoencoders/</a>
+[http://ufldl.stanford.edu/tutorial/unsupervised/Autoencoders/](http://ufldl.stanford.edu/tutorial/unsupervised/Autoencoders/)
 
 
 **If a simple dense AE approximates PCA, what does a convolutional AE approximate? Local PCAs for each kernel?**
@@ -45,5 +45,5 @@ Can we train the encoder unsupervised (independently from the decoder) by unders
 The latent space z is shaped by the loss function, which consists of the MSE between input and output image plus the KL-divergence between an isotropic standard gaussian and z. -> How can we replace the MSE term of the loss to decouple the decoder from the encoder while training? Define a loss that considers class density and overlap -> reward high class density embeddings, penalize multi-class overlap?
 
 ## References
-- <a href="https://jaan.io/what-is-variational-autoencoder-vae-tutorial/" rel="noreferrer noopener" target="_blank">https://jaan.io/what-is-variational-autoencoder-vae-tutorial/</a>
-- <a href="https://towardsdatascience.com/intuitively-understanding-variational-autoencoders-1bfe67eb5daf" rel="noreferrer noopener" target="_blank">https://towardsdatascience.com/intuitively-understanding-variational-autoencoders-1bfe67eb5daf</a>
+- [https://jaan.io/what-is-variational-autoencoder-vae-tutorial/](https://jaan.io/what-is-variational-autoencoder-vae-tutorial/)
+- [https://towardsdatascience.com/intuitively-understanding-variational-autoencoders-1bfe67eb5daf](https://towardsdatascience.com/intuitively-understanding-variational-autoencoders-1bfe67eb5daf)
