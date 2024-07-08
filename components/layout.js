@@ -26,14 +26,16 @@ export default function Layout({ children, home }) {
       </Head>
       <header className={styles.header}>
         {home ? (
-          <>
-            <img
-              src="/images/profile.jpg"
-              className={`${styles.headerHomeImage} ${utilStyles.borderCircle}`}
-              alt={name}
-            />
-            <h1 className={utilStyles.heading2Xl}>{name}</h1>
-          </>
+          <div style={{display: "flex",
+            alignItems: "center",
+            gap: "20px"}}>
+          <img
+            src="/images/profile.jpg"
+            className={`${styles.headerHomeImage} ${utilStyles.borderCircle}`}
+            alt={name}
+          />
+          <h1 className={utilStyles.heading2Xl}>{name}</h1>
+        </div>
         ) : (
           <>
             <Link href="/">
