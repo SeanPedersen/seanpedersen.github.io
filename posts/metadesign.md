@@ -8,12 +8,15 @@ date: '2019-04-20'
 It alone must simply suffice to realize the idea it contains.
 
 **Some things to try**:
+
 - Write concisely but not too short
 - Use clear & vivid explanations (use pictures, graphs when appropriate)
 - Avoid too long continuous text passages
 
-**Top Down approach**
+**Top Down Approach**
 
-Identify distinct, preferably large, independent modules. Next outline interactions of the modules to map out the interaction dynamics of the system.
+Identify distinct, preferably large, independent modules which ideally abstract away highly moving parts. Next outline interactions of the modules to map out the interaction dynamics of the system.
 
-Describe each module as deeply as necessary but not deeper, so that interfaces (behavior towards others) and their functionalities (inner behavior: e.g. algorithms and data structures) are clearly presented. Finally and most importantly realize your design: BUILD IT.
+“We propose instead that one begins with a list of difficult design decisions or design decisions which are likely to change. Each module is then designed to hide such a decision from the others.” - <http://sunnyday.mit.edu/16.355/parnas-criteria.html>
+
+Finally describe each module as deeply as necessary but not deeper, so that interfaces (behavior towards others) and their functionalities (inner behavior: e.g. algorithms and data structures) are clearly presented. Finally draw a clear line between what is solved, what remains unsolved and what is unknowable.
