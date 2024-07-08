@@ -1,0 +1,32 @@
+.container {
+  width: 100%;
+}
+
+.main {
+  width: 100%;
+  display:flex; 
+  flex-direction:column;
+  align-items: center;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 1.42rem;
+}
+
+.headerImage {
+  width: 6rem;
+  height: 6rem;
+}
+
+.headerHomeImage {
+  width: 8rem;
+  height: 8rem;
+}
+
+.backToHome {
+  margin: 0 50%;
+}
+  
