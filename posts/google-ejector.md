@@ -62,9 +62,10 @@ Github / Gitlab / Bitbucket:
 
 **Self-hostable** means anyone can run the software by themselves and thus maintain control of their data independently of any central authority.
 
-**Decentralized** means the software does not need to communicate over the internet with a central server in order to work, instead it is capable of communicating independently via peer-to-peer based networking (very useful when dealing with limited internet availability or censoring governments). 
+**Decentralized** means the software does not need to communicate over the internet with a central server in order to work, instead it is capable of communicating independently via peer-to-peer based networking (very useful when dealing with limited internet availability or censoring governments).
 
 **Federated** means instances of the software build a so called "fediverse" allowing users to communicate across instances.
+
 ## More Resources
 
 - [https://degoogle.jmoore.dev/](https://degoogle.jmoore.dev/)
