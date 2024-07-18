@@ -25,10 +25,10 @@ One could spin this idea even further and train several models with radically di
 
 I hope to see more research exploring this consistent data bootstrapping approach for LLM.
 
-
 References:
-- https://dblalock.substack.com/p/models-generating-training-data-huge
-- https://news.mit.edu/2023/large-language-models-are-biased-can-logic-help-save-them-0303
-- https://arxiv.org/abs/2303.05670
-- https://www.anthropic.com/research/mapping-mind-language-model
-- https://bharathpbhat.github.io/2021/04/04/getting-confidence-estimates-from-neural-networks.html
+
+- <https://dblalock.substack.com/p/models-generating-training-data-huge>
+- <https://news.mit.edu/2023/large-language-models-are-biased-can-logic-help-save-them-0303>
+- <https://arxiv.org/abs/2303.05670>
+- <https://www.anthropic.com/research/mapping-mind-language-model>
+- <https://bharathpbhat.github.io/2021/04/04/getting-confidence-estimates-from-neural-networks.html>
