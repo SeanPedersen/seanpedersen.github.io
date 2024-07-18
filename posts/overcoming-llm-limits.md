@@ -7,7 +7,7 @@ Large language models (LLM) have been all the rage for quite some time now. Look
 
 Hallucination refers to the phenomenon where LLM generates content that sounds convincing / factual but is actually ungrounded or plain wrong.
 
-A confidence estimate assigns a confidence number to a prediction and is useful to estimate factuality. A high confidence score for a wrong answer is worse than no confidence score to begin with… So that may be the reason I have not seen any in commercial products.
+A confidence estimate assigns a confidence number to a prediction and is useful to estimate factuality. A high confidence score for a wrong answer is worse than no confidence score to begin with… So that may be the reason I have not seen any in commercial products. Though OpenAI released this: <https://openai.com/index/teaching-models-to-express-their-uncertainty-in-words/>
 
 Citations are just sources on which a text is based. This can be achieved via so-called RAG techniques (just search over a text corpus and hope to find relevant documents, which are added to the query and cited). Good examples are <https://perplexity.ai> and <https://wikichat.genie.stanford.edu/>.
 
