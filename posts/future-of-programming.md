@@ -21,10 +21,14 @@ But there are many points we can do better using behavior addressable code modul
 Now imagine yourself again needing the best available sorting function for your project. What changed? A whole lot. Now you can search an existing code module index for the function you need (sorting integers). Then you will be presented with all of the existing functions implementing your desired behavior, verified for correctness and benchmarked for run time and memory usage. You will quickly find the sweet spot implementation that ticks off all your needs (fastest / lowest memory usage peak) and import it using its content addressable hash. Life can be so easy after all.
 
 I would love to see this being worked on and challenge any reader to build a prototype and share it with the world. Existing language eco systems that would benefit greatly in my opinion (in no particular order) are:
+
 - Python (PyPI)
 - Javascript (npm)
 - Rust (cargo)
 - Elixir (hex)
 
+Update 2024: There seems to be a content addressable language on the block (<https://scrapscript.org/>)
+
 References:
-- Content addressable code (https://www.unisonweb.org/docs/tour)
+
+- Content addressable code (<https://www.unisonweb.org/docs/tour>)
