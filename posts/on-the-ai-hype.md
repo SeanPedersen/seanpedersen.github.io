@@ -4,18 +4,22 @@ date: '2024-07-08'
 ---
 The release of so-called Large Language Models by OpenAI and others has fueled another AI hype wave which fueled a fierce debate of how dangerous this technology is and how imminent Artificial General / Super Intelligence is.
 
-Current LLMs will be bottlenecked by the quality of available training data. High signal text / language data is limited and will become scarcer since LLMs themselves will fuel a flood of low quality content spam (slop).
+Current LLMs will be bottlenecked by the quality of available training data. High signal text / language data is limited and will become scarcer since LLMs themselves will fuel a flood of low quality content spam (slop). So I expect a stagnation in LLM progress, since high signal data will be a problem. Compute will steadily grow (powered by Moore's law). Algorithmic advances are the greatest unknown factor.
 
 LLMs lack awareness of their training data and fail to give reliable confidence estimates on their statements.
 
-Multimodal models which fuse language, audio and video understanding will soon become possible with the introduction of more (cheaper) computing resources. This will open up data treasures like YouTube and TV shows and movies and co to train these new generations of large models.
+Multimodal models which fuse language, audio and video understanding will soon become possible with the introduction of more (cheaper) computing resources. This will open up data treasures like YouTube and TV shows and movies and co to train these new generations of large models. These generative models will shine for artistic use cases where solid facts and sound logic do not matter much. They will struggle in the hard sciences and only serve as assistents which need to be validated by humans.
 
 Within the next 5 years AI generated high-quality long duration videos will become a reality and reshape our media landscape. The same is true for music within the next 2 years.
 
-The next big hype cycle will be video generation and understanding, followed by embodied AI in the form of robots and smart devices that both understand natural language and their surroundings through vision. This will enable a new generation of robots that can be intuitively commanded by human voice prompts.
+The next big hype cycle will be video generation and understanding, followed by embodied AI in the form of robots and smart devices that both understand natural language and their surroundings through vision. This will enable a new generation of robots that can be intuitively commanded by human voice prompts, to execute simple and repetitive tasks (factory line work, brewing coffee, cleaning your home) for which massive diverse datasets can be crowd-sourced. More complex tasks for which big datasets can not be crowd sourced will stay unreachable (build a one man submarine, build a mechanical watch).
 
-Robots driven by multi-modal models and continuously optimized by reinforcement learning will become a reality within the next 6 years and will be mass produced within 10 years.
+Robots driven by these new large multi-modal models (embodied AI) and continuously optimized by reinforcement learning will become a reality within the next 6 years and will be mass produced within 10 years. But they will not automate all our jobs away. They will automate the boring stuff and give us hopefully more time to be human.
 
 The hardest problem remains accurate, coherent and self-aware reasoning which is needed to automate novel and useful research. This will likely not be solved by just more data. It will take curated high-quality data and novel algorithms that are aware of their training data and can continuously self-modify to increase the accuracy of their world model.
 
 This new AI will enable every human to naturally interact with computers. On one side enabling them to shape digital content on the other side lays the danger of enhanced mass surveillance and manipulation through advanced AI systems. Robots in particular will drastically change our world.
+
+References:
+
+- <https://www.youtube.com/watch?v=uB9yZenVLzg>
