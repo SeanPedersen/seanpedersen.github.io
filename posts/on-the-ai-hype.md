@@ -22,6 +22,7 @@ This new AI will enable every human to naturally interact with computers. On one
 
 References:
 
+- <https://www.nature.com/articles/s41586-024-07566-y>
 - <https://www.youtube.com/watch?v=uB9yZenVLzg>
 
 Updated on July 25, 2024
