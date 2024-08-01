@@ -25,6 +25,8 @@ One could spin this idea even further and train several models with radically di
 
 I hope to see more research exploring this consistent data bootstrapping approach for LLM.
 
+The endgame would be language models that actively seek new knowledge aka craft their own data sets to update their knowledge / weights on. (This seems related: <https://x.com/koltregaskes/status/1818265121090666904>)
+
 References:
 
 - <https://dblalock.substack.com/p/models-generating-training-data-huge>
