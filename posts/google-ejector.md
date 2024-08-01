@@ -16,6 +16,7 @@ Google Search:
 Perplexity:
 
 - [Perplexica](https://github.com/ItzCrazyKns/Perplexica) - Open source answer engine
+- [MindSearch](https://github.com/InternLM/MindSearch) - Open source answer engine
 - [Morphic](https://github.com/miurla/morphic) - Open source answer engine
 
 WhatsApp / Telegram / Signal:
