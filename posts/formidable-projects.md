@@ -1,6 +1,6 @@
 ---
 title: 'Formidable Projects'
-date: '2024-8-1'
+date: '2024-08-01'
 ---
 A list of causes benefitting humanity as a whole. Some call it philanthropy.
 
