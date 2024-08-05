@@ -20,3 +20,7 @@ Identify distinct, preferably large, independent modules which ideally abstract 
 “We propose instead that one begins with a list of difficult design decisions or design decisions which are likely to change. Each module is then designed to hide such a decision from the others.” - <http://sunnyday.mit.edu/16.355/parnas-criteria.html>
 
 Finally describe each module as deeply as necessary but not deeper, so that interfaces (behavior towards others) and their functionalities (inner behavior: e.g. algorithms and data structures) are clearly presented. Finally draw a clear line between what is solved, what remains unsolved and what is unknowable.
+
+References:
+
+- <https://learnhowtolearn.org/how-to-build-extremely-quickly/>
