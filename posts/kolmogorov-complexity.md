@@ -2,19 +2,13 @@
 title: 'Kolmogorov Complexity'
 date: '2021-05-04'
 ---
-DISCLAIMER: This text was laying around on my digital shelves for too long and still has not received the attention and rigor it deserves. I still hope the curious reader learns something new.
-
 ## Introduction
 
-This wall of text is devoted to my favorite CS concept I know of (so far): Kolmogorov complexity. It is right up there with graphs, trees and recursion. Its beauty stems from its simple definition and powerful connections to many research fields I fancy. And it is defined as follows: The length of the smallest program producing a given sequence of bits.
+This text is devoted to my favorite CS concept I know of (so far): Kolmogorov complexity. It is right up there with graphs, trees and recursion. Its beauty stems from its simple definition and powerful connections to many research fields I fancy. And it is defined as follows: The length of the smallest program producing a given sequence of bits.
 
 This might sound rather unimpressive to the uninitiated reader but hold on, behind this simple concept lies a whole world of deep implications and applications.
 
 Knowing the Kolmogorov complexity of a sequence means knowing everything there can be known about it. It is the process of removing all computable redundancies existing in the data, arriving at the shortest algorithm giving rise to these patterns using computation (space, time and energy).
-
-K(“ababababab”) < K(“aasdjklpz”)
-
-K(“3.141”) < K(“10011110100111010”)
 
 So how do we compute it?
 
@@ -42,9 +36,9 @@ Notation:
 
 Complexity Measures:
 
-- K(x) = min(L(p) for every p of P(x))
-- KT(x) = min(L(p) * T(p) for every p of P(x))
-- KTS(x) = min(L(p) * T(p) * S(p) for every p of P(x))
+- ```K(x) = min(L(p) for every p of P(x))```
+- ```KT(x) = min(L(p) * T(p) for every p of P(x))```
+- ```KTS(x) = min(L(p) * T(p) * S(p) for every p of P(x))```
 
 K(x) is the normal Kolmogorov complexity function. KT(x) is an extension that weights the programs execution into the measure. KTS(x) also considers the space requirements of the program.
 
@@ -70,5 +64,6 @@ Compression Distance (CD) takes two objects A,B (e.g. text files) as arguments a
 If A & B are very similar c(A+B) will not be much larger than either c(A) or c(B), vice versa if A & B are dissimilar c(A+B) will be much larger than c(A) or c(B).
 
 TODO:
-- Solomonoff Induction and AIXI: Kolmogorov Complexity as Occam's razor for AGI
-- Hutter Prize: Compression (prediction) as key ingredient to AGI
+
+- [Solomonoff Induction](https://www.lesswrong.com/tag/solomonoff-induction) and [AIXI](https://www.lesswrong.com/tag/aixi): Kolmogorov Complexity as Occam's razor for AGI
+- [Hutter Prize](http://prize.hutter1.net/): Compression (prediction) as key ingredient to AGI
