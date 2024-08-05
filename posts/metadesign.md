@@ -13,7 +13,7 @@ It alone must simply suffice to realize the idea it contains.
 - Use clear & vivid explanations (use pictures, graphs when appropriate)
 - Avoid too long continuous text passages
 
-**Top Down Approach**
+## Top Down Approach
 
 Identify distinct, preferably large, independent modules which ideally abstract away highly moving parts. Next outline interactions of the modules to map out the interaction dynamics of the system.
 
