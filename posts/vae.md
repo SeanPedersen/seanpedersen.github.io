@@ -5,6 +5,7 @@ date: '2018-09-30'
 Variational Auto-Encoders (VAE) are a bayesian extension of classical auto-encoders. Disclaimer: This article does not approach the concept of VAE from a bayesian perspective (check out the references below for this). The focus lies instead on highlighting the key components and their effects on the practical results such as the latent embedding space structure.
 
 ## Building Blocks of an Auto-Encoder
+
 - **x**: Input tensor (high-dimensional) f.e. drawn from MNIST dataset (handwritten digits).
 - **Encoder e(x, p_e) → z**: Neural network compressing input x into a lower dimensional tensor z using parameters p_e.
 - **Latent space z**: Hidden lower n-dimensional space (also called bottleneck) in which the compressed representation of input data lies, represented by z ∈ ℝ^n.
@@ -13,6 +14,7 @@ Variational Auto-Encoders (VAE) are a bayesian extension of classical auto-encod
 - **Loss Function L(x, x’)**: Reconstruction loss defined by e.g. mean squared error between x and x’ and possibly regularization terms e.g. sparsity constraint on z or weights. Used to compute gradients for parameters p_d and p_e minimizing the loss.
 
 ## Making Auto-Encoders Variational
+
 We turn a classical auto-encoder into a variational one by modifying the encoder. Instead of mapping the input x directly into z, we instead map x into two vectors: z_mean ∈ ℝ^n & z_var ∈ ℝ^n. These two vectors are used to parametrize a Gaussian normal distribution from which we sample the latent vector z: z ~ gauss(z_mean, z_var). This makes our encoder variational (probabilistic), basically adding gaussian noise to our encoder models output vector z.
 
 Why should we add noise to the encoder? Doing so will generate many more different sample points of z for the decoder to learn reconstructions from, forcing the decoder to generate smooth interpolations between local samples in the latent space.
@@ -24,6 +26,7 @@ This so called reparameterization trick enables us to take the derivatives of z 
 To prevent the variational encoder of “cheating” by placing different samples far apart from each other in z (avoiding our desired property of smooth local interpolations) we add an additional loss term to our loss function L(x, x’) : KL(gauss(z_mean, z_var) || gauss(0,1)). This additional loss term is defined as the Kullback-Leibler-divergence between gauss(z_mean, z_var) and an isotropic standard normal distribution gauss(0,1) ∈ ℝ^n forcing our latent space to be standard Gaussian distributed (achieving the desired smooth local interpolation).
 
 ## Show me the code
+
 Get your hands dirty and play around: [Python Colab Notebook](https://colab.research.google.com/drive/1f73wONMp8U2LvAmN0MNGyflqGFog0g2S)
 
 ## Further Questions
@@ -37,7 +40,6 @@ See “Invertible Autoencoders”; TODO: Lookup reversible layers
 „In fact, this simple autoencoder often ends up learning a low-dimensional representation very similar to PCAs.“ - 
 [http://ufldl.stanford.edu/tutorial/unsupervised/Autoencoders/](http://ufldl.stanford.edu/tutorial/unsupervised/Autoencoders/)
 
-
 **If a simple dense AE approximates PCA, what does a convolutional AE approximate? Local PCAs for each kernel?**
 
 Can we train the encoder unsupervised (independently from the decoder) by understanding how the input features are compressed into z?
@@ -45,5 +47,6 @@ Can we train the encoder unsupervised (independently from the decoder) by unders
 The latent space z is shaped by the loss function, which consists of the MSE between input and output image plus the KL-divergence between an isotropic standard gaussian and z. -> How can we replace the MSE term of the loss to decouple the decoder from the encoder while training? Define a loss that considers class density and overlap -> reward high class density embeddings, penalize multi-class overlap?
 
 ## References
+
 - [https://jaan.io/what-is-variational-autoencoder-vae-tutorial/](https://jaan.io/what-is-variational-autoencoder-vae-tutorial/)
 - [https://towardsdatascience.com/intuitively-understanding-variational-autoencoders-1bfe67eb5daf](https://towardsdatascience.com/intuitively-understanding-variational-autoencoders-1bfe67eb5daf)
