@@ -18,7 +18,9 @@ Robots driven by these new large multi-modal models (embodied AI) and continuous
 
 The hardest problem remains accurate, coherent and self-aware reasoning which is needed to automate novel and useful research. This will likely not be solved by just more data. It will take curated high-quality data and novel algorithms that are aware of their training data and can continuously self-modify to increase the accuracy of their world model.
 
-This new AI will enable every human to naturally interact with computers. On one side enabling them to shape digital content on the other side lays the danger of enhanced mass surveillance and manipulation through advanced AI systems. Robots in particular will drastically change our world.
+Such systems have so far been demonstrated through so called "self-play". Systems like Alpha Zero were capable to simulate an endless stream of training data by simulating the games they play on a massive scale. Allowing to explore novel unseen tactics. Similar feats will be possible for verifiable domains like programming and mathematics. Accurately simulating the real world remains a hard problem (transfer from simulation to real enviroment is difficult).
+
+Still this new wave of AI will enable every human to naturally interact with computers using natural language. On one side enabling them to shape digital and soon physical content on the other side lays the danger of enhanced mass surveillance and manipulation through advanced AI systems in the hands of powerful players (governments and corporations). Robots in particular will drastically change our world.
 
 References:
 
