@@ -34,3 +34,4 @@ References:
 - <https://arxiv.org/abs/2303.05670>
 - <https://www.anthropic.com/research/mapping-mind-language-model>
 - <https://bharathpbhat.github.io/2021/04/04/getting-confidence-estimates-from-neural-networks.html>
+- <https://gist.github.com/yoavg/4e4b48afda8693bc274869c2c23cbfb2>
