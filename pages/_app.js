@@ -15,10 +15,14 @@ if (typeof window !== 'undefined') {
   })
 }
 
-export default function App({ Component, pageProps }) {
+export default function App(
+  { Component, pageProps: { session, ...pageProps } }
+) {
   return (
-    <PostHogProvider client={posthog}>
-      <Component {...pageProps} />
-    </PostHogProvider>
+    <>
+      <PostHogProvider client={posthog}>
+        <Component {...pageProps} />
+      </PostHogProvider>
+    </>
   )
 }
