@@ -2,7 +2,7 @@
 title: 'Interesting Mathematical Objects'
 date: '2024-09-26'
 ---
-A list of mathematical objects I find interesting. If you have access to a 3D printer, thse might be worth a print or two.
+A list of mathematical objects I find interesting. If you have access to a 3D printer, these might be worth a print or two.
 
 - [Gömboc](https://en.wikipedia.org/wiki/G%C3%B6mb%C3%B6c): <https://www.thingiverse.com/thing:5173406>
 - [Reuleaux Triangle](https://en.wikipedia.org/wiki/Reuleaux_triangle): <https://www.thingiverse.com/thing:1597713>
