@@ -1,6 +1,6 @@
 ---
 title: 'Interesting Mathematical Objects'
-date: '2024-9-26'
+date: '2024-09-26'
 ---
 A list of mathematical objects I find interesting. If you have access to a 3D printer, thse might be worth a print or two.
 
