@@ -9,7 +9,7 @@ Hallucination refers to the phenomenon where LLM generates content that sounds c
 
 A confidence estimate assigns a confidence number to a prediction and is useful to estimate factuality. Though a high confidence score for a wrong answer is worse than no confidence score to begin with… So that may be the reason I have not seen any in commercial products. Though OpenAI released this: <https://openai.com/index/teaching-models-to-express-their-uncertainty-in-words/>
 
-Citations are just sources on which a text is based. This can be achieved via so-called RAG techniques (just search over a text corpus and hope to find relevant documents, which are added to the query and cited). Good examples are <https://perplexity.ai> and <https://wikichat.genie.stanford.edu/>.
+Citations are just sources on which a text is based. This can be achieved via so-called RAG techniques (just search over a text corpus and hope to find relevant documents, which are added to the query and cited). Good examples are <https://perplexity.ai> and <https://github.com/stanford-oval/WikiChat>.
 
 A better LLM chatbot would address ideally all three of these limitations. So what are possible pathways to achieve them?
 
