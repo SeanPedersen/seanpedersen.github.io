@@ -56,6 +56,7 @@ The endgame would be language models that actively seek new knowledge aka craft 
 
 ## References
 
+- Great talk on current limits of LLM: <https://www.youtube.com/watch?v=s7_NlkBwdj8>
 - <https://dblalock.substack.com/p/models-generating-training-data-huge>
 - <https://news.mit.edu/2023/large-language-models-are-biased-can-logic-help-save-them-0303>
 - <https://arxiv.org/abs/2303.05670>
