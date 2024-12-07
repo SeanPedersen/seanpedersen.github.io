@@ -8,6 +8,10 @@ Is closed source, centralized software still part of your digital life? Eject no
 
 Alternatives to privacy invading data kraken services.
 
+Google Chrome:
+
+- [Ungoogled Chromium](https://github.com/ungoogled-software/ungoogled-chromium) - Chromium without Google Services (spy ware)
+
 Google Search:
 
 - [SearX](https://searx.si/) ([Code](https://github.com/searx/searx)) - Privacy-respecting metasearch engine, self-hostable
@@ -42,6 +46,7 @@ Facebook / Twitter:
 
 YouTube:
 
+- [Invidious](https://invidious.io/) - privacy respecting YouTube frontend
 - [PeerTube](https://joinpeertube.org/) ([Code](https://github.com/Chocobozzz/PeerTube)) - decentralized, federated, self-hostable
 
 Spotify:
