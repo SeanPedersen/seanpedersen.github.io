@@ -26,30 +26,30 @@ export default function Layout({ children, home }) {
       </Head>
       <header className={styles.header}>
         {home ? (
-          <div style={{display: "flex",
+          <div style={{
+            display: "flex",
             alignItems: "center",
-            gap: "20px"}}>
-          <img
-            src="/images/profile.jpg"
-            className={`${styles.headerHomeImage} ${utilStyles.borderCircle}`}
-            alt={name}
-          />
-          <h1 className={utilStyles.heading2Xl}>{name}</h1>
-        </div>
+            gap: "20px"
+          }}>
+            <img
+              src="/images/profile.jpg"
+              className={`${styles.headerHomeImage} ${utilStyles.borderCircle}`}
+              alt={name}
+            />
+            <h1 className={utilStyles.heading2Xl}>{name}</h1>
+          </div>
         ) : (
           <>
             <Link href="/">
-              <a>
-                <img
-                  src="/images/profile.jpg"
-                  className={`${styles.headerImage} ${utilStyles.borderCircle}`}
-                  alt={name}
-                />
-              </a>
+              <img
+                src="/images/profile.jpg"
+                className={`${styles.headerImage} ${utilStyles.borderCircle}`}
+                alt={name}
+              />
             </Link>
             <h2 className={utilStyles.headingLg}>
               <Link href="/">
-                <a className={utilStyles.colorInherit}>{name}</a>
+                <p className={utilStyles.colorInherit}>{name}</p>
               </Link>
             </h2>
           </>
@@ -59,7 +59,7 @@ export default function Layout({ children, home }) {
       {!home && (
         <div className={styles.backToHome}>
           <Link href="/">
-            <a>← Back to home</a>
+            <p>← Back to home</p>
           </Link>
         </div>
       )}
