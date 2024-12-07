@@ -29,7 +29,7 @@ WhatsApp / Telegram / Signal:
 
 Google Docs:
 
-- [Fileverse](https://github.com/fileverse/fileverse-ddoc) - end-to-end encrypted, real-time collaborative editing, self-hostable
+- [Fileverse](https://docs.fileverse.io/) ([Code](https://github.com/fileverse/fileverse-ddoc)) - end-to-end encrypted, real-time collaborative editing, self-hostable
 - [Cryptpad](https://cryptpad.fr/) ([Code](https://github.com/xwiki-labs/cryptpad)) - end-to-end encrypted, real-time collaborative editing, self-hostable
 
 Google Drive / Dropbox:
