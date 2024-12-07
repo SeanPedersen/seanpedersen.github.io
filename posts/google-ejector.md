@@ -4,6 +4,10 @@ date: '2020-12-07'
 ---
 Is closed source, centralized software still part of your digital life? Eject now and start using free open-source software (FOSS). This is a small curated collection of awesome FOSS, capable of replacing many popular, centralized, privacy invading online services so you can sleep better at night.
 
+## Export All Your Google Data
+
+<https://takeout.google.com/> and delete your account.
+
 ## Awesome FOSS
 
 Alternatives to privacy invading data kraken services.
