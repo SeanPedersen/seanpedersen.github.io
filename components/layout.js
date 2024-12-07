@@ -39,7 +39,7 @@ export default function Layout({ children, home }) {
             <h1 className={utilStyles.heading2Xl}>{name}</h1>
           </div>
         ) : (
-          <>
+          <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
             <Link href="/">
               <img
                 src="/images/profile.jpg"
@@ -49,10 +49,10 @@ export default function Layout({ children, home }) {
             </Link>
             <h2 className={utilStyles.headingLg}>
               <Link href="/">
-                <p className={utilStyles.colorInherit}>{name}</p>
+                <p className={utilStyles.colorInherit}>{siteTitle}</p>
               </Link>
             </h2>
-          </>
+          </div>
         )}
       </header>
       <main className={styles.main}>{children}</main>

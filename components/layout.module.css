@@ -4,8 +4,8 @@
 
 .main {
   width: 100%;
-  display:flex; 
-  flex-direction:column;
+  display: flex;
+  flex-direction: column;
   align-items: center;
 }
 
@@ -17,8 +17,8 @@
 }
 
 .headerImage {
-  width: 6rem;
-  height: 6rem;
+  width: 4rem;
+  height: 4rem;
 }
 
 .headerHomeImage {
@@ -29,4 +29,3 @@
 .backToHome {
   margin: 0 42%;
 }
-  
