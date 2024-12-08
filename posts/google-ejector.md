@@ -19,7 +19,6 @@ Google Chrome:
 Google Search:
 
 - [SearX](https://searx.si/) ([Code](https://github.com/searx/searx)) - Privacy-respecting metasearch engine, self-hostable
-- [IPFS Search](https://ipfs-search.com/) ([Code](https://github.com/ipfs-search/ipfs-search)) - A search engine running on IPFS
 
 Perplexity:
 
@@ -79,5 +78,5 @@ Github / Gitlab / Bitbucket:
 
 ## More Resources
 
-- [https://degoogle.jmoore.dev/](https://degoogle.jmoore.dev/)
+- <https://github.com/tycrek/degoogle>
 - [https://news.ycombinator.com/item?id=25090218](https://news.ycombinator.com/item?id=25090218)
