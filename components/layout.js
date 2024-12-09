@@ -27,6 +27,7 @@ export default function Layout({ children, home, title }) {
           <div style={{
             display: "flex",
             alignItems: "center",
+            padding: "20px",
             gap: "20px"
           }}>
             <img
