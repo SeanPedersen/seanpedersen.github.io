@@ -6,7 +6,7 @@
 }
 
 .main {
-  width: 100%;
+  width: 88%;
   max-width: 72rem;
   padding: 0 1rem;
   margin: 0rem auto 0rem;
@@ -15,17 +15,35 @@
 
 .main.postPage {
   margin-top: 0;
-  max-width: none;
+  max-width: 72rem;
+  padding: 0 1rem;
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  /* Add this to ensure proper alignment */
+  flex-direction: column;
+  align-items: center;
 }
 
 .postPage {
   display: flex;
-  gap: 2rem;
-  justify-content: space-between;
+  flex-direction: column;
+  width: 100%;
+  gap: 1rem;
+}
+
+/* Desktop styles */
+@media (min-width: 768px) {
+  .main.postPage {
+    padding: 0 2rem;
+  }
+
+  .postPage {
+    flex-direction: row;
+    gap: 2rem;
+    justify-content: space-between;
+  }
+
+  .postPage.noToc {
+    justify-content: center;
+  }
 }
 
 .postPage.noToc {
