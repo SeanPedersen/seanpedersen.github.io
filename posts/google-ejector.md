@@ -25,7 +25,9 @@ end
 ```
 
 4. Run this bash command to convert:
+
 `$ find . -name "*.docx" -type f -exec sh -c 'pandoc "$0" -o "${0%.docx}.md" --extract-media=./images/ --lua-filter=fix_underline_links.lua' {} \;`
+
 5. Remove all docx files: `$ find . -type f -name "*.docx" -delete`
 
 ## Awesome FOSS
