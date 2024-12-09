@@ -27,7 +27,6 @@ export default function Layout({ children, home, title }) {
           <div style={{
             display: "flex",
             alignItems: "center",
-            padding: "20px",
             gap: "20px"
           }}>
             <img
@@ -52,16 +51,19 @@ export default function Layout({ children, home, title }) {
               </Link>
             </h2>
           </div>
-        )}
-      </header>
+        )
+        }
+      </header >
       <main className={styles.main}>{children}</main>
-      {!home && (
-        <div className={styles.backToHome}>
-          <Link href="/">
-            <p>← Back to home</p>
-          </Link>
-        </div>
-      )}
-    </div>
+      {
+        !home && (
+          <div className={styles.backToHome}>
+            <Link href="/">
+              <p>← Back to home</p>
+            </Link>
+          </div>
+        )
+      }
+    </div >
   )
 }
