@@ -33,8 +33,9 @@ I hope to see more research exploring this consistent data bootstrapping approac
 
 **Entropy Based**: Analyze the entropy (variance) of the logits. High-variance should indicate uncertainty. <https://github.com/xjdr-alt/entropix>
 
-**Semantic Entropy Based**: Sample multiple answers (high temperature) and compare the variance of the resulting answers embedding vectors.
--> This approach has a major flaw: “Everyone in the comments seems to be arguing over the semantics of the words and anthropomorphization of LLMs. Putting that aside, there is a real problem with this approach that lies at the mathematical level.
+**Semantic Entropy Based**: Sample multiple answers (high temperature) and estimate confidence based on the variance of the resulting answers embedding vectors.
+
+-> These approaches have a major flaw though (as pointed out by this HN commenter): “..., there is a real problem with this approach that lies at the mathematical level.
 
 For any given input text, there is a corresponding output text distribution (e.g. the probabilities of all words in a sequence which the model draws samples from).
 
