@@ -49,7 +49,7 @@ export default function Post({ postData }) {
   const hasTableOfContents = postData.contentHtml.includes('<h2') || postData.contentHtml.includes('<h3');
 
   return (
-    <Layout>
+    <Layout title={postData.title}>
       <Head>
         <title>{postData.title}</title>
       </Head>

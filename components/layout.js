@@ -6,7 +6,7 @@ import Link from 'next/link'
 const name = 'Sean Pedersen'
 export const siteTitle = "Sean's Blog"
 
-export default function Layout({ children, home }) {
+export default function Layout({ children, home, title }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -19,7 +19,7 @@ export default function Layout({ children, home }) {
           property="og:image"
           content="/images/site-image.svg"
         />
-        <meta name="og:title" content={siteTitle} />
+        <meta name="og:title" content={title || siteTitle} />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <header className={styles.header}>
