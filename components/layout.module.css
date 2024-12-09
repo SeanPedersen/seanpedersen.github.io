@@ -1,19 +1,43 @@
 .container {
-  width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .main {
   width: 100%;
+  max-width: 72rem;
+  padding: 0 1rem;
+  margin: 0rem auto 0rem;
+  flex: 1 0 auto;
+}
+
+.main.postPage {
+  margin-top: 0;
+  max-width: none;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: center;
+  align-items: flex-start;
+  /* Add this to ensure proper alignment */
+}
+
+.postPage {
+  display: flex;
+  gap: 2rem;
+  justify-content: space-between;
+}
+
+.postPage.noToc {
+  justify-content: center;
 }
 
 .header {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 1.42rem;
+  padding: 1rem;
 }
 
 .headerImage {
@@ -27,5 +51,6 @@
 }
 
 .backToHome {
-  margin: 0 42%;
+  margin: 2rem auto;
+  width: fit-content;
 }

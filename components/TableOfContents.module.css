@@ -1,0 +1,45 @@
+.toc {
+    display: none;
+}
+
+@media (min-width: 1200px) {
+    .toc {
+        display: block;
+        position: fixed;
+        left: calc(50% - 770px);
+        top: 100px;
+        width: 250px;
+        max-height: calc(100vh - 120px);
+        overflow-y: auto;
+        padding-inline: 1rem;
+        background: #f8f9fa;
+        border-radius: 4px;
+        margin-left: 2rem;
+    }
+}
+
+.toc ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.toc li {
+    margin: 0.5rem 0;
+    font-size: 0.9rem;
+}
+
+.toc a {
+    color: #666;
+    text-decoration: none;
+}
+
+.toc a:hover {
+    color: #0070f3;
+}
+
+@media (max-width: 1200px) {
+    .toc {
+        display: none;
+    }
+}
