@@ -1,0 +1,25 @@
+.codeBlock {
+    padding: 0.2em 0.4em;
+    border-radius: 5px;
+    background-color: #f6f8fa;
+    overflow-x: auto;
+    font-size: 0.9rem;
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+}
+
+.codeBlock pre {
+    padding: 0.2em 0.4em;
+    border-radius: 5px;
+    background-color: #f6f8fa;
+    overflow-x: auto;
+    font-size: 0.9rem;
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+}
+
+.inlineCode {
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    background-color: #f6f8fa;
+    font-size: 0.9em;
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+}
