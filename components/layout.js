@@ -20,7 +20,7 @@ export default function Layout({ children, home, title }) {
           content="/images/site-image.svg"
         />
         <meta name="og:title" content={title || siteTitle} />
-        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:card" content="summary" />
       </Head>
       <header className={styles.header}>
         {home ? (
