@@ -15,7 +15,7 @@ Variational Auto-Encoders (VAE) are a bayesian extension of classical auto-encod
 
 ## Making Auto-Encoders Variational
 
-We turn a classical auto-encoder into a variational one by modifying the encoder. Instead of mapping the input x directly into z, we instead map x into two vectors: `z_mean ∈ ℝ^n & z_var ∈ ℝ^n`. These two vectors are used to parametrize a Gaussian normal distribution from which we sample the latent vector z: `z ~ gauss(z_mean, z_var)`. This makes our encoder variational (probabilistic), basically adding gaussian noise to our encoder models output vector z.
+We turn a classical auto-encoder into a variational one by modifying the encoder. Instead of mapping the input x directly into z, we instead map x into two vectors: `z_mean ∈ ℝ^n` & `z_var ∈ ℝ^n`. These two vectors are used to parametrize a Gaussian normal distribution from which we sample the latent vector z: `z ~ gauss(z_mean, z_var)`. This makes our encoder variational (probabilistic), basically adding gaussian noise to our encoder models output vector z.
 
 Why should we add noise to the encoder? Doing so will generate many more different sample points of z for the decoder to learn reconstructions from, forcing the decoder to generate smooth interpolations between local samples in the latent space.
 
