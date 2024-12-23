@@ -4,33 +4,7 @@ date: '2020-12-07'
 ---
 Is closed source, centralized software still part of your digital life? Eject now and start using free open-source software (FOSS). This is a small curated collection of awesome FOSS, capable of replacing many popular, centralized, privacy invading online services so you can sleep better at night.
 
-## Export All Your Google Data
-
-...using <https://takeout.google.com/> and delete your account.
-
-### Converting Google Docs files to Markdown
-
-1. Install [Pandoc](https://pandoc.org/installing.html) to convert docx to markdown
-2. Change dir to your Google Drive export: Takeout/Drive
-3. Create a lua script named fix_underline_links.lua with this content:
-
-```lua
-function Link(el)
-  local content = el.content
-  if #content == 1 and content[1].t == "Underline" then
-    content = content[1].content
-  end
-  return pandoc.Link(content, el.target)
-end
-```
-
-4. Run this bash command to convert:
-
-`$ find . -name "*.docx" -type f -exec sh -c 'pandoc "$0" -o "${0%.docx}.md" --extract-media=./images/ --lua-filter=fix_underline_links.lua' {} \;`
-
-5. Remove all docx files: `$ find . -type f -name "*.docx" -delete`
-
-## Awesome FOSS
+## Awesome FOSS Alternatives
 
 Alternatives to privacy invading data kraken services.
 
@@ -87,6 +61,33 @@ HTTP(S):
 Github / Gitlab / Bitbucket:
 
 - [Radicle](https://radicle.xyz/) ([Code](https://github.com/radicle-dev/radicle-upstream)) - decentralized, self-hostable
+
+## Export All Your Google Data
+
+...using <https://takeout.google.com/> and delete your account.
+
+### Converting Google Docs files to Markdown
+
+1. Install [Pandoc](https://pandoc.org/installing.html) to convert docx to markdown
+2. Change dir to your Google Drive export: Takeout/Drive
+3. Create a lua script named fix_underline_links.lua with this content:
+
+```lua
+function Link(el)
+  local content = el.content
+  if #content == 1 and content[1].t == "Underline" then
+    content = content[1].content
+  end
+  return pandoc.Link(content, el.target)
+end
+```
+
+4. Run this bash command to convert:
+
+`$ find . -name "*.docx" -type f -exec sh -c 'pandoc "$0" -o "${0%.docx}.md" --extract-media=./images/ --lua-filter=fix_underline_links.lua' {} \;`
+
+5. Remove all docx files: `$ find . -type f -name "*.docx" -delete`
+
 
 ## Glossary
 
