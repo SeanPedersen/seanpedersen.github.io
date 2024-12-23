@@ -41,6 +41,7 @@ Google Calendar / Contacts:
 
 Facebook / Twitter:
 
+- [Nostr](https://nostr.com/) ([Code](https://github.com/nostr-protocol/nostr)) - decentralized, self-hostable
 - [Mastodon](https://joinmastodon.org/) ([Code](https://github.com/tootsuite/mastodon)) - federated, self-hostable
 - [Scuttlebutt](https://scuttlebutt.nz/) ([Code](https://github.com/ssbc/ssb-server)) - decentralized, self-hostable
 
