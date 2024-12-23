@@ -25,6 +25,10 @@ This so called reparameterization trick enables us to take the derivatives of z 
 
 To prevent the variational encoder of “cheating” by placing different samples far apart from each other in z (avoiding our desired property of smooth local interpolations) we add an additional loss term to our reconstruction loss function `L(x, x’)`, namely: `KL(gauss(z_mean, z_var) || gauss(0,1))`. This additional loss term is defined as the Kullback-Leibler-divergence between the encoders output `gauss(z_mean, z_var)` and an isotropic standard normal distribution `gauss(0,1) ∈ ℝ^n` forcing the latent space to be standard Gaussian distributed (achieving the desired smooth local interpolation).
 
+## Beta-VAE
+
+By adding a tunable parameter β (beta) to the Kullback-Leibler-Loss: `β * KL(gauss(z_mean, z_var) || gauss(0,1))` which is 1.0 for the normal VAE, we can vary how much we force the latent space to be standard normally distributed. This has an interesting effect on the structure of the latent space dimensions: a higher beta parameter promotes disentanglement of the individual latent space dimensions. Making them independent and often interpretable features.
+
 ## Show me the code
 
 Get your hands dirty and play around: [Python Colab Notebook](https://colab.research.google.com/drive/1f73wONMp8U2LvAmN0MNGyflqGFog0g2S)
@@ -50,3 +54,4 @@ The latent space z is shaped by the loss function, which consists of the MSE bet
 
 - [https://jaan.io/what-is-variational-autoencoder-vae-tutorial/](https://jaan.io/what-is-variational-autoencoder-vae-tutorial/)
 - [https://towardsdatascience.com/intuitively-understanding-variational-autoencoders-1bfe67eb5daf](https://towardsdatascience.com/intuitively-understanding-variational-autoencoders-1bfe67eb5daf)
+- <https://lilianweng.github.io/posts/2018-08-12-vae/>
