@@ -15,15 +15,15 @@ Variational Auto-Encoders (VAE) are a bayesian extension of classical auto-encod
 
 ## Making Auto-Encoders Variational
 
-We turn a classical auto-encoder into a variational one by modifying the encoder. Instead of mapping the input x directly into z, we instead map x into two vectors: z_mean ∈ ℝ^n & z_var ∈ ℝ^n. These two vectors are used to parametrize a Gaussian normal distribution from which we sample the latent vector z: z ~ gauss(z_mean, z_var). This makes our encoder variational (probabilistic), basically adding gaussian noise to our encoder models output vector z.
+We turn a classical auto-encoder into a variational one by modifying the encoder. Instead of mapping the input x directly into z, we instead map x into two vectors: `z_mean ∈ ℝ^n & z_var ∈ ℝ^n`. These two vectors are used to parametrize a Gaussian normal distribution from which we sample the latent vector z: `z ~ gauss(z_mean, z_var)`. This makes our encoder variational (probabilistic), basically adding gaussian noise to our encoder models output vector z.
 
 Why should we add noise to the encoder? Doing so will generate many more different sample points of z for the decoder to learn reconstructions from, forcing the decoder to generate smooth interpolations between local samples in the latent space.
 
-Computing the derivatives of the random gaussian distribution parameterized by the two output vectors z_mean and z_var of the encoder is achieved by reparameterizing z ~ gauss(z_mean, z_var) into z = z_mean + z_var * gauss(0,1)
+Computing the derivatives of the random gaussian distribution parameterized by the two output vectors z_mean and z_var of the encoder is achieved by reparameterizing `z ~ gauss(z_mean, z_var)` into `z = z_mean + z_var * gauss(0,1)`
 
 This so called reparameterization trick enables us to take the derivatives of z with respect to either z_mean or z_var, which are necessary to back-propagate the error-signal through the sampling layer when using stochastic gradient descent as the parameter optimizer.
 
-To prevent the variational encoder of “cheating” by placing different samples far apart from each other in z (avoiding our desired property of smooth local interpolations) we add an additional loss term to our loss function L(x, x’) : KL(gauss(z_mean, z_var) || gauss(0,1)). This additional loss term is defined as the Kullback-Leibler-divergence between gauss(z_mean, z_var) and an isotropic standard normal distribution gauss(0,1) ∈ ℝ^n forcing our latent space to be standard Gaussian distributed (achieving the desired smooth local interpolation).
+To prevent the variational encoder of “cheating” by placing different samples far apart from each other in z (avoiding our desired property of smooth local interpolations) we add an additional loss term to our reconstruction loss function `L(x, x’)`, namely: `KL(gauss(z_mean, z_var) || gauss(0,1))`. This additional loss term is defined as the Kullback-Leibler-divergence between the encoders output `gauss(z_mean, z_var)` and an isotropic standard normal distribution `gauss(0,1) ∈ ℝ^n` forcing the latent space to be standard Gaussian distributed (achieving the desired smooth local interpolation).
 
 ## Show me the code
 
