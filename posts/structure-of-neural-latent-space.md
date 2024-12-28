@@ -24,6 +24,7 @@ A small collection of insights on the structure of embeddings (latent spaces) pr
 **Universality Hypothesis**: Circuits reappear across different models for the same data.
 
 - <https://www.lesswrong.com/posts/5CApLZiHGkt37nRQ2/an-111-the-circuits-hypotheses-for-deep-learning>
+- <https://phillipi.github.io/prh/>
 
 **Adversarial Vulnerability**: Small changes in input space can cause large shifts in embeddings and therefore also in predictions made from them, suggesting the learned manifolds have irregular geometric properties.
 
