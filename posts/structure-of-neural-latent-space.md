@@ -34,7 +34,7 @@ A small collection of insights on the structure of embeddings (latent spaces) pr
 
 - <https://arxiv.org/abs/2008.08186>
 
-## Limitations of Dense Embeddings
+## Limits of Dense Embeddings
 
 Most neural network architectures process data as dense vectors, making them hard to interpret for humans.
 
