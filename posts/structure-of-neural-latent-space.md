@@ -6,7 +6,7 @@ A small collection of insights on the structure of embeddings (latent spaces) pr
 
 **Manifold Hypothesis**: High-dimensional data sampled from natural (real-world) processes lies in a low-dimensional manifold.
 
-- <https://arxiv.org/abs/2208.11665>
+- <https://colah.github.io/posts/2014-03-NN-Manifolds-Topology/>
 
 **Hierarchical Organization**: Features organize hierarchically across layers - earlier layers capture low-level (small context) features while deeper layers represent increasingly abstract (large context) concepts.
 
