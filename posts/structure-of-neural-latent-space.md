@@ -16,6 +16,7 @@ A small collection of insights on the structure of embeddings (latent spaces) pr
 
 - <https://colah.github.io/posts/2014-07-NLP-RNNs-Representations/>
 - <https://www.lesswrong.com/posts/tojtPCCRpKLSHBdpn/the-strong-feature-hypothesis-could-be-wrong>
+- <https://arxiv.org/abs/2406.01506>
 
 **Superposition Hypothesis**: Neural nets represent more “independent” features than a layer has neurons (dimensions) by representing features as a linear combination of neurons (resulting in dense vectors).
 
@@ -24,6 +25,7 @@ A small collection of insights on the structure of embeddings (latent spaces) pr
 **Universality Hypothesis**: Circuits reappear across different models for the same data.
 
 - <https://www.lesswrong.com/posts/5CApLZiHGkt37nRQ2/an-111-the-circuits-hypotheses-for-deep-learning>
+- <https://arxiv.org/abs/2405.07987>
 - <https://phillipi.github.io/prh/>
 
 **Adversarial Vulnerability**: Small changes in input space can cause large shifts in embeddings and therefore also in predictions made from them, suggesting the learned manifolds have irregular geometric properties.
