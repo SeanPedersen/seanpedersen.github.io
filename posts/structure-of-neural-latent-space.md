@@ -1,5 +1,5 @@
 ---
-title: 'On the Structure of Neural Embeddings'
+title: 'Structure of Neural Embeddings'
 date: '2024-12-27'
 ---
 A small collection of insights on the structure of embeddings (latent spaces) produced by deep neural networks.
