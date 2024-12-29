@@ -17,7 +17,7 @@ A small collection of insights on the structure of embeddings (latent spaces) pr
 - <https://colah.github.io/posts/2014-07-NLP-RNNs-Representations/>
 - <https://www.lesswrong.com/posts/tojtPCCRpKLSHBdpn/the-strong-feature-hypothesis-could-be-wrong>
 
-**Superposition Hypothesis**: Neural nets represent more “independent” features than a layer has neurons (dimensions) by representing features as a linear combination of neurons.
+**Superposition Hypothesis**: Neural nets represent more “independent” features than a layer has neurons (dimensions) by representing features as a linear combination of neurons (resulting in dense vectors).
 
 - <https://transformer-circuits.pub/2022/toy_model/index.html>
 
