@@ -33,3 +33,11 @@ A small collection of insights on the structure of embeddings (latent spaces) pr
 **Neural Collapse**: After extensive training, class features in the final layer cluster tightly around their means, with the network's classification weights aligning with these mean directions. Within-class variation becomes minimal compared to between-class differences, effectively creating distinct, well-separated clusters for each class.
 
 - <https://arxiv.org/abs/2008.08186>
+
+## Limitations of Dense Embeddings
+
+Most neural network architectures process data as dense vectors, making them hard to interpret for humans.
+
+A better embedding representation would be sparse (few dimensions are active) and spatially meaningful (position of dimensions encodes information).
+
+This would make them easier to interpret for humans and potentially offer some other benefits: encode mono-semanticity vs poly-semanticity, encode novelty (outliers), increase robustness and reduce storage / increase efficiency. But this is another blog post.
