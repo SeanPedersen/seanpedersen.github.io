@@ -85,7 +85,7 @@ I came up with this simple implementation:
 
 1. Start with dense embeddings from a pre-trained model
 2. Train a Kohonen Map (SOM) on these embeddings
-3. For each input, activate only K best-matching units to create the sparse distrubted representation
+3. For each input, activate only K best-matching units to create the sparse distributed representation
 
 This approach leverages the topology-preserving properties of SOMs while enforcing sparsity through top-K selection. The resulting representations naturally exhibit the desired SDR properties.
 
