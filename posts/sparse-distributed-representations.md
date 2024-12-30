@@ -25,9 +25,18 @@ A key feature of SDRs is their ability to naturally encode mono-semantic versus 
 
 This property provides immediate insight into the semantic complexity of the input.
 
+Here are the top 10 average activations for a SDR trained for CLIP embeddings of CIFAR-10 images:
+![cifar10-clip-som-sdr](/images/cifar10-clip-som-sdr.png)
+
+And here a SDR for an image of a cat driving a car (poly-semantic):
+![poly-semantic-sdr-cat-car](/images/poly-semantic-sdr-cat-car.png)
+
 ### Built-in Novelty Detection
 
-When presented with inputs outside the training distribution, they tend to generate highly dispersed activation patterns - even more scattered than typical poly-semantic inputs. This makes outlier detection straightforward and interpretable. (I have not experimentally confirmed this property yet)
+When presented with inputs outside the training distribution, they tend to generate highly dispersed activation patterns - even more scattered than typical poly-semantic inputs. This makes outlier detection straightforward and interpretable.
+
+Here the SDR for an image of the Pyramids (out-of-distribution):
+![ood-outlier-pyramids-sdr.png](/images/ood-outlier-pyramids-sdr.png)
 
 ### Increased Robustness
 
@@ -89,7 +98,9 @@ I came up with this simple implementation:
 
 This approach leverages the topology-preserving properties of SOMs while enforcing sparsity through top-K selection. The resulting representations naturally exhibit the desired SDR properties.
 
-Another implemenation: <https://github.com/dizcza/EmbedderSDR>
+Here is my code (Jupyter Notebook): <https://github.com/SeanPedersen/SparseDistributedRepresentations>
+
+A different implemenation I found: <https://github.com/dizcza/EmbedderSDR>
 
 ## References
 
