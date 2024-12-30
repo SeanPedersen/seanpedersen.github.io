@@ -40,7 +40,7 @@ Complexity Measures:
 - ```KT(x) = min(L(p) * T(p) for every p of P(x))```
 - ```KTS(x) = min(L(p) * T(p) * S(p) for every p of P(x))```
 
-K(x) is the normal Kolmogorov complexity function. KT(x) is an extension that weights the programs execution into the measure. KTS(x) also considers the space requirements of the program.
+K(x) is the normal Kolmogorov complexity function. KT(x) is an extension that weights the programs execution time into the measure. KTS(x) also considers the space requirements of the program.
 
 Ok what now? Let’s do what computer scientists like to do and cheat our way out using the power of good enough heuristics / approximations. One easy way to deal with programs that run too long or even infinitely is to discard them after exactly 42 seconds.
 
