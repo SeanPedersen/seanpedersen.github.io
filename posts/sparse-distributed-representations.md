@@ -18,7 +18,7 @@ SDRs can be naturally visualized as 2D images due to their matrix structure, spa
 
 ### Encoding Semantic Complexity
 
-One of the most fascinating properties of SDRs is their ability to naturally encode mono-semantic versus poly-semantic content:
+A key feature of SDRs is their ability to naturally encode mono-semantic versus poly-semantic content:
 
 - Mono-semantic inputs (e.g., an image of a single cat or text about cats) produce spatially tightly clustered activation patterns
 - Poly-semantic inputs (e.g., an image with multiple objects or text covering various topics) create more distributed activation patterns
