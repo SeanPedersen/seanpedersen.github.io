@@ -30,9 +30,10 @@ A small collection of insights on the structure of embeddings (latent spaces) pr
 - <https://arxiv.org/abs/2405.07987>
 - <https://phillipi.github.io/prh/>
 
-**Adversarial Vulnerability**: Small changes in input space can cause large shifts in embeddings and therefore also in predictions made from them, suggesting the learned manifolds have irregular geometric properties.
+**Adversarial Vulnerability**: Small changes in input space can cause large shifts in embeddings and therefore also in predictions made from them, suggesting the learned manifolds have chaotic properties.
 
 - <https://arxiv.org/abs/1412.6572>
+- <https://www.nature.com/articles/s41467-023-40499-0>
 
 **Neural Collapse**: After extensive training, class features in the final layer cluster tightly around their means, with the network's classification weights aligning with these mean directions. Within-class variation becomes minimal compared to between-class differences, effectively creating distinct, well-separated clusters for each class.
 
