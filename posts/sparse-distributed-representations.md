@@ -18,22 +18,22 @@ SDRs can be naturally visualized as 2D images due to their matrix structure, spa
 
 ### Encoding Semantic Complexity
 
-A key feature of SDRs is their ability to naturally encode mono-semantic versus poly-semantic content:
+A key feature of SDRs is their ability to naturally encode single-concept versus multi-concept content:
 
-- Mono-semantic inputs (e.g., an image of a single cat or text about cats) produce spatially tightly clustered activation patterns
-- Poly-semantic inputs (e.g., an image with multiple objects or text covering various topics) create more distributed activation patterns
+- Single-concept inputs (e.g., an image of a single cat or text about cats) produce spatially tightly clustered activation patterns
+- Multi-concept inputs (e.g., an image with multiple unrelated objects or text covering various topics) create more distributed activation patterns
 
 This property provides immediate insight into the semantic complexity of the input.
 
 Here are the top 10 average activations for a SDR trained for CLIP embeddings of CIFAR-10 images:
 ![cifar10-clip-som-sdr](/images/cifar10-clip-som-sdr.png)
 
-And here a SDR for an image of a cat driving a car (poly-semantic):
-![poly-semantic-sdr-cat-car](/images/poly-semantic-sdr-cat-car.png)
+And here a SDR for an image of a cat driving a car (multi-concept):
+![multi-concept-sdr-cat-car](/images/poly-semantic-sdr-cat-car.png)
 
 ### Built-in Novelty Detection
 
-When presented with inputs outside the training distribution, they tend to generate highly dispersed activation patterns - even more scattered than typical poly-semantic inputs. This makes outlier detection straightforward and interpretable.
+When presented with inputs outside the training distribution, they tend to generate highly dispersed activation patterns - even more scattered than typical multi-concept inputs. This makes outlier detection straightforward and interpretable.
 
 Here the SDR for an image of the Pyramids (out-of-distribution):
 ![ood-outlier-pyramids-sdr.png](/images/ood-outlier-pyramids-sdr.png)
