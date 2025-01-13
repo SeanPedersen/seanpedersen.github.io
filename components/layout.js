@@ -11,6 +11,7 @@ export default function Layout({ children, home, title }) {
     <div className={styles.container}>
       <Head>
         <link rel="icon" href="/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta
           name="description"
           content="Another place for thought infusion"
@@ -26,23 +27,28 @@ export default function Layout({ children, home, title }) {
         {home ? (
           <div style={{
             display: "flex",
+            flexDirection: "row",
             alignItems: "center",
-            gap: "2rem",
-            padding: "1rem 2rem"
+            gap: "1rem",
+            padding: "1rem",
+            maxWidth: "100%"
           }}>
             <img
               src="/images/profile.jpg"
               className={`${styles.headerHomeImage} ${utilStyles.borderCircle}`}
               alt={name}
             />
-            <h1 className={utilStyles.heading2Xl}>{name}</h1>
+            <h1 className={`${utilStyles.heading2Xl} ${utilStyles.nameBreak}`}>
+              <span>Sean</span>
+              <span>Pedersen</span>
+            </h1>
           </div>
         ) : (
           <div style={{
             display: "flex",
             alignItems: "center",
-            gap: "2rem",
-            padding: "0.5rem 1rem"
+            gap: "1rem",
+            padding: "0.5rem"
           }}>
             <h2 className={utilStyles.headingLg}>
               <Link href="/" className={utilStyles.colorInherit}>
