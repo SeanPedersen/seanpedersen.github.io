@@ -69,16 +69,16 @@
   <!-- Semantic Examples -->
   <text x="400" y="240" text-anchor="middle" font-size="16" font-weight="bold">SDR Activation Patterns</text>
   
-  <!-- Mono-semantic pattern -->
-  <text x="50" y="270" text-anchor="start" font-size="14">Mono-semantic</text>
+  <!-- single-concept pattern -->
+  <text x="50" y="270" text-anchor="start" font-size="14">Single-concept</text>
   <rect x="50" y="280" width="200" height="100" fill="#f0f0f0" stroke="#000000"/>
   
-  <!-- Mono-semantic Active Cells -->
+  <!-- single-concept Active Cells -->
   <rect x="50" y="300" width="20" height="20" fill="#4a90e2"/>
   <rect x="70" y="300" width="20" height="20" fill="#4a90e2"/>
   <rect x="90" y="320" width="20" height="20" fill="#4a90e2"/>
   
-  <!-- Mono-semantic Grid -->
+  <!-- single-concept Grid -->
   <g stroke="#cccccc" stroke-width="1">
     <!-- Vertical lines -->
     <line x1="50" y1="280" x2="50" y2="380"/>
@@ -102,16 +102,16 @@
     <line x1="50" y1="380" x2="250" y2="380"/>
   </g>
   
-  <!-- Poly-semantic pattern -->
-  <text x="300" y="270" text-anchor="start" font-size="14">Poly-semantic</text>
+  <!-- Multi-concept pattern -->
+  <text x="300" y="270" text-anchor="start" font-size="14">Multi-concept</text>
   <rect x="300" y="280" width="200" height="100" fill="#f0f0f0" stroke="#000000"/>
   
-  <!-- Poly-semantic Active Cells -->
+  <!-- Multi-concept Active Cells -->
   <rect x="300" y="280" width="20" height="20" fill="#4a90e2"/>
   <rect x="340" y="320" width="20" height="20" fill="#4a90e2"/>
   <rect x="380" y="300" width="20" height="20" fill="#4a90e2"/>
   
-  <!-- Poly-semantic Grid -->
+  <!-- Multi-concept Grid -->
   <g stroke="#cccccc" stroke-width="1">
     <!-- Vertical lines -->
     <line x1="300" y1="280" x2="300" y2="380"/>

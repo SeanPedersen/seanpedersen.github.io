@@ -29,7 +29,7 @@ Here are the top 10 average activations for a SDR trained for CLIP embeddings of
 ![cifar10-clip-som-sdr](/images/cifar10-clip-som-sdr.png)
 
 And here a SDR for an image of a cat driving a car (multi-concept):
-![multi-concept-sdr-cat-car](/images/poly-semantic-sdr-cat-car.png)
+![multi-concept-sdr-cat-car](/images/sdr-cat-car.png)
 
 ### Built-in Novelty Detection
 
