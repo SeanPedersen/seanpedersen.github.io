@@ -25,12 +25,12 @@ export default function TableOfContents({ content }) {
 
     return (
         <nav className={styles.toc}>
-            <h2>Table of Contents</h2>
+            <h2>Contents</h2>
             <ul>
                 {headings.map((heading, index) => (
                     <li
                         key={index}
-                        style={{ paddingLeft: `${(heading.level - 1) * 16}px` }}
+                        style={{ marginLeft: `${(heading.level - 1) * 12}px` }}
                     >
                         <a href={`#${heading.id}`}>{heading.text}</a>
                     </li>

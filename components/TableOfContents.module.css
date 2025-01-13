@@ -1,21 +1,29 @@
 .toc {
-    display: none;
+    position: fixed;
+    width: 250px;
+    background-color: #000;
+    border: 2px solid #fff;
+    padding: 1rem;
 }
 
 @media (min-width: 1200px) {
     .toc {
-        display: block;
-        position: fixed;
         left: calc(50% - 770px);
         top: 100px;
-        width: 250px;
         max-height: calc(100vh - 120px);
         overflow-y: auto;
-        padding-inline: 1rem;
-        background: #f8f9fa;
-        border-radius: 4px;
         margin-left: 2rem;
     }
+}
+
+.toc h2 {
+    font-family: "Courier New", Courier, monospace;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    margin: 0 0 1rem 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #ff0;
+    color: #fff;
 }
 
 .toc ul {
@@ -25,21 +33,31 @@
 }
 
 .toc li {
-    margin: 0.5rem 0;
+    margin-bottom: 0.5rem;
+    font-family: "Courier New", Courier, monospace;
     font-size: 0.9rem;
 }
 
 .toc a {
-    color: #666;
+    color: #fff;
     text-decoration: none;
+    border-left: 2px solid #ff0;
+    padding-left: 0.5rem;
+    transition: all 0.2s;
+    display: block;
+    border-bottom: none;
 }
 
 .toc a:hover {
-    color: #0070f3;
+    background-color: #ff0;
+    color: #000;
+    border-left: 4px solid #ff0;
 }
 
 @media (max-width: 1200px) {
     .toc {
-        display: none;
+        position: static;
+        width: 100%;
+        margin: 1rem 0;
     }
 }

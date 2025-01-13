@@ -1,13 +1,13 @@
 .container {
-  max-width: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .main {
-  width: 88%;
-  max-width: 72rem;
+  width: 100%;
+  max-width: 50rem;
   padding: 0 1rem;
   margin: 0rem auto 0rem;
   flex: 1 0 auto;
@@ -51,16 +51,17 @@
 }
 
 .header {
-  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 1rem;
+  width: 100%;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
 .headerImage {
-  width: 4rem;
-  height: 4rem;
+  width: 6rem;
+  height: 6rem;
 }
 
 .headerHomeImage {
@@ -69,6 +70,19 @@
 }
 
 .backToHome {
-  margin: 2rem auto;
-  width: fit-content;
+  margin: 3rem 0 0;
+  border: 2px solid #fff;
+  padding: 0.5rem 1rem;
+}
+
+.backToHome:hover {
+  background-color: #fff;
+}
+
+.backToHome:hover p {
+  color: #000;
+}
+
+.backToHome p {
+  margin: 0;
 }

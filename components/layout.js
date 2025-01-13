@@ -27,7 +27,8 @@ export default function Layout({ children, home, title }) {
           <div style={{
             display: "flex",
             alignItems: "center",
-            gap: "20px"
+            gap: "2rem",
+            padding: "1rem 2rem"
           }}>
             <img
               src="/images/profile.jpg"
@@ -37,33 +38,21 @@ export default function Layout({ children, home, title }) {
             <h1 className={utilStyles.heading2Xl}>{name}</h1>
           </div>
         ) : (
-          <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
-            <Link href="/">
-              <img
-                src="/images/profile.jpg"
-                className={`${styles.headerImage} ${utilStyles.borderCircle}`}
-                alt={name}
-              />
-            </Link>
+          <div style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "2rem",
+            padding: "0.5rem 1rem"
+          }}>
             <h2 className={utilStyles.headingLg}>
-              <Link href="/">
-                <p className={utilStyles.colorInherit}>{siteTitle}</p>
+              <Link href="/" className={utilStyles.colorInherit}>
+                {siteTitle}
               </Link>
             </h2>
           </div>
-        )
-        }
-      </header >
+        )}
+      </header>
       <main className={styles.main}>{children}</main>
-      {
-        !home && (
-          <div className={styles.backToHome}>
-            <Link href="/">
-              <p>← Back to home</p>
-            </Link>
-          </div>
-        )
-      }
     </div >
   )
 }
