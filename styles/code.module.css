@@ -1,25 +1,26 @@
 .codeBlock {
-    padding: 0.2em 0.4em;
-    border-radius: 5px;
-    background-color: #f6f8fa;
+    padding: 0.42rem;
+    background-color: #131212;
+    color: #fff;
+    border: 2px solid #fff;
     overflow-x: auto;
     font-size: 0.9rem;
-    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 .codeBlock pre {
-    padding: 0.2em 0.4em;
-    border-radius: 5px;
-    background-color: #f6f8fa;
+    padding: 0.42rem;
+    background-color: #131212;
+    color: #fff;
     overflow-x: auto;
     font-size: 0.9rem;
-    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 .inlineCode {
     padding: 0.2em 0.4em;
-    border-radius: 3px;
-    background-color: #f6f8fa;
+    background-color: #131212;
+    color: #fff;
     font-size: 0.9em;
-    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+    font-family: 'Courier New', Courier, monospace;
 }
