@@ -8,6 +8,7 @@ A list of mathematical objects I find interesting. If you have access to a 3D pr
 - [Reuleaux Triangle](https://en.wikipedia.org/wiki/Reuleaux_triangle): <https://www.thingiverse.com/thing:1597713>
 - [Sierpinsky Pyramide](https://en.wikipedia.org/wiki/Sierpi%C5%84ski_triangle): <https://www.thingiverse.com/thing:1356547>
 - [Knots](https://en.wikipedia.org/wiki/List_of_prime_knots): <https://www.thingiverse.com/search?q=math+knots+&page=1>
+- [Oloid](https://en.wikipedia.org/wiki/Oloid): <https://www.thingiverse.com/thing:5414091>
 
 References:
 
