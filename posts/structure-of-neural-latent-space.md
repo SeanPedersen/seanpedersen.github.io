@@ -43,9 +43,9 @@ A small collection of insights on the structure of embeddings (latent spaces) pr
 
 Most neural network architectures process data as dense vectors, making them hard to interpret for humans.
 
-A better embedding representation would be sparse (few dimensions are active) and spatially meaningful (position of dimensions encodes information).
+A more human interpretable embedding representation would be sparse (few dimensions are active) and spatially meaningful (position of dimensions encodes information).
 
-This would make them easier to interpret for humans and potentially offer some other benefits: encode mono-semanticity vs poly-semanticity, encode novelty (outliers), increase robustness and reduce storage / increase efficiency. But this is another blog post.
+This would make them easier to interpret for humans and potentially offer some other benefits: encode single-concept objects vs multi-concept objects, encode novelty (outliers), increase robustness and reduce storage / increase efficiency. But this is another [blog post](https://seanpedersen.github.io/posts/sparse-distributed-representations).
 
 ## Problems with Contrastive Embeddings
 
