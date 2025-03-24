@@ -1,0 +1,25 @@
+---
+title: 'Launching Digger Solo'
+date: '2025-03-24'
+---
+
+[Digger Solo](https://solo.digger.lol/) is a machine learning powered file explorer. The two core features are the intuitive file search and the creation of semantic data maps.
+
+## File Search
+
+The file search works by combinig full text search capabilities with semantic search allowing to search for content of text and images by their meaning (even if the image has no descriptive file name).
+
+A multitude of file types are supported:
+
+- Text: pdf, docx, md, txt, pptx, csv, etc.
+- Images: psd, jpg, png, webp, etc.
+- Videos: mp4, mov, webm, etc.
+- Audio: only file name search enabled (for now)
+
+## Semantic Data Maps
+
+See your files come to life in interactive maps that reveal hidden connections and patterns across your collection (text, image, video & audio supported) by translating semantic similarity into spatial proximity.
+
+## Privacy
+
+Your files never leave your computer. All processing happens locally. No usage data is collected. Privacy is a feature not just a promise.
