@@ -7,7 +7,7 @@ date: '2025-03-24'
 
 ## File Search
 
-The file search works by combinig full text search capabilities with semantic search allowing to search for content of text and images by their meaning (even if the image has no descriptive file name).
+The file search works by combining full text search capabilities with semantic search allowing to search for content of text and images by their meaning (even if the image has no descriptive file name).
 
 A multitude of file types are supported:
 
