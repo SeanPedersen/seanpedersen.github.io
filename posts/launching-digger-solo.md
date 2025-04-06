@@ -20,6 +20,8 @@ A multitude of file types are supported:
 
 See your files come to life in interactive data maps that reveal hidden connections and patterns across your file collections (text, image, video & audio supported) by translating semantic similarity into spatial proximity.
 
+![semantic data map of image files](/images/digger-solo-images.png)
+
 ## Privacy
 
 Your files never leave your computer. All processing happens locally. No usage data is collected. Privacy is a feature not just a promise.
