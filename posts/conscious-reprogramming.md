@@ -7,7 +7,7 @@ Have you ever found yourself reacting to a situation in a way that felt automati
 ## The Problem of Subconscious Programming
 
 Our behavior is often shaped by coping patterns that developed in response to past traumatic experiences, particularly during childhood. These ingrained mechanisms can embed themselves so deeply in our subconsciousness that we fail to recognize them consciously. They manifest as automatic behaviors and habits that limit or harm us — operating entirely outside our awareness.
-These patterns often reveal themselves when we find ourselves repeatedly experiencing similar negative situations with different people. This repetition is a powerful clue—when you are the constant in these recurring scenarios, it likely indicates a subconscious pattern in your mind at work.
+These patterns often reveal themselves when we find ourselves repeatedly experiencing similar negative situations with different people. This repetition is a powerful clue — when you are the constant in these recurring scenarios, it likely indicates a subconscious pattern in your mind at work.
 
 ## The Importance of Self-Reflection
 
@@ -15,7 +15,7 @@ Healing begins with intentional self-reflection. This process involves:
 
 - Identifying recurring negative patterns in our lives
 - Tracing these patterns to their origins in past experiences
-- Understanding how these once-protective mechanisms now limit us
+- Understanding how these once protective mechanisms now limit us
 - Developing alternative responses aligned with our current values
 
 Only through this deliberate examination can we overcome subconscious programming and rewire ourselves with healthier habits, ultimately increasing our self-agency.
