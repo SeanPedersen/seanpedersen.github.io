@@ -22,7 +22,7 @@ Only through this deliberate examination can we overcome subconscious programmin
 
 ## The Power of Self-Agency
 
-Recognizing that we have control over our lives - despite subconscious influences - enhances our self-agency. When we embrace our autonomy, we feel empowered to experience more, act more decisively, and live with greater purpose. This realization is key to fostering a healthier and more fulfilling life.
+Recognizing that we have control over our lives - despite subconscious influences - enhances our self-agency. When we embrace our autonomy, we feel empowered to experience more, act more decisively, and live our life how we choose to.
 
 While changing these deep ingrained patterns takes time and consistent effort, it is the only path forward to personal growth and liberation from limiting behaviors.
 
@@ -30,17 +30,18 @@ While changing these deep ingrained patterns takes time and consistent effort, i
 
 Several practical approaches can help us identify and transform subconscious patterns:
 
-- Daily journaling: Document situations that trigger strong emotional responses, looking for patterns that emerge over time
-- Trusted feedback: Cultivate relationships with people who can compassionately point out blind spots in your behavior
-- Mindfulness practices: Develop the ability to observe your thoughts and reactions without immediate judgment
-- Professional support: Consider working with a therapist trained in addressing subconscious patterns and trauma responses
+- **Daily Journaling**: Document situations that trigger strong emotional responses, looking for patterns that emerge over time
+- **Trusted Feedback**: Cultivate relationships with people who can compassionately point out blind spots in your behavior
+- **Mindfulness Practices**: Develop the ability to observe your thoughts and reactions without immediate judgment
+- **Positive Anchors**: Identify core values and intentional responses you wish to embody and create visual reminders (notes, symbols, images) in your environment
+- **Professional Support**: Consider working with a therapist trained in addressing subconscious patterns and trauma responses
 
-These practices require commitment but provide powerful tools for bringing awareness to previously invisible influences.
+These practices require commitment but provide powerful tools for bringing awareness to previously invisible influences. The positive anchors should be based on patterns uncovered through journaling and trusted feedback, that you want to reprogram. These anchors should be placed visibly where you can regularly revisit them so they slowly sink into your subsconsciousness.
 
 ## Conclusion
 
 Overcoming trauma and subconscious programming requires continuous reflection, self-awareness, and the will to grow. By addressing these hidden influences, we can reprogram ourselves with positive behaviors and reshape our lives for the better.
 
-"Until you make the unconscious conscious, it will direct your life and you will call it fate." (Nice quote often wrongly attributed to Carl Jung)
+```"Until you make the unconscious conscious, it will direct your life and you will call it fate."``` - (Unknown author, this quote is often wrongly attributed to Carl Jung)
 
 What subconscious patterns might you begin to recognize today?
