@@ -10,7 +10,7 @@ Export and download your personal Twitter data: Navigate to More -> Settings -> 
 
 Create the file `export-likes.py` in your twitter archive directory (which is named sth. like twitter-random-date). And place following code into it, then run it using `python3 export-likes.py` (which creates the directory named twitter-likes containing all your likes as text files):
 
-```
+```python
 import json
 import os
 import re
