@@ -29,8 +29,6 @@ def merge_text(text):
 def safe_filename(s, maxlen=100):
     # Remove/replace unsafe characters and trim to maxlen
     s = re.sub(r'[\\/*?:"<>|]', '_', s)  # Replace filesystem-forbidden chars
-    s = re.sub(r'\s+', '_', s)           # Replace whitespace with underscores
-    s = re.sub(r'[^A-Za-z0-9_.-]', '', s) # Remove other special chars
     return s[:maxlen] or "empty_message"
 
 def save_messages(messages):
