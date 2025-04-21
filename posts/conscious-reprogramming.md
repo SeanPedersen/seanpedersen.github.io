@@ -14,11 +14,26 @@ These patterns often reveal themselves when we find ourselves repeatedly experie
 Healing begins with intentional self-reflection. This process involves:
 
 - Identifying recurring negative patterns in our lives
-- Tracing these patterns to their origins in past experiences
+- Tracing these patterns to their origins in past (traumatic) experiences
 - Understanding how these once protective mechanisms now limit us
+- Providing room for once surpressed emotions
 - Developing alternative responses aligned with our current values
 
 Only through this deliberate examination can we overcome subconscious programming and rewire ourselves with healthier habits, ultimately increasing our self-agency.
+
+## Healing the Root Trauma
+
+What appears as self-sabotage is often the mind's attempt to heal by bringing the original wound to consciousness.
+
+Once the emotion can move all the way through you, the circumstances stop getting recreated.
+
+Some reasons emotions aren’t felt all the way through:
+
+- It was sustained over a long period of time (ie fear for 2 years)
+- We were shut down or shamed for having the emotion
+- It was too overwhelming for us
+
+Source: <https://x.com/FU_joehudson/status/1914381665725456722>
 
 ## The Power of Self-Agency
 
