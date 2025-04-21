@@ -11,6 +11,12 @@ A short list of free AI chat apps for local LLM execution that work offline and 
 - Open source
 - Not many features
 
+**ChatBox** - <https://github.com/chatboxai/chatbox>
+
+- Standalone app: easy setup
+- Open source
+- Features: (not yet tested)
+
 **Msty** - <https://msty.app/>
 
 - Standalone app: easy setup
