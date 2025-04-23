@@ -10,10 +10,10 @@ Memes as Ideas: Dawkins defined a meme as “an idea, a behavior, or a practice 
 
 Memes have properties that influence their transmissibility (virality potential) either positively or negatively.
 
-- antimeme (high impact, low virality): taboos, uncomfortable / complex truths
-- boring (low impact, low virality): random dataset
-- meme (low impact, high virality): viral videos, songs, slang, norms
-- supermeme (high impact, high virality): wars, crisis, drama
+- **antimeme** (high impact, low virality): taboos, uncomfortable / complex truths
+- **boring** (low impact, low virality): random dataset, most ads
+- **meme** (low impact, high virality): viral videos, slang, norms
+- **supermeme** (high impact, high virality): wars, crisis, drama
 
 ## Memes and People
 
