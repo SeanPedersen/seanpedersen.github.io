@@ -23,6 +23,10 @@ Only through this deliberate examination can we overcome subconscious programmin
 
 ## Healing the Root Trauma
 
+If we experience something traumatizing and an emotion wasn't allowed to be felt all the way through, we will unconsciously recreate the circumstances that caused it so that the emotion can move.
+
+This pattern serves a purpose - our psyche is attempting to resolve what remains incomplete.
+
 What appears as self-sabotage is often the mind's attempt to heal by bringing the original wound to consciousness.
 
 Once the emotion can move all the way through you, the circumstances stop getting recreated.
