@@ -22,7 +22,7 @@ export default function Home({ allPostsData }) {
           <title>{siteTitle}</title>
         </Head>
         <section className={utilStyles.headingMd}>
-          <p>Exploring AIs and more. Stay in touch: <a href="https://twitter.com/SeanPedersen96" rel="noreferrer noopener" target="_blank">@SeanPedersen96</a></p>
+          <p>Exploring AI and more. Stay in touch: <a href="https://twitter.com/SeanPedersen96" rel="noreferrer noopener" target="_blank">@SeanPedersen96</a></p>
           <div style={{ display: 'flex', alignItems: 'center', gap: '16px', margin: '12px 0' }}>
             <p style={{ margin: 0 }}>
               Building <a href="https://solo.digger.lol/">Digger Solo</a>: AI powered File Explorer
