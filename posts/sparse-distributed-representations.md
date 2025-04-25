@@ -25,7 +25,7 @@ A key feature of SDRs is their ability to naturally encode single-concept versus
 
 This property provides immediate insight into the semantic complexity of the input.
 
-Here are the top 10 average activations for a SDR trained for CLIP embeddings of CIFAR-10 images:
+Here are the top 10 average activations for a SDR trained on CLIP embeddings of CIFAR-10 images:
 ![cifar10-clip-som-sdr](/images/cifar10-clip-som-sdr.png)
 
 And here a SDR for an image of a cat driving a car (multi-concept):
