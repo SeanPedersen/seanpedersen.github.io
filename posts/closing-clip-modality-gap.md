@@ -47,8 +47,7 @@ This transforms our distance objectives to:
 ```
 D(I₁,T₁) = 0       // Related pairs still have minimal distance
 D(I₂,T₂) = 0
-D(I₁,T₂) = (CosSim(m_i(I₁),m_i(I₂)) + CosSim(m_t(T₁),m_t(T₂)))/2
-D(I₂,T₁) = (CosSim(m_i(I₂),m_i(I₁)) + CosSim(m_t(T₂),m_t(T₁)))/2
+D(I₁,T₂) = D(I₂,T₁) = (CosSim(m_i(I₁),m_i(I₂)) + CosSim(m_t(T₁),m_t(T₂)))/2
 ```
 
 Where CosSim represents cosine similarity between the encoded representations.
