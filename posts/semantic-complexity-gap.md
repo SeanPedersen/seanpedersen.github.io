@@ -62,3 +62,5 @@ Here is my code (Jupyter Notebook): <https://github.com/SeanPedersen/semantic-co
 - <https://colah.github.io/posts/2014-07-NLP-RNNs-Representations/>
 - <https://www.lesswrong.com/posts/tojtPCCRpKLSHBdpn/the-strong-feature-hypothesis-could-be-wrong>
 - <https://arxiv.org/abs/2406.01506>
+
+#machine-learning

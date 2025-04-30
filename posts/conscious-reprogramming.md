@@ -64,3 +64,5 @@ Overcoming trauma and subconscious programming requires continuous reflection, s
 ```"Until you make the unconscious conscious, it will direct your life and you will call it fate."``` - (Unknown author, this quote is often wrongly attributed to Carl Jung)
 
 What subconscious patterns might you begin to recognize today?
+
+#idea

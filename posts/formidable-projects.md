@@ -15,3 +15,5 @@ A list of causes benefitting humanity as a whole. Some call it philanthropy.
 **Protect Data Privacy**: Invest into open-source projects aiming to replace privacy invading data kraken like Google, Meta and co with end-to-end encrypted, self-hostable free software.
 
 **Understanding Animals**: Use machine learning to understand the languages of social animals with large brains (whales, etc.).
+
+#idea

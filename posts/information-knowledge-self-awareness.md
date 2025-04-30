@@ -22,3 +22,5 @@ They would need a large database of hard facts with sources to be able to self-c
 And a knowledge base that describes how to infer new information from existing hard facts is needed. This could allow them to self-reflect and detect hallucinations (limits of their knowledge) reliably.
 
 The language model would then only need a general understanding of language and logic and the ability to retrieve information from its data and knowledge base.
+
+#machine-learning

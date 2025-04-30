@@ -14,3 +14,5 @@ A short how to (re)search for and access relevant information in the age of sema
 - <https://paperpanda.app/search>: SciHub for free access to papers
 - <https://www.pdfdrive.com/>: Free access to eBooks
 - <https://freedium.cfd/>: Unlock medium articles
+
+#tutorial

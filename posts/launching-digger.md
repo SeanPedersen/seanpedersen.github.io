@@ -12,3 +12,5 @@ This roughly works by translating semantic (visual or textual) similarity into s
 There is a [desktop version](https://digger.lol/?desktop=true) and a [mobile version](https://grid.digger.lol/). The desktop version provides a global overview. The mobile version is more limited in the global expressivenes but visually not as overwhelming.
 
 Follow Digger on [X (Twitter)](https://x.com/digger_ai) to stay up to date on novel developments. Give it a try and dig in!
+
+#personal

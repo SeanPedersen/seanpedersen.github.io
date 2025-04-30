@@ -13,3 +13,5 @@ A list of mathematical objects I find interesting. If you have access to a 3D pr
 References:
 
 - <https://all3dp.com/2/3d-printed-math-3d-printed-geometric-shapes/>
+
+#idea

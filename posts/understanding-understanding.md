@@ -11,3 +11,5 @@ To really understand a problem from a human perspective means not just being abl
 Ok well what does it mean to explain something then? I successfully explained something if another agent understands my explanation. Meaning he is able to solve the explained problem as well (applying the transferred knowledge) and able to explain it successfully to other agents (circular explanation).
 
 Can I explain without language? Can I explain without any prior knowledge or beliefs about the knowledge the agent I am explaining to possesses?
+
+#idea

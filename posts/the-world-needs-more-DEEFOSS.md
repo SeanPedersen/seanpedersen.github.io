@@ -23,3 +23,5 @@ Some examples of DEEFOSS are (in no particular order):
 - [IPFS](https://ipfs.io/) ([Code](https://github.com/ipfs/go-ipfs)) - decentralized alternative to HTTP(S)
 
 So go ahead and build a future with more #DEEFOSS. Thank you.
+
+#idea

@@ -24,3 +24,5 @@ Finally describe each module as deeply as necessary but not deeper, so that inte
 References:
 
 - <https://learnhowtolearn.org/how-to-build-extremely-quickly/>
+
+#idea

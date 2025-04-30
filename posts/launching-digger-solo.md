@@ -25,3 +25,5 @@ See your files come to life in interactive data maps that reveal hidden connecti
 ## Privacy
 
 Your files never leave your computer. All processing happens locally. No usage data is collected. Privacy is a feature not just a promise.
+
+#personal

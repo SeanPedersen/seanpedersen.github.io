@@ -24,3 +24,5 @@ References:
   - <https://research.lifeboat.com/ieee.em.pdf>
   - <https://www.universetoday.com/73536/nasa-considering-rail-gun-launch-system-to-the-stars/>
 - <https://www.forbes.com/sites/startswithabang/2019/09/20/this-is-why-we-dont-shoot-earths-garbage-into-the-sun/>
+
+#idea

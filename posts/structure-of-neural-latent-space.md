@@ -58,3 +58,5 @@ This would make them easier to interpret for humans and potentially offer some o
 
 - <https://arxiv.org/abs/2110.09348>
 - <https://www.static.tu.berlin/fileadmin/www/10002219/132153_-_digitale_Abschlussarbeiten/Dimensional_Collapse_in_Video_Representation_Learning_Publication_Paul_Kapust.pdf>
+
+#machine-learning

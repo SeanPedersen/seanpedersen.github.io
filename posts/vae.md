@@ -55,3 +55,5 @@ The latent space z is shaped by the loss function, which consists of the MSE bet
 - [https://jaan.io/what-is-variational-autoencoder-vae-tutorial/](https://jaan.io/what-is-variational-autoencoder-vae-tutorial/)
 - [https://towardsdatascience.com/intuitively-understanding-variational-autoencoders-1bfe67eb5daf](https://towardsdatascience.com/intuitively-understanding-variational-autoencoders-1bfe67eb5daf)
 - <https://lilianweng.github.io/posts/2018-08-12-vae/>
+
+#machine-learning

@@ -10,3 +10,5 @@ Any attempt to build AI generated content (deep fake) detection systems is flawe
 Only things we perceive in the real world ourselves, can we be sure to not be faked.
 
 Will this create a new flood of skeptics and critical thinkers that are harder to manipulate with digital media? I doubt it. It is more likely that people will shift more to verified content creators they put their trust in. Which in turn allows these content creators to effortlessly spin any narrative they want using digital content (that they can arbitrarily design).
+
+#idea

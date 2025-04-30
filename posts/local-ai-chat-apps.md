@@ -44,3 +44,5 @@ A short list of free AI chat apps for local LLM execution that work offline and 
 ## Conclusion
 
 To me Jan and Msty stand out. Jan being a functional basic open-source chat app, that is easy to install and use. While Msty being also easy to setup but with more advanced features - Msty only lacks open-source. I recommend the Llama and Gemma model family for local basic use. DeepSeek R1 for advanced reasoning and coding capabilities.
+
+#tutorial

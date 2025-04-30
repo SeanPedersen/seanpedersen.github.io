@@ -67,3 +67,5 @@ TODO:
 
 - [Solomonoff Induction](https://www.lesswrong.com/tag/solomonoff-induction) and [AIXI](https://www.lesswrong.com/tag/aixi): Kolmogorov Complexity as Occam's razor for AGI
 - [Hutter Prize](http://prize.hutter1.net/): Compression (prediction) as key ingredient to AGI
+
+#programming
