@@ -133,3 +133,53 @@
     /* Only apply margin when ToC exists */
   }
 }
+
+/* Tag styles */
+.tagsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.tag {
+  display: inline-block;
+  background-color: #333;
+  color: #fff;
+  padding: 0.2rem 0.6rem;
+  font-size: 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid #666;
+}
+
+.tag:hover {
+  background-color: #444;
+}
+
+.tagSelected {
+  background-color: #ff0;
+  color: #000;
+  border-color: #ff0;
+}
+
+.tagSelected:hover {
+  background-color: #dd0;
+  color: #000;
+}
+
+.postTags {
+  margin-left: 0.5rem;
+}
+
+.postTags a {
+  color: #888;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.postTags a:hover {
+  color: #ff0;
+  text-decoration: underline;
+}

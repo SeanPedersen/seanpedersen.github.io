@@ -1,20 +1,30 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import { useState } from 'react'
 import Date from '../components/date'
 import Layout, { siteTitle } from '../components/layout'
 import utilStyles from '../styles/utils.module.css'
-import { getSortedPostsData } from '../lib/posts'
+import { getSortedPostsData, getAllTags } from '../lib/posts'
 
 export async function getStaticProps() {
   const allPostsData = getSortedPostsData()
+  const allTags = getAllTags()
   return {
     props: {
-      allPostsData
+      allPostsData,
+      allTags
     }
   }
 }
 
-export default function Home({ allPostsData }) {
+export default function Home({ allPostsData, allTags }) {
+  const [selectedTag, setSelectedTag] = useState(null)
+
+  // Filter posts by selected tag
+  const filteredPosts = selectedTag
+    ? allPostsData.filter(post => post.tags && post.tags.includes(selectedTag))
+    : allPostsData
+
   return (
     <div className={utilStyles.flexer}>
       <Layout home>
@@ -29,10 +39,31 @@ export default function Home({ allPostsData }) {
             </p>
           </div>
         </section>
+
         <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
           <h2 className={utilStyles.headingLg}>Blog</h2>
+
+          {/* Tags Filter */}
+          <div className={utilStyles.tagsContainer}>
+            <span
+              className={`${utilStyles.tag} ${selectedTag === null ? utilStyles.tagSelected : ''}`}
+              onClick={() => setSelectedTag(null)}
+            >
+              All
+            </span>
+            {allTags.map(tag => (
+              <span
+                key={tag}
+                className={`${utilStyles.tag} ${selectedTag === tag ? utilStyles.tagSelected : ''}`}
+                onClick={() => setSelectedTag(tag)}
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+
           <ul className={utilStyles.list}>
-            {allPostsData.map(({ id, date, title }) => (
+            {filteredPosts.map(({ id, date, title, tags }) => (
               <li className={utilStyles.listItem} key={id}>
                 <Link href={`/posts/${id}`}>
                   {title}
@@ -40,6 +71,22 @@ export default function Home({ allPostsData }) {
                 <br />
                 <small className={utilStyles.lightText}>
                   <Date dateString={date} />
+                  {tags && tags.length > 0 && (
+                    <span className={utilStyles.postTags}>
+                      {' • '}
+                      {tags.map((tag, index) => (
+                        <span key={tag} onClick={(e) => {
+                          e.preventDefault();
+                          setSelectedTag(tag);
+                        }}>
+                          <a href="#" onClick={(e) => e.preventDefault()}>
+                            {tag}
+                          </a>
+                          {index < tags.length - 1 ? ', ' : ''}
+                        </span>
+                      ))}
+                    </span>
+                  )}
                 </small>
               </li>
             ))}
