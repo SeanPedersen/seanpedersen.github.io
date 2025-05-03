@@ -24,6 +24,12 @@ A short list of free AI chat apps for local LLM execution that work offline and 
 - Small bootstrapped company
 - Features: RAG over files, split (copy) conversations, web search (unreliable right now)
 
+**Deep Chat** - <https://deepchat.thinkinai.xyz/>
+
+- Standalone app: easy setup
+- Open source
+- Features: integrated web search (Brave Search, Google)
+
 **LM Studio** - <https://lmstudio.ai/>
 
 - Standalone app: easy setup
