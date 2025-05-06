@@ -18,9 +18,9 @@ When training multi-modal models like CLIP, we need both positive examples (matc
 
 "We would ideally want to train with image-text pairs that we knew with certainty were related and unrelated, but there is no obvious way to get known unrelated pairs. It’s possible to ask people “Does this sentence describe this picture?” and expect consistent answers. It’s much harder to get consistent answers from asking “Does this sentence have nothing to do with this picture?”
 
-Instead, we get unrelated image-text pairs by randomly selecting pictures and texts from our training data, expecting they will practically always be bad matches. How this works in practice is that we divide our training data into batches. To train Jina CLIP, we used batches containing 32,000 matching image-text pairs, but for this experiment, batch sizes were only 16." - <https://jina.ai/news/the-what-and-why-of-text-image-modality-gap-in-clip-models>
+Instead, we get unrelated image-text pairs by randomly selecting pictures and texts from our training data, expecting they will practically always be bad matches." - <https://jina.ai/news/the-what-and-why-of-text-image-modality-gap-in-clip-models>
 
-Instead of manually labeling unrelated pairs, most approaches simply assume that randomly selected image-text pairs from the training data will be unrelated. This batch-based contrastive learning treats all non-matching pairs as equally dissimilar—a convenient but flawed assumption.
+Instead of manually labeling unrelated pairs, most approaches simply assume that randomly selected image-text pairs from the training data will be unrelated. This batch-based contrastive learning treats all non-matching pairs as equally dissimilar - a convenient but flawed assumption.
 
 ## The Problem with Traditional Contrastive Learning
 
