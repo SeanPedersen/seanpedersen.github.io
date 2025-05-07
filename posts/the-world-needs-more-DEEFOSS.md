@@ -24,4 +24,4 @@ Some examples of DEEFOSS are (in no particular order):
 
 So go ahead and build a future with more #DEEFOSS. Thank you.
 
-#idea
+#idea #privacy

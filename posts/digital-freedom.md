@@ -14,4 +14,4 @@ Download your favorite music, images, blog articles and videos using tools like:
 - [Chrome Extension to download Instagram content](https://chromewebstore.google.com/detail/toolkit-f%C3%BCr-instagram-her/flknhjeojpjfhcgpdaapoldgppnacnhl)
 - [Digger Solo: Digital Cartography for Your Files](https://solo.digger.lol/)
 
-#tutorial
+#tutorial #privacy
