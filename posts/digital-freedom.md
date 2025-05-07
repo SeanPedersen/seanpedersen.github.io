@@ -12,6 +12,6 @@ Download your favorite music, images, blog articles and videos using tools like:
 - [Download Youtube Videos](https://github.com/ytdl-org/youtube-dl)
 - [Chrome Extension to download web pages as single files](https://github.com/gildas-lormeau/SingleFile)
 - [Chrome Extension to download Instagram content](https://chromewebstore.google.com/detail/toolkit-f%C3%BCr-instagram-her/flknhjeojpjfhcgpdaapoldgppnacnhl)
-- [AI powered File Explorer](https://solo.digger.lol/)
+- [Digger Solo: Digital Cartography for Your Files](https://solo.digger.lol/)
 
 #tutorial
