@@ -41,7 +41,7 @@ Rather than treating all negative pairs as equally distant, we can use pre-train
 
 Start with a dataset of paired images and texts, where we know (I₁,T₁) and (I₂,T₂) are related pairs.
 Use pre-trained uni-modal image encoder m_i and text encoder m_t to calculate meaningful distances between unpaired items of the same modality.
-Adjust the contrastive learning objective to reflect these more nuanced relationships
+Adjust the contrastive learning objective to reflect these more nuanced relationships.
 
 This transforms our distance objectives to:
 ```
