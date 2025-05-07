@@ -1,5 +1,5 @@
 ---
-title: 'Closing the CLIP modality gap'
+title: 'Closing the CLIP Modality Gap'
 date: '2025-04-29'
 ---
 ## What is the Modality Gap?
