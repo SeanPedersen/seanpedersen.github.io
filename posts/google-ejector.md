@@ -10,11 +10,18 @@ Alternatives to privacy invading data kraken services.
 
 Google Chrome:
 
+Firefox, Brave etc. also track their users.
+
 - [Ungoogled Chromium](https://github.com/ungoogled-software/ungoogled-chromium) - Chromium without Google Services (spy ware)
 
 Google Search:
 
 - [SearX](https://searx.si/) ([Code](https://github.com/searx/searx)) - Privacy-respecting metasearch engine, self-hostable
+
+Google Mail / Outlook:
+
+- [Protonmail](https://proton.me/mail)
+- [TutaMail](https://tuta.com/)
 
 Perplexity:
 
@@ -22,8 +29,9 @@ Perplexity:
 - [MindSearch](https://github.com/InternLM/MindSearch) - Open source answer engine
 - [Morphic](https://github.com/miurla/morphic) - Open source answer engine
 
-WhatsApp / Telegram / Signal:
+WhatsApp / Telegram:
 
+- [Signal](https://signal.org/): Privacy focused messenger
 - [Matrix](https://matrix.org/) ([Code](https://github.com/matrix-org/synapse)) - end-to-end encrypted, federated, self-hostable
 
 Google Docs:
