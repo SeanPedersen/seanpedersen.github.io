@@ -1,18 +1,28 @@
 import Layout from '../../components/layout'
 import styles from '../../components/layout.module.css'
-import { getAllPostIds, getPostData } from '../../lib/posts'
+import { getAllPostIds, getPostData, getRelatedPostsByTag } from '../../lib/posts'
 import Head from 'next/head'
 import Date from '../../components/date'
 import utilStyles from '../../styles/utils.module.css'
 import codeStyles from '../../styles/code.module.css'
 import TableOfContents from '../../components/TableOfContents'
-
+import Link from 'next/link'
 
 export async function getStaticProps({ params }) {
   const postData = await getPostData(params.id)
+
+  // Get related posts if there are tags
+  let relatedPosts = []
+  if (postData.tags && postData.tags.length > 0) {
+    // Use the first tag to find related posts
+    const firstTag = postData.tags[0]
+    relatedPosts = getRelatedPostsByTag(params.id, firstTag, 3)
+  }
+
   return {
     props: {
-      postData
+      postData,
+      relatedPosts
     }
   }
 }
@@ -25,7 +35,7 @@ export async function getStaticPaths() {
   }
 }
 
-export default function Post({ postData }) {
+export default function Post({ postData, relatedPosts }) {
   const escapeHtml = (unsafe) => {
     return unsafe
       .replace(/&/g, "&amp;")
@@ -77,6 +87,25 @@ export default function Post({ postData }) {
                 )
             }}
           />
+
+          {/* Related Posts Footer */}
+          {relatedPosts && relatedPosts.length > 0 && (
+            <footer className={utilStyles.relatedPostsFooter}>
+              <h3>Related Articles</h3>
+              <ul className={utilStyles.relatedPostsList}>
+                {relatedPosts.map(({ id, title, date }) => (
+                  <li key={id} className={utilStyles.relatedPostItem}>
+                    <Link href={`/posts/${id}`}>
+                      {title}
+                    </Link>
+                    <small className={utilStyles.lightText}>
+                      <Date dateString={date} />
+                    </small>
+                  </li>
+                ))}
+              </ul>
+            </footer>
+          )}
         </article>
       </div>
     </Layout>

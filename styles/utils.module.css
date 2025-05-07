@@ -183,3 +183,48 @@
   color: #ff0;
   text-decoration: underline;
 }
+
+/* Related Posts Footer Styles */
+.relatedPostsFooter {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #333;
+}
+
+.relatedPostsFooter h3 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+}
+
+.relatedPostsList {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem 0;
+}
+
+.relatedPostItem {
+  margin-bottom: 0.8rem;
+  padding-left: 1rem;
+  border-left: 3px solid #ff0;
+}
+
+.relatedPostItem a {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.relatedPostItem a:hover {
+  color: #ff0;
+}
+
+.tagDisplay {
+  color: #888;
+  font-style: italic;
+}
+
+.tagDisplay small {
+  border-bottom: 1px dotted #555;
+}
