@@ -7,22 +7,28 @@ import utilStyles from '../../styles/utils.module.css'
 import codeStyles from '../../styles/code.module.css'
 import TableOfContents from '../../components/TableOfContents'
 import Link from 'next/link'
+import { useState, useEffect } from 'react'
 
 export async function getStaticProps({ params }) {
   const postData = await getPostData(params.id)
 
   // Get related posts if there are tags
-  let relatedPosts = []
+  let relatedPostCandidates = [];
+  let hasMorePosts = false;
+
   if (postData.tags && postData.tags.length > 0) {
     // Use the first tag to find related posts
-    const firstTag = postData.tags[0]
-    relatedPosts = getRelatedPostsByTag(params.id, firstTag, 3)
+    const firstTag = postData.tags[0];
+    const result = getRelatedPostsByTag(params.id, firstTag, 3, 10);
+    relatedPostCandidates = result.posts;
+    hasMorePosts = result.hasMorePosts;
   }
 
   return {
     props: {
       postData,
-      relatedPosts
+      relatedPostCandidates,
+      hasMorePosts
     }
   }
 }
@@ -35,7 +41,26 @@ export async function getStaticPaths() {
   }
 }
 
-export default function Post({ postData, relatedPosts }) {
+export default function Post({ postData, relatedPostCandidates, hasMorePosts }) {
+  const [relatedPosts, setRelatedPosts] = useState([]);
+
+  // Randomize related posts on component mount and when navigating between posts
+  useEffect(() => {
+    if (relatedPostCandidates.length <= 3) {
+      setRelatedPosts(relatedPostCandidates);
+    } else {
+      // Get the latest 2 posts
+      const latestTwo = relatedPostCandidates.slice(0, 2);
+
+      // Get one random from the rest
+      const remainingPosts = relatedPostCandidates.slice(2);
+      const randomIndex = Math.floor(Math.random() * remainingPosts.length);
+      const randomPost = remainingPosts[randomIndex];
+
+      setRelatedPosts([...latestTwo, randomPost]);
+    }
+  }, [relatedPostCandidates]);
+
   const escapeHtml = (unsafe) => {
     return unsafe
       .replace(/&/g, "&amp;")
