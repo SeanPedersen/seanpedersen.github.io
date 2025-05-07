@@ -17,6 +17,7 @@ Firefox, Brave etc. also track their users.
 Google Search:
 
 - [SearX](https://searx.si/) ([Code](https://github.com/searx/searx)) - Privacy-respecting metasearch engine, self-hostable
+- [StartPage](https://www.startpage.com/) - Privacy focused search engine
 
 Google Mail / Outlook:
 
