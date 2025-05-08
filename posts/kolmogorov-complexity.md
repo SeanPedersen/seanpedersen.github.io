@@ -8,17 +8,19 @@ This text is devoted to my favorite CS concept I know of (so far): Kolmogorov co
 
 This might sound rather unimpressive to the uninitiated reader but hold on, behind this simple concept lies a whole world of deep implications and applications.
 
-Knowing the Kolmogorov complexity of a sequence means knowing everything there can be known about it. It is the process of removing all computable redundancies existing in the data, arriving at the shortest algorithm giving rise to these patterns using computation (space, time and energy).
+Knowing the Kolmogorov complexity of a sequence means knowing every algorithmic pattern there can be known about it. It is the process of removing all computable redundancies existing in the data, arriving at the shortest algorithm giving rise to these patterns using computation (space, time and energy).
 
 So how do we compute it?
 
 Sadly it is incomputable in praxis. What a bummer.
 
-Computing the Kolmogorov complexity for a sequence X of N bits length is a really tough nut to crack, since the search space of possible programs producing any sequence of length N is growing exponentially with respect to the input size N. And even worse it entails the notorious halting problem, which is not computable. The most obvious upper bound for K(X) is obviously the length N of X itself.
+Computing the Kolmogorov complexity for an arbitrary sequence X of N bits length is a really tough nut to crack, since the search space of possible programs producing X is growing exponentially with respect to the input size N. And the real deal breaker: it entails the notorious halting problem, which is incomputable. The most obvious upper bound for K(X) is obviously the length N of X itself.
 
 We can still implement a program that generates 2^N different programs and filter out all invalid programs for the chosen programming language. We are left with an enormous list of valid programs with a length below N.
 
-Sadly we can not just execute this at least finite amount of programs, filter their outputs for the given sequence and be done by sorting the valid leftover programs by length. Some programs will take ages to terminate and some may even never - and we can not tell them apart, as Alan Turing proved with his infamous halting problem.
+Sadly we can not just execute this at least finite amount of programs, filter their outputs for the given sequence and be done by sorting the valid leftover programs by length. Some programs will take ages to terminate and some may even never - we could analyze this finite set of programs using formal verification techniques to determine if each programs halts or not but this endeavor would be impractical since the set grows exponentially.
+
+(Previously I wrote: "and we can not tell them apart, as Alan Turing proved with his infamous halting problem" -> which is wrong! Turing proved that there exists no algorithm that can determine if an *arbitrary* program halts or not. A finite set of programs can be verified in theory - in praxis only a very small finite set of programs...)
 
 ## Kolmogorov complexity extensions
 
@@ -59,9 +61,9 @@ Common lossless data compression tools like ZIP are only approximations of the t
 ## Applications of Kolmogorov complexity approximations
 
 Compression Distance (CD) takes two objects A,B (e.g. text files) as arguments and defines a similarity score by using kolmogorov complexity or in praxis an approximation (e.g. compression algorithms) c(X) on A, B and both concatenated A+B. CD is then defined as:
-```len(c(A+B)) / ( len(c(A)) + len(c(B)) )```
+```CD(A,B) = len(c(A+B)) / ( len(c(A)) + len(c(B)) )```
 
-If A & B are very similar c(A+B) will not be much larger than either c(A) or c(B), vice versa if A & B are dissimilar c(A+B) will be much larger than c(A) or c(B).
+If A & B are very similar c(A+B) will not be much larger than either c(A) or c(B) producing a small CD(A,B), vice versa if A & B are dissimilar c(A+B) will be much larger than c(A) or c(B) producing a big CD(A,B).
 
 TODO:
 
