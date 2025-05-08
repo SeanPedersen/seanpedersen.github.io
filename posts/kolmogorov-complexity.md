@@ -20,7 +20,7 @@ We can still implement a program that generates 2^N different programs and filte
 
 Sadly we can not just execute this at least finite amount of programs, filter their outputs for the given sequence and be done by sorting the valid leftover programs by length. Some programs will take ages to terminate and some may even never - we could analyze this finite set of programs using formal verification techniques to determine if each programs halts or not but this endeavor would be impractical since the set grows exponentially.
 
-(Previously I wrote: "and we can not tell them apart, as Alan Turing proved with his infamous halting problem" -> which is wrong! Turing proved that there exists no algorithm that can determine if an *arbitrary* program halts or not. A finite set of programs can be verified in theory - in praxis only a very small finite set of programs...)
+(Previously I wrote: "and we can not tell them apart, as Alan Turing proved with his infamous halting problem" -> which is wrong! Turing proved that there exists no algorithm that can determine if an **arbitrary** program halts or not. A finite set of programs can be verified in theory - in praxis only a very small finite set of programs...)
 
 ## Kolmogorov complexity extensions
 
@@ -28,13 +28,13 @@ Kolmogorov complexity alone is simple and beautiful but as we learned it is not 
 
 Notation:
 
-- x: Input sequence
-- L(x): Length of x
-- P(x): Set of all programs computing x
-- p: Element of P(x) (a single program)
-- L(p): Length of p
-- T(p): Total execution time of p
-- S(p): Maximum size of allocated space used by p
+- **x**: Input sequence
+- **L(x)**: Length of x
+- **P(x)**: Set of all programs computing x
+- **p**: Element of P(x) (a single program)
+- **L(p)**: Length of p
+- **T(p)**: Total execution time of p
+- **S(p)**: Maximum size of allocated space used by p
 
 Complexity Measures:
 
