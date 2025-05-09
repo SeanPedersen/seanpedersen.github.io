@@ -30,7 +30,11 @@ A small collection of insights on the structure of embeddings (latent spaces) pr
 - <https://arxiv.org/abs/2405.07987>
 - <https://phillipi.github.io/prh/>
 
-**Adversarial Vulnerability**: Small changes in input space can cause large shifts in embeddings and therefore also in predictions made from them, suggesting the learned manifolds have chaotic properties.
+**Smoothness**: Formally known as Lipschitz continuity states that small changes in inputs cause small changes in output (latent) space. Well-trained, robust models should thus be insensitive to small input perturbations - which remains a pipe dream (see next point).
+
+- <https://arxiv.org/abs/2302.10886v2>
+
+**Adversarial Vulnerability**: Carefully crafted changes in input space can cause large shifts in embedding space and therefore also in predictions made from them, suggesting even manifolds trained for smoothness have some chaotic properties.
 
 - <https://arxiv.org/abs/1412.6572>
 - <https://www.nature.com/articles/s41467-023-40499-0>
