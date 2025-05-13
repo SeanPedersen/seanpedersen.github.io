@@ -101,6 +101,7 @@ end
 
 5. Remove all docx files: `$ find . -type f -name "*.docx" -delete`
 
+## [Export Your Twitter (X) Data](https://seanpedersen.github.io/posts/analyze-twitter-likes)
 
 ## Glossary
 
