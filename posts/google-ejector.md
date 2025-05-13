@@ -2,7 +2,7 @@
 title: 'Google & Co Ejector'
 date: '2020-12-07'
 ---
-Is closed source, centralized, privacy invading software still part of your digital life? Eject now and start using user privacy respecting software. This is a small curated collection of awesome FOSS and privacy respecting services, capable of replacing many popular, centralized, privacy invading online services so you can sleep better at night. At least do not feed the giant data kraken like Google and Meta anymore.
+Is closed source, centralized, privacy invading software still part of your digital life? Eject now and start using user privacy respecting software. This is a small curated collection of awesome FOSS and privacy respecting services, capable of replacing many popular, centralized, privacy invading online services so you can sleep better at night. At least do not feed the giant data kraken like Google and Meta anymore - export your data and delete your accounts to stop feeding them your personal data.
 
 ## Awesome Alternatives
 
