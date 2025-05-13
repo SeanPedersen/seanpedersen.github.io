@@ -55,7 +55,7 @@ To me Jan and Msty stand out. Jan being a functional basic open-source chat app,
 
 Set in Msty options under section "Local AI", the service endpoint (which uses Ollama) to <http://localhost:11434> (the default port for Ollama) or just install [Ollama](https://ollama.com/). Next install the CLI tool [llm](https://github.com/simonw/llm?tab=readme-ov-file#installation), which lets you interact with LLM's from the CLI.
 
-Now you can access (while Msty is running), your local LLM models from the CLI using f.e.: `$ llm -m llama3.2:3b-instruct-q8_0 "Tell me a joke about two sausages in a bar."` (specify the model you installed with -m option)
+Now you can access (while Msty or Ollama is running), your local LLM models from the CLI using f.e.: `$ llm -m llama3.2:3b-instruct-q8_0 "Tell me a joke about two sausages in a bar."` (specify the model you installed with -m option)
 
 And the cool thing about llm is, you can pipe into it: `$ echo "omnia mirari, gaudium explorandi" | llm -s "Translate into English:"`
 
