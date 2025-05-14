@@ -1,5 +1,5 @@
 ---
-title: 'Memetics: a short introduction'
+title: 'Memetics: An Introduction'
 date: '2025-04-21'
 ---
 The term “memetics” was coined by Richard Dawkins in his 1976 book The Selfish Gene. It proposes that just as genes are units of information that self-replicate and evolve, so too can “memes” as units of cultural information.
@@ -33,6 +33,7 @@ Memes have properties that influence their transmissibility (virality potential)
 
 ## References
 
+- <https://www.buildinpublicuniversity.com/the-memetic-foundation-of-human-value-a-new-economic-paradigm/>
 - Antimemetics: Why Some Ideas Resist Spreading - <https://darkforest.metalabel.com/antimemetics>
 - <https://defenderofthebasic.substack.com/p/a-beginners-guide-to-culture-science>
 
