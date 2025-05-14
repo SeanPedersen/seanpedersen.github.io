@@ -39,5 +39,8 @@ Memes have properties that influence their transmissibility (virality potential)
 - <http://spacers.lowtech.org/vulgusartsociety/meme-trip/memintro.htm>
 - <https://www.sorites.org/Issue_15/alvarez.htm>
 - <http://pespmc1.vub.ac.be/MEMES.html>
+- <https://memetics.timtyler.org/>
+- <https://www.susanblackmore.uk/articles/the-power-of-the-meme-meme-2/>
+- <http://www.memecentral.com/vmintro.htm>
 
 #idea
