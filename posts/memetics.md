@@ -36,5 +36,8 @@ Memes have properties that influence their transmissibility (virality potential)
 - <https://www.buildinpublicuniversity.com/the-memetic-foundation-of-human-value-a-new-economic-paradigm/>
 - Antimemetics: Why Some Ideas Resist Spreading - <https://darkforest.metalabel.com/antimemetics>
 - <https://defenderofthebasic.substack.com/p/a-beginners-guide-to-culture-science>
+- <http://spacers.lowtech.org/vulgusartsociety/meme-trip/memintro.htm>
+- <https://www.sorites.org/Issue_15/alvarez.htm>
+- <http://pespmc1.vub.ac.be/MEMES.html>
 
 #idea
