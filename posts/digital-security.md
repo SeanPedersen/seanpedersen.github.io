@@ -24,7 +24,7 @@ Follow the 3-2-1 rule: Three copies of important data, on two different media ty
 
 ## Don't Waste Your Money
 
-on digital snake-oil...
+on digital snake-oil like...
 
 ### Anti-Virus Software
 
