@@ -57,3 +57,5 @@ Encrypt your devices to protect data if they're lost or stolen. Most smartphones
 ## Conclusion
 
 The best digital security doesn't require expensive subscriptions or complicated setups - just consistent application of these fundamentals.
+
+#privacy #tutorial
