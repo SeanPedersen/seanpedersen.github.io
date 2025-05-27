@@ -32,5 +32,6 @@ Update 2024: There seems to be a content addressable language on the block (<htt
 References:
 
 - Content addressable code (<https://www.unisonweb.org/docs/tour>)
+- Why do we need modules at all? (<https://erlang.org/pipermail/erlang-questions/2011-May/058768.html>)
 
 #programming
