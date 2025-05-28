@@ -51,15 +51,15 @@ A short list of free AI chat apps for local LLM execution that work offline and 
 
 To me Jan and Msty stand out. Jan being a functional basic open-source chat app, that is easy to install and use. While Msty being also easy to setup but with more advanced features - Msty only lacks open-source. I recommend the Llama and Gemma model family for local basic use. DeepSeek R1 for advanced reasoning and coding capabilities.
 
-## Msty LLM CLI Tool Integration
+## LLM CLI Tool Integration
 
-Set in Msty options under section "Local AI", the service endpoint (which uses Ollama) to <http://localhost:11434> (the default port for Ollama) or just install [Ollama](https://ollama.com/). Next install the CLI tool [llm](https://github.com/simonw/llm?tab=readme-ov-file#installation), which lets you interact with LLM's from the CLI.
+Set in Msty options under section "Local AI", the service endpoint (which uses Ollama) to <http://localhost:11434> (the default port for Ollama) or just install and run [Ollama](https://ollama.com/). Next install the CLI tool [llm](https://github.com/simonw/llm?tab=readme-ov-file#installation), which lets you interact with LLM's from the CLI and the Ollama plugin: `$ llm install llm-ollama`.
 
-Now you can access (while Msty or Ollama is running), your local LLM models from the CLI using f.e.: `$ llm -m llama3.2:3b-instruct-q8_0 "Tell me a joke about two sausages in a bar."` (specify the model you installed with -m option - list intalled models like so: `$ curl http://localhost:11434/api/tags | jq .`)
+Now you can access (while Msty or Ollama is running), your local LLM models from the CLI using f.e.: `$ llm -m gemma3 "Tell me a joke about two sausages in a bar."` (specify the model you installed with -m option - list intalled models like so: `$ curl http://localhost:11434/api/tags | jq .`)
 
-And the cool thing about llm is, you can pipe into it: `$ echo "omnia mirari, gaudium explorandi" | llm -s "Translate into English:"`
+And the cool thing about llm is, you can pipe into it: `$ echo "omnia mirari, gaudium explorandi" | llm -m gemma3 -s "Translate into English:"`
 
-Enabling following use case: summarize youtube video transcripts (install <https://pypi.org/project/youtube-transcript-api/>) and use this bash function:
+Enabling following use case: summarize youtube video transcripts (install f.e. using pipx <https://pypi.org/project/youtube-transcript-api/> and <https://pypi.org/project/streamdown/0.18.0/>) and use this bash function:
 
 ```bash
 yt-summarize () {
@@ -70,7 +70,7 @@ yt-summarize () {
  else
   video_id="$1"
  fi
- youtube_transcript_api --format text $video_id | llm -m llama3.2:3b-instruct-q8_0 -s "Summarize this transcript. Exclude any mentions of sponsors, advertisements, product placements, or promotional content (e.g., 'This video is sponsored by', 'free trial', '30-day trial', 'promo code', 'Use code', 'Check out', 'Brilliant.org', 'Brilliant', 'NordVPN'). Only include the main educational or informational content and remove the rest:"
+ youtube_transcript_api --format text $video_id | llm -m gemma3 -s "Summarize this transcript. Exclude any mentions of sponsors, advertisements, product placements, or promotional content (e.g., 'This video is sponsored by', 'free trial', '30-day trial', 'promo code', 'Use code', 'Check out', 'Brilliant.org', 'Brilliant', 'NordVPN'). Only include the main educational or informational content and remove the rest:" | streamdown
 }
 ```
 
