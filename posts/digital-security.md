@@ -48,7 +48,7 @@ Be skeptical of unexpected emails and calls. Verify links before clicking: ensur
 
 Remember that anything shared online can potentially be weaponized. Stalkers can use background details in photos to determine your location, while hackers can gather information for impersonation attacks. Either set accounts to private or be intentional about what you share—even seemingly innocent window views can reveal your exact location.
 
-[### Remove Data Kraken like Google & co](https://seanpedersen.github.io/posts/google-ejector)
+### [Remove Data Kraken like Google & co](https://seanpedersen.github.io/posts/google-ejector)
 
 ### Advanced: Device Encryption
 
