@@ -46,7 +46,7 @@ Be skeptical of unexpected emails and calls. Verify links before clicking: ensur
 
 ### Social Media Privacy
 
-Remember that anything shared online can potentially be weaponized. Stalkers can use background details in photos to determine your location, while hackers can gather information for impersonation attacks. Either set accounts to private or be intentional about what you share—even seemingly innocent window views can reveal your exact location.
+Remember that anything shared online can potentially be weaponized. Stalkers can use background details in photos to determine your location (a short window view can reveal your exact location), while hackers can gather information for impersonation attacks. Either set accounts to private or be cautious about what you share.
 
 ### [Remove Data Kraken like Google & co](https://seanpedersen.github.io/posts/google-ejector)
 
