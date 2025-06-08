@@ -9,6 +9,10 @@
   --article-border-color: #fff;
   --footer-border-color: #fff;
   --image-border-color: #fff;
+  --toggle-bg: #f0f0f0;
+  /* Light theme background for dark theme toggle */
+  --toggle-text: #111;
+  /* Dark text for light background */
 
   /* For utils.module.css */
   --list-item-hover-bg: #111;
@@ -40,6 +44,10 @@ body.light-theme {
   /* Lighter border for articles */
   --footer-border-color: #ccc;
   --image-border-color: #ccc;
+  --toggle-bg: #000;
+  /* Dark theme background for light theme toggle */
+  --toggle-text: #fff;
+  /* Light text for dark background */
 
   /* For utils.module.css */
   --list-item-hover-bg: #e0e0e0;
@@ -147,9 +155,8 @@ img {
   position: fixed;
   bottom: 20px;
   left: 20px;
-  background-color: var(--primary-color);
-  color: var(--background-color);
-  /* Contrast with button background */
+  background-color: var(--toggle-bg);
+  color: var(--toggle-text);
   border: 2px solid var(--text-color);
   border-radius: 50%;
   width: 50px;
