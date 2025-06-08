@@ -16,15 +16,9 @@ Quantum computing promises significant feats for heavy computations found in cry
 
 ### Breaking Cryptography
 
-The most immediate threat quantum computing poses is to current cryptographic systems. RSA encryption, which secures HTTPS connections and underlies much of internet security, relies on the computational difficulty of factoring large prime numbers. Shor's algorithm can factor these numbers exponentially faster on a sufficiently large quantum computer, potentially rendering RSA obsolete overnight.
-
-The timeline for this cryptographic apocalypse depends on achieving fault-tolerant quantum computers with thousands of logical qubits—a milestone still years away but significant enough that governments and organizations are already transitioning to post-quantum cryptography.
+The most immediate threat quantum computing poses is to current cryptographic systems. RSA encryption, which secures HTTPS connections and underlies much of internet security, relies on the computational difficulty of factoring large prime numbers. Shor's algorithm can factor these numbers exponentially faster on a sufficiently large quantum computer, which is the reason why many organizations are moving to post-quantum cryptographic systems.
 
 ### Machine Learning Acceleration
-
-Quantum machine learning represents a more nuanced opportunity. Quantum Support Vector Machines (QSVM) and quantum clustering algorithms like quantum k-means leverage quantum parallelism to process exponentially larger feature spaces simultaneously. For specific data structures—particularly those with inherent quantum properties or high-dimensional sparse representations—these algorithms could provide quadratic or exponential speedups.
-
-The Quantum Approximate Optimization Algorithm (QAOA) addresses combinatorial optimization problems central to machine learning model training. While classical heuristics dominate current practice, QAOA shows promise for problems where the solution landscape has particular geometric properties that quantum systems can exploit.
 
 Quantum computers excel at linear algebra operations fundamental to machine learning: matrix inversion, eigenvalue decomposition, and solving systems of linear equations. These operations, when scaled to massive datasets, could benefit significantly from quantum acceleration. Potentially leading to significant speed ups in AI processing and thus potential massive advances in AI in general.
 
@@ -34,9 +28,11 @@ The path to practical quantum computing faces several interconnected obstacles:
 
 **Error Correction Requirements**: Achieving fault tolerance requires quantum error correction, requiring often 1,000 physical qubits per logical qubit.
 
-**Coherence and Connectivity**: Qubits must maintain quantum properties long enough for complex computations while remaining sufficiently connected to perform multi-qubit operations. Current systems achieve coherence times of microseconds to milliseconds, requiring ultra-fast quantum gates and severely limiting algorithmic complexity.
+**Coherence and Connectivity**: Qubits must maintain quantum properties long enough for complex computations while remaining sufficiently connected to perform multi-qubit operations. Current systems achieve coherence times from microseconds (superconducting) to seconds (trapped ion), requiring ultra-fast quantum gates and limiting algorithmic complexity.
 
 **Classical Integration**: Practical quantum advantage will likely emerge through hybrid quantum-classical algorithms, where quantum processors handle specific subroutines while classical computers manage the broader computation. This requires seamless integration, efficient data transfer, and sophisticated orchestration between fundamentally different computational paradigms.
+
+**Infrastructure Requirements**: Quantum computers require enormous capital investment and specialized infrastructure. Superconducting systems need dilution refrigerators maintaining temperatures below 15 millikelvin, while trapped ion systems require complex laser arrays and ultra-high vacuum chambers.
 
 ## Recent Progress and Reality Check
 
