@@ -29,7 +29,8 @@
   font-weight: 800;
   letter-spacing: -0.05rem;
   margin: 1rem 0;
-  border-bottom: 4px solid #fff;
+  border-bottom: 4px solid var(--border-color);
+  transition: border-bottom-color 0.3s ease;
 }
 
 .headingLg {
@@ -37,8 +38,9 @@
   line-height: 1.4;
   margin: 1rem 0;
   text-transform: uppercase;
-  border-left: 4px solid #ff0;
+  border-left: 4px solid var(--primary-color);
   padding-left: 1rem;
+  transition: border-left-color 0.3s ease;
 }
 
 .headingMd {
@@ -63,13 +65,15 @@
   margin-top: 2rem;
   width: 100%;
   text-align: center;
-  border-top: 4px solid #fff;
+  border-top: 4px solid var(--border-color);
   padding-top: 1rem;
+  transition: border-top-color 0.3s ease;
 }
 
 .borderCircle {
   border-radius: 0;
-  border: 4px solid #fff;
+  border: 4px solid var(--border-color);
+  transition: border-color 0.3s ease;
 }
 
 .colorInherit {
@@ -89,8 +93,9 @@
 .listItem {
   margin: 0 0 1.25rem;
   padding: 0.5rem;
-  border: 2px solid #fff;
+  border: 2px solid var(--border-color);
   box-sizing: border-box;
+  transition: background-color 0.2s, border-color 0.3s ease;
 }
 
 @media (min-width: 768px) {
@@ -101,11 +106,12 @@
 }
 
 .listItem:hover {
-  background-color: #111;
+  background-color: var(--list-item-hover-bg);
 }
 
 .lightText {
-  color: #888;
+  color: var(--light-text-color);
+  transition: color 0.3s ease;
 }
 
 .postContainer {
@@ -144,29 +150,29 @@
 
 .tag {
   display: inline-block;
-  background-color: #333;
-  color: #fff;
+  background-color: var(--tag-bg);
+  color: var(--tag-text);
   padding: 0.2rem 0.6rem;
   font-size: 0.8rem;
   border-radius: 4px;
   cursor: pointer;
   transition: all 0.2s ease;
-  border: 1px solid #666;
+  border: 1px solid var(--tag-border);
 }
 
 .tag:hover {
-  background-color: #444;
+  background-color: var(--tag-hover-bg);
 }
 
 .tagSelected {
-  background-color: #ff0;
-  color: #000;
-  border-color: #ff0;
+  background-color: var(--primary-color);
+  color: var(--tag-selected-text);
+  border-color: var(--primary-color);
 }
 
 .tagSelected:hover {
-  background-color: #dd0;
-  color: #000;
+  background-color: var(--tag-selected-hover-bg);
+  color: var(--tag-selected-text);
 }
 
 .postTags {
@@ -174,13 +180,13 @@
 }
 
 .postTags a {
-  color: #888;
+  color: var(--light-text-color);
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
 .postTags a:hover {
-  color: #ff0;
+  color: var(--primary-color);
   text-decoration: underline;
 }
 
@@ -188,7 +194,8 @@
 .relatedPostsFooter {
   margin-top: 2rem;
   padding-top: 1rem;
-  border-top: 1px solid #333;
+  border-top: 1px solid var(--related-posts-border);
+  transition: border-top-color 0.3s ease;
 }
 
 .relatedPostsFooter h3 {
@@ -205,7 +212,8 @@
 .relatedPostItem {
   margin-bottom: 0.8rem;
   padding-left: 1rem;
-  border-left: 3px solid #ff0;
+  border-left: 3px solid var(--primary-color);
+  transition: border-left-color 0.3s ease;
 }
 
 .relatedPostItem a {
@@ -217,14 +225,16 @@
 }
 
 .relatedPostItem a:hover {
-  color: #ff0;
+  color: var(--primary-color);
 }
 
 .tagDisplay {
-  color: #888;
+  color: var(--light-text-color);
   font-style: italic;
+  transition: color 0.3s ease;
 }
 
 .tagDisplay small {
-  border-bottom: 1px dotted #555;
+  border-bottom: 1px dotted var(--tag-display-border);
+  transition: border-bottom-color 0.3s ease;
 }

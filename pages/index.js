@@ -1,10 +1,11 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useState, useEffect } from 'react' // Import useEffect
 import Date from '../components/date'
 import Layout, { siteTitle } from '../components/layout'
 import utilStyles from '../styles/utils.module.css'
 import { getSortedPostsData, getAllTags } from '../lib/posts'
+import { useTheme } from '../contexts/ThemeContext'; // Import useTheme
 
 export async function getStaticProps() {
   const allPostsData = getSortedPostsData()
@@ -19,6 +20,12 @@ export async function getStaticProps() {
 
 export default function Home({ allPostsData, allTags }) {
   const [selectedTag, setSelectedTag] = useState(null)
+  const { theme, toggleTheme } = useTheme(); // Use theme from context
+  const [hasMounted, setHasMounted] = useState(false);
+
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
 
   // Filter posts by selected tag
   const filteredPosts = selectedTag
@@ -76,10 +83,14 @@ export default function Home({ allPostsData, allTags }) {
                       {' • '}
                       {tags.map((tag, index) => (
                         <span key={tag} onClick={(e) => {
-                          e.preventDefault();
+                          e.preventDefault(); // Prevent navigation if it's an <a> tag
+                          e.stopPropagation(); // Prevent li click event if nested
                           setSelectedTag(tag);
                         }}>
-                          <a href="#" onClick={(e) => e.preventDefault()}>
+                          <a href="#" onClick={(e) => {
+                            e.preventDefault(); // Ensure link click also sets tag
+                            setSelectedTag(tag);
+                          }}>
                             {tag}
                           </a>
                           {index < tags.length - 1 ? ', ' : ''}
@@ -96,6 +107,15 @@ export default function Home({ allPostsData, allTags }) {
       <footer className={utilStyles.footer}>
         <p>Check out my projects on <a href="https://github.com/SeanPedersen/" rel="noreferrer noopener" target="_blank">Github</a></p>
       </footer>
+      {/* Theme Toggle Button */}
+      <button
+        onClick={toggleTheme}
+        className="themeToggleButton" // This class will be styled in global.css
+        aria-label="Toggle theme"
+        title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+      >
+        {hasMounted ? (theme === 'dark' ? '☀️' : '🌙') : null}
+      </button>
     </div>
   )
 }

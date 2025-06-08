@@ -1,3 +1,77 @@
+:root {
+  --background-color: #000;
+  --text-color: #fff;
+  --primary-color: #ff0;
+  /* yellow */
+  --border-color: #fff;
+  --link-hover-bg: #ff0;
+  --link-hover-text: #000;
+  --article-border-color: #fff;
+  --footer-border-color: #fff;
+  --image-border-color: #fff;
+
+  /* For utils.module.css */
+  --list-item-hover-bg: #111;
+  --light-text-color: #888;
+  --tag-bg: #333;
+  --tag-text: #fff;
+  --tag-border: #666;
+  --tag-hover-bg: #444;
+  --tag-selected-text: #000;
+  /* Text color for selected tag (yellow bg) */
+  --tag-selected-hover-bg: #dd0;
+  /* Darker yellow for hover */
+  --related-posts-border: #333;
+  --tag-display-border: #555;
+
+  /* For code.module.css */
+  --code-bg: #131212;
+  --code-text: #fff;
+}
+
+body.light-theme {
+  --background-color: #f0f0f0;
+  /* Light gray background */
+  --text-color: #111;
+  /* Dark text */
+  --primary-color: #007acc;
+  /* Blue for primary */
+  --border-color: #333;
+  /* Darker border for contrast */
+  --link-hover-bg: #007acc;
+  --link-hover-text: #fff;
+  --article-border-color: #ccc;
+  /* Lighter border for articles */
+  --footer-border-color: #ccc;
+  --image-border-color: #ccc;
+
+  /* For utils.module.css */
+  --list-item-hover-bg: #e0e0e0;
+  /* Slightly darker gray for hover */
+  --light-text-color: #555;
+  /* Darker gray for light text */
+  --tag-bg: #ddd;
+  /* Light gray for tags */
+  --tag-text: #111;
+  /* Dark text for tags */
+  --tag-border: #bbb;
+  /* Slightly darker border for tags */
+  --tag-hover-bg: #ccc;
+  /* Darker gray for tag hover */
+  --tag-selected-text: #fff;
+  /* Text color for selected tag (blue bg) */
+  --tag-selected-hover-bg: #005fa3;
+  /* Darker blue for hover */
+  --related-posts-border: #ddd;
+  --tag-display-border: #aaa;
+
+  /* For code.module.css */
+  --code-bg: #e8e8e8;
+  /* Light background for code */
+  --code-text: #111;
+  /* Dark text for code */
+}
+
 html,
 body {
   width: 100%;
@@ -9,11 +83,13 @@ body {
   font-family: "Courier New", Courier, monospace;
   line-height: 1.6;
   font-size: 18px;
-  background-color: #000;
-  color: #fff;
+  background-color: var(--background-color);
+  color: var(--text-color);
   padding: 0;
   margin: 0;
   min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  /* Smooth transition for body */
 }
 
 article {
@@ -23,8 +99,9 @@ article {
   flex-direction: column;
   margin: 1rem;
   padding: 1rem;
-  border: 2px solid #fff;
+  border: 2px solid var(--article-border-color);
   box-sizing: border-box;
+  transition: border-color 0.3s ease;
 }
 
 @media (min-width: 768px) {
@@ -41,9 +118,10 @@ footer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-top: 4px solid #fff;
+  border-top: 4px solid var(--footer-border-color);
   width: 100%;
   padding-top: 1rem;
+  transition: border-color 0.3s ease;
 }
 
 #__next {
@@ -55,21 +133,46 @@ footer {
 }
 
 a {
-  color: #ff0;
+  color: var(--primary-color);
   text-decoration: none;
-  border-bottom: 2px solid #ff0;
+  border-bottom: 2px solid var(--primary-color);
   padding: 2px 4px;
-  transition: background-color 0.2s;
+  transition: background-color 0.2s, color 0.2s, border-bottom-color 0.2s;
 }
 
 a:hover {
   text-decoration: none;
-  background-color: #ff0;
-  color: #000;
+  background-color: var(--link-hover-bg);
+  color: var(--link-hover-text);
 }
 
 img {
   max-width: 100%;
   display: block;
-  border: 4px solid #fff;
+  border: 4px solid var(--image-border-color);
+  transition: border-color 0.3s ease;
+}
+
+.themeToggleButton {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background-color: var(--primary-color);
+  color: var(--background-color);
+  /* Contrast with button background */
+  border: 2px solid var(--text-color);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.themeToggleButton:hover {
+  opacity: 0.8;
 }

@@ -1,9 +1,10 @@
 .toc {
     position: fixed;
     width: 250px;
-    background-color: #000;
-    border: 2px solid #fff;
+    background-color: var(--background-color);
+    border: 2px solid var(--border-color);
     padding: 1rem;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 @media (min-width: 1200px) {
@@ -22,8 +23,9 @@
     text-transform: uppercase;
     margin: 0 0 1rem 0;
     padding-bottom: 0.5rem;
-    border-bottom: 2px solid #ff0;
-    color: #fff;
+    border-bottom: 2px solid var(--primary-color);
+    color: var(--text-color);
+    transition: border-bottom-color 0.3s ease, color 0.3s ease;
 }
 
 .toc ul {
@@ -39,19 +41,21 @@
 }
 
 .toc a {
-    color: #fff;
+    color: var(--text-color);
     text-decoration: none;
-    border-left: 2px solid #ff0;
+    border-left: 2px solid var(--primary-color);
     padding-left: 0.5rem;
     transition: all 0.2s;
     display: block;
     border-bottom: none;
+    /* Overrides global 'a' styles if any */
 }
 
 .toc a:hover {
-    background-color: #ff0;
-    color: #000;
-    border-left: 4px solid #ff0;
+    background-color: var(--primary-color);
+    color: var(--link-hover-text);
+    /* Use variable for text color on hover */
+    border-left: 4px solid var(--primary-color);
 }
 
 @media (max-width: 1200px) {
