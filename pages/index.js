@@ -25,7 +25,42 @@ export default function Home({ allPostsData, allTags }) {
 
   useEffect(() => {
     setHasMounted(true);
-  }, []);
+
+    // Function to update selectedTag based on URL hash
+    const updateTagFromHash = () => {
+      const hash = window.location.hash.replace(/^#/, '');
+      if (hash && allTags.includes(hash)) {
+        setSelectedTag(hash);
+      } else if (!hash) {
+        setSelectedTag(null); // If hash is empty, select "All"
+      }
+    };
+
+    updateTagFromHash(); // Set initial tag based on hash
+
+    window.addEventListener('hashchange', updateTagFromHash);
+    return () => {
+      window.removeEventListener('hashchange', updateTagFromHash);
+    };
+  }, [allTags]); // Add allTags as a dependency
+
+  // Update URL hash when selectedTag changes
+  useEffect(() => {
+    if (hasMounted) { // Ensure this runs only client-side after initial mount
+      if (selectedTag) {
+        window.location.hash = selectedTag;
+      } else {
+        // Remove hash if "All" is selected
+        // Check if history.pushState is available (modern browsers)
+        if (window.history.pushState) {
+          window.history.pushState("", document.title, window.location.pathname + window.location.search);
+        } else {
+          // Fallback for older browsers
+          window.location.hash = '';
+        }
+      }
+    }
+  }, [selectedTag, hasMounted]);
 
   // Filter posts by selected tag
   const filteredPosts = selectedTag
@@ -83,12 +118,13 @@ export default function Home({ allPostsData, allTags }) {
                       {' • '}
                       {tags.map((tag, index) => (
                         <span key={tag} onClick={(e) => {
-                          e.preventDefault(); // Prevent navigation if it's an <a> tag
-                          e.stopPropagation(); // Prevent li click event if nested
+                          e.preventDefault();
+                          e.stopPropagation();
                           setSelectedTag(tag);
                         }}>
-                          <a href="#" onClick={(e) => {
-                            e.preventDefault(); // Ensure link click also sets tag
+                          {/* Use a button or styled span for better accessibility if not a real link */}
+                          <a href={`#${tag}`} onClick={(e) => { // Update href for semantic correctness
+                            e.preventDefault();
                             setSelectedTag(tag);
                           }}>
                             {tag}
