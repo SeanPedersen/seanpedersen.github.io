@@ -28,7 +28,7 @@ on digital snake-oil like...
 
 ### Anti-Virus Software
 
-Modern operating systems have built-in protection that performs as well as or better than paid alternatives. Windows Defender, macOS security features, and mobile OS protections are sufficient for most users.
+Modern operating systems have built-in protection that performs as well as or better than paid alternatives. Windows Defender, macOS security features, and mobile OS protections are mostly sufficient.
 
 ### VPN Services
 
@@ -38,17 +38,17 @@ For typical browsing on HTTPS-secured websites (which is most of the internet no
 
 ### Ad Blocking
 
-Install [uBlock Origin](https://ublockorigin.com/) on your browsers. Beyond blocking annoying ads, it prevents many malicious scripts and tracking mechanisms from running on visited websites.
+Install [uBlock Origin](https://ublockorigin.com/) on your internet browsers. Beyond blocking annoying ads, it prevents many malicious scripts and tracking mechanisms from running on visited websites.
 
 ### Phishing Awareness
 
-Be skeptical of unexpected emails and calls. Verify links before clicking: ensure they use HTTPS and contain the legitimate domain (google.com, not go0gle.com). When in doubt, access websites directly rather than through links.
+Be skeptical of unexpected emails and calls: do not blindly follow instructions from unverified agents. Verify links before clicking: ensure they use HTTPS and contain the legitimate domain (google.com, not go0gle.com). When in doubt, access websites directly rather than through links.
 
 ### Social Media Privacy
 
-Remember that anything shared online can potentially be weaponized. Stalkers can use background details in photos to determine your location (a short window view can reveal your exact location), while hackers can gather information for impersonation attacks. Either set accounts to private or be cautious about what you share.
+Remember that anything shared online can potentially be weaponized. Stalkers can use background details in photos to determine your location (a short window view can reveal your exact location), while hackers can gather your personal information for impersonation attacks. Set your accounts visibility to private and always be mindful and cautious about what you share.
 
-### [Remove Data Kraken like Google & co](https://seanpedersen.github.io/posts/google-ejector)
+### [Remove Data Kraken like Google and co](https://seanpedersen.github.io/posts/google-ejector)
 
 ### Advanced: Device Encryption
 
