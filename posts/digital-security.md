@@ -1,7 +1,10 @@
 ---
-title: 'Digital Security for Everyone'
+
+title: 'Digital Security for Everyone'  
 date: '2025-05-15'
+
 ---
+
 The internet is a war zone and you are an active participant if you like it or not - so learn to defend yourself!
 
 ## Essentials
@@ -57,5 +60,9 @@ Encrypt your devices to protect data if they're lost or stolen. Most smartphones
 ## Conclusion
 
 The best digital security doesn't require expensive subscriptions or complicated setups - just consistent application of these fundamentals.
+
+## References
+
+- [https://github.com/Lissy93/personal-security-checklist/blob/HEAD/CHECKLIST.md](https://github.com/Lissy93/personal-security-checklist/blob/HEAD/CHECKLIST.md)
 
 #privacy #tutorial
