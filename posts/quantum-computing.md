@@ -6,7 +6,7 @@ Quantum computing promises significant feats for heavy computations found in cry
 
 ## Terminology
 
-**Qubits** represent the fundamental unit of quantum information, existing in superposition (probability distribution between 0 and 1). However, the critical distinction lies between physical and logical qubits. Physical qubits are the actual quantum systems (atoms, photons, superconducting circuits) that researchers manipulate in laboratories. Logical qubits are the error-corrected, fault-tolerant units that can perform reliable computations. Current quantum computers require hundreds or thousands of physical qubits to create a single logical qubit, making this ratio a crucial metric for evaluating progress.
+**Qubits** represent the fundamental unit of quantum information, existing in superposition (probability distribution between 0 and 1). However, the critical distinction lies between physical and logical qubits. Physical qubits are the actual quantum systems (atoms, photons, superconducting circuits). Logical qubits are the error-corrected, fault-tolerant units that can perform reliable computations. Current quantum computers require hundreds or thousands of physical qubits to create a single logical qubit, making this ratio a crucial metric for evaluating progress.
 
 **Quantum decoherence** describes how quantum systems lose their quantum properties when interacting with their environment, effectively imposing a time limit on quantum computations.
 
@@ -26,13 +26,13 @@ Quantum machine learning represents a more nuanced opportunity. Quantum Support 
 
 The Quantum Approximate Optimization Algorithm (QAOA) addresses combinatorial optimization problems central to machine learning model training. While classical heuristics dominate current practice, QAOA shows promise for problems where the solution landscape has particular geometric properties that quantum systems can exploit.
 
-Quantum computers excel at linear algebra operations fundamental to machine learning: matrix inversion, eigenvalue decomposition, and solving systems of linear equations. These operations, when scaled to massive datasets, could benefit significantly from quantum acceleration. Potentially leading to incomprehensible speed ups in AI processing and thus advances.
+Quantum computers excel at linear algebra operations fundamental to machine learning: matrix inversion, eigenvalue decomposition, and solving systems of linear equations. These operations, when scaled to massive datasets, could benefit significantly from quantum acceleration. Potentially leading to significant speed ups in AI processing and thus potential massive advances in AI in general.
 
 ## Scaling Challenges
 
 The path to practical quantum computing faces several interconnected obstacles:
 
-**Error Correction Requirements**: Current quantum computers operate in the Noisy Intermediate-Scale Quantum (NISQ) era, where computations must complete before decoherence destroys quantum information. Achieving fault tolerance requires quantum error correction, but this comes at enormous overhead—often 1,000 physical qubits per logical qubit.
+**Error Correction Requirements**: Achieving fault tolerance requires quantum error correction, requiring often 1,000 physical qubits per logical qubit.
 
 **Coherence and Connectivity**: Qubits must maintain quantum properties long enough for complex computations while remaining sufficiently connected to perform multi-qubit operations. Current systems achieve coherence times of microseconds to milliseconds, requiring ultra-fast quantum gates and severely limiting algorithmic complexity.
 
