@@ -2,7 +2,7 @@
 title: 'Information Hygiene'
 date: '2025-06-08'
 ---
-You should control what information you consume or do you want to be programmed? Wake up Neo...
+Do you control what information you consume or is your mind controlled by social media companies? Wake up Neo...
 
 ## Algorithmic Feeds
 
@@ -14,7 +14,7 @@ What purpose does it serve to being uptodate on the latest celibrity gossip news
 
 ## Gaining Control
 
-Built a social network of individuals (personal blogs) and organizations you trust and just consume their content. If you use social media use a feed that only shows content from creators you curated.
+Built a social trust network of individuals (personal blogs) and organizations you trust and just consume their content. If you use social media use a feed that only shows content from creators you curated.
 
 ## Valuable Information
 
