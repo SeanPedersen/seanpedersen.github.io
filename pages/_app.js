@@ -1,4 +1,5 @@
 import '../styles/global.css'
+import 'prismjs/themes/prism-tomorrow.css'; // Import Prism theme
 
 import posthog from 'posthog-js'
 import { PostHogProvider } from 'posthog-js/react'

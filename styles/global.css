@@ -23,10 +23,6 @@
   /* Darker yellow for hover */
   --related-posts-border: #333;
   --tag-display-border: #555;
-
-  /* For code.module.css */
-  --code-bg: #131212;
-  --code-text: #fff;
 }
 
 body.light-theme {
@@ -64,12 +60,6 @@ body.light-theme {
   /* Darker blue for hover */
   --related-posts-border: #ddd;
   --tag-display-border: #aaa;
-
-  /* For code.module.css */
-  --code-bg: #e8e8e8;
-  /* Light background for code */
-  --code-text: #111;
-  /* Dark text for code */
 }
 
 html,

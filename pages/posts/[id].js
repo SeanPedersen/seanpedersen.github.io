@@ -4,7 +4,6 @@ import { getAllPostIds, getPostData, getRelatedPostsByTag } from '../../lib/post
 import Head from 'next/head'
 import Date from '../../components/date'
 import utilStyles from '../../styles/utils.module.css'
-import codeStyles from '../../styles/code.module.css'
 import TableOfContents from '../../components/TableOfContents'
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
@@ -61,15 +60,6 @@ export default function Post({ postData, relatedPostCandidates, hasMorePosts }) 
     }
   }, [relatedPostCandidates]);
 
-  const escapeHtml = (unsafe) => {
-    return unsafe
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#039;");
-  }
-
   const addHeadingIds = (content) => {
     return content.replace(
       /<h([1-6])>(.*?)<\/h[1-6]>/g,
@@ -98,18 +88,6 @@ export default function Post({ postData, relatedPostCandidates, hasMorePosts }) 
             className="markdown-content"
             dangerouslySetInnerHTML={{
               __html: addHeadingIds(postData.contentHtml)
-                .replace(
-                  /<pre><code>(.*?)<\/code><\/pre>/gs,
-                  (_, code) => `
-                    <div class="${codeStyles.codeBlock}">
-                      <pre>${escapeHtml(code)}</pre>
-                    </div>
-                  `
-                )
-                .replace(
-                  /<code>(.*?)<\/code>/g,
-                  (_, code) => `<code class="${codeStyles.inlineCode}">${escapeHtml(code)}</code>`
-                )
             }}
           />
 
