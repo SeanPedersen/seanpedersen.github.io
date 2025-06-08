@@ -42,21 +42,22 @@ export default function App(
 ) {
   const [theme, setTheme] = useState(getInitialTheme);
 
-  // Effect to apply theme class to body and save to cookie whenever theme changes
   useEffect(() => {
-    // This effect runs on the client after the initial render and whenever theme changes.
-    // The 'theme' state is already correctly initialized by getInitialTheme on the client.
     if (theme === 'light') {
       document.body.classList.add('light-theme');
     } else {
       document.body.classList.remove('light-theme');
     }
-    // Save theme to cookie for 1 year
-    document.cookie = `theme=${theme}; path=/; max-age=31536000; SameSite=Lax`;
+    // Cookie is now set only on manual toggle
   }, [theme]);
 
   const toggleTheme = () => {
-    setTheme(prevTheme => (prevTheme === 'dark' ? 'light' : 'dark'));
+    setTheme(prevTheme => {
+      const newTheme = prevTheme === 'dark' ? 'light' : 'dark';
+      // Save theme to cookie only when user manually toggles
+      document.cookie = `theme=${newTheme}; path=/; max-age=31536000; SameSite=Lax`;
+      return newTheme;
+    });
   };
 
   return (
