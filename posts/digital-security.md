@@ -23,7 +23,7 @@ Only install apps from official sources (App Store, Google Play, Microsoft Store
 
 ### Backup Strategy
 
-Phones and laptops get lost, stolen, or broken more often than we'd like to admit. Protect your important files by keeping three copies: one on your device, one on an external hard drive at home and one in cloud storage. This way, if disaster strikes, you'll still have your photos, documents, and other irreplaceable files safe and sound.
+Phones and laptops get lost, stolen, or broken more often than we would like to admit. Protect your important files by keeping three copies: one on your device, one on an external hard drive at home and one in cloud storage. This way even if disaster strikes you will still have your personal files safe and sound.
 
 ### Ad Blocking
 
@@ -31,7 +31,7 @@ Install [uBlock Origin](https://ublockorigin.com/) on your internet browsers. Be
 
 ### Biometric Authentication Limits
 
-Biometric authentication may be convenient for everyday use but offers limited security. Biometrics like face detection and fingerprint scans can never be changed and can be fooled by attackers. Photos of your face and your fingerprints are relatively easy to access without your consent and allow potential attackers to unlock your devices. Some countries have laws allowing to use force to unlock devices with biometric authentication but can not force you to enter a PIN or password.
+Biometric authentication may be convenient for everyday use but offers limited security. Biometrics like face detection and fingerprint scans can never be changed and can be fooled by attackers accessing photos of your face or your fingerprints without your consent. Some countries have laws allowing to use force to unlock devices with biometric authentication but can not force you to enter a PIN or password.
 
 ## Security Mindset
 
@@ -67,6 +67,8 @@ The best digital security doesn't require expensive subscriptions or complicated
 
 ## References
 
-- [https://github.com/Lissy93/personal-security-checklist/blob/HEAD/CHECKLIST.md](https://github.com/Lissy93/personal-security-checklist/blob/HEAD/CHECKLIST.md)
+*   [https://github.com/Lissy93/personal-security-checklist/blob/HEAD/CHECKLIST.md](https://github.com/Lissy93/personal-security-checklist/blob/HEAD/CHECKLIST.md)
+*   [https://arstechnica.com/tech-policy/2024/04/cops-can-force-suspect-to-unlock-phone-with-thumbprint-us-court-rules/](https://arstechnica.com/tech-policy/2024/04/cops-can-force-suspect-to-unlock-phone-with-thumbprint-us-court-rules/)
+*   [https://www.datenschutz.org/bgh-urteil-polizei-darf-unter-zwang-handy-per-fingerabdruck-entsperren/](https://www.datenschutz.org/bgh-urteil-polizei-darf-unter-zwang-handy-per-fingerabdruck-entsperren/)
 
 #privacy #tutorial
