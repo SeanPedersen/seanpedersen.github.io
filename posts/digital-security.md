@@ -25,23 +25,11 @@ Only install apps from official sources (App Store, Google Play, Microsoft Store
 
 Portable devices like laptops and smart phones are regularly lost or stolen - better safe than sorry, so follow the 3-2-1 rule: Three copies of important data, on two different media types, with one copy stored off-site. Combine cloud storage with an external hard drive for maximum protection.
 
-## Don't Waste Your Money
-
-on digital snake-oil like...
-
-### Anti-Virus Software
-
-Modern operating systems have built-in protection that performs as well as or better than paid alternatives. Windows Defender, macOS security features, and mobile OS protections are mostly sufficient.
-
-### VPN Services
-
-For typical browsing on HTTPS-secured websites (which is most of the internet now), VPNs add minimal security benefit. The privacy claims in their marketing are largely exaggerated for everyday use.
-
-## Additional Protections
-
 ### Ad Blocking
 
 Install [uBlock Origin](https://ublockorigin.com/) on your internet browsers. Beyond blocking annoying ads, it prevents many malicious scripts and tracking mechanisms from running on visited websites.
+
+## Security Mindset
 
 ### Phishing Awareness
 
@@ -57,9 +45,21 @@ Remember that anything shared online can potentially be weaponized. Stalkers can
 
 Encrypt your devices to protect data if they're lost or stolen. Most smartphones are encrypted by default when you use a passcode, while computers may require setting up encryption (BitLocker on Windows, FileVault on Mac).
 
+## Don't Waste Your Money
+
+on digital snake-oil like...
+
+### Anti-Virus Software
+
+Modern operating systems have built-in protection that performs as well as or better than paid alternatives. Windows Defender, macOS security features, and mobile OS protections are mostly sufficient. Anti-virus software often slows down your computer signficantly and may introduce additional security holes. Stay away from it.
+
+### VPN Services
+
+For typical browsing on HTTPS-secured websites (which is most of the internet now), VPNs add minimal security benefit. The privacy claims in their marketing are largely exaggerated for everyday use.
+
 ## Conclusion
 
-The best digital security doesn't require expensive subscriptions or complicated setups - just consistent application of these fundamentals.
+The best digital security doesn't require expensive subscriptions or complicated setups - just consistent application of these fundamentals and developing a security mindset in general.
 
 ## References
 
