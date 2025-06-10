@@ -37,7 +37,7 @@ Biometric authentication may be convenient for everyday use but offers limited s
 
 ### Phishing Awareness
 
-Be skeptical of unexpected emails and calls: do not blindly follow instructions from unverified agents. Verify links before clicking: ensure they use HTTPS and contain the legitimate domain (google.com, not go0gle.com). When in doubt, access websites directly rather than through links.
+Be skeptical of unexpected emails and calls: do not blindly follow instructions from unverified agents. Verify links before clicking: ensure legitimacy of domains (google.com, not go0gle.com). When in doubt, access websites directly via bookmarks or trusted search engines rather than through dubious links from f.e. phishing emails.
 
 ### Social Media Privacy
 
