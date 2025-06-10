@@ -60,14 +60,23 @@ export default function Post({ postData, relatedPostCandidates, hasMorePosts }) 
     }
   }, [relatedPostCandidates]);
 
-  const addHeadingIds = (content) => {
-    return content.replace(
+  const processMarkdown = (content) => {
+    // Add IDs to headings
+    let processedContent = content.replace(
       /<h([1-6])>(.*?)<\/h[1-6]>/g,
       (match, level, text) => {
         const id = text.toLowerCase().replace(/[^a-z0-9]+/g, '-');
         return `<h${level} id="${id}">${text}</h${level}>`;
       }
     );
+
+    // Convert hashtags to clickable links
+    processedContent = processedContent.replace(
+      /#([a-zA-Z0-9_-]+)(?=\s|$|<|[^\w])/g,
+      '<a href="/#$1" style="color: inherit;">#$1</a>'
+    );
+
+    return processedContent;
   };
 
   const hasTableOfContents = postData.contentHtml.includes('<h2') || postData.contentHtml.includes('<h3');
@@ -87,7 +96,7 @@ export default function Post({ postData, relatedPostCandidates, hasMorePosts }) 
           <div
             className="markdown-content"
             dangerouslySetInnerHTML={{
-              __html: addHeadingIds(postData.contentHtml)
+              __html: processMarkdown(postData.contentHtml)
             }}
           />
 
