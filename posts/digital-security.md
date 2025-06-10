@@ -45,7 +45,7 @@ Remember that anything shared online can potentially be weaponized. Stalkers can
 
 ### [Remove Data Kraken like Google and co](https://seanpedersen.github.io/posts/google-ejector)
 
-### Advanced: Device Encryption
+## Advanced: Device Encryption
 
 Encrypt your devices to protect data if they're lost or stolen. Most smartphones are encrypted by default when you use a passcode, while computers may require setting up encryption (BitLocker on Windows, FileVault on Mac).
 
