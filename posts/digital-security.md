@@ -23,7 +23,7 @@ Only install apps from official sources (App Store, Google Play, Microsoft Store
 
 ### Backup Strategy
 
-Follow the 3-2-1 rule: Three copies of important data, on two different media types, with one copy stored off-site. Combine cloud storage with an external hard drive for maximum protection.
+Portable devices like laptops and smart phones are regularly lost or stolen - better safe than sorry, so follow the 3-2-1 rule: Three copies of important data, on two different media types, with one copy stored off-site. Combine cloud storage with an external hard drive for maximum protection.
 
 ## Don't Waste Your Money
 
