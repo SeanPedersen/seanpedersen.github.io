@@ -26,41 +26,42 @@ export default function Home({ allPostsData, allTags }) {
   useEffect(() => {
     setHasMounted(true);
 
-    // Function to update selectedTag based on URL hash
-    const updateTagFromHash = () => {
+    // Set initial tag from hash without creating history entry
+    const hash = window.location.hash.replace(/^#/, '');
+    if (hash && allTags.includes(hash)) {
+      setSelectedTag(hash);
+    }
+
+    // Listen for hash changes (back/forward navigation)
+    const handleHashChange = () => {
       const hash = window.location.hash.replace(/^#/, '');
       if (hash && allTags.includes(hash)) {
         setSelectedTag(hash);
-      } else if (!hash) {
-        setSelectedTag(null); // If hash is empty, select "All"
+      } else {
+        setSelectedTag(null);
       }
     };
 
-    updateTagFromHash(); // Set initial tag based on hash
-
-    window.addEventListener('hashchange', updateTagFromHash);
+    window.addEventListener('hashchange', handleHashChange);
     return () => {
-      window.removeEventListener('hashchange', updateTagFromHash);
+      window.removeEventListener('hashchange', handleHashChange);
     };
-  }, [allTags]); // Add allTags as a dependency
+  }, [allTags]);
 
-  // Update URL hash when selectedTag changes
-  useEffect(() => {
-    if (hasMounted) { // Ensure this runs only client-side after initial mount
-      if (selectedTag) {
-        window.location.hash = selectedTag;
+  // Handle tag selection
+  const handleTagSelect = (tag) => {
+    setSelectedTag(tag);
+    if (tag) {
+      window.location.hash = tag;
+    } else {
+      // Use replaceState only when clearing the hash to avoid extra history entries
+      if (window.history.replaceState) {
+        window.history.replaceState(null, '', window.location.pathname + window.location.search);
       } else {
-        // Remove hash if "All" is selected
-        // Check if history.pushState is available (modern browsers)
-        if (window.history.pushState) {
-          window.history.pushState("", document.title, window.location.pathname + window.location.search);
-        } else {
-          // Fallback for older browsers
-          window.location.hash = '';
-        }
+        window.location.hash = '';
       }
     }
-  }, [selectedTag, hasMounted]);
+  };
 
   // Filter posts by selected tag
   const filteredPosts = selectedTag
@@ -89,7 +90,7 @@ export default function Home({ allPostsData, allTags }) {
           <div className={utilStyles.tagsContainer}>
             <span
               className={`${utilStyles.tag} ${selectedTag === null ? utilStyles.tagSelected : ''}`}
-              onClick={() => setSelectedTag(null)}
+              onClick={() => handleTagSelect(null)}
             >
               All
             </span>
@@ -97,7 +98,7 @@ export default function Home({ allPostsData, allTags }) {
               <span
                 key={tag}
                 className={`${utilStyles.tag} ${selectedTag === tag ? utilStyles.tagSelected : ''}`}
-                onClick={() => setSelectedTag(tag)}
+                onClick={() => handleTagSelect(tag)}
               >
                 {tag}
               </span>
@@ -117,18 +118,17 @@ export default function Home({ allPostsData, allTags }) {
                     <span className={utilStyles.postTags}>
                       {' • '}
                       {tags.map((tag, index) => (
-                        <span key={tag} onClick={(e) => {
-                          e.preventDefault();
-                          e.stopPropagation();
-                          setSelectedTag(tag);
-                        }}>
-                          {/* Use a button or styled span for better accessibility if not a real link */}
-                          <a href={`#${tag}`} onClick={(e) => { // Update href for semantic correctness
-                            e.preventDefault();
-                            setSelectedTag(tag);
-                          }}>
+                        <span key={tag}>
+                          <button
+                            style={{ background: 'none', border: 'none', color: 'inherit', textDecoration: 'underline', cursor: 'pointer', padding: 0, font: 'inherit' }}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              handleTagSelect(tag);
+                            }}
+                          >
                             {tag}
-                          </a>
+                          </button>
                           {index < tags.length - 1 ? ', ' : ''}
                         </span>
                       ))}
