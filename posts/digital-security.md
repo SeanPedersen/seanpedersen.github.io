@@ -11,7 +11,7 @@ The internet is a war zone and you are an active participant if you like it or n
 
 ### Password Management
 
-Use a password manager ([KeePass](https://keepassxc.org/) or other solutions) to create and store unique, complex passwords for each service. This is your first line of defense. Enable Multi-Factor Authentication (MFA) wherever available, as it drastically reduces account takeover risk. Check if accounts including passwords of yours have been breached using [haveibeenpwned.com](https://haveibeenpwned.com/).
+Use a password manager ([KeePass](https://keepassxc.org/) or other solutions) to create and store unique, complex passwords for each service. This is your first line of defense. Enable Multi-Factor Authentication (MFA) wherever available, as it drastically reduces account takeover risk. Check if accounts including passwords of yours have been breached using [haveibeenpwned.com](https://haveibeenpwned.com/) and replace these passwords using your password manager.
 
 ### Keep Everything Updated
 
@@ -23,11 +23,15 @@ Only install apps from official sources (App Store, Google Play, Microsoft Store
 
 ### Backup Strategy
 
-Portable devices like laptops and smart phones are regularly lost or stolen - better safe than sorry, so follow the 3-2-1 rule: Three copies of important data, on two different media types, with one copy stored off-site. Combine cloud storage with an external hard drive for maximum protection.
+Phones and laptops get lost, stolen, or broken more often than we'd like to admit. Protect your important files by keeping three copies: one on your device, one on an external hard drive at home and one in cloud storage. This way, if disaster strikes, you'll still have your photos, documents, and other irreplaceable files safe and sound.
 
 ### Ad Blocking
 
 Install [uBlock Origin](https://ublockorigin.com/) on your internet browsers. Beyond blocking annoying ads, it prevents many malicious scripts and tracking mechanisms from running on visited websites.
+
+### Biometric Authentication Limits
+
+Biometric authentication may be convenient for everyday use but offers limited security. Biometrics like face detection and fingerprint scans can never be changed and can be fooled by attackers. Photos of your face and your fingerprints are relatively easy to access without your consent and allow potential attackers to unlock your devices. Some countries have laws allowing to use force to unlock devices with biometric authentication but can not force you to enter a PIN or password.
 
 ## Security Mindset
 
@@ -55,11 +59,11 @@ Modern operating systems have built-in protection that performs as well as or be
 
 ### VPN Services
 
-For typical browsing on HTTPS-secured websites (which is most of the internet now), VPNs add minimal security benefit. The privacy claims in their marketing are largely exaggerated for everyday use.
+For typical browsing on HTTPS-secured websites (which is most of the internet now), paid VPN services add minimal security benefit. The privacy claims in their marketing are largely exaggerated for everyday use.
 
 ## Conclusion
 
-The best digital security doesn't require expensive subscriptions or complicated setups - just consistent application of these fundamentals and developing a security mindset in general.
+The best digital security doesn't require expensive subscriptions or complicated setups - just consistent application of these fundamentals and developing a security aware mindset in general. How deep you want to go down the security rabbit hole should also depend on your threat model: how likely is it that you will be targeted by hackers (e.g. for profit or for political reasons).
 
 ## References
 
