@@ -70,11 +70,18 @@ export default function Post({ postData, relatedPostCandidates, hasMorePosts }) 
       }
     );
 
-    // Convert hashtags to clickable links
-    processedContent = processedContent.replace(
-      /#([a-zA-Z0-9_-]+)(?=\s|$|<|[^\w])/g,
-      '<a href="/#$1" style="color: inherit;">#$1</a>'
-    );
+    // Convert hashtags to clickable links only on the last 2 lines
+    const lines = processedContent.split('\n');
+    if (lines.length > 0) {
+      const startIndex = Math.max(0, lines.length - 2);
+      for (let i = startIndex; i < lines.length; i++) {
+        lines[i] = lines[i].replace(
+          /#([a-zA-Z0-9_-]+)(?=\s|$|<|[^\w])/g,
+          '<a href="/#$1" style="color: inherit;">#$1</a>'
+        );
+      }
+      processedContent = lines.join('\n');
+    }
 
     return processedContent;
   };
