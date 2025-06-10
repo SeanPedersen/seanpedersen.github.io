@@ -119,8 +119,8 @@ export default function Home({ allPostsData, allTags }) {
                       {' • '}
                       {tags.map((tag, index) => (
                         <span key={tag}>
-                          <button
-                            style={{ background: 'none', border: 'none', color: 'inherit', textDecoration: 'underline', cursor: 'pointer', padding: 0, font: 'inherit' }}
+                          <Link
+                            href="#"
                             onClick={(e) => {
                               e.preventDefault();
                               e.stopPropagation();
@@ -128,7 +128,7 @@ export default function Home({ allPostsData, allTags }) {
                             }}
                           >
                             {tag}
-                          </button>
+                          </Link>
                           {index < tags.length - 1 ? ', ' : ''}
                         </span>
                       ))}
