@@ -50,9 +50,9 @@ The quantum computing landscape has evolved significantly, though practical brea
 
 To distinguish genuine advancement from incremental improvements, watch for these key milestones:
 
-**Logical Qubit Scaling**: The transition from hundreds of physical qubits to dozens of logical qubits represents a fundamental shift toward practical quantum computing. Current systems achieve at most a few logical qubits with limited connectivity.
+**Logical Qubit Scaling**: A transition from hundreds of physical qubits to thousands of logical qubits would unlock commercially relevant applications.
 
-**Problem-Specific Quantum Advantage**: Demonstrations of quantum speedups for commercially relevant problems—not just academic constructions—would indicate approaching practical utility. These applications should solve real-world problems faster or more efficiently than the best classical alternatives.
+**Problem-Specific Quantum Advantage**: Demonstrations of quantum speedups for commercially relevant problems are a clear sign of progress. These applications should solve real-world problems faster or more efficiently than the best classical alternatives.
 
 **Error Correction Thresholds**: Achieving error rates below the fault tolerance threshold (approximately 0.01% for most error correction schemes) across all quantum operations would enable indefinitely long quantum computations, unlocking the full potential of quantum algorithms.
 
