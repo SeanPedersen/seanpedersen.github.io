@@ -12,7 +12,7 @@ To maximize their profits. Their AI products being surrounded by a mystical hype
 
 Unimaginable mass surveillance and manipulation: Many people are working to make LLM's feel even more human with the intention to create artificial friends or even significant others - a true dystopia. Mimicing genuine human relationships is in itself disgusting but worse: these artificial friends will be controlled and harvested by profit oriented companies.
 
-When physical robots become a reality it looks even worse: total control including violence. The dream of any totalitarian regime.
+When smart (controllable using text prompts) physical robots become a reality it looks even worse: total control of the physical world including violence. The dream of any totalitarian regime.
 
 ## References
 
