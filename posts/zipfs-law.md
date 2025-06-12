@@ -156,9 +156,9 @@ plot_li_experiments()
 
 ## References
 
-- <https://eva.fing.edu.uy/pluginfile.php/211986/mod_resource/content/1/li1992.pdf>
-- <https://chance.dartmouth.edu/chance_news/for_chance_news/ChanceNews12.03/RandomZipf.pdf>
-- <https://www.youtube.com/watch?v=fCn8zs912OE&pp=ygUQemlwZnMgbGF3IHZzYXVjZQ>
-- <https://www.reddit.com/r/voynich/comments/ehrbvm/random_texts_exhibit_zipfslawlike_word_frequency/>
+- Li, W. (1992). [Random Texts Exhibit Zipfs-Law-Like Word Frequency Distribution](https://eva.fing.edu.uy/pluginfile.php/211986/mod_resource/content/1/li1992.pdf). IEEE Transactions on Information Theory.
+- RAMON FERRER i CANCHO and RICARD V. SOLE. [Zipf's Law and Random Texts](https://chance.dartmouth.edu/chance_news/for_chance_news/ChanceNews12.03/RandomZipf.pdf). Advances in Complex Systems.
+- Vsauce. [The Zipf Mystery](https://www.youtube.com/watch?v=fCn8zs912OE). YouTube.
+- Reddit Discussion. [Random texts exhibit Zipf's-law-like word frequency distribution](https://www.reddit.com/r/voynich/comments/ehrbvm/random_texts_exhibit_zipfslawlike_word_frequency/). r/voynich.
 
 #idea #programming
