@@ -148,6 +148,8 @@ def plot_li_experiments():
 plot_li_experiments()
 ```
 
+![random-words-zipfs-law](/images/random-words-zipfs-law.png)
+
 ## Closer examination: or does it?
 
 "It is shown that real texts fill the lexical spectrum much more efficiently and regardless of the word length, suggesting that the meaningfulness of Zipf’s law is high." -> Seems Zipf's law is after all not so easily explained...?
