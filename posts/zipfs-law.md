@@ -39,6 +39,8 @@ These occurrences hint at an emergent deeper pattern governing self-organizing n
 
 "In conclusion, Zipf's law is not a deep law in natural language as one might first have thought. It is very much related the particular representation one chooses, i.e., rank as the independent variable." -> Hinting again at a deeper pattern: the observer is part of the observation - the world is inherently subjective and will always look different depending how you look at it.
 
+I added an attractor based probability distribution (words that have occurred before are more likely to be sampled, which produces a smoother Zipf curve fit - hinting at attraction effects in natural processes?)
+
 ```python
 import random
 import matplotlib.pyplot as plt
@@ -46,18 +48,62 @@ from collections import Counter
 import numpy as np
 from scipy import stats
 
-def generate_li_uniform_text(num_chars=100000, alphabet=['a', 'b', 'c', 'd', 'e', '_']):
-    """Generate random text with uniform character probabilities"""
-    text = ''.join(random.choices(alphabet, k=num_chars))
-    words = [word for word in text.split('_') if word]
+attractor_strength = 1.11
+ALPHABET = ['a', 'b', 'c', 'd', 'e', '_']  # Example alphabet with underscore as word separator
+
+def calculate_dynamic_attractor_probability(total_words, base_prob=0.16, growth_rate=0.0008, max_prob=0.9):
+    """Calculate dynamic attractor probability based on total words generated"""
+    # Sigmoid-like growth: starts low, increases with more words, plateaus at max_prob
+    dynamic_prob = base_prob + (max_prob - base_prob) * (1 - np.exp(-growth_rate * total_words))
+    return min(dynamic_prob, max_prob)
+
+def generate_attractor_text(alphabet, num_chars=100000):
+    """Generate random text with dynamic attractor mechanism - probability increases with word count"""
+    words = []
+    word_counts = {}
+    
+    # Start with some initial random words
+    text = ''.join(random.choices(alphabet, k=num_chars // 10))
+    initial_words = [word for word in text.split('_') if word]
+    
+    for word in initial_words:
+        words.append(word)
+        word_counts[word] = word_counts.get(word, 0) + 1
+    
+    # Now generate words with dynamic preferential attachment
+    target_length = len(initial_words) * 10
+    
+    # Track probability changes for logging
+    prob_checkpoints = [len(words) * i // 10 for i in range(1, 11)]
+    
+    while len(words) < target_length:
+        # Calculate dynamic attractor probability based on total words generated
+        current_attractor_prob = calculate_dynamic_attractor_probability(len(words))
+        
+        # Log probability at checkpoints
+        if len(words) in prob_checkpoints:
+            print(f"Words generated: {len(words)}, Attractor probability: {current_attractor_prob:.3f}")
+        
+        if word_counts and random.random() < current_attractor_prob:  # Dynamic chance to use existing word
+            # Choose existing word with probability proportional to its frequency raised to power
+            word_list = list(word_counts.keys())
+            weights = [word_counts[word] ** attractor_strength for word in word_list]
+            chosen_word = random.choices(word_list, weights=weights, k=1)[0]
+            words.append(chosen_word)
+            word_counts[chosen_word] += 1
+        else:
+            # Generate new random word
+            word_length = random.randint(1, 5)
+            new_word = ''.join(random.choices(alphabet[:-1], k=word_length))
+            if new_word:  # Make sure it's not empty
+                words.append(new_word)
+                word_counts[new_word] = word_counts.get(new_word, 0) + 1
+    
     return words
 
-def generate_li_biased_text(num_chars=100000):
-    """Generate random text with biased character probabilities"""
-    alphabet = ['a', 'b', 'c', 'd', 'e', '_']
-    probabilities = [0.3, 0.2, 0.15, 0.1, 0.05, 0.2]  # biased weights
-    
-    text = ''.join(random.choices(alphabet, weights=probabilities, k=num_chars))
+def generate_li_uniform_text(alphabet, num_chars=100000):
+    """Generate random text with uniform character probabilities"""
+    text = ''.join(random.choices(alphabet, k=num_chars))
     words = [word for word in text.split('_') if word]
     return words
 
@@ -74,63 +120,61 @@ def calculate_zipf_slope(ranks, frequencies):
     slope, _, r_value, _, _ = stats.linregress(log_ranks[valid], log_freqs[valid])
     return slope, r_value**2
 
-def plot_li_experiments():
-    """Generate and plot both Li experiments"""
-    print("Generating Li's experiments...")
+def plot_attractor_experiment():
+    """Generate and plot attractor experiment with uniform comparison"""
+    print("Generating attractor mechanism experiment with uniform comparison...")
     
     # Generate data
-    uniform_words = generate_li_uniform_text()
-    biased_words = generate_li_biased_text()
+    uniform_words = generate_li_uniform_text(ALPHABET)
+    attractor_words = generate_attractor_text(ALPHABET)
     
-    print(f"Generated {len(uniform_words)} uniform words, {len(biased_words)} biased words")
+    print(f"Generated {len(uniform_words)} uniform words and {len(attractor_words)} attractor words")
     
     # Get frequency distributions
-    uniform_counts = Counter(uniform_words).most_common(200)
-    biased_counts = Counter(biased_words).most_common(200)
+    uniform_counts = Counter(uniform_words).most_common(1000)
+    attractor_counts = Counter(attractor_words).most_common(1000)
     
     # Prepare data for plotting
     uniform_ranks = np.array(range(1, len(uniform_counts) + 1))
     uniform_freqs = np.array([count for _, count in uniform_counts])
     
-    biased_ranks = np.array(range(1, len(biased_counts) + 1))
-    biased_freqs = np.array([count for _, count in biased_counts])
+    attractor_ranks = np.array(range(1, len(attractor_counts) + 1))
+    attractor_freqs = np.array([count for _, count in attractor_counts])
     
     # Calculate slopes
     uniform_slope, uniform_r2 = calculate_zipf_slope(uniform_ranks, uniform_freqs)
-    biased_slope, biased_r2 = calculate_zipf_slope(biased_ranks, biased_freqs)
+    attractor_slope, attractor_r2 = calculate_zipf_slope(attractor_ranks, attractor_freqs)
     
-    # Create plots
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 6))
+    # Create comparison plot
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(16, 6))
     
     # Uniform case
-    ax1.loglog(uniform_ranks, uniform_freqs, 'go-', alpha=0.7, markersize=4, 
+    ax1.loglog(uniform_ranks, uniform_freqs, 'go-', alpha=0.7, markersize=3, 
                label='Uniform probabilities')
     
     if uniform_slope:
-        # Add fitted line
         fitted_line = uniform_freqs[0] * (uniform_ranks ** uniform_slope)
         ax1.loglog(uniform_ranks, fitted_line, 'r--', alpha=0.8, 
                    label=f'Slope: {uniform_slope:.3f} (R²={uniform_r2:.3f})')
     
     ax1.set_xlabel('Rank')
     ax1.set_ylabel('Frequency')
-    ax1.set_title('Uniform Character Probabilities\n(Shows Step Pattern)')
+    ax1.set_title('Uniform Character Probabilities\n(Strong Step Pattern)')
     ax1.grid(True, alpha=0.3)
     ax1.legend()
     
-    # Biased case
-    ax2.loglog(biased_ranks, biased_freqs, 'bo-', alpha=0.7, markersize=4, 
-               label='Biased probabilities')
+    # Attractor case
+    ax2.loglog(attractor_ranks, attractor_freqs, 'mo-', alpha=0.7, markersize=3, 
+               label='Attractor mechanism')
     
-    if biased_slope:
-        # Add fitted line
-        fitted_line = biased_freqs[0] * (biased_ranks ** biased_slope)
-        ax2.loglog(biased_ranks, fitted_line, 'r--', alpha=0.8, 
-                   label=f'Slope: {biased_slope:.3f} (R²={biased_r2:.3f})')
+    if attractor_slope:
+        fitted_line = attractor_freqs[0] * (attractor_ranks ** attractor_slope)
+        ax2.loglog(attractor_ranks, fitted_line, 'r--', alpha=0.8, 
+                   label=f'Slope: {attractor_slope:.3f} (R²={attractor_r2:.3f})')
     
     ax2.set_xlabel('Rank')
     ax2.set_ylabel('Frequency')
-    ax2.set_title('Biased Character Probabilities\n(Smooth Zipf Curve)')
+    ax2.set_title('Attractor Mechanism - Zipf Law Distribution\n(Smoother Pattern)')
     ax2.grid(True, alpha=0.3)
     ax2.legend()
     
@@ -139,13 +183,18 @@ def plot_li_experiments():
     
     # Print results
     print(f"\nResults:")
-    print(f"Uniform case: slope = {uniform_slope:.4f}, R² = {uniform_r2:.4f}")
-    print(f"Biased case:  slope = {biased_slope:.4f}, R² = {biased_r2:.4f}")
-    print(f"\nKey finding: Uniform probabilities create 'steps' in the distribution,")
-    print(f"while biased probabilities create a smooth Zipf-like curve.")
+    uniform_slope_str = f"{uniform_slope:.4f}" if uniform_slope is not None else "N/A"
+    uniform_r2_str = f"{uniform_r2:.4f}" if uniform_r2 is not None else "N/A"
+    attractor_slope_str = f"{attractor_slope:.4f}" if attractor_slope is not None else "N/A"
+    attractor_r2_str = f"{attractor_r2:.4f}" if attractor_r2 is not None else "N/A"
+    
+    print(f"Uniform case:   slope = {uniform_slope_str}, R² = {uniform_r2_str}")
+    print(f"Attractor case: slope = {attractor_slope_str}, R² = {attractor_r2_str}")
+    print(f"\nKey finding: The attractor mechanism creates a stronger Zipf-like distribution")
+    print(f"compared to uniform probabilities, demonstrating preferential attachment effects.")
 
-# Run the simplified experiment
-plot_li_experiments()
+# Run the attractor experiment
+plot_attractor_experiment()
 ```
 
 ![random-words-zipfs-law](/images/random-words-zipfs-law.png)
