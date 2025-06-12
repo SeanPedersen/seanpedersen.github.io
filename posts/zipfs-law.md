@@ -37,7 +37,7 @@ These occurrences hint at an emergent deeper pattern governing self-organizing n
 
 ## Relativation: it occurs also for randomly generated words
 
-"In conclusion, Zipf's law is not a deep law in natural language as one might first have thought. It is very much related the particular representation one chooses, i.e., rank as the independent variable." -> Hinting again at a deeper pattern: the observer is part of the observation - the world is inherently subjective and will always look different depending how you look at it.
+"In conclusion, Zipf's law is not a deep law in natural language as one might first have thought. It is very much related the particular representation one chooses, i.e., rank as the independent variable." (1) -> Hinting again at a deeper pattern: the observer is part of the observation - the world is inherently subjective and will always look different depending how you look at it.
 
 I added an attractor based probability distribution (words that have occurred before are more likely to be sampled, which produces a smoother Zipf curve fit - hinting at attraction effects in natural processes?)
 
@@ -201,13 +201,13 @@ plot_attractor_experiment()
 
 ## Closer examination: or does it?
 
-"It is shown that real texts fill the lexical spectrum much more efficiently and regardless of the word length, suggesting that the meaningfulness of Zipf’s law is high." -> Seems Zipf's law is after all not so easily explained...?
+"It is shown that real texts fill the lexical spectrum much more efficiently and regardless of the word length, suggesting that the meaningfulness of Zipf’s law is high." (2) -> Seems Zipf's law is after all not so easily explained...?
 
 ## References
 
-- Li, W. (1992). [Random Texts Exhibit Zipfs-Law-Like Word Frequency Distribution](https://eva.fing.edu.uy/pluginfile.php/211986/mod_resource/content/1/li1992.pdf). IEEE Transactions on Information Theory.
-- RAMON FERRER i CANCHO and RICARD V. SOLE. [Zipf's Law and Random Texts](https://chance.dartmouth.edu/chance_news/for_chance_news/ChanceNews12.03/RandomZipf.pdf). Advances in Complex Systems.
-- Vsauce. [The Zipf Mystery](https://www.youtube.com/watch?v=fCn8zs912OE). YouTube.
-- Reddit Discussion. [Random texts exhibit Zipf's-law-like word frequency distribution](https://www.reddit.com/r/voynich/comments/ehrbvm/random_texts_exhibit_zipfslawlike_word_frequency/). r/voynich.
+- (1) Li, W. (1992). [Random Texts Exhibit Zipfs-Law-Like Word Frequency Distribution](https://eva.fing.edu.uy/pluginfile.php/211986/mod_resource/content/1/li1992.pdf). IEEE Transactions on Information Theory.
+- (2) RAMON FERRER i CANCHO and RICARD V. SOLE. [Zipf's Law and Random Texts](https://chance.dartmouth.edu/chance_news/for_chance_news/ChanceNews12.03/RandomZipf.pdf). Advances in Complex Systems.
+- (3) Vsauce. [The Zipf Mystery](https://www.youtube.com/watch?v=fCn8zs912OE). YouTube.
+- (4) Reddit Discussion. [Random texts exhibit Zipf's-law-like word frequency distribution](https://www.reddit.com/r/voynich/comments/ehrbvm/random_texts_exhibit_zipfslawlike_word_frequency/). r/voynich.
 
 #idea #programming
