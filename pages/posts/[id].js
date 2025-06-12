@@ -7,6 +7,7 @@ import utilStyles from '../../styles/utils.module.css'
 import TableOfContents from '../../components/TableOfContents'
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
+import ExpandableCodeBlock from '../../components/ExpandableCodeBlock'
 
 export async function getStaticProps({ params }) {
   const postData = await getPostData(params.id)
@@ -86,6 +87,37 @@ export default function Post({ postData, relatedPostCandidates, hasMorePosts }) 
     return processedContent;
   };
 
+  const renderContentWithExpandableCodeBlocks = (content) => {
+    const processedContent = processMarkdown(content);
+
+    // Split content by Prism code blocks (which use <pre class="language-*"><code>)
+    const parts = processedContent.split(/(<pre[^>]*class="[^"]*language-[^"]*"[^>]*>[\s\S]*?<\/pre>)/g);
+
+    return parts.map((part, index) => {
+      // Check if this part is a Prism code block
+      const codeBlockMatch = part.match(/<pre[^>]*class="[^"]*language-[^"]*"[^>]*>([\s\S]*?)<\/pre>/);
+
+      if (codeBlockMatch) {
+        // Extract the inner content and count lines
+        const innerContent = codeBlockMatch[1];
+        // Remove HTML tags to count actual code lines
+        const textContent = innerContent.replace(/<[^>]*>/g, '');
+        const lineCount = textContent.split('\n').filter(line => line.trim()).length;
+
+        return (
+          <ExpandableCodeBlock key={index} lineCount={lineCount}>
+            {part}
+          </ExpandableCodeBlock>
+        );
+      }
+
+      // Regular content
+      return (
+        <div key={index} dangerouslySetInnerHTML={{ __html: part }} />
+      );
+    });
+  };
+
   const hasTableOfContents = postData.contentHtml.includes('<h2') || postData.contentHtml.includes('<h3');
 
   return (
@@ -100,12 +132,9 @@ export default function Post({ postData, relatedPostCandidates, hasMorePosts }) 
           <div className={utilStyles.lightText}>
             <Date dateString={postData.date} />
           </div>
-          <div
-            className="markdown-content"
-            dangerouslySetInnerHTML={{
-              __html: processMarkdown(postData.contentHtml)
-            }}
-          />
+          <div className="markdown-content">
+            {renderContentWithExpandableCodeBlocks(postData.contentHtml)}
+          </div>
 
           {/* Related Posts Footer */}
           {relatedPosts && relatedPosts.length > 0 && (

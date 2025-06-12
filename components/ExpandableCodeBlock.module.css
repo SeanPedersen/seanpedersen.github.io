@@ -1,0 +1,35 @@
+.expandableContainer {
+    position: relative;
+    margin: 1rem 0;
+}
+
+.codeBlock.collapsed {
+    max-height: 400px;
+    overflow: hidden;
+}
+
+.fadeOverlay {
+    position: absolute;
+    bottom: 40px;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: linear-gradient(transparent, var(--bg-color));
+    pointer-events: none;
+}
+
+.expandButton {
+    width: 100%;
+    padding: 8px 16px;
+    background: var(--accent-color);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.2s;
+}
+
+.expandButton:hover {
+    background: var(--hover-color);
+}
