@@ -3,7 +3,7 @@ title: "Zipf's Law"
 date: '2025-05-10'
 ---
 
-## Explain the basic idea
+## Basic idea
 
 Zipf's Law describes a power law distribution that appears across numerous natural phenomena. The concept is elegantly simple: when you rank items by their frequency or size, the relationship follows a predictable pattern.
 
@@ -39,7 +39,114 @@ These occurrences hint at an emergent deeper pattern governing self-organizing n
 
 "In conclusion, Zipf's law is not a deep law in natural language as one might first have thought. It is very much related the particular representation one chooses, i.e., rank as the independent variable." -> Hinting again at a deeper pattern: the observer is part of the observation - the world is inherently subjective and will always look different depending how you look at it.
 
-TODO: Demonstrate with some python code.
+```python
+import random
+import matplotlib.pyplot as plt
+from collections import Counter
+import numpy as np
+from scipy import stats
+
+def generate_li_uniform_text(num_chars=100000, alphabet=['a', 'b', 'c', 'd', 'e', '_']):
+    """Generate random text with uniform character probabilities"""
+    text = ''.join(random.choices(alphabet, k=num_chars))
+    words = [word for word in text.split('_') if word]
+    return words
+
+def generate_li_biased_text(num_chars=100000):
+    """Generate random text with biased character probabilities"""
+    alphabet = ['a', 'b', 'c', 'd', 'e', '_']
+    probabilities = [0.3, 0.2, 0.15, 0.1, 0.05, 0.2]  # biased weights
+    
+    text = ''.join(random.choices(alphabet, weights=probabilities, k=num_chars))
+    words = [word for word in text.split('_') if word]
+    return words
+
+def calculate_zipf_slope(ranks, frequencies):
+    """Calculate Zipf slope using linear regression on log-log scale"""
+    log_ranks = np.log10(ranks)
+    log_freqs = np.log10(frequencies)
+    
+    # Remove infinite values
+    valid = np.isfinite(log_ranks) & np.isfinite(log_freqs)
+    if np.sum(valid) < 2:
+        return None, None
+    
+    slope, _, r_value, _, _ = stats.linregress(log_ranks[valid], log_freqs[valid])
+    return slope, r_value**2
+
+def plot_li_experiments():
+    """Generate and plot both Li experiments"""
+    print("Generating Li's experiments...")
+    
+    # Generate data
+    uniform_words = generate_li_uniform_text()
+    biased_words = generate_li_biased_text()
+    
+    print(f"Generated {len(uniform_words)} uniform words, {len(biased_words)} biased words")
+    
+    # Get frequency distributions
+    uniform_counts = Counter(uniform_words).most_common(200)
+    biased_counts = Counter(biased_words).most_common(200)
+    
+    # Prepare data for plotting
+    uniform_ranks = np.array(range(1, len(uniform_counts) + 1))
+    uniform_freqs = np.array([count for _, count in uniform_counts])
+    
+    biased_ranks = np.array(range(1, len(biased_counts) + 1))
+    biased_freqs = np.array([count for _, count in biased_counts])
+    
+    # Calculate slopes
+    uniform_slope, uniform_r2 = calculate_zipf_slope(uniform_ranks, uniform_freqs)
+    biased_slope, biased_r2 = calculate_zipf_slope(biased_ranks, biased_freqs)
+    
+    # Create plots
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 6))
+    
+    # Uniform case
+    ax1.loglog(uniform_ranks, uniform_freqs, 'go-', alpha=0.7, markersize=4, 
+               label='Uniform probabilities')
+    
+    if uniform_slope:
+        # Add fitted line
+        fitted_line = uniform_freqs[0] * (uniform_ranks ** uniform_slope)
+        ax1.loglog(uniform_ranks, fitted_line, 'r--', alpha=0.8, 
+                   label=f'Slope: {uniform_slope:.3f} (R²={uniform_r2:.3f})')
+    
+    ax1.set_xlabel('Rank')
+    ax1.set_ylabel('Frequency')
+    ax1.set_title('Uniform Character Probabilities\n(Shows Step Pattern)')
+    ax1.grid(True, alpha=0.3)
+    ax1.legend()
+    
+    # Biased case
+    ax2.loglog(biased_ranks, biased_freqs, 'bo-', alpha=0.7, markersize=4, 
+               label='Biased probabilities')
+    
+    if biased_slope:
+        # Add fitted line
+        fitted_line = biased_freqs[0] * (biased_ranks ** biased_slope)
+        ax2.loglog(biased_ranks, fitted_line, 'r--', alpha=0.8, 
+                   label=f'Slope: {biased_slope:.3f} (R²={biased_r2:.3f})')
+    
+    ax2.set_xlabel('Rank')
+    ax2.set_ylabel('Frequency')
+    ax2.set_title('Biased Character Probabilities\n(Smooth Zipf Curve)')
+    ax2.grid(True, alpha=0.3)
+    ax2.legend()
+    
+    plt.tight_layout()
+    plt.show()
+    
+    # Print results
+    print(f"\nResults:")
+    print(f"Uniform case: slope = {uniform_slope:.4f}, R² = {uniform_r2:.4f}")
+    print(f"Biased case:  slope = {biased_slope:.4f}, R² = {biased_r2:.4f}")
+    print(f"\nKey finding: Uniform probabilities create 'steps' in the distribution,")
+    print(f"while biased probabilities create a smooth Zipf-like curve.")
+
+# Run the simplified experiment
+plot_li_experiments()
+```
 
 ## Closer examination: or does it?
 
@@ -50,5 +157,6 @@ TODO: Demonstrate with some python code.
 - <https://eva.fing.edu.uy/pluginfile.php/211986/mod_resource/content/1/li1992.pdf>
 - <https://chance.dartmouth.edu/chance_news/for_chance_news/ChanceNews12.03/RandomZipf.pdf>
 - <https://www.youtube.com/watch?v=fCn8zs912OE&pp=ygUQemlwZnMgbGF3IHZzYXVjZQ>
+- <https://www.reddit.com/r/voynich/comments/ehrbvm/random_texts_exhibit_zipfslawlike_word_frequency/>
 
 #idea #programming
