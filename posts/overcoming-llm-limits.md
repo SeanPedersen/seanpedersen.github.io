@@ -51,6 +51,16 @@ There are actual statistical models to evaluate the amount of uncertainty in out
 
 Another reason I mention this is most hallucinations I encounter are very plausible and often close to the right thing (swapping a variable name, confabulating a config key), which appear very convincing and "in sample", but are actually incorrect.” - <https://news.ycombinator.com/item?id=40769496>
 
+## Fundamental Limits
+
+Current LLMs face a core architectural constraint: they generate text sequentially, one token at a time. As Yann LeCun argues, this creates exponential error accumulation. Each prediction depends on all previous tokens, so early mistakes cascade through long sequences, causing models to derail from coherent long-formed reasoning.
+
+This sequential generation prevents LLMs from forming thoughts holistically. Unlike human cognition, which manipulates abstract concepts as complete structures, models must linearize everything into word sequences. They cannot think about problems in abstract space before committing to specific text.
+
+The result is a fundamental bottleneck. Tasks requiring sustained logic or complex reasoning remain difficult regardless of scale improvements (making autonomous agents doing long complex tasks a real challenge). Simply adding more parameters or training data cannot solve this architectural limitation.
+
+True progress requires a paradigm shift toward architectures that form and manipulate complete conceptual structures rather than sequential tokens. Until then, LLMs remain sophisticated pattern matchers, not genuine reasoners.
+
 ## Outlook
 
 The endgame would be language models that actively seek new knowledge aka craft their own data sets to update their knowledge / weights on. (This seems related: <https://x.com/koltregaskes/status/1818265121090666904>)
