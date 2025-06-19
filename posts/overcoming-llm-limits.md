@@ -53,7 +53,7 @@ Another reason I mention this is most hallucinations I encounter are very plausi
 
 ## Fundamental Limits
 
-Current LLMs face a core architectural constraint: they generate text sequentially, one token at a time. As Yann LeCun argues, this creates exponential error accumulation. Each prediction depends on all previous tokens, so early mistakes cascade through long sequences, causing models to derail from coherent long-formed reasoning.
+Current LLMs face a core architectural constraint: they generate text sequentially, one token at a time. As Yann LeCun argues, this creates exponential error accumulation. Each prediction depends on all previous tokens, so early mistakes cascade through long sequences, causing models to derail from coherent long-formed reasoning (an issue well known among LLM users - some call it context rot).
 
 This sequential generation prevents LLMs from forming thoughts holistically. Unlike human cognition, which manipulates abstract concepts as complete structures, models must linearize everything into word sequences. They cannot think about problems in abstract space before committing to specific text.
 
