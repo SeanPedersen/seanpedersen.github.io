@@ -2,11 +2,13 @@
 title: 'Online Marketing'
 date: '2025-05-23'
 ---
-You have a product and need customers - where do you find them?
+You have a product (solution for a problem) and need customers (has problem, needs solution) - how do you find them?
 
-## Waiting Customer Problems
+## Paint-Point Marketing
 
-To answer this question, you need to be able to pinpoint which problems your product solves. Get really specific about it and then turn to your favorite search engine and search in niche online communities like Reddit / Twitter threads, YouTube comments and other forums for people in need of your solution (f.e. how do I sort my photo collection? etc.) and spread the message! So this is the easy part: the customer is actively seeking a solution and you can help out - a win-win.
+Identify specific pain-points your product solves. Get really specific about it and then turn to your favorite search engine and search in niche online communities like Reddit / Twitter threads, YouTube comments and other forums for fresh online discussions with people in need of your solution and write a useful, relevant reply with a lead to your product - a win-win.
+
+This is the cheapest and most natural online marketing strategy I know of.
 
 ## Virality
 
