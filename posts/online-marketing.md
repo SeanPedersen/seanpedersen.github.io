@@ -4,11 +4,11 @@ date: '2025-05-23'
 ---
 You have a product (solution for a problem) and need customers (has problem, needs solution) - how do you find them?
 
-## Paint-Point Marketing
+## Pain-Point Marketing
 
 Identify specific pain-points your product solves. Get really specific about it and then turn to your favorite search engine and search in niche online communities like Reddit / Twitter threads, YouTube comments and other forums for fresh online discussions with people in need of your solution and write a useful, relevant reply with a lead to your product - a win-win.
 
-This is the cheapest and most natural online marketing strategy I know of.
+This is the cheapest and most effective online marketing strategy I know of.
 
 ## Virality
 
