@@ -19,7 +19,7 @@ Healing begins with intentional self-reflection. This process involves:
 - Providing room for once surpressed emotions
 - Developing alternative responses aligned with our current values
 
-Only through this deliberate examination can we overcome subconscious programming and rewire ourselves with healthier habits, ultimately increasing our self-agency.
+Only through introspection can we rewire our subconscious programming with healthier habits, ultimately increasing our self-agency.
 
 ## Healing the Root Trauma
 
