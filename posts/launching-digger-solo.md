@@ -12,18 +12,24 @@ The file search works by combining full text search capabilities with semantic s
 A multitude of file types are supported:
 
 - Text: pdf, docx, md, txt, pptx, csv, etc.
-- Images: psd, jpg, png, webp, etc.
+- Images: psd, jpg, png, webp, heic, etc.
 - Videos: mp4, mov, webm, etc.
 - Audio: only file name search enabled (for now)
 
 ## Semantic Data Maps
 
-See your files come to life in interactive data maps that reveal hidden connections and patterns across your file collections (text, image, video & audio supported) by translating semantic similarity into spatial proximity.
+Explore hidden connections and patterns in your file collections (text, image, video & audio supported) with semantic data maps (which translate semantic similarity into spatial proximity).
 
 ![semantic data map of image files](/images/digger-solo-images.png)
 
 ## Privacy
 
 Your files never leave your computer. All processing happens locally. No usage data is collected. Privacy is a feature not just a promise.
+
+## Use Cases
+
+- Organize huge photo / e-book / paper / music / sample collections automatically using semantic maps
+- Remove (near) duplicate files easily
+- Find specific objects in images using semantic search
 
 #personal
