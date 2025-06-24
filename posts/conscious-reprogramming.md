@@ -7,7 +7,7 @@ Have you ever found yourself in similar uncomfortable situations, only to later 
 ## The Problem of Subconscious Programming
 
 Our behavior is often shaped by coping patterns that developed in response to past traumatic experiences, particularly during childhood. These ingrained mechanisms can embed themselves so deeply in our subconsciousness that we fail to recognize them consciously. They manifest as automatic behaviors and habits that limit or harm us - operating entirely outside our awareness.
-These patterns often reveal themselves when we find ourselves repeatedly experiencing similar negative situations with different people. This repetition is a powerful clue - when you are the constant in these recurring scenarios, it likely indicates a subconscious pattern in your mind at work, that is attracting similar situations based on unresolved trauma.
+These patterns often reveal themselves when we find ourselves repeatedly experiencing similar negative situations with different people. This repetition is an important hint: when you are the constant in these recurring scenarios, it likely indicates a subconscious pattern in your mind at work, that is attracting similar situations based on unresolved trauma.
 
 ## The Importance of Self-Reflection
 
@@ -41,9 +41,9 @@ Source: <https://x.com/FU_joehudson/status/1914381665725456722>
 
 ## The Power of Self-Agency
 
-Recognizing that we have control over our lives - despite subconscious influences - enhances our self-agency. When we embrace our autonomy, we feel empowered to experience more, act more decisively, and live our life how we choose to.
+Recognizing that we have control over our lives - despite subconscious influences - enhances our self-agency. When we embrace our autonomy, we feel empowered to experience more, act more decisively and live our life how we choose to.
 
-While changing these deep ingrained patterns takes time and consistent effort, it is the only path forward to personal growth and liberation from limiting behaviors.
+While changing these subconscious patterns takes time and consistent effort, it is the only way for true personal growth and liberation from these limiting behaviors.
 
 ## Navigating Daily Challenges
 
