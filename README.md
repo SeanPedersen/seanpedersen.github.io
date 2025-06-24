@@ -7,4 +7,4 @@ Just clone this repo and create a new github project named $your_username.github
 - Blog name (etc) in ./components/layout.js
 - Posts (markdown) live in ./posts/
 - Front page in ./pages/index.js
-- Profile pic in ./public/images/profile.jpg
+- Profile pic in ./public/images/profile.webp

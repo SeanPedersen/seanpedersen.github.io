@@ -34,7 +34,7 @@ export default function Layout({ children, home, title }) {
             maxWidth: "100%"
           }}>
             <img
-              src="/images/profile.jpg"
+              src="/images/profile.webp"
               className={`${styles.headerHomeImage} ${utilStyles.borderCircle}`}
               alt={name}
             />
