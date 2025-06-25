@@ -4,6 +4,13 @@ date: '2025-05-23'
 ---
 You have a product (solution for a problem) and need customers (has problem, needs solution) - how do you find them?
 
+## Data Driven Validation
+
+The following marketing channels may work wildly differently out for your business - so use analytics / promo codes to track how individual channels perform. Only by getting this valuable feedback, can you learn what works and what does not work for you.
+
+- <www.posthog.com>: good alternative to Google analytics
+- <www.podscan.fm>: monitor key words across podcasts world wide
+
 ## Pain-Point Marketing
 
 Identify specific pain-points your product solves. Get really specific about it and then turn to your favorite search engine and search in niche online communities like Reddit / Twitter threads, YouTube comments and other forums for fresh online discussions with people in need of your solution and write a useful, relevant reply with a lead to your product - a win-win.
@@ -41,7 +48,7 @@ Don't just stop with blog articles! Create short and long videos on platforms li
 
 ## Cold Leads
 
-Write concise E-Mails / DM's to potential customers that clearly state which problem you can solve for them.
+Write concise E-Mails / DM's to your ideal customer groups that clearly state which problem you can solve for them. Use LinkedIn and search engines to find contact information.
 
 ## Paid Ads
 
