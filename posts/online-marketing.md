@@ -26,7 +26,7 @@ This is the cheapest and most effective online marketing strategy I know of.
 
 Let influencers / customers directly profit from sharing and recommending your product by offering a share of each sale they generate for you.
 
-- <https://www.rewardful.com/>: integrate affiliate programs for your saas
+- <https://refgrow.com/>: integrate affiliate program for your saas
 
 ### Sharing
 
