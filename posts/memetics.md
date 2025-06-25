@@ -21,6 +21,18 @@ Memes have properties that influence their transmissibility (virality potential)
 - Spreaders: Spreading existing memes.
 - Consumers: Consuming memes.
 
+## Abstraction of Natural Language
+
+What is the rate of abstraction in natural language (spread of new words that represent a novel composite concept)? How does it differ between languages? How does it affect society?
+
+Perfect project to make some analysis: <https://github.com/rspeer/wordfreq/tree/master>
+
+Who controls the language, controls the thoughts. -> New words spark new thoughts. Thus to control the masses, control which new words (concepts) are spread via media and education systems.
+
+To understand who is responsible for the adoption of new words one has to research the origin of new terms and analyze the source of first spreaders.
+
+Another thought formation scheme is shifting the context (perceived connotation) of terms. New words for the same concept but with different connotation (e.g. fat vs overweight).
+
 ## Questions of Interest
 
 - How do memes spread through social networks?
