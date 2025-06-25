@@ -209,5 +209,6 @@ plot_attractor_experiment()
 - (2) RAMON FERRER i CANCHO and RICARD V. SOLE. [Zipf's Law and Random Texts](https://chance.dartmouth.edu/chance_news/for_chance_news/ChanceNews12.03/RandomZipf.pdf). Advances in Complex Systems.
 - (3) Vsauce. [The Zipf Mystery](https://www.youtube.com/watch?v=fCn8zs912OE). YouTube.
 - (4) Reddit Discussion. [Random texts exhibit Zipf's-law-like word frequency distribution](https://www.reddit.com/r/voynich/comments/ehrbvm/random_texts_exhibit_zipfslawlike_word_frequency/). r/voynich.
+- (5) Art of the Problem. [The Pattern of Intelligence Life](https://youtu.be/MGecptPVQrU). YouTube.
 
 #idea #programming
