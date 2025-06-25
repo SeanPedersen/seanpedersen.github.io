@@ -25,6 +25,10 @@ Let influencers / customers directly profit from sharing and recommending your p
 
 Build sharing functionality directly into your product, so that it can naturally spread through happy customers sharing their creations with their social network.
 
+### Community Building
+
+Cultivate long lasting relationships with your customers by creating community via online groups (Discord, WhatsApp, etc.). Use it to gather feedback, new ideas and to inform your customers about novel developments.
+
 ## Content Marketing
 
 ### Blog Articles (SEO)
