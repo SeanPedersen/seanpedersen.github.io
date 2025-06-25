@@ -8,8 +8,8 @@ You have a product (solution for a problem) and need customers (has problem, nee
 
 The following marketing channels may work wildly differently out for your business - so use analytics / promo codes to track how individual channels perform. Only by getting this valuable feedback, can you learn what works and what does not work for you.
 
-- <www.posthog.com>: good alternative to Google analytics
-- <www.podscan.fm>: monitor key words across podcasts world wide
+- <https://posthog.com>: good alternative to Google analytics
+- <https://podscan.fm>: monitor key words across podcasts world wide
 
 ## Pain-Point Marketing
 
