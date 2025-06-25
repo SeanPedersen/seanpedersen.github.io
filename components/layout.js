@@ -18,7 +18,7 @@ export default function Layout({ children, home, title }) {
         />
         <meta
           property="og:image"
-          content="/images/site-image.svg"
+          content="/favicon.ico"
         />
         <meta name="og:title" content={title || siteTitle} />
         <meta name="twitter:card" content="summary" />
