@@ -5,6 +5,12 @@ date: '2025-04-17'
 
 A short list of free AI chat apps for local LLM execution that work offline and promise privacy first (no user data collection).
 
+**GPT4ALL** - <https://github.com/nomic-ai/gpt4all>
+
+- Standalone app: easy setup
+- Open source
+- Features: RAG over text files
+
 **Jan** - <https://github.com/menloresearch/jan>
 
 - Standalone app: easy setup
@@ -22,7 +28,7 @@ A short list of free AI chat apps for local LLM execution that work offline and 
 - Standalone app: easy setup
 - Closed Source
 - Small bootstrapped company
-- Features: RAG over files, split (copy) conversations, web search (unreliable right now)
+- Features: RAG over text files, split (copy) conversations, web search (unreliable right now)
 
 **Deep Chat** - <https://deepchat.thinkinai.xyz/>
 
