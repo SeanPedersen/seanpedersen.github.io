@@ -10,15 +10,20 @@ Identify specific pain-points your product solves. Get really specific about it 
 
 This is the cheapest and most effective online marketing strategy I know of.
 
+- <https://beno.one>: fully automated lead generation for reddit
+- <https://snitchfeed.com/>: lead discovery for reddit, twitter, linkedin
+
 ## Virality
 
 ### Affiliate Marketing
 
-Let influencers / customers directly profit from sharing and recommending your product.
+Let influencers / customers directly profit from sharing and recommending your product by offering a share of each sale they generate for you.
+
+- <https://www.rewardful.com/>: integrate affiliate programs for your saas
 
 ### Sharing
 
-Build sharing functionality directly into your product, so that it can naturally spread.
+Build sharing functionality directly into your product, so that it can naturally spread through happy customers sharing their creations with their social network.
 
 ## Content Marketing
 
@@ -40,7 +45,9 @@ Generally a hard game because the incentives are off. You want to only pay for e
 
 ### Influencer
 
-Finding a relevant influencer that authentically can promote and ideally regularly use your product is a safe bet to reach new customers.
+Finding relevant influencers that authentically can promote and ideally regularly use your product is a safe bet to reach new customers.
+
+- <https://trends.digger.lol>: semantic search engine for instagram
 
 ### Platform
 
