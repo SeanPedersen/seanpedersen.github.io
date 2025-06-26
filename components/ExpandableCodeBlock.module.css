@@ -1,6 +1,93 @@
-.expandableContainer {
+.codeBlockWrapper {
     position: relative;
     margin: 1rem 0;
+}
+
+.codeBlockContainer {
+    position: relative;
+    /* Add padding-top to account for the copy button */
+    padding-top: 0;
+}
+
+/* Ensure pre elements have proper positioning context */
+.codeBlockContainer pre,
+.codeBlockWrapper pre {
+    position: relative !important;
+}
+
+.copyButtonNormal {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    padding: 8px;
+    cursor: pointer;
+    z-index: 20;
+    transition: all 0.2s ease;
+    opacity: 0.8;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.copyButton {
+    position: absolute;
+    top: 20px;
+    right: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    padding: 8px;
+    cursor: pointer;
+    z-index: 20;
+    transition: all 0.2s ease;
+    opacity: 0.8;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.copyButtonExpanded {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    padding: 8px;
+    cursor: pointer;
+    z-index: 20;
+    transition: all 0.2s ease;
+    opacity: 0.8;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.copyButton:hover {
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(12px);
+    transform: scale(1.05);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.codeBlock {
+    position: relative;
 }
 
 .codeBlock.collapsed {
@@ -10,26 +97,29 @@
 
 .fadeOverlay {
     position: absolute;
-    bottom: 40px;
+    bottom: 0;
     left: 0;
     right: 0;
     height: 60px;
-    background: linear-gradient(transparent, var(--bg-color));
+    background: linear-gradient(transparent, var(--background-color));
     pointer-events: none;
+    z-index: 10;
 }
 
 .expandButton {
     width: 100%;
     padding: 8px 16px;
-    background: var(--accent-color);
+    background: var(--background-color);
     color: var(--text-color);
     border: 1px solid var(--border-color);
     border-radius: 4px;
     cursor: pointer;
     font-size: 0.9rem;
     transition: background-color 0.2s;
+    margin-top: 0;
 }
 
 .expandButton:hover {
-    background: var(--hover-color);
+    background: var(--primary-color);
+    color: var(--background-color);
 }
