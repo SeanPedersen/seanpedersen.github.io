@@ -31,7 +31,8 @@ By adding a tunable parameter β (beta) to the Kullback-Leibler-Loss: `β * KL(g
 
 ## Show me the code
 
-Get your hands dirty and play around: [Python Colab Notebook](https://colab.research.google.com/drive/1f73wONMp8U2LvAmN0MNGyflqGFog0g2S)
+Get your hands dirty and play around:
+- [Beta-VAE](https://github.com/AntixK/PyTorch-VAE/blob/master/models/beta_vae.py)
 
 ## Further Questions
 
