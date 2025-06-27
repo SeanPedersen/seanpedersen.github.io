@@ -154,6 +154,18 @@ export default function Post({ postData, relatedPostCandidates, hasMorePosts }) 
               </ul>
             </footer>
           )}
+
+          {/* Edit on GitHub Link */}
+          <footer className={utilStyles.editOnGithubFooter}>
+            <a
+              href={`https://github.com/SeanPedersen/seanpedersen.github.io/blob/main/posts/${postData.id}.md`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={utilStyles.editOnGithubLink}
+            >
+              Edit on GitHub
+            </a>
+          </footer>
         </article>
       </div>
     </Layout>
