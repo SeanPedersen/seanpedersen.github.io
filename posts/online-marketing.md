@@ -22,15 +22,15 @@ This is the cheapest and most effective online marketing strategy I know of.
 
 ## Virality
 
+### Sharing
+
+Building sharing functionality directly into your product is the smartest move you can do. If done right the product will naturally go viral through happy customers sharing their creations with their social network - starting a snowball effect.
+
 ### Affiliate Marketing
 
 Let influencers / customers directly profit from sharing and recommending your product by offering a share of each sale they generate for you.
 
 - <https://refgrow.com/>: integrate affiliate program for your saas
-
-### Sharing
-
-Build sharing functionality directly into your product, so that it can naturally spread through happy customers sharing their creations with their social network.
 
 ### Community Building
 
