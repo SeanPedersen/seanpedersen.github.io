@@ -31,9 +31,13 @@ Urban demographics also follow Zipf's Law. In the United States, New York City i
 
 Even in cybersecurity, Zipf's Law emerges. Password frequency distributions follow this pattern, with the most common passwords appearing exponentially more often than less common ones. This has significant implications for security analysis and breach prevention.
 
-### The Deeper Implication
+### Letters
 
-These occurrences hint at an emergent deeper pattern governing self-organizing natural systems. When complex systems evolve without central planning—whether languages, cities, or digital behaviors—they tend to organize themselves according to this mathematical principle.
+Zipf's law does not occur in letter frequencies since they are not naturally assembled in a dynamical systems but constructed through rigid (human designed) rules.
+
+### Deeper Pattern
+
+These occurrences hint at an emergent deeper pattern governing self-organizing natural systems. Zipf's law seems to emerge in complex systems with attractor dynamics.
 
 ## Relativation: it occurs also for randomly generated words
 
@@ -202,6 +206,10 @@ plot_attractor_experiment()
 ## Closer examination: or does it?
 
 "It is shown that real texts fill the lexical spectrum much more efficiently and regardless of the word length, suggesting that the meaningfulness of Zipf’s law is high." (2) -> Seems Zipf's law is after all not so easily explained...?
+
+## Open Questions
+
+Does Zipf's law occur in sentences? -> maybe use semantic sentence clusters (greetings, jokes, etc.) to overcome the uniqueness (frequency 1) challenge of most sentences.
 
 ## References
 
