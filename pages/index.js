@@ -22,6 +22,7 @@ export default function Home({ allPostsData, allTags }) {
   const [selectedTag, setSelectedTag] = useState(null)
   const { theme, toggleTheme } = useTheme(); // Use theme from context
   const [hasMounted, setHasMounted] = useState(false);
+  const [showToggle, setShowToggle] = useState(true);
 
   useEffect(() => {
     setHasMounted(true);
@@ -42,9 +43,25 @@ export default function Home({ allPostsData, allTags }) {
       }
     };
 
+    // Handle scroll to hide/show theme toggle
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      if (currentScrollY <= 10) {
+        // At the very top (within 10px)
+        setShowToggle(true);
+      } else {
+        // Anywhere else, hide the toggle
+        setShowToggle(false);
+      }
+    };
+
     window.addEventListener('hashchange', handleHashChange);
+    window.addEventListener('scroll', handleScroll);
+    
     return () => {
       window.removeEventListener('hashchange', handleHashChange);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, [allTags]);
 
@@ -144,14 +161,16 @@ export default function Home({ allPostsData, allTags }) {
         <p>Check out my projects on <a href="https://github.com/SeanPedersen/" rel="noreferrer noopener" target="_blank">Github</a></p>
       </footer>
       {/* Theme Toggle Button */}
-      <button
-        onClick={toggleTheme}
-        className="themeToggleButton" // This class will be styled in global.css
-        aria-label="Toggle theme"
-        title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-      >
-        {hasMounted ? (theme === 'dark' ? '☀️' : '🌙') : null}
-      </button>
+      {showToggle && (
+        <button
+          onClick={toggleTheme}
+          className="themeToggleButton" // This class will be styled in global.css
+          aria-label="Toggle theme"
+          title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+        >
+          {hasMounted ? (theme === 'dark' ? '☀️' : '🌙') : null}
+        </button>
+      )}
     </div>
   )
 }

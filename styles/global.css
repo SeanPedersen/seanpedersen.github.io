@@ -167,7 +167,7 @@ img {
   align-items: center;
   justify-content: center;
   z-index: 1000;
-  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s, opacity 0.3s ease, transform 0.3s ease;
 }
 
 .themeToggleButton:hover {
