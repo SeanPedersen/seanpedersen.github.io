@@ -28,6 +28,7 @@ To prevent the variational encoder of “cheating” by placing different sample
 ## Beta-VAE
 
 By adding a tunable parameter β (beta) to the Kullback-Leibler-Loss: `β * KL(gauss(z_mean, z_var) || gauss(0,1))` which is 1.0 for the normal VAE, we can vary how much we force the latent space to be standard normally distributed. This has an interesting effect on the structure of the latent space dimensions: a higher beta parameter promotes disentanglement of the individual latent space dimensions. Making them independent and often interpretable features.
+For example a disentangled dimension might represent the abstract feature of gender (negative number may represent male attributes and positive numbers female attributes).
 
 **The Underlying Mechanism**: The β parameter works by creating an information capacity bottleneck - it makes using any latent dimension "expensive" by penalizing deviations from zero. This constraint forces the model to use each dimension efficiently, making specialization (pure features per dimension) more cost-effective than redundant or mixed encodings across dimensions. Interestingly, this reveals a broader principle: any constraint that limits effective information capacity per dimension can promote disentanglement. For example, quantizing latent representations creates a similar information bottleneck through precision limits rather than loss induced via KL-Divergence, potentially achieving comparable disentanglement effects through the same underlying mechanism of forced dimensional efficiency.
 
