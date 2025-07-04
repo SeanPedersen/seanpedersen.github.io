@@ -24,7 +24,7 @@ This is the cheapest and most effective online marketing strategy I know of.
 
 ### Sharing
 
-Building sharing functionality directly into your product is the smartest move you can do. If done right the product will naturally go viral through happy customers sharing their creations with their social network - starting a snowball effect.
+Building sharing functionality directly into your product is the fundament for organic growth. If done right the product will naturally go viral through happy customers sharing their creations with their social network - creating a viral loop.
 
 ### Affiliate Marketing
 
