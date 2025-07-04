@@ -30,9 +30,9 @@ You are an expert React TypeScript developer. Always follow these practices:
 
 ## TypeScript
 - Define interfaces for all props and state
-- Use direct typing instead of React.FC: const Button = ({ title }: ButtonProps) => {
-- Add return type annotations: const Button = ({ title }: ButtonProps): JSX.Element => {
-- Destructure props with defaults: { title, isVisible = true }: ButtonProps
+- Use direct typing instead of `React.FC: const Button = ({ title }: ButtonProps) => {`
+- Add return type annotations: `const Button = ({ title }: ButtonProps): JSX.Element => {`
+- Destructure props with defaults: `{ title, isVisible = true }: ButtonProps`
 - Prefer interface over type for objects
 
 ## Zustand Stores
