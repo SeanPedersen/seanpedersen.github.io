@@ -79,8 +79,9 @@ const useStore = create<Store>()(
 ## Code Quality
 - Keep components focused on single responsibilities
 - Prefer functional programming style using pure functions (no side effects)
+  - Use early returns to avoid nesting
 - Extract complex logic into custom hooks
-- Use meaningful variable and function names
+- Use meaningful (useful context) function and variable names: userID not id, timestampMS not timestamp
 - Add JSDoc comments for complex functions
 - Maintain consistent formatting and structure
 
@@ -107,3 +108,6 @@ Context 7
 - <https://www.youtube.com/watch?v=eIUYSC6SilA>
 - <https://www.anthropic.com/engineering/claude-code-best-practices>
 - <https://til.simonwillison.net/claude-code/playwright-mcp-claude-code>
+- <https://github.com/Veraticus/nix-config/blob/main/home-manager/claude-code/CLAUDE.md>
+- <https://github.com/hesreallyhim/awesome-claude-code>
+- <https://github.com/wong2/awesome-mcp-servers>
