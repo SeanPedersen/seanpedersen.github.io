@@ -6,9 +6,9 @@ Have you ever found yourself in similar uncomfortable situations, only to later 
 
 ## The Problem of Subconscious Programming
 
-Our behavior is often shaped by coping patterns that developed in response to past traumatic experiences, particularly during childhood. These ingrained mechanisms can embed themselves so deeply in our subconsciousness that we fail to recognize them consciously. They manifest as automatic behaviors and habits that limit or harm us - operating entirely outside our awareness.
+Our behavior is often shaped by coping patterns that developed in response to past traumatic experiences, particularly during childhood. These patterns can embed themselves so deeply in our subconsciousness that we fail to recognize them consciously. They manifest as automatic behaviors and habits that limit or harm us - operating entirely outside our awareness.
 
-These patterns often reveal themselves when we find ourselves repeatedly experiencing similar negative experiences with different people. This repetition is an important hint: when you are the constant in these recurring scenarios, it indicates that a subconscious pattern in your own mind is at work, that is attracting similar situations based on unresolved trauma.
+These patterns often reveal themselves when we find ourselves repeatedly in similar negative experiences with different people. This repetition is an important hint: when you are the constant in these recurring scenarios, it indicates that a subconscious pattern in your own mind is at work, that is attracting similar situations based on unresolved trauma.
 
 ## The Importance of Self-Reflection
 
