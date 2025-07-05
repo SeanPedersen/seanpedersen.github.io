@@ -92,15 +92,21 @@ Generate clean, easy to reason about, production-ready code following these patt
 
 ### Browser support
 
-Playwright
+Allows claude to use a web browser to test and debug webapps.
+
+[**Playwright**](https://github.com/microsoft/playwright)
 
 `mcp add playwright npx '@playwright/mcp@latest'`
 
-Puppeteer
+**Puppeteer**
 
 ### Code Documentation
 
-Context 7
+Allows claude to fetch uptodate code documentation for your projects.
+
+[**Context 7**](https://github.com/upstash/context7)
+
+`mcp add context7 -- npx -y @upstash/context7-mcp`
 
 ## References
 
@@ -111,3 +117,5 @@ Context 7
 - <https://github.com/Veraticus/nix-config/blob/main/home-manager/claude-code/CLAUDE.md>
 - <https://github.com/hesreallyhim/awesome-claude-code>
 - <https://github.com/wong2/awesome-mcp-servers>
+
+#programming #tutorial
