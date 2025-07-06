@@ -41,6 +41,8 @@ Learn how LSTM's function: [http://colah.github.io/posts/2015-08-Understanding-L
 
 Transformers are all the rage for text and even vision tasks now a days. They perform better at modeling sequential interdependencies of their inputs using so called attention heads. Their input size is fixed so they are not recurrent neural networks. Architecturally they are closer related to convolutional neural networks which they are making obsolete for most vision tasks.
 
-Learn how Transformers work: [https://jalammar.github.io/illustrated-transformer/](https://jalammar.github.io/illustrated-transformer/)
+Learn how Transformers work:
+- [https://peterbloem.nl/blog/transformers](https://peterbloem.nl/blog/transformers)
+- [https://jalammar.github.io/illustrated-transformer/](https://jalammar.github.io/illustrated-transformer/)
 
 #machine-learning
