@@ -40,7 +40,7 @@ Cultivate long lasting relationships with your customers by creating community v
 
 ### Blog Articles (SEO)
 
-Publishing high-quality blog articles that lay out how problems / pain points of your customers can be solved using your product is a good way to but a long game. Your website has to built up reputation - so search engines learn to trust it.
+Publishing high-quality blog articles that lay out how problems / pain points of your customers can be solved using your product is a good way to but a long game. Your website has to built up reputation - so search engines learn to trust it. Publish useful content on Pinterest and SlideShare do drive in organic traffic.
 
 ### Videos
 
@@ -63,5 +63,9 @@ Finding relevant influencers that authentically can promote and ideally regularl
 ### Platform
 
 Paying social media platforms to display your ads in social media feeds can work but is a hard game...
+
+## References
+
+- <https://natiakourdadze.substack.com/>
 
 #tutorial
