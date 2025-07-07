@@ -22,6 +22,7 @@ export default function Layout({ children, home, title }) {
         />
         <meta name="og:title" content={title || siteTitle} />
         <meta name="twitter:card" content="summary" />
+        <link rel="alternate" type="application/rss+xml" href="/rss.xml" title="RSS Feed" />
       </Head>
       <header className={styles.header}>
         {home ? (
@@ -38,10 +39,15 @@ export default function Layout({ children, home, title }) {
               className={`${styles.headerHomeImage} ${utilStyles.borderCircle}`}
               alt={name}
             />
-            <h1 className={`${utilStyles.heading2Xl} ${utilStyles.nameBreak}`}>
-              <span>Sean</span>
-              <span>Pedersen</span>
-            </h1>
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
+              <h1 className={`${utilStyles.heading2Xl} ${utilStyles.nameBreak}`}>
+                <span>Sean</span>
+                <span>Pedersen</span>
+              </h1>
+              <a href="/rss.xml" className={styles.rssLink} title="RSS Feed">
+                RSS Feed
+              </a>
+            </div>
           </div>
         ) : (
           <div style={{
@@ -55,6 +61,9 @@ export default function Layout({ children, home, title }) {
                 {siteTitle}
               </Link>
             </h2>
+            <a href="/rss.xml" className={styles.rssLink} title="RSS Feed">
+              RSS
+            </a>
           </div>
         )}
       </header>

@@ -106,3 +106,18 @@
 .backToHome p {
   margin: 0;
 }
+
+.rssLink {
+  color: #666;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  transition: color 0.2s ease;
+}
+
+.rssLink:hover {
+  color: #0070f3;
+  text-decoration: underline;
+}
