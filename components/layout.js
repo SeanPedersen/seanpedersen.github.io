@@ -61,9 +61,6 @@ export default function Layout({ children, home, title }) {
                 {siteTitle}
               </Link>
             </h2>
-            <a href="/rss.xml" className={styles.rssLink} title="RSS Feed">
-              RSS
-            </a>
           </div>
         )}
       </header>
