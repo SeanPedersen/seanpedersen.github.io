@@ -34,7 +34,7 @@ function extractTags(content) {
 
 function getSortedPostsData() {
   const postsDirectory = path.join(process.cwd(), 'posts')
-  
+
   // Get file names under /posts
   const fileNames = fs.readdirSync(postsDirectory)
   const allPostsData = fileNames.map(fileName => {
@@ -58,7 +58,7 @@ function getSortedPostsData() {
       ...matterResult.data
     }
   })
-  
+
   // Sort posts by date
   return allPostsData.sort((a, b) => {
     if (a.date < b.date) {
@@ -93,23 +93,22 @@ async function generateRSS() {
   posts.forEach(post => {
     const postUrl = `${SITE_URL}/posts/${post.id}`
     const postDate = new Date(post.date).toUTCString()
-    
+
     rss += `    <item>
       <title>${escapeXml(post.title)}</title>
-      <description>${escapeXml(post.title)}</description>
       <link>${postUrl}</link>
       <guid isPermaLink="true">${postUrl}</guid>
       <pubDate>${postDate}</pubDate>
       <author>${escapeXml(AUTHOR)}</author>
 `
-    
+
     if (post.tags && post.tags.length > 0) {
       post.tags.forEach(tag => {
         rss += `      <category>${escapeXml(tag)}</category>
 `
       })
     }
-    
+
     rss += `    </item>
 `
   })
@@ -124,13 +123,13 @@ async function main() {
   try {
     const rss = await generateRSS()
     const outputPath = path.join(process.cwd(), 'public', 'rss.xml')
-    
+
     // Ensure the public directory exists
     const publicDir = path.join(process.cwd(), 'public')
     if (!fs.existsSync(publicDir)) {
       fs.mkdirSync(publicDir, { recursive: true })
     }
-    
+
     fs.writeFileSync(outputPath, rss)
     console.log('RSS feed generated successfully at public/rss.xml')
   } catch (error) {
