@@ -117,6 +117,8 @@ Allows claude to fetch uptodate code documentation for your projects.
 - <https://github.com/Veraticus/nix-config/blob/main/home-manager/claude-code/CLAUDE.md>
 - <https://github.com/hesreallyhim/awesome-claude-code>
 - <https://github.com/wong2/awesome-mcp-servers>
-- Open-source alternative: <https://github.com/sst/opencode>
+- Open-source alternatives:
+  - <https://github.com/block/goose>
+  - <https://github.com/sst/opencode>
 
 #programming #tutorial
