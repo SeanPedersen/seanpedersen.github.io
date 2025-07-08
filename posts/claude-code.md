@@ -118,6 +118,7 @@ Allows claude to fetch uptodate code documentation for your projects.
 - <https://github.com/hesreallyhim/awesome-claude-code>
 - <https://github.com/wong2/awesome-mcp-servers>
 - Open-source alternatives:
+  - <https://cline.bot/>
   - <https://github.com/block/goose>
   - <https://github.com/sst/opencode>
 
