@@ -67,5 +67,6 @@ Paying social media platforms to display your ads in social media feeds can work
 ## References
 
 - <https://natiakourdadze.substack.com/>
+- How to get your first 100 customers thread by John Rush: <https://x.com/johnrushx/status/1941708690631049517>
 
 #tutorial
