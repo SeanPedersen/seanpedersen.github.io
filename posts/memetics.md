@@ -15,6 +15,10 @@ Memes have properties that influence their transmissibility (virality potential)
 - **meme** (low impact, high virality): viral videos, slang, norms
 - **supermeme** (high impact, high virality): wars, crisis, drama
 
+## Memes and the Medium
+
+The same memes may spread differently depending on the social medium (social zeitgeist, group-think) they flow in.
+
 ## Memes and People
 
 - Creators: Creating original / strongly altered memes.
