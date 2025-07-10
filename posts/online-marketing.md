@@ -62,7 +62,7 @@ Finding relevant influencers that authentically can promote and ideally regularl
 
 ### Platform
 
-Paying social media platforms to display your ads in social media feeds can work but is a hard game...
+Paying social media platforms or search engines to display your ads in their feeds can work but is a hard game, that only works if you earn more than you need to invest in the ads.
 
 ## References
 
