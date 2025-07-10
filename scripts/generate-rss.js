@@ -32,8 +32,28 @@ function extractTags(content) {
   return [];
 }
 
+function extractContentFromHtml(htmlFile) {
+  try {
+    const htmlContent = fs.readFileSync(htmlFile, 'utf8')
+
+    // Extract JSON from __NEXT_DATA__ script tag
+    const scriptMatch = htmlContent.match(/<script id="__NEXT_DATA__" type="application\/json">(.*?)<\/script>/)
+
+    if (scriptMatch && scriptMatch[1]) {
+      const jsonData = JSON.parse(scriptMatch[1])
+      return jsonData.props.pageProps.postData.contentHtml || ''
+    }
+
+    return ''
+  } catch (error) {
+    console.warn(`Could not extract content from ${htmlFile}:`, error.message)
+    return ''
+  }
+}
+
 function getSortedPostsData() {
   const postsDirectory = path.join(process.cwd(), 'posts')
+  const outDirectory = path.join(process.cwd(), 'out', 'posts')
 
   // Get file names under /posts
   const fileNames = fs.readdirSync(postsDirectory)
@@ -41,7 +61,7 @@ function getSortedPostsData() {
     // Remove ".md" from file name to get id
     const id = fileName.replace(/\.md$/, '')
 
-    // Read markdown file as string
+    // Read markdown file as string for metadata
     const fullPath = path.join(postsDirectory, fileName)
     const fileContents = fs.readFileSync(fullPath, 'utf8')
 
@@ -51,10 +71,15 @@ function getSortedPostsData() {
     // Extract tags from the last line
     const tags = extractTags(fileContents)
 
-    // Combine the data with the id and tags
+    // Get HTML content from built file
+    const htmlFile = path.join(outDirectory, `${id}.html`)
+    const htmlContent = fs.existsSync(htmlFile) ? extractContentFromHtml(htmlFile) : ''
+
+    // Combine the data with the id, tags, and HTML content
     return {
       id,
       tags,
+      contentHtml: htmlContent,
       ...matterResult.data
     }
   })
@@ -69,13 +94,13 @@ function getSortedPostsData() {
   })
 }
 
-async function generateRSS() {
+function generateRSS() {
   const posts = getSortedPostsData()
   const now = new Date()
   const rssDate = now.toUTCString()
 
   let rss = `<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>${escapeXml(SITE_TITLE)}</title>
     <description>${escapeXml(SITE_DESCRIPTION)}</description>
@@ -94,8 +119,12 @@ async function generateRSS() {
     const postUrl = `${SITE_URL}/posts/${post.id}`
     const postDate = new Date(post.date).toUTCString()
 
+    // Use the HTML content from the built file
+    const htmlContent = post.contentHtml || ''
+
     rss += `    <item>
       <title>${escapeXml(post.title)}</title>
+      <description>${escapeXml(post.title)}</description>
       <link>${postUrl}</link>
       <guid isPermaLink="true">${postUrl}</guid>
       <pubDate>${postDate}</pubDate>
@@ -109,7 +138,8 @@ async function generateRSS() {
       })
     }
 
-    rss += `    </item>
+    rss += `      <content:encoded><![CDATA[${htmlContent}]]></content:encoded>
+    </item>
 `
   })
 
@@ -121,17 +151,11 @@ async function generateRSS() {
 
 async function main() {
   try {
-    const rss = await generateRSS()
-    const outputPath = path.join(process.cwd(), 'public', 'rss.xml')
-
-    // Ensure the public directory exists
-    const publicDir = path.join(process.cwd(), 'public')
-    if (!fs.existsSync(publicDir)) {
-      fs.mkdirSync(publicDir, { recursive: true })
-    }
-
+    const rss = generateRSS()
+    const outputPath = path.join(process.cwd(), 'out', 'rss.xml')
+    // Assumes the output directory exists (npm run build should create it)
     fs.writeFileSync(outputPath, rss)
-    console.log('RSS feed generated successfully at public/rss.xml')
+    console.log('RSS feed generated successfully at out/rss.xml')
   } catch (error) {
     console.error('Error generating RSS feed:', error)
     process.exit(1)
