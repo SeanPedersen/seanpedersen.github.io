@@ -113,6 +113,7 @@ Allows claude to fetch uptodate code documentation for your projects.
 - <https://www.john-rush.com/posts/ai-20250701.html>
 - <https://www.youtube.com/watch?v=eIUYSC6SilA>
 - <https://www.anthropic.com/engineering/claude-code-best-practices>
+- <http://www.tokenbender.com/post.html?id=how-i-bring-the-best-out-of-claude-code-part-2>
 - <https://til.simonwillison.net/claude-code/playwright-mcp-claude-code>
 - <https://github.com/Veraticus/nix-config/blob/main/home-manager/claude-code/CLAUDE.md>
 - <https://github.com/hesreallyhim/awesome-claude-code>
