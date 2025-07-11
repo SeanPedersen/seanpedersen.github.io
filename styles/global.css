@@ -174,3 +174,13 @@ img {
 .themeToggleButton:hover {
   opacity: 0.8;
 }
+
+/* Reduce spacing after headings in markdown content */
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3,
+.markdown-content h4,
+.markdown-content h5,
+.markdown-content h6 {
+  margin-bottom: -0.5rem;
+}
