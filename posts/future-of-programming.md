@@ -34,7 +34,7 @@ Update 2025:
 - LLM's could be used to automatically search for optimized functions based on their behavior
 - LLM's could also be used to generate context aware test cases, that minimize fuzzing (brute force testing) by focusing on edge cases (which generalize)
 
-References:
+## References
 
 - Content addressable code (<https://www.unisonweb.org/docs/tour>)
 - Why do we need modules at all? (<https://erlang.org/pipermail/erlang-questions/2011-May/058768.html>)
