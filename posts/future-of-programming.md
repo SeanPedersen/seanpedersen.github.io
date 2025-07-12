@@ -38,5 +38,6 @@ References:
 
 - Content addressable code (<https://www.unisonweb.org/docs/tour>)
 - Why do we need modules at all? (<https://erlang.org/pipermail/erlang-questions/2011-May/058768.html>)
+- Hyper Modular Programming System (<https://github.com/jbenet/random-ideas/issues/27>)
 
 #programming
