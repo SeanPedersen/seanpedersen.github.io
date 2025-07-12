@@ -29,6 +29,11 @@ I would love to see this being worked on and challenge any reader to build a pro
 
 Update 2024: There seems to be a content addressable language on the block (<https://scrapscript.org/>)
 
+Update 2025:
+- Basically any function in your codebase could be analysed by its input and output domains (types + mapping / behavior) and be replaced if a functionally equivalent but faster functions exists in the global code module index
+- LLM's could be used to automatically search for optimized functions based on their behavior
+- LLM's could also be used to generate context aware test cases, that minimize fuzzing (brute force testing) by focusing on edge cases (which generalize)
+
 References:
 
 - Content addressable code (<https://www.unisonweb.org/docs/tour>)
