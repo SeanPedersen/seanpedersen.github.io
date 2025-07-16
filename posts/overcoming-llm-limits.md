@@ -57,7 +57,7 @@ Current LLMs face a core architectural constraint: they generate text sequential
 
 This sequential generation prevents LLMs from forming thoughts holistically. Unlike human cognition, which manipulates abstract concepts as complete structures, models must linearize everything into word sequences. They cannot think about problems in abstract space before committing to specific text.
 
-The result is a fundamental bottleneck. Tasks requiring sustained logic or complex reasoning remain difficult regardless of scale improvements (making autonomous agents doing long complex tasks a real challenge). Simply adding more parameters or training data cannot solve this architectural limitation.
+The result is a fundamental bottleneck. Tasks requiring sustained logic or complex reasoning remain difficult regardless of scale improvements (making autonomous agents doing long complex tasks a real challenge). Simply adding more parameters or training data cannot solve this architectural limitation. Transformer based LLM's will thus never overcome the hallucination problem for long-context tasks (known as context rot).
 
 True progress requires a paradigm shift toward architectures that form and manipulate complete conceptual structures rather than sequential tokens. Until then, LLMs remain sophisticated stochastic pattern matchers, staying far away from reliable reasoning.
 
