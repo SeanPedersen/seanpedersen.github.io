@@ -59,11 +59,13 @@ This sequential generation prevents LLMs from forming thoughts holistically. Unl
 
 The result is a fundamental bottleneck. Tasks requiring sustained logic or complex reasoning remain difficult regardless of scale improvements (making autonomous agents doing long complex tasks a real challenge). Simply adding more parameters or training data cannot solve this architectural limitation.
 
-True progress requires a paradigm shift toward architectures that form and manipulate complete conceptual structures rather than sequential tokens. Until then, LLMs remain sophisticated pattern matchers, not genuine reasoners.
+True progress requires a paradigm shift toward architectures that form and manipulate complete conceptual structures rather than sequential tokens. Until then, LLMs remain sophisticated stochastic pattern matchers, staying far away from reliable reasoning.
 
 ## Outlook
 
-The endgame would be language models that actively seek new knowledge aka craft their own data sets to update their knowledge / weights on. (This seems related: <https://x.com/koltregaskes/status/1818265121090666904>)
+The endgame would be language models that actively seek new knowledge aka craft their own data sets to update their knowledge / weights on (capable of self-modification).
+
+(This seems related: <https://x.com/koltregaskes/status/1818265121090666904>)
 
 ## References
 
