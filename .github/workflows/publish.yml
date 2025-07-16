@@ -30,7 +30,11 @@ jobs:
           static_site_generator: next
 
       - name: Build with Next.js 🏗️
-        run: npx next build && node scripts/generate-rss.js
+        run: npx next build
+
+      - name: Generate RSS feed 📰
+        run: node scripts/generate-rss.js
+        continue-on-error: true
 
       - name: Upload artifact 📡
         uses: actions/upload-pages-artifact@v3
