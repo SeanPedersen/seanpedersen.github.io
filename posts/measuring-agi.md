@@ -381,32 +381,31 @@ a worm (C. Elegans) before you try the same for a mouse or dare I say
 the human brain (you know: just the most complex object in the universe
 we know of).
 
-## References / Recommendations
+## References
 
--   ["Universal Intelligence: A Definition of Machine Intelligence"
+- ["Universal Intelligence: A Definition of Machine Intelligence"
     (Shane Legg, Marcus Hutter)](https://arxiv.org/pdf/0712.3329.pdf)
--   **[The Measure of
+- **[The Measure of
     Intelligence](https://arxiv.org/pdf/1911.01547.pdf) (Francois
     Chollet)**
--   The Measure of All Minds **(José Hernández-Orallo)**
--   Jürgen Schmidhuber
+- The Measure of All Minds **(José Hernández-Orallo)**
+- Jürgen Schmidhuber
     [**Gödelmaschine**](http://people.idsia.ch/~juergen/goedelmachine.html)
-    -   <http://people.idsia.ch/~juergen/unilearn.html>
--   Marcus Hutter - **AIXI**
-    -   <http://www.hutter1.net/ai/introref.htm>
--   Jeff Clune - **AI-GAs**
-    -   <https://arxiv.org/pdf/1905.10985.pdf>
-
--   <https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication970.pdf>
--   <https://www.emeraldinsight.com/doi/pdfplus/10.1108/IJCS-01-2018-0003>
--   <http://dspace.cusat.ac.in/jspui/bitstream/123456789/3187/1/MEASURING%20UNIVERSAL%20INTELLIGENCE.pdf>
--   <https://pdfs.semanticscholar.org/5204/a0c2464bb64971dfb045e833bb0ca4f118fd.pdf>
--   <http://www.vetta.org/documents/AIQ_Talk.pdf>
--   <https://www.lesswrong.com/posts/vPtMSvnF8B5hM5LdL/intelligence-metrics-and-decision-theories>
--   <https://arxiv.org/pdf/0712.3329.pdf>
--   <https://ws680.nist.gov/publication/get_pdf.cfm?pub_id=824478>
--   <https://arxiv.org/abs/1805.07883>
--   <http://www.incompleteideas.net/IncIdeas/DefinitionOfIntelligence.html>
+    - <http://people.idsia.ch/~juergen/unilearn.html>
+- Marcus Hutter - **AIXI**
+    - <http://www.hutter1.net/ai/introref.htm>
+- Jeff Clune - **AI-GAs**
+    - <https://arxiv.org/pdf/1905.10985.pdf>
+- <https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication970.pdf>
+- <https://www.emeraldinsight.com/doi/pdfplus/10.1108/IJCS-01-2018-0003>
+- <http://dspace.cusat.ac.in/jspui/bitstream/123456789/3187/1/MEASURING%20UNIVERSAL%20INTELLIGENCE.pdf>
+- <https://pdfs.semanticscholar.org/5204/a0c2464bb64971dfb045e833bb0ca4f118fd.pdf>
+- <http://www.vetta.org/documents/AIQ_Talk.pdf>
+- <https://www.lesswrong.com/posts/vPtMSvnF8B5hM5LdL/intelligence-metrics-and-decision-theories>
+- <https://arxiv.org/pdf/0712.3329.pdf>
+- <https://ws680.nist.gov/publication/get_pdf.cfm?pub_id=824478>
+- <https://arxiv.org/abs/1805.07883>
+- <http://www.incompleteideas.net/IncIdeas/DefinitionOfIntelligence.html>
 
 ## Author Notes on existing Literature (incomplete)
 
