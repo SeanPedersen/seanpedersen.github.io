@@ -531,3 +531,5 @@ would act seemingly random, resulting in the best agent acting randomly.
 Solomonoff Induction:
 
 <https://www.lesswrong.com/posts/Kyc5dFDzBg4WccrbK/an-intuitive-explanation-of-solomonoff-induction>
+
+#machine-learning
