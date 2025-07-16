@@ -68,7 +68,7 @@ building blocks to understand the ideas this paper tries to convey.
 
 Data is raw and meaningless. Exists as measurable/observable quantities.
 Its simplest form is a bit: 0 / 1 or stated differently the smallest
-piece of observable change is a two state system.
+observation is a variable with two states.
 
 ### Observation (Perception)
 
