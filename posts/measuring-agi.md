@@ -269,9 +269,7 @@ and generalization difficulty" - F. Chollet
 To calculate any AIM metric we need:
 
 -   Agent (Algorithm that produces solution/s)
-
 -   Environment (Observations/time frames perceived by agent)
-
 -   Problem / Loss Function (Evaluation of solution / feedback / reward)
 
 ## Looking at recent AI research
@@ -309,81 +307,18 @@ In the paper "Universal Intelligence:A Definition of Machine
 Intelligence" by Shane Legg and Marcus Hutter, the authors propose
 following properties for a useful intelligence metric:
 
-+-----------------------------------------------------------------------+
-| **Valid.**                                                            |
-|                                                                       |
-| A test/measure of intelligence should be just that, it should capture |
-| intelligence and not some related quantity or only a part of          |
-| intelligence.                                                         |
-|                                                                       |
-| **Informative.**                                                      |
-|                                                                       |
-| The result should be a scalar value, or perhaps a vector, depending   |
-| on our view of intelligence. We would like an absolute measure of     |
-| intelligence so that comparisons across many agents can easily be     |
-| made.                                                                 |
-|                                                                       |
-| **Wide range.**                                                       |
-|                                                                       |
-| A test/definition should cover very low levels of intelligence right  |
-| up to super human intelligence.                                       |
-|                                                                       |
-| **General.**                                                          |
-|                                                                       |
-| Ideally we would like to have a very general test/definition that     |
-| could be applied to everything from a fly to a machine learning       |
-| algorithm.                                                            |
-|                                                                       |
-| **Dynamic.**                                                          |
-|                                                                       |
-| A test/definition should directly take into account the ability to    |
-| learn and                                                             |
-|                                                                       |
-| adapt over time as this is an important aspect of intelligence.       |
-|                                                                       |
-| **Unbiased.**                                                         |
-|                                                                       |
-| A test/definition should not be biased towards any particular         |
-| culture, species, etc.                                                |
-|                                                                       |
-| **Fundamental.**                                                      |
-|                                                                       |
-| We do not want a test/definition that needs to be changed from time   |
-|                                                                       |
-| to time due to changing technology and knowledge.                     |
-|                                                                       |
-| **Formal.**                                                           |
-|                                                                       |
-| The test/definition should be specified with the highest degree of    |
-| precision                                                             |
-|                                                                       |
-| possible, allowing no room for misinterpretation. Ideally, it should  |
-| be described using formal mathematics.                                |
-|                                                                       |
-| **Objective.**                                                        |
-|                                                                       |
-| The test/definition should not appeal to subjective assessments such  |
-| as the                                                                |
-|                                                                       |
-| opinions of human judges.                                             |
-|                                                                       |
-| **Fully Defined.**                                                    |
-|                                                                       |
-| Has the test/definition been fully defined, or are parts still        |
-| unspecified?                                                          |
-|                                                                       |
-| **Universal.**                                                        |
-|                                                                       |
-| Is the test/definition universal, or is it anthropocentric?           |
-|                                                                       |
-| **Practical.**                                                        |
-|                                                                       |
-| A test should be able to be performed quickly and automatically,      |
-| while from                                                            |
-|                                                                       |
-| a definition it should be possible to create an efficient test.       |
-+=======================================================================+
-+-----------------------------------------------------------------------+
+- **Valid.** A test/measure of intelligence should be just that, it should capture intelligence and not some related quantity or only a part of intelligence.
+- **Informative.** The result should be a scalar value, or perhaps a vector, depending on our view of intelligence. We would like an absolute measure of intelligence so that comparisons across many agents can easily be made.
+- **Wide range.** A test/definition should cover very low levels of intelligence right up to super human intelligence.
+- **General.** Ideally we would like to have a very general test/definition that could be applied to everything from a fly to a machine learning algorithm.
+- **Dynamic.** A test/definition should directly take into account the ability to learn and adapt over time as this is an important aspect of intelligence.
+- **Unbiased.** A test/definition should not be biased towards any particular culture, species, etc.
+- **Fundamental.** We do not want a test/definition that needs to be changed from time to time due to changing technology and knowledge.
+- **Formal.** The test/definition should be specified with the highest degree of precision possible, allowing no room for misinterpretation. Ideally, it should be described using formal mathematics.
+- **Objective.** The test/definition should not appeal to subjective assessments such as the opinions of human judges.
+- **Fully Defined.** Has the test/definition been fully defined, or are parts still unspecified?
+- **Universal.** Is the test/definition universal, or is it anthropocentric?
+- **Practical.** A test should be able to be performed quickly and automatically, while from a definition it should be possible to create an efficient test.
 
 The AIM family ticks off all proposed properties, even the last one
 which Legg & Hutter do not achieve with their proposed universal
