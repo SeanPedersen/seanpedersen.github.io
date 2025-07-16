@@ -6,6 +6,7 @@ date: '2025-07-16'
 Signals for AGI:
 - no benchmark (problem) we can design where humans beat AI
 - extreme and robust (human like) generalisation ability
+  - LLM's possess clearly no human like intelligence as they make obvious logical and factual mistakes and hallucinate without being capable to self-correct through self-inspection
 - self-awareness (introspection) and ability to self-modify (update facts / beliefs)
 
 **Thinking about the I in AI**
@@ -325,7 +326,7 @@ which Legg & Hutter do not achieve with their proposed universal
 intelligence score since it relies on the Kolmogorov complexity which is
 not feasible to compute in praxis.
 
-## Human designed overfitting
+# Human designed overfitting
 
 Most research around AI is narrow and specialized. A group of
 researchers think together hard about this one problem, coming up with
@@ -346,7 +347,7 @@ will lead to more general learning algorithms that perform well on
 broader ranges of problems - the missing part of most of current AI
 research endeavors.
 
-## Future Research Directions
+# Future Research Directions
 
 The tools developed here should enable us to directly optimize for more
 intelligent agents by optimizing (maximize) directly for an AIM score!
@@ -381,7 +382,7 @@ a worm (C. Elegans) before you try the same for a mouse or dare I say
 the human brain (you know: just the most complex object in the universe
 we know of).
 
-## References
+# References
 
 - ["Universal Intelligence: A Definition of Machine Intelligence"
     (Shane Legg, Marcus Hutter)](https://arxiv.org/pdf/0712.3329.pdf)
@@ -406,8 +407,9 @@ we know of).
 - <https://ws680.nist.gov/publication/get_pdf.cfm?pub_id=824478>
 - <https://arxiv.org/abs/1805.07883>
 - <http://www.incompleteideas.net/IncIdeas/DefinitionOfIntelligence.html>
+- <https://breckyunits.com/intelligence.html>
 
-## Author Notes on existing Literature (incomplete)
+# Author Notes on existing Literature (incomplete)
 
 So far nothing really strongly related to AIM has shown up in
 references.
