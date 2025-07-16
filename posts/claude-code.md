@@ -108,6 +108,14 @@ Allows claude to fetch uptodate code documentation for your projects.
 
 `mcp add context7 -- npx -y @upstash/context7-mcp`
 
+### Web Search
+
+[Exa Search](https://exa.ai/search): <https://github.com/exa-labs/exa-mcp-server>
+
+### Knowledge Base
+
+[Graphiti](https://github.com/getzep/graphiti): <https://github.com/getzep/graphiti/blob/main/mcp_server/README.md>
+
 ## References
 
 - <https://www.john-rush.com/posts/ai-20250701.html>
