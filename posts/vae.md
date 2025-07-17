@@ -23,7 +23,9 @@ Computing the derivatives of the random gaussian distribution parameterized by t
 
 This so called reparameterization trick enables us to take the derivatives of z with respect to either z_mean or z_var, which are necessary to back-propagate the error-signal through the sampling layer when using stochastic gradient descent as the parameter optimizer.
 
-To prevent the variational encoder of “cheating” by placing different samples far apart from each other in z (avoiding our desired property of smooth local interpolations) we add an additional loss term to our reconstruction loss function `L(x, x’)`, namely: `KL(gauss(z_mean, z_var) || gauss(0,1))`. Giving the total loss: `L(x, x’) = MSE(x,x') + KL(gauss(z_mean, z_var) || gauss(0,1))`
+To prevent the variational encoder of “cheating” by placing different samples far apart from each other in z (avoiding our desired property of smooth local interpolations) we add an additional loss term to our reconstruction loss function, giving the total loss:
+
+`L(x, x’) = MSE(x,x') + KL(gauss(z_mean, z_var) || gauss(0,1))`
 
 This additional loss term is defined as the Kullback-Leibler-divergence (non-symmetric measure of the difference between two probability distributions) between the encoders output `gauss(z_mean, z_var)` and an isotropic standard normal distribution `gauss(0,1) ∈ ℝ^n`. This forces the latent space to be standard Gaussian distributed (achieving the desired smooth local interpolation).
 
