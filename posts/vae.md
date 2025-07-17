@@ -2,7 +2,7 @@
 title: 'Deep Learning: Variational Auto-Encoders'
 date: '2018-09-30'
 ---
-Variational Auto-Encoders (VAE) are a bayesian extension of classical auto-encoders. Disclaimer: This article does not approach the concept of VAE from a bayesian perspective (check out the references below for this). The focus lies instead on highlighting the key components and their effects on the practical results such as the latent embedding space structure.
+Variational Auto-Encoders (VAE) are a probabilistic (variational) extension of classical auto-encoders. Disclaimer: This article does not approach the concept of VAE from a bayesian perspective (check out the references below for this). The focus lies instead on highlighting the key components and their effects on the practical results such as the latent embedding space structure.
 
 ## Building Blocks of an Auto-Encoder
 
@@ -19,7 +19,7 @@ We turn a classical auto-encoder into a variational one by modifying the encoder
 
 Why should we add noise to the encoder? Doing so will generate many more different sample points of z for the decoder to learn reconstructions from, forcing the decoder to generate smooth interpolations between local samples in the latent space.
 
-Computing the derivatives of the random gaussian distribution parameterized by the two output vectors z_mean and z_var of the encoder is achieved by reparameterizing `z ~ gauss(z_mean, z_var)` into `z = z_mean + z_var * gauss(0,1)`.
+Computing the derivatives of the random gaussian distribution parameterized by the two output vectors z_mean and z_var of the encoder is achieved by reparameterizing `z ~ gauss(z_mean, z_var)` into `z = z_mean + sqrt(z_var) * gauss(0,1)`.
 
 This so called reparameterization trick enables us to take the derivatives of z with respect to either z_mean or z_var, which are necessary to back-propagate the error-signal through the sampling layer when using stochastic gradient descent as the parameter optimizer.
 
