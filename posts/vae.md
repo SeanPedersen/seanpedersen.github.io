@@ -21,7 +21,7 @@ Why should we add noise to the encoder? Doing so will generate many more differe
 
 Computing the derivatives of the random gaussian distribution parameterized by the two output vectors z_mean and z_var of the encoder is achieved by reparameterizing `z ~ gauss(z_mean, z_var)` into `z = z_mean + sqrt(z_var) * gauss(0,1)`.
 
-This so called reparameterization trick enables us to take the derivatives of z with respect to either z_mean or z_var, which are necessary to back-propagate the error-signal through the sampling layer when using stochastic gradient descent as the parameter optimizer.
+This so called reparameterization trick enables us to take the derivatives of z with respect to either z_mean or z_var, which are necessary to back-propagate the error-signal through the variational sampling layer when using gradient descent as the parameter optimizer.
 
 To prevent the variational encoder of “cheating” by placing different samples far apart from each other in z (avoiding our desired property of smooth local interpolations) we add an additional loss term to our reconstruction loss function, giving the total loss:
 
