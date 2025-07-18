@@ -64,7 +64,7 @@ export default function Layout({ children, home, title }) {
           </div>
         )}
       </header>
-      <main className={styles.main}>{children}</main>
+      <main className={`${styles.main} ${home ? styles.homePage : ''}`}>{children}</main>
     </div >
   )
 }
