@@ -453,4 +453,4 @@ Solomonoff Induction:
 
 <https://www.lesswrong.com/posts/Kyc5dFDzBg4WccrbK/an-intuitive-explanation-of-solomonoff-induction>
 
-#machine-learning
+#AI #machine-learning

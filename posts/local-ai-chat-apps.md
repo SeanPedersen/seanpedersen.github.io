@@ -82,4 +82,4 @@ yt-summarize () {
 }
 ```
 
-#tutorial #privacy
+#AI #tutorial #privacy
