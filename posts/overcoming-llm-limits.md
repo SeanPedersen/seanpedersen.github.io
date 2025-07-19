@@ -35,7 +35,10 @@ I hope to see more research exploring this consistent data bootstrapping approac
 
 **Semantic Entropy Based**: Sample multiple answers (high temperature) and estimate confidence based on the variance of the resulting answers embedding vectors.
 
--> These approaches have a major flaw though (as pointed out by this HN commenter): “..., there is a real problem with this approach that lies at the mathematical level.
+-> These approaches have a major flaw though (as pointed out by this HN commenter):
+
+```
+..., there is a real problem with this approach that lies at the mathematical level.
 
 For any given input text, there is a corresponding output text distribution (e.g. the probabilities of all words in a sequence which the model draws samples from).
 
@@ -49,7 +52,9 @@ As some have pointed out in this thread, knowing the correct distribution of wor
 
 There are actual statistical models to evaluate the amount of uncertainty in output from ANNs (albeit a bit limited), but they are probably not feasible at the scale of LLMs. Perhaps a layer or two could be used to create a partial estimate of uncertainty (e.g. final 2 layers), but this would be a severe truncation of overall network uncertainty.
 
-Another reason I mention this is most hallucinations I encounter are very plausible and often close to the right thing (swapping a variable name, confabulating a config key), which appear very convincing and "in sample", but are actually incorrect.” - <https://news.ycombinator.com/item?id=40769496>
+Another reason I mention this is most hallucinations I encounter are very plausible and often close to the right thing (swapping a variable name, confabulating a config key), which appear very convincing and "in sample", but are actually incorrect.
+```
+ - <https://news.ycombinator.com/item?id=40769496>
 
 ## Fundamental Limits
 
