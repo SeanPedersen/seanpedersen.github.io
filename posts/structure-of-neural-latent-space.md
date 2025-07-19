@@ -26,11 +26,11 @@ A small collection of insights on the structure of embeddings (latent spaces) pr
 
 **Universality Hypothesis**: Circuits reappear across different models for the same data. Thus models trained on human perception data (text, image, video etc.) share the same semantic structure.
 
-- <https://www.lesswrong.com/posts/5CApLZiHGkt37nRQ2/an-111-the-circuits-hypotheses-for-deep-learning>
+- <https://blog.jxmo.io/p/there-is-only-one-model>
 - <https://arxiv.org/abs/2405.07987>
 - <https://phillipi.github.io/prh/>
 - <https://arxiv.org/abs/2505.12540>
-- <https://blog.jxmo.io/p/there-is-only-one-model>
+
 
 **Smoothness**: Formally known as Lipschitz continuity states that small changes in inputs cause small changes in output (latent) space. Well-trained, robust models should thus be insensitive to small input perturbations - which remains a pipe dream (see next point).
 
