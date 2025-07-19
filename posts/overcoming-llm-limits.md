@@ -37,7 +37,6 @@ I hope to see more research exploring this consistent data bootstrapping approac
 
 -> These approaches have a major flaw though (as pointed out by this HN commenter):
 
-
 > ..., there is a real problem with this approach that lies at the mathematical level.
 > 
 > For any given input text, there is a corresponding output text distribution (e.g. the probabilities of all words in a sequence which the model draws samples from).
@@ -54,7 +53,7 @@ I hope to see more research exploring this consistent data bootstrapping approac
 > 
 > Another reason I mention this is most hallucinations I encounter are very plausible and often close to the right thing (swapping a variable name, confabulating a config key), which appear very convincing and "in sample", but are actually incorrect.
 
- - program_whiz <https://news.ycombinator.com/item?id=40769496>
+Quoted from HN user program_whiz - <https://news.ycombinator.com/item?id=40769496>
 
 ## Fundamental Limits
 
