@@ -16,16 +16,17 @@ The next big hype cycle will be video generation and understanding, followed by 
 
 Robots driven by these new large multi-modal models (embodied AI) and continuously optimized by reinforcement learning will become a reality within the next 6 years and will be mass produced within 10 years. But they will not automate all our jobs away. They will automate the boring stuff and give us hopefully more time to be human.
 
-The hardest problem remains accurate, coherent and self-aware reasoning which is needed to automate novel and useful research. This will likely not be solved by just more data. It will take curated high-quality data and novel algorithms that are aware of their training data and can continuously self-modify to increase the accuracy of their world model.
+The hardest problem remains accurate, coherent (LLM's are fundamentally limited by their auto-regressive architecture giving rise to hallucinations and context rot) and self-aware reasoning which is needed to automate novel and useful research. This will likely not be solved by just more data. It will take curated high-quality data and novel algorithms that are aware of their training data and can continuously self-modify to increase the accuracy of their world model.
 
-Such systems have so far been demonstrated through so called "self-play". Systems like Alpha Zero were capable to simulate an endless stream of training data by simulating the games they play on a massive scale. Allowing to explore novel unseen tactics. Similar feats will be possible for verifiable domains like programming and mathematics. Accurately simulating the real world remains a hard problem (transfer from simulation to real enviroment is difficult).
+Such systems have so far been demonstrated through so called "self-play". Systems like Alpha Zero were capable to simulate an endless stream of training data by simulating the games they play on a massive scale. Allowing to explore novel unseen tactics. Similar feats will be possible for verifiable domains like programming and mathematics. Accurately simulating the real world remains a hard problem (transfer from simulation to real enviroment is difficult) and it is not clear how well knowledge gained from verifiable domains like programming and mathematics will transfer into the messy real world.
 
 Still this new wave of AI will enable every human to naturally interact with computers using natural language. On one side enabling them to shape digital and soon physical content on the other side lays the danger of enhanced mass surveillance and manipulation through advanced AI systems in the hands of powerful players (governments and corporations). Robots in particular will drastically change our world.
 
-References:
+## References
 
 - <https://www.nature.com/articles/s41586-024-07566-y>
 - <https://www.youtube.com/watch?v=uB9yZenVLzg>
+- <https://blog.jxmo.io/p/superintelligence-from-first-principles>
 - <https://blog.jxmo.io/p/we-should-stop-talking-about-agi>
 
 Updated on July 25, 2024
