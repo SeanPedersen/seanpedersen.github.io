@@ -70,8 +70,6 @@ True progress requires a paradigm shift toward architectures that form and manip
 
 The endgame would be language models that actively create and verify new knowledge using it to update their world-model / weights on (capable of self-modification).
 
-(This seems related: <https://x.com/koltregaskes/status/1818265121090666904>)
-
 ## References
 
 - Great talk on current limits of LLM: <https://www.youtube.com/watch?v=s7_NlkBwdj8>
