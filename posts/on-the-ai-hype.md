@@ -26,6 +26,7 @@ References:
 
 - <https://www.nature.com/articles/s41586-024-07566-y>
 - <https://www.youtube.com/watch?v=uB9yZenVLzg>
+- <https://blog.jxmo.io/p/we-should-stop-talking-about-agi>
 
 Updated on July 25, 2024
 
