@@ -38,8 +38,6 @@ Some reasons emotions aren’t felt all the way through:
 - We were shut down or shamed for having the emotion
 - It was too overwhelming for us
 
-Source: <https://x.com/FU_joehudson/status/1914381665725456722>
-
 ## The Power of Self-Agency
 
 Recognizing that we have control over our lives - despite subconscious influences - enhances our self-agency. When we embrace our autonomy, we feel empowered to experience more, act more decisively and live our life how we choose to.
@@ -65,5 +63,9 @@ Overcoming trauma and subconscious programming requires continuous reflection, s
 ```"Until you make the unconscious conscious, it will direct your life and you will call it fate."``` - (Unknown author, this quote is often wrongly attributed to Carl Jung)
 
 What subconscious patterns might you begin to recognize today?
+
+## References
+
+- Source for "Healing the Root Trauma" section: <https://x.com/FU_joehudson/status/1914381665725456722>
 
 #idea
