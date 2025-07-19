@@ -37,24 +37,24 @@ I hope to see more research exploring this consistent data bootstrapping approac
 
 -> These approaches have a major flaw though (as pointed out by this HN commenter):
 
-```
-..., there is a real problem with this approach that lies at the mathematical level.
 
-For any given input text, there is a corresponding output text distribution (e.g. the probabilities of all words in a sequence which the model draws samples from).
+> ..., there is a real problem with this approach that lies at the mathematical level.
+> 
+> For any given input text, there is a corresponding output text distribution (e.g. the probabilities of all words in a sequence which the model draws samples from).
+> 
+> The approach of drawing several samples and evaluating the entropy and/or disagreement between those draws is that it relies on already knowing the properties of the output distribution. It may be legitimate that one distribution is much more uniformly random than another, which has high certainty. Its not clear to me that they have demonstrated the underlying assumption.
+> 
+> Take for example celebrity info, "What is Tom Cruise known for?". The phrases "movie star", "katie holmes", "topgun", and "scientology" are all quite different in terms of their location in the word vector space, and would result in low semantic similarity, but are all accurate outputs.
+> 
+> On the other hand, "What is Taylor Swift known for?" the answers "standup comedy", "comedian", and "comedy actress" are semantically similar but represent hallucinations. Without knowing the distribution characteristics (e.g multivariate moments and estimates) we couldn't say for certain these are correct merely by their proximity in vector space.
+> 
+> As some have pointed out in this thread, knowing the correct distribution of word sequences for a given input sequence is the very job the LLM is solving, so there is no way of evaluating the output distribution to determine its correctness.
+> 
+> There are actual statistical models to evaluate the amount of uncertainty in output from ANNs (albeit a bit limited), but they are probably not feasible at the scale of LLMs. Perhaps a layer or two could be used to create a partial estimate of uncertainty (e.g. final 2 layers), but this would be a severe truncation of overall network uncertainty.
+> 
+> Another reason I mention this is most hallucinations I encounter are very plausible and often close to the right thing (swapping a variable name, confabulating a config key), which appear very convincing and "in sample", but are actually incorrect.
 
-The approach of drawing several samples and evaluating the entropy and/or disagreement between those draws is that it relies on already knowing the properties of the output distribution. It may be legitimate that one distribution is much more uniformly random than another, which has high certainty. Its not clear to me that they have demonstrated the underlying assumption.
-
-Take for example celebrity info, "What is Tom Cruise known for?". The phrases "movie star", "katie holmes", "topgun", and "scientology" are all quite different in terms of their location in the word vector space, and would result in low semantic similarity, but are all accurate outputs.
-
-On the other hand, "What is Taylor Swift known for?" the answers "standup comedy", "comedian", and "comedy actress" are semantically similar but represent hallucinations. Without knowing the distribution characteristics (e.g multivariate moments and estimates) we couldn't say for certain these are correct merely by their proximity in vector space.
-
-As some have pointed out in this thread, knowing the correct distribution of word sequences for a given input sequence is the very job the LLM is solving, so there is no way of evaluating the output distribution to determine its correctness.
-
-There are actual statistical models to evaluate the amount of uncertainty in output from ANNs (albeit a bit limited), but they are probably not feasible at the scale of LLMs. Perhaps a layer or two could be used to create a partial estimate of uncertainty (e.g. final 2 layers), but this would be a severe truncation of overall network uncertainty.
-
-Another reason I mention this is most hallucinations I encounter are very plausible and often close to the right thing (swapping a variable name, confabulating a config key), which appear very convincing and "in sample", but are actually incorrect.
-```
- - <https://news.ycombinator.com/item?id=40769496>
+ - program_whiz <https://news.ycombinator.com/item?id=40769496>
 
 ## Fundamental Limits
 
