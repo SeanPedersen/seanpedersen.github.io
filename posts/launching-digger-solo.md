@@ -16,11 +16,11 @@ A multitude of file types are supported:
 - Videos: mp4, mov, webm, etc.
 - Audio: only file name search enabled (for now)
 
-## Semantic Data Maps
+## Semantic Maps
 
-Explore hidden connections and patterns in your file collections (text, image, video & audio supported) with semantic data maps (which translate semantic similarity into spatial proximity).
+Explore hidden connections and patterns in your file collections (text, image, video & audio supported) with semantic maps (which translate semantic similarity into spatial proximity).
 
-![semantic data map of image files](/images/digger-solo-images.png)
+![semantic map of image files](/images/digger-solo-images.png)
 
 ## Privacy
 
