@@ -63,7 +63,7 @@ True progress requires a paradigm shift toward architectures that form and manip
 
 ## Outlook
 
-The endgame would be language models that actively seek new knowledge aka craft their own data sets to update their knowledge / weights on (capable of self-modification).
+The endgame would be language models that actively create and verify new knowledge using it to update their world-model / weights on (capable of self-modification).
 
 (This seems related: <https://x.com/koltregaskes/status/1818265121090666904>)
 
