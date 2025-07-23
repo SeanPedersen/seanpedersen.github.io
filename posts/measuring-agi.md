@@ -9,6 +9,10 @@ Signals for AGI:
   - LLM's possess clearly no human like intelligence as they make obvious logical and factual mistakes and hallucinate without being capable to self-correct through self-inspection
 - self-awareness (introspection) and ability to self-modify (update facts / beliefs)
 
+Ref: <https://garymarcus.substack.com/p/dear-elon-musk-here-are-five-things>
+
+----------------
+
 **Thinking about the I in AI**
 
 A framework allowing to compare intelligence metrics for (AI) agents
