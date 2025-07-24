@@ -26,10 +26,11 @@ This is the cheapest and most effective online marketing strategy I know of.
 
 Building sharing functionality directly into your product is the fundament for organic growth. If done right the product will naturally go viral through happy customers sharing their creations with their social network - creating a viral loop.
 
-### Affiliate Marketing
+### Affiliate (Influencer) Marketing
 
-Let influencers / customers directly profit from sharing and recommending your product by offering a share of each sale they generate for you.
+Let influencers / customers directly profit from sharing and recommending your product by offering a share of each sale they generate for you. Find influencers that have followers matching your ideal customer groups and send out partnership offers.
 
+- <https://trends.digger.lol>: semantic search engine for instagram profiles
 - <https://refgrow.com/>: integrate affiliate program for your saas
 
 ### Community Building
@@ -53,12 +54,6 @@ Write concise E-Mails / DM's to your ideal customer groups that clearly state wh
 ## Paid Ads
 
 Generally a hard game because the incentives are off. You want to only pay for engangement that directly generates sales (like you do with affiliate marketing).
-
-### Influencer
-
-Finding relevant influencers that authentically can promote and ideally regularly use your product is a safe bet to reach new customers.
-
-- <https://trends.digger.lol>: semantic search engine for instagram
 
 ### Platform
 
