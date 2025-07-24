@@ -9,6 +9,8 @@ Signals for AGI:
   - LLM's possess clearly no human like intelligence as they make obvious logical and factual mistakes and hallucinate without being capable to self-correct through self-inspection
 - self-awareness (introspection) and ability to self-modify (update facts / beliefs)
 
+We need a new score that expresses the robustness of models within a coherent problem set (punish brittleness -> making stupid mistakes while otherwise achieving good scores). Humans possess very robust (generalizable) intelligence, preventing hallucinations and adversarial examples (small changes in input space causing large changes in prediction space).
+
 Ref: <https://garymarcus.substack.com/p/dear-elon-musk-here-are-five-things>
 
 ----------------
