@@ -124,7 +124,6 @@ function generateRSS() {
 
     rss += `    <item>
       <title>${escapeXml(post.title)}</title>
-      <description>${escapeXml(post.title)}</description>
       <link>${postUrl}</link>
       <guid isPermaLink="true">${postUrl}</guid>
       <pubDate>${postDate}</pubDate>
