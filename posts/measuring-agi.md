@@ -71,19 +71,13 @@ The following definitions are not presented as objectively correct
 definitions of the following concepts but merely serve as helpful
 building blocks to understand the ideas this paper tries to convey.
 
-### Data (Information)
-
-Data is raw and meaningless. Exists as measurable/observable quantities.
+**Data** (Information) is raw and meaningless. Exists as measurable/observable quantities.
 Its simplest form is a bit: 0 / 1 or stated differently the smallest
 observation is a variable with two states.
 
-### Observation (Perception)
+**Observation** (Perception) is data perceived by an agent from the environment (through sensors).
 
-Data perceived by an agent from the environment (through sensors).
-
-### Problem (Goal)
-
-Defined as anything that can be formulated as a
+**Problem** (Goal) is defined as anything that can be formulated as a
 loss/objective/reward/fitness function with at least one solution (>0
 global maxi-/minima exist/s). E.g. classifying the MNIST test set
 accurately or winning a game of chess.
@@ -104,28 +98,20 @@ of matter that actively manipulate their environment to stay alive.
 
 Problem(Environment)
 
-### Knowledge
+**Knowledge** is just data (executed as programs) predicting accurately (ideally lossless) unknown / future data.
 
-Data (executed as programs) predicting accurately (ideally lossless) unknown / future data.
-
-### Intelligence
-
-The rate at which an agent generates knowledge solving a given problem
+**Intelligence** is the rate at which an agent generates knowledge solving a given problem
 from data w.r.t. observations or time needed to do so. This definition
 is context (problem) specific. The intelligence of two or more agents
 can thus only be compared for the same problem set.
 
-### General Intelligence
-
-General intelligence capabilities of an agent are defined for a set of
+**General intelligence** capabilities of an agent are defined for a set of
 problems, measuring the agent's intelligence for each problem, then
 normalizing all subproblem scores (0,1), finally computing the average
 as the general intelligence score for the given set of problems for the
 agent.
 
-### Problem Complexity
-
-Defined for a given problem by the minimal number of observations needed
+**Problem complexity** is defined for a given problem by the minimal number of observations needed
 by the most possibly (general? -> which problem set) intelligent agent
 to solve the problem (=extract all and not a bit more of knowledge that
 is needed to solve the given problem contained in the data of perceived
@@ -142,17 +128,13 @@ observations).
     problem preventing any form of transfer learning / solving by
     analogy.
 
-### Environment
-
-A state machine or any other process that generates a new state based or
+**Environment**: A state machine or any other process that generates a new state based or
 not based on its prior state and current actions executed by agent/s in
 the environment.
 
 Environment(T) = Actions(Environment(T-1))
 
-### Agent
-
-A system capable of perceiving data for a problem domain environment
+**Agent**: A system capable of perceiving data for a problem domain environment
 that produces solution/s for given problems by executing sequences of
 actions, changing the state of the environment (solving the problem).
 
@@ -165,9 +147,7 @@ the environment's state (t+1). Rinse and repeat:
 
 Agent(Environment~T~, Problem) -> Actions -> A(E~T+1,~ P) -> ...
 
-### Agent Size
-
-Amount of all bits of information used by the agent to solve the given
+**Agent Size**: Amount of all bits of information used by the agent to solve the given
 problem.
 
 Composed of:
@@ -179,9 +159,7 @@ Composed of:
 
 -   knowledge (learned skills to solve the problem)
 
-### Energy Consumption
-
-Instead of using a physical measure of energy like Joule one might want
+**Energy Consumption**: Instead of using a physical measure of energy like Joule one might want
 to use a more theoretical measure like e.g. FLOP to truly capture the
 algorithmic intelligence with regards to computational efficiency
 advances. This would move the field also away from current hardware and
