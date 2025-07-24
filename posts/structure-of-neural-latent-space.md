@@ -24,6 +24,11 @@ A small collection of insights on the structure of embeddings (latent spaces) pr
 
 - <https://transformer-circuits.pub/2022/toy_model/index.html>
 
+**Entangled Representation Hypothesis**: Gradient descent optimised neural networks tends to develop redundant and fractured features instead of unified, modular representations that can be reused and controlled separately.
+
+- <https://arxiv.org/abs/2505.11581>
+- <https://seanpedersen.github.io/posts/vae#beta-vae>
+
 **Universality Hypothesis**: Circuits reappear across different models for the same data. Thus models trained on human perception data (text, image, video etc.) share the same semantic structure.
 
 - <https://blog.jxmo.io/p/there-is-only-one-model>
