@@ -45,6 +45,8 @@ High complexity (very long context / completely novel) tasks with minimal traini
 - <https://blog.jxmo.io/p/superintelligence-from-first-principles>
 - <https://blog.jxmo.io/p/we-should-stop-talking-about-agi>
 - <https://garymarcus.substack.com/p/dear-elon-musk-here-are-five-things>
-- <https://www.youtube.com/watch?v=uB9yZenVLzg>
+- This video will change your mind about the AI hype
+ - <https://www.youtube.com/watch?v=uB9yZenVLzg>
+- Questioning Representational Optimism in Deep Learning: The Fractured Entangled Representation Hypothesis - <https://arxiv.org/abs/2505.11581>
 
 #AI
