@@ -39,8 +39,9 @@ Another thought formation scheme is shifting the context (perceived connotation)
 
 ## Questions of Interest
 
-- How do memes spread through social networks?
-- Who creates new memes vs spread existing memes?
+- How do memes spread through social networks (real vs digital)? culture (music, movies)?
+- Direct vs subliminal memes (hidden messages programming the subconsciousness)
+- Who creates new memes vs spread existing memes? Who blocks memes (selective meme spreading)?
 - Which hidden creator networks start to spread similar memes at the same time?
 - Surface gaps in scientific publishing indicating hidden or indirect censorship
 - How much control do I have over my meme intake (social media scroll of doom)?
