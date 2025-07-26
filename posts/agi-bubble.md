@@ -22,10 +22,11 @@ The knowledge representation (weight matrices) in neural networks is fractured /
 
 ## Real Value
 
-Low complexity tasks with lots of training data available that can be solved by interpolating on existing data.
+Low complexity tasks with lots of training data available (text, video, audio) that can be solved by interpolating on existing data and high-complexity tasks which are easy to verify (so big training data with high-signal can be generated) like chess, programming and math.
 
 - coding in a popular programming language
 - summarizing complicated technical topics (with lots of training data available)
+- generating (interpolating) texts, audio and video
 
 ## Tasks out of Reach
 
