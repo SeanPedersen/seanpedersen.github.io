@@ -42,6 +42,7 @@ High complexity (very long context / completely novel) tasks with minimal traini
 
 ## References
 
+- <https://wonderfall.dev/autoregressive/>
 - <https://blog.jxmo.io/p/superintelligence-from-first-principles>
 - <https://blog.jxmo.io/p/we-should-stop-talking-about-agi>
 - <https://garymarcus.substack.com/p/dear-elon-musk-here-are-five-things>
