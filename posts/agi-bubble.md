@@ -45,5 +45,6 @@ High complexity (very long context / completely novel) tasks with minimal traini
 - <https://blog.jxmo.io/p/superintelligence-from-first-principles>
 - <https://blog.jxmo.io/p/we-should-stop-talking-about-agi>
 - <https://garymarcus.substack.com/p/dear-elon-musk-here-are-five-things>
+- <https://www.youtube.com/watch?v=uB9yZenVLzg>
 
 #AI
