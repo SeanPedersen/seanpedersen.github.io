@@ -8,6 +8,10 @@ Do you control what information you consume or is your mind controlled by social
 
 Social media like Instagram, Facebook, Twitter and TikTok literally feed you information with the goal of stealing your valuable attention to **serve you advertisements and to collect personal information about you**. Your brain is being force fed ads and you are the product. For them you are a little rat that they feed digital heroin to harvest it for money (showing ads and selling personal data).
 
+## Using AI Systems
+
+Be aware that mental tasks you outsource or augment using AI will likely reduce your cognitive abilities for these tasks like using GPS systems did for navigation. Stay shar and embrace your human uniqueness by not overusing AI systems for creative tasks. Only use AI to automate the boring stuff where your human uniqueness can not shine through.
+
 ## Brain Rot
 
 What purpose does it serve to being uptodate on the latest celibrity gossip news? Which actions will you take based on this information to improve your life?
