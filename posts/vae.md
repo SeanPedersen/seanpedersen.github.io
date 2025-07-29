@@ -27,7 +27,7 @@ To prevent the variational encoder of “cheating” by placing different sample
 
 `L(x, x’) = MSE(x, x') + KL(gauss(z_mean, z_var), gauss(0, 1))`
 
-This additional loss term is defined as the Kullback-Leibler-divergence (non-symmetric measure of the difference between two probability distributions) between the encoders output `gauss(z_mean, z_var)` and an isotropic standard normal distribution `gauss(0, 1) ∈ ℝ^n`. This forces the latent space to be standard Gaussian distributed (achieving the desired smooth local interpolation).
+This additional loss term is defined as the Kullback-Leibler-divergence (non-symmetric measure of the difference between two probability distributions) between the encoders output `gauss(z_mean, z_var) ∈ ℝ^n` and an isotropic standard normal distribution `gauss(0, 1) ∈ ℝ^n`. This forces the latent space to be standard Gaussian distributed (achieving the desired smooth local interpolation).
 
 ## Beta-VAE
 
