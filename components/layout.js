@@ -45,7 +45,7 @@ export default function Layout({ children, home, title }) {
                 <span>Pedersen</span>
               </h1>
               <a href="/rss.xml" className={styles.rssLink} title="RSS Feed">
-                RSS Feed
+                RSS
               </a>
             </div>
           </div>
