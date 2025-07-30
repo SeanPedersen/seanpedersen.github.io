@@ -10,7 +10,7 @@ It is becoming clearer and clearer that scaling up LLM's will not solve their fu
 
 Current LLM's face a core architectural constraint: they generate text sequentially, one token at a time. As Yann LeCun argues, this creates exponential error accumulation. Each prediction depends on all previous tokens, so early mistakes cascade through long sequences, causing models to derail from coherent long-formed reasoning (an issue well known among LLM users - some call it context rot).
 
-This sequential generation prevents LLM's from forming thoughts holistically. Unlike human cognition, which manipulates abstract concepts as complete structures, models must linearize everything into word sequences. They cannot think about problems in abstract space before committing to specific text.
+This sequential generation prevents LLM's from forming thoughts holistically. Unlike human cognition, which manipulates abstract concepts as complete structures, current models must linearize everything into word sequences. They cannot think about problems in abstract space before committing to specific text.
 
 The result is a fundamental bottleneck. Tasks requiring sustained logic or complex reasoning remain difficult regardless of scale improvements (making autonomous agents doing long complex tasks a real challenge). Simply adding more parameters or training data cannot solve this architectural limitation. Transformer based LLM's will thus never overcome the hallucination problem for long-context tasks (known as context rot).
 
@@ -22,15 +22,22 @@ The knowledge representation (weight matrices) in neural networks is fractured /
 
 ## Real Value
 
-Low complexity tasks with lots of training data available (text, video, audio) that can be solved by interpolating on existing data and high-complexity tasks which are easy to verify (so big training data with high-signal can be generated) like chess, programming and math.
+Low complexity tasks with lots of training data available (text, code, video, audio) that can be solved by interpolating on existing data and high-complexity tasks which are easy to verify (so big training data with high-signal can be generated) like chess, programming and math. It is easy to verify who won a chess or go game and thus possible to generate high-signal training data. The same is true for certain classes of programming problems (does it compile? does it run without errors? does it pass tests? does it produce same output as an existing program? does it better on benchmark X?) and math problems.
 
-- coding in a popular programming language
+It is much harder to generate meaningful rewards for more abstract programming tasks though (is the UI design polished? is the user experience sensible?) - this data can only be inferred from expensive human usage.
+
+So we have two types of problems: easy to verify problems and thus also easy to produce big high-signal training data and hard to verify problems (needs humans in the loop) and thus hard to produce big high-signal training data. For the former we are in Alpha Zero territory (innovate using RL) and the latter we are in Alpha Go territory (interpolate and synthesize on human generated data).
+
+Examples:
+- coding in a popular programming language on medium sized code base
 - summarizing complicated technical topics (with lots of training data available)
 - generating (interpolating) texts, audio and video
 
 ## Tasks out of Reach
 
-High complexity (very long context / completely novel) tasks with minimal training data available.
+High complexity (very long context / completely novel) tasks with minimal training data available (often limited by needing humans to produce data).
+
+Any critical task that has no tolerance for error rates below 99.99%.
 
 ## Signals for AGI
 
