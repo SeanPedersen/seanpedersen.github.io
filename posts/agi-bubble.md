@@ -37,12 +37,13 @@ High complexity (very long context / completely novel) tasks with minimal traini
 - no benchmark (problem) we can design where humans beat AI
   - coming up with novel funny jokes
 - extreme and robust (human like) generalisation ability
-  - LLM's possess clearly no human like intelligence as they make obvious logical and factual mistakes (very brittle; context dependent problem solving ability) and hallucinate without being capable to self-correct through self-inspection -> LLM's output will always have to be validated for critical tasks
+  - LLM's possess clearly no human like intelligence as they make obvious logical and factual mistakes (very brittle; context dependent problem solving ability) and hallucinate without being capable to self-correct through self-inspection -> LLM's output will always have to be validated using human supervision for critical tasks (just like for self-driving cars)
 - self-awareness (introspection) and ability to self-modify (update facts / beliefs)
 
 ## References
 
 - <https://wonderfall.dev/autoregressive/>
+- Cats Confuse Reasoning LLM (study on context rot phenomenon) - <https://arxiv.org/abs/2503.01781>
 - <https://blog.jxmo.io/p/superintelligence-from-first-principles>
 - <https://blog.jxmo.io/p/we-should-stop-talking-about-agi>
 - <https://garymarcus.substack.com/p/dear-elon-musk-here-are-five-things>
