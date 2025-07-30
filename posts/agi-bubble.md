@@ -20,24 +20,32 @@ True progress requires a paradigm shift toward architectures that form and manip
 
 The knowledge representation (weight matrices) in neural networks is fractured / entangled leading to issues like adversarial examples and hallucinations.
 
-## Real Value
+## Problem Classes
 
-Low complexity tasks with lots of training data available (text, code, video, audio) that can be solved by interpolating on existing data and high-complexity tasks which are easy to verify (so big training data with high-signal can be generated) like chess, programming and math. It is easy to verify who won a chess or go game and thus possible to generate high-signal training data. The same is true for certain classes of programming problems (does it compile? does it run without errors? does it pass tests? does it produce same output as an existing program? does it better on benchmark X?) and math problems.
+Current LLM can solve low complexity tasks with lots of training data available (text, code, video, audio) and high-complexity tasks which are easy to verify (so big training data with high-signal can be generated) like chess, programming and math - by interpolating on existing data. It is easy to verify who won a chess or go game and thus possible to generate high-signal training data. The same is true for certain classes of programming problems (does it compile? does it run without errors? does it pass tests? does it produce same output as an existing program? does it better on benchmark X?).
 
 It is much harder to generate meaningful rewards for more abstract programming tasks though (is the UI design polished? is the user experience sensible?) - this data can only be inferred from expensive human usage.
 
 So we have two types of problems: easy to verify problems and thus also easy to produce big high-signal training data and hard to verify problems (needs humans in the loop) and thus hard to produce big high-signal training data. For the former we are in Alpha Zero territory (innovate using RL) and the latter we are in Alpha Go territory (interpolate and synthesize on human generated data).
 
-Examples:
+### Real Value
+
+LLM solveable examples:
 - coding in a popular programming language on medium sized code base
 - summarizing complicated technical topics (with lots of training data available)
 - generating (interpolating) texts, audio and video
 
-## Tasks out of Reach
+And anything which has tolerance for errors (hallucinations).
+
+### Tasks out of Reach
 
 High complexity (very long context / completely novel) tasks with minimal training data available (often limited by needing humans to produce data).
 
-Any critical task that has no tolerance for error rates below 99.99%.
+Any critical task that has no tolerance for high error rates.
+
+LLM unsolveable examples:
+- creating completely new (not merely interpolating) mathematical theorems and proofs in unexplored domains
+- coming up with novel funny jokes
 
 ## Signals for AGI
 
