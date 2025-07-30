@@ -16,6 +16,10 @@ The result is a fundamental bottleneck. Tasks requiring sustained logic or compl
 
 True progress requires a paradigm shift toward architectures that form and manipulate complete conceptual structures rather than sequential tokens. Until then, LLM's remain sophisticated stochastic pattern matchers, staying far away from reliable reasoning.
 
+### Model Collapse
+
+LLM's trained on their own outputs suffer from model collapse - their performance degrades. Thus the trend of more and more LLM generated content (slop) being published on the web, will degrade their performance in the long run.
+
 ### Fractured Embeddings
 
 The knowledge representation (weight matrices) in neural networks is fractured / entangled leading to issues like adversarial examples and hallucinations.
@@ -62,6 +66,7 @@ LLM (+ RL) unsolveable examples:
 ## References
 
 - <https://wonderfall.dev/autoregressive/>
+- Collapse of Self-trained Language Models - <https://arxiv.org/abs/2404.02305v1>
 - Cats Confuse Reasoning LLM (study on context rot phenomenon) - <https://arxiv.org/abs/2503.01781>
 - <https://blog.jxmo.io/p/superintelligence-from-first-principles>
 - <https://blog.jxmo.io/p/we-should-stop-talking-about-agi>
