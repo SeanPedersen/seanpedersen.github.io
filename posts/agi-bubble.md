@@ -67,6 +67,7 @@ LLM (+ RL) unsolveable examples:
 
 - <https://wonderfall.dev/autoregressive/>
 - Collapse of Self-trained Language Models - <https://arxiv.org/abs/2404.02305v1>
+- The wall confronting large language models - <https://arxiv.org/abs/2507.19703>
 - Cats Confuse Reasoning LLM (study on context rot phenomenon) - <https://arxiv.org/abs/2503.01781>
 - <https://blog.jxmo.io/p/superintelligence-from-first-principles>
 - <https://blog.jxmo.io/p/we-should-stop-talking-about-agi>
