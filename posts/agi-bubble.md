@@ -74,5 +74,6 @@ LLM (+ RL) unsolveable examples:
 - <https://garymarcus.substack.com/p/dear-elon-musk-here-are-five-things>
 - This video will change your mind about the AI hype - <https://www.youtube.com/watch?v=uB9yZenVLzg>
 - Questioning Representational Optimism in Deep Learning: The Fractured Entangled Representation Hypothesis - <https://arxiv.org/abs/2505.11581>
+- <https://machine-bullshit.github.io/>
 
 #AI
