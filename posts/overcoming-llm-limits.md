@@ -19,7 +19,7 @@ The impact of contradictions in the training data: Current language models are i
 
 ## Bootstrapping consistent LLM
 
-TL;DR: Exclude contradicting training data -> supervise the training process.
+TL;DR: Exclude contradicting training data -> curate the training data using LLM's.
 
 A LLM that selects its own training data to bootstrap itself: Curate a small dataset that is coherent, logical and truthful as good as possible, train the base model. Then use this base model to select or reject more training data to train on. This may alleviate inconsistencies. Researchers at MIT actually did something very similar: <https://news.mit.edu/2023/large-language-models-are-biased-can-logic-help-save-them-0303> (paper: <https://arxiv.org/abs/2303.05670>)
 
@@ -54,6 +54,14 @@ I hope to see more research exploring this consistent data bootstrapping approac
 > Another reason I mention this is most hallucinations I encounter are very plausible and often close to the right thing (swapping a variable name, confabulating a config key), which appear very convincing and "in sample", but are actually incorrect.
 
 Quoted from HN user program_whiz - <https://news.ycombinator.com/item?id=40769496>
+
+## Self-Improving LLM via RL
+
+A promising "self-reflection" RL method for LLM's trained in verifiable domains (programming, math, etc.):
+
+> We explore a method for improving the performance of large language models through self-reflection and reinforcement learning. By incentivizing the model to generate better self-reflections when it answers incorrectly, we demonstrate that a model's ability to solve complex, verifiable tasks can be enhanced even when generating synthetic data is infeasible and only binary feedback is available. Our framework operates in two stages: first, upon failing a given task, the model generates a self-reflective commentary analyzing its previous attempt; second, the model is given another attempt at the task with the self-reflection in context. If the subsequent attempt succeeds, the tokens generated during the self-reflection phase are rewarded. Our experimental results show substantial performance gains across a variety of model architectures, as high as 34.7% improvement at math equation writing and 18.1% improvement at function calling. Notably, smaller fine-tuned models (1.5 billion to 7 billion parameters) outperform models in the same family that are 10 times larger. Our novel paradigm is thus an exciting pathway to more useful and reliable language models that can self-improve on challenging tasks with limited external feedback.
+
+- Reflect, Retry, Reward: Self-Improving LLMs via Reinforcement Learning - <https://arxiv.org/abs/2505.24726>
 
 ## Fundamental Limits
 
