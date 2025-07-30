@@ -26,7 +26,7 @@ Current LLM can solve low complexity tasks with lots of training data available 
 
 It is much harder to generate meaningful rewards for more abstract programming tasks though (is the UI design polished? is the user experience sensible?) - this data can only be inferred from expensive human usage.
 
-So we have two types of problems: easy to verify problems and thus also easy to produce big high-signal training data and hard to verify problems (needs humans in the loop) and thus hard to produce big high-signal training data. For the former we are in Alpha Zero territory (innovate using RL) and the latter we are in Alpha Go territory (interpolate and synthesize on human generated data).
+So we have two types of problems: easy to verify problems and thus also easy to produce big high-signal training data and hard to verify problems (needs humans in the loop) and thus hard to produce big high-signal training data. For the former we are in Alpha Zero territory (innovative super-intelligence using RL) and the latter we are in Alpha Go territory (interpolate and synthesize on human generated data).
 
 ### Real Value
 
