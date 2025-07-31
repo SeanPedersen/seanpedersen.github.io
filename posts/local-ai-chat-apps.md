@@ -41,7 +41,7 @@ A short list of free AI chat apps for local LLM execution that work offline and 
 
 - Standalone app: easy setup
 - Open source
-- Features: integrated web search (Brave Search, Google)
+- Features: integrated web search (Brave Search, Google), MCP support
 
 **Open WebUI** - <https://docs.openwebui.com/>
 
