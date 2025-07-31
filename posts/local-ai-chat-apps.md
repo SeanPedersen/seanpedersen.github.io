@@ -11,17 +11,17 @@ A short list of free AI chat apps for local LLM execution that work offline and 
 - Closed Source
 - Features: RAG over text files, split (copy) conversations, MCP support
 
+**Jan** - <https://github.com/menloresearch/jan>
+
+- Standalone app: easy setup
+- Open source
+- MCP support
+
 **Msty** - <https://msty.app/>
 
 - Standalone app: easy setup
 - Closed Source
 - Features: RAG over text files, split (copy) conversations, web search (unreliable right now)
-
-**Deep Chat** - <https://deepchat.thinkinai.xyz/>
-
-- Standalone app: easy setup
-- Open source
-- Features: integrated web search (Brave Search, Google), MCP support
 
 **GPT4ALL** - <https://github.com/nomic-ai/gpt4all>
 
@@ -29,11 +29,11 @@ A short list of free AI chat apps for local LLM execution that work offline and 
 - Open source
 - Features: RAG over text files
 
-**Jan** - <https://github.com/menloresearch/jan>
+**Deep Chat** - <https://deepchat.thinkinai.xyz/>
 
-- Standalone app: easy setup
+- Standalone app: requires running ollama instance
 - Open source
-- Not many features
+- Features: integrated web search (Brave Search, Google), MCP support
 
 **ChatBox** - <https://github.com/chatboxai/chatbox>
 
@@ -53,7 +53,7 @@ A short list of free AI chat apps for local LLM execution that work offline and 
 
 ## Conclusion
 
-To me Deep Chat and LM Studio stand out. Deep Chat being a functional open-source chat app, that uses ollama. While LM Studio being also easy to setup but with more advanced features. LM Studio is the most feature rich LLM chat app.
+To me Jan and LM Studio stand out. Jan being a functional open-source chat app, that is easy to setup. While LM Studio being also easy to setup but with more advanced features. LM Studio is the most feature rich LLM chat app.
 
 I recommend the Llama and Gemma model family for local basic use. DeepSeek R1 for advanced reasoning and coding capabilities.
 
