@@ -57,6 +57,10 @@ To me Jan and LM Studio stand out. Jan being a functional open-source chat app, 
 
 I recommend the Llama and Gemma model family for local basic use. DeepSeek R1 for advanced reasoning and coding capabilities.
 
+## MCP Server
+
+MCP server integration is the most important feature for any of these apps, since it allows to extend them with arbitrary functionality (access files, control programs, etc.).
+
 ## LLM CLI Tool Integration
 
 Set in Msty options under section "Local AI", the service endpoint (which uses Ollama) to <http://localhost:11434> (the default port for Ollama) or just install and run [Ollama](https://ollama.com/). Next install the CLI tool [llm](https://github.com/simonw/llm?tab=readme-ov-file#installation), which lets you interact with LLM's from the CLI and the Ollama plugin: `$ llm install llm-ollama`.
