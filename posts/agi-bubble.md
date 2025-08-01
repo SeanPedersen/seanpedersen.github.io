@@ -8,11 +8,11 @@ It is becoming clearer and clearer that scaling up LLM's will not solve their fu
 
 ### Auto-Regressive Architectures
 
-Current LLM's face a core architectural constraint: they generate text sequentially, one token at a time. As Yann LeCun argues, this creates exponential error accumulation. Each prediction depends on all previous tokens, so early mistakes cascade through long sequences, causing models to derail from coherent long-formed reasoning (an issue well known among LLM users - some call it context rot).
+Current LLM's face a core architectural constraint: they generate text sequentially, one token at a time. As Yann LeCun argues, this creates exponential error accumulation. Each prediction depends on all previous tokens, so early mistakes cascade through long sequences, causing models to derail from coherent long-formed reasoning (an issue well known among LLM users - known as context rot).
 
 This sequential generation prevents LLM's from forming thoughts holistically. Unlike human cognition, which manipulates abstract concepts as complete structures, current models must linearize everything into word sequences. They cannot think about problems in abstract space before committing to specific text.
 
-The result is a fundamental bottleneck. Tasks requiring sustained logic or complex reasoning remain difficult regardless of scale improvements (making autonomous agents doing long complex tasks a real challenge). Simply adding more parameters or training data cannot solve this architectural limitation. Transformer based LLM's will thus never overcome the hallucination problem for long-context tasks (known as context rot).
+The result is a fundamental bottleneck. Tasks requiring sustained logic or complex reasoning remain difficult regardless of scale improvements (making autonomous agents doing long complex tasks a real challenge). Simply adding more parameters or training data cannot solve this architectural limitation. Transformer based LLM's will thus never overcome the hallucination problem for long-context tasks (context rot).
 
 True progress requires a paradigm shift toward architectures that form and manipulate complete conceptual structures rather than sequential tokens. Until then, LLM's remain sophisticated stochastic pattern matchers, staying far away from reliable reasoning.
 
