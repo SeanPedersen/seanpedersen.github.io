@@ -62,6 +62,7 @@ LLM (+ RL) unsolveable examples:
 - extreme and robust (human like) generalisation ability
   - LLM's possess clearly no human like intelligence as they make obvious logical and factual mistakes (very brittle; context dependent problem solving ability) and hallucinate without being capable to self-correct through self-inspection -> LLM's output will always have to be validated using human supervision for critical tasks (just like for self-driving cars)
 - self-awareness (introspection) and ability to self-modify (update facts / beliefs)
+- when humans make little slips (errors) while thinking - still the whole sentence (thought) stays consistent. LLM's "thoughts" OTOH are directly influenced by each token (word) and thus a few small slips can quickly throw them off completely (context rot)
 
 ## References
 
