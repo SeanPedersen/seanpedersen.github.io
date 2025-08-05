@@ -41,7 +41,7 @@ Cultivate long lasting relationships with your customers by creating community v
 
 ### Search Engine Optimization
 
-Publishing high-quality blog articles that lay out how problems / pain points of your customers can be solved using your product is a good way to increase visibility for relevant search engine results but a long game. Your website has to built up reputation (useful content + backlinks from reputable websites) - so search engines learn to trust it. Publish useful content on Pinterest and SlideShare do drive in organic traffic.
+Publishing high-quality blog articles that lay out how problems / pain points of your customers can be solved using your product is a good way to increase visibility for relevant search engine results but a long game. Your website has to built up reputation (useful content + backlinks from reputable websites) - so search engines learn to trust it. Publish useful content on Substack, Medium, Pinterest and SlideShare with links to your website do drive in organic traffic.
 
 - <https://www.semrush.com/>
 - <https://ahrefs.com/>
