@@ -39,9 +39,12 @@ Cultivate long lasting relationships with your customers by creating community v
 
 ## Content Marketing
 
-### Blog Articles (SEO)
+### Search Engine Optimization
 
-Publishing high-quality blog articles that lay out how problems / pain points of your customers can be solved using your product is a good way to but a long game. Your website has to built up reputation - so search engines learn to trust it. Publish useful content on Pinterest and SlideShare do drive in organic traffic.
+Publishing high-quality blog articles that lay out how problems / pain points of your customers can be solved using your product is a good way to increase visibility for relevant search engine results but a long game. Your website has to built up reputation (useful content + backlinks from reputable websites) - so search engines learn to trust it. Publish useful content on Pinterest and SlideShare do drive in organic traffic.
+
+- <https://www.semrush.com/>
+- <https://ahrefs.com/>
 
 ### Videos
 
@@ -53,7 +56,7 @@ Write concise E-Mails / DM's to your ideal customer groups that clearly state wh
 
 ## Paid Ads
 
-Generally a hard game because the incentives are off. You want to only pay for engangement that directly generates sales (like you do with affiliate marketing).
+Generally a hard game because the incentives are off. You want to only pay for engangement that directly generates sales (like you do with affiliate marketing). Try out Google, Reddit and Facebook ads.
 
 ### Platform
 
