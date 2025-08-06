@@ -9,6 +9,11 @@ Claude Code is a powerful coding agent that you use from the command line. It co
 
 Simple and popular tech stacks that are fast to validate are the ideal choices for vibe coding (lots of training data available -> less hallucinations and fast / no  compilation -> allows for rapid iteration).
 
+Recommendations:
+- JavaScript / TypeScript: React, Next
+- Python: Flask / FastAPI
+- Go / Zig / Elixir: all come with fast compilation speeds
+
 ## Setting Things up
 
 Install Claude Code: `npm install -g claude`
