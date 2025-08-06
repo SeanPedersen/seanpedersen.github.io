@@ -37,6 +37,7 @@ So we have two types of problems: easy to verify problems and thus also easy to 
 LLM + RL solveable examples:
 - discover novel algorithms for things that can be easily verified / benchmarked
   - faster matrix-multiplication (<https://www.nature.com/articles/s41586-022-05172-4>)
+  - faster CUDA kernels <https://arxiv.org/abs/2507.14111v4>
 
 LLM solveable examples:
 - coding in a popular programming language on medium sized code base
