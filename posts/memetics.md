@@ -31,11 +31,16 @@ What is the rate of abstraction in natural language (spread of new words that re
 
 Perfect project to make some analysis: <https://github.com/rspeer/wordfreq/tree/master>
 
-Who controls the language, controls the thoughts. -> New words spark new thoughts. Thus to control the masses, control which new words (concepts) are spread via media and education systems.
+Who controls the language, controls the thoughts. -> New words spark new thoughts. Thus to control the masses, control which words (concepts) are spread via media and education systems that favor your agenda (how you want people to think about the world).
 
 To understand who is responsible for the adoption of new words one has to research the origin of new terms and analyze the source of first spreaders.
 
-Another thought formation scheme is shifting the context (perceived connotation) of terms. New words for the same concept but with different connotation (e.g. fat vs overweight).
+Another thought formation scheme is shifting the context (perceived connotation) of terms. New words for the same concept but with different connotation (e.g. fat vs overweight). Words are tools for thought, they shape how we can think of the world.
+
+**Examples**
+- "Conspiracy theory": calling an idea a conspiracy theory delegitimizes the idea without substance (rational arguments)
+- "Have to": I have to work vs I want to work - using "have to" to think about things reduces self-agency
+- "Invest in education" vs "spend on schools": investment implies future returns
 
 ## Questions of Interest
 
