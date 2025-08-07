@@ -2,7 +2,7 @@
 title: 'Photonic Computing'
 date: '2025-08-07'
 ---
-Photonic computing uses light instead of electrons to perform calculations, offering faster processing speeds and lower energy consumption than traditional electronic processors. Since photons travel at the speed of light and generate minimal heat, photonic systems can perform massive parallel operations with reduced thermal management requirements.
+Photonic computing uses light (photons) instead of electrons to perform calculations, offering faster processing speeds and lower energy consumption than traditional electronic processors. Since photons travel at the speed of light and generate minimal heat, photonic systems can perform massive parallel operations with reduced thermal management requirements - making photonic computing a very promising developing.
 
 ## From Lab to Market
 
@@ -17,14 +17,6 @@ This addresses a critical challenge in modern computing: data centers consumed 7
 **Lightmatter's Achievement**: Demonstrated the first photonic processor running state-of-the-art neural networks including ResNet, BERT, and deep reinforcement learning algorithms without modifications. Their six-chip package delivers 65.5 trillion operations per second while consuming only 78 watts of electrical power plus 1.6 watts of optical power.
 
 **Tsinghua's Taichi Chip**: Achieved 160 TOPS/W energy efficiency with 91.89% accuracy on image recognition tasks, representing over 1,000 times more energy efficiency than electronic counterparts.
-
-## Commercial Adoption
-
-**Intel Corporation** leads silicon photonics manufacturing with over 8 million photonic integrated circuits shipped since 2016. The company demonstrated the first fully integrated Optical Compute Interconnect chiplet co-packaged with Intel CPUs, supporting up to 4 Tbps bidirectional data transfer.
-
-**IBM Corporation** unveiled co-packaged optics research enabling 6x higher optical fiber density on silicon photonics chips. This promises 5x faster AI model training and 5x power reduction compared to electrical interconnects.
-
-**[TSMC](https://research.tsmc.com/page/on-chip-interconnect/21.html)** announced silicon photonics roadmaps targeting bandwidth increases from 1.6 Tbps in 2025 to 12.8 Tbps by 2028+.
 
 ## Startup Success
 
@@ -44,12 +36,6 @@ Photonic computing delivers three key advantages for AI workloads:
 3. **Speed**: 2 to 3 orders of magnitude faster than traditional electronic processors
 
 Real-world applications include computer vision for autonomous vehicles, natural language processing with Transformers, wireless communications for 6G systems, and scientific computing for climate modeling.
-
-## Market Growth
-
-The silicon photonics market is projected to grow from $2.7 billion in 2025 to $9.6 billion by 2030. The overall photonic computing market is expected to exceed $50 billion within the decade.
-
-Q.ANT now offers industry-standard PCIe cards for immediate deployment, delivering 30x energy efficiency improvements for AI inference, training, and physics simulations.
 
 ## Conclusion
 
