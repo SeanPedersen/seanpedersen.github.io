@@ -2,7 +2,7 @@
 title: 'Photonic Computing'
 date: '2025-08-07'
 ---
-Photonic computing uses light (photons) instead of electrons to perform calculations, offering faster processing speeds and lower energy consumption than traditional electronic processors. Since photons travel at the speed of light and generate minimal heat, photonic systems can perform massive parallel operations with reduced thermal management requirements - making photonic computing a very promising developing.
+Photonic computing uses light (photons) instead of electrons to perform calculations, offering faster processing speeds and lower energy consumption than traditional electronic processors. Since photons travel at the speed of light and generate minimal heat, photonic systems can perform massive parallel operations with reduced thermal management requirements - making photonic computing a very promising development.
 
 ## From Lab to Market
 
