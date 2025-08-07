@@ -39,7 +39,7 @@ Real-world applications include computer vision for autonomous vehicles, natural
 
 ## Conclusion
 
-Photonic computing achieved commercial viability in 2025, offering compelling alternatives to traditional electronic processors for specific AI acceleration tasks. While it won't replace electronic systems entirely, it has become essential for heterogeneous computing architectures where energy efficiency, processing speed, and parallel operations provide substantial value.
+Photonic computing achieved commercial viability in 2025, offering compelling alternatives to traditional electronic processors for specific AI acceleration tasks. While it won't replace electronic systems entirely, it has become essential for heterogeneous computing architectures where energy efficiency, processing speed, and parallel operations provide real value.
 
 The technology has moved beyond promising research to deliver practical solutions for real-world AI workloads, marking the beginning of a new era in computational efficiency and performance.
 
