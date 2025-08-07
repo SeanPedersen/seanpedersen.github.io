@@ -29,7 +29,7 @@ A small collection of insights on the structure of embeddings (latent spaces) pr
 - <https://arxiv.org/abs/2505.11581>
 - <https://seanpedersen.github.io/posts/vae#beta-vae>
 
-**Universality Hypothesis**: Circuits reappear across different models for the same data. Thus models trained on human perception data (text, image, video etc.) share the same semantic structure.
+**Universality Hypothesis**: Neural circuits reappear across different models for the same data. Thus models trained on similar data sets (text, image, video etc.) share the same semantic structure in their embeddings (activations).
 
 - <https://blog.jxmo.io/p/there-is-only-one-model>
 - <https://arxiv.org/abs/2405.07987>
