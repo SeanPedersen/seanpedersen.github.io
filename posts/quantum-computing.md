@@ -66,4 +66,4 @@ Quantum computing remains in its early stages, but the fundamentals are sound an
 
 - Excellent in-depth intro: <https://quantum.country/>
 
-#programming
+#programming #AI
