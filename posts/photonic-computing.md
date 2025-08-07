@@ -28,15 +28,15 @@ Large-scale integration has also advanced dramatically, with researchers demonst
 
 **IBM Corporation** unveiled breakthrough co-packaged optics research in 2024, enabling 6x higher optical fiber density on silicon photonics chips using pioneering polymer optical waveguide technology. This advancement promises 5x faster AI model training, potentially reducing large language model training from three months to three weeks while achieving 5x power reduction compared to electrical interconnects.
 
-**TSMC** announced ambitious silicon photonics roadmaps targeting dramatic bandwidth increases from 1.6 Tbps in 2025 to 12.8 Tbps by 2028+, with over 200 personnel dedicated to photonic development and direct partnerships with NVIDIA and Broadcom for co-packaged optics solutions.
+**[TSMC](https://research.tsmc.com/page/on-chip-interconnect/21.html)** announced ambitious silicon photonics roadmaps targeting dramatic bandwidth increases from 1.6 Tbps in 2025 to 12.8 Tbps by 2028+, with over 200 personnel dedicated to photonic development and direct partnerships with NVIDIA and Broadcom for co-packaged optics solutions.
 
-Among startups, **Lightmatter** has achieved unicorn status with a $4.4 billion valuation after raising $400 million in 2024, developing 3D co-packaged optics and photonic superchips including the Passage L200 and M1000 systems for AI infrastructure scaling.
+Among startups, **[Lightmatter](https://lightmatter.co/)** has achieved unicorn status with a $4.4 billion valuation after raising $400 million in 2024, developing 3D co-packaged optics and photonic superchips including the Passage L200 and M1000 systems for AI infrastructure scaling.
 
-**PsiQuantum** raised $940 million from the Australian government in 2024 and is pursuing a $750 million funding round at $6 billion pre-money valuation in 2025. The company partners with GlobalFoundries for chip fabrication and targets delivering the first commercial quantum photonic computer by 2027-2029.
+**[PsiQuantum](https://www.psiquantum.com/)** raised $940 million from the Australian government in 2024 and is pursuing a $750 million funding round at $6 billion pre-money valuation in 2025. The company partners with GlobalFoundries for chip fabrication and targets delivering the first commercial quantum photonic computer by 2027-2029.
 
-**Q.ANT** from Germany secured the largest photonic computing Series A in Europe with €62 million in July 2025, becoming the **first company to ship commercial photonic processors** available as standard PCIe cards. Their Native Processing Unit delivers 30x energy efficiency and 50x performance improvements over conventional processors.
+**[Q.ANT](https://qant.com/)** from Germany secured the largest photonic computing Series A in Europe with €62 million in July 2025, becoming the **first company to ship commercial photonic processors** available as standard PCIe cards. Their Native Processing Unit delivers 30x energy efficiency and 50x performance improvements over conventional processors.
 
-**Microsoft** invested $100 million in Photonic Inc. for quantum networking capabilities, successfully demonstrating quantum entanglement over 40-meter fiber connections and integrating photonic quantum computing into the Azure Quantum platform.
+**Microsoft** invested $100 million in [Photonic Inc.](https://photonic.com/) for quantum networking capabilities, successfully demonstrating quantum entanglement over 40-meter fiber connections and integrating photonic quantum computing into the Azure Quantum platform.
 
 ## Deep Learning Applications
 
