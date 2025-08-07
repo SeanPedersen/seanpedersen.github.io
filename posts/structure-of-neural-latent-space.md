@@ -36,7 +36,6 @@ A small collection of insights on the structure of embeddings (latent spaces) pr
 - <https://phillipi.github.io/prh/>
 - <https://arxiv.org/abs/2505.12540>
 
-
 **Smoothness**: Formally known as Lipschitz continuity states that small changes in inputs cause small changes in output (latent) space. Well-trained, robust models should thus be insensitive to small input changes - which has its limits (see next point).
 
 - <https://arxiv.org/abs/2302.10886v2>
