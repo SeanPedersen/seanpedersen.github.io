@@ -73,5 +73,6 @@ Success in 2025 demonstrates that photonic computing has moved beyond promising 
 - <https://www.nature.com/articles/s41586-025-08786-6>
 - <https://news.mit.edu/2024/photonic-processor-could-enable-ultrafast-ai-computations-1202>
 - <https://insidehpc.com/2025/07/q-ant-raises-e62m-for-photonic-processing/>
+- <https://qant.com/press-releases/leibniz-supercomputing-centre-computes-with-light-worlds-first-photonic-ai-processor-from-q-ant-goes-into-operation/>
 
 #programming #AI
