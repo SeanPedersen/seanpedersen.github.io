@@ -168,11 +168,19 @@ img {
   align-items: center;
   justify-content: center;
   z-index: 1000;
-  transition: background-color 0.2s, color 0.2s, border-color 0.2s, opacity 0.3s ease, transform 0.3s ease;
+  opacity: 1;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s, opacity 0.3s ease;
 }
 
 .themeToggleButton:hover {
   opacity: 0.8;
+}
+
+/* Fade-out only, no movement */
+.themeToggleButton.isHidden {
+  opacity: 0;
+  pointer-events: none;
+  /* prevent clicks when hidden */
 }
 
 /* Reduce spacing after headings in markdown content */

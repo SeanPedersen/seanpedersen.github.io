@@ -158,30 +158,30 @@ export default function Home({ allPostsData, allTags }) {
       <footer className={utilStyles.footer}>
         <p>Copyright © 2025 | All rights reserved.</p>
       </footer>
-      {/* Theme Toggle Button */}
-      {showToggle && (
-        <button
-          onClick={toggleTheme}
-          className="themeToggleButton" // This class will be styled in global.css
-          aria-label="Toggle theme"
-          title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-        >
-          {hasMounted ? (
-            theme === 'dark' ? (
-              // Sun icon for dark theme (switch to light)
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="12" cy="12" r="4" />
-                <path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83" />
-              </svg>
-            ) : (
-              // Moon icon for light theme (switch to dark)
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-              </svg>
-            )
-          ) : null}
-        </button>
-      )}
+      {/* Theme Toggle Button (always mounted; fades via CSS) */}
+      <button
+        onClick={toggleTheme}
+        className={`themeToggleButton ${showToggle ? '' : 'isHidden'}`}
+        aria-label="Toggle theme"
+        aria-hidden={showToggle ? 'false' : 'true'}
+        tabIndex={showToggle ? 0 : -1}
+        title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+      >
+        {hasMounted ? (
+          theme === 'dark' ? (
+            // Sun icon for dark theme (switch to light)
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="12" cy="12" r="4" />
+              <path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83" />
+            </svg>
+          ) : (
+            // Moon icon for light theme (switch to dark)
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+            </svg>
+          )
+        ) : null}
+      </button>
     </div>
   )
 }
