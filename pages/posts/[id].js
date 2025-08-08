@@ -119,6 +119,7 @@ export default function Post({ postData, relatedPostCandidates, hasMorePosts }) 
   };
 
   const hasTableOfContents = postData.contentHtml.includes('<h2') || postData.contentHtml.includes('<h3');
+  const titleId = postData.title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
 
   return (
     <Layout title={postData.title}>
@@ -126,10 +127,16 @@ export default function Post({ postData, relatedPostCandidates, hasMorePosts }) 
         <title>{postData.title}</title>
       </Head>
       <div className={`${styles.main} ${styles.postPage} ${!hasTableOfContents ? styles.noToc : ''}`}>
-        {hasTableOfContents && <TableOfContents content={postData.contentHtml} />}
+        {hasTableOfContents && (
+          <TableOfContents
+            content={postData.contentHtml}
+            title={postData.title}
+            titleId={titleId}
+          />
+        )}
         <article className={utilStyles.postContainer}>
           <div id="top" />
-          <h1 className={utilStyles.headingXl}>{postData.title}</h1>
+          <h1 id={titleId} className={utilStyles.headingXl}>{postData.title}</h1>
           <div className={utilStyles.postMeta}>
             <div className={utilStyles.lightText}>
               <Date dateString={postData.date} />
