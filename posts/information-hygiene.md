@@ -14,7 +14,7 @@ Be aware that mental tasks you outsource or augment using AI will likely reduce 
 
 ## Brain Rot
 
-What purpose does it serve to being uptodate on the latest celibrity gossip news? Which actions will you take based on this information to improve your life?
+What purpose does it serve to being uptodate on the latest celibrity gossip news? Which actions will you take based on this information to make your life more meaningful?
 
 ## Gaining Control
 
