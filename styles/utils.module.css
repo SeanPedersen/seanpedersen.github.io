@@ -208,10 +208,11 @@
 
 /* Related Posts Footer Styles */
 .relatedPostsFooter {
-  margin-top: 2rem;
-  padding-top: 1rem;
+  margin-top: 1rem;
+  padding-top: 0.5rem;
   border-top: 1px solid var(--related-posts-border);
   transition: border-top-color 0.3s ease;
+  min-height: 0;
 }
 
 .relatedPostsFooter h3 {
@@ -222,7 +223,7 @@
 .relatedPostsList {
   list-style: none;
   padding: 0;
-  margin: 0 0 1.5rem 0;
+  margin: 0 0 0.75rem 0;
 }
 
 .relatedPostItem {
@@ -253,4 +254,37 @@
 .tagDisplay small {
   border-bottom: 1px dotted var(--tag-display-border);
   transition: border-bottom-color 0.3s ease;
+}
+
+/* Post meta row (date + edit link) */
+.postMeta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 0.25rem 0 0rem 0;
+}
+
+.editOnGithubLink {
+  font-size: 0.9rem;
+  color: var(--primary-color);
+  text-decoration: none;
+  border: 1px solid var(--primary-color);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.editOnGithubLink:hover {
+  background-color: var(--primary-color);
+  color: var(--tag-selected-text);
+}
+
+/* Back to top footer/button */
+.backToTopFooter {
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: none;
+  text-align: center;
+  min-height: 0;
 }

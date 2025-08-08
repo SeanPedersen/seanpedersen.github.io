@@ -128,9 +128,20 @@ export default function Post({ postData, relatedPostCandidates, hasMorePosts }) 
       <div className={`${styles.main} ${styles.postPage} ${!hasTableOfContents ? styles.noToc : ''}`}>
         {hasTableOfContents && <TableOfContents content={postData.contentHtml} />}
         <article className={utilStyles.postContainer}>
+          <div id="top" />
           <h1 className={utilStyles.headingXl}>{postData.title}</h1>
-          <div className={utilStyles.lightText}>
-            <Date dateString={postData.date} />
+          <div className={utilStyles.postMeta}>
+            <div className={utilStyles.lightText}>
+              <Date dateString={postData.date} />
+            </div>
+            <a
+              href={`https://github.com/SeanPedersen/seanpedersen.github.io/blob/main/posts/${postData.id}.md`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={utilStyles.editOnGithubLink}
+            >
+              Edit on GitHub
+            </a>
           </div>
           <div className="markdown-content">
             {renderContentWithExpandableCodeBlocks(postData.contentHtml)}
@@ -155,16 +166,9 @@ export default function Post({ postData, relatedPostCandidates, hasMorePosts }) 
             </footer>
           )}
 
-          {/* Edit on GitHub Link */}
-          <footer className={utilStyles.editOnGithubFooter}>
-            <a
-              href={`https://github.com/SeanPedersen/seanpedersen.github.io/blob/main/posts/${postData.id}.md`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={utilStyles.editOnGithubLink}
-            >
-              Edit on GitHub
-            </a>
+          {/* Back to top Button */}
+          <footer className={utilStyles.backToTopFooter}>
+            <a href="#top">↑ Back to top</a>
           </footer>
         </article>
       </div>

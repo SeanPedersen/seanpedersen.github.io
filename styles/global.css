@@ -113,13 +113,13 @@ article {
 
 footer {
   margin-top: auto;
-  min-height: 50px;
+  min-height: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   border-top: 4px solid var(--footer-border-color);
   width: 100%;
-  padding-top: 1rem;
+  padding-top: 0.5rem;
   transition: border-color 0.3s ease;
 }
 
