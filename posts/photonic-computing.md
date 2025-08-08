@@ -8,9 +8,7 @@ Photonic computing uses light (photons) instead of electrons to perform calculat
 
 Photonic computing transitioned from laboratory experiments to commercial systems in 2025. Multiple systems now deliver practical AI acceleration with performance that matches or exceeds traditional electronic alternatives while consuming 30 to 1,000 times less energy.
 
-This addresses a critical challenge in modern computing: data centers consumed 7.3 TWh of electricity annually from 100,000 NVIDIA units shipped in 2023. Global high-performance computing electricity consumption is projected to reach 1,050 TWh by 2026.
-
-## Key Breakthroughs
+### Key Breakthroughs
 
 **MIT's Integrated Processor**: In December 2024, MIT researchers demonstrated the first fully integrated photonic processor capable of performing all key deep neural network computations optically on a single chip. The system achieves classification tasks in less than 0.5 nanoseconds with over 92% accuracy.
 
@@ -18,7 +16,7 @@ This addresses a critical challenge in modern computing: data centers consumed 7
 
 **Tsinghua's Taichi Chip**: Achieved 160 TOPS/W energy efficiency with 91.89% accuracy on image recognition tasks, representing over 1,000 times more energy efficiency than electronic counterparts.
 
-## Startup Success
+### Startup Success
 
 Several startups have achieved significant milestones:
 
