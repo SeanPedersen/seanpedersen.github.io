@@ -135,7 +135,6 @@ export default function Post({ postData, relatedPostCandidates, hasMorePosts }) 
           />
         )}
         <article className={utilStyles.postContainer}>
-          <div id="top" />
           <h1 id={titleId} className={utilStyles.headingXl}>{postData.title}</h1>
           <div className={utilStyles.postMeta}>
             <div className={utilStyles.lightText}>
@@ -175,7 +174,7 @@ export default function Post({ postData, relatedPostCandidates, hasMorePosts }) 
 
           {/* Back to top Button */}
           <footer className={utilStyles.backToTopFooter}>
-            <a href="#top">↑ Back to top</a>
+            <a href={`#${titleId}`}>↑ Back to top</a>
           </footer>
         </article>
       </div>
