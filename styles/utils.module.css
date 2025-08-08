@@ -98,7 +98,7 @@
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1400px) {
   .list {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     max-width: calc(280px * 3 + 1rem * 2);
@@ -144,7 +144,7 @@
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1400px) {
   .postContainer {
     margin-left: 0;
     /* Remove fixed margin */
