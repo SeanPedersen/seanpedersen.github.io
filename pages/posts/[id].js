@@ -175,6 +175,7 @@ export default function Post({ postData, relatedPostCandidates, hasMorePosts }) 
           {/* Back to top Button */}
           <footer className={utilStyles.backToTopFooter}>
             <a href={`#${titleId}`}>↑ Back to top</a>
+            <p>omnia mirari, gaudium explorandi .:.</p>
           </footer>
         </article>
       </div>
