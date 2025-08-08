@@ -45,8 +45,8 @@ export default function Layout({ children, home, title }) {
                 <span>Pedersen</span>
               </h1>
               <div className={styles.linkRow}>
-                <a href="/rss.xml" className={styles.rssLink} title="RSS Feed">
-                  RSS
+                <a href="/rss.xml" className={styles.iconLink} aria-label="RSS" title="RSS Feed">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="scale-125 stroke-accent stroke-3 rtl:-rotate-90"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M5 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"></path><path d="M4 4a16 16 0 0 1 16 16"></path><path d="M4 11a9 9 0 0 1 9 9"></path></svg>
                 </a>
                 <div className={styles.socialLinks}>
                   <a
@@ -57,9 +57,7 @@ export default function Layout({ children, home, title }) {
                     target="_blank"
                     rel="noreferrer noopener"
                   >
-                    <svg className={styles.icon} viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                      <path d="M12 .297C5.373.297 0 5.67 0 12.297c0 5.302 3.438 9.8 8.205 11.387.6.11.82-.26.82-.577 0-.285-.011-1.04-.017-2.042-3.338.726-4.042-1.61-4.042-1.61-.546-1.386-1.334-1.757-1.334-1.757-1.09-.745.083-.73.083-.73 1.205.085 1.84 1.238 1.84 1.238 1.07 1.834 2.807 1.304 3.492.997.108-.775.418-1.305.762-1.606-2.665-.304-5.466-1.332-5.466-5.93 0-1.31.469-2.382 1.236-3.222-.124-.303-.536-1.524.117-3.176 0 0 1.008-.322 3.3 1.23a11.5 11.5 0 0 1 6.004 0c2.29-1.552 3.297-1.23 3.297-1.23.655 1.652.243 2.873.119 3.176.77.84 1.235 1.912 1.235 3.222 0 4.61-2.806 5.624-5.48 5.922.43.372.814 1.102.814 2.222 0 1.604-.015 2.896-.015 3.29 0 .32.218.694.827.576C20.565 22.095 24 17.598 24 12.297 24 5.67 18.627.297 12 .297z" />
-                    </svg>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5"></path></svg>
                   </a>
                   <a
                     href="https://x.com/SeanPedersen96"
@@ -69,9 +67,7 @@ export default function Layout({ children, home, title }) {
                     target="_blank"
                     rel="noreferrer noopener"
                   >
-                    <svg className={styles.icon} viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                      <path d="M18.244 2H21l-7.97 9.133L22 22h-7.68l-5.14-6.07L2.87 22H0l8.65-9.91L0 2h7.75l4.94 5.84L18.244 2zm-2.69 18h1.64L8.52 4H6.88l8.674 16z" />
-                    </svg>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M4 4l11.733 16h4.267l-11.733 -16z"></path><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"></path></svg>
                   </a>
                 </div>
               </div>
