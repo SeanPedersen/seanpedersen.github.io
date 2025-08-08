@@ -19,4 +19,4 @@ When smart (controllable using text prompts) physical robots become a reality it
 - [https://ai-cosmos.hashnode.dev/anthropics-claude-4-safety-theatre-hypocrisy-or-incompetence](https://ai-cosmos.hashnode.dev/anthropics-claude-4-safety-theatre-hypocrisy-or-incompetence)
 - [https://www.youtube.com/watch?v=ILZ45sxon-4](https://www.youtube.com/watch?v=ILZ45sxon-4)
 
-#idea #machine-learning
+#AI
