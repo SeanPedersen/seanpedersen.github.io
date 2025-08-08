@@ -209,8 +209,6 @@
 
 /* Related Posts Footer Styles */
 .relatedPostsFooter {
-  margin-top: 1rem;
-  padding-top: 0.5rem;
   border-top: 1px solid var(--related-posts-border);
   transition: border-top-color 0.3s ease;
   min-height: 0;
@@ -218,13 +216,14 @@
 
 .relatedPostsFooter h3 {
   font-size: 1.3rem;
-  margin-bottom: 0.5rem;
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
 }
 
 .relatedPostsList {
   list-style: none;
   padding: 0;
-  margin: 0 0 0.75rem 0;
+  margin: 0;
 }
 
 .relatedPostItem {
@@ -283,10 +282,7 @@
 
 /* Back to top footer/button */
 .backToTopFooter {
-  margin-top: 0.5rem;
-  padding-top: 0.5rem;
   border-top: none;
   text-align: center;
   min-height: 0;
-  margin-bottom: 1rem;
 }

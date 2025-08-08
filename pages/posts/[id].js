@@ -43,6 +43,7 @@ export async function getStaticPaths() {
 
 export default function Post({ postData, relatedPostCandidates, hasMorePosts }) {
   const [relatedPosts, setRelatedPosts] = useState([]);
+  const [showBackToTop, setShowBackToTop] = useState(false);
 
   // Randomize related posts on component mount and when navigating between posts
   useEffect(() => {
@@ -60,6 +61,30 @@ export default function Post({ postData, relatedPostCandidates, hasMorePosts }) 
       setRelatedPosts([...latestTwo, randomPost]);
     }
   }, [relatedPostCandidates]);
+
+  useEffect(() => {
+    const checkScrollbar = () => {
+      const el = document.scrollingElement || document.documentElement;
+      setShowBackToTop(el.scrollHeight > el.clientHeight + 1);
+    };
+
+    checkScrollbar();
+
+    const onResize = () => checkScrollbar();
+    window.addEventListener('resize', onResize);
+
+    // Re-check when images load (post content can change height)
+    const imgs = Array.from(document.images || []);
+    const onImgLoad = () => checkScrollbar();
+    imgs.forEach(img => {
+      if (!img.complete) img.addEventListener('load', onImgLoad, { once: true });
+    });
+
+    return () => {
+      window.removeEventListener('resize', onResize);
+      imgs.forEach(img => img.removeEventListener?.('load', onImgLoad));
+    };
+  }, [postData.id, relatedPostCandidates]);
 
   const processMarkdown = (content) => {
     // Add IDs to headings
@@ -149,7 +174,10 @@ export default function Post({ postData, relatedPostCandidates, hasMorePosts }) 
               Edit on GitHub
             </a>
           </div>
-          <div className="markdown-content">
+          <div
+            className="markdown-content"
+            style={{ paddingBottom: '0.25rem', marginBottom: 0 }}
+          >
             {renderContentWithExpandableCodeBlocks(postData.contentHtml)}
           </div>
 
@@ -157,7 +185,7 @@ export default function Post({ postData, relatedPostCandidates, hasMorePosts }) 
           {relatedPosts && relatedPosts.length > 0 && (
             <footer className={utilStyles.relatedPostsFooter}>
               <h3>Related Articles</h3>
-              <ul className={utilStyles.relatedPostsList}>
+              <ul className={utilStyles.relatedPostsList} style={{ paddingLeft: 0 }}>
                 {relatedPosts.map(({ id, title, date }) => (
                   <li key={id} className={utilStyles.relatedPostItem}>
                     <Link href={`/posts/${id}`}>
@@ -172,9 +200,24 @@ export default function Post({ postData, relatedPostCandidates, hasMorePosts }) 
             </footer>
           )}
 
-          {/* Back to top Button */}
+          {/* Back to top area */}
           <footer className={utilStyles.backToTopFooter}>
-            <a href={`#${titleId}`}>↑ Back to top</a>
+            {/* Separator */}
+            <hr
+              aria-hidden="true"
+              style={{
+                width: '100%',
+                border: 0,
+                borderTop: '1px solid rgba(127,127,127,0.35)',
+                margin: '0.25rem 0'
+              }}
+            />
+            {showBackToTop && (
+              <>
+
+                <a href={`#${titleId}`}>↑ Back to top</a>
+              </>
+            )}
             <p>omnia mirari, gaudium explorandi .:.</p>
           </footer>
         </article>
