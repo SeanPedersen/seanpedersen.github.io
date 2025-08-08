@@ -146,7 +146,7 @@
   width: 26px;
   height: 26px;
   border-radius: 6px;
-  color: inherit;
+  color: var(--text-color);
   text-decoration: none;
   border-bottom: none !important;
   padding: 0 !important;
@@ -154,7 +154,9 @@
 }
 
 .iconLink:hover {
-  background-color: rgba(0, 112, 243, 0.1);
+  /* Ensure icons remain visible on dark theme hover */
+  color: var(--primary-color);
+  background-color: transparent;
 }
 
 .icon {
