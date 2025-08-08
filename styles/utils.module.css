@@ -67,6 +67,7 @@
   text-align: center;
   border-top: 4px solid var(--border-color);
   padding-top: 1rem;
+  padding-bottom: 1rem;
   transition: border-top-color 0.3s ease;
 }
 
