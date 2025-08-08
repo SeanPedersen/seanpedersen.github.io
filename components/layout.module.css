@@ -125,3 +125,38 @@
   color: #0070f3;
   text-decoration: underline;
 }
+
+.linkRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+.socialLinks {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.iconLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  color: inherit;
+  text-decoration: none;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.iconLink:hover {
+  background-color: rgba(0, 112, 243, 0.1);
+}
+
+.icon {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
