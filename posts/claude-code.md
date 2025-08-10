@@ -21,6 +21,10 @@ Change dir to a code project and start Claude Code using: `claude`
 
 Now you can ask claude about the project or instruct it to implement a new feature. Generally it is advised to plan out the architecture (design) yourself and then use Claude to implement small features which are easy to validate.
 
+## Starting Projects
+
+It is recommended to use proven code base templates / example repositories that are correctly configured with all needed boilerplate for a project (based on a popular tech stack as mentioned before) - so that the code agents has a working starting point and can not fumble the project setup.
+
 ## Directing Claude
 
 By creating a file named CLAUDE.md in the root of a project, we can add custom prompts to claude to improve its performance tailored to our project needs. By creating context specific CLAUDE.md files also in subdirectories, we can provide more precise context - improving the performance (instead of one big project wide CLAUDE.md file).
