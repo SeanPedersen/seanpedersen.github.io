@@ -25,6 +25,10 @@ Now you can ask claude about the project or instruct it to implement a new featu
 
 It is recommended to use proven code base templates / example repositories that are correctly configured with all needed boilerplate for a project (based on a popular tech stack as mentioned before) - so that the code agents has a working starting point and can not fumble the project setup.
 
+## General Advice
+
+As every LLM Claude Code als suffers from context rot - meaning the longer the context (input context windows) becomes the worse the performance gets. Thus it is best practice to use the /compact (creates summary of current contetx) or /clear (deletes whole context) commands to reduce / reset the context when Claude gets stuck on a task - to provide a fresh start.
+
 ## Directing Claude
 
 By creating a file named CLAUDE.md in the root of a project, we can add custom prompts to claude to improve its performance tailored to our project needs. By creating context specific CLAUDE.md files also in subdirectories, we can provide more precise context - improving the performance (instead of one big project wide CLAUDE.md file).
