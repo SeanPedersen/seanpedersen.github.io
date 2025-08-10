@@ -1,10 +1,7 @@
 ---
-
 title: 'Getting started with Claude Code'  
 date: '2025-07-03'
-
 ---
-(work-in-progress)
 Claude Code is a powerful coding agent that you use from the command line. It comes with MCP support which enables it to use external tools like web browsers to automatically validate and test new features it added to web apps.
 
 Simple and popular tech stacks that are fast to validate are the ideal choices for vibe coding (lots of training data available -> less hallucinations and fast / no  compilation -> allows for rapid iteration).
@@ -18,13 +15,15 @@ Recommendations:
 
 Install Claude Code: `npm install -g claude`
 
+Update: `npm update -g claude`
+
 Change dir to a code project and start Claude Code using: `claude`
 
 Now you can ask claude about the project or instruct it to implement a new feature. Generally it is advised to plan out the architecture (design) yourself and then use Claude to implement small features which are easy to validate.
 
 ## Directing Claude
 
-By creating a file named CLAUDE.md in the root of a project, we can add custom prompts to claude to improve its performance tailored to our project needs.
+By creating a file named CLAUDE.md in the root of a project, we can add custom prompts to claude to improve its performance tailored to our project needs. By creating context specific CLAUDE.md files also in subdirectories, we can provide more precise context - improving the performance (instead of one big project wide CLAUDE.md file).
 
 **React Typescript Prompt**:
 ``````
