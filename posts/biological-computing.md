@@ -66,3 +66,5 @@ The convergence of stem cell technology, advanced electrode interfaces and artif
 - <https://pure.johnshopkins.edu/en/publications/first-organoid-intelligence-oi-workshop-to-form-an-oi-community>
 - <https://spectrum.ieee.org/biological-computer-for-sale>
 - <https://www.scientificamerican.com/article/these-living-computers-are-made-from-human-neurons/>
+
+#AI #programming
