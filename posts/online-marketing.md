@@ -52,7 +52,10 @@ Don't just stop with blog articles! Create short and long videos on platforms li
 
 ## Cold Leads
 
-Write concise E-Mails / DM's to your ideal customer groups that clearly state which problem you can solve for them. Use LinkedIn and search engines to find contact information.
+Write concise E-Mails / DM's to your ideal customer groups that clearly state which problem you can solve for them. Use LinkedIn and search engines to find contact information. Automate the sending of the emails using a service below.
+
+- <https://resend.com/>
+- <https://www.mailgun.com/>
 
 ## Paid Ads
 
