@@ -52,6 +52,21 @@ Healthcare applications include medical device development, brain-computer inter
 
 **Regulatory and ethical concerns constrain adoption.** Ongoing debates about potential consciousness in biological computing systems require new ethical frameworks governing the use of human neural tissue. Using biological neural networks opens up many hairy ethical concerns and has an eerie similarity to the plot of The Matrix. Before we understand the emergence of (self-)cosciousness, we should not rush the adoption of this bio-technology as it may be an inherently evil application.
 
+## Applications for Artificial Intelligence
+
+Biological computing systems may offer critical advantages over classical deep learning approaches, addressing fundamental limitations. These living neural networks demonstrate superior generalization abilities, natural robustness against adversarial attacks and adaptive learning mechanisms.
+
+Generalization represents the most significant advantage of biological neurons. Classical deep learning models often fail catastrophically when encountering data distributions different from their training sets. A neural network trained to recognize cats in photographs might completely fail when presented with cartoon drawings of cats. Biological neurons, however, demonstrate remarkable ability to extract meaningful patterns and apply learned concepts to novel situations through natural abstraction mechanisms developed over millions of years of evolution.
+
+Research at Johns Hopkins University showed that brain organoids could adapt their learned behaviors to new environmental conditions within hours, while equivalent artificial neural networks required complete retraining. The biological systems maintained performance across different stimulus patterns by leveraging inherent plasticity mechanisms that classical AI lacks.
+Adversarial robustness emerges naturally in biological systems. Traditional deep learning models are notoriously vulnerable to adversarial examples, where tiny imperceptible changes to input data cause complete misclassification. These attacks exploit the brittle decision boundaries learned by artificial networks. Biological neurons, by contrast, process information through noisy, analog mechanisms that naturally resist such manipulations.
+
+FinalSpark demonstrated this robustness by showing that organoid-based pattern recognition systems maintained accurate classification even when input signals were corrupted with noise levels that completely broke equivalent digital neural networks. The biological systems' inherent stochasticity and redundant processing pathways provide natural defense against adversarial perturbations.
+
+Continual learning without catastrophic forgetting represents another key advantage. Classical AI systems suffer from catastrophic forgetting, where learning new tasks erases previously acquired knowledge. This limitation requires complex architectural modifications and careful training procedures to overcome. Biological neurons naturally support lifelong learning through synaptic homeostasis and distributed memory representations.
+
+Cortical Labs' experiments showed that organoids could sequentially learn multiple pattern recognition tasks while retaining performance on earlier learned behaviors. The biological systems demonstrated graceful interference patterns rather than the complete knowledge destruction seen in traditional neural networks.
+
 ## Conclusion
 
 Biological computing using living neurons has transitioned from theoretical research to commercial reality, offering a sustainable path toward more intelligent, adaptive, and energy-efficient computing systems. While technical challenges around lifespan, scalability, and standardization remain significant, the field demonstrates extraordinary potential for revolutionizing drug discovery, neuroscience research, and artificial intelligence applications.
@@ -62,6 +77,29 @@ The convergence of stem cell technology, advanced electrode interfaces and artif
 
 - <https://www.frontiersin.org/journals/science/articles/10.3389/fsci.2023.1017235/full>
 - <https://pure.johnshopkins.edu/en/publications/first-organoid-intelligence-oi-workshop-to-form-an-oi-community>
+
+### Generalization and Biological vs Artificial Neural Networks
+- <https://www.pnas.org/doi/10.1073/pnas.2311805121>
+- <https://www.sciencedirect.com/science/article/pii/S0959438818301569>
+- <https://pubs.aip.org/aip/aml/article/2/2/021501/3291446/Brain-inspired-learning-in-artificial-neural>
+
+### Adversarial Robustness in Biological vs Artificial Systems
+- <https://www.sciencedirect.com/science/article/abs/pii/S0020025523007752>
+- <https://link.springer.com/article/10.1007/s00521-025-11019-6>
+- <https://arxiv.org/abs/2405.00679>
+- <https://www.sciencedirect.com/science/article/abs/pii/S0893608023002824>
+- <https://arxiv.org/html/2405.20694>
+
+### Catastrophic Forgetting and Continual Learning
+- <https://arxiv.org/html/2403.05175v1>
+- <https://www.sciencedirect.com/science/article/pii/S0893608019300231>
+- <https://www.pnas.org/doi/10.1073/pnas.1611835114>
+- <https://pmc.ncbi.nlm.nih.gov/articles/PMC5380101/>
+- <https://www.science.org/doi/10.1126/sciadv.adi2947>
+- <https://www.ibm.com/think/topics/catastrophic-forgetting>
+
+### Energy Efficiency and Biological Computing
+- <https://www.frontiersin.org/journals/science/articles/10.3389/fsci.2023.1017235/full>
 - <https://spectrum.ieee.org/biological-computer-for-sale>
 - <https://www.scientificamerican.com/article/these-living-computers-are-made-from-human-neurons/>
 
