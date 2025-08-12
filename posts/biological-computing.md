@@ -40,11 +40,9 @@ Three primary startups are driving commercial development of biological computin
 
 Major research institutions also contribute significant developments. Johns Hopkins University established the Organoid Intelligence field through foundational research, while Tianjin University in China developed MetaBOC systems enabling brain organoids to control robots with 78% accuracy in speaker recognition tasks.
 
-## Early adoption shows promise across multiple sectors
+## Early Adoption
 
 Biological computing has moved beyond laboratory demonstrations into practical applications across healthcare, research, and technology sectors, though adoption remains in early stages.
-
-Academic institutions represent the primary current adopters, with 34 universities accessing FinalSpark's platform for neuromorphic research and cognitive behavior studies. Universities including Michigan, Free University of Berlin, and Lancaster University Leipzig use these systems for pattern recognition research and neural network development.
 
 **Pharmaceutical companies are exploring biological computing for drug discovery** and neurological disorder research. The technology enables disease modeling for conditions like Alzheimer's, epilepsy, and Parkinson's disease using human-relevant neural responses. This approach offers alternatives to animal testing while providing more accurate data for pharmaceutical development.
 
