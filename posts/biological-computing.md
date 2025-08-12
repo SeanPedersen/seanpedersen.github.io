@@ -6,15 +6,13 @@ date: '2025-08-11'
 
 This emerging field, termed Organoid Intelligence, harnesses the computational power of actual brain tissue grown from human stem cells. Unlike neuromorphic chips that simply mimic neural behavior, biological computing employs real neurons that form functional networks, learn through experience and process information through natural synaptic connections.
 
-## Living neurons create programmable biological computers
+## Basic Functionality
 
 Biological computing systems work by growing **brain organoids** from human induced pluripotent stem cells in laboratory conditions. These three-dimensional neural cultures, typically 0.5 to 5 millimeters in diameter, contain between 10,000 and 800,000 living neurons that spontaneously develop electrical activity and complex oscillatory behavior similar to human brain tissue.
 
 The technical architecture integrates these living networks with multi-electrode arrays containing 8 to 384 electrodes that both stimulate and record neural activity. Advanced microfluidic life support systems maintain organoid viability for up to 100 days, a significant improvement from initial lifespans measured in hours. Communication occurs through electrical stimulation and chemical signals using neurotransmitters like dopamine and serotonin.
 
 The systems leverage natural neural plasticity mechanisms for learning. Correct responses receive predictable electrical patterns while errors trigger chaotic stimulation, mimicking reward-based learning in biological brains. Information storage occurs through structural and functional changes in neural networks, enabling pattern recognition and memory formation through synaptic plasticity.
-
-**Energy efficiency represents the most compelling advantage.** The human brain processes information using just 20 watts of power, while an equivalent supercomputer would consume 21 megawatts. Training GPT-3 required approximately 1,300 megawatt-hours of electricity, equivalent to the annual consumption of 800 European households.
 
 ## Commercial Systems Launches
 
@@ -78,19 +76,19 @@ The convergence of stem cell technology, advanced electrode interfaces and artif
 - <https://www.frontiersin.org/journals/science/articles/10.3389/fsci.2023.1017235/full>
 - <https://pure.johnshopkins.edu/en/publications/first-organoid-intelligence-oi-workshop-to-form-an-oi-community>
 
-### Generalization and Biological vs Artificial Neural Networks
+Generalization and Biological vs Artificial Neural Networks
 - <https://www.pnas.org/doi/10.1073/pnas.2311805121>
 - <https://www.sciencedirect.com/science/article/pii/S0959438818301569>
 - <https://pubs.aip.org/aip/aml/article/2/2/021501/3291446/Brain-inspired-learning-in-artificial-neural>
 
-### Adversarial Robustness in Biological vs Artificial Systems
+Adversarial Robustness in Biological vs Artificial Systems
 - <https://www.sciencedirect.com/science/article/abs/pii/S0020025523007752>
 - <https://link.springer.com/article/10.1007/s00521-025-11019-6>
 - <https://arxiv.org/abs/2405.00679>
 - <https://www.sciencedirect.com/science/article/abs/pii/S0893608023002824>
 - <https://arxiv.org/html/2405.20694>
 
-### Catastrophic Forgetting and Continual Learning
+Catastrophic Forgetting and Continual Learning
 - <https://arxiv.org/html/2403.05175v1>
 - <https://www.sciencedirect.com/science/article/pii/S0893608019300231>
 - <https://www.pnas.org/doi/10.1073/pnas.1611835114>
@@ -98,7 +96,7 @@ The convergence of stem cell technology, advanced electrode interfaces and artif
 - <https://www.science.org/doi/10.1126/sciadv.adi2947>
 - <https://www.ibm.com/think/topics/catastrophic-forgetting>
 
-### Energy Efficiency and Biological Computing
+Energy Efficiency and Biological Computing
 - <https://www.frontiersin.org/journals/science/articles/10.3389/fsci.2023.1017235/full>
 - <https://spectrum.ieee.org/biological-computer-for-sale>
 - <https://www.scientificamerican.com/article/these-living-computers-are-made-from-human-neurons/>
