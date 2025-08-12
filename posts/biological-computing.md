@@ -18,7 +18,7 @@ The systems leverage natural neural plasticity mechanisms for learning. Correct 
 
 The field achieved significant milestones in 2024 and 2025 with multiple commercial deployments and research breakthroughs demonstrating practical applications.
 
-**[Cortical Labs](https://corticallabs.com/) launched the CL1 in March 2025**, marking the world's first commercial biological computer. Priced at $35,000 per unit, the system contains 800,000 lab-grown human neurons with integrated life support maintaining cell viability for six months. The platform includes sub-millisecond feedback loops for real-time processing and cloud services available at $300 per week per unit.
+[Cortical Labs](https://corticallabs.com/) launched the [CL1](https://corticallabs.com/cl1.html) in March 2025, marking the world's first commercial biological computer. Priced at $35,000 per unit, the system contains 800,000 lab-grown human neurons with integrated life support maintaining cell viability for six months. The platform includes sub-millisecond feedback loops for real-time processing and cloud services available at $300 per week per unit.
 
 [FinalSpark](https://finalspark.com/) introduced the Neuroplatform in 2024, offering remote access to 16 human brain organoids for $500 per month. This Swiss platform enables 24/7 streaming of neural activity with integrated Python scripting for experiment control. The system has attracted 34 universities worldwide and generated over 18 terabytes of neural activity data.
 
@@ -30,11 +30,11 @@ Johns Hopkins University researchers led the establishment of Organoid Intellige
 
 Three primary startups are driving commercial development of biological computing technologies, each focusing on different applications and approaches.
 
-**Cortical Labs, founded in 2019** as a spinout from Monash University, leads commercial biological computing development. The Australian company, backed by CIA venture fund In-Q-Tel and Horizons Ventures, pioneered the DishBrain technology that learned Pong. CEO Dr. Hon Weng Chong and Chief Scientific Officer Brett Kagan have positioned the company at the forefront of wetware-as-a-service offerings.
+Cortical Labs, founded in 2019 as a spinout from Monash University, leads commercial biological computing development. The Australian company, backed by CIA venture fund In-Q-Tel and Horizons Ventures, pioneered the DishBrain technology that learned Pong. CEO Dr. Hon Weng Chong and Chief Scientific Officer Brett Kagan have positioned the company at the forefront of wetware-as-a-service offerings.
 
 [FinalSpark](https://finalspark.com/), established in 2014 by Dr. Fred Jordan and Dr. Martin Kutter, developed the first remote-access biological computing platform. The Swiss company, currently seeking $50 million in Series A funding, has created a unique dopamine-based reward system for training organoids and extended operational lifespans from hours to over 100 days.
 
-**[Koniku](https://koniku.com/), founded in 2015** by Nigerian neuroscientist Dr. Oshiorenoya Agabi, focuses on biological detection systems. With $1.8 million in funding and partnerships with Airbus, the company developed Konikore processors that combine biological neurons with silicon for detecting explosives, drugs, and diseases. Their systems achieve parts-per-billion sensitivity with response times under 10 seconds.
+[Koniku](https://koniku.com/), founded in 2015 by Nigerian neuroscientist Dr. Oshiorenoya Agabi, focuses on biological detection systems. With $1.8 million in funding and partnerships with Airbus, the company developed Konikore processors that combine biological neurons with silicon for detecting explosives, drugs, and diseases. Their systems achieve parts-per-billion sensitivity with response times under 10 seconds.
 
 Major research institutions also contribute significant developments. Johns Hopkins University established the Organoid Intelligence field through foundational research, while Tianjin University in China developed MetaBOC systems enabling brain organoids to control robots with 78% accuracy in speaker recognition tasks.
 
@@ -42,17 +42,17 @@ Major research institutions also contribute significant developments. Johns Hopk
 
 Biological computing has moved beyond laboratory demonstrations into practical applications across healthcare, research, and technology sectors, though adoption remains in early stages.
 
-**Pharmaceutical companies are exploring biological computing for drug discovery** and neurological disorder research. The technology enables disease modeling for conditions like Alzheimer's, epilepsy, and Parkinson's disease using human-relevant neural responses. This approach offers alternatives to animal testing while providing more accurate data for pharmaceutical development.
+Pharmaceutical companies are exploring biological computing for drug discovery and neurological disorder research. The technology enables disease modeling for conditions like Alzheimer's, epilepsy, and Parkinson's disease using human-relevant neural responses. This approach offers alternatives to animal testing while providing more accurate data for pharmaceutical development.
 
 Healthcare applications include medical device development, brain-computer interface research, and personalized medicine approaches. The systems enable real-time monitoring of drug effects on neural networks and enhanced understanding of brain disease mechanisms.
 
-**Current limitations** present significant adoption barriers. Biological components survive only 100 to 180 days on average, requiring regular replacement. Systems remain limited to thousands or hundreds of thousands of neurons, far below brain complexity levels. High costs, with CL1 units priced at $35,000, limit accessibility for many potential users.
+Current limitations present significant adoption barriers. **Biological components survive only 100 to 180 days on average**, requiring regular replacement. Systems remain limited to thousands or hundreds of thousands of neurons, far below brain complexity levels. High costs, with CL1 units priced at $35,000, limit accessibility for many potential users.
 
-**Regulatory and ethical concerns constrain adoption.** Ongoing debates about potential consciousness in biological computing systems require new ethical frameworks governing the use of human neural tissue. Using biological neural networks opens up many hairy ethical concerns and has an eerie similarity to the plot of The Matrix. Before we understand the emergence of (self-)cosciousness, we should not rush the adoption of this bio-technology as it may be an inherently evil application.
+Regulatory and ethical concerns constrain adoption. Ongoing debates about potential consciousness in biological computing systems require new ethical frameworks governing the use of human neural tissue. Using biological neural networks opens up many hairy ethical concerns and has an eerie similarity to the plot of The Matrix. **Before we understand the emergence of (self-)cosciousness, we should not rush the adoption of this bio-technology as it may be an inherently evil application.**
 
 ## Applications for Artificial Intelligence
 
-Biological computing systems may offer critical advantages over classical deep learning approaches, addressing fundamental limitations. These living neural networks demonstrate superior generalization abilities, natural robustness against adversarial attacks and adaptive learning mechanisms.
+Biological computing systems may offer critical advantages over classical deep learning approaches, addressing fundamental limitations. **These living neural networks demonstrate superior generalization abilities, natural robustness against adversarial attacks and adaptive learning mechanisms.**
 
 Generalization represents the most significant advantage of biological neurons. Classical deep learning models often fail catastrophically when encountering data distributions different from their training sets. A neural network trained to recognize cats in photographs might completely fail when presented with cartoon drawings of cats. Biological neurons, however, demonstrate remarkable ability to extract meaningful patterns and apply learned concepts to novel situations through natural abstraction mechanisms developed over millions of years of evolution.
 
