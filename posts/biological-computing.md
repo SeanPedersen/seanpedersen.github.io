@@ -2,9 +2,9 @@
 title: 'Biological Computing'
 date: '2025-08-11'
 ---
-**Biological computing using living neurons has crossed from science fiction into commercial reality.** The first biological computers are now available for purchase, using lab-grown human brain cells to process information with extraordinary energy efficiency. These systems represent a fundamental shift from traditional silicon-based computing toward hybrid biological-digital architectures that leverage billions of years of neural evolution.
+**Biological computing using living neurons has crossed from science fiction into commercial reality.** The first biological computers are now available for purchase, using lab-grown human brain cells to process information with high energy efficiency. These systems represent a fundamental shift from traditional silicon-based computing toward hybrid biological-digital architectures that leverage billions of years of neural evolution.
 
-This emerging field, termed Organoid Intelligence, harnesses the computational power of actual brain tissue grown from human stem cells. Unlike neuromorphic chips that simply mimic neural behavior, biological computing employs real neurons that form functional networks, learn through experience and process information through natural synaptic connections.
+This emerging field, termed Organoid Intelligence, uses the computational power of actual brain tissue grown from human stem cells. Unlike neuromorphic chips that simply mimic neural behavior, biological computers employ real neurons that form functional networks, learn through experience and process information through natural synaptic connections.
 
 ## Basic Functionality
 
@@ -43,7 +43,7 @@ Cortical Labs' experiments showed that organoids could sequentially learn multip
 
 ## Key Startups
 
-[Cortical Labs](https://corticallabs.com/), founded in 2019 as a spinout from Monash University, leads commercial biological computing development. The Australian company, backed by CIA venture fund In-Q-Tel and Horizons Ventures, pioneered the DishBrain technology that learned Pong. CEO Dr. Hon Weng Chong and Chief Scientific Officer Brett Kagan have positioned the company at the forefront of wetware-as-a-service offerings. [Cortical Labs launched the [CL1](https://corticallabs.com/cl1.html) in March 2025 - the world's first commercial biological computer. Priced at $35,000 per unit, the system contains 800,000 lab-grown human neurons with integrated life support maintaining cell viability for six months.
+[Cortical Labs](https://corticallabs.com/), founded in 2019 as a spinout from Monash University, leads commercial biological computing development. The Australian company pioneered the DishBrain technology that learned Pong. CEO Dr. Hon Weng Chong and Chief Scientific Officer Brett Kagan have positioned the company at the forefront of wetware-as-a-service offerings. Cortical Labs launched the [CL1](https://corticallabs.com/cl1.html) in March 2025 - the world's first commercial biological computer. Priced at $35,000 per unit, the system contains 800,000 lab-grown human neurons with integrated life support maintaining cell viability for six months.
 
 [FinalSpark](https://finalspark.com/), established in 2014 by Dr. Fred Jordan and Dr. Martin Kutter, developed the first remote-access biological computing platform. The Swiss company, currently seeking $50 million in Series A funding, has created a unique dopamine-based reward system for training organoids and extended operational lifespans from hours to over 100 days.
 
@@ -51,7 +51,7 @@ Cortical Labs' experiments showed that organoids could sequentially learn multip
 
 ## Conclusion
 
-Biological computing using living neurons has transitioned from theoretical research to commercial reality, offering a sustainable path toward more intelligent, adaptive, and energy-efficient computing systems. While technical challenges around lifespan, scalability, and standardization remain significant, the field demonstrates extraordinary potential for revolutionizing drug discovery, neuroscience research, and artificial intelligence applications.
+Biological computing using living neurons has transitioned from theoretical research to commercial reality, offering a sustainable path toward more intelligent, adaptive and energy-efficient computing systems. While technical challenges around lifespan, scalability, and standardization remain significant, the field demonstrates extraordinary potential for revolutionizing drug discovery, neuroscience research, and artificial intelligence applications.
 
 The convergence of stem cell technology, advanced electrode interfaces and artificial intelligence has created a new computational paradigm that leverages natural neural evolution. As these systems mature and scale, they promise to address the energy crisis in computing while unlocking new forms of machine intelligence that complement traditional silicon-based approaches. The first commercial biological computers mark the beginning of a transformation that could fundamentally reshape how we approach computation in the coming decades, though the ethics of it all remains unclear at best and evil at worst.
 
