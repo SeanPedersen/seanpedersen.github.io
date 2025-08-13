@@ -14,30 +14,6 @@ The technical architecture integrates these living networks with multi-electrode
 
 The systems leverage natural neural plasticity mechanisms for learning. Correct responses receive predictable electrical patterns while errors trigger chaotic stimulation, mimicking reward-based learning in biological brains. Information storage occurs through structural and functional changes in neural networks, enabling pattern recognition and memory formation through synaptic plasticity.
 
-## Commercial Systems Launches
-
-The field achieved significant milestones in 2024 and 2025 with multiple commercial deployments and research breakthroughs demonstrating practical applications.
-
-[Cortical Labs](https://corticallabs.com/) launched the [CL1](https://corticallabs.com/cl1.html) in March 2025, marking the world's first commercial biological computer. Priced at $35,000 per unit, the system contains 800,000 lab-grown human neurons with integrated life support maintaining cell viability for six months. The platform includes sub-millisecond feedback loops for real-time processing and cloud services available at $300 per week per unit.
-
-[FinalSpark](https://finalspark.com/) introduced the Neuroplatform in 2024, offering remote access to 16 human brain organoids for $500 per month. This Swiss platform enables 24/7 streaming of neural activity with integrated Python scripting for experiment control. The system has attracted 34 universities worldwide and generated over 18 terabytes of neural activity data.
-
-Research breakthroughs provided proof-of-concept demonstrations. In 2022, scientists at Cortical Labs successfully taught 800,000 neurons to play Pong within five minutes, demonstrating goal-directed behavior and real-time adaptation. This achievement, published in the journal Neuron, established synthetic biological intelligence as a viable computational approach.
-
-Johns Hopkins University researchers led the establishment of Organoid Intelligence as an official scientific discipline through the Baltimore Declaration and foundational publications in major journals. Their work developed 3D shell microelectrode arrays for high-resolution recording and demonstrated integration of artificial intelligence with biological neural networks.
-
-## Key Startups
-
-Three primary startups are driving commercial development of biological computing technologies, each focusing on different applications and approaches.
-
-Cortical Labs, founded in 2019 as a spinout from Monash University, leads commercial biological computing development. The Australian company, backed by CIA venture fund In-Q-Tel and Horizons Ventures, pioneered the DishBrain technology that learned Pong. CEO Dr. Hon Weng Chong and Chief Scientific Officer Brett Kagan have positioned the company at the forefront of wetware-as-a-service offerings.
-
-[FinalSpark](https://finalspark.com/), established in 2014 by Dr. Fred Jordan and Dr. Martin Kutter, developed the first remote-access biological computing platform. The Swiss company, currently seeking $50 million in Series A funding, has created a unique dopamine-based reward system for training organoids and extended operational lifespans from hours to over 100 days.
-
-[Koniku](https://koniku.com/), founded in 2015 by Nigerian neuroscientist Dr. Oshiorenoya Agabi, focuses on biological detection systems. With $1.8 million in funding and partnerships with Airbus, the company developed Konikore processors that combine biological neurons with silicon for detecting explosives, drugs, and diseases. Their systems achieve parts-per-billion sensitivity with response times under 10 seconds.
-
-Major research institutions also contribute significant developments. Johns Hopkins University established the Organoid Intelligence field through foundational research, while Tianjin University in China developed MetaBOC systems enabling brain organoids to control robots with 78% accuracy in speaker recognition tasks.
-
 ## Early Adoption
 
 Biological computing has moved beyond laboratory demonstrations into practical applications across healthcare, research, and technology sectors, though adoption remains in early stages.
@@ -64,6 +40,14 @@ FinalSpark demonstrated this robustness by showing that organoid-based pattern r
 Continual learning without catastrophic forgetting represents another key advantage. Classical AI systems suffer from catastrophic forgetting, where learning new tasks erases previously acquired knowledge. This limitation requires complex architectural modifications and careful training procedures to overcome. Biological neurons naturally support lifelong learning through synaptic homeostasis and distributed memory representations.
 
 Cortical Labs' experiments showed that organoids could sequentially learn multiple pattern recognition tasks while retaining performance on earlier learned behaviors. The biological systems demonstrated graceful interference patterns rather than the complete knowledge destruction seen in traditional neural networks.
+
+## Key Startups
+
+[Cortical Labs](https://corticallabs.com/), founded in 2019 as a spinout from Monash University, leads commercial biological computing development. The Australian company, backed by CIA venture fund In-Q-Tel and Horizons Ventures, pioneered the DishBrain technology that learned Pong. CEO Dr. Hon Weng Chong and Chief Scientific Officer Brett Kagan have positioned the company at the forefront of wetware-as-a-service offerings. [Cortical Labs launched the [CL1](https://corticallabs.com/cl1.html) in March 2025 - the world's first commercial biological computer. Priced at $35,000 per unit, the system contains 800,000 lab-grown human neurons with integrated life support maintaining cell viability for six months.
+
+[FinalSpark](https://finalspark.com/), established in 2014 by Dr. Fred Jordan and Dr. Martin Kutter, developed the first remote-access biological computing platform. The Swiss company, currently seeking $50 million in Series A funding, has created a unique dopamine-based reward system for training organoids and extended operational lifespans from hours to over 100 days.
+
+[Koniku](https://koniku.com/), founded in 2015 by Nigerian neuroscientist Dr. Oshiorenoya Agabi, focuses on biological detection systems. With $1.8 million in funding and partnerships with Airbus, the company developed Konikore processors that combine biological neurons with silicon for detecting explosives, drugs, and diseases. Their systems achieve parts-per-billion sensitivity with response times under 10 seconds.
 
 ## Conclusion
 
