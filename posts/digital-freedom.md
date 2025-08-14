@@ -6,12 +6,13 @@ Digital freedom is achieved by getting rid of as many third-party controlled sof
 
 So to increase your freedom and [remove the digital leeches](https://seanpedersen.github.io/posts/google-ejector) like Google and co, invest into privacy respecting software that works offline and ideally is open-source. Export your personal data from the data kraken like Google, Meta and co and delete your accounts to stop feeding these privacy invading operations.
 
-Download your favorite music, images, blog articles and videos using tools like:
+Long live the file - download your favorite music, images, blog articles and videos using tools like:
 
 - [Download Spotify content](https://github.com/spotDL/spotify-downloader)
 - [Download Youtube Videos](https://github.com/ytdl-org/youtube-dl)
-- [Chrome Extension to download web pages as single files](https://github.com/gildas-lormeau/SingleFile)
-- [Chrome Extension to download Instagram content](https://chromewebstore.google.com/detail/toolkit-f%C3%BCr-instagram-her/flknhjeojpjfhcgpdaapoldgppnacnhl)
+- [Download web pages as single files](https://github.com/gildas-lormeau/SingleFile)
+- [Download Instagram content](https://chromewebstore.google.com/detail/toolkit-f%C3%BCr-instagram-her/flknhjeojpjfhcgpdaapoldgppnacnhl)
+- [Download X (Twitter) Media Content](https://github.com/EltonChou/TwitterMediaHarvest)
 - [Digger Solo: Digital Cartography for Your Files](https://solo.digger.lol/)
 
 #tutorial #privacy
