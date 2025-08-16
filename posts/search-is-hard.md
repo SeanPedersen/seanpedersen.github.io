@@ -142,3 +142,5 @@ Key insight: F1 score is closer to the lower of the two values, so it penalizes 
 -   [https://binal.pub/2023/04/ranking-anything-with-gpt4/](https://binal.pub/2023/04/ranking-anything-with-gpt4/)
 -   [https://arxiv.org/abs/2312.02724](https://arxiv.org/abs/2312.02724)
 -   [https://python.useinstructor.com/blog/2024/10/23/building-an-llm-based-reranker-for-your-rag-pipeline/](https://python.useinstructor.com/blog/2024/10/23/building-an-llm-based-reranker-for-your-rag-pipeline/)
+
+#programming #machine-learning
