@@ -27,7 +27,7 @@ It is recommended to use proven code base templates / example repositories that 
 
 ## General Advice
 
-As every LLM Claude Code als suffers from context rot - meaning the longer the context (input context windows) becomes the worse the performance gets. Thus it is best practice to use the /compact (creates summary of current contetx) or /clear (deletes whole context) commands to reduce / reset the context when Claude gets stuck on a task - to provide a fresh start.
+As with every LLM, Claude Code suffers from context rot - meaning the longer the context (input context windows) becomes, the worse the performance gets. Thus it is best practice to use the `/compact` (creates summary of current context) or `/clear` (deletes whole context) commands to reduce / reset the context when Claude gets stuck on a task - to provide a fresh start.
 
 Use frequent git commits to save working versions in case Claude gets stuck producing bullshit.
 
