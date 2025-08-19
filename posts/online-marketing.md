@@ -17,8 +17,9 @@ Identify specific pain-points your product solves. Get really specific about it 
 
 This is the cheapest and most effective online marketing strategy I know of.
 
-- <https://beno.one>: fully automated lead generation for reddit
-- <https://snitchfeed.com/>: lead discovery for reddit, twitter, linkedin
+- <https://f5bot.com/>: free E-Mail notifications for key words on Reddit
+- <https://beno.one>: fully automated lead generation for Reddit
+- <https://snitchfeed.com/>: lead discovery for Reddit, Twitter, LinkedIn
 
 ## Virality
 
