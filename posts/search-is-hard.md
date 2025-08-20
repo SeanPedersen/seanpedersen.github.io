@@ -32,7 +32,7 @@ Tricks:
 
 - Multi-Modal (shared) Embedding Spaces (CLIP)
 - Dense vs Sparse (SDR)
-- text2text: query vs document prefix in embedding models
+- Query vs document prefix for embedding models optimized for search
 - Visual Document Embeddings
     - Instead of embedding sequences of tokens (often words), embed images of pages directly -> this helps to process complex documents containing tables, graphs and imagery
     - https://huggingface.co/collections/nomic-ai/nomic-embed-multimodal-67e5ddc1a890a19ff0d58073
