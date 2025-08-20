@@ -10,7 +10,7 @@ Just some notes on how to use Python effectively. Python is simple and concise, 
 - Use early returns in functions to avoid deep nesting
 - Use type hints and a type checker ([ty](https://github.com/astral-sh/ty)) with pre-commit hooks
 - Use [ruff](https://github.com/astral-sh/ruff) - a fast linter / formatter
-- Use [pathlib](https://docs.python.org/3/library/pathlib.html) module for dealing with file system paths
+- Use [pathlib](https://docs.python.org/3/library/pathlib.html#basic-use) module for dealing with file system paths
 - No magic numbers (use expressive variable names e.g. waiting_time_ms)
 - Use [f-strings](https://docs.python.org/3/tutorial/inputoutput.html#formatted-string-literals) for formatting strings
 - Validate variable input types
@@ -105,7 +105,7 @@ Use [loguru](https://github.com/Delgan/loguru) (comes with a multi-processing qu
 
 ## Performance
 
-Use a profiler to find slow or RAM consuming code paths.
+Use a profiler ([pyinstrument](https://github.com/joerick/pyinstrument)) to find slow or RAM consuming code paths.
 
 Use C / C++ / Rust / Zig etc. for performance critical code or try PyPy and Cython first.
 
