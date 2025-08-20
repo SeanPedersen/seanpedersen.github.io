@@ -33,6 +33,16 @@ Use [uv](https://github.com/astral-sh/uv) or [pixi](https://pixi.sh/latest/pytho
 - For formatting console output: [rich](https://github.com/Textualize/rich)
 - Progress bar: [tqdm](https://github.com/tqdm/tqdm)
 
+## Interactive Development
+
+Great for prototyping, one-off analysis scripts and literate programming.
+
+[Jupyter Notebook](https://jupyter.org/) and [Marimo](https://marimo.io/).
+
+## Desktop Apps
+
+[PyTauri](https://github.com/pytauri/pytauri/)
+
 ## Concurrency
 
 Python is a single threaded language with a Global Interpreter Lock (GIL). Meaning only multi-processing enables true concurrent execution. Multi-threading or async in Python only allows for concurrent IO operations (network / file system read and writes).
@@ -95,7 +105,7 @@ for number in read_large_file_good("huge_file.txt"):
 
 SQLite is built into Python and a powerful option to store and analyze relational data.
 
-When creating tables always use the STRICT keyword, to enfore type consistency on INSERT and UPDATE operations. This prevents ugly bugs that are possible - as Python does not guarantee type consistency at runtime.
+When creating tables always use the STRICT keyword, to enfore type consistency on INSERT and UPDATE operations. This prevents ugly typing bugs that are possible - as Python does not guarantee type consistency at runtime.
 
 - <https://bigcodenerd.org/blog/sqlite-type-checking-gochas/>
 
