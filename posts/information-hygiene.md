@@ -10,7 +10,7 @@ Social media like Instagram, Facebook, Twitter and TikTok literally feed you inf
 
 ## Using AI Systems
 
-Be aware that mental tasks you outsource or augment using AI will likely reduce your cognitive abilities for these tasks like using GPS systems did for navigation. Stay shar and embrace your human uniqueness by not overusing AI systems for creative tasks. Only use AI to automate the boring stuff where your human uniqueness can not shine through.
+Be aware that mental tasks you outsource or augment using AI will likely reduce your cognitive abilities for these tasks like using GPS systems did for navigation. Stay sharp and embrace your human uniqueness by not overusing AI systems for creative tasks. Only use AI to automate the boring stuff where your human uniqueness can not shine through.
 
 ## Brain Rot
 
