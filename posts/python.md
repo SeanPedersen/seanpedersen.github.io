@@ -13,7 +13,7 @@ Just some notes on how to use Python effectively. Python is simple and concise, 
 - Use [pathlib](https://docs.python.org/3/library/pathlib.html#basic-use) module for dealing with file system paths
 - No magic numbers (use expressive variable names e.g. waiting_time_ms)
 - Use [f-strings](https://docs.python.org/3/tutorial/inputoutput.html#formatted-string-literals) for formatting strings
-- Validate variable input types
+- Validate variable types from external (untrustworthy) inputs, e.g. user input, web requests
   - try attrs and cattrs instead of pydantic
 - Use caching for heavy computations
 - Use [pytest](https://docs.pytest.org/en/stable/) for unit testing
@@ -107,6 +107,6 @@ Use [loguru](https://github.com/Delgan/loguru) (comes with a multi-processing qu
 
 Use a profiler ([pyinstrument](https://github.com/joerick/pyinstrument)) to find slow or RAM consuming code paths.
 
-Use C / C++ / Rust / Zig etc. for performance critical code or try PyPy and Cython first.
+Use C / C++ / Rust / Zig etc. for performance critical code or try [PyPy](https://pypy.org/) and [Cython](https://cython.org/) first.
 
 #programming
