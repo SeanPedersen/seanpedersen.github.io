@@ -16,7 +16,7 @@ Use [uv](https://github.com/astral-sh/uv) or [pixi](https://pixi.sh/latest/pytho
 - Use [ruff](https://github.com/astral-sh/ruff) - a fast linter / formatter
 - Use [pathlib](https://docs.python.org/3/library/pathlib.html) module for dealing with file system paths
 - No magic numbers (use expressive variable names e.g. waiting_time_ms)
-- Use f-strings for formatting
+- Use [f-strings](https://docs.python.org/3/tutorial/inputoutput.html#formatted-string-literals) for formatting strings
 - Validate variable input types
   - try attrs and cattrs instead of pydantic
 - Use caching for heavy computations
@@ -39,9 +39,20 @@ Python is a single threaded language with a Global Interpreter Lock (GIL). Meani
 
 Python 3.13 has added experimental support for a no-GIL build flag, enabling true multi-threading support, which may become the default in the future.
 
+- Good ref on Python multiprocessing: <https://pythonspeed.com/articles/python-multiprocessing/>
+
 ### Multi-Processing
 
-Use [joblib](https://joblib.readthedocs.io/en/stable/index.html) for multi-processing.
+Use [joblib](https://joblib.readthedocs.io/en/stable/index.html) for sane multi-processing. Note that multi-processing should only be used to parallelize very CPU heavy tasks, since the overhead of starting processes is very high (always benchmark).
+
+```python
+from math import sqrt
+from joblib import Parallel, delayed
+
+# Runs in 4 processes in parallel, preserves input order
+results = Parallel(n_jobs=4)(delayed(sqrt)(i ** 2) for i in range(16))
+print(results)
+```
 
 ### Async
 
