@@ -2,7 +2,7 @@
 title: 'Python'
 date: '2025-08-19'
 ---
-Just some notes on how to use Python effectively. Python is simple and concise, ideal for rapid software development. The average execution speed is rather slow, which is ok because it nicely interacts with C, C++ and Rust which are fast. Another major selling point is the rich ecosystem of useful packages, spanning web development, scientific computing, machine learning, data science and much more.
+Just some notes on how to use Python effectively. Python is simple and concise, ideal for rapid software development. The average execution speed is rather slow, which is ok because it nicely interacts with C, C++ and Rust which are fast. Another major selling point is the rich ecosystem of useful packages, spanning web development, data science and much more.
 
 ## General Tips
 
