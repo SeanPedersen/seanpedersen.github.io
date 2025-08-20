@@ -59,11 +59,10 @@ LLM (+ RL) unsolveable examples:
 ## Signals for AGI
 
 - no benchmark (problem) we can design where humans beat AI
-  - coming up with novel funny jokes
 - extreme and robust (human like) generalisation ability
   - LLM's possess clearly no human like intelligence as they make obvious logical and factual mistakes (very brittle; context dependent problem solving ability) and hallucinate without being capable to self-correct through self-inspection -> LLM's output will always have to be validated using human supervision for critical tasks (just like for self-driving cars)
   - when humans make little slips (errors) while speaking / writing a thought out - the whole sentence (thought) stays consistent (if the thought was consistent in the first place). LLM's "thoughts" OTOH are directly influenced by each token (word) and thus a few small slips can quickly throw them off completely (context rot) -> leading to more hallucinations in longer texts.
-- self-awareness (introspection) and ability to self-modify (update facts / beliefs)
+- self-awareness (introspection) and ability to self-modify (continuous learning -> update facts / beliefs)
 
 ## References
 
