@@ -4,10 +4,6 @@ date: '2025-08-19'
 ---
 Just some notes on how to use Python effectively. Python is simple and concise, ideal for rapid software development. The average execution speed is rather slow, which is ok because it nicely interacts with C, C++ and Rust which are fast. Another major selling point is the rich ecosystem of useful packages, spanning web development, scientific computing, machine learning, data science and much more.
 
-## Package Mangement
-
-Use [uv](https://github.com/astral-sh/uv) or [pixi](https://pixi.sh/latest/python/tutorial/) for fast and sane package management.
-
 ## General Tips
 
 - Keep functions pure (no side effects) if possible
@@ -21,6 +17,10 @@ Use [uv](https://github.com/astral-sh/uv) or [pixi](https://pixi.sh/latest/pytho
   - try attrs and cattrs instead of pydantic
 - Use caching for heavy computations
 - Use [pytest](https://docs.pytest.org/en/stable/) for unit testing
+
+## Package Management
+
+Use [uv](https://github.com/astral-sh/uv) or [pixi](https://pixi.sh/latest/python/tutorial/) for fast and sane package management.
 
 ## Web Development
 
@@ -101,7 +101,7 @@ When creating tables always use the STRICT keyword, to enfore type consistency o
 
 ## Logging
 
-Use loguru (comes with a multi-processing queue that just works)
+Use [loguru](https://github.com/Delgan/loguru) (comes with a multi-processing queue that just works)
 
 ## Performance
 
