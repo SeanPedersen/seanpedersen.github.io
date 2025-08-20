@@ -249,7 +249,7 @@ To calculate any AIM metric we need:
 -   Environment (Observations/time frames perceived by agent)
 -   Problem / Loss Function (Evaluation of solution / feedback / reward)
 
-## Looking at recent AI research
+## Looking at Recent AI Research
 
 What can we do in praxis with the introduced family of AI metrics in our
 toolbox?
@@ -302,7 +302,7 @@ which Legg & Hutter do not achieve with their proposed universal
 intelligence score since it relies on the Kolmogorov complexity which is
 not feasible to compute in praxis.
 
-# Human designed overfitting
+## Human Designed Overfitting
 
 Most research around AI is narrow and specialized. A group of
 researchers think together hard about this one problem, coming up with
@@ -323,7 +323,7 @@ will lead to more general learning algorithms that perform well on
 broader ranges of problems - the missing part of most of current AI
 research endeavors.
 
-# Future Research Directions
+## Future Research Directions
 
 The tools developed here should enable us to directly optimize for more
 intelligent agents by optimizing (maximize) directly for an AIM score!
@@ -358,7 +358,7 @@ a worm (C. Elegans) before you try the same for a mouse or dare I say
 the human brain (you know: just the most complex object in the universe
 we know of).
 
-# References
+## References
 
 - ["Universal Intelligence: A Definition of Machine Intelligence"
     (Shane Legg, Marcus Hutter)](https://arxiv.org/pdf/0712.3329.pdf)
@@ -385,7 +385,7 @@ we know of).
 - <http://www.incompleteideas.net/IncIdeas/DefinitionOfIntelligence.html>
 - <https://breckyunits.com/intelligence.html>
 
-# Author Notes on existing Literature (incomplete)
+## Author Notes
 
 So far nothing really strongly related to AIM has shown up in
 references.
