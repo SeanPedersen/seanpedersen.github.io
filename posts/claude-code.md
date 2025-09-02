@@ -139,7 +139,9 @@ Allows claude to use a web browser to test and debug webapps.
 
 Allows claude to fetch uptodate code documentation for your projects.
 
-[**Context 7**](https://github.com/upstash/context7)
+- [**Ref Tools**](https://ref.tools/)
+
+- [**Context 7**](https://github.com/upstash/context7)
 
 `mcp add context7 -- npx -y @upstash/context7-mcp`
 
