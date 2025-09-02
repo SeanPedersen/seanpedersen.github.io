@@ -66,7 +66,7 @@ print(results)
 
 ### Async
 
-I do not like async syntax wise (just personal preference) - I prefer multi-threading to speed up heavy IO tasks.
+I do not like async syntax wise (just personal preference) - I prefer multi-threading to speed up heavy IO tasks ([relevant HN thread](https://news.ycombinator.com/item?id=45106189)).
 
 ```python
 import asyncio
