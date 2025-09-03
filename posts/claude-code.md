@@ -158,10 +158,6 @@ Use [uv](https://github.com/astral-sh/uv) (preferred and popular) or [pixi](http
 
 Python is a single threaded language with a Global Interpreter Lock (GIL). Meaning only multi-processing enables true concurrent execution. Multi-threading or async in Python only allows for concurrent IO operations (network / file system read and writes).
 
-Python 3.13 has added experimental support for a no-GIL build flag, enabling true multi-threading support, which may become the default in the future.
-
-- Good ref on Python multiprocessing: <https://pythonspeed.com/articles/python-multiprocessing/>
-
 ### Multi-Processing
 
 Use [joblib](https://joblib.readthedocs.io/en/stable/index.html) for sane multi-processing. Note that multi-processing should only be used to parallelize very CPU heavy tasks, since the overhead of starting processes is very high (always benchmark).
