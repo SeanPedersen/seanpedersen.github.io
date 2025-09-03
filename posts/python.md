@@ -20,7 +20,7 @@ Just some notes on how to use Python effectively. Python is simple and concise, 
 
 ## Package Management
 
-Use [uv](https://github.com/astral-sh/uv) or [pixi](https://pixi.sh/latest/python/tutorial/) for fast and sane package management.
+Use [uv](https://github.com/astral-sh/uv) (preferred and popular) or [pixi](https://pixi.sh/latest/python/tutorial/) (can install conda packages - useful for GPU/CUDA stuff) for fast and sane package management.
 
 ## Web Development
 
@@ -108,6 +108,14 @@ SQLite is built into Python and a powerful option to store and analyze relationa
 When creating tables always use the STRICT keyword, to enfore type consistency on INSERT and UPDATE operations. This prevents ugly typing bugs that are possible - as Python does not guarantee type consistency at runtime.
 
 - <https://bigcodenerd.org/blog/sqlite-type-checking-gochas/>
+
+## Postgres
+
+Postgres is very versatile and powerful DBMS. Use it with [psycopg](https://github.com/psycopg/psycopg) and a docker image.
+
+## Docker
+
+Bundle your apps and make them reproducible using docker (for uv or pixi).
 
 ## Logging
 
