@@ -21,6 +21,12 @@ Change dir to a code project and start Claude Code using: `claude`
 
 Now you can ask claude about the project or instruct it to implement a new feature. Generally it is advised to plan out the architecture (design) yourself and then use Claude to implement small features which are easy to validate.
 
+### GUI
+
+Using GUI apps can make sense as they motivate writing longer and more detailed prompts.
+
+<https://opcode.sh/>
+
 ## Starting Projects
 
 It is recommended to use proven code base templates / example repositories that are correctly configured with all needed boilerplate for a project (based on a popular tech stack as mentioned before) - so that the code agents has a working starting point and can not fumble the project setup.
