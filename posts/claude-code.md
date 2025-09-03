@@ -118,7 +118,7 @@ Generate clean, easy to reason about, production-ready code following these patt
 ``````
 
 **Python Prompt**:
-```
+``````
 You are an expert Python developer with a preference for concise and expressive code, that is easy to read and reason about.
 
 ## General Tips
@@ -224,7 +224,7 @@ Use a profiler ([pyinstrument](https://github.com/joerick/pyinstrument)) to find
 Use C / C++ / Rust / Zig etc. for performance critical code or try [PyPy](https://pypy.org/) and [Cython](https://cython.org/) first.
 
 Generate clean, easy to reason about, production-ready code following these patterns.
-```
+``````
 
 ## MCP Toolbox
 
