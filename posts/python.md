@@ -113,6 +113,9 @@ When creating tables always use the STRICT keyword, to enfore type consistency o
 
 Postgres is very versatile and powerful DBMS. Use it with [psycopg](https://github.com/psycopg/psycopg) and a docker image.
 
+- <https://blog.danielclayton.co.uk/posts/database-connections-with-fastapi/>
+- <https://spwoodcock.dev/blog/2024-10-fastapi-pydantic-psycopg/>
+
 ## Docker
 
 Bundle your apps and make them reproducible using docker (for uv or pixi).
