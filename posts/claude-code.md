@@ -25,11 +25,20 @@ Now you can ask claude about the project or instruct it to implement a new featu
 
 Using GUI apps can make sense as they motivate writing longer and more detailed prompts.
 
-<https://opcode.sh/>
+- Desktop app: <https://opcode.sh/>
+- Mobile app: <https://happy.engineering/>
 
 ## Starting Projects
 
 It is recommended to use proven code base templates / example repositories that are correctly configured with all needed boilerplate for a project (based on a popular tech stack as mentioned before) - so that the code agents has a working starting point and can not fumble the project setup.
+
+Vibe code project flow:
+- create technical design
+- insert tech stack code documentation
+- ideally find a fitting project code template
+- create test cases
+- submit design with tech doc to coding agent
+- advanced: identify independent modules and spawn multiple subagents
 
 ## General Advice
 
