@@ -2,7 +2,7 @@
 title: 'Python'
 date: '2025-08-19'
 ---
-Just some notes on how to use Python effectively. Python is simple and concise, ideal for rapid software development. The average execution speed is rather slow, which is ok because it nicely interacts with C, C++ and Rust which are fast. Another major selling point is the rich ecosystem of useful packages, spanning web development, data science and much more.
+Just some notes on how to use Python effectively. Python strives to be simple and concise and is a good choice for rapid software development. The average execution speed is rather slow, which is ok because it nicely interacts with C, C++ and Rust which are fast. Another major selling point is the rich ecosystem of useful packages, spanning web development, data science and much more.
 
 ## General Tips
 
@@ -24,8 +24,8 @@ Use [uv](https://github.com/astral-sh/uv) (preferred and popular) or [pixi](http
 
 ## Web Development
 
-- Use [FastAPI](https://fastapi.tiangolo.com/) to create clean and simple REST API's
-- Use [httpx](https://github.com/encode/httpx/) for network requests
+- Use [FastAPI](https://fastapi.tiangolo.com/) to create clean and simple REST API's supporting both synchronous and asynchronous routes
+- Use [httpx](https://github.com/encode/httpx/) for network requests (also supports sync and async)
 
 ## CLI
 
