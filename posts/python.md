@@ -81,6 +81,7 @@ async def fetch_multiple_urls(urls):
 ```
 
 - <https://trio.readthedocs.io/en/stable/tutorial.html>
+  - <https://vorpus.org/blog/notes-on-structured-concurrency-or-go-statement-considered-harmful/>
 - <https://github.com/pomponchik/transfunctions>
 
 ## Generators
