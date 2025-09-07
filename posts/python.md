@@ -49,6 +49,7 @@ Python is a single threaded language with a Global Interpreter Lock (GIL). Meani
 
 Python 3.13 has added experimental support for a no-GIL build flag, enabling true multi-threading support, which may become the default in the future.
 
+- On multi-threading: <https://glyph.twistedmatrix.com/2014/02/unyielding.html>
 - Good ref on Python multiprocessing: <https://pythonspeed.com/articles/python-multiprocessing/>
 
 ### Multi-Processing
@@ -78,6 +79,9 @@ async def fetch_multiple_urls(urls):
         responses = await asyncio.gather(*tasks)
         return responses
 ```
+
+- <https://trio.readthedocs.io/en/stable/tutorial.html>
+- <https://github.com/pomponchik/transfunctions>
 
 ## Generators
 
