@@ -45,7 +45,7 @@ Great for prototyping, one-off analysis scripts and literate programming.
 
 ## Concurrency
 
-Python is a single threaded language with a Global Interpreter Lock (GIL). Meaning only multi-processing enables true concurrent execution. Multi-threading or async in Python only allows for concurrent IO operations (network / file system read and writes).
+Python is a single threaded language with a Global Interpreter Lock (GIL). Meaning only multi-processing enables real parallel execution of non IO code. Multi-threading or async in Python thus only allows for concurrent IO operations (network / file system read and writes).
 
 Python 3.13 has added experimental support for a no-GIL build flag, enabling true multi-threading support, which may become the default in the future.
 
