@@ -278,4 +278,4 @@ Allows claude to fetch uptodate code documentation for your projects.
   - <https://github.com/block/goose>
   - <https://github.com/sst/opencode>
 
-#programming #tutorial
+#programming #tutorial #AI
