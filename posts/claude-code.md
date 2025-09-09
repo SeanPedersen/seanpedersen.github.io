@@ -33,16 +33,17 @@ Using GUI apps can make sense as they motivate writing longer and more detailed 
 It is recommended to use proven code base templates / example repositories that are correctly configured with all needed boilerplate for a project (based on a popular tech stack as mentioned before) - so that the code agents has a working starting point and can not fumble the project setup.
 
 Vibe code project flow:
-- create technical design
-- insert tech stack code documentation
+- general idea with meta-prompt to act as app designer and to ask clarifying questions
+- create technical design with clear specifications
+- insert relevant tech stack code documentation
 - ideally find a fitting project code template
-- create test cases
+- create relevant end-to-end test cases
 - submit design with tech doc to coding agent
 - advanced: identify independent modules and spawn multiple subagents
 
 ## General Advice
 
-As with every LLM, Claude Code suffers from context rot - meaning the longer the context (input context windows) becomes, the worse the performance gets. Thus it is best practice to use the `/compact` (creates summary of current context) or `/clear` (deletes whole context) commands to reduce / reset the context when Claude gets stuck on a task - to provide a fresh start.
+As with every LLM, Claude Code suffers from context rot - meaning the longer and noisier the context (input context windows) becomes, the worse the performance gets. Thus it is best practice to use the `/compact` (creates summary of current context) or `/clear` (deletes whole context) commands to reduce / reset the context when Claude gets stuck on a task - to provide a fresh start.
 
 Use frequent git commits to save working versions in case Claude gets stuck producing bullshit.
 
