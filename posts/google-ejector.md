@@ -60,6 +60,7 @@ Facebook / Twitter:
 YouTube:
 
 - [Invidious](https://invidious.io/) - privacy respecting YouTube frontend
+- [FreeTube](https://github.com/FreeTubeApp/FreeTube) - privacy respecting desktop client
 - [PeerTube](https://joinpeertube.org/) ([Code](https://github.com/Chocobozzz/PeerTube)) - decentralized, federated, self-hostable
 
 Spotify:
