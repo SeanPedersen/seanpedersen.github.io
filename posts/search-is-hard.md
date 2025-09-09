@@ -35,8 +35,8 @@ Tricks:
 - Query vs document prefix for embedding models optimized for search
 - Visual Document Embeddings
     - Instead of embedding sequences of tokens (often words), embed images of pages directly -> this helps to process complex documents containing tables, graphs and imagery
-    - https://huggingface.co/collections/nomic-ai/nomic-embed-multimodal-67e5ddc1a890a19ff0d58073
-    - https://huggingface.co/jinaai/jina-embeddings-v4
+    - <https://huggingface.co/collections/nomic-ai/nomic-embed-multimodal-67e5ddc1a890a19ff0d58073>
+    - <https://huggingface.co/jinaai/jina-embeddings-v4>
 - Text Embeddings (chunking strategies)
     - relevant segment extraction (RSE) - <https://d-star.ai/dynamic-retrieval-granularity>: just use paragraph-sized chunks (~200 tokens), prepend global document context (title, section) -> embed and store position in document (line number / page position). embed query -> find nearest chunks -> compute continuous chunk segments in documents
     - late-interaction: do not compress tokens into single vector, instead vectorize every token (using contextual embedding model like ColBERT, so token vectors contain contextual information) and match using the MaxSim operator
@@ -76,7 +76,7 @@ fast but may contain irrelevant results
 ## Scaling Things Up
 
 - Approximate Nearest Neighbor (Search Index)
-    - https://github.com/erikbern/ann-benchmarks
+    - <https://github.com/erikbern/ann-benchmarks>
 - Vector Quantization
 
 ## Evaluation Metrics
@@ -132,6 +132,10 @@ Example:
 When to use: When you need to balance precision and recall. Useful for comparing systems with different precision/recall trade-offs.
 
 Key insight: F1 score is closer to the lower of the two values, so it penalizes systems that optimize one metric at the expense of the other.
+
+## Ideas to Explore
+
+User steered semantic search by selecting N matches and finding the common subspace in their embeddings
 
 ## References
 
