@@ -21,6 +21,7 @@ Some examples of DEEFOSS are (in no particular order):
 - [Cryptpad](https://cryptpad.fr/) ([Code](https://github.com/xwiki-labs/cryptpad)) - end-to-end encrypted, real-time collaborative editing of documents
 - [Scuttlebutt](https://scuttlebutt.nz/) ([Code](https://github.com/ssbc/ssb-server)) - decentralized social network
 - [IPFS](https://ipfs.io/) ([Code](https://github.com/ipfs/go-ipfs)) - decentralized alternative to HTTP(S)
+- [BitChat](https://bitchat.free/) - decentralized chat app via bluetooth
 
 So go ahead and build a future with more #DEEFOSS. Thank you.
 
