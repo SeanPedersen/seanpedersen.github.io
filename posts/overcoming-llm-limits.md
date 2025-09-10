@@ -87,5 +87,6 @@ The endgame would be language models that actively create and verify new knowled
 - <https://bharathpbhat.github.io/2021/04/04/getting-confidence-estimates-from-neural-networks.html>
 - <https://gist.github.com/yoavg/4e4b48afda8693bc274869c2c23cbfb2>
 - <https://blog.jxmo.io/p/we-should-stop-talking-about-agi>
+- <https://x.com/iamtrask/status/1965522412243677522>
 
 #machine-learning
