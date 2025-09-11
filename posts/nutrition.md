@@ -50,10 +50,12 @@ The science links these chemicals to cardiovascular problems, diabetes risk, and
 
 Sugar sweetened beverages create multiple health problems. Beyond the obvious weight gain from liquid calories that don't satisfy hunger like solid food, regular soda consumption increases diabetes risk through high glycemic loads and fructose metabolism effects. **Studies following hundreds of thousands of people show clear dose response relationships**, where more soda equals higher disease risk.
 
-The dental damage alone should give pause. Sodas have a pH of 2 to 3, creating an acidic environment that erodes tooth enamel while feeding harmful bacteria. Research shows even moderate consumption increases cavity risk by 57%.
+The dental damage alone should give pause. Sodas have a pH of 2 to 3, creating an acidic environment that erodes tooth enamel while feeding harmful bacteria. Research shows even moderate consumption increases cavity risk by 57%. Simply put: drink water and tea, avoid the rest.
 
 ## Putting it together
 
 These five areas represent changes backed by solid research that can meaningfully impact health. Focus on eating more whole foods and adequate protein, limit exposure to plastic chemicals and sugary drinks, and consider creatine and magnesium supplementation if appropriate for your situation.
 
 The beauty of these approaches lies in their simplicity and strong evidence base. You don't need perfect implementation to see benefits. Start with one or two areas that resonate most, make consistent changes, and build from there. Your body will respond to these evidence based improvements in nutrition over time.
+
+#tutorial
