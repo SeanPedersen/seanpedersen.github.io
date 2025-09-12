@@ -14,11 +14,11 @@ Large studies following over 100,000 people for 14 years found that those eating
 
 ## Protein needs are higher than most people think
 
-The standard recommendation of 0.8 grams per kilogram of body weight per day isn't enough for optimal health. This amount prevents deficiency but doesn't support muscle maintenance, especially as we age.
+The standard recommendation of 0.8 grams per kilogram of body weight per day isn't enough for optimal health. This amount prevents deficiency but doesn't support muscle maintenance or growth, especially as we age.
 
-**Current research suggests most adults need 1.4 to 2.0 grams of protein per kilogram of body weight daily.** For a 80 kg person, that's about 130 to 160 grams per day. Older adults need even more due to something called anabolic resistance, where muscles become less responsive to protein.
+**Current research suggests most adults need 1.4 to 2.0 grams of protein per kilogram of body weight daily.** For a 80 kg person, that's about 130 to 160 grams per day (depending on your muscle mass and physical activity). Older adults need even more due to something called anabolic resistance, where muscles become less responsive to protein.
 
-The timing matters too. Getting 25 to 30 grams of high quality protein at each meal works better than cramming it all into one or two large servings. Your muscles can only use so much protein at once, so spreading it throughout the day maximizes muscle protein synthesis. Sources like eggs, meat, fish, and dairy provide complete amino acid profiles that match what your muscles need. Most people are eating "empty" food with way too much sugar, fat and carbohydrates - instead increase your healthy fat and protein intake. Try steak, fish and eggs - also good as breakfast.
+The timing matters too. Getting 30 to 50 grams of high quality protein at each meal works better than cramming it all into one or two large servings. Your muscles can only use so much protein at once, so spreading it throughout the day maximizes muscle protein synthesis. Sources like eggs, meat, fish, and dairy provide complete amino acid profiles that match what your muscles need. Most people are eating "empty" food with way too much sugar, fat and carbohydrates - instead increase your healthy fat and protein intake. Try steak, fish and eggs - also good as breakfast.
 
 ## Creatine benefits both muscle and brain
 
@@ -28,7 +28,7 @@ For muscle performance, creatine increases strength by an average of 8% more tha
 
 The cognitive benefits might surprise you. Meta-analyses show creatine significantly improves memory function, particularly in older adults. It also helps with processing speed and reduces mental fatigue during demanding tasks. Single doses can improve cognitive performance during sleep deprivation, with effects lasting up to 9 hours.
 
-The standard protocol involves 3 to 5 grams daily for maintenance, though you can load with 20 grams daily for the first week to see faster results. Safety data spanning over 20 years shows no adverse effects at recommended doses. The only consistent side effect is temporary water weight gain in the first week as muscles store more water.
+The standard protocol involves 3 to 5 grams daily for maintenance (I recommend up to 7 grams daily), though you can load with 20 grams daily for the first week to see faster results. Consistency is key for good results - so establish a daily morning routine. Safety data spanning over 20 years shows no adverse effects at recommended doses. The only consistent side effect is temporary water weight gain in the first week as muscles store more water. If you know you will consume alcohol at a given day, be extra careful to consume enough water, as alcohol dehydrates you.
 
 ## Magnesium fills a common gap
 
