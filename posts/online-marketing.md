@@ -9,7 +9,6 @@ You have a product (solution for a problem) and need customers (has problem, nee
 The following marketing channels may work wildly differently out for your business - so use analytics / promo codes to track how individual channels perform. Only by getting this valuable feedback, can you learn what works and what does not work for you.
 
 - <https://posthog.com>: good alternative to Google analytics
-- <https://podscan.fm>: monitor key words across podcasts world wide
 
 ## Pain-Point Marketing
 
@@ -20,6 +19,7 @@ This is the cheapest and most effective online marketing strategy I know of.
 - <https://f5bot.com/>: free E-Mail notifications for key words on Reddit
 - <https://beno.one>: fully automated lead generation for Reddit
 - <https://snitchfeed.com/>: lead discovery for Reddit, Twitter, LinkedIn
+- <https://podscan.fm>: monitor key words across podcasts world wide
 
 ## Virality
 
