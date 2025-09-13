@@ -85,4 +85,4 @@ Energy Efficiency and Biological Computing
 - <https://spectrum.ieee.org/biological-computer-for-sale>
 - <https://www.scientificamerican.com/article/these-living-computers-are-made-from-human-neurons/>
 
-#AI #programming
+#AI

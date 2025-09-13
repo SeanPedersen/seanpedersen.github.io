@@ -58,4 +58,4 @@ The technology has moved beyond promising research to deliver practical solution
 - <https://insidehpc.com/2025/07/q-ant-raises-e62m-for-photonic-processing/>
 - <https://qant.com/press-releases/leibniz-supercomputing-centre-computes-with-light-worlds-first-photonic-ai-processor-from-q-ant-goes-into-operation/>
 
-#programming #AI
+#AI
