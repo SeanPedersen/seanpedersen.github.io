@@ -83,5 +83,6 @@ For organizations evaluating analog AI adoption, the technology offers compellin
 - <https://www.nature.com/articles/s41586-025-08639-2>
 - <https://research.ibm.com/blog/analog-ai-chip-low-power>
 - <https://www.nature.com/articles/s44172-025-00492-5>#
+- <https://x.com/brianroemmele/status/1966473607795929527?s=46>
 
 #AI #programming
