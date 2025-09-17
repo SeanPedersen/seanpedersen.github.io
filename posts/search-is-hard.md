@@ -31,7 +31,7 @@ Tricks:
 ### Neural Representations
 
 - Multi-Modal (shared) Embedding Spaces (CLIP)
-- Dense vs Sparse (SDR)
+- Dense vs Sparse ([SDR](https://seanpedersen.github.io/posts/sparse-distributed-representations))
 - Query vs document prefix for embedding models optimized for search
 - Visual Document Embeddings
     - Instead of embedding sequences of tokens (often words), embed images of pages directly -> this helps to process complex documents containing tables, graphs and imagery
@@ -76,8 +76,13 @@ fast but may contain irrelevant results
 ## Scaling Things Up
 
 - Approximate Nearest Neighbor (Search Index)
+    - HNSW (high RAM usage) and DiskANN (low RAM usage, needs SSD)
     - <https://github.com/erikbern/ann-benchmarks>
+- Vector Dimensionality Reduction
+    - PCA / UMAP
+    - Matryoshka Embeddings
 - Vector Quantization
+    - Reduce bit representation (f.e. to INT8 instead of FP32)
 
 ## Evaluation Metrics
 
