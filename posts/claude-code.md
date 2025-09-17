@@ -35,11 +35,11 @@ It is recommended to use proven code base templates / example repositories that 
 Vibe code project flow:
 - general idea with meta-prompt to act as app designer and to ask clarifying questions
 - create technical design with clear specifications
-- insert relevant tech stack code documentation
-- ideally find a fitting project code template
-- create relevant end-to-end test cases
-- submit design with tech doc to coding agent
-- advanced: identify independent modules and spawn multiple subagents
+- ideally find a fitting project code template (boilerplate with basics setup)
+- insert relevant tech stack code documentation (with correct code version)
+- create end-to-end test cases based on the specifications
+- submit the fletched out technical design to the coding agent
+- advanced: identify independent modules and spawn multiple subagents to work in parallel
 
 ## General Advice
 
@@ -247,6 +247,9 @@ Use C / C++ / Rust / Zig etc. for performance critical code or try [PyPy](https:
 
 Generate clean, easy to reason about, production-ready code following these patterns.
 ``````
+
+**Security Analyst Prompt**:
+- TODO (check for SQL injections, XSS, etc.)
 
 ## MCP Toolbox
 
