@@ -75,6 +75,8 @@ fast but may contain irrelevant results
 
 ## Scaling Things Up
 
+All of the following techniques trade retrieval accuracy for speed / storage costs.
+
 - Approximate Nearest Neighbor (Search Index)
     - HNSW (high RAM usage) and DiskANN (low RAM usage, needs SSD)
     - <https://github.com/erikbern/ann-benchmarks>
