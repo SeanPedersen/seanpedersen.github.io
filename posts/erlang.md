@@ -10,6 +10,15 @@ The ErlangVM (BEAM) powers big apps like WhattsApp and Discord, demonstrating it
 
 ## Show me some code
 
+Quicksort using list comprehension:
+```erlang
+quicksort([]) -> [];
+quicksort([Pivot | T]) ->
+    quicksort([X || X <- T, X < Pivot]) ++
+    [Pivot] ++
+    quicksort([X || X <- T, X >= Pivot]).
+```
+
 Fibonacci:
 ```erlang
 -module(fibo).
