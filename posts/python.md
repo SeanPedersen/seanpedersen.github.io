@@ -118,9 +118,8 @@ When creating tables always use the STRICT keyword, to enfore type consistency o
 
 Postgres is very versatile and powerful DBMS. Use it with [psycopg](https://github.com/psycopg/psycopg) and a docker image.
 
-```
+```python
 from contextlib import asynccontextmanager
-
 from fastapi import Depends, FastAPI
 import psycopg_pool
 import psycopg
@@ -143,7 +142,6 @@ async def get_conn():
 
 @app.get("/visit/")
 async def add_visit(conn = Depends(get_conn)):
-
     async with conn.cursor() as cursor:
         # Run our queries
         await cursor.execute("insert into visits(timestamp) values (now())")
