@@ -158,6 +158,9 @@ async def add_visit(conn = Depends(get_conn)):
 
 Bundle your apps and make them reproducible using docker (with uv or pixi).
 
+- Uv: <https://docs.astral.sh/uv/guides/integration/docker/#getting-started>
+- Pixi: <https://github.com/prefix-dev/pixi-docker/blob/main/README.md>
+
 ## Logging
 
 Use [loguru](https://github.com/Delgan/loguru) (comes with a multi-processing queue that just works)
