@@ -108,7 +108,7 @@ for number in read_large_file_good("huge_file.txt"):
 
 ## SQLite
 
-SQLite is built into Python and a powerful option to store and analyze relational data.
+SQLite3 support is built into the Python standard lib and a simple option to embed, store and analyze relational data.
 
 When creating tables always use the STRICT keyword, to enfore type consistency on INSERT and UPDATE operations. This prevents ugly typing bugs that are possible - as Python does not guarantee type consistency at runtime.
 
@@ -118,12 +118,45 @@ When creating tables always use the STRICT keyword, to enfore type consistency o
 
 Postgres is very versatile and powerful DBMS. Use it with [psycopg](https://github.com/psycopg/psycopg) and a docker image.
 
+```
+from contextlib import asynccontextmanager
+
+from fastapi import Depends, FastAPI
+import psycopg_pool
+import psycopg
+
+conn_string = "postgres://postgres@localhost"
+
+pool = psycopg_pool.AsyncConnectionPool(conn_string, open=False)
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    await pool.open()
+    yield
+    await pool.close()
+
+app = FastAPI(lifespan=lifespan)
+
+async def get_conn():
+    async with pool.connection() as conn:
+	    yield conn
+
+@app.get("/visit/")
+async def add_visit(conn = Depends(get_conn)):
+
+    async with conn.cursor() as cursor:
+        # Run our queries
+        await cursor.execute("insert into visits(timestamp) values (now())")
+
+    return {"message": "Visit logged"}
+```
+
 - <https://blog.danielclayton.co.uk/posts/database-connections-with-fastapi/>
 - <https://spwoodcock.dev/blog/2024-10-fastapi-pydantic-psycopg/>
 
 ## Docker
 
-Bundle your apps and make them reproducible using docker (for uv or pixi).
+Bundle your apps and make them reproducible using docker (with uv or pixi).
 
 ## Logging
 
