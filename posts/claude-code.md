@@ -8,7 +8,7 @@ Simple and popular tech stacks that are fast to validate are the ideal choices f
 
 Recommendations:
 - JavaScript / TypeScript: React, Next
-- Python: Flask / FastAPI
+- [Python](https://seanpedersen.github.io/posts/python): Flask / FastAPI
 - Go / Zig / Elixir: all come with fast compilation speeds
 
 ## Setting Things up
