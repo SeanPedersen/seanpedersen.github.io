@@ -15,7 +15,7 @@ Use [React](https://react.dev/learn) for a popular framework, with many resource
 
 ## Promises (async)
 
-JavaScript uses promises to handle asynchronous operations like API calls, file operations, or timers. A promise represents a value that may be available now, in the future, or never.
+JavaScript uses promises to handle asynchronous operations like API calls, file operations, or timers. A promise represents a value that may be available now, in the future or never and is returned by async functions (return values of async functions are always wrapped in a promise). The await keyword unwraps the value of the promise.
 
 **Promise States**
 
