@@ -52,6 +52,7 @@ Another thought formation scheme is shifting the context (perceived connotation)
 - How much control do I have over my meme intake (social media scroll of doom)?
 - Can we pinpoint the cultural shift to wokeness and back to anti-wokeness? Who is changing their positions based on memes often (easy to manipulate)?
 - How does the observer effect influence the meme flow (being aware of current meme flows)?
+- What are the dynamics of viral memes spreading mental illnesses?
 
 ## References
 
@@ -64,5 +65,6 @@ Another thought formation scheme is shifting the context (perceived connotation)
 - <https://memetics.timtyler.org/>
 - <https://www.susanblackmore.uk/articles/the-power-of-the-meme-meme-2/>
 - <http://www.memecentral.com/vmintro.htm>
+- Memetic viruses (memes can transfer mental illness): <https://x.com/ChrischipMonk/status/1891611602203594945>
 
 #idea
