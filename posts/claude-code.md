@@ -293,7 +293,7 @@ Allows claude to fetch uptodate code documentation for your projects.
 - <https://github.com/hesreallyhim/awesome-claude-code>
 - <https://github.com/wong2/awesome-mcp-servers>
 - Thread on sub-agents: <https://x.com/jasonzhou1993/status/1955970025984287004>
-- Agents, templates & more: <https://www.aitmpl.com/>
+- Agents, templates & more: <https://www.aitmpl.com/>, <https://ctx.directory/>
 - Open-source alternatives:
   - <https://cline.bot/>
   - <https://github.com/block/goose>
