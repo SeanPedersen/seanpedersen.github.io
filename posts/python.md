@@ -24,7 +24,7 @@ Use [uv](https://github.com/astral-sh/uv) (preferred and popular) or [pixi](http
 
 ## Web Development
 
-- Use [FastAPI](https://fastapi.tiangolo.com/) to create clean and simple REST API's supporting both synchronous and asynchronous routes
+- Use [FastAPI](https://fastapi.tiangolo.com/) to create clean and simple REST API's supporting both synchronous and [asynchronous](https://fastapi.tiangolo.com/async/) routes
 - Use [httpx](https://github.com/encode/httpx/) for network requests (also supports sync and async)
 
 ## CLI
