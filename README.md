@@ -2,10 +2,10 @@
 
 ## Selected Articles
 
-- [AGI Bubble](/posts/agi-bubble)
-- [Memetics](/posts/memetics)
-- [Zipf's Law](/posts/zipfs-law)
-- [Kolmogorov Complexity](/posts/kolmogorov-complexity)
+- [AGI Bubble](https://seanpedersen.github.io/posts/agi-bubble)
+- [Memetics](https://seanpedersen.github.io/posts/memetics)
+- [Zipf's Law](https://seanpedersen.github.io/posts/zipfs-law)
+- [Kolmogorov Complexity](https://seanpedersen.github.io/posts/kolmogorov-complexity)
 
 ## Setup
 
