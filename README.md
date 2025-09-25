@@ -3,7 +3,9 @@
 ## Selected Articles
 
 - [AGI Bubble](https://seanpedersen.github.io/posts/agi-bubble)
+- [Structure of Neural Embeddings](https://seanpedersen.github.io/posts/structure-of-neural-latent-space)
 - [Memetics](https://seanpedersen.github.io/posts/memetics)
+- [(Sub)conscious (Re)programming](https://seanpedersen.github.io/posts/conscious-reprogramming)
 - [Zipf's Law](https://seanpedersen.github.io/posts/zipfs-law)
 - [Kolmogorov Complexity](https://seanpedersen.github.io/posts/kolmogorov-complexity)
 
