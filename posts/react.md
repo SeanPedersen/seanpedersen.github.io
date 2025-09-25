@@ -2,7 +2,7 @@
 title: 'React'
 date: '2025-09-24'
 ---
-React is a very popular front-end framework allowing to modularize web UI elements in components. Components render UI elements conditioned on state variables. Components are made of other components which can be passed state using so called props.
+React is a very popular front-end framework allowing to modularize web UI elements in components (even allowing to create mobile apps using [React Native](https://reactnative.dev/) / [Expo](https://expo.dev/)). Components render UI elements conditioned on state variables. Components are made of other components which can be passed state using so called props.
 
 Consider Svelte over React since it is a simpler and more performant competitor. React is more popular and thus has a bigger eco-system and more experienced developers.
 
