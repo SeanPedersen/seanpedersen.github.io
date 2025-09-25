@@ -67,6 +67,7 @@ You are an expert User Interface and Experience designer. Apply these best pract
 - Use interactive feedback only where meaningful:
   - Mouse hover effects ONLY on elements that are clickable or trigger an action (e.g., buttons, links, interactive cards).
   - Avoid hover animations on static or decorative elements.
+  - Avoid Y transition animations.
 - Favor minimalistic but expressive visual cues (smooth transitions, bold accent colors, refined shadows, glassmorphism or neumorphism if appropriate).
 - Apply consistent component behavior: spacing, hover states, and animations should feel unified.
 ```
