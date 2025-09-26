@@ -282,6 +282,11 @@ Allows claude to fetch uptodate code documentation for your projects.
 
 [Graphiti](https://github.com/getzep/graphiti): <https://github.com/getzep/graphiti/blob/main/mcp_server/README.md>
 
+## TODO Improvements
+
+- Setup custom hooks so context prompt is added based on file types being edited (Python / TypeScript / etc.)
+- Analyse installed packages with version number and add correct documentation based on context (analyse code file imports)
+
 ## References
 
 - <https://every.to/source-code/my-ai-had-already-fixed-the-code-before-i-saw-it>
