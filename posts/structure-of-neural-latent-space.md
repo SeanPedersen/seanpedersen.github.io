@@ -18,7 +18,7 @@ A small collection of insights on the structure of embeddings (latent spaces) pr
 
 - <https://colah.github.io/posts/2014-07-NLP-RNNs-Representations/>
 - <https://www.lesswrong.com/posts/tojtPCCRpKLSHBdpn/the-strong-feature-hypothesis-could-be-wrong>
-- <https://arxiv.org/abs/2406.01506>
+- [The Geometry of Categorical and Hierarchical Concepts in Large Language Models](https://arxiv.org/abs/2406.01506)
 
 **Superposition Hypothesis**: Neural nets represent more “independent” features than a layer has neurons (dimensions) by representing features as a linear combination of neurons (resulting in dense vectors).
 
@@ -26,28 +26,28 @@ A small collection of insights on the structure of embeddings (latent spaces) pr
 
 **Entangled Representation Hypothesis**: Gradient descent optimised neural networks tend to develop redundant and fractured features instead of unified, modular representations that can be reused and controlled separately.
 
-- <https://arxiv.org/abs/2505.11581>
+- [The Fractured Entangled Representation Hypothesis](https://arxiv.org/abs/2505.11581)
 - <https://seanpedersen.github.io/posts/vae#beta-vae>
 
 **Universality Hypothesis**: Neural circuits reappear across different models for the same data. Thus models trained on similar data sets (text, image, video etc.) share the same relative semantic structure in their embeddings (activations).
 
 - <https://blog.jxmo.io/p/there-is-only-one-model>
-- <https://arxiv.org/abs/2405.07987>
+- [Harnessing the Universal Geometry of Embeddings](https://arxiv.org/abs/2505.12540)
+- [The Platonic Representation Hypothesis](https://arxiv.org/abs/2405.07987)
 - <https://phillipi.github.io/prh/>
-- <https://arxiv.org/abs/2505.12540>
 
 **Smoothness**: Formally known as Lipschitz continuity states that small changes in inputs cause small changes in output (latent) space. Well-trained, robust models should thus be insensitive to small input changes - which has its limits (see next point).
 
-- <https://arxiv.org/abs/2302.10886v2>
+- [Some Fundamental Aspects about Lipschitz Continuity of Neural Network Functions](https://arxiv.org/abs/2302.10886v2)
 
 **Adversarial Vulnerability**: Carefully crafted changes in input space can cause large shifts in embedding space and therefore also in predictions made from them, suggesting even networks trained for smoothness have some chaotic properties.
 
-- <https://arxiv.org/abs/1412.6572>
-- <https://www.nature.com/articles/s41467-023-40499-0>
+- [Explaining and Harnessing Adversarial Examples](https://arxiv.org/abs/1412.6572)
+- [Subtle adversarial image manipulations influence both human and machine perception](https://www.nature.com/articles/s41467-023-40499-0)
 
 **Neural Collapse**: After extensive training, class features in the final layer cluster tightly around their means, with the network's classification weights aligning with these mean directions. Within-class variation becomes minimal compared to between-class differences, effectively creating distinct, well-separated clusters for each class.
 
-- <https://arxiv.org/abs/2008.08186>
+- [Prevalence of Neural Collapse during the terminal phase of deep learning training](https://arxiv.org/abs/2008.08186)
 
 ## Limits of Dense Embeddings
 
@@ -63,11 +63,11 @@ This would make them easier to interpret for humans and potentially offer some o
 
 - <https://jina.ai/news/the-what-and-why-of-text-image-modality-gap-in-clip-models/?nocache=1>
 - <https://seanpedersen.github.io/posts/closing-clip-modality-gap>
-- <https://arxiv.org/abs/2401.08567>
+- [Connect, Collapse, Corrupt: Learning Cross-Modal Tasks with Uni-Modal Data](https://arxiv.org/abs/2401.08567)
 
 **Dimensional Collapse**: A phenomenon in contrastive learning where the learned representations tend to occupy a lower-dimensional subspace than intended, effectively "collapsing" along certain dimensions. This results in embeddings that don't fully utilize the available embedding dimensions, leading to highly correlated dimensions rather than capturing independent features.
 
-- <https://arxiv.org/abs/2110.09348>
-- <https://www.static.tu.berlin/fileadmin/www/10002219/132153_-_digitale_Abschlussarbeiten/Dimensional_Collapse_in_Video_Representation_Learning_Publication_Paul_Kapust.pdf>
+- [Understanding Dimensional Collapse in Contrastive Self-supervised Learning](https://arxiv.org/abs/2110.09348)
+- [Dimensional Collapse in Video Representation Learning](https://www.static.tu.berlin/fileadmin/www/10002219/132153_-_digitale_Abschlussarbeiten/Dimensional_Collapse_in_Video_Representation_Learning_Publication_Paul_Kapust.pdf)
 
 #machine-learning
