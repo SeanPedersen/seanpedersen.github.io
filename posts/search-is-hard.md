@@ -43,7 +43,9 @@ Tricks:
         - Pros: much more granular results (excel at out-of-domain, long-context), good interpretability because of token-level matching
         - Cons: heavy computation -> search takes longer, storing cost -> n token vectors per document vs 1 document vector
     - embed a document by computing sentence level dense embeddings. Transform these sentence embeddings into SDR that are stacked to preserve information. Now match a query with the same technique to find relevant docs.
-    - use LLM to summarize document -> simply embed the summary to solve long-context problem?
+    - use LLM to enrich representations
+      - summarize document and embed it (harnesses LLM to solve long-context problem)
+      - infer questions from the chunk that it answers and embed them
 
 ## Searching
 
