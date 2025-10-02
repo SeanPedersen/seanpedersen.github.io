@@ -16,7 +16,7 @@ Biggest potential failure: The nuclear waste bullet does not reach escape veloci
 
 I am really curious if this idea is practical. It would be amazing.
 
-References:
+## References
 
 - <https://en.wikipedia.org/wiki/Space_gun>
 - <https://en.wikipedia.org/wiki/Coilgun>
@@ -24,5 +24,8 @@ References:
   - <https://research.lifeboat.com/ieee.em.pdf>
   - <https://www.universetoday.com/73536/nasa-considering-rail-gun-launch-system-to-the-stars/>
 - <https://www.forbes.com/sites/startswithabang/2019/09/20/this-is-why-we-dont-shoot-earths-garbage-into-the-sun/>
+- <https://space.nss.org/wp-content/uploads/Space-Manufacturing-conference-12-111-Disposal-Of-High-Level-Nuclear-Waste-In-Space.pdf>
+- <http://large.stanford.edu/courses/2014/ph241/parekh2/docs/burns.pdf>
+- <https://news.ycombinator.com/item?id=25089693>
 
 #idea
