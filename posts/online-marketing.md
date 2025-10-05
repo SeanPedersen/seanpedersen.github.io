@@ -20,6 +20,7 @@ This is the cheapest and most effective online marketing strategy I know of.
 - <https://beno.one>: fully automated lead generation for Reddit
 - <https://snitchfeed.com/>: lead discovery for Reddit, Twitter, LinkedIn
 - <https://podscan.fm>: monitor key words across podcasts world wide
+- <https://gojiberry.ai/>: find warm leads
 
 ## Virality
 
