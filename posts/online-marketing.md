@@ -48,6 +48,7 @@ Publishing high-quality blog articles that lay out how problems / pain points of
 - <https://www.semrush.com/>
   - <https://www.semrush.com/analytics/organic/overview>: enter URL of competitors to analyze their keywords
 - <https://ahrefs.com/>
+- <https://rankpill.com>: automatic content (blog article) generation
 
 ### Videos
 
