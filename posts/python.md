@@ -167,6 +167,6 @@ Use [loguru](https://github.com/Delgan/loguru) (comes with a multi-processing qu
 
 Use a profiler ([pyinstrument](https://github.com/joerick/pyinstrument)) to find slow or RAM consuming code paths.
 
-Use C / C++ / Rust / Zig etc. for performance critical code or try [PyPy](https://pypy.org/) and [Cython](https://cython.org/) first.
+Use C / C++ / Rust / Zig etc. for performance critical code or try [PyPy](https://pypy.org/) and [Cython](https://cython.org/) first. Or check out a transpiler <https://github.com/py2many/py2many> / <https://github.com/paiml/depyler>.
 
 #programming
