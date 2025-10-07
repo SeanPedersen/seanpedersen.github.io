@@ -49,7 +49,7 @@ Tricks:
 
 ## Searching
 
-Once our set of objects is transformed into useful representations (vectors), we can finally search. We need to transform the user query into the same representation to compare it with the existing set of vectors. The most common similarity metric for this is the cosine similarity (angle between two vectors -> 1: identical / very similar vectors, 0: orhogonal / very different vectors).
+Once our set of objects is transformed into useful representations (vectors), we can finally search. We need to transform the user query into the same representation to compare it with the existing set of vectors. The most common metric for this is the cosine distance (angle between two vectors -> 0: identical / very similar vectors, 1: orhogonal / very different vectors).
 
 ## Reranker Models
 
