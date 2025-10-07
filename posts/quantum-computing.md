@@ -64,6 +64,7 @@ Quantum computing remains in its early stages, but the fundamentals are sound an
 
 ## References
 
+- - [Quantum Computing: Between Hope and Hype](https://scottaaronson.blog/?p=8329)
 - Excellent in-depth intro: <https://quantum.country/>
 
 #AI
