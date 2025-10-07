@@ -41,6 +41,12 @@ A short list of free AI chat apps for local LLM execution that work offline and 
 - Open source
 - Features: (not yet tested)
 
+**Onyx** - <https://github.com/onyx-dot-app/onyx>
+
+- Web app: hard setup (requires Docker)
+- Open source
+- Feature rich
+
 **Open WebUI** - <https://docs.openwebui.com/>
 
 - Web app: hard setup (Install is complicated, requires sign-up)
