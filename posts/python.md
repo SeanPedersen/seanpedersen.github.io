@@ -41,7 +41,7 @@ Great for prototyping, one-off analysis scripts and literate programming.
 
 ## Desktop Apps
 
-[PyTauri](https://github.com/pytauri/pytauri/)
+[PyTauri](https://github.com/pytauri/pytauri/) / [PyLoid](https://github.com/pyloid/pyloid) / [PyWebView](https://github.com/r0x0r/pywebview)
 
 ## Concurrency
 
@@ -167,6 +167,6 @@ Use [loguru](https://github.com/Delgan/loguru) (comes with a multi-processing qu
 
 Use a profiler ([pyinstrument](https://github.com/joerick/pyinstrument)) to find slow or RAM consuming code paths.
 
-Use C / C++ / Rust / Zig etc. for performance critical code or try [PyPy](https://pypy.org/) and [Cython](https://cython.org/) first. Or check out a transpiler <https://github.com/py2many/py2many> / <https://github.com/paiml/depyler>.
+Use C / C++ / Rust / Zig / Mojo etc. for performance critical code or try [PyPy](https://pypy.org/) and [Cython](https://cython.org/) first. Or check out a transpiler <https://github.com/py2many/py2many> / <https://github.com/paiml/depyler>.
 
 #programming
