@@ -77,7 +77,7 @@ fast but may contain irrelevant results
 
 ## Scaling Things Up
 
-All of the following techniques trade retrieval accuracy for speed / storage costs.
+All of the following techniques trade retrieval accuracy for speed / storage costs. For production use cases, using a [Vector DB](https://seanpedersen.github.io/posts/vector-databases) is the right choice.
 
 - Approximate Nearest Neighbor (Search Index)
     - HNSW (high RAM usage) and DiskANN (low RAM usage, needs SSD)
@@ -156,7 +156,6 @@ User steered semantic search by selecting N matches and finding the common subsp
 -   [https://arxiv.org/abs/2312.02724](https://arxiv.org/abs/2312.02724)
 -   [https://python.useinstructor.com/blog/2024/10/23/building-an-llm-based-reranker-for-your-rag-pipeline/](https://python.useinstructor.com/blog/2024/10/23/building-an-llm-based-reranker-for-your-rag-pipeline/)
 - [Building a web search engine from scratch in two months with 3 billion neural embeddings](https://blog.wilsonl.in/search-engine/)
-- [On the Theoretical Limitations of Embedding-Based Retrieval
-](https://arxiv.org/abs/2508.21038)
+- [On the Theoretical Limitations of Embedding-Based Retrieval](https://arxiv.org/abs/2508.21038)
 
 #programming #machine-learning
