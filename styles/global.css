@@ -192,3 +192,22 @@ img {
 .markdown-content h6 {
   margin-bottom: -0.5rem;
 }
+
+/* Table styles */
+.markdown-content table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1rem 0;
+}
+
+.markdown-content table th,
+.markdown-content table td {
+  border: 1px solid var(--border-color);
+  padding: 0.5rem;
+  text-align: left;
+}
+
+.markdown-content table th {
+  background-color: var(--tag-bg);
+  font-weight: bold;
+}
