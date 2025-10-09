@@ -66,7 +66,7 @@ For 1 million random 512D float32 vectors.
 
 **Note:** Both pgvectorscale indices are slower than baseline. VectorChord's DiskANN is fastest but with low precision and longest build time. VectorChord's default index maintains perfect precision with modest speedup and fastest build time. pgvectorscale HNSW has the slowest query performance despite long build time. The performance of both HNSW and IVFFlat, looks fishy to me: no speedup and abyssmal retrieval precision - sth. must be wrong...
 
-TODO: Link github repo
+Check out the code [here](https://github.com/SeanPedersen/vector-db-benchmark/tree/main)
 
 ## Conclusion
 
