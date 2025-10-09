@@ -27,6 +27,15 @@
   /* Darker yellow for hover */
   --related-posts-border: #333;
   --tag-display-border: #555;
+
+  /* Search component colors */
+  --color-background: #000;
+  --color-text: #fff;
+  --color-text-secondary: #888;
+  --color-border: #666;
+  --color-primary: #ff0;
+  --color-hover: #111;
+  --color-tag: #333;
 }
 
 body.light-theme {
@@ -68,6 +77,15 @@ body.light-theme {
   /* Darker blue for hover */
   --related-posts-border: #ddd;
   --tag-display-border: #aaa;
+
+  /* Search component colors */
+  --color-background: #f0f0f0;
+  --color-text: #111;
+  --color-text-secondary: #555;
+  --color-border: #ccc;
+  --color-primary: #007acc;
+  --color-hover: #e0e0e0;
+  --color-tag: #ddd;
 }
 
 html,

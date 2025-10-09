@@ -6,6 +6,7 @@ import Layout, { siteTitle } from '../components/layout'
 import utilStyles from '../styles/utils.module.css'
 import { getSortedPostsData, getAllTags } from '../lib/posts'
 import { useTheme } from '../contexts/ThemeContext'; // Import useTheme
+import Search from '../components/Search'
 
 export async function getStaticProps() {
   const allPostsData = getSortedPostsData()
@@ -101,8 +102,8 @@ export default function Home({ allPostsData, allTags }) {
         </section>
 
         <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-          <h2 className={utilStyles.headingLg}>Blog</h2>
-
+          {/* Search */}
+          <Search />
           {/* Tags Filter */}
           <div className={utilStyles.tagsContainer}>
             <span
