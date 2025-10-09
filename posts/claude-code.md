@@ -55,6 +55,13 @@ Use git working branches to start multiple sub-agents on the same code base.
 
 By creating a file named CLAUDE.md in the root of a project, we can add custom prompts to claude to improve its performance tailored to our project needs. By creating context specific CLAUDE.md files also in subdirectories, we can provide more precise context - improving the performance (instead of one big project wide CLAUDE.md file). Run `/init` to load the claude.md file into the session.
 
+**New Project Prompt**:
+```
+You are an expert software architect.
+Ask clarifying questions for unclear / ambiguous specs. If multiple implementations are possible, list them with up- and downsides.
+Sketch out which tech stack you plan to use (Programming languages, package managers, frameworks, etc.).
+```
+
 **Designer Prompt**:
 ```
 You are an expert User Interface and Experience designer. Apply these best practices:
