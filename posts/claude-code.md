@@ -13,11 +13,9 @@ Recommendations:
 
 ## Setting Things up
 
-Install Claude Code: `npm install -g claude`
+Install Claude Code: `curl -fsSL https://claude.ai/install.sh | bash`
 
-Update: `npm update -g claude`
-
-Change dir to a code project and start Claude Code using: `claude`
+Change dir to a code project and start Claude Code using: `claude` and authenticate.
 
 Now you can ask claude about the project or instruct it to implement a new feature. Generally it is advised to plan out the architecture (design) yourself and then use Claude to implement small features which are easy to validate.
 
