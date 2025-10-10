@@ -8,7 +8,7 @@ So let's have a look how we can store and search vectors using Postgres: There a
 
 ## Benchmark
 
-The benchmark should reflect realistic usage - right now it just measures index built and query times for 1 million random 512D float32 vectors.
+The benchmark should reflect realistic usage - right now it just measures index built and query times.
 
 In the future I want to extend it:
 - measure insertion perormance after inital index is built
@@ -46,7 +46,7 @@ PGVectorScale supports pre-filtering using bitfields with manual table setup (co
 
 A custom ANN index with superior performance (combining IVF ANN index with RaBitQ quantization). Supports pre-filtering (easy to use).
 
-#### DiskANN
+#### vchordg (DiskANN)
 
 A novel addition (not prodution ready yet): custom implementation of DiskANN index combined with RaBitQ quantization.
 
@@ -54,17 +54,19 @@ A novel addition (not prodution ready yet): custom implementation of DiskANN ind
 
 ## ANN Benchmark Results
 
-For 1 million random 512D float32 vectors.
+For 450K text embeddings 1024D float32 vectors.
 
 | Method | Query Latency (ms) | Retrieval Precision | Speedup vs Baseline | Index Build Time (s) | Index Size (MB) |
 |--------|-------------------|---------------------|---------------------|---------------------|-----------------|
-| **Baseline (Brute Force)** | 158.89 | 100.00% | 1.00x | - | - |
-| **VectorChord (vchordrq)** | 117.48 | 100.00% | 1.35x | 83.44 | 2,814 |
-| **VectorChord (vchordg/DiskANN)** | 14.56 | 3.00% | 10.91x | 4,212.69 | 2,827 |
-| **pgvectorscale (HNSW)** | 285.01 | 3.00% | 0.55x | 1,474.82 | 2,604 |
-| **pgvectorscale (IVFFlat)** | 201.14 | 6.00% | 0.88x | 488.67 | 2,609 |
+| Baseline (Brute Force) | 1400.93 | 100.00% | 1.00x | - | - |
+| **pgvectorscale (DiskANN)** | 6.39 | 2.00% | 219.22x | 550.29 | 254 |
+| **pgvectorscale (HNSW)** | 611.54 | 100.00% | 2.29x | 1235.13 | 3555 |
+| **pgvectorscale (IVFFlat)** | 411.62 | 100.00% | 3.40x | 968.53 | 3561 |
+| **VectorChord (vchordrq)** | 468.64 | 100.00% | 2.99x | 1383.62 | 2229 |
 
-**Note:** Both pgvectorscale indices are slower than baseline. VectorChord's DiskANN is fastest but with low precision and longest build time. VectorChord's default index maintains perfect precision with modest speedup and fastest build time. pgvectorscale HNSW has the slowest query performance despite long build time. The performance of both HNSW and IVFFlat, looks fishy to me: no speedup and abyssmal retrieval precision - sth. must be wrong...
+**Note:** At 450K vectors, all approximate indices show strong speedups. HNSW, IVFFlat, and VectorChord achieve ~100% precision with 2-3.5x speedups. DiskANN has the fastest build time and best speed up (200x) but with significantly lower precision (2%).
+
+### Show me the code
 
 Check out the code [here](https://github.com/SeanPedersen/vector-db-benchmark/tree/main)
 
