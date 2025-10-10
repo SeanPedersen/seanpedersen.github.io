@@ -10,11 +10,17 @@ So let's have a look how we can store and search vectors using Postgres: There a
 
 Standard extension to store vectors with common medium scale ANN indices (HNSW & IvfFlat).
 
-Store vectors:
-`CREATE TABLE items (id bigserial PRIMARY KEY, embedding vector(3));`
+Store vectors (float 32 bit):
 
-Store half-precision (16 bit) vectors:
-`CREATE TABLE items (id bigserial PRIMARY KEY, embedding halfvec(3));`
+```sql
+CREATE TABLE items (id bigserial PRIMARY KEY, embedding vector(1024));
+```
+
+Store half-precision (float 16 bit) vectors:
+
+```sql
+CREATE TABLE items (id bigserial PRIMARY KEY, embedding halfvec(1024));
+```
 
 ### [HNSW](https://github.com/nmslib/hnswlib)
 
@@ -84,6 +90,7 @@ VectorChord is the clear winner - providing superior performance and better deve
 
 - <https://docs.vectorchord.ai/vectorchord/usage/indexing.html>
 - <https://blog.vectorchord.ai/vectorchord-store-400k-vectors-for-1-in-postgresql#heading-ivf-vs-hnsw>
+- <https://blog.vectorchord.ai/3-billion-vectors-in-postgresql-to-protect-the-earth>
 - <https://drscotthawley.github.io/blog/posts/2023-06-12-RVQ.html>
 - <https://deepwiki.com/timescale/pgvectorscale/1-overview>
 - <https://www.tigerdata.com/blog/nearest-neighbor-indexes-what-are-ivfflat-indexes-in-pgvector-and-how-do-they-work>
