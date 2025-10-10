@@ -214,8 +214,6 @@ img {
 /* Table wrapper for horizontal scrolling */
 .markdown-content .table-wrapper {
   width: 100%;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
   margin: 1rem 0;
 }
 
@@ -223,7 +221,6 @@ img {
 .markdown-content table {
   border-collapse: collapse;
   width: 100%;
-  min-width: 600px; /* Ensure table has minimum width */
 }
 
 .markdown-content table th,
@@ -231,10 +228,26 @@ img {
   border: 1px solid var(--border-color);
   padding: 0.5rem;
   text-align: left;
-  white-space: nowrap;
 }
 
 .markdown-content table th {
   background-color: var(--tag-bg);
   font-weight: bold;
+}
+
+/* Mobile-specific table scrolling */
+@media (max-width: 768px) {
+  .markdown-content .table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  }
+
+  .markdown-content table {
+    min-width: 600px; /* Ensure table has minimum width on mobile */
+  }
+
+  .markdown-content table th,
+  .markdown-content table td {
+    white-space: nowrap;
+  }
 }
