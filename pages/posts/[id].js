@@ -96,6 +96,16 @@ export default function Post({ postData, relatedPostCandidates, hasMorePosts }) 
       }
     );
 
+    // Wrap tables in a scrollable container div
+    processedContent = processedContent.replace(
+      /<table>/g,
+      '<div class="table-wrapper"><table>'
+    );
+    processedContent = processedContent.replace(
+      /<\/table>/g,
+      '</table></div>'
+    );
+
     // Convert hashtags to clickable links only on the last 2 lines
     const lines = processedContent.split('\n');
     if (lines.length > 0) {
