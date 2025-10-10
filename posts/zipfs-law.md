@@ -218,5 +218,6 @@ Does Zipf's law occur in sentences? -> maybe use semantic sentence clusters (gre
 - (3) Vsauce. [The Zipf Mystery](https://www.youtube.com/watch?v=fCn8zs912OE). YouTube.
 - (4) Reddit Discussion. [Random texts exhibit Zipf's-law-like word frequency distribution](https://www.reddit.com/r/voynich/comments/ehrbvm/random_texts_exhibit_zipfslawlike_word_frequency/). r/voynich.
 - (5) Art of the Problem. [The Pattern of Intelligence Life](https://youtu.be/MGecptPVQrU). YouTube.
+- (6) <https://accraze.info/exploring-frequency-distribution-with-chinese-words/>
 
 #idea #programming
