@@ -34,21 +34,19 @@ Less RAM hungry than HNSW. With caveats: ivfflat performance degrades as vectors
 
 ## [PGVectorScale](https://github.com/timescale/pgvectorscale)
 
-Extends PGVector with [diskann](https://github.com/microsoft/DiskANN) index which is designed to scale to billions of vectors - by smartly using RAM with fast disk storage (SSD / NVME).
-
 ### DiskANN
 
-A promising ANN index that uses disk (needs SSD), promising low RAM usage while still providing decent QPS. The problem is that the pgvectorscale index building implementation is [single core right now](https://github.com/timescale/pgvectorscale/issues/38) - leading to very long index generation times.
+A promising ANN index that uses RAM and disk (needs fast disk - SSD / NVMe) to scale to billions of vectors, promising low RAM usage while still providing decent QPS. The problem is that the pgvectorscale index building implementation is [single core right now](https://github.com/timescale/pgvectorscale/issues/38) - leading to very long index generation times.
 
-PGVectorScale supports pre-filtering using bitfields with manual table setup (complicated / bad dev ux).
+PGVectorScale supports pre-filtering using bitfields with manual meta-data table setup (complicated / bad dev ux).
 
 ## [VectorChord](https://github.com/tensorchord/VectorChord)
 
-### vchordrq
+### VChordRQ
 
 A custom ANN index with superior performance (combining IVF ANN index with RaBitQ quantization). Supports pre-filtering (easy to use).
 
-### vchordg (DiskANN)
+### VChordG (DiskANN)
 
 A novel addition (not prodution ready yet): custom implementation of DiskANN index combined with RaBitQ quantization.
 
