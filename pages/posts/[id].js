@@ -176,7 +176,7 @@ export default function Post({ postData, relatedPostCandidates, hasMorePosts }) 
               <Date dateString={postData.date} />
             </div>
             <a
-              href={`https://github.com/SeanPedersen/seanpedersen.github.io/blob/main/posts/${postData.id}.md`}
+              href={`https://github.com/SeanPedersen/seanpedersen.github.io/edit/main/posts/${postData.id}.md`}
               target="_blank"
               rel="noopener noreferrer"
               className={utilStyles.editOnGithubLink}
