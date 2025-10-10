@@ -6,6 +6,48 @@ There is a flood of vector databases - which ones are actually useful? IMO exten
 
 So let's have a look how we can store and search vectors using Postgres: There are three extensions for Postgres: pgvector, pgvectorscale and vectorchord.
 
+## [PGVector](https://github.com/pgvector/pgvector)
+
+Standard extension to store vectors with common medium scale ANN indices (HNSW & IvfFlat).
+
+Store vectors:
+`CREATE TABLE items (id bigserial PRIMARY KEY, embedding vector(3));`
+
+Store half-precision (16 bit) vectors:
+`CREATE TABLE items (id bigserial PRIMARY KEY, embedding halfvec(3));`
+
+### [HNSW](https://github.com/nmslib/hnswlib)
+
+The most popular ANN index - delivering good retrieval and QPS performance but using lot of RAM for it (did crash for 1 million vectors on my 16GB RAM machine).
+
+### IvfFlat
+
+Less RAM hungry than HNSW. With caveats: ivfflat performance degrades as vectors are deleted and added.
+
+"As data gets inserted or deleted from the index, if the index is not rebuilt, the IVFFlat index in pgvector can return incorrect approximate nearest neighbors due to clustering centroids no longer fitting the data well"
+
+## [PGVectorScale](https://github.com/timescale/pgvectorscale)
+
+Extends PGVector with [diskann](https://github.com/microsoft/DiskANN) index which is designed to scale to billions of vectors - by smartly using RAM with fast disk storage (SSD / NVME).
+
+### DiskANN
+
+A promising ANN index that uses disk (needs SSD), promising low RAM usage while still providing decent QPS. The problem is that the pgvectorscale index building implementation is [single core right now](https://github.com/timescale/pgvectorscale/issues/38) - leading to very long index generation times.
+
+PGVectorScale supports pre-filtering using bitfields with manual table setup (complicated / bad dev ux).
+
+## [VectorChord](https://github.com/tensorchord/VectorChord)
+
+### vchordrq
+
+A custom ANN index with superior performance (combining IVF ANN index with RaBitQ quantization). Supports pre-filtering (easy to use).
+
+### vchordg (DiskANN)
+
+A novel addition (not prodution ready yet): custom implementation of DiskANN index combined with RaBitQ quantization.
+
+- <https://blog.vectorchord.ai/vectorchord-05-new-rabitq-empowered-diskann-index-and-continuous-recall-measurement?source=more_articles_bottom_blogs>
+
 ## Benchmark
 
 The benchmark should reflect realistic usage - right now it just measures index built and query times.
@@ -15,42 +57,6 @@ In the future I want to extend it:
 - use real data embedding vectors -> simulate data distribution shift
 - simulate realistic complex SQL queries involving categorical and range filtering
 - benchmark vector scales: 100K, 1M, 10M, 100M, 1B
-
-### [PGVector](https://github.com/pgvector/pgvector)
-
-Standard extension to store vectors with common medium scale ANN indices (HNSW & IvfFlat).
-
-#### [HNSW](https://github.com/nmslib/hnswlib)
-
-The most popular ANN index - delivering good retrieval and QPS performance but using lot of RAM for it (did crash for 1 million vectors on my 16GB RAM machine).
-
-#### IvfFlat
-
-Less RAM hungry than HNSW. With caveats: ivfflat performance degrades as vectors are deleted and added.
-
-"As data gets inserted or deleted from the index, if the index is not rebuilt, the IVFFlat index in pgvector can return incorrect approximate nearest neighbors due to clustering centroids no longer fitting the data well"
-
-### [PGVectorScale](https://github.com/timescale/pgvectorscale)
-
-Extends PGVector with [diskann](https://github.com/microsoft/DiskANN) index which is designed to scale to billions of vectors - by smartly using RAM with fast disk storage (SSD / NVME).
-
-#### DiskANN
-
-A promising ANN index that uses disk (needs SSD), promising low RAM usage while still providing decent QPS. The problem is that the pgvectorscale index building implementation is [single core right now](https://github.com/timescale/pgvectorscale/issues/38) - leading to very long index generation times.
-
-PGVectorScale supports pre-filtering using bitfields with manual table setup (complicated / bad dev ux).
-
-### [VectorChord](https://github.com/tensorchord/VectorChord)
-
-#### vchordrq
-
-A custom ANN index with superior performance (combining IVF ANN index with RaBitQ quantization). Supports pre-filtering (easy to use).
-
-#### vchordg (DiskANN)
-
-A novel addition (not prodution ready yet): custom implementation of DiskANN index combined with RaBitQ quantization.
-
-- <https://blog.vectorchord.ai/vectorchord-05-new-rabitq-empowered-diskann-index-and-continuous-recall-measurement?source=more_articles_bottom_blogs>
 
 ## ANN Benchmark Results
 
