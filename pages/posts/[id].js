@@ -92,7 +92,9 @@ export default function Post({ postData, relatedPostCandidates, hasMorePosts }) 
     let processedContent = content.replace(
       /<h([1-6])>(.*?)<\/h[1-6]>/g,
       (match, level, text) => {
-        const id = text.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+        // Strip HTML tags from text before creating ID to match TableOfContents behavior
+        const rawText = text.replace(/<[^>]*>/g, '');
+        const id = rawText.toLowerCase().replace(/[^a-z0-9]+/g, '-');
         return `<h${level} id="${id}">${text}</h${level}>`;
       }
     );
