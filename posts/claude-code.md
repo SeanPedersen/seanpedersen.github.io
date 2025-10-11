@@ -28,7 +28,7 @@ Using GUI apps can make sense as they motivate writing longer and more detailed 
 
 ## Starting Projects
 
-It is recommended to use proven code base templates / example repositories that are correctly configured with all needed boilerplate for a project (based on a popular tech stack as mentioned before) - so that the code agents has a working starting point and can not fumble the project setup.
+It is recommended to use proven code base templates / example repositories that are correctly configured with all needed boilerplate for a project (based on a popular tech stack as mentioned before) - so that the code agents has a working starting point and can not fumble the project setup. Always aim to create tight evaluation / test loops where the agent can verify its progress on its own without you needing to hold hands.
 
 Vibe code project flow:
 - general idea with meta-prompt to act as app designer and to ask clarifying questions
