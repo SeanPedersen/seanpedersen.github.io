@@ -8,6 +8,7 @@ import TableOfContents from '../../components/TableOfContents'
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import ExpandableCodeBlock from '../../components/ExpandableCodeBlock'
+import 'prismjs/themes/prism-tomorrow.css';
 
 export async function getStaticProps({ params }) {
   const postData = await getPostData(params.id)
