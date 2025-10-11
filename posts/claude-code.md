@@ -295,6 +295,7 @@ Allows claude to fetch uptodate code documentation for your projects - greatly r
 ## References
 
 - <https://every.to/source-code/my-ai-had-already-fixed-the-code-before-i-saw-it>
+- <https://diwank.space/field-notes-from-shipping-real-code-with-claude>
 - <https://www.john-rush.com/posts/ai-20250701.html>
 - <https://www.youtube.com/watch?v=eIUYSC6SilA>
 - <https://www.anthropic.com/engineering/claude-code-best-practices>
