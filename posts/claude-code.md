@@ -49,15 +49,30 @@ The ideal use case for vibe coding is test driven development: write and verify 
 
 Use git working branches to start multiple sub-agents on the same code base.
 
+### Basic Commands
+
+- /clear: clear context (do it if you are stuck)
+- /compact: summarizes context (do it if stuck or long session)
+- /resume: resume last session
+- /context: show your usage
+
 ## Directing Claude
 
-By creating a file named CLAUDE.md in the root of a project, we can add custom prompts to claude to improve its performance tailored to our project needs. By creating context specific CLAUDE.md files also in subdirectories, we can provide more precise context - improving the performance (instead of one big project wide CLAUDE.md file). Run `/init` to load the claude.md file into the session.
+By creating a file named CLAUDE.md in the root of a project, we can add custom prompts to claude to improve its performance tailored to our project and workflow needs. By creating context specific CLAUDE.md files also in subdirectories, we can provide more precise context. By creating a dir ~/.claude/commands and creating markdown files like python.md, react.md or design.md, we can call them as custom commands in claude using /python, /react or /design - this allows us to add context specific instructions to claude boosting its performance (ideally claude would automatically inject prompts based on file types it is working with but I did not get this working yet...).
 
-**New Project Prompt**:
+**General CLAUDE.MD Prompt**:
 ```
 You are an expert software architect.
 Ask clarifying questions for unclear / ambiguous specs. If multiple implementations are possible, list them with up- and downsides.
 Sketch out which tech stack you plan to use (Programming languages, package managers, frameworks, etc.).
+
+Generate clean, easy to reason about, production-ready code following these patterns.
+
+Always use context7 when I need code generation, setup or configuration steps, or
+library/API documentation. This means you should automatically use the Context7 MCP
+tools to resolve library id and get library docs without me having to explicitly ask.
+
+Use the playwright MCP tools to debug frontend UI issues.
 ```
 
 **Designer Prompt**:
@@ -157,38 +172,27 @@ You are an expert Python developer with a preference for concise and expressive 
 
 - Keep functions pure (no side effects) if possible
 - Use early returns in functions to avoid deep nesting
-- Use type hints and a type checker ([ty](https://github.com/astral-sh/ty)) with pre-commit hooks
-- Use [ruff](https://github.com/astral-sh/ruff) - a fast linter / formatter
-- Use [pathlib](https://docs.python.org/3/library/pathlib.html#basic-use) module for dealing with file system paths
+- Use type hints and a type checker ty with pre-commit hooks
+- Use ruff - a fast linter / formatter
+- Use pathlib module for dealing with file system paths
 - No magic numbers (use expressive variable names e.g. waiting_time_ms)
-- Use [f-strings](https://docs.python.org/3/tutorial/inputoutput.html#formatted-string-literals) for formatting strings
+- Use f-strings for formatting strings
 - Validate variable types from external (untrustworthy) inputs, e.g. user input, web requests
   - try attrs and cattrs instead of pydantic
 - Use caching for heavy computations
-- Use [pytest](https://docs.pytest.org/en/stable/) for unit testing
-
-## Package Management
-
-Use [uv](https://github.com/astral-sh/uv) (preferred and popular) or [pixi](https://pixi.sh/latest/python/tutorial/) (can install conda packages - useful for GPU/CUDA stuff) for fast and sane package management.
+- Use pytest for unit testing
+- Always use uv for package management - install packages with uv add (do not edit pyproject.toml)
 
 ## Web Development
 
-- Use [FastAPI](https://fastapi.tiangolo.com/) to create clean and simple REST API's
-- Use [httpx](https://github.com/encode/httpx/) for network requests
+- Use fastapi to create clean and simple REST API's
+- Use httpx for network requests
 
 ## CLI
 
-- For creating CLI: [cyclopts](https://github.com/BrianPugh/cyclopts)
-- For formatting console output: [rich](https://github.com/Textualize/rich)
-- Progress bar: [tqdm](https://github.com/tqdm/tqdm)
-
-## Desktop Apps
-
-[PyTauri](https://github.com/pytauri/pytauri/)
-
-## Concurrency
-
-Python is a single threaded language with a Global Interpreter Lock (GIL). Meaning only multi-processing enables true concurrent execution. Multi-threading or async in Python only allows for concurrent IO operations (network / file system read and writes).
+- For creating CLI use cyclopts
+- For formatting console output use rich
+- Show progress of operatiosn using tqdm
 
 ### Multi-Processing
 
@@ -229,9 +233,7 @@ for number in read_large_file_good("huge_file.txt"):
 
 SQLite is built into Python and a powerful option to store and analyze relational data.
 
-When creating tables always use the STRICT keyword, to enfore type consistency on INSERT and UPDATE operations. This prevents ugly typing bugs that are possible - as Python does not guarantee type consistency at runtime.
-
-- <https://bigcodenerd.org/blog/sqlite-type-checking-gochas/>
+When creating tables always use the STRICT keyword, to enfore type consistency on INSERT and UPDATE operations.
 
 ## Postgres
 
@@ -239,17 +241,15 @@ Postgres is very versatile and powerful DBMS. Use it with [psycopg](https://gith
 
 ## Docker
 
-Bundle your apps and make them reproducible using docker (for uv or pixi).
+Bundle your apps and make them reproducible using docker with uv.
 
 ## Logging
 
-Use [loguru](https://github.com/Delgan/loguru) (comes with a multi-processing queue that just works)
+Use loguru - comes with a multi-processing queue that just works
 
 ## Performance
 
-Use a profiler ([pyinstrument](https://github.com/joerick/pyinstrument)) to find slow or RAM consuming code paths.
-
-Use C / C++ / Rust / Zig etc. for performance critical code or try [PyPy](https://pypy.org/) and [Cython](https://cython.org/) first.
+Use a profiler like pyinstrument to find slow or RAM consuming code paths.
 
 Generate clean, easy to reason about, production-ready code following these patterns.
 ``````
@@ -271,7 +271,7 @@ Allows claude to use a web browser to test and debug webapps.
 
 ### Code Documentation
 
-Allows claude to fetch uptodate code documentation for your projects.
+Allows claude to fetch uptodate code documentation for your projects - greatly reduces hallucinations.
 
 - [**Ref Tools**](https://ref.tools/)
 
