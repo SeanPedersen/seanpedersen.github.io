@@ -161,7 +161,7 @@ const useStore = create<Store>()(
 - Add JSDoc comments for complex functions
 - Maintain consistent formatting and structure
 
-Generate clean, easy to reason about, production-ready code following these patterns.
+Generate clean, secure, easy to reason about, production-ready code following these patterns.
 ``````
 
 **Python Prompt**:
@@ -251,7 +251,7 @@ Use loguru - comes with a multi-processing queue that just works
 
 Use a profiler like pyinstrument to find slow or RAM consuming code paths.
 
-Generate clean, easy to reason about, production-ready code following these patterns.
+Generate clean, secure, easy to reason about, production-ready code following these patterns.
 ``````
 
 **Security Analyst Prompt**:
