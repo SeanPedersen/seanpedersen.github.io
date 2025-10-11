@@ -265,7 +265,7 @@ Allows claude to use a web browser to test and debug webapps.
 
 [**Playwright**](https://github.com/microsoft/playwright)
 
-`mcp add playwright npx '@playwright/mcp@latest'`
+`claude mcp add playwright npx '@playwright/mcp@latest'`
 
 **Puppeteer**
 
@@ -277,7 +277,7 @@ Allows claude to fetch uptodate code documentation for your projects.
 
 - [**Context 7**](https://github.com/upstash/context7)
 
-`mcp add context7 -- npx -y @upstash/context7-mcp`
+`claude mcp add context7 -- npx -y @upstash/context7-mcp`
 
 ### Web Search
 
