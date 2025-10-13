@@ -75,7 +75,7 @@ Always use context7 when I need code generation, setup or configuration steps, o
 library/API documentation. This means you should automatically use the Context7 MCP
 tools to resolve library id and get library docs without me having to explicitly ask.
 
-Use the playwright MCP tools to debug frontend UI issues.
+Use the playwright MCP tools to debug UI issues in web apps.
 
 Use the Exa MCP to search for relevant blog articles when planning complex features.
 ```
