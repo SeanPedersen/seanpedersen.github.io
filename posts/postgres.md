@@ -99,9 +99,9 @@ Citus extension enables sharding—distributing data across multiple PostgreSQL 
 
 Schema-based sharding in Citus 12+ simplifies multi-tenant architectures. Each tenant gets a dedicated schema: `CREATE SCHEMA tenant_1`. Tables created in distributed schemas automatically shard by schema. This enables tenant isolation, per-tenant backups and straightforward migrations. Set `search_path TO tenant_1` to route queries to specific tenants.
 
-## Full-text search with tsvector and specialized indexes
+## Full-text Search (tsvector)
 
-PostgreSQL's built-in full-text search provides linguistic capabilities competitive with Elasticsearch for datasets under 5 million records. Full-text search converts documents into **tsvector** data types containing normalized lexemes with positional information, then matches against **tsquery** search queries. Linguistic processing includes stemming (running → run), stop word removal (the and, is) and language-specific dictionaries across 29+ languages including English, German, French and Spanish.
+PostgreSQL's built-in full-text search provides text search capabilities competitive with Elasticsearch for datasets under 5 million records. Full-text search converts documents into **tsvector** data types containing normalized lexemes with positional information, then matches against **tsquery** search queries. Linguistic processing includes stemming (running → run), stop word removal (the and, is) and language-specific dictionaries across 29+ languages including English, German, French and Spanish.
 
 Create tsvector columns using generated columns (PostgreSQL 12+) for automatic maintenance: `search_vector tsvector GENERATED ALWAYS AS (to_tsvector('english', coalesce(title, '') || ' ' || coalesce(body, ''))) STORED`. This pre-computes normalized lexemes, avoiding expensive on-the-fly computation during queries. Weight different fields using `setweight()` to prioritize titles over body text:
 
@@ -134,7 +134,7 @@ Advanced features include phrase searches with `phraseto_tsquery()`, prefix matc
 
 There are multiple powerful extensions for vector similarity search for Postgres - check out [this article](https://seanpedersen.github.io/posts/vector-databases) for an overview with benchmark.
 
-## Geospatial queries with PostGIS
+## Geospatial Queries (PostGIS)
 
 [PostGIS](https://postgis.net/) extends PostgreSQL with comprehensive geographic information system capabilities. Install with `CREATE EXTENSION postgis`, enabling spatial data types, measurement functions and specialized indexes. PostGIS 3.5+ requires PostgreSQL 12+ with GEOS 3.8+ and PROJ 6.1+ for full functionality. Recent versions introduced improvements like ST_CoverageClean for topology operations and enhanced SFCGAL support for 3D geometries.
 
