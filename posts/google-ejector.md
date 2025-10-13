@@ -79,7 +79,7 @@ Github / Gitlab / Bitbucket:
 
 ## Export All Your Google Data
 
-...using <https://takeout.google.com/> and delete your account.
+...using <https://takeout.google.com/> (optional for Google Photos: [GooglePhotosTakeoutHelper](https://github.com/TheLastGimbus/GooglePhotosTakeoutHelper)) and delete your account.
 
 ### Converting Google Docs files to Markdown
 
