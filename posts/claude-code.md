@@ -24,6 +24,7 @@ Now you can ask claude about the project or instruct it to implement a new featu
 Using GUI apps can make sense as they motivate writing longer and more detailed prompts.
 
 - Desktop app: <https://opcode.sh/>
+- Desktop app (for subagents): <https://github.com/generalaction/emdash>
 - Mobile app: <https://happy.engineering/>
 
 ## Starting Projects
@@ -62,7 +63,7 @@ By creating a file named CLAUDE.md in ~/.claude/CLAUDE.md we can add system wide
 
 By creating a dir ~/.claude/commands and creating markdown files like python.md, react.md or design.md, we can call them as custom commands in claude using /python, /react or /design - this allows us to add context specific instructions to claude boosting its performance (ideally claude would automatically inject prompts based on file types it is working with but I did not get this working yet...).
 
-**General CLAUDE.MD Prompt**:
+**General CLAUDE.md Prompt**:
 ```
 You are an expert software architect.
 Ask clarifying questions for unclear / ambiguous specs. If multiple implementations are possible, list them with up- and downsides.
@@ -75,6 +76,8 @@ library/API documentation. This means you should automatically use the Context7 
 tools to resolve library id and get library docs without me having to explicitly ask.
 
 Use the playwright MCP tools to debug frontend UI issues.
+
+Use the Exa MCP to search for relevant blog articles when planning complex features.
 ```
 
 **Designer Prompt**:
@@ -198,7 +201,7 @@ You are an expert Python developer with a preference for concise and expressive 
 
 ### Multi-Processing
 
-Use [joblib](https://joblib.readthedocs.io/en/stable/index.html) for sane multi-processing. Note that multi-processing should only be used to parallelize very CPU heavy tasks, since the overhead of starting processes is very high (always benchmark).
+Use joblib for sane multi-processing. Note that multi-processing should only be used to parallelize very CPU heavy tasks, since the overhead of starting processes is very high (always benchmark).
 
 ```python
 from math import sqrt
@@ -239,11 +242,11 @@ When creating tables always use the STRICT keyword, to enfore type consistency o
 
 ## Postgres
 
-Postgres is very versatile and powerful DBMS. Use it with [psycopg](https://github.com/psycopg/psycopg) and a docker image.
+Postgres is very versatile and powerful DBMS. Install Python package using "psycopg[binary,pool]" and setup the DB using a docker image.
 
 ## Docker
 
-Bundle your apps and make them reproducible using docker with uv.
+Bundle your apps and make them reproducible using docker with uv or pixi.
 
 ## Logging
 
