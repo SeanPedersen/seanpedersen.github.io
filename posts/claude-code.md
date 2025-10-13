@@ -58,7 +58,9 @@ Use git working branches to start multiple sub-agents on the same code base.
 
 ## Directing Claude
 
-By creating a file named CLAUDE.md in the root of a project, we can add custom prompts to claude to improve its performance tailored to our project and workflow needs. By creating context specific CLAUDE.md files also in subdirectories, we can provide more precise context. By creating a dir ~/.claude/commands and creating markdown files like python.md, react.md or design.md, we can call them as custom commands in claude using /python, /react or /design - this allows us to add context specific instructions to claude boosting its performance (ideally claude would automatically inject prompts based on file types it is working with but I did not get this working yet...).
+By creating a file named CLAUDE.md in ~/.claude/CLAUDE.md we can add system wide instructions (should be general workflow oriented), add CLAUDE.md also in the root of a project, to add custom prompts to providing relevant context for the project. By creating context specific CLAUDE.md files also in subdirectories, we can provide more precise context.
+
+By creating a dir ~/.claude/commands and creating markdown files like python.md, react.md or design.md, we can call them as custom commands in claude using /python, /react or /design - this allows us to add context specific instructions to claude boosting its performance (ideally claude would automatically inject prompts based on file types it is working with but I did not get this working yet...).
 
 **General CLAUDE.MD Prompt**:
 ```
@@ -282,6 +284,8 @@ Allows claude to fetch uptodate code documentation for your projects - greatly r
 ### Web Search
 
 [Exa Search](https://exa.ai/search): <https://github.com/exa-labs/exa-mcp-server>
+
+`claude mcp add exa -e EXA_API_KEY=YOUR_API_KEY -- npx -y exa-mcp-server`
 
 ### Knowledge Base
 
