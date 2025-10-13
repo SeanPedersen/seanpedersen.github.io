@@ -290,6 +290,14 @@ Allows claude to fetch uptodate code documentation for your projects - greatly r
 
 `claude mcp add exa -e EXA_API_KEY=YOUR_API_KEY -- npx -y exa-mcp-server`
 
+## Github
+
+(not an MCP just a CLI tool that claude can use)
+
+Enter into claude: `/install-github-app` and follow instructions (install and authenticate)
+
+Now you can instruct claude to work on github issues (read or create).
+
 ### Knowledge Base
 
 [Graphiti](https://github.com/getzep/graphiti): <https://github.com/getzep/graphiti/blob/main/mcp_server/README.md>
