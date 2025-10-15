@@ -314,6 +314,7 @@ Now you can instruct claude to work on github issues (read or create).
 
 - <https://diwank.space/field-notes-from-shipping-real-code-with-claude>
 - <https://every.to/source-code/my-ai-had-already-fixed-the-code-before-i-saw-it>
+- <https://steipete.me/posts/just-talk-to-it>
 - <https://www.john-rush.com/posts/ai-20250701.html>
 - <https://www.youtube.com/watch?v=eIUYSC6SilA>
 - <https://www.anthropic.com/engineering/claude-code-best-practices>
