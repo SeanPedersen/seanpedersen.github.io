@@ -63,6 +63,8 @@ By creating a file named CLAUDE.md in ~/.claude/CLAUDE.md we can add system wide
 
 By creating a dir ~/.claude/commands and creating markdown files like python.md, react.md or design.md, we can call them as custom commands in claude using /python, /react or /design - this allows us to add context specific instructions to claude boosting its performance (ideally claude would automatically inject prompts based on file types it is working with but I did not get this working yet...).
 
+Try to avoid negative rules like "do not use random data to test the environment" as current AI systems have a hard time to follow these kind of instructions. Instead formulate it positively: "use deterministic (rule based) data to the test the environment". This way the LLM will not have the thing you are trying to avoid in its context.
+
 **General CLAUDE.md Prompt**:
 ```
 You are an expert software architect.
