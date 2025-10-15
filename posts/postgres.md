@@ -26,7 +26,7 @@ Performance monitoring through SQL queries provides operational visibility. Chec
 
 ## Vertical Scaling (bigger server)
 
-Correct hardware selection establishes the foundation for PostgreSQL performance. Modern PostgreSQL scales effectively across 64+ CPU cores for read workloads and approximately 20 cores for write-heavy operations. **NVMe storage delivers 2.4-3x faster query performance than network-attached storage**, with sub-millisecond latency compared to 1-3ms for SATA SSDs. A $600 NVMe drive provides 2.5 million IOPS—equivalent to cloud storage costing $1.3 million monthly. Configure `random_page_cost = 1.0` for SSDs instead of the default 4.0 calibrated for spinning disks and set `effective_io_concurrency = 200` for NVMe to enable parallel I/O operations.
+Correct hardware selection establishes the foundation for PostgreSQL performance. Modern PostgreSQL scales effectively across 64+ CPU cores for read workloads and ~20 cores for write-heavy operations. **NVMe storage delivers 2.4-3x faster query performance than network-attached storage**, with sub-millisecond latency compared to 1-3ms for SATA SSDs. A $600 NVMe drive provides 2.5 million IOPS—equivalent to cloud storage costing $1.3 million monthly. Configure `random_page_cost = 1.0` for SSDs instead of the default 4.0 calibrated for spinning disks and set `effective_io_concurrency = 200` for NVMe to enable parallel I/O operations.
 
 Memory configuration represents the highest-impact tuning area. Set `shared_buffers` to 25% of total RAM as a starting point, maximum 40% on dedicated database servers. Beyond 40%, diminishing returns appear because PostgreSQL relies on the operating system's page cache as a second layer of caching. A 64GB RAM system typically performs best with 16GB shared_buffers. Enable huge pages (`huge_pages = on`) when shared_buffers exceeds 8GB to reduce page table overhead.
 
@@ -42,8 +42,23 @@ Run pgbench to eval server performance quickly.
 
 ```bash
 sudo -u postgres psql -c "CREATE DATABASE testdb;"
-sudo -u postgres pgbench -i -s 10 testdb
-sudo -u postgres pgbench -c 10 -j 2 -T 60 testdb
+sudo -u postgres pgbench -i -s 10 testdb  # -s 10 = 10M rows
+sudo -u postgres pgbench -c 10 -j 2 -T 60 testdb # -c clients, -j threads, -T duration(sec)
+```
+
+## TABLESPACE
+
+TABLESPACE maps tables and indexes to specific storage volumes - useful for placing hot data on NVMe and archival data on cheaper disks (reduce costs and optimize performance).
+
+Create new tablespace:
+```sql
+CREATE TABLESPACE fastssd LOCATION '/mnt/hetzner-volume';
+```
+
+Move existing table and index to tablespace:
+```sql
+ALTER TABLE table_name SET TABLESPACE fastssd;
+ALTER INDEX table_name_idx SET TABLESPACE fastssd;
 ```
 
 ## Table Partitioning Strategies
