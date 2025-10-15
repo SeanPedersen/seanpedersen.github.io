@@ -4,9 +4,11 @@ date: '2025-10-13'
 ---
 Postgres is an open-source "eierlegende Wollmilchsau" relational DBMS - which means it is capable of lots of things: spanning advanced search capabilities for text, vectors and geographic data and optimizations like partitioning and sharding. Understanding these optimization techniques can transform a moderately performing database into a high-performance system handling millions of queries per second with sub-millisecond latency.
 
-Modern PostgreSQL deployments benefit from a holistic approach: vertical scaling through careful hardware selection and memory parameter tuning provides the foundation, while partitioning strategies enable efficient management of massive tables exceeding hundreds of gigabytes. Horizontal scaling through replication and connection pooling extends capacity beyond single-server limits. Finally, specialized search capabilities—full-text search with GIN indexes, vector similarity search via pgvector and geospatial queries through PostGIS - deliver domain-specific performance improvements of 100-400x over naive implementations.
+Modern PostgreSQL deployments benefit from a holistic approach: vertical scaling through careful hardware selection and memory parameter tuning provides the foundation, while partitioning strategies enable efficient management of massive tables exceeding hundreds of gigabytes. Horizontal scaling through replication and connection pooling extends capacity beyond single-server limits. 
 
-The key insight: PostgreSQL's extensibility means you rarely need external systems. Properly optimized PostgreSQL can handle workloads traditionally reserved for specialized databases like Elasticsearch, vector databases or GIS systems. This reduces operational complexity while maintaining ACID guarantees and familiar SQL interfaces.
+The transformation of PostgreSQL from general-purpose database to specialized search engine happens through extensions like PostGIS and PGVector. The key insight: PostgreSQL's extensibility means you rarely need external systems. Properly optimized PostgreSQL can handle workloads traditionally reserved for specialized databases like Elasticsearch, vector databases or GIS systems. This reduces operational complexity while maintaining ACID guarantees and familiar SQL interfaces.
+
+Modern PostgreSQL deployments demonstrate remarkable scalability: being used by major players like OpenAI, Spotify and Netflix to power mission-critical workloads that demand both high throughput and strong consistency. Its advanced replication features, such as logical and streaming replication, allow organizations to scale reads horizontally and maintain near-zero downtime during upgrades.
 
 ## Database Maintenance
 
@@ -24,7 +26,9 @@ Essential psql commands streamline database administration. Use `\dt+` to list t
 
 Performance monitoring through SQL queries provides operational visibility. Check buffer cache hit ratios—values below 99% indicate insufficient `shared_buffers` or queries scanning too much data. Monitor index usage with `pg_stat_user_indexes` to identify unused indexes consuming disk space and write performance. Track query performance with the `pg_stat_statements` extension, which aggregates statistics across query patterns.
 
-## Vertical Scaling (bigger server)
+## Scaling & Optimisations
+
+### Vertical Scaling (bigger server)
 
 Correct hardware selection establishes the foundation for PostgreSQL performance. Modern PostgreSQL scales effectively across 64+ CPU cores for read workloads and ~20 cores for write-heavy operations. **NVMe storage delivers 2.4-3x faster query performance than network-attached storage**, with sub-millisecond latency compared to 1-3ms for SATA SSDs. A $600 NVMe drive provides 2.5 million IOPS—equivalent to cloud storage costing $1.3 million monthly. Configure `random_page_cost = 1.0` for SSDs instead of the default 4.0 calibrated for spinning disks and set `effective_io_concurrency = 200` for NVMe to enable parallel I/O operations.
 
@@ -36,7 +40,7 @@ Configure `maintenance_work_mem` to 5% of total RAM, typically 1-2GB. This accel
 
 Parallel query execution multiplies CPU utilization for analytical workloads. Configure `max_worker_processes` to match CPU core count, setting the pool from which all parallel workers draw. Set `max_parallel_workers_per_gather` to 4-8 for mixed workloads or 8-16 for pure analytics. A 16-core system handling data warehouse queries might configure: `max_worker_processes = 16`, `max_parallel_workers = 12`, `max_parallel_workers_per_gather = 8`. Real-world benchmarks show 400GB scans completing in 88 seconds with 10 parallel workers versus 290 seconds single-threaded—a **3.3x speedup**.
 
-### PGBench
+#### PGBench
 
 Run pgbench to eval server performance quickly.
 
@@ -46,7 +50,7 @@ sudo -u postgres pgbench -i -s 10 testdb  # -s 10 = 10M rows
 sudo -u postgres pgbench -c 10 -j 2 -T 60 testdb # -c clients, -j threads, -T duration(sec)
 ```
 
-## TABLESPACE
+#### TABLESPACE
 
 TABLESPACE maps tables and indexes to specific storage volumes - useful for placing hot data on NVMe and archival data on cheaper disks (reduce costs and optimize performance).
 
@@ -61,7 +65,7 @@ ALTER TABLE table_name SET TABLESPACE fastssd;
 ALTER INDEX table_name_idx SET TABLESPACE fastssd;
 ```
 
-## Table Partitioning Strategies
+### Table Partitioning Strategies
 
 Table partitioning divides large tables into smaller physical pieces while maintaining a single logical table interface. Partitioning becomes valuable when tables exceed 100GB and contain natural segmentation boundaries in query patterns. For example if the data in a table is frequently queried by a language id and the language association of items does not change frequently, it makes sense to partition the table by language id.
 
@@ -95,7 +99,7 @@ Partition maintenance requires automation. Use pg_partman extension for automati
 
 Performance benchmarks show partitioning trades increased write overhead for faster targeted queries. Range queries with proper partition pruning execute up to 10x faster by scanning only relevant partitions. Point queries incur 15-20% overhead due to planning complexity. Bulk loads run 20-25% slower with 400+ partitions due to partition switching costs. Optimize by loading data pre-sorted by partition key.
 
-## Horizontal Scaling (more servers)
+### Horizontal Scaling (more servers)
 
 Streaming replication provides the foundation for PostgreSQL horizontal scaling. The primary server continuously sends Write-Ahead Log (WAL) changes to standby servers, which replay transactions to maintain synchronized copies. Configure `wal_level = replica` and `max_wal_senders = 10` on the primary. Create a replication user with `CREATE ROLE replication_user WITH REPLICATION LOGIN`. Initialize standbys using `pg_basebackup` to clone the primary's data directory, then configure `primary_conninfo` pointing to the primary server.
 
@@ -124,7 +128,9 @@ Citus extension enables sharding—distributing data across multiple PostgreSQL 
 
 Schema-based sharding in Citus 12+ simplifies multi-tenant architectures. Each tenant gets a dedicated schema: `CREATE SCHEMA tenant_1`. Tables created in distributed schemas automatically shard by schema. This enables tenant isolation, per-tenant backups and straightforward migrations. Set `search_path TO tenant_1` to route queries to specific tenants.
 
-## Full-text Search (tsvector)
+## Search Capabilities
+
+### Full-Text Search (tsvector)
 
 PostgreSQL's built-in full-text search provides text search capabilities competitive with Elasticsearch for datasets under 5 million records. Full-text search converts documents into **tsvector** data types containing normalized lexemes with positional information, then matches against **tsquery** search queries. Linguistic processing includes stemming (running → run), stop word removal (the and, is) and language-specific dictionaries across 29+ languages including English, German, French and Spanish.
 
@@ -155,11 +161,11 @@ LIMIT 20;
 
 Advanced features include phrase searches with `phraseto_tsquery()`, prefix matching with `:*` operators and proximity searches with distance operators. Highlight matching terms in results using `ts_headline()` with custom start/stop delimiters. Configure multiple language dictionaries per database to support multilingual content, switching configurations per query.
 
-## Vector Search
+### Vector Search
 
 There are multiple powerful extensions for vector similarity search for Postgres - check out [this article](https://seanpedersen.github.io/posts/vector-databases) for an overview with benchmark.
 
-## Geospatial Queries (PostGIS)
+### Geospatial Queries (PostGIS)
 
 [PostGIS](https://postgis.net/) extends PostgreSQL with comprehensive geographic information system capabilities. Install with `CREATE EXTENSION postgis`, enabling spatial data types, measurement functions and specialized indexes. PostGIS 3.5+ requires PostgreSQL 12+ with GEOS 3.8+ and PROJ 6.1+ for full functionality. Recent versions introduced improvements like ST_CoverageClean for topology operations and enhanced SFCGAL support for 3D geometries.
 
@@ -200,21 +206,9 @@ Measurement functions calculate geometric properties. `ST_Area()` computes polyg
 
 Query optimization requires proper index usage and simplified geometries. Add bounding box pre-filters: `WHERE geom && ST_MakeEnvelope(xmin, ymin, xmax, ymax, 4326) AND ST_Intersects(geom, search_area)`. The `&&` operator performs fast bounding box overlap checks using the index before expensive geometric calculations. Use `ST_Centroid()` for approximate distance calculations on large polygons. Configure `random_page_cost = 1.0` for SSD storage and `effective_io_concurrency = 200` for NVMe.
 
-## Embedded (client-side)
+## Embedded (Testing / Client-side)
 
 Check out [PGLite](https://pglite.dev/) for a small embeddable WebAssembly version of Postgres - being a good alternative to SQLite and thus ideal for testing and client-side deployments of Postgres.
-
-## Optimization Synthesis
-
-PostgreSQL optimization requires layered approaches combining hardware selection, memory configuration, intelligent data organization and specialized search capabilities. Start with hardware: NVMe storage provides 2-3x performance gains, making it the single highest-impact upgrade. Configure memory parameters next: 25% RAM to shared_buffers, calculated work_mem based on connection count and 5% RAM to maintenance_work_mem. Enable parallel query execution for analytical workloads, setting max_parallel_workers_per_gather to 4-8 for mixed workloads.
-
-Implement partitioning when tables exceed 100GB and natural segmentation exists in query patterns. Range partition time-series data by month or quarter, enabling instant partition drops for expired data. Tune autovacuum aggressively - reduce scale factor to 0.01 for large tables and increase cost limit to 2000 on modern hardware. Monitor continuously with pg_stat_user_tables, addressing bloat before it impacts performance.
-
-Scale horizontally through streaming replication for read capacity and PgBouncer for connection multiplexing. Configure transaction-mode pooling to support 50x more client connections. Deploy specialized indexes for domain-specific queries: GIN indexes for full-text search, HNSW indexes for vector similarity and GiST indexes for geospatial operations. Each delivers 100-400x speedups over sequential scans when properly configured.
-
-The transformation of PostgreSQL from general-purpose database to specialized search engine happens through extensions. pgvector's recent improvements make PostgreSQL competitive with dedicated vector databases at 75% lower cost. PostGIS provides enterprise-grade GIS capabilities rivaling commercial alternatives. Full-text search handles millions of documents with sub-10ms latencies. This consolidation reduces operational complexity into one database, one backup strategy, one monitoring system - all while maintaining ACID guarantees and familiar SQL interfaces that specialized systems sacrifice.
-
-Modern PostgreSQL deployments demonstrate remarkable scalability: **Capital One serves 99.9% of transaction queries under 1ms** through partitioning and indexing. Cubbit manages terabyte-scale OLTP workloads through hash partitioning. Vector search implementations handle 50 million embeddings with sub-100ms latencies. These results emerge not from exotic configurations but from systematic application of core optimization principles: appropriate hardware, tuned memory parameters, intelligent partitioning, effective replication and specialized indexes matched to query patterns. PostgreSQL's extensibility means you rarely need to look beyond it.
 
 ## Useful Commands
 
