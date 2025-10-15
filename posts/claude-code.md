@@ -294,7 +294,7 @@ Allows claude to fetch uptodate code documentation for your projects - greatly r
 
 `claude mcp add exa -e EXA_API_KEY=YOUR_API_KEY -- npx -y exa-mcp-server`
 
-## Github
+### Github
 
 (not an MCP just a CLI tool that claude can use)
 
