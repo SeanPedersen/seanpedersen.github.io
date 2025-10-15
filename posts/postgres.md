@@ -2,7 +2,7 @@
 title: 'PostgreSQL Database'
 date: '2025-10-13'
 ---
-Postgres is an open-source "eierlegende Wollmilchsau" relational DBMS - which means it is capable of lots of things: spanning from memory tuning and partitioning strategies to advanced search capabilities for text, vectors and geographic data. Understanding these optimization techniques can transform a moderately performing database into a high-performance system handling millions of queries per second with sub-millisecond latency.
+Postgres is an open-source "eierlegende Wollmilchsau" relational DBMS - which means it is capable of lots of things: spanning advanced search capabilities for text, vectors and geographic data and optimizations like partitioning and sharding. Understanding these optimization techniques can transform a moderately performing database into a high-performance system handling millions of queries per second with sub-millisecond latency.
 
 Modern PostgreSQL deployments benefit from a holistic approach: vertical scaling through careful hardware selection and memory parameter tuning provides the foundation, while partitioning strategies enable efficient management of massive tables exceeding hundreds of gigabytes. Horizontal scaling through replication and connection pooling extends capacity beyond single-server limits. Finally, specialized search capabilities—full-text search with GIN indexes, vector similarity search via pgvector and geospatial queries through PostGIS - deliver domain-specific performance improvements of 100-400x over naive implementations.
 
@@ -35,6 +35,16 @@ The `work_mem` parameter controls memory for each query operation—sorts, hash 
 Configure `maintenance_work_mem` to 5% of total RAM, typically 1-2GB. This accelerates VACUUM, CREATE INDEX and bulk loading operations. Autovacuum uses a separate `autovacuum_work_mem` parameter—set this lower than maintenance_work_mem since multiple autovacuum workers run concurrently. Set `effective_cache_size` to 50-75% of total RAM to help the query planner understand total available cache memory (PostgreSQL + OS combined).
 
 Parallel query execution multiplies CPU utilization for analytical workloads. Configure `max_worker_processes` to match CPU core count, setting the pool from which all parallel workers draw. Set `max_parallel_workers_per_gather` to 4-8 for mixed workloads or 8-16 for pure analytics. A 16-core system handling data warehouse queries might configure: `max_worker_processes = 16`, `max_parallel_workers = 12`, `max_parallel_workers_per_gather = 8`. Real-world benchmarks show 400GB scans completing in 88 seconds with 10 parallel workers versus 290 seconds single-threaded—a **3.3x speedup**.
+
+### PGBench
+
+Run pgbench to eval server performance quickly.
+
+```bash
+sudo -u postgres psql -c "CREATE DATABASE testdb;"
+sudo -u postgres pgbench -i -s 10 testdb
+sudo -u postgres pgbench -c 10 -j 2 -T 60 testdb
+```
 
 ## Table Partitioning Strategies
 
@@ -190,6 +200,29 @@ Scale horizontally through streaming replication for read capacity and PgBouncer
 The transformation of PostgreSQL from general-purpose database to specialized search engine happens through extensions. pgvector's recent improvements make PostgreSQL competitive with dedicated vector databases at 75% lower cost. PostGIS provides enterprise-grade GIS capabilities rivaling commercial alternatives. Full-text search handles millions of documents with sub-10ms latencies. This consolidation reduces operational complexity into one database, one backup strategy, one monitoring system - all while maintaining ACID guarantees and familiar SQL interfaces that specialized systems sacrifice.
 
 Modern PostgreSQL deployments demonstrate remarkable scalability: **Capital One serves 99.9% of transaction queries under 1ms** through partitioning and indexing. Cubbit manages terabyte-scale OLTP workloads through hash partitioning. Vector search implementations handle 50 million embeddings with sub-100ms latencies. These results emerge not from exotic configurations but from systematic application of core optimization principles: appropriate hardware, tuned memory parameters, intelligent partitioning, effective replication and specialized indexes matched to query patterns. PostgreSQL's extensibility means you rarely need to look beyond it.
+
+## Useful Commands
+
+**Show sizes of all tables** + index + toast (The Oversized Attribute Storage Technique - used for long texts / json storage):
+
+```sql
+SELECT
+   relname as table_name,
+   pg_size_pretty(pg_total_relation_size(relid)) AS total_size,
+   pg_size_pretty(pg_indexes_size(relid)) AS index_size,
+   pg_size_pretty(pg_relation_size(relid)) AS data_size,
+   pg_size_pretty(pg_table_size(relid) - pg_relation_size(relid)) AS toast_size
+FROM pg_catalog.pg_statio_user_tables
+ORDER BY pg_total_relation_size(relid) DESC;
+```
+
+**Show active transactions:**
+
+```sql
+SELECT pid, usename, datname, application_name, client_addr, backend_xid, xact_start, query, state
+FROM pg_stat_activity
+WHERE backend_xid IS NOT NULL;
+```
 
 ## References
 
