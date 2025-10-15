@@ -266,6 +266,8 @@ Generate clean, secure, easy to reason about, production-ready code following th
 
 ## MCP Toolbox
 
+While MCP tools are cool they can also bloat your context (costing valuable tokens and increase context rot) as there API definitions are always in context - the github MCP for example is really bloated but the github CLI is working as well and LLM's already know how to use it properly. So only add really useful MCP servers.
+
 ### Browser support
 
 Allows claude to use a web browser to test and debug webapps.
