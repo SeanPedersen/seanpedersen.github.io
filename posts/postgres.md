@@ -130,7 +130,7 @@ Schema-based sharding in Citus 12+ simplifies multi-tenant architectures. Each t
 
 ## Search Capabilities
 
-### Full-Text Search (tsvector)
+### Full-Text Search
 
 PostgreSQL's built-in full-text search provides text search capabilities competitive with Elasticsearch for datasets under 5 million records. 
 
@@ -139,6 +139,8 @@ There are two complementary search modes:
 - Tokenized full-text search (tsvector/tsquery): language-aware matching with ranking based on term frequency and normalization. PostgreSQL provides TF‑IDF like ranking via `ts_rank` and cover-density via `ts_rank_cd`. This is not strict BM25, though it behaves similarly for many use cases. For exact BM25 scoring, consider extensions (e.g., RUM or PGroonga), otherwise `ts_rank` normalization options are typically sufficient.
 
 - Substring/fuzzy search (pg_trgm): fast substring, prefix and typo-tolerant matching using trigrams. This does not tokenize or stem; it matches character n-grams and is ideal for autocomplete, partial matches (`%term%`) and fuzzy lookups.
+
+#### Token Search (TF-IDF)
 
 Create tsvector columns using generated columns (PostgreSQL 12+) for automatic maintenance: `search_vector tsvector GENERATED ALWAYS AS (to_tsvector('english', coalesce(title, '') || ' ' || coalesce(body, ''))) STORED`. This pre-computes normalized lexemes, avoiding expensive on-the-fly computation during queries. Weight different fields using `setweight()` to prioritize titles over body text:
 
@@ -167,7 +169,7 @@ LIMIT 20;
 
 Advanced features include phrase searches with `phraseto_tsquery()`, prefix matching with `:*` operators and proximity searches with distance operators. Highlight matching terms in results using `ts_headline()` with custom start/stop delimiters. Configure multiple language dictionaries per database to support multilingual content, switching configurations per query.
 
-#### Substring / Fuzzy Search (pg_trgm + GIN/GiST)
+#### Substring / Fuzzy (trigram)
 
 Use pg_trgm when you need partial matches (`%term%`), autocomplete, or typo-tolerant search. It indexes character trigrams, not tokens, and works great alongside full-text search:
 
@@ -202,10 +204,10 @@ ORDER BY similarity(title, 'postgras') DESC
 LIMIT 20;
 
 -- Fast KNN if using GiST trigram index
--- SELECT id, title FROM documents ORDER BY title <-> 'postgres' LIMIT 20;
+SELECT id, title FROM documents ORDER BY title <-> 'postgres' LIMIT 20;
 
 -- Tune threshold (default ~0.3) to control fuzziness
--- SELECT set_limit(0.4);  -- session-level
+SELECT set_limit(0.4);  -- session-level
 ```
 
 When to choose which:
