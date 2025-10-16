@@ -132,7 +132,13 @@ Schema-based sharding in Citus 12+ simplifies multi-tenant architectures. Each t
 
 ### Full-Text Search (tsvector)
 
-PostgreSQL's built-in full-text search provides text search capabilities competitive with Elasticsearch for datasets under 5 million records. Full-text search converts documents into **tsvector** data types containing normalized lexemes with positional information, then matches against **tsquery** search queries. Linguistic processing includes stemming (running → run), stop word removal (the and, is) and language-specific dictionaries across 29+ languages including English, German, French and Spanish.
+PostgreSQL's built-in full-text search provides text search capabilities competitive with Elasticsearch for datasets under 5 million records. 
+
+There are two complementary search modes:
+
+- Tokenized full-text search (tsvector/tsquery): language-aware matching with ranking based on term frequency and normalization. PostgreSQL provides TF‑IDF like ranking via `ts_rank` and cover-density via `ts_rank_cd`. This is not strict BM25, though it behaves similarly for many use cases. For exact BM25 scoring, consider extensions (e.g., RUM or PGroonga), otherwise `ts_rank` normalization options are typically sufficient.
+
+- Substring/fuzzy search (pg_trgm): fast substring, prefix and typo-tolerant matching using trigrams. This does not tokenize or stem; it matches character n-grams and is ideal for autocomplete, partial matches (`%term%`) and fuzzy lookups.
 
 Create tsvector columns using generated columns (PostgreSQL 12+) for automatic maintenance: `search_vector tsvector GENERATED ALWAYS AS (to_tsvector('english', coalesce(title, '') || ' ' || coalesce(body, ''))) STORED`. This pre-computes normalized lexemes, avoiding expensive on-the-fly computation during queries. Weight different fields using `setweight()` to prioritize titles over body text:
 
@@ -143,7 +149,7 @@ search_vector tsvector GENERATED ALWAYS AS (
 ) STORED
 ```
 
-GIN (Generalized Inverted Index) indexes provide optimal full-text search performance, delivering **query speedups of 50-100x** compared to sequential scans. GIN indexes store an inverted index mapping each lexeme to matching document locations. Create with `CREATE INDEX idx_search ON documents USING GIN(search_vector)`. For read-heavy workloads, disable fastupdate: `CREATE INDEX idx_search ON documents USING GIN(search_vector) WITH (fastupdate = off)`. This trades slower writes for faster reads by eliminating the pending list that batches updates.
+**GIN on tsvector** provides optimal full-text search performance, delivering **query speedups of 50-100x** compared to sequential scans. GIN indexes store an inverted index mapping each lexeme to matching document locations. Create with `CREATE INDEX idx_search ON documents USING GIN(search_vector)`. For read-heavy workloads, disable fastupdate: `CREATE INDEX idx_search ON documents USING GIN(search_vector) WITH (fastupdate = off)`. This trades slower writes for faster reads by eliminating the pending list that batches updates.
 
 GiST indexes offer an alternative for write-heavy workloads. GiST builds tree structures with fixed-size document signatures, consuming less disk space and updating faster than GIN. However, GiST queries run approximately 3x slower and produce false positives requiring row rechecks. Choose GIN for most applications; reserve GiST for scenarios with severe write contention and limited disk space.
 
@@ -160,6 +166,52 @@ LIMIT 20;
 **Properly optimized PostgreSQL full-text search achieves 6-10ms query times on 1.5 million records**, competitive with Elasticsearch's 20ms on equivalent datasets. Keys to optimization include stored tsvector columns, GIN indexes with fastupdate disabled and appropriate weighting. Real-world implementations show fintech companies like Qonto migrating from Elasticsearch to PostgreSQL FTS to simplify their stack while maintaining similar performance.
 
 Advanced features include phrase searches with `phraseto_tsquery()`, prefix matching with `:*` operators and proximity searches with distance operators. Highlight matching terms in results using `ts_headline()` with custom start/stop delimiters. Configure multiple language dictionaries per database to support multilingual content, switching configurations per query.
+
+#### Substring / Fuzzy Search (pg_trgm + GIN/GiST)
+
+Use pg_trgm when you need partial matches (`%term%`), autocomplete, or typo-tolerant search. It indexes character trigrams, not tokens, and works great alongside full-text search:
+
+```sql
+-- Enable extension once per database
+CREATE EXTENSION IF NOT EXISTS pg_trgm;
+
+-- GIN trigram index: best for filtering ILIKE/LIKE/% similarity
+CREATE INDEX CONCURRENTLY idx_documents_title_trgm
+  ON documents USING GIN (title gin_trgm_ops);
+
+-- Optional: GiST trigram index if you need KNN ORDER BY <-> (nearest by similarity)
+-- CREATE INDEX CONCURRENTLY idx_documents_title_trgm_gist
+--   ON documents USING GIST (title gist_trgm_ops);
+```
+
+Common queries:
+
+```sql
+-- Substring match with ranking by similarity (works well with GIN)
+SELECT id, title
+FROM documents
+WHERE title ILIKE '%postgres%'
+ORDER BY similarity(title, 'postgres') DESC
+LIMIT 20;
+
+-- Fuzzy match using trigram similarity operator
+SELECT id, title
+FROM documents
+WHERE title % 'postgras'                 -- allows typos
+ORDER BY similarity(title, 'postgras') DESC
+LIMIT 20;
+
+-- Fast KNN if using GiST trigram index
+-- SELECT id, title FROM documents ORDER BY title <-> 'postgres' LIMIT 20;
+
+-- Tune threshold (default ~0.3) to control fuzziness
+-- SELECT set_limit(0.4);  -- session-level
+```
+
+When to choose which:
+- Use tsvector/tsquery (TF‑IDF-like ranking) for language-aware search, stemming, stop words and boolean/phrase queries.
+- Use pg_trgm for substring/prefix matches, fuzzy lookup and autocomplete. It does not stem or understand language but excels at partial matches.
+- Scaling: tsvector (TF‑IDF) generally scales better on large corpora (smaller, more selective indexes and lower write overhead). pg_trgm (trigram) indexes grow with text length and unique trigrams, can be much larger and heavier to maintain; prefer it for small/medium tables or short text fields (titles, usernames) and autocomplete.
 
 ### Vector Search
 
