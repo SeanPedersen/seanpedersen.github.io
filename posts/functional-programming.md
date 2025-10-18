@@ -86,6 +86,74 @@ You don't need to abandon your current programming language to try functional pr
 
 The transition takes practice, but the payoff is code that's easier to understand, test, and maintain. Your future self will thank you for the clarity. I can recommend [Erlang](https://seanpedersen.github.io/posts/erlang) and Elixir as functional programming languages (many prefer Elixir syntax).
 
+## Advanced Functional Concepts
+
+### Idempotence
+
+Idempotence means applying a function multiple times yields the same result as applying it once: f(f(x)) = f(x). Common examples include sorting, lowercasing, trimming and deduplication.
+
+```python
+def dedupe(seq):
+    # preserves order, duplicates removed
+    return list(dict.fromkeys(seq))
+
+xs = [3, 1, 3, 2]
+assert dedupe(dedupe(xs)) == dedupe(xs)
+
+def normalize_email(s):
+    return s.strip().lower()
+
+# normalize is idempotent
+assert normalize_email(normalize_email("  Foo@Bar.COM ")) == normalize_email("  Foo@Bar.COM ")
+```
+
+Note: idempotence also applies to effects. In HTTP, PUT is designed to be idempotent (repeating the same PUT yields the same state), while POST generally is not.
+
+### Referential Transparency
+
+An expression is referentially transparent if it can be replaced by its value without changing program behavior. This property enables safe refactoring, caching, and equational reasoning.
+
+```python
+def area(r):  # pure
+    return 3.14159 * r * r
+
+# Any occurrence of area(2) can be replaced with its numeric value.
+```
+
+### Function Composition and Pipelines
+
+Small pure functions compose into larger ones.
+
+```python
+from functools import reduce
+
+def compose(*fns):
+    return reduce(lambda f, g: lambda x: f(g(x)), fns)
+
+def strip(s): return s.strip()
+def lower(s): return s.lower()
+def dedupe_ws(s): return " ".join(s.split())
+
+normalize = compose(dedupe_ws, lower, strip)
+assert normalize("  Hello   WORLD ") == "hello world"
+```
+
+### Effects at the Boundary
+
+Keep core logic pure; perform I/O at the edges.
+
+```python
+def transform(data):  # pure
+    return [x * 2 for x in data if x % 2 == 0]
+
+def main(path_in, path_out):  # impure shell
+    with open(path_in) as f:
+        nums = [int(line) for line in f]
+    out = transform(nums)
+    with open(path_out, "w") as f:
+        f.write("\n".join(map(str, out)))
+```
+
 ## Conclusion
 
 Functional programming offers a different way to think about code. By focusing on pure functions and immutable data, you can write programs that are more predictable and easier to reason about. The paradigm won't solve every problem, but it provides valuable tools for managing complexity in software development.
