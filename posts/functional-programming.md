@@ -120,24 +120,6 @@ def area(r):  # pure
 # Any occurrence of area(2) can be replaced with its numeric value.
 ```
 
-### Function Composition and Pipelines
-
-Small pure functions compose into larger ones.
-
-```python
-from functools import reduce
-
-def compose(*fns):
-    return reduce(lambda f, g: lambda x: f(g(x)), fns)
-
-def strip(s): return s.strip()
-def lower(s): return s.lower()
-def dedupe_ws(s): return " ".join(s.split())
-
-normalize = compose(dedupe_ws, lower, strip)
-assert normalize("  Hello   WORLD ") == "hello world"
-```
-
 ### Effects at the Boundary
 
 Keep core logic pure; perform I/O at the edges.
