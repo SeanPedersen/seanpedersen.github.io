@@ -163,6 +163,37 @@ export default function Post({ postData, relatedPostCandidates, hasMorePosts }) 
     <Layout title={postData.title}>
       <Head>
         <title>{postData.title}</title>
+        <link rel="canonical" href={`https://seanpedersen.github.io/posts/${postData.id}`} />
+        <meta name="description" content={postData.contentHtml.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 160)} />
+        <meta name="keywords" content={(postData.tags || []).join(', ')} />
+
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content={postData.title} />
+        <meta property="og:description" content={postData.contentHtml.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 160)} />
+        <meta property="og:url" content={`https://seanpedersen.github.io/posts/${postData.id}`} />
+        <meta property="og:image" content="https://seanpedersen.github.io/images/sierpinski-twitter-square.png" />
+
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content={postData.title} />
+        <meta name="twitter:description" content={postData.contentHtml.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 160)} />
+        <meta name="twitter:image" content="https://seanpedersen.github.io/images/sierpinski-twitter-square.png" />
+
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Article',
+              headline: postData.title,
+              datePublished: postData.date,
+              dateModified: postData.date,
+              author: [{ '@type': 'Person', name: 'Sean Pedersen' }],
+              mainEntityOfPage: `https://seanpedersen.github.io/posts/${postData.id}`,
+              image: ['https://seanpedersen.github.io/images/sierpinski-twitter-square.png'],
+              description: postData.contentHtml.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 160)
+            })
+          }}
+        />
       </Head>
       <div className={`${styles.main} ${styles.postPage} ${!hasTableOfContents ? styles.noToc : ''}`}>
         {hasTableOfContents && (
