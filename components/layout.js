@@ -18,11 +18,11 @@ export default function Layout({ children, home, title }) {
         />
         <meta
           property="og:image"
-          content="/images/sierpinski-twitter-square.png"
+          content="https://seanpedersen.github.io/images/sierpinski-twitter-square.png"
         />
         <meta name="og:title" content={title || siteTitle} />
         <meta name="twitter:card" content="summary" />
-        <meta name="twitter:image" content="/images/sierpinski-twitter-square.png" />
+        <meta name="twitter:image" content="https://seanpedersen.github.io/images/sierpinski-twitter-square.png" />
         <link rel="alternate" type="application/rss+xml" href="/rss.xml" title="RSS Feed" />
       </Head>
       <header className={styles.header}>
