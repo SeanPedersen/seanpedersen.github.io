@@ -82,7 +82,7 @@ Check out the code [here](https://github.com/SeanPedersen/vector-db-benchmark/tr
 
 ## Conclusion
 
-VectorChord is the clear winner - providing superior performance and better developer experience (pre-filtering and better defaul settings). The vchordrq index is for most use cases the ideal choice as it delivers great performance and handles data distribution drift better than diskann indices. Using an ANN index only starts to make sense for huge numbers of vectors (over 10 million).
+VectorChord is the clear winner - providing superior performance and better developer experience (pre-filtering and better defaul settings). The vchordrq index is for most use cases the ideal choice as it delivers great performance and handles data distribution drift better than diskann indices. Using an ANN index only starts to make sense for big numbers of vectors (over 1 million).
 
 ## References
 
