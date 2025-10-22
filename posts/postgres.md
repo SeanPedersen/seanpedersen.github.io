@@ -260,9 +260,9 @@ Measurement functions calculate geometric properties. `ST_Area()` computes polyg
 
 Query optimization requires proper index usage and simplified geometries. Add bounding box pre-filters: `WHERE geom && ST_MakeEnvelope(xmin, ymin, xmax, ymax, 4326) AND ST_Intersects(geom, search_area)`. The `&&` operator performs fast bounding box overlap checks using the index before expensive geometric calculations. Use `ST_Centroid()` for approximate distance calculations on large polygons. Configure `random_page_cost = 1.0` for SSD storage and `effective_io_concurrency = 200` for NVMe.
 
-## Embedded (Testing / Client-side)
+## Embedded (Testing)
 
-Check out [PGLite](https://pglite.dev/) for a small embeddable WebAssembly version of Postgres - being a good alternative to SQLite and thus ideal for testing and client-side deployments of Postgres.
+Check out [PGLite](https://pglite.dev/) for a small embeddable WebAssembly version of Postgres - being a good alternative to SQLite and thus ideal for testing and client-side deployments of Postgres (with the limitation of accepting only one connection though).
 
 ## Useful Commands
 
