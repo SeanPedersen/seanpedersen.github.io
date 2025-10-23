@@ -36,3 +36,5 @@ The technology behind Bitcoin (blockchain) is legit and might lead us to a decen
 
 - (1) <https://coinlaw.io/how-many-people-own-bitcoin/>
 - (2) <https://coinledger.io/research/how-much-bitcoin-is-lost>
+
+#idea
