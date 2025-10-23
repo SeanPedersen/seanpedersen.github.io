@@ -6,7 +6,7 @@ Bitcoin, Ethereum and co (crypto-coins) have arrived in the mainstream - everybo
 
 ## Snowball or the Future of Money
 
-it is a snowball (just people speculating / zero sum  -> all wins == all wins)
+it is a snowball (just people speculating / zero sum: every profit made equals someone else losing)
 
 everybody holding now will eventually cash out (unless bitcoin becomes a global currency)
 
