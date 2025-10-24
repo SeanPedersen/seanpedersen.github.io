@@ -71,7 +71,7 @@ You are an expert software architect.
 Ask clarifying questions for unclear / ambiguous specs. If multiple implementations are possible, list them with up- and downsides.
 Sketch out which tech stack you plan to use (Programming languages, package managers, frameworks, etc.).
 
-Generate clean, easy to reason about, production-ready code following these patterns.
+Generate clean, easy to reason about, production-ready code following these patterns. Always strive to create closed loop jobs that can be verified using a test case (either code or using playwright MCP).
 
 Always use context7 when I need code generation, setup or configuration steps, or
 library/API documentation. This means you should automatically use the Context7 MCP
@@ -80,6 +80,461 @@ tools to resolve library id and get library docs without me having to explicitly
 Use the playwright MCP tools to debug UI issues in web apps.
 
 Use the Exa MCP to search for relevant blog articles when planning complex features.
+```
+
+**Simplification Cascade**:
+```
+# Simplification Cascade Skill
+
+## Purpose
+This skill helps identify when code is unnecessarily complex and guides the refactoring process to find elegant abstractions that eliminate duplication and reduce cognitive load.
+
+## When to Invoke
+- Multiple similar implementations of the same concept exist
+- Code has too many special cases and exceptions
+- Complicated conditional logic with many branches
+- Repetitive patterns across different parts of the codebase
+- User asks to simplify, refactor, or optimize code
+- Performance issues due to redundant logic
+- Difficulty adding new features due to code complexity
+
+## Core Philosophy
+
+**The Central Question:** "What if all these seemingly different things are actually the same thing, viewed from a different perspective?"
+
+Instead of managing multiple separate implementations, find the unified concept that encompasses them all.
+
+## Pattern Recognition
+
+### Red Flags Indicating Need for Simplification
+
+1. **Multiple Implementations of Similar Concepts**
+   - Three different validation functions doing similar checks
+   - Separate managers for similar data types (UserManager, ProductManager, OrderManager)
+   - Duplicate UI components with slight variations
+
+2. **Special Case Proliferation**
+   - Lots of `if (specialCase)` branches
+   - Multiple exception handlers for similar scenarios
+   - Hardcoded values for different contexts
+
+3. **Complex Conditional Logic**
+   - Deeply nested if/else statements
+   - Long switch statements with similar cases
+   - Boolean flags controlling behavior
+
+4. **Violation of DRY (Don't Repeat Yourself)**
+   - Copy-pasted code with minor modifications
+   - Similar functions with different names
+   - Redundant data transformations
+
+## The Simplification Cascade Process
+
+### Phase 1: Discovery
+**Objective:** Find all instances of the complex pattern
+
+**Steps:**
+1. Scan codebase for similar implementations
+2. List all variations of the pattern
+3. Note the differences between each implementation
+4. Identify the context where each is used
+5. Map dependencies and relationships
+
+**Output:**
+```
+## Pattern Instances Found
+
+1. **[Pattern Name 1]**
+   - Location: [file:line]
+   - Purpose: [what it does]
+   - Complexity: [lines of code, cyclomatic complexity]
+   
+2. **[Pattern Name 2]**
+   - Location: [file:line]
+   - Purpose: [what it does]
+   - Complexity: [lines of code, cyclomatic complexity]
+
+[Continue for all instances...]
+```
+
+### Phase 2: Essence Extraction
+**Objective:** Find the common core concept
+
+**Steps:**
+1. Strip away all implementation details
+2. Identify the essential purpose (the "what" not the "how")
+3. Find the invariants (what never changes)
+4. Note the variants (what does change)
+5. Look for the unifying abstraction
+
+**Guiding Questions:**
+- What is the fundamental problem being solved?
+- What stays the same across all implementations?
+- What varies between implementations?
+- Is the variation in data, behavior, or both?
+- Can the variation be represented as data/configuration?
+
+**Output:**
+```
+## Essence Analysis
+
+**Core Concept:** [The unified idea]
+
+**Invariants (Never Changes):**
+- [Thing 1]
+- [Thing 2]
+
+**Variants (Changes Between Implementations):**
+- [Difference 1]: [How it varies]
+- [Difference 2]: [How it varies]
+
+**Unifying Abstraction:** [The single concept that encompasses all cases]
+```
+
+### Phase 3: Pattern Design
+**Objective:** Design the simplified solution
+
+**Steps:**
+1. Create a single abstraction that handles all cases
+2. Use composition over inheritance where possible
+3. Make variants configurable through data/parameters
+4. Design clear, minimal interfaces
+5. Consider extensibility for future cases
+6. Plan for backward compatibility if needed
+
+**Design Principles:**
+- **Single Responsibility:** Each component does one thing well
+- **Open/Closed:** Open for extension, closed for modification
+- **Dependency Inversion:** Depend on abstractions, not concretions
+- **Configuration Over Code:** Move variation to data when possible
+
+**Output:**
+```
+## Simplified Design
+
+**New Abstraction:** [Name and purpose]
+
+**Interface:**
+```[language]
+[Proposed interface/API]
+```
+
+**Configuration Approach:**
+[How variants are handled through data/params]
+
+**Example Usage:**
+```[language]
+[Code example showing simplified usage]
+```
+
+**Benefits:**
+- [Benefit 1]
+- [Benefit 2]
+- [Lines of code reduced: X → Y]
+- [Complexity reduced: X → Y]
+```
+
+### Phase 4: Transformation Plan
+**Objective:** Create a safe migration path
+
+**Steps:**
+1. List all files that need changes
+2. Order changes to minimize breakage
+3. Identify tests that need updating
+4. Plan for incremental migration
+5. Note any potential risks
+6. Define rollback strategy
+
+**Migration Strategy:**
+- Start with least critical usage
+- Maintain backward compatibility initially
+- Migrate one usage at a time
+- Test thoroughly at each step
+- Remove old code only after full migration
+
+**Output:**
+```
+## Transformation Plan
+
+### Phase 1: Foundation
+- [ ] Create new abstraction
+- [ ] Write comprehensive tests
+- [ ] Verify backward compatibility
+
+### Phase 2: Migration (Incremental)
+- [ ] Migrate [Component 1] to new abstraction
+- [ ] Migrate [Component 2] to new abstraction
+- [ ] [Continue for all components...]
+
+### Phase 3: Cleanup
+- [ ] Remove deprecated code
+- [ ] Update documentation
+- [ ] Optimize new abstraction
+
+### Risk Assessment
+- **Risk 1:** [Description] → Mitigation: [Strategy]
+- **Risk 2:** [Description] → Mitigation: [Strategy]
+
+### Rollback Plan
+[How to revert if issues arise]
+```
+
+## Simplification Patterns
+
+### Common Simplification Strategies
+
+1. **Strategy Pattern**
+   - Replace conditional logic with pluggable strategies
+   - Example: Multiple payment processors → Single processor with strategy
+
+2. **Template Method**
+   - Extract common algorithm, vary specific steps
+   - Example: Similar workflows → Template with hooks
+
+3. **Data-Driven Configuration**
+   - Replace code with configuration
+   - Example: Hardcoded rules → Rule engine with data
+
+4. **Composition**
+   - Combine small, focused pieces instead of inheritance
+   - Example: Multiple managers → Composable behaviors
+
+5. **Generalization**
+   - Create generic version that handles all cases
+   - Example: TypeManager → EntityManager<T>
+
+## Metrics for Success
+
+### Before vs. After Comparison
+```
+| Metric | Before | After | Improvement |
+|--------|--------|-------|-------------|
+| Lines of Code | X | Y | -Z% |
+| Cyclomatic Complexity | X | Y | -Z% |
+| Number of Implementations | X | 1 | -Z implementations |
+| Test Coverage | X% | Y% | +Z% |
+| Time to Add New Case | X hrs | Y hrs | -Z% |
+```
+
+## Output Format
+
+For each simplification session:
+
+```
+# Simplification Cascade Report: [Area]
+
+## Executive Summary
+- **Problem:** [Brief description of complexity]
+- **Impact:** [Lines of code, files affected, etc.]
+- **Solution:** [One-line description of abstraction]
+- **Benefit:** [Key improvement metric]
+
+## Discovery Phase
+[All pattern instances found]
+
+## Essence Extraction
+[Core concept and unified abstraction]
+
+## Pattern Design
+[New simplified design]
+
+## Transformation Plan
+[Step-by-step migration strategy]
+
+## Next Steps
+[Immediate actions to take]
+```
+
+## Important Principles
+
+1. **Seek the Deeper Pattern:** Look beyond surface similarities to find the unifying concept
+2. **Simplify, Don't Just Refactor:** Aim for conceptual clarity, not just cleaner code
+3. **Measure Impact:** Quantify improvements in complexity and maintainability
+4. **Migrate Safely:** Use incremental changes with rollback plans
+5. **Document the Insight:** Capture the "aha moment" that led to simplification
+
+## Questions to Guide Simplification
+
+- If I squint, do these look the same?
+- What's the one insight that would eliminate most of this complexity?
+- Am I solving the right problem, or treating symptoms?
+- Would a complete beginner find this obvious or confusing?
+- Could I explain this to someone in one sentence?
+- What's the simplest thing that could possibly work?
+
+## Anti-Patterns to Avoid
+
+❌ Over-abstraction: Creating abstractions too early or too complex
+❌ Premature optimization: Simplifying before understanding the problem
+❌ Ignoring context: Forcing unification of truly different concepts
+❌ Breaking working code: Refactoring without adequate tests
+❌ Analysis paralysis: Spending too long designing the perfect abstraction
+
+## Success Criteria
+
+A simplification is successful when:
+- Code is easier to understand and explain
+- New variations can be added without code changes
+- Tests are simpler and more focused
+- Bugs are easier to locate and fix
+- Onboarding new developers is faster
+- The abstraction feels "obvious" in retrospect
+```
+
+**Systematic Debugging**:
+```
+# Systematic Debugging Skill
+
+## Purpose
+This skill provides a structured four-phase framework for debugging issues, ensuring root causes are identified before implementing solutions.
+
+## When to Invoke
+- User reports a bug or error
+- Test failures occur
+- Unexpected behavior is observed
+- Error messages appear in console/logs
+- Features don't work as intended
+
+## Four-Phase Framework
+
+### Phase 1: Investigation
+**Objective:** Gather comprehensive information about the issue
+
+**Steps:**
+1. Reproduce the issue reliably
+2. Collect error messages, stack traces, and logs
+3. Identify the exact conditions that trigger the problem
+4. Note what was expected vs. what actually happened
+5. Check recent changes/commits that might be related
+6. Review relevant code sections
+
+**Questions to Ask:**
+- Can you reliably reproduce this?
+- What were you doing when the error occurred?
+- Are there any error messages or logs?
+- When did this start happening?
+- Does it happen in all environments or just specific ones?
+
+### Phase 2: Pattern Analysis
+**Objective:** Understand the underlying patterns and relationships
+
+**Steps:**
+1. Map the data flow through affected components
+2. Identify which systems/modules are involved
+3. Look for similar issues in the codebase
+4. Check if this is an edge case or systematic problem
+5. Examine assumptions in the code
+6. Review documentation and requirements
+
+**Analysis Points:**
+- Is this a logic error, data issue, or integration problem?
+- Are there race conditions or timing issues?
+- Is it related to state management?
+- Are there type mismatches or validation failures?
+- Could this be a dependency or version issue?
+
+### Phase 3: Hypothesis Testing
+**Objective:** Form and test theories before implementing fixes
+
+**Steps:**
+1. Develop 2-3 potential hypotheses for the root cause
+2. Rank hypotheses by likelihood
+3. Design small tests to validate/invalidate each hypothesis
+4. Test the most likely hypothesis first
+5. Document findings from each test
+6. Refine understanding based on test results
+
+**Testing Approach:**
+- Add strategic console.log/print statements
+- Write minimal reproduction cases
+- Temporarily modify code to isolate the issue
+- Check boundary conditions
+- Test with different input data
+
+### Phase 4: Implementation
+**Objective:** Apply the correct fix with verification
+
+**Steps:**
+1. Implement the fix based on confirmed hypothesis
+2. Ensure the fix addresses root cause, not just symptoms
+3. Write tests that would have caught this bug
+4. Verify the fix resolves the original issue
+5. Check for regressions in related functionality
+6. Update documentation if needed
+
+**Implementation Checklist:**
+- [ ] Fix addresses root cause
+- [ ] Original issue is resolved
+- [ ] No new issues introduced
+- [ ] Tests added to prevent regression
+- [ ] Code is clean and follows conventions
+- [ ] Related edge cases are handled
+
+## Output Format
+
+For each debugging session, provide:
+
+```
+## Debug Report: [Issue Title]
+
+### Investigation Summary
+- **Issue:** [Brief description]
+- **Reproduction Steps:** [How to reproduce]
+- **Error Details:** [Stack traces, logs, etc.]
+- **Affected Components:** [List of files/modules]
+
+### Pattern Analysis
+- **Root Cause Category:** [Logic/Data/Integration/etc.]
+- **Related Systems:** [Components involved]
+- **Key Findings:** [Important observations]
+
+### Hypothesis Testing
+1. **Hypothesis 1:** [Description]
+   - **Test:** [How tested]
+   - **Result:** [Confirmed/Rejected]
+   
+2. **Hypothesis 2:** [Description]
+   - **Test:** [How tested]
+   - **Result:** [Confirmed/Rejected]
+
+**Confirmed Root Cause:** [Final determination]
+
+### Implementation
+- **Fix Applied:** [Description of solution]
+- **Files Modified:** [List of changed files]
+- **Tests Added:** [New test cases]
+- **Verification:** [How fix was verified]
+
+### Prevention
+- **Lessons Learned:** [Key takeaways]
+- **Process Improvements:** [How to prevent similar issues]
+```
+
+## Important Principles
+
+1. **Understand Before Fixing:** Never rush to implement a solution without understanding the root cause
+2. **Be Systematic:** Follow the four phases in order
+3. **Document Everything:** Keep detailed notes throughout the process
+4. **Test Thoroughly:** Verify the fix works and doesn't break anything else
+5. **Think Long-term:** Add tests and documentation to prevent recurrence
+
+## Common Anti-Patterns to Avoid
+
+❌ Applying quick fixes without understanding the problem
+❌ Fixing symptoms instead of root causes
+❌ Skipping hypothesis testing phase
+❌ Not adding tests after fixing bugs
+❌ Ignoring similar issues elsewhere in the codebase
+❌ Not documenting what was learned
+
+## Success Criteria
+
+A debugging session is successful when:
+- Root cause is clearly identified and documented
+- Fix addresses the underlying issue, not just symptoms
+- Tests are added to prevent regression
+- Related code is checked for similar issues
+- The solution is maintainable and follows best practices
 ```
 
 **Designer Prompt**:
