@@ -83,7 +83,7 @@ Use the Exa MCP to search for relevant blog articles when planning complex featu
 ```
 
 **Simplification Cascade**:
-```
+``````
 # Simplification Cascade Skill
 
 ## Purpose
@@ -314,13 +314,13 @@ Instead of managing multiple separate implementations, find the unified concept 
 | Number of Implementations | X | 1 | -Z implementations |
 | Test Coverage | X% | Y% | +Z% |
 | Time to Add New Case | X hrs | Y hrs | -Z% |
-```
+``````
 
 ## Output Format
 
 For each simplification session:
 
-```
+``````
 # Simplification Cascade Report: [Area]
 
 ## Executive Summary
@@ -379,7 +379,7 @@ A simplification is successful when:
 - Bugs are easier to locate and fix
 - Onboarding new developers is faster
 - The abstraction feels "obvious" in retrospect
-```
+``````
 
 **Systematic Debugging**:
 ```
