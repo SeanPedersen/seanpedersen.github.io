@@ -314,13 +314,13 @@ Instead of managing multiple separate implementations, find the unified concept 
 | Number of Implementations | X | 1 | -Z implementations |
 | Test Coverage | X% | Y% | +Z% |
 | Time to Add New Case | X hrs | Y hrs | -Z% |
-``````
+```
 
 ## Output Format
 
 For each simplification session:
 
-``````
+```
 # Simplification Cascade Report: [Area]
 
 ## Executive Summary
