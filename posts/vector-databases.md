@@ -74,7 +74,7 @@ For 450K text embeddings 1024D float32 vectors - measure the recall@100.
 | **pgvector (HNSW)** | 611.54 | 100.00% | 2.29x | 1235.13 | 3555 |
 | **pgvector (IVFFlat)** | 411.62 | 100.00% | 3.40x | 968.53 | 3561 |
 
-**Note:** At 450K vectors, all approximate indices show strong speedups. HNSW, IVFFlat, and VectorChord achieve ~100% precision with 2-3.5x speedups. DiskANN has the fastest build time and best speed up (200x) but with significantly lower precision (2%).
+**Note:** At 450K vectors, all approximate indices show strong speedups. HNSW, IVFFlat, and VectorChord achieve ~100% recall with 2-3.5x speedups. DiskANN has the fastest build time and best speed up (200x) but with significantly lower recall (2%).
 
 ### Show me the code
 
