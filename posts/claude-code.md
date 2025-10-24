@@ -382,7 +382,7 @@ A simplification is successful when:
 ``````
 
 **Systematic Debugging**:
-```
+``````
 # Systematic Debugging Skill
 
 ## Purpose
@@ -535,7 +535,7 @@ A debugging session is successful when:
 - Tests are added to prevent regression
 - Related code is checked for similar issues
 - The solution is maintainable and follows best practices
-```
+``````
 
 **Designer Prompt**:
 ```
