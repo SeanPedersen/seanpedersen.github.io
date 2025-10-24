@@ -31,6 +31,10 @@ Here are the top 10 average activations for a SDR trained on CLIP embeddings of 
 And here a SDR for an image of a cat driving a car (multi-concept):
 ![multi-concept-sdr-cat-car](/images/sdr-cat-car.png)
 
+### Encoding Abstract Language Operators
+
+Abstract language concepts like not X, except of X, etc. that represent semantic negations can naturally be represented by activating every dimension but that of X.
+
 ### Built-in Novelty Detection
 
 When presented with inputs outside the training distribution, they tend to generate highly dispersed activation patterns - even more scattered than typical multi-concept inputs. This makes outlier detection straightforward and interpretable.
