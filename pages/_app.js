@@ -1,4 +1,5 @@
 import '../styles/global.css'
+import 'prismjs/themes/prism-tomorrow.css'
 import ThemeContext from '../contexts/ThemeContext';
 import { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';

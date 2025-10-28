@@ -15,8 +15,9 @@ const nextConfig = {
     } : false,
   },
 
-  // Use SWC minifier for better performance
-  swcMinify: true,
+  // Additional optimizations
+  compress: true, // Enable gzip compression
+  poweredByHeader: false, // Remove X-Powered-By header for security
 
   // Optimize images (required for static export)
   images: {
