@@ -11,7 +11,7 @@ date: '2025-09-18'
 
 ## FrontEnd Frameworks
 
-Use [React](https://react.dev/learn) for a popular framework, with many resources (both knowledge and developers) available. Use [Svelte](https://svelte.dev/) for a smaller but better alternative.
+Use [React](https://react.dev/learn) for a popular framework, with many resources (both knowledge and developers) available. Use [Svelte](https://svelte.dev/) for a smaller but better alternative. Read [this article](https://www.lorenstew.art/blog/10-kanban-boards/) for an excellent comparison of frontend state management frameworks.
 
 ## Promises (async)
 
