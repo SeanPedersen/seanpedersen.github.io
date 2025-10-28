@@ -59,5 +59,6 @@ const results = await Promise.all([
 ## References
 - <https://www.typescriptlang.org/docs/handbook/basic-types.html>
 - TypeScript performance tips: <https://github.com/microsoft/TypeScript/wiki/Performance>
+- <https://jovidecroock.com/blog/state-vs-signals/>
 
 #programming

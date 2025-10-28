@@ -4,7 +4,9 @@ date: '2025-09-24'
 ---
 React is a very popular front-end framework allowing to modularize web UI elements in components (even allowing to create mobile apps using [React Native](https://reactnative.dev/) / [Expo](https://expo.dev/)). Components render UI elements conditioned on state variables. Components are made of other components which can be passed state using so called props.
 
-Consider Svelte over React since it is a simpler and more performant competitor. React is more popular and thus has a bigger eco-system and more experienced developers.
+Consider [Svelte](https://svelte.dev/) over React since it is a simpler and more performant (using [signals](https://jovidecroock.com/blog/state-vs-signals/)) competitor. React is more popular though and thus has a bigger eco-system and more experienced developers.
+
+## State
 
 Only use state variables (useState) for user facing state dependent UI components. Otherwise use global vars or it will get buggy.
 
@@ -16,13 +18,10 @@ useEffect hook:
 
 `useEffect(() => {   // Runs when count changes }, [count]);`
 
-Zustand is a global state manager for React which can reduce state complexity in your application by reducing property drilling (passing many state vars as props through nested components). Use it with immer for sane state management.
+[Zustand](https://github.com/pmndrs/zustand) is a global state manager for React which can reduce state complexity in your application by reducing property drilling (passing many state vars as props through nested components). Use it with immer for sane state management.
 
-- <https://github.com/pmndrs/zustand>
+Use [Tanstack Query](https://tanstack.com/query/latest/docs/framework/react/overview) to fetch data from the backend (for proper error handling, caching etc.).
 
-Use tanstack query to fetch data from the backend (for proper error handling, caching etc.).
-
-- <https://tanstack.com/query/latest/docs/framework/react/overview>
 - <https://ui.dev/why-react-query>
 
 ## State Management Best Practices
