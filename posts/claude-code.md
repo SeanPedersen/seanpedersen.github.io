@@ -25,6 +25,7 @@ Using GUI apps can make sense as they motivate writing longer and more detailed 
 
 - Desktop app: <https://opcode.sh/>
 - Desktop app (for subagents): <https://github.com/generalaction/emdash>
+- Desktop app (for subagents): <https://conductor.build/>
 - Mobile app: <https://happy.engineering/>
 
 ## Starting Projects
