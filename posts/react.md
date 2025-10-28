@@ -41,5 +41,6 @@ Derive state instead of duplicating: If a state can be derived from props or oth
 - <https://github.com/jantimon/react-hydration-rules>
 - <https://dev.to/paripsky/using-effects-effectively-in-react-stop-misusing-useeffect-once-and-for-all-5fpm>
 - <https://x.com/_ryannystrom/status/1970292793877643556/photo/1>
+- [Evaluating Frameworks for Mobile Performance](https://www.lorenstew.art/blog/10-kanban-boards/)
 
 #programming
