@@ -96,7 +96,7 @@ export default function Post({ postData, relatedPostCandidates, hasMorePosts }) 
         if (element) {
           // Use requestAnimationFrame to ensure DOM is ready
           requestAnimationFrame(() => {
-            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            element.scrollIntoView({ behavior: 'auto', block: 'start' });
           });
         }
       }
