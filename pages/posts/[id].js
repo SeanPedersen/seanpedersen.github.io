@@ -86,6 +86,58 @@ export default function Post({ postData, relatedPostCandidates, hasMorePosts }) 
     };
   }, [postData.id, relatedPostCandidates]);
 
+  // Handle anchor links - scroll to element after page loads and images are ready
+  useEffect(() => {
+    const scrollToHash = () => {
+      const hash = window.location.hash;
+      if (hash) {
+        const id = hash.replace('#', '');
+        const element = document.getElementById(id);
+        if (element) {
+          // Use requestAnimationFrame to ensure DOM is ready
+          requestAnimationFrame(() => {
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          });
+        }
+      }
+    };
+
+    // Scroll after a short delay to ensure content is rendered
+    const timeoutId = setTimeout(scrollToHash, 100);
+
+    // Also scroll when images finish loading
+    const imgs = Array.from(document.images || []);
+    let loadedCount = 0;
+    const onImgLoad = () => {
+      loadedCount++;
+      if (loadedCount === imgs.length) {
+        scrollToHash();
+      }
+    };
+
+    imgs.forEach(img => {
+      if (img.complete) {
+        loadedCount++;
+      } else {
+        img.addEventListener('load', onImgLoad, { once: true });
+      }
+    });
+
+    // If all images were already loaded, scroll immediately
+    if (loadedCount === imgs.length) {
+      scrollToHash();
+    }
+
+    // Handle hash changes (when clicking TOC links)
+    window.addEventListener('hashchange', scrollToHash);
+
+    return () => {
+      clearTimeout(timeoutId);
+      window.removeEventListener('hashchange', scrollToHash);
+      imgs.forEach(img => img.removeEventListener?.('load', onImgLoad));
+    };
+  }, [postData.id]);
+
   const processMarkdown = (content) => {
     // Add IDs to headings
     let processedContent = content.replace(
