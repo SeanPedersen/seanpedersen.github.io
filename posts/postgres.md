@@ -26,6 +26,8 @@ Essential psql commands streamline database administration. Use `\dt+` to list t
 
 Performance monitoring through SQL queries provides operational visibility. Check buffer cache hit ratios—values below 99% indicate insufficient `shared_buffers` or queries scanning too much data. Monitor index usage with `pg_stat_user_indexes` to identify unused indexes consuming disk space and write performance. Track query performance with the `pg_stat_statements` extension, which aggregates statistics across query patterns.
 
+Backups: <https://github.com/RostislavDugin/postgresus/>
+
 ## Scaling & Optimisations
 
 ### Vertical Scaling (bigger server)
