@@ -88,12 +88,15 @@ export default function Post({ postData, relatedPostCandidates, hasMorePosts }) 
 
   // Handle anchor links - scroll to element after page loads and images are ready
   useEffect(() => {
+    let hasScrolled = false;
+
     const scrollToHash = () => {
       const hash = window.location.hash;
-      if (hash) {
+      if (hash && !hasScrolled) {
         const id = hash.replace('#', '');
         const element = document.getElementById(id);
         if (element) {
+          hasScrolled = true;
           // Use requestAnimationFrame to ensure DOM is ready
           requestAnimationFrame(() => {
             element.scrollIntoView({ behavior: 'auto', block: 'start' });
@@ -110,7 +113,8 @@ export default function Post({ postData, relatedPostCandidates, hasMorePosts }) 
     let loadedCount = 0;
     const onImgLoad = () => {
       loadedCount++;
-      if (loadedCount === imgs.length) {
+      if (loadedCount === imgs.length && !hasScrolled) {
+        clearTimeout(timeoutId); // Cancel timeout since images are loaded
         scrollToHash();
       }
     };
@@ -123,17 +127,22 @@ export default function Post({ postData, relatedPostCandidates, hasMorePosts }) 
       }
     });
 
-    // If all images were already loaded, scroll immediately
-    if (loadedCount === imgs.length) {
+    // If all images were already loaded, cancel timeout and scroll immediately
+    if (loadedCount === imgs.length && imgs.length > 0) {
+      clearTimeout(timeoutId);
       scrollToHash();
     }
 
-    // Handle hash changes (when clicking TOC links)
-    window.addEventListener('hashchange', scrollToHash);
+    // Handle hash changes (when clicking TOC links) - allow re-scrolling
+    const handleHashChange = () => {
+      hasScrolled = false;
+      scrollToHash();
+    };
+    window.addEventListener('hashchange', handleHashChange);
 
     return () => {
       clearTimeout(timeoutId);
-      window.removeEventListener('hashchange', scrollToHash);
+      window.removeEventListener('hashchange', handleHashChange);
       imgs.forEach(img => img.removeEventListener?.('load', onImgLoad));
     };
   }, [postData.id]);
