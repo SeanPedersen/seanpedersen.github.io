@@ -781,6 +781,7 @@ Now you can instruct claude to work on github issues (read or create).
 - <https://github.com/Veraticus/nix-config/blob/main/home-manager/claude-code/CLAUDE.md>
 - <https://github.com/hesreallyhim/awesome-claude-code>
 - <https://github.com/wong2/awesome-mcp-servers>
+- <https://github.com/diet103/claude-code-infrastructure-showcase>
 - Sub-agents:
   - <https://x.com/jasonzhou1993/status/1955970025984287004>
   - <https://simonwillison.net/2025/Oct/5/parallel-coding-agents/>
