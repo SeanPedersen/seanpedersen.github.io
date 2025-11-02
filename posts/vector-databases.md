@@ -8,7 +8,7 @@ So let's have a look how we can store and search vectors using Postgres: There a
 
 ## [PGVector](https://github.com/pgvector/pgvector)
 
-Standard extension to store vectors with common medium scale ANN indices (HNSW & IvfFlat).
+Standard extension to store vectors with common medium scale ANN indices (HNSW & IvfFlat). Integration package for Python: <https://github.com/pgvector/pgvector-python/>
 
 Store vectors (float 32 bit):
 
