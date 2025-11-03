@@ -86,65 +86,35 @@ export default function Post({ postData, relatedPostCandidates, hasMorePosts }) 
     };
   }, [postData.id, relatedPostCandidates]);
 
-  // Handle anchor links - scroll to element after page loads and images are ready
+  // Handle initial page load with hash - wait for images before scrolling
   useEffect(() => {
-    let hasScrolled = false;
+    const hash = window.location.hash;
+    if (!hash) return;
 
     const scrollToHash = () => {
-      const hash = window.location.hash;
-      if (hash && !hasScrolled) {
-        const id = hash.replace('#', '');
-        const element = document.getElementById(id);
-        if (element) {
-          hasScrolled = true;
-          // Use requestAnimationFrame to ensure DOM is ready
-          requestAnimationFrame(() => {
-            element.scrollIntoView({ behavior: 'auto', block: 'start' });
-          });
-        }
+      const id = hash.replace('#', '');
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: 'auto', block: 'start' });
       }
     };
 
-    // Scroll after a short delay to ensure content is rendered
-    const timeoutId = setTimeout(scrollToHash, 100);
-
-    // Also scroll when images finish loading
+    // Wait for all images to load before scrolling
     const imgs = Array.from(document.images || []);
-    let loadedCount = 0;
-    const onImgLoad = () => {
-      loadedCount++;
-      if (loadedCount === imgs.length && !hasScrolled) {
-        clearTimeout(timeoutId); // Cancel timeout since images are loaded
-        scrollToHash();
-      }
-    };
-
-    imgs.forEach(img => {
-      if (img.complete) {
-        loadedCount++;
-      } else {
-        img.addEventListener('load', onImgLoad, { once: true });
-      }
-    });
-
-    // If all images were already loaded, cancel timeout and scroll immediately
-    if (loadedCount === imgs.length && imgs.length > 0) {
-      clearTimeout(timeoutId);
+    if (imgs.length === 0) {
       scrollToHash();
+      return;
     }
 
-    // Handle hash changes (when clicking TOC links) - allow re-scrolling
-    const handleHashChange = () => {
-      hasScrolled = false;
-      scrollToHash();
-    };
-    window.addEventListener('hashchange', handleHashChange);
+    const promises = imgs.map(img => {
+      if (img.complete) return Promise.resolve();
+      return new Promise(resolve => {
+        img.addEventListener('load', resolve, { once: true });
+        img.addEventListener('error', resolve, { once: true });
+      });
+    });
 
-    return () => {
-      clearTimeout(timeoutId);
-      window.removeEventListener('hashchange', handleHashChange);
-      imgs.forEach(img => img.removeEventListener?.('load', onImgLoad));
-    };
+    Promise.all(promises).then(scrollToHash);
   }, [postData.id]);
 
   const processMarkdown = (content) => {
