@@ -18,3 +18,4 @@ Just clone this repo, create a new github project named $your_username.github.io
 - Front page in ./pages/index.js
 - Profile pic in ./public/images/profile.webp
 - Search for "https://github.com/SeanPedersen/seanpedersen.github.io" and change it to your repo so the "Edit on GitHub" link works for your blog
+- Edit / remove Posthog analytics in ./pages/_app.js
