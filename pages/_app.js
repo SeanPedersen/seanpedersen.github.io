@@ -2,13 +2,7 @@ import '../styles/global.css'
 import 'prismjs/themes/prism-tomorrow.css'
 import ThemeContext from '../contexts/ThemeContext';
 import { useState, useEffect } from 'react';
-import dynamic from 'next/dynamic';
 
-// Lazy load PostHog provider - only loads when needed
-const PostHogProvider = dynamic(
-  () => import('posthog-js/react').then(mod => mod.PostHogProvider),
-  { ssr: false }
-);
 
 // Lazy initialize PostHog
 let posthogInstance = null;
@@ -52,7 +46,6 @@ export default function App(
   { Component, pageProps: { session, ...pageProps } }
 ) {
   const [theme, setTheme] = useState(getInitialTheme);
-  const [posthog, setPosthog] = useState(null);
 
   useEffect(() => {
     if (theme === 'light') {
@@ -65,7 +58,7 @@ export default function App(
 
   useEffect(() => {
     // Initialize PostHog after component mounts
-    getPostHog().then(setPosthog);
+    getPostHog();
   }, []);
 
   const toggleTheme = () => {
@@ -79,13 +72,7 @@ export default function App(
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      {posthog ? (
-        <PostHogProvider client={posthog}>
-          <Component {...pageProps} />
-        </PostHogProvider>
-      ) : (
-        <Component {...pageProps} />
-      )}
+      <Component {...pageProps} />
     </ThemeContext.Provider>
   )
 }
