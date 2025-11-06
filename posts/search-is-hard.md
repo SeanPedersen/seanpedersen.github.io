@@ -25,8 +25,8 @@ Tricks:
 
 ### Token Based Representations
 
-- TF-IDF (BM-25)
-- Substring search (tri-gram index)
+- Word level: BM25 (normalized TF-IDF)
+- Character level: Substring search (tri-gram index)
 
 ### Neural Representations
 
