@@ -37,11 +37,11 @@ A small collection of insights on the structure of embeddings (latent spaces) pr
 - [The Platonic Representation Hypothesis](https://arxiv.org/abs/2405.07987)
 - <https://phillipi.github.io/prh/>
 
-**Smoothness**: Formally known as Lipschitz continuity states that small changes in inputs cause small changes in output (latent) space. Well-trained, robust models should thus be insensitive to small input changes - which has its limits (see next point).
+**Smoothness (Lipschitz continuity)**: Small changes in inputs cause proportionally bounded changes in output (latent) space - formally, ||f(x₁) - f(x₂)|| ≤ L||x₁ - x₂|| for some constant L. Well-trained (robust) models should ideally be insensitive to small input changes - which has its limits in praxis (see next point).
 
 - [Some Fundamental Aspects about Lipschitz Continuity of Neural Network Functions](https://arxiv.org/abs/2302.10886v2)
 
-**Adversarial Vulnerability**: Carefully crafted changes in input space can cause large shifts in embedding space and therefore also in predictions made from them, suggesting even networks trained for smoothness have some chaotic properties.
+**Adversarial Vulnerability**: Carefully crafted small changes in input space can cause large shifts in embedding space and therefore also in predictions, suggesting even networks trained for smoothness show some chaotic properties.
 
 - [Explaining and Harnessing Adversarial Examples](https://arxiv.org/abs/1412.6572)
 - [Subtle adversarial image manipulations influence both human and machine perception](https://www.nature.com/articles/s41467-023-40499-0)
