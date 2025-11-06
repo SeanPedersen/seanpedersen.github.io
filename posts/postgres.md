@@ -313,7 +313,7 @@ JOIN
 JOIN
   pg_inherits pi ON pi.inhrelid = i.relid
 WHERE
-  pi.inhparent = 'instagram_profiles'::regclass
+  pi.inhparent = 'table_name'::regclass
 GROUP BY
   am.amname
 ORDER BY
