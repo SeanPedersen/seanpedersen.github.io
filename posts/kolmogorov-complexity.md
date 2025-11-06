@@ -20,7 +20,7 @@ We can still implement a program that generates 2^N different programs and filte
 
 Sadly we can not just execute this at least finite amount of programs, filter their outputs for the given sequence and be done by sorting the valid leftover programs by length. Some programs will take ages to terminate and some may even never - we could analyze this finite set of programs using formal verification techniques to determine if each programs halts or not but this endeavor would be impractical since the set grows exponentially.
 
-(Previously I wrote: "and we can not tell them apart, as Alan Turing proved with his infamous halting problem" -> which is wrong! Turing proved that there exists no algorithm that can determine if an **arbitrary** program halts or not. A finite set of programs can be verified in theory - in praxis only a very small finite set of programs...)
+(Previously I wrote: "and we can not tell them apart, as Alan Turing proved with his infamous halting problem" -> which is wrong! Turing proved that there exists no algorithm that can determine if an **arbitrary** program halts or not. While the halting problem is undecidable in general, for a small, fixed set of programs, we can manually prove (or disprove) halting using mathematical reasoning or formal methods. However, this requires a separate proof per program and the number of programs up to length n grows as ~2^N - making it impractical beyond toy sizes (N ≲ 15). For real approximation, we must use timeouts.)
 
 ## Kolmogorov complexity extensions
 
