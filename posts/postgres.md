@@ -281,6 +281,24 @@ FROM pg_catalog.pg_statio_user_tables
 ORDER BY pg_total_relation_size(relid) DESC;
 ```
 
+**Show sizes of all indices for a table**:
+```sql
+SELECT
+  i.indexrelname AS index_name,
+  pg_size_pretty(pg_relation_size(i.indexrelid)) AS index_size,
+  am.amname AS index_type
+FROM
+  pg_stat_all_indexes i
+JOIN
+  pg_class c ON i.indexrelid = c.oid
+JOIN
+  pg_am am ON c.relam = am.oid
+WHERE
+  i.relname = 'table_name'
+ORDER BY
+  pg_relation_size(i.indexrelid) DESC;
+```
+
 **Show active transactions:**
 
 ```sql
