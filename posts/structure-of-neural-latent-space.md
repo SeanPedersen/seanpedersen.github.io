@@ -6,15 +6,16 @@ A small collection of insights on the structure of embeddings (latent spaces) pr
 
 ## General Principles
 
-**Manifold Hypothesis**: High-dimensional data sampled from natural (real-world) processes lies in a low-dimensional manifold.
+**Manifold Hypothesis**: High-dimensional data sampled from natural (real-world) processes lies in a low-dimensional manifold. A manifold is a space that looks like flat (Euclidean) space when zooming in on any of its points, f.e. earths (a 3D object) surface looks like flat 2D space (a manifold) when zooming in.
 
 - <https://colah.github.io/posts/2014-03-NN-Manifolds-Topology/>
+- <https://www.quantamagazine.org/what-is-a-manifold-20251103/>
 
-**Hierarchical Organization**: Features organize hierarchically across layers - earlier layers capture low-level (small context) features while deeper layers represent increasingly abstract (large context) concepts.
+**Hierarchical Organization**: Features organize hierarchically across layers - earlier layers capture local, low-level (small context) features while deeper layers represent increasingly abstract and compositional (large context) concepts by integrating information from earlier layers.
 
 - <https://colah.github.io/posts/2015-01-Visualizing-Representations/>
 
-**Linear Hypothesis**: Neural networks represent features as linear directions in their activation space.
+**Linear Representation Hypothesis**: Neural networks represent features as linear directions in their activation space, so that semantic operations correspond to vector arithmetic (e.g. queen ≈ king - man + woman).
 
 - <https://colah.github.io/posts/2014-07-NLP-RNNs-Representations/>
 - <https://www.lesswrong.com/posts/tojtPCCRpKLSHBdpn/the-strong-feature-hypothesis-could-be-wrong>
