@@ -63,6 +63,14 @@ A promising "self-reflection" RL method for LLM's trained in verifiable domains 
 
 - Reflect, Retry, Reward: Self-Improving LLMs via Reinforcement Learning - <https://arxiv.org/abs/2505.24726>
 
+## LLM with Code World Model
+
+> To improve code understanding beyond what can be learned from training on static code alone, we mid-train CWM on a large amount of observation-action trajectories from Python interpreter and agentic Docker environments, and perform extensive multi- task reasoning RL in verifiable coding, math, and multi-turn software engineering environments.
+
+"Instead of doing code training by just predicting the next token in the source file, interleave that with interpreter state which also have to be predicted!" - [Lucas Beyer on X](https://x.com/giffmana/status/1971507878025445653)
+
+- [CWM: An Open-Weights LLM for Research on Code Generation with World Models](https://ai.meta.com/research/publications/cwm-an-open-weights-llm-for-research-on-code-generation-with-world-models/)
+
 ## Fundamental Limits
 
 Current LLMs face a core architectural constraint: they generate text sequentially, one token at a time. As Yann LeCun argues, this creates exponential error accumulation. Each prediction depends on all previous tokens, so early mistakes cascade through long sequences, causing models to derail from coherent long-formed reasoning (an issue well known among LLM users - some call it context rot).
