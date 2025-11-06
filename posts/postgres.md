@@ -299,6 +299,27 @@ ORDER BY
   pg_relation_size(i.indexrelid) DESC;
 ```
 
+**Show sizes of all indices for a partitioned table**:
+```sql
+SELECT
+  am.amname AS index_type,
+  pg_size_pretty(SUM(pg_relation_size(i.indexrelid))) AS total_index_size
+FROM
+  pg_stat_all_indexes i
+JOIN
+  pg_class c ON i.indexrelid = c.oid
+JOIN
+  pg_am am ON c.relam = am.oid
+JOIN
+  pg_inherits pi ON pi.inhrelid = i.relid
+WHERE
+  pi.inhparent = 'instagram_profiles'::regclass
+GROUP BY
+  am.amname
+ORDER BY
+  SUM(pg_relation_size(i.indexrelid)) DESC;
+```
+
 **Show active transactions:**
 
 ```sql
