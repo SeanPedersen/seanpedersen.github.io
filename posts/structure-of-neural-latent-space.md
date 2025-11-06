@@ -30,7 +30,7 @@ A small collection of insights on the structure of embeddings (latent spaces) pr
 - [The Fractured Entangled Representation Hypothesis](https://arxiv.org/abs/2505.11581)
 - <https://seanpedersen.github.io/posts/vae#beta-vae>
 
-**Universality Hypothesis**: Neural circuits reappear across different models for the same data. Thus models trained on similar data sets (text, image, video etc.) share the same relative semantic structure in their embeddings (activations).
+**Universality Hypothesis**: Neural circuits reappear across different models trained on similar data: models trained on the same modality (text, images, video, etc.) share the same relative semantic structure (angles, distances between concepts) in their embeddings (activations), even if absolute positions/orientations differ. This suggests embeddings converge to a "universal" semantic manifold for a given modality/data distribution.
 
 - <https://blog.jxmo.io/p/there-is-only-one-model>
 - [Harnessing the Universal Geometry of Embeddings](https://arxiv.org/abs/2505.12540)
