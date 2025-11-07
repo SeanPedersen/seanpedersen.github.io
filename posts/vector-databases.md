@@ -151,7 +151,7 @@ VectorChord is the clear winner - providing superior performance and better deve
 - <https://blog.vectorchord.ai/vectorchord-store-400k-vectors-for-1-in-postgresql#heading-ivf-vs-hnsw>
 - <https://blog.vectorchord.ai/3-billion-vectors-in-postgresql-to-protect-the-earth>
 - <https://drscotthawley.github.io/blog/posts/2023-06-12-RVQ.html>
-- <https://deepwiki.com/timescale/pgvectorscale/1-overview>
 - <https://www.tigerdata.com/blog/nearest-neighbor-indexes-what-are-ivfflat-indexes-in-pgvector-and-how-do-they-work>
+- <https://jkatz05.com/post/postgres/pgvector-scalar-binary-quantization/>
 
 #programming #machine-learning
