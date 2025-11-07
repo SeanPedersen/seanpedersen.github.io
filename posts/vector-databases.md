@@ -85,6 +85,10 @@ When things scale up one should strive for efficient vector storage using:
 - Vector Quantization
     - Reduce bit representation (FP32, FP16 and binary)
 
+We can see that using IvfFlat index on binary representation with a top-K factor of 10x (overfetching), then reranking in higher precision (float32 or float16) results excellent recall, low vector storage costs (float16) and very fast retrieval latencies. A good trade-off seems to be using the first 512D (Matryoshka dims.), storing them as float16 and using ivf+binary(L500,P93,10x) delivering 13.59 ms retrieval latency with a 93% recall. Float16 vector storage is 322.3MB (4x reduction) and index size is only 26.4MB.
+
+The table below was computed on an 8 core Intel server using 300K CLIP Matryoshka text embeddings.
+
 | Dim   | Storage  | Index                               | Latency (ms)   | Recall  (%) | Build   (s)  | Storage (MB)   | Index  (MB)    |
 |-------|----------|----------------------------------|-------|-------|--------|-------|--------|
 | 256   | float32  | vchordrq                            |       0.77 |     36.0 |    30.55 |      322.3 |      379.1 |
@@ -97,8 +101,6 @@ When things scale up one should strive for efficient vector storage using:
 | 256   | float16  | ivf+binary(L500,P93,10x)            |      12.96 |     82.0 |     2.23 |      161.1 |       17.2 |
 | 256   | float32  | exact-binary(10x)                   |     117.95 |     82.0 |     0.00 |      322.3 |        0.0 |
 | 256   | float16  | exact-binary(10x)                   |      87.77 |     83.0 |     0.00 |      161.1 |        0.0 |
-| 256   | float32  | exact-binary+numpy(10x)             |     105.98 |     81.0 |     0.00 |      322.3 |        0.0 |
-| 256   | float16  | exact-binary+numpy(10x)             |      81.47 |     83.0 |     0.00 |      161.1 |        0.0 |
 | 256   | float32  | exact-binary(1x)                    |      39.80 |     35.0 |     0.00 |      322.3 |        0.0 |
 | 256   | float16  | exact-binary(1x)                    |      38.73 |     34.0 |     0.00 |      161.1 |        0.0 |
 | 256   | float32  | exact                               |      49.61 |     88.0 |     0.00 |      322.3 |        0.0 |
@@ -114,8 +116,6 @@ When things scale up one should strive for efficient vector storage using:
 | 512   | float16  | ivf+binary(L500,P93,10x)            |      13.59 |     93.0 |     3.72 |      322.3 |       26.4 |
 | 512   | float32  | exact-binary(10x)                   |      57.11 |     92.0 |     0.00 |      644.5 |        0.0 |
 | 512   | float16  | exact-binary(10x)                   |     106.79 |     94.0 |     0.00 |      322.3 |        0.0 |
-| 512   | float32  | exact-binary+numpy(10x)             |      57.69 |     93.0 |     0.00 |      644.5 |        0.0 |
-| 512   | float16  | exact-binary+numpy(10x)             |     111.00 |     94.0 |     0.00 |      322.3 |        0.0 |
 | 512   | float32  | exact-binary(1x)                    |      32.77 |     49.0 |     0.00 |      644.5 |        0.0 |
 | 512   | float16  | exact-binary(1x)                    |      45.30 |     47.0 |     0.00 |      322.3 |        0.0 |
 | 512   | float32  | exact                               |     324.18 |     96.0 |     0.00 |      644.5 |        0.0 |
@@ -131,8 +131,6 @@ When things scale up one should strive for efficient vector storage using:
 | 1024  | float16  | ivf+binary(L500,P93,10x)            |      18.17 |    100.0 |     6.52 |      644.5 |       44.9 |
 | 1024  | float32  | exact-binary(10x)                   |      59.38 |    100.0 |     0.00 |     1289.1 |        0.0 |
 | 1024  | float16  | exact-binary(10x)                   |      62.07 |    100.0 |     0.00 |      644.5 |        0.0 |
-| 1024  | float32  | exact-binary+numpy(10x)             |      63.99 |    100.0 |     0.00 |     1289.1 |        0.0 |
-| 1024  | float16  | exact-binary+numpy(10x)             |      68.48 |    100.0 |     0.00 |      644.5 |        0.0 |
 | 1024  | float32  | exact-binary(1x)                    |      29.04 |     55.0 |     0.00 |     1289.1 |        0.0 |
 | 1024  | float16  | exact-binary(1x)                    |      33.51 |     56.0 |     0.00 |      644.5 |        0.0 |
 | 1024  | float32  | exact                               |     480.70 |    100.0 |     0.00 |     1289.1 |        0.0 |
