@@ -76,6 +76,68 @@ For 450K text embeddings 1024D float32 vectors - measure the recall@100.
 
 **Note:** At 450K vectors, all approximate indices show strong speedups. HNSW, IVFFlat, and VectorChord achieve ~100% recall with 2-3.5x speedups. DiskANN has the fastest build time and best speed up (200x) but with significantly lower recall (2%).
 
+## Optimizing Vector & Index Storage
+
+When things scale up one should strive for efficient vector storage using:
+- Vector Dimensionality Reduction
+    - PCA / UMAP
+    - Matryoshka Embeddings
+- Vector Quantization
+    - Reduce bit representation (FP32, FP16 and binary)
+
+| Dim   | Storage  | Index                               | Latency (ms)   | Recall  (%) | Build   (s)  | Storage (MB)   | Index  (MB)    |
+|-------|----------|----------------------------------|-------|-------|--------|-------|--------|
+| 256   | float32  | vchordrq                            |       0.77 |     36.0 |    30.55 |      322.3 |      379.1 |
+| 256   | float16  | vchordrq                            |       0.65 |     49.0 |    18.78 |      161.1 |      200.5 |
+| 256   | float32  | ivfflat(L500,P31)                   |      48.94 |     88.0 |     8.59 |      322.3 |      337.1 |
+| 256   | float16  | ivfflat(L500,P31)                   |      50.60 |     88.0 |    10.14 |      161.1 |      158.4 |
+| 256   | float32  | hnsw+binary(ef1000,10x)             |       9.25 |     83.0 |   228.73 |      322.3 |      156.2 |
+| 256   | float16  | hnsw+binary(ef1000,10x)             |       7.56 |     82.0 |   233.40 |      161.1 |      156.2 |
+| 256   | float32  | ivf+binary(L500,P93,10x)            |      13.54 |     83.0 |     2.06 |      322.3 |       17.3 |
+| 256   | float16  | ivf+binary(L500,P93,10x)            |      12.96 |     82.0 |     2.23 |      161.1 |       17.2 |
+| 256   | float32  | exact-binary(10x)                   |     117.95 |     82.0 |     0.00 |      322.3 |        0.0 |
+| 256   | float16  | exact-binary(10x)                   |      87.77 |     83.0 |     0.00 |      161.1 |        0.0 |
+| 256   | float32  | exact-binary+numpy(10x)             |     105.98 |     81.0 |     0.00 |      322.3 |        0.0 |
+| 256   | float16  | exact-binary+numpy(10x)             |      81.47 |     83.0 |     0.00 |      161.1 |        0.0 |
+| 256   | float32  | exact-binary(1x)                    |      39.80 |     35.0 |     0.00 |      322.3 |        0.0 |
+| 256   | float16  | exact-binary(1x)                    |      38.73 |     34.0 |     0.00 |      161.1 |        0.0 |
+| 256   | float32  | exact                               |      49.61 |     88.0 |     0.00 |      322.3 |        0.0 |
+| 256   | float16  | exact                               |      39.24 |     88.0 |     0.00 |      161.1 |        0.0 |
+||
+| 512   | float32  | vchordrq                            |      25.56 |     96.0 |    40.21 |      644.5 |      844.3 |
+| 512   | float16  | vchordrq                            |      25.57 |     97.0 |    26.32 |      322.3 |      397.8 |
+| 512   | float32  | ivfflat(L500,P31)                   |      29.54 |     96.0 |    17.79 |      644.5 |      783.9 |
+| 512   | float16  | ivfflat(L500,P31)                   |      27.04 |     97.0 |    14.50 |      322.3 |      337.1 |
+| 512   | float32  | hnsw+binary(ef1000,10x)             |      15.13 |     94.0 |   209.95 |      644.5 |      160.4 |
+| 512   | float16  | hnsw+binary(ef1000,10x)             |       7.73 |     94.0 |   212.17 |      322.3 |      160.4 |
+| 512   | float32  | ivf+binary(L500,P93,10x)            |      21.15 |     93.0 |     3.87 |      644.5 |       26.3 |
+| 512   | float16  | ivf+binary(L500,P93,10x)            |      13.59 |     93.0 |     3.72 |      322.3 |       26.4 |
+| 512   | float32  | exact-binary(10x)                   |      57.11 |     92.0 |     0.00 |      644.5 |        0.0 |
+| 512   | float16  | exact-binary(10x)                   |     106.79 |     94.0 |     0.00 |      322.3 |        0.0 |
+| 512   | float32  | exact-binary+numpy(10x)             |      57.69 |     93.0 |     0.00 |      644.5 |        0.0 |
+| 512   | float16  | exact-binary+numpy(10x)             |     111.00 |     94.0 |     0.00 |      322.3 |        0.0 |
+| 512   | float32  | exact-binary(1x)                    |      32.77 |     49.0 |     0.00 |      644.5 |        0.0 |
+| 512   | float16  | exact-binary(1x)                    |      45.30 |     47.0 |     0.00 |      322.3 |        0.0 |
+| 512   | float32  | exact                               |     324.18 |     96.0 |     0.00 |      644.5 |        0.0 |
+| 512   | float16  | exact                               |      47.51 |     96.0 |     0.00 |      322.3 |        0.0 |
+||
+| 1024  | float32  | vchordrq                            |      29.76 |    100.0 |    68.99 |     1289.1 |     1465.4 |
+| 1024  | float16  | vchordrq                            |      28.08 |    100.0 |    38.46 |      644.5 |      882.5 |
+| 1024  | float32  | ivfflat(L500,P31)                   |      29.09 |    100.0 |    39.74 |     1289.1 |     2347.7 |
+| 1024  | float16  | ivfflat(L500,P31)                   |      27.11 |    100.0 |    33.48 |      644.5 |      784.0 |
+| 1024  | float32  | hnsw+binary(ef1000,10x)             |      12.63 |    100.0 |   201.75 |     1289.1 |      181.0 |
+| 1024  | float16  | hnsw+binary(ef1000,10x)             |      13.32 |    100.0 |   200.80 |      644.5 |      181.0 |
+| 1024  | float32  | ivf+binary(L500,P93,10x)            |      16.60 |    100.0 |     6.61 |     1289.1 |       44.9 |
+| 1024  | float16  | ivf+binary(L500,P93,10x)            |      18.17 |    100.0 |     6.52 |      644.5 |       44.9 |
+| 1024  | float32  | exact-binary(10x)                   |      59.38 |    100.0 |     0.00 |     1289.1 |        0.0 |
+| 1024  | float16  | exact-binary(10x)                   |      62.07 |    100.0 |     0.00 |      644.5 |        0.0 |
+| 1024  | float32  | exact-binary+numpy(10x)             |      63.99 |    100.0 |     0.00 |     1289.1 |        0.0 |
+| 1024  | float16  | exact-binary+numpy(10x)             |      68.48 |    100.0 |     0.00 |      644.5 |        0.0 |
+| 1024  | float32  | exact-binary(1x)                    |      29.04 |     55.0 |     0.00 |     1289.1 |        0.0 |
+| 1024  | float16  | exact-binary(1x)                    |      33.51 |     56.0 |     0.00 |      644.5 |        0.0 |
+| 1024  | float32  | exact                               |     480.70 |    100.0 |     0.00 |     1289.1 |        0.0 |
+| 1024  | float16  | exact                               |     337.50 |    100.0 |     0.00 |      644.5 |        0.0 |
+
 ### Show me the code
 
 Check out the code [here](https://github.com/SeanPedersen/vector-db-benchmark/tree/main)
