@@ -142,7 +142,7 @@ The table below was computed on an 8 core Intel server using 300K CLIP Matryoshk
 | 1024  | float32  | exact                               |     480.70 |    100.0 |     0.00 |     1289.1 |        0.0 |
 | 1024  | float16  | exact                               |     337.50 |    100.0 |     0.00 |      644.5 |        0.0 |
 
-### Show me the code
+## Show me the code
 
 Check out the code [here](https://github.com/SeanPedersen/vector-db-benchmark/tree/main)
 
