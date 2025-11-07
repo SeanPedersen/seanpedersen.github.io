@@ -80,12 +80,18 @@ For 450K text embeddings 1024D float32 vectors - measure the recall@100.
 
 When things scale up one should strive for efficient vector storage using:
 - Vector Dimensionality Reduction
+    - Matryoshka Embeddings: superior performance vs PQ as it learns the reduction in training and not post-training
+    - Product Quantization (PQ)
     - PCA / UMAP
-    - Matryoshka Embeddings
-- Vector Quantization
-    - Reduce bit representation (FP32, FP16 and binary)
+- Scalar Quantization (Reduce bit representation)
+    - FP16: half precision from FP32 
+    - binary: reduce to single bit
+      - In pgvector: binary quantization will reduce any positive value to 1, and any zero or negative value to 0
+      - Mean-based thresholding: binarize each dimension using its corpus-wide mean as the threshold, ensuring ~50/50 bit distribution per dimension for better information preservation and more discriminative binary codes.
 
-We can see that using IvfFlat index on binary representation with a top-K factor of 10x (overfetching), then reranking in higher precision (float32 or float16) results excellent recall, low vector storage costs (float16) and very fast retrieval latencies. A good trade-off seems to be using the first 512D (Matryoshka dims.), storing them as float16 and using ivf+binary(L500,P93,10x) delivering 13.59 ms retrieval latency with a 93% recall. Float16 vector storage is 322.3MB (4x reduction) and index size is only 26.4MB.
+We can see that using IvfFlat index on binary representation with a top-K factor of 10x (overfetching), then reranking in higher precision (float32 or float16) results excellent recall, low vector storage costs (float16) and very fast retrieval latencies.
+
+A good trade-off seems to be using the first 512D (Matryoshka dims.), storing them as float16 and using ivf+binary(L500,P93,10x) delivering 13.59 ms retrieval latency with a 93% recall. Float16 for 512D vector storage is 322.3MB (4x reduction compared to 1024D float32) and index size is only 26.4MB.
 
 The table below was computed on an 8 core Intel server using 300K CLIP Matryoshka text embeddings.
 
@@ -153,5 +159,6 @@ VectorChord is the clear winner - providing superior performance and better deve
 - <https://drscotthawley.github.io/blog/posts/2023-06-12-RVQ.html>
 - <https://www.tigerdata.com/blog/nearest-neighbor-indexes-what-are-ivfflat-indexes-in-pgvector-and-how-do-they-work>
 - <https://jkatz05.com/post/postgres/pgvector-scalar-binary-quantization/>
+- <https://medium.com/nlp-experiment/product-quantization-d66fdb860047>
 
 #programming #machine-learning
