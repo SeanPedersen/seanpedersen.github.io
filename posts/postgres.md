@@ -322,7 +322,7 @@ ORDER BY
   SUM(pg_relation_size(i.indexrelid)) DESC;
 ```
 
-**Show active transactions:**
+**Show active transactions**:
 
 ```sql
 SELECT pid, usename, datname, application_name, client_addr, backend_xid, xact_start, query, state
@@ -330,7 +330,7 @@ FROM pg_stat_activity
 WHERE backend_xid IS NOT NULL;
 ```
 
-Show all locks on tables:
+**Show all locks on tables**:
 ```sql
 SELECT
   COALESCE(blocking_locks.relation::regclass::text, blocking_locks.locktype) AS locked_item,
@@ -362,7 +362,7 @@ ORDER BY
   waiting_duration DESC;
 ```
 
-Kill process:
+**Kill process**:
 ```sql
 SELECT pg_terminate_backend(PID);
 ```
