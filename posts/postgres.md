@@ -330,6 +330,43 @@ FROM pg_stat_activity
 WHERE backend_xid IS NOT NULL;
 ```
 
+Show all locks on tables:
+```sql
+SELECT
+  COALESCE(blocking_locks.relation::regclass::text, blocking_locks.locktype) AS locked_item,
+  now() - blocked_activity.query_start AS waiting_duration,
+  blocked_activity.pid AS blocked_pid,
+  blocked_activity.query AS blocked_query,
+  blocked_locks.mode AS blocked_mode,
+  blocking_activity.pid AS blocking_pid,
+  blocking_activity.query AS blocking_query,
+  blocking_locks.mode AS blocking_mode,
+  blocking_activity.usename AS blocking_user,
+  blocked_activity.usename AS blocked_user
+FROM
+  pg_catalog.pg_locks blocked_locks
+JOIN
+  pg_stat_activity blocked_activity ON blocked_locks.pid = blocked_activity.pid
+JOIN
+  pg_catalog.pg_locks blocking_locks ON (
+    (blocking_locks.transactionid = blocked_locks.transactionid)
+    OR
+    (blocking_locks.relation = blocked_locks.relation AND blocking_locks.locktype = blocked_locks.locktype)
+  )
+  AND blocked_locks.pid != blocking_locks.pid
+JOIN
+  pg_stat_activity blocking_activity ON blocking_locks.pid = blocking_activity.pid
+WHERE
+  NOT blocked_locks.granted
+ORDER BY
+  waiting_duration DESC;
+```
+
+Kill process:
+```sql
+SELECT pg_terminate_backend(PID);
+```
+
 ## References
 
 - <https://github.com/postgres/postgres>
