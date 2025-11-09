@@ -42,7 +42,7 @@ PGVectorScale supports pre-filtering using bitfields with manual meta-data table
 
 ## [VectorChord](https://github.com/tensorchord/VectorChord)
 
-### VChordRQ
+### [VChordRQ](https://docs.vectorchord.ai/vectorchord/usage/indexing.html)
 
 A custom ANN index with superior performance (combining IVF ANN index with RaBitQ quantization). Supports pre-filtering (easy to use).
 
