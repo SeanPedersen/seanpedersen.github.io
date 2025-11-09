@@ -71,6 +71,46 @@ A promising "self-reflection" RL method for LLM's trained in verifiable domains 
 
 - [CWM: An Open-Weights LLM for Research on Code Generation with World Models](https://ai.meta.com/research/publications/cwm-an-open-weights-llm-for-research-on-code-generation-with-world-models/)
 
+## Importance of the Context Window
+
+> In "The Reversal Curse", researchers at Vanderbilt, UK AISI, Apollo, NYU, Sussex, and Oxford discovered the following occurrences in a datapoint:
+> 
+> - George Washington was the First President of the United States
+> - Kim Kardashian is the daughter of Kris Jenner
+> - Donald Trump is the current President of the United States
+> 
+> If you took these sentences, and you DELETED any occurrance from the training data... where the sentence was reversed... e.g.
+> - The First President of the United States was George Washington"
+> - Kris Jenner is the mother of Kim Kardashian
+> - The current president of the United States is Donald Trump
+> 
+> This created a problem for an LLM... because it's only sees the token frequencies in one direction.
+> 
+> This meant that an LLM can CORRECTLY prompts like: 
+> - Who is George Washington? 
+> - Who is Kim Kardashian the daughter of? 
+> - What is Donald Trump's current occupation?
+> 
+> But the LLM could NOT answer prompts like: 
+> - Who was the first president of the United States? 
+> - Who is the daughter of Kris Jenner? 
+> - Who is the current president of the United States?
+> 
+> WHAA?!?!!?!
+> 
+> It's a pretty crazy limitation... and its very telling about how LLMs work...
+> 
+> But things get really crazy when you change one more thing. If you first ask an LLM the first prompt (the one that works) and > then keep that in the context window... it CAN correctly answer the second prompt!!
+> 
+> This describes where and how LLMs do logic.
+> 
+> - Training data -> Prediction: NO LOGIC (can't even reverse a simple relation) 
+> - Context Window -> Prediction: LOGIC (can do complex reasoning)
+
+- [Andrew Trak on X](https://x.com/iamtrask/status/1965522412243677522)
+
+This phenomenon highlights why chain of thought (CoT) and RAG / context engineering are so successful: A LLM can do much more complex logical inferences from its context window than one-shotting it directly from its weights (compressed training data).
+
 ## Fundamental Limits
 
 Current LLMs face a core architectural constraint: they generate text sequentially, one token at a time. As Yann LeCun argues, this creates exponential error accumulation. Each prediction depends on all previous tokens, so early mistakes cascade through long sequences, causing models to derail from coherent long-formed reasoning (an issue well known among LLM users - some call it context rot).
