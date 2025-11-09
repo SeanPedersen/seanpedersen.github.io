@@ -24,11 +24,11 @@ CREATE TABLE items (id bigserial PRIMARY KEY, embedding halfvec(1024));
 
 ### [HNSW](https://github.com/nmslib/hnswlib)
 
-Hierarchical navigable small world (HNSW) is a popular ANN index - delivering good retrieval and QPS performance but at the cost of longer index build times and using more RAM for it (did crash for 1 million vectors on my 16GB RAM machine).
+Hierarchical navigable small world (HNSW) is a popular graph based ANN index - delivering good retrieval and QPS performance but at the cost of longer index build times and using more RAM for it (did crash for 1 million vectors on my 16GB RAM machine).
 
 ### IvfFlat
 
-InVerted File Flat (IvfFlat) is less RAM hungry than HNSW. With caveats: IvfFlat performance degrades as vectors are deleted and added (because centroids are not updated), thus needing regular index rebuilds (if new vectors get inserted regularly).
+Inverted File Flat (IvfFlat) is less RAM hungry than HNSW. With caveats: IvfFlat performance degrades as vectors are deleted and added (because centroids are not updated), thus needing regular index rebuilds (if new vectors get inserted regularly).
 
 "As data gets inserted or deleted from the index, if the index is not rebuilt, the IVFFlat index in pgvector can return incorrect approximate nearest neighbors due to clustering centroids no longer fitting the data well"
 
