@@ -48,6 +48,8 @@ A custom ANN index with superior performance (combining IVF ANN index with RaBit
 
 VChord can be configured to not copy all vectors into the index (which is the default and pgvector also does), reducing disk usage - it can be [enabled](https://docs.vectorchord.ai/vectorchord/usage/rerank-in-table.html) (slightly degrading performance).
 
+VChord also supports efficient [range filters](https://docs.vectorchord.ai/vectorchord/usage/range-query.html) (limiting results by distance instead of K nearest neighbors).
+
 ### VChordG (DiskANN)
 
 A novel addition (not prodution ready yet): custom implementation of DiskANN index combined with RaBitQ quantization.
