@@ -32,7 +32,9 @@ Inverted File Flat (IvfFlat) is less RAM hungry than HNSW. With caveats: IvfFlat
 
 "As data gets inserted or deleted from the index, if the index is not rebuilt, the IVFFlat index in pgvector can return incorrect approximate nearest neighbors due to clustering centroids no longer fitting the data well"
 
-### IvfFlat Binary
+#### IvfFlat Binary (with reranking)
+
+Build IvfFlat index on binarized vectors -> on query: overfetch Kx10 nearest neighbors, then rerank using float16/32 vectors to get more accurate final K-NN.
 
 ```sql
 -- Mean threshold binarization (performs better than pgvector's binarizer)
