@@ -46,7 +46,7 @@ PGVectorScale supports pre-filtering using bitfields with manual meta-data table
 
 A custom ANN index with superior performance (combining IVF ANN index with RaBitQ quantization). Supports pre-filtering (easy to use).
 
-A disadvantage of VChord is the default setting which copies all vectors into the index, resulting in huge disk usage - though it can be [disabled](https://docs.vectorchord.ai/vectorchord/usage/rerank-in-table.html) (slightly degrading performance).
+VChord can be configured to not copy all vectors into the index (which is the default and pgvector also does), reducing disk usage - it can be [enabled](https://docs.vectorchord.ai/vectorchord/usage/rerank-in-table.html) (slightly degrading performance).
 
 ### VChordG (DiskANN)
 
