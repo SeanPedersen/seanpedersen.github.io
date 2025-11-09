@@ -1,10 +1,10 @@
 ---
-title: 'Vector Databases - a benchmark'
+title: 'Postgres as Vector Database - a benchmark'
 date: '2025-10-08'
 ---
 There is a flood of vector databases - which ones are actually useful? IMO extending a relational DBMS with ACID compliance and existing datasets, is for most use cases the ideal choice. Using a dedicated vector DB like (Chroma, Turbopuffer, [LanceDB](https://github.com/lancedb/lancedb) etc.) only makes sense for narrow use cases where no complicated meta-data filters are needed (e.g. just simple RAG). 
 
-So let's have a look how we can store and search vectors using Postgres: There are three extensions for Postgres: pgvector, pgvectorscale and vectorchord.
+So let's have a look how we can store and search vectors using Postgres - there are three notable extensions for Postgres: pgvector, pgvectorscale and vectorchord.
 
 ## [PGVector](https://github.com/pgvector/pgvector)
 
@@ -28,7 +28,7 @@ The most popular ANN index - delivering good retrieval and QPS performance but u
 
 ### IvfFlat
 
-Less RAM hungry than HNSW. With caveats: ivfflat performance degrades as vectors are deleted and added.
+Less RAM hungry than HNSW. With caveats: ivfflat performance degrades as vectors are deleted and added, thus needing regular index rebuilds (if vectors get inserted regularly).
 
 "As data gets inserted or deleted from the index, if the index is not rebuilt, the IVFFlat index in pgvector can return incorrect approximate nearest neighbors due to clustering centroids no longer fitting the data well"
 
@@ -58,7 +58,7 @@ The benchmark should reflect realistic usage - right now it just measures index 
 
 In the future I want to extend it:
 - measure insertion perormance after inital index is built
-- use real data embedding vectors -> simulate data distribution shift
+- use real data embedding vectors -> simulate data distribution shift (insert many vectors after index was built)
 - simulate realistic complex SQL queries involving categorical and range filtering
 - benchmark vector scales: 100K, 1M, 10M, 100M, 1B
 
@@ -91,7 +91,7 @@ When things scale up one should strive for efficient vector storage using:
 
 We can see that using IvfFlat index on binary representation with a top-K factor of 10x (overfetching), then reranking in higher precision (float32 or float16) results excellent recall, low vector storage costs (float16) and very fast retrieval latencies.
 
-A good trade-off seems to be using the first 512D (Matryoshka dims.), storing them as float16 and using ivf+binary(L500,P93,10x) delivering 13.59 ms retrieval latency with a 93% recall. Float16 for 512D vector storage is 322.3MB (4x reduction compared to 1024D float32) and index size is only 26.4MB.
+A good trade-off seems to be using the first 512D (Matryoshka dims.), storing them as float16 and using ivf+binary(L500,P93,10x) delivering 13.59 ms retrieval latency with a 93% recall. Float16 for 512D vector storage is 322.3MB (4x reduction compared to 1024D float32) and index size is only 26.4MB (~33x reduction compared to vchordrq 1024D float16 index).
 
 The table below was computed on an 8 core Intel server using 300K CLIP Matryoshka text embeddings.
 
@@ -148,7 +148,7 @@ Check out the code [here](https://github.com/SeanPedersen/vector-db-benchmark/tr
 
 ## Conclusion
 
-VectorChord is the clear winner - providing superior performance and better developer experience (pre-filtering and better defaul settings). The vchordrq index is for most use cases the ideal choice as it delivers great performance and handles data distribution drift better than diskann indices. Using an ANN index only starts to make sense for big numbers of vectors (over 1 million).
+VectorChord is a good choice - providing superior performance and better developer experience (pre-filtering and better default settings). The vchordrq index is for most use cases the ideal choice as it delivers great performance and handles data distribution drift better than diskann indices. Using an ANN index only starts to make sense for big numbers of vectors (over 1 million).
 
 ## References
 
