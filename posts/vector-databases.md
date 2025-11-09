@@ -32,6 +32,44 @@ Inverted File Flat (IvfFlat) is less RAM hungry than HNSW. With caveats: IvfFlat
 
 "As data gets inserted or deleted from the index, if the index is not rebuilt, the IVFFlat index in pgvector can return incorrect approximate nearest neighbors due to clustering centroids no longer fitting the data well"
 
+### IvfFlat Binary
+
+```sql
+-- Mean threshold binarization (performs better than pgvector's binarizer)
+CREATE OR REPLACE FUNCTION binary_quantize_mean(vec halfvec) 
+RETURNS varbit AS $$
+    SELECT string_agg(
+        CASE WHEN val >= mean_val THEN '1' ELSE '0' END, 
+        ''
+    )::varbit
+    FROM unnest(vec::real[]) AS val,
+         (SELECT AVG(v) AS mean_val FROM unnest(vec::real[]) AS v) AS stats;
+$$ LANGUAGE sql IMMUTABLE PARALLEL SAFE;
+
+-- Step 1: Add a stored generated binary column
+ALTER TABLE instagram_profiles 
+ADD COLUMN mean_post_caption_vector_new_bin bit(512) 
+GENERATED ALWAYS AS (binary_quantize_mean(mean_post_caption_vector_new)::bit(512)) STORED;
+
+-- Step 2: Create index on the pre-computed binary column
+CREATE INDEX IF NOT EXISTS instagram_profiles_idx_ivfflat_bin 
+ON instagram_profiles 
+USING ivfflat (mean_post_caption_vector_new_bin bit_hamming_ops) 
+WITH (lists = 100);
+
+-- Query using reranking
+SELECT t.id
+FROM (
+  SELECT id
+  FROM instagram_profiles
+  ORDER BY mean_post_caption_vector_new_bin <~> binary_quantize_mean(%s::halfvec(512))::bit(512)
+  LIMIT 1000
+) c
+JOIN instagram_profiles t USING(id)
+ORDER BY t.mean_post_caption_vector_new <=> %s::halfvec(512)
+LIMIT 100;
+```
+
 ## [PGVectorScale](https://github.com/timescale/pgvectorscale)
 
 ### DiskANN
@@ -44,7 +82,7 @@ PGVectorScale supports pre-filtering using bitfields with manual meta-data table
 
 ### [VChordRQ](https://docs.vectorchord.ai/vectorchord/usage/indexing.html)
 
-A custom ANN index with superior performance (combining IVF ANN index with RaBitQ quantization). Supports pre-filtering (easy to use).
+A custom ANN index with excellent performance (combining IVF ANN index with RaBitQ quantization). Supports pre-filtering (easy to use).
 
 VChord can be configured to not copy all vectors into the index (which is the default and pgvector also does), reducing disk usage - it can be [enabled](https://docs.vectorchord.ai/vectorchord/usage/rerank-in-table.html) (slightly degrading performance).
 
@@ -95,7 +133,9 @@ When things scale up one should strive for efficient vector storage using:
 
 We can see that using IvfFlat index on binary representation with a top-K factor of 10x (overfetching), then reranking in higher precision (float32 or float16) results excellent recall, low vector storage costs (float16) and very fast retrieval latencies.
 
-A good trade-off seems to be using the first 512D (Matryoshka dims.), storing them as float16 and using ivf+binary(L500,P93,10x) delivering 13.59 ms retrieval latency with a 93% recall. Float16 for 512D vector storage is 322.3MB (4x reduction compared to 1024D float32) and index size is only 26.4MB (~33x reduction compared to vchordrq 1024D float16 index).
+A good trade-off seems to be using the first 512D (Matryoshka dims.), storing them as float16 and using ivf+binary(L500,P93,10x) index with float16 reranking delivers 13.59 ms retrieval latency with a 93% recall. Float16 for 512D vector storage is 322.3MB (4x reduction compared to 1024D float32) and index size is only 26.4MB (~33x reduction compared to vchordrq 1024D float16 index).
+
+Though the reranking can lead to complications with queries using metadata filtering, so just using vchordrq index with 512D and float16 can also make sense.
 
 The table below was computed on an 8 core Intel server using 300K CLIP Matryoshka text embeddings.
 
