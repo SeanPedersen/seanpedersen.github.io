@@ -67,9 +67,11 @@ A promising "self-reflection" RL method for LLM's trained in verifiable domains 
 
 > To improve code understanding beyond what can be learned from training on static code alone, we mid-train CWM on a large amount of observation-action trajectories from Python interpreter and agentic Docker environments, and perform extensive multi- task reasoning RL in verifiable coding, math, and multi-turn software engineering environments.
 
+- [CWM: An Open-Weights LLM for Research on Code Generation with World Models](https://ai.meta.com/research/publications/cwm-an-open-weights-llm-for-research-on-code-generation-with-world-models/)
+
 "Instead of doing code training by just predicting the next token in the source file, interleave that with interpreter state which also have to be predicted!" - [Lucas Beyer on X](https://x.com/giffmana/status/1971507878025445653)
 
-- [CWM: An Open-Weights LLM for Research on Code Generation with World Models](https://ai.meta.com/research/publications/cwm-an-open-weights-llm-for-research-on-code-generation-with-world-models/)
+
 
 ## Importance of the Context Window
 
@@ -107,9 +109,9 @@ A promising "self-reflection" RL method for LLM's trained in verifiable domains 
 > - Training data -> Prediction: NO LOGIC (can't even reverse a simple relation) 
 > - Context Window -> Prediction: LOGIC (can do complex reasoning)
 
-- [Andrew Trak on X](https://x.com/iamtrask/status/1965522412243677522)
+- [Andrew Trask on X](https://x.com/iamtrask/status/1965522412243677522)
 
-This phenomenon highlights why chain of thought (CoT) and RAG / context engineering are so successful: A LLM can do much more complex logical inferences from its context window than one-shotting it directly from its weights (compressed training data).
+This phenomenon highlights why chain of thought (CoT) and RAG / context engineering are so successful: LLM can do much more complex logical inferences from its context window than one-shotting it directly from its weights (compressed training data).
 
 ## Fundamental Limits
 
@@ -130,11 +132,11 @@ The endgame would be language models that actively create and verify new knowled
 - Great talk on current limits of LLM: <https://www.youtube.com/watch?v=s7_NlkBwdj8>
 - <https://dblalock.substack.com/p/models-generating-training-data-huge>
 - <https://news.mit.edu/2023/large-language-models-are-biased-can-logic-help-save-them-0303>
-- <https://arxiv.org/abs/2303.05670>
+- [Logic Against Bias: Textual Entailment Mitigates Stereotypical Sentence Reasoning](https://arxiv.org/abs/2303.05670)
 - <https://www.anthropic.com/research/mapping-mind-language-model>
 - <https://bharathpbhat.github.io/2021/04/04/getting-confidence-estimates-from-neural-networks.html>
 - <https://gist.github.com/yoavg/4e4b48afda8693bc274869c2c23cbfb2>
 - <https://blog.jxmo.io/p/we-should-stop-talking-about-agi>
-- <https://x.com/iamtrask/status/1965522412243677522>
+- [The Reversal Curse: LLMs trained on "A is B" fail to learn "B is A"](https://arxiv.org/abs/2309.12288)
 
 #machine-learning
