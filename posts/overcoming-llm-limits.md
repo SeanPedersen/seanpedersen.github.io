@@ -86,9 +86,9 @@ A promising "self-reflection" RL method for LLM's trained in verifiable domains 
 > - Kris Jenner is the mother of Kim Kardashian
 > - The current president of the United States is Donald Trump
 > 
-> This created a problem for an LLM... because it's only sees the token frequencies in one direction.
+> This created a problem for an LLM... because it's only sees the token frequencies in one direction (left to right).
 > 
-> This meant that an LLM can CORRECTLY prompts like: 
+> This meant that an LLM can CORRECTLY answer prompts like: 
 > - Who is George Washington? 
 > - Who is Kim Kardashian the daughter of? 
 > - What is Donald Trump's current occupation?
@@ -98,11 +98,9 @@ A promising "self-reflection" RL method for LLM's trained in verifiable domains 
 > - Who is the daughter of Kris Jenner? 
 > - Who is the current president of the United States?
 > 
-> WHAA?!?!!?!
-> 
 > It's a pretty crazy limitation... and its very telling about how LLMs work...
 > 
-> But things get really crazy when you change one more thing. If you first ask an LLM the first prompt (the one that works) and > then keep that in the context window... it CAN correctly answer the second prompt!!
+> But things get really crazy when you change one more thing. If you first ask an LLM the first prompt (the one that works) and then keep that in the context window... it CAN correctly answer the second prompt!!
 > 
 > This describes where and how LLMs do logic.
 > 
