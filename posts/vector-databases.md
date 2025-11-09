@@ -1,5 +1,5 @@
 ---
-title: 'Postgres as Vector Database - a benchmark'
+title: 'Postgres as Vector DB - a benchmark'
 date: '2025-10-08'
 ---
 There is a flood of vector databases - which ones are actually useful? IMO extending a relational DBMS with ACID compliance and existing datasets, is for most use cases the ideal choice. Using a dedicated vector DB like (Chroma, Turbopuffer, [LanceDB](https://github.com/lancedb/lancedb) etc.) only makes sense for narrow use cases where no complicated meta-data filters are needed (e.g. just simple RAG). 
@@ -24,11 +24,11 @@ CREATE TABLE items (id bigserial PRIMARY KEY, embedding halfvec(1024));
 
 ### [HNSW](https://github.com/nmslib/hnswlib)
 
-The most popular ANN index - delivering good retrieval and QPS performance but using lot of RAM for it (did crash for 1 million vectors on my 16GB RAM machine).
+Hierarchical navigable small world (HNSW) is a popular ANN index - delivering good retrieval and QPS performance but at the cost of longer index build times and using more RAM for it (did crash for 1 million vectors on my 16GB RAM machine).
 
 ### IvfFlat
 
-Less RAM hungry than HNSW. With caveats: ivfflat performance degrades as vectors are deleted and added, thus needing regular index rebuilds (if vectors get inserted regularly).
+InVerted File Flat (IvfFlat) is less RAM hungry than HNSW. With caveats: IvfFlat performance degrades as vectors are deleted and added (because centroids are not updated), thus needing regular index rebuilds (if new vectors get inserted regularly).
 
 "As data gets inserted or deleted from the index, if the index is not rebuilt, the IVFFlat index in pgvector can return incorrect approximate nearest neighbors due to clustering centroids no longer fitting the data well"
 
@@ -54,10 +54,10 @@ A novel addition (not prodution ready yet): custom implementation of DiskANN ind
 
 ## Benchmark
 
-The benchmark should reflect realistic usage - right now it just measures index built and query times.
+The benchmark should reflect realistic usage - right now it just measures index build and query times.
 
 In the future I want to extend it:
-- measure insertion perormance after inital index is built
+- measure insertion perormance after initial index is built
 - use real data embedding vectors -> simulate data distribution shift (insert many vectors after index was built)
 - simulate realistic complex SQL queries involving categorical and range filtering
 - benchmark vector scales: 100K, 1M, 10M, 100M, 1B
@@ -160,5 +160,6 @@ VectorChord is a good choice - providing superior performance and better develop
 - <https://www.tigerdata.com/blog/nearest-neighbor-indexes-what-are-ivfflat-indexes-in-pgvector-and-how-do-they-work>
 - <https://jkatz05.com/post/postgres/pgvector-scalar-binary-quantization/>
 - <https://medium.com/nlp-experiment/product-quantization-d66fdb860047>
+- <https://medium.com/@bavalpreetsinghh/pgvector-hnsw-vs-ivfflat-a-comprehensive-study-21ce0aaab931>
 
 #programming #machine-learning
