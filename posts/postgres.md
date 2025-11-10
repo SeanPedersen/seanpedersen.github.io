@@ -2,31 +2,17 @@
 title: 'PostgreSQL Database'
 date: '2025-10-13'
 ---
-Postgres is an open-source "eierlegende Wollmilchsau" relational DBMS - which means it is capable of lots of things: spanning advanced search capabilities for text, vectors and geographic data and optimizations like partitioning and sharding. Understanding these optimization techniques can transform a moderately performing database into a high-performance system handling millions of queries per second with sub-millisecond latency.
-
-Modern PostgreSQL deployments benefit from a holistic approach: vertical scaling through careful hardware selection and memory parameter tuning provides the foundation, while partitioning strategies enable efficient management of massive tables exceeding hundreds of gigabytes. Horizontal scaling through replication and connection pooling extends capacity beyond single-server limits. 
-
-The transformation of PostgreSQL from general-purpose database to specialized search engine happens through extensions like PostGIS and PGVector. The key insight: PostgreSQL's extensibility means you rarely need external systems. Properly optimized PostgreSQL can handle workloads traditionally reserved for specialized databases like Elasticsearch, vector databases or GIS systems. This reduces operational complexity while maintaining ACID guarantees and familiar SQL interfaces.
-
-Modern PostgreSQL deployments demonstrate remarkable scalability: being used by major players like OpenAI, Spotify and Netflix to power mission-critical workloads that demand both high throughput and strong consistency. Its advanced replication features, such as logical and streaming replication, allow organizations to scale reads horizontally and maintain near-zero downtime during upgrades.
+Postgres is a versatible, powerful open-source relational DBMS - which means it is capable of lots of things: spanning from advanced search capabilities for text, vector search and geographic data to optimizations like partitioning and sharding. Understanding these optimization techniques can transform a moderately performing database into a high-performance system handling millions of queries per second with sub-millisecond latency.
 
 ## Database Maintenance
 
-PostgreSQL's Multi-Version Concurrency Control (MVCC) architecture creates dead tuples whenever rows are updated or deleted. An UPDATE operation actually performs a DELETE followed by INSERT, leaving the old row version behind. These dead tuples accumulate over time, consuming disk space and degrading query performance. **VACUUM reclaims this space and prevents transaction ID wraparound**, a catastrophic failure mode that occurs when PostgreSQL's 32-bit transaction counter approaches its 4 billion limit.
+PostgreSQL's Multi-Version Concurrency Control (MVCC) architecture creates dead tuples whenever rows are updated or deleted. An UPDATE operation actually performs a DELETE followed by INSERT, leaving the old row version behind. These dead tuples accumulate over time, consuming disk space and degrading query performance.
 
 Standard VACUUM runs concurrently with normal operations, acquiring only a ShareUpdateExclusive lock that permits reads and writes. It marks space occupied by dead tuples as reusable within the same table but doesn't return disk space to the operating system. This process also "freezes" old tuples by marking them visible to all future transactions, preventing wraparound. Configure autovacuum with appropriate thresholds to ensure it runs frequently enough—the default 20% scale factor means a 1TB table accumulates 200GB of dead tuples before vacuuming triggers, which is far too permissive for large tables.
 
 VACUUM FULL rewrites the entire table into a new disk file with no wasted space, returning freed disk space to the operating system. However, it requires an ACCESS EXCLUSIVE lock that blocks all operations and needs up to 2x the table's size in temporary disk space. **Run VACUUM FULL only during scheduled maintenance windows for extreme bloat situations**, never as routine maintenance. For a 100GB table with 90% bloat, VACUUM FULL might take hours and block all access. Instead, prevent bloat accumulation through proper autovacuum tuning.
 
-Critical autovacuum parameters require adjustment from PostgreSQL defaults. Set `autovacuum_vacuum_scale_factor` to 0.01 (1%) instead of the default 0.2 (20%) for tables exceeding 100GB. This triggers vacuum after 10GB of dead tuples instead of 200GB. Increase `autovacuum_vacuum_cost_limit` from 200 to 2000 or higher on modern hardware—PostgreSQL 14+ improved cost calculations dramatically, providing roughly 10x higher throughput. For high-write tables, configure per-table settings: `ALTER TABLE busy_table SET (autovacuum_vacuum_scale_factor = 0.01, autovacuum_vacuum_cost_limit = 2000)`.
-
-Monitor vacuum effectiveness with `pg_stat_user_tables`. Check `n_dead_tup` and `last_autovacuum` columns regularly. Calculate bloat ratio with `n_dead_tup / (n_live_tup + n_dead_tup) * 100`—healthy tables maintain below 5-10% dead tuples. Long-running transactions block VACUUM from removing dead tuples visible to those transactions. Query `pg_stat_activity` for transactions running longer than 5 minutes and investigate: `SELECT pid, now() - xact_start AS duration, query FROM pg_stat_activity WHERE state = 'active' AND (now() - xact_start) > interval '5 minutes'`.
-
-Essential psql commands streamline database administration. Use `\dt+` to list tables with sizes, `\di+` for indexes with sizes and `\x auto` to automatically switch to vertical display for wide results. Create useful shortcuts in `~/.psqlrc` for common operations. Enable timing with `\timing on` to measure query performance. The `\watch` command repeats queries at intervals, useful for monitoring: `SELECT * FROM pg_stat_activity WHERE state != 'idle' \watch 5`.
-
-Performance monitoring through SQL queries provides operational visibility. Check buffer cache hit ratios—values below 99% indicate insufficient `shared_buffers` or queries scanning too much data. Monitor index usage with `pg_stat_user_indexes` to identify unused indexes consuming disk space and write performance. Track query performance with the `pg_stat_statements` extension, which aggregates statistics across query patterns.
-
-VACUUM FULL alternative (does not need 2x disk space): <https://github.com/reorg/pg_repack>
+VACUUM FULL alternative (less locking): <https://github.com/reorg/pg_repack>
 
 Backups: <https://github.com/RostislavDugin/postgresus/>
 
@@ -34,15 +20,10 @@ Backups: <https://github.com/RostislavDugin/postgresus/>
 
 ### Vertical Scaling (bigger server)
 
-Correct hardware selection establishes the foundation for PostgreSQL performance. Modern PostgreSQL scales effectively across 64+ CPU cores for read workloads and ~20 cores for write-heavy operations. **NVMe storage delivers 2.4-3x faster query performance than network-attached storage**, with sub-millisecond latency compared to 1-3ms for SATA SSDs. A $600 NVMe drive provides 2.5 million IOPS—equivalent to cloud storage costing $1.3 million monthly. Configure `random_page_cost = 1.0` for SSDs instead of the default 4.0 calibrated for spinning disks and set `effective_io_concurrency = 200` for NVMe to enable parallel I/O operations.
-
-Memory configuration represents the highest-impact tuning area. Set `shared_buffers` to 25% of total RAM as a starting point, maximum 40% on dedicated database servers. Beyond 40%, diminishing returns appear because PostgreSQL relies on the operating system's page cache as a second layer of caching. A 64GB RAM system typically performs best with 16GB shared_buffers. Enable huge pages (`huge_pages = on`) when shared_buffers exceeds 8GB to reduce page table overhead.
-
-The `work_mem` parameter controls memory for each query operation—sorts, hash tables and merge joins. Each complex query might use this allocation multiple times. **A query with 4 parallel workers performing 2 hash operations potentially allocates 4 × 2 × work_mem memory**. Calculate conservatively: `work_mem = (Total RAM × 0.25) / max_connections`. For a 32GB system with 100 connections, set work_mem to 80MB. Override this per-session for analytical queries: `SET work_mem = '256MB'` before running complex aggregations. Monitor temporary file creation with `log_temp_files = 0` to identify queries spilling to disk that need higher work_mem.
-
-Configure `maintenance_work_mem` to 5% of total RAM, typically 1-2GB. This accelerates VACUUM, CREATE INDEX and bulk loading operations. Autovacuum uses a separate `autovacuum_work_mem` parameter—set this lower than maintenance_work_mem since multiple autovacuum workers run concurrently. Set `effective_cache_size` to 50-75% of total RAM to help the query planner understand total available cache memory (PostgreSQL + OS combined).
-
-Parallel query execution multiplies CPU utilization for analytical workloads. Configure `max_worker_processes` to match CPU core count, setting the pool from which all parallel workers draw. Set `max_parallel_workers_per_gather` to 4-8 for mixed workloads or 8-16 for pure analytics. A 16-core system handling data warehouse queries might configure: `max_worker_processes = 16`, `max_parallel_workers = 12`, `max_parallel_workers_per_gather = 8`. Real-world benchmarks show 400GB scans completing in 88 seconds with 10 parallel workers versus 290 seconds single-threaded—a **3.3x speedup**.
+TL;DR - get a beefy server
+- Fast IO ops, NVMe > SSD > SATA. Use RAID for even better performance
+- Lots of fast RAM
+- Beefy CPU cores (lots of em)
 
 #### PGBench
 
@@ -70,6 +51,8 @@ ALTER INDEX table_name_idx SET TABLESPACE fastssd;
 ```
 
 ### Table Partitioning Strategies
+
+TODO: When to use partitions vs local indexes
 
 Table partitioning divides large tables into smaller physical pieces while maintaining a single logical table interface. Partitioning becomes valuable when tables exceed 100GB and contain natural segmentation boundaries in query patterns. For example if the data in a table is frequently queried by a language id and the language association of items does not change frequently, it makes sense to partition the table by language id.
 
@@ -104,6 +87,8 @@ Partition maintenance requires automation. Use pg_partman extension for automati
 Performance benchmarks show partitioning trades increased write overhead for faster targeted queries. Range queries with proper partition pruning execute up to 10x faster by scanning only relevant partitions. Point queries incur 15-20% overhead due to planning complexity. Bulk loads run 20-25% slower with 400+ partitions due to partition switching costs. Optimize by loading data pre-sorted by partition key.
 
 ### Horizontal Scaling (more servers)
+
+- Citus: <https://github.com/citusdata/citus>
 
 Streaming replication provides the foundation for PostgreSQL horizontal scaling. The primary server continuously sends Write-Ahead Log (WAL) changes to standby servers, which replay transactions to maintain synchronized copies. Configure `wal_level = replica` and `max_wal_senders = 10` on the primary. Create a replication user with `CREATE ROLE replication_user WITH REPLICATION LOGIN`. Initialize standbys using `pg_basebackup` to clone the primary's data directory, then configure `primary_conninfo` pointing to the primary server.
 
@@ -143,6 +128,11 @@ There are two complementary search modes:
 - Tokenized full-text search (tsvector/tsquery): language-aware matching with ranking based on term frequency and normalization. PostgreSQL provides TF‑IDF like ranking via `ts_rank` and cover-density via `ts_rank_cd`. This is not strict BM25, though it behaves similarly for many use cases. For exact BM25 scoring, consider extensions (e.g., RUM or PGroonga), otherwise `ts_rank` normalization options are typically sufficient.
 
 - Substring/fuzzy search (pg_trgm): fast substring, prefix and typo-tolerant matching using trigrams. This does not tokenize or stem; it matches character n-grams and is ideal for autocomplete, partial matches (`%term%`) and fuzzy lookups.
+
+When to choose which:
+- Use tsvector/tsquery (TF‑IDF-like ranking) for language-aware search, stemming, stop words and boolean/phrase queries.
+- Use pg_trgm for substring/prefix matches, fuzzy lookup and autocomplete. It does not stem or understand language but excels at partial matches.
+- Scaling: tsvector (TF‑IDF) generally scales better on large corpora (smaller, more selective indexes and lower write overhead). pg_trgm (trigram) indexes grow with text length and unique trigrams, can be much larger and heavier to maintain; prefer it for small/medium tables or short text fields (titles, usernames) and autocomplete.
 
 #### Token Search (TF-IDF)
 
@@ -214,14 +204,9 @@ SELECT id, title FROM documents ORDER BY title <-> 'postgres' LIMIT 20;
 SELECT set_limit(0.4);  -- session-level
 ```
 
-When to choose which:
-- Use tsvector/tsquery (TF‑IDF-like ranking) for language-aware search, stemming, stop words and boolean/phrase queries.
-- Use pg_trgm for substring/prefix matches, fuzzy lookup and autocomplete. It does not stem or understand language but excels at partial matches.
-- Scaling: tsvector (TF‑IDF) generally scales better on large corpora (smaller, more selective indexes and lower write overhead). pg_trgm (trigram) indexes grow with text length and unique trigrams, can be much larger and heavier to maintain; prefer it for small/medium tables or short text fields (titles, usernames) and autocomplete.
-
 ### Vector Search
 
-There are multiple powerful extensions for vector similarity search for Postgres - check out [this article](https://seanpedersen.github.io/posts/vector-databases) for an overview with benchmark.
+There are multiple powerful extensions for vector similarity search for Postgres - check out [this article](https://seanpedersen.github.io/posts/vector-databases) for an overview with benchmarks.
 
 ### Geospatial Queries (PostGIS)
 
