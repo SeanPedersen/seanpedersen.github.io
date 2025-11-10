@@ -49,26 +49,26 @@ RETURNS varbit AS $$
 $$ LANGUAGE sql IMMUTABLE PARALLEL SAFE;
 
 -- Step 1: Add a stored generated binary column
-ALTER TABLE instagram_profiles 
-ADD COLUMN mean_post_caption_vector_new_bin bit(512) 
-GENERATED ALWAYS AS (binary_quantize_mean(mean_post_caption_vector_new)::bit(512)) STORED;
+ALTER TABLE table_name 
+ADD COLUMN vector_bin bit(512) 
+GENERATED ALWAYS AS (binary_quantize_mean(vector)::bit(512)) STORED;
 
 -- Step 2: Create index on the pre-computed binary column
-CREATE INDEX IF NOT EXISTS instagram_profiles_idx_ivfflat_bin 
-ON instagram_profiles 
-USING ivfflat (mean_post_caption_vector_new_bin bit_hamming_ops) 
+CREATE INDEX IF NOT EXISTS table_name_idx_ivfflat_bin 
+ON table_name 
+USING ivfflat (vector_bin bit_hamming_ops) 
 WITH (lists = 100);
 
--- Query using reranking
+-- Query top 100 NN using reranking
 SELECT t.id
 FROM (
   SELECT id
-  FROM instagram_profiles
-  ORDER BY mean_post_caption_vector_new_bin <~> binary_quantize_mean(%s::halfvec(512))::bit(512)
+  FROM table_name
+  ORDER BY vector_bin <~> binary_quantize_mean(%s::halfvec(512))::bit(512)
   LIMIT 1000
 ) c
-JOIN instagram_profiles t USING(id)
-ORDER BY t.mean_post_caption_vector_new <=> %s::halfvec(512)
+JOIN table_name t USING(id)
+ORDER BY t.vector <=> %s::halfvec(512)
 LIMIT 100;
 ```
 
