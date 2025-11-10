@@ -2,7 +2,7 @@
 title: 'Postgres as Vector DB - a benchmark'
 date: '2025-10-08'
 ---
-There is a flood of vector databases - which ones are actually useful? IMO extending a relational DBMS with ACID compliance and existing datasets, is for most use cases the ideal choice. Using a dedicated vector DB like (Chroma, Turbopuffer, [LanceDB](https://github.com/lancedb/lancedb) etc.) only makes sense for narrow use cases where no complicated meta-data filters are needed (e.g. just simple RAG). 
+There is a flood of vector databases - which ones are actually useful? IMO extending a relational DBMS with ACID compliance and existing datasets, is for most use cases the ideal choice. Using a dedicated vector DB like ([Chroma](https://www.trychroma.com/), [Turbopuffer](https://turbopuffer.com/), [LanceDB](https://github.com/lancedb/lancedb), [Milvus](https://milvus.io/) etc.) only makes sense for narrow use cases where no complicated meta-data filters are needed (e.g. just simple RAG) and data synchronisation is no issue.
 
 So let's have a look how we can store and search vectors using Postgres - there are three notable extensions for Postgres: pgvector, pgvectorscale and vectorchord.
 
@@ -124,10 +124,10 @@ For 450K text embeddings 1024D float32 vectors - measure the recall@100.
 
 When things scale up one should strive for efficient vector storage using:
 - Vector Dimensionality Reduction
+    - Product Quantization (PQ): reduces both dimensionality and bit representation
     - Matryoshka Embeddings: superior performance vs PQ as it learns the reduction in training and not post-training
-    - Product Quantization (PQ)
     - PCA / UMAP
-- Scalar Quantization (Reduce bit representation)
+- Scalar Quantization (Reduce bit representation per dimension)
     - FP16: half precision from FP32 
     - binary: reduce to single bit
       - In pgvector: binary quantization will reduce any positive value to 1, and any zero or negative value to 0
@@ -205,6 +205,7 @@ VectorChord is a good choice - providing superior performance and better develop
 - <https://drscotthawley.github.io/blog/posts/2023-06-12-RVQ.html>
 - <https://www.tigerdata.com/blog/nearest-neighbor-indexes-what-are-ivfflat-indexes-in-pgvector-and-how-do-they-work>
 - <https://jkatz05.com/post/postgres/pgvector-scalar-binary-quantization/>
+- <https://zilliz.com/learn/scalar-quantization-and-product-quantization>
 - <https://medium.com/nlp-experiment/product-quantization-d66fdb860047>
 - <https://medium.com/@bavalpreetsinghh/pgvector-hnsw-vs-ivfflat-a-comprehensive-study-21ce0aaab931>
 
