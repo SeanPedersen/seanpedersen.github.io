@@ -7,8 +7,8 @@ Claude Code is a powerful coding agent that you use from the command line. It co
 Simple and popular tech stacks that are fast to validate are the ideal choices for vibe coding (lots of training data available -> less hallucinations and fast / no  compilation -> allows for rapid iteration).
 
 Recommendations:
-- [JavaScript / TypeScript](https://seanpedersen.github.io/posts/javascript-typescript): React, Next
-- [Python](https://seanpedersen.github.io/posts/python): Flask / FastAPI
+- [JavaScript / TypeScript](https://seanpedersen.github.io/posts/javascript-typescript): React, Next, Svelte
+- [Python](https://seanpedersen.github.io/posts/python): Flask, FastAPI
 - Go / Zig / Elixir: all come with fast compilation speeds
 
 ## Setting Things up
@@ -18,6 +18,8 @@ Install Claude Code: `curl -fsSL https://claude.ai/install.sh | bash`
 Change dir to a code project and start Claude Code using: `claude` and authenticate.
 
 Now you can ask claude about the project or instruct it to implement a new feature. Generally it is advised to plan out the architecture (design) yourself and then use Claude to implement small features which are easy to validate.
+
+Bonus: Use [this awesome project](https://github.com/ericc-ch/copilot-api) to use your Github Copilot subscription with claude code
 
 ### GUI
 
@@ -725,7 +727,7 @@ Generate clean, secure, easy to reason about, production-ready code following th
 
 While MCP tools are cool they can also bloat your context (costing valuable tokens and increase context rot) as there API definitions are always in context - the github MCP for example is really bloated but the github CLI is working as well and LLM's already know how to use it properly. So only add really useful MCP servers.
 
-### Browser support
+### Browser Control
 
 Allows claude to use a web browser to test and debug webapps.
 
