@@ -50,7 +50,7 @@ As with every LLM, Claude Code suffers from context rot - meaning the longer and
 
 Use frequent git commits to save working versions in case Claude gets stuck producing bullshit.
 
-The ideal use case for vibe coding is test driven development: write and verify tight test cases and let the coding agent try to pass them.
+**The ideal use case for vibe coding is test driven development: write and verify test cases / benchmarks and let the coding agent try to pass / optimize them autonomously.**
 
 Use git working branches to start multiple sub-agents on the same code base.
 
