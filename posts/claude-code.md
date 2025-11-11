@@ -24,6 +24,7 @@ Now you can ask claude about the project or instruct it to implement a new featu
 Using GUI apps can make sense as they motivate writing longer and more detailed prompts.
 
 - Desktop app: <https://opcode.sh/>
+- Desktop app (for subagents): <https://github.com/wandb/catnip>
 - Desktop app (for subagents): <https://github.com/generalaction/emdash>
 - Desktop app (for subagents): <https://conductor.build/>
 - Mobile app: <https://happy.engineering/>
@@ -43,7 +44,7 @@ Vibe code project flow:
 
 ## General Advice
 
-As with every LLM, Claude Code suffers from context rot - meaning the longer and noisier the context (input context windows) becomes, the worse the performance gets. Thus it is best practice to use the `/compact` (creates summary of current context) or `/clear` (deletes whole context) commands to reduce / reset the context when Claude gets stuck on a task - to provide a fresh start.
+As with every LLM, Claude Code suffers from context rot - meaning the longer and noisier the context (input context windows) becomes, the worse the performance gets and the more tokens are used. Thus it is best practice to frequently use the `/clear` (deletes whole context) and `/compact` (creates summary of current context)  commands to reduce / reset the context when Claude finished a task or gets stuck on a task - to provide a fresh start. Also try to keep your code files cohesive and small to avoid bloating the context (saving tokens again).
 
 Use frequent git commits to save working versions in case Claude gets stuck producing bullshit.
 
