@@ -273,15 +273,22 @@ ORDER BY pg_total_relation_size(relid) DESC;
 SELECT
   i.indexrelname AS index_name,
   pg_size_pretty(pg_relation_size(i.indexrelid)) AS index_size,
-  am.amname AS index_type
+  am.amname AS index_type,
+  string_agg(a.attname, ', ' ORDER BY array_position(ix.indkey::int[], a.attnum)) AS indexed_columns
 FROM
   pg_stat_all_indexes i
 JOIN
   pg_class c ON i.indexrelid = c.oid
 JOIN
   pg_am am ON c.relam = am.oid
+JOIN
+  pg_index ix ON i.indexrelid = ix.indexrelid
+JOIN
+  pg_attribute a ON a.attrelid = i.relid AND a.attnum = ANY(ix.indkey)
 WHERE
   i.relname = 'table_name'
+GROUP BY
+  i.indexrelname, pg_relation_size(i.indexrelid), am.amname
 ORDER BY
   pg_relation_size(i.indexrelid) DESC;
 ```
