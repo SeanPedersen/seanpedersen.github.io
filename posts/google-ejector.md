@@ -21,8 +21,8 @@ Google Search:
 
 Google Mail / Outlook:
 
-- [Protonmail](https://proton.me/mail)
-- [TutaMail](https://tuta.com/)
+- [Protonmail](https://proton.me/mail) - privacy focused
+- [TutaMail](https://tuta.com/) - privacy focused
 
 ChatGPT / Claude / Gemini:
 
@@ -68,6 +68,11 @@ Spotify:
 
 - [Funkwhale](https://funkwhale.audio/) ([Code](https://dev.funkwhale.audio/funkwhale/funkwhale)) - federated, self-hostable
 - [Airsonic](https://airsonic.github.io/) ([Code](https://github.com/airsonic/airsonic)) - self-hostable
+
+Google Authenticator:
+
+- [Ente Auth](https://ente.io/auth/) ([Code](https://github.com/ente-io/ente)) - open source
+- [Proton Authenticator](https://proton.me/authenticator) - privacy focused
 
 HTTP(S):
 
