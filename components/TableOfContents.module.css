@@ -35,9 +35,9 @@
 
 .toggleButton {
     display: none;
-    background: var(--primary-color);
-    color: var(--link-hover-text);
-    border: none;
+    background: transparent;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
     border-radius: 4px;
     width: 32px;
     height: 32px;
@@ -53,12 +53,21 @@
 }
 
 .toggleButton:hover {
-    opacity: 0.8;
+    background-color: var(--primary-color);
+    color: var(--link-hover-text);
     transform: scale(1.05);
 }
 
 .toggleButton:active {
+    background: transparent;
+    color: var(--primary-color);
     transform: scale(0.95);
+}
+
+.toggleButton:focus {
+    outline: none;
+    background: transparent;
+    color: var(--primary-color);
 }
 
 .tocList {
