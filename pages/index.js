@@ -24,6 +24,7 @@ export default function Home({ allPostsData, allTags }) {
   const { theme, toggleTheme } = useTheme(); // Use theme from context
   const [hasMounted, setHasMounted] = useState(false);
   const [showToggle, setShowToggle] = useState(true);
+  const [searchExpanded, setSearchExpanded] = useState(false);
 
   useEffect(() => {
     setHasMounted(true);
@@ -102,25 +103,32 @@ export default function Home({ allPostsData, allTags }) {
         </section>
 
         <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-          {/* Search */}
-          <Search />
-          {/* Tags Filter */}
-          <div className={utilStyles.tagsContainer}>
-            <span
-              className={`${utilStyles.tag} ${selectedTag === null ? utilStyles.tagSelected : ''}`}
-              onClick={() => handleTagSelect(null)}
-            >
-              All
-            </span>
-            {allTags.map(tag => (
+          {/* Search and Tags Filter Container */}
+          <div className={`${utilStyles.searchTagsWrapper} ${searchExpanded ? utilStyles.searchExpanded : ''}`}>
+            {/* Search */}
+            <Search
+              isExpanded={searchExpanded}
+              onToggle={() => setSearchExpanded(!searchExpanded)}
+            />
+
+            {/* Tags Filter */}
+            <div className={`${utilStyles.tagsContainer} ${searchExpanded ? utilStyles.tagsHidden : ''}`}>
               <span
-                key={tag}
-                className={`${utilStyles.tag} ${selectedTag === tag ? utilStyles.tagSelected : ''}`}
-                onClick={() => handleTagSelect(tag)}
+                className={`${utilStyles.tag} ${selectedTag === null ? utilStyles.tagSelected : ''}`}
+                onClick={() => handleTagSelect(null)}
               >
-                {tag}
+                All
               </span>
-            ))}
+              {allTags.map(tag => (
+                <span
+                  key={tag}
+                  className={`${utilStyles.tag} ${selectedTag === tag ? utilStyles.tagSelected : ''}`}
+                  onClick={() => handleTagSelect(tag)}
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
           </div>
 
           <ul className={utilStyles.list}>

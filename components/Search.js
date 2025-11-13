@@ -2,13 +2,15 @@ import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import Link from 'next/link';
 import styles from './Search.module.css';
 
-const Search = () => {
+const Search = ({ isExpanded = false, onToggle = null }) => {
   const [query, setQuery] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [searchData, setSearchData] = useState(null);
   const [results, setResults] = useState([]);
   const [isFocused, setIsFocused] = useState(false);
+  const [wrapperWidth, setWrapperWidth] = useState(0);
   const inputRef = useRef(null);
+  const containerRef = useRef(null);
   const debounceTimeoutRef = useRef(null);
 
   // Lazy load and parse RSS feed
@@ -121,25 +123,53 @@ const Search = () => {
     };
   }, []);
 
+  // Measure wrapper width and auto-focus input when expanded
+  useEffect(() => {
+    if (isExpanded) {
+      // Measure parent wrapper width
+      if (containerRef.current) {
+        const wrapper = containerRef.current.parentElement;
+        if (wrapper) {
+          setWrapperWidth(wrapper.offsetWidth);
+        }
+      }
+
+      // Auto-focus input
+      if (inputRef.current) {
+        setTimeout(() => {
+          inputRef.current?.focus();
+        }, 500); // Wait for animation to complete
+      }
+    }
+  }, [isExpanded]);
+
   // Keyboard shortcut: Ctrl/Cmd + K to focus search
   useEffect(() => {
     const handleKeyDown = (e) => {
       if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
         e.preventDefault();
-        inputRef.current?.focus();
+        if (!isExpanded && onToggle) {
+          onToggle();
+        } else {
+          inputRef.current?.focus();
+        }
       }
 
       // Escape to clear and blur
       if (e.key === 'Escape' && isFocused) {
         setQuery('');
         setResults([]);
-        inputRef.current?.blur();
+        if (onToggle && isExpanded) {
+          onToggle(); // Collapse search
+        } else {
+          inputRef.current?.blur();
+        }
       }
     };
 
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [isFocused]);
+  }, [isFocused, isExpanded, onToggle]);
 
   // Extract URL path from full URL
   const getPostPath = (url) => {
@@ -218,85 +248,136 @@ const Search = () => {
     return <span>{parts}</span>;
   };
 
+  // Handle search icon click when collapsed
+  const handleIconClick = () => {
+    if (onToggle) {
+      onToggle();
+    }
+  };
+
   return (
-    <div className={styles.searchContainer}>
-      <div className={styles.searchInputWrapper}>
-        <svg
-          className={styles.searchIcon}
-          width="1em"
-          height="1em"
-          viewBox="0 0 24 24"
-          aria-hidden="true"
-          focusable="false"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          style={{ pointerEvents: 'none' }}
+    <div
+      ref={containerRef}
+      className={`${styles.searchContainer} ${isExpanded ? styles.expanded : styles.collapsed}`}
+    >
+      {!isExpanded ? (
+        // Collapsed state: just show the icon
+        <button
+          className={styles.searchIconButton}
+          onClick={handleIconClick}
+          aria-label="Open search"
         >
-          <circle cx="11" cy="11" r="6" />
-          <line x1="19.59" y1="19.59" x2="15.24" y2="15.24" />
-        </svg>
-        <input
-          ref={inputRef}
-          type="text"
-          className={styles.searchInput}
-          placeholder="Search posts..."
-          value={query}
-          onChange={handleInputChange}
-          onFocus={() => setIsFocused(true)}
-          onBlur={() => setTimeout(() => setIsFocused(false), 200)}
-        />
-        {query && (
-          <button
-            className={styles.clearButton}
-            onClick={() => {
-              setQuery('');
-              setResults([]);
-              inputRef.current?.focus();
-            }}
-            aria-label="Clear search"
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           >
-            ×
-          </button>
-        )}
-      </div>
-
-      {isLoading && query && (
-        <div className={styles.searchResults}>
-          <div className={styles.loading}>Loading search data...</div>
-        </div>
-      )}
-
-      {!isLoading && query && results.length > 0 && (
-        <div className={styles.searchResults}>
-          {results.map((result, index) => (
-            <Link
-              key={index}
-              href={getPostPath(result.link)}
-              className={styles.resultItem}
+            <circle cx="11" cy="11" r="6" />
+            <line x1="19.59" y1="19.59" x2="15.24" y2="15.24" />
+          </svg>
+        </button>
+      ) : (
+        // Expanded state: show the full search bar
+        <>
+          <div
+            className={styles.searchInputWrapper}
+            style={{ '--wrapper-width': `${wrapperWidth}px` }}
+          >
+            <svg
+              className={styles.searchIcon}
+              width="1em"
+              height="1em"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+              focusable="false"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              style={{ pointerEvents: 'none' }}
             >
-              <div className={styles.resultTitle}>{result.title}</div>
-              {result.categories.length > 0 && (
-                <div className={styles.resultCategories}>
-                  {result.categories.map((cat, i) => (
-                    <span key={i} className={styles.category}>{cat}</span>
-                  ))}
-                </div>
-              )}
-              <div className={styles.resultExcerpt}>
-                {highlightText(result.content)}
-              </div>
-            </Link>
-          ))}
-        </div>
+              <circle cx="11" cy="11" r="6" />
+              <line x1="19.59" y1="19.59" x2="15.24" y2="15.24" />
+            </svg>
+            <input
+              ref={inputRef}
+              type="text"
+              className={styles.searchInput}
+              placeholder="Search posts..."
+              value={query}
+              onChange={handleInputChange}
+              onFocus={() => setIsFocused(true)}
+              onBlur={() => {
+                setTimeout(() => {
+                  setIsFocused(false);
+                  // Collapse search if query is empty
+                  if (!query && onToggle && isExpanded) {
+                    onToggle();
+                  }
+                }, 200);
+              }}
+            />
+            {query && (
+              <button
+                className={styles.clearButton}
+                onClick={() => {
+                  setQuery('');
+                  setResults([]);
+                  inputRef.current?.focus();
+                }}
+                aria-label="Clear search"
+              >
+                ×
+              </button>
+            )}
+          </div>
+        </>
       )}
 
-      {!isLoading && query && searchData && results.length === 0 && (
-        <div className={styles.searchResults}>
-          <div className={styles.noResults}>No posts found for "{query}"</div>
-        </div>
+      {isExpanded && (
+        <>
+          {isLoading && query && (
+            <div className={styles.searchResults}>
+              <div className={styles.loading}>Loading search data...</div>
+            </div>
+          )}
+
+          {!isLoading && query && results.length > 0 && (
+            <div className={styles.searchResults}>
+              {results.map((result, index) => (
+                <Link
+                  key={index}
+                  href={getPostPath(result.link)}
+                  className={styles.resultItem}
+                >
+                  <div className={styles.resultTitle}>{result.title}</div>
+                  {result.categories.length > 0 && (
+                    <div className={styles.resultCategories}>
+                      {result.categories.map((cat, i) => (
+                        <span key={i} className={styles.category}>{cat}</span>
+                      ))}
+                    </div>
+                  )}
+                  <div className={styles.resultExcerpt}>
+                    {highlightText(result.content)}
+                  </div>
+                </Link>
+              ))}
+            </div>
+          )}
+
+          {!isLoading && query && searchData && results.length === 0 && (
+            <div className={styles.searchResults}>
+              <div className={styles.noResults}>No posts found for "{query}"</div>
+            </div>
+          )}
+        </>
       )}
     </div>
   );

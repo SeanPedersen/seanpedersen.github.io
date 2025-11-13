@@ -1,14 +1,65 @@
 .searchContainer {
   position: relative;
-  width: 100%;
-  max-width: 600px;
-  margin: 1.5rem auto;
+  flex-shrink: 0;
+  width: 40px;
+}
+
+.searchContainer.collapsed {
+  width: 40px;
+}
+
+.searchContainer.expanded {
+  width: 40px;
+}
+
+.searchIconButton {
+  background: transparent;
+  border: 2px solid var(--color-border);
+  border-radius: 8px;
+  padding: 8px;
+  cursor: pointer;
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  width: 40px;
+  height: 40px;
+}
+
+.searchIconButton:hover {
+  background: var(--color-hover);
+  border-color: var(--color-primary);
+}
+
+.searchIconButton svg {
+  display: block;
 }
 
 .searchInputWrapper {
-  position: relative;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
   display: flex;
   align-items: center;
+  animation: expandFromLeft 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  height: 40px;
+  z-index: 10;
+  transform-origin: left center;
+}
+
+@keyframes expandFromLeft {
+  from {
+    opacity: 0;
+    width: 40px;
+    transform: translateY(-50%);
+  }
+  to {
+    opacity: 1;
+    width: var(--wrapper-width, 100%);
+    transform: translateY(-50%);
+  }
 }
 
 .searchIcon {
@@ -20,7 +71,7 @@
 
 .searchInput {
   width: 100%;
-  padding: 10px 40px 10px 40px;
+  padding: 8px 40px 8px 40px;
   font-size: 16px;
   border: 2px solid var(--color-border);
   border-radius: 8px;
@@ -28,6 +79,8 @@
   color: var(--color-text);
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
   outline: none;
+  height: 40px;
+  box-sizing: border-box;
 }
 
 .searchInput:focus {
