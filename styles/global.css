@@ -59,7 +59,6 @@ body.light-theme {
   /* Light text for dark background */
 
   /* For utils.module.css */
-  --list-item-hover-bg: #e0e0e0;
   /* Slightly darker gray for hover */
   --light-text-color: #555;
   /* Darker gray for light text */
@@ -247,11 +246,13 @@ img {
 @media (max-width: 768px) {
   .markdown-content .table-wrapper {
     overflow-x: auto;
-    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    -webkit-overflow-scrolling: touch;
+    /* Smooth scrolling on iOS */
   }
 
   .markdown-content table {
-    min-width: 600px; /* Ensure table has minimum width on mobile */
+    min-width: 600px;
+    /* Ensure table has minimum width on mobile */
   }
 
   .markdown-content table th,

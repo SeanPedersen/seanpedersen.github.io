@@ -122,10 +122,6 @@
   }
 }
 
-.listItem:hover {
-  background-color: var(--list-item-hover-bg);
-}
-
 .lightText {
   color: var(--light-text-color);
   transition: color 0.3s ease;
