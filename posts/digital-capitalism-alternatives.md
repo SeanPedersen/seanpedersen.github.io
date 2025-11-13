@@ -2,9 +2,7 @@
 title: 'Digital Capitalism and Alternatives'  
 date: '2025-11-13'
 ---
-# Digital Capitalism: Core Ideas
-
-Digital platforms shape how we live while hiding who holds power. Selling their techno agenda as neutral progress.
+Digital capitalism shapes how we interact with technology, the world and even how we understand its role in society. These mechanisms tend to hide the true power relations while presenting inhumane technological developments as neutral, natural progress.
 
 ## Core Mechanisms
 
@@ -27,7 +25,7 @@ Dataism: Numbers are treated as pure truth; method bias is ignored. Tech inevita
 ### Results
 Power pools in a few firms. Risk shifts to users and workers: algorithmic gig control, data leaks, biased automation. This is masked as efficiency and empowerment. Design choices are political choices.
 
-## Human Centered Technology: Principles
+## Human Centered Technology
 
 ### Open Source
 Code you can read, verify and change. True digital independence. In the future everyone may change their apps using local LLM's.
@@ -46,7 +44,7 @@ Co‑ops, user boards, multi‑stakeholder councils. Invite affected groups into
 
 ### Alternative Economic Models
 - Platform Co‑ops: Worker/user owned services share profit fairly; aim for good work over raw growth.
-- Public Digital Infrastructure: Some tools should be public goods: civic platforms, libraries—focused on access, not ads.
+- Public Digital Infrastructure: Essential digital tools should be available as public goods (just like roads) and just be maintained without interest in profiting from it.
 - Commons Production: Shared, open projects (Linux, Wikipedia) show large systems can run without corporate control.
 
 ## Regulation
