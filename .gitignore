@@ -18,6 +18,7 @@ public/rss.xml
 
 # misc
 .DS_Store
+.playwright-mcp/
 
 # debug
 npm-debug.log*
