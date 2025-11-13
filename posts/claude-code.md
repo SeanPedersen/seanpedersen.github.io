@@ -56,6 +56,8 @@ Use git working branches to start multiple sub-agents on the same code base.
 
 ### Basic Commands
 
+- Plan mode: shift + tab (activate to plan complex features - claude asks many clarifying questions)
+- Thinking mode: tab (activate for complex reasoning)
 - /clear: clear context (do it if you are stuck)
 - /compact: summarizes context (do it if stuck or long session)
 - /resume: resume last session
