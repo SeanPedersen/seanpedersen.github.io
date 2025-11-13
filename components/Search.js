@@ -9,8 +9,10 @@ const Search = ({ isExpanded = false, onToggle = null }) => {
   const [results, setResults] = useState([]);
   const [isFocused, setIsFocused] = useState(false);
   const [wrapperWidth, setWrapperWidth] = useState(0);
+  const [resultsTop, setResultsTop] = useState(120);
   const inputRef = useRef(null);
   const containerRef = useRef(null);
+  const inputWrapperRef = useRef(null);
   const debounceTimeoutRef = useRef(null);
 
   // Lazy load and parse RSS feed
@@ -134,12 +136,32 @@ const Search = ({ isExpanded = false, onToggle = null }) => {
         }
       }
 
+      // Calculate position for search results
+      const updatePosition = () => {
+        if (inputWrapperRef.current) {
+          const rect = inputWrapperRef.current.getBoundingClientRect();
+          setResultsTop(rect.bottom + 16);
+        }
+      };
+
+      // Update position after animation
+      setTimeout(updatePosition, 500);
+
+      // Update on window resize
+      window.addEventListener('resize', updatePosition);
+      window.addEventListener('scroll', updatePosition);
+
       // Auto-focus input
       if (inputRef.current) {
         setTimeout(() => {
           inputRef.current?.focus();
         }, 500); // Wait for animation to complete
       }
+
+      return () => {
+        window.removeEventListener('resize', updatePosition);
+        window.removeEventListener('scroll', updatePosition);
+      };
     }
   }, [isExpanded]);
 
@@ -285,6 +307,7 @@ const Search = ({ isExpanded = false, onToggle = null }) => {
         // Expanded state: show the full search bar
         <>
           <div
+            ref={inputWrapperRef}
             className={styles.searchInputWrapper}
             style={{ '--wrapper-width': `${wrapperWidth}px` }}
           >
@@ -343,13 +366,13 @@ const Search = ({ isExpanded = false, onToggle = null }) => {
       {isExpanded && (
         <>
           {isLoading && query && (
-            <div className={styles.searchResults}>
+            <div className={styles.searchResults} style={{ '--results-top': `${resultsTop}px` }}>
               <div className={styles.loading}>Loading search data...</div>
             </div>
           )}
 
           {!isLoading && query && results.length > 0 && (
-            <div className={styles.searchResults}>
+            <div className={styles.searchResults} style={{ '--results-top': `${resultsTop}px` }}>
               {results.map((result, index) => (
                 <Link
                   key={index}
@@ -373,7 +396,7 @@ const Search = ({ isExpanded = false, onToggle = null }) => {
           )}
 
           {!isLoading && query && searchData && results.length === 0 && (
-            <div className={styles.searchResults}>
+            <div className={styles.searchResults} style={{ '--results-top': `${resultsTop}px` }}>
               <div className={styles.noResults}>No posts found for "{query}"</div>
             </div>
           )}
