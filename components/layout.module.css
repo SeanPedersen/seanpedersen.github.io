@@ -165,6 +165,25 @@
   fill: currentColor;
 }
 
+/* Header container - responsive layout */
+.headerContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem;
+  max-width: 100%;
+  position: relative;
+}
+
+.profileContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+
 /* Comic-style speech bubble */
 .speechBubble {
   position: relative;
@@ -176,40 +195,94 @@
   font-size: 0.85rem;
   white-space: nowrap;
   animation: popIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
-  transform-origin: bottom right;
   z-index: 10;
-  margin-top: -15px;
 }
 
 .speechBubble a {
   padding: 0 !important;
 }
 
-/* Speech bubble tail pointing to the right (towards the profile image) */
-.speechBubble::after {
-  content: '';
-  position: absolute;
-  right: -20px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 0;
-  height: 0;
-  border: 10px solid transparent;
-  border-left-color: #000000;
-  z-index: 1;
+/* Mobile: Speech bubble tail pointing down */
+@media (max-width: 767px) {
+  .speechBubble {
+    font-size: 0.7rem;
+    padding: 8px 12px;
+    border-width: 2px;
+    transform-origin: left bottom;
+    margin-bottom: 0;
+    margin-left: 0;
+  }
+
+  /* Outer triangle (border) - positioned to point at the image */
+  .speechBubble::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 2rem;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid #000000;
+    z-index: 1;
+  }
+
+  /* Inner triangle (fill) - positioned to point at the image */
+  .speechBubble::before {
+    content: '';
+    position: absolute;
+    bottom: -7px;
+    left: calc(2rem + 2px);
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid #ffffff;
+    z-index: 2;
+  }
 }
 
-.speechBubble::before {
-  content: '';
-  position: absolute;
-  right: -15px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 0;
-  height: 0;
-  border: 8px solid transparent;
-  border-left-color: #ffffff;
-  z-index: 2;
+/* Desktop: Speech bubble tail pointing to the right */
+@media (min-width: 768px) {
+  .headerContainer {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .speechBubble {
+    transform-origin: bottom right;
+    margin-top: -15px;
+  }
+
+  /* Outer triangle (border) */
+  .speechBubble::after {
+    content: '';
+    position: absolute;
+    right: -13px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 13px solid #000000;
+    z-index: 1;
+  }
+
+  /* Inner triangle (fill) */
+  .speechBubble::before {
+    content: '';
+    position: absolute;
+    right: -10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-left: 10px solid #ffffff;
+    z-index: 2;
+  }
 }
 
 /* Pop-in animation with bounce */
@@ -227,25 +300,6 @@
   100% {
     opacity: 1;
     transform: scale(1) rotate(0deg);
-  }
-}
-
-/* Mobile adjustments */
-@media (max-width: 767px) {
-  .speechBubble {
-    font-size: 0.7rem;
-    padding: 8px 12px;
-    border-width: 2px;
-  }
-
-  .speechBubble::after {
-    right: -15px;
-    border-width: 8px;
-  }
-
-  .speechBubble::before {
-    right: -11px;
-    border-width: 6px;
   }
 }
 
