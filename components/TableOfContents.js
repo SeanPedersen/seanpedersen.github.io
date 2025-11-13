@@ -35,11 +35,11 @@ export default function TableOfContents({ content, title, titleId }) {
         while ((match = regex.exec(content)) !== null) {
             const level = Number(match[1]);
             const rawText = match[2].replace(/<[^>]*>/g, '');
-            // Display text should decode entities like &#x26; -> &
-            const displayText = decodeHTMLEntities(rawText);
+            // Decode HTML entities for both display and ID generation
+            const decodedText = decodeHTMLEntities(rawText);
             // IDs must remain consistent with how they are generated in the post renderer
-            const id = rawText.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-            headings.push({ level, text: displayText, id });
+            const id = decodedText.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+            headings.push({ level, text: decodedText, id });
         }
 
         return headings;

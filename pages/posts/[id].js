@@ -117,6 +117,31 @@ export default function Post({ postData, relatedPostCandidates, hasMorePosts }) 
     Promise.all(promises).then(scrollToHash);
   }, [postData.id]);
 
+  const decodeHTMLEntitiesForId = (str) => {
+    if (!str || typeof str !== 'string') return str;
+    const named = {
+        amp: '&',
+        lt: '<',
+        gt: '>',
+        quot: '"',
+        apos: "'",
+        nbsp: '\u00A0'
+    };
+    return str.replace(/&(#(?:x[0-9a-fA-F]+|\d+)|[a-zA-Z]+);/g, (match, code) => {
+        if (code[0] === '#') {
+            // Numeric entity
+            const isHex = code[1] === 'x' || code[1] === 'X';
+            const num = parseInt(code.slice(isHex ? 2 : 1), isHex ? 16 : 10);
+            if (!isNaN(num)) {
+                try { return String.fromCodePoint(num); } catch { return String.fromCharCode(num); }
+            }
+            return match;
+        }
+        // Named entity
+        return Object.prototype.hasOwnProperty.call(named, code) ? named[code] : match;
+    });
+  };
+
   const processMarkdown = (content) => {
     // Add IDs to headings
     let processedContent = content.replace(
@@ -124,7 +149,9 @@ export default function Post({ postData, relatedPostCandidates, hasMorePosts }) 
       (match, level, text) => {
         // Strip HTML tags from text before creating ID to match TableOfContents behavior
         const rawText = text.replace(/<[^>]*>/g, '');
-        const id = rawText.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+        // Decode HTML entities to create clean IDs
+        const decodedText = decodeHTMLEntitiesForId(rawText);
+        const id = decodedText.toLowerCase().replace(/[^a-z0-9]+/g, '-');
         return `<h${level} id="${id}">${text}</h${level}>`;
       }
     );
