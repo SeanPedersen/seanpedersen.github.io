@@ -13,6 +13,7 @@ const Search = ({ isExpanded = false, onToggle = null }) => {
   const inputRef = useRef(null);
   const containerRef = useRef(null);
   const inputWrapperRef = useRef(null);
+  const resultsRef = useRef(null);
   const debounceTimeoutRef = useRef(null);
 
   // Lazy load and parse RSS feed
@@ -191,6 +192,38 @@ const Search = ({ isExpanded = false, onToggle = null }) => {
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, [isFocused, isExpanded, onToggle]);
 
+  // Click outside to close search
+  useEffect(() => {
+    if (!isExpanded) return;
+
+    const handleClickOutside = (e) => {
+      // Check if click is outside both the input wrapper and results
+      const clickedOutsideInput = inputWrapperRef.current && !inputWrapperRef.current.contains(e.target);
+      const clickedOutsideResults = resultsRef.current && !resultsRef.current.contains(e.target);
+
+      if (clickedOutsideInput && clickedOutsideResults) {
+        // Clear query and results
+        setQuery('');
+        setResults([]);
+
+        // Collapse search if toggle function provided
+        if (onToggle) {
+          onToggle();
+        }
+      }
+    };
+
+    // Add slight delay to prevent immediate closing when opening
+    const timeoutId = setTimeout(() => {
+      document.addEventListener('mousedown', handleClickOutside);
+    }, 100);
+
+    return () => {
+      clearTimeout(timeoutId);
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isExpanded, onToggle]);
+
   // Extract URL path from full URL
   const getPostPath = (url) => {
     try {
@@ -364,13 +397,13 @@ const Search = ({ isExpanded = false, onToggle = null }) => {
       {isExpanded && (
         <>
           {isLoading && query && (
-            <div className={styles.searchResults} style={{ '--results-top': `${resultsTop}px` }}>
+            <div ref={resultsRef} className={styles.searchResults} style={{ '--results-top': `${resultsTop}px` }}>
               <div className={styles.loading}>Loading search data...</div>
             </div>
           )}
 
           {!isLoading && query && results.length > 0 && (
-            <div className={styles.searchResults} style={{ '--results-top': `${resultsTop}px` }}>
+            <div ref={resultsRef} className={styles.searchResults} style={{ '--results-top': `${resultsTop}px` }}>
               {results.map((result, index) => (
                 <Link
                   key={index}
@@ -394,7 +427,7 @@ const Search = ({ isExpanded = false, onToggle = null }) => {
           )}
 
           {!isLoading && query && searchData && results.length === 0 && (
-            <div className={styles.searchResults} style={{ '--results-top': `${resultsTop}px` }}>
+            <div ref={resultsRef} className={styles.searchResults} style={{ '--results-top': `${resultsTop}px` }}>
               <div className={styles.noResults}>No posts found for "{query}"</div>
             </div>
           )}
