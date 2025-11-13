@@ -194,7 +194,6 @@
   font-weight: 600;
   font-size: 0.85rem;
   white-space: nowrap;
-  animation: popIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
   z-index: 10;
 }
 
@@ -282,24 +281,6 @@
     border-bottom: 8px solid transparent;
     border-left: 10px solid #ffffff;
     z-index: 2;
-  }
-}
-
-/* Pop-in animation with bounce */
-@keyframes popIn {
-  0% {
-    opacity: 0;
-    transform: scale(0) rotate(-5deg);
-  }
-  50% {
-    transform: scale(1.1) rotate(2deg);
-  }
-  70% {
-    transform: scale(0.95) rotate(-1deg);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1) rotate(0deg);
   }
 }
 
