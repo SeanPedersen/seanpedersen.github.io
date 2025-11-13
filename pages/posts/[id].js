@@ -2,7 +2,7 @@ import Layout from '../../components/layout'
 import styles from '../../components/layout.module.css'
 import { getAllPostIds, getPostData, getRelatedPostsByTag } from '../../lib/posts'
 import Head from 'next/head'
-import Date from '../../components/date'
+import DayDate from '../../components/date'
 import utilStyles from '../../styles/utils.module.css'
 import TableOfContents from '../../components/TableOfContents'
 import Link from 'next/link'
@@ -120,25 +120,25 @@ export default function Post({ postData, relatedPostCandidates, hasMorePosts }) 
   const decodeHTMLEntitiesForId = (str) => {
     if (!str || typeof str !== 'string') return str;
     const named = {
-        amp: '&',
-        lt: '<',
-        gt: '>',
-        quot: '"',
-        apos: "'",
-        nbsp: '\u00A0'
+      amp: '&',
+      lt: '<',
+      gt: '>',
+      quot: '"',
+      apos: "'",
+      nbsp: '\u00A0'
     };
     return str.replace(/&(#(?:x[0-9a-fA-F]+|\d+)|[a-zA-Z]+);/g, (match, code) => {
-        if (code[0] === '#') {
-            // Numeric entity
-            const isHex = code[1] === 'x' || code[1] === 'X';
-            const num = parseInt(code.slice(isHex ? 2 : 1), isHex ? 16 : 10);
-            if (!isNaN(num)) {
-                try { return String.fromCodePoint(num); } catch { return String.fromCharCode(num); }
-            }
-            return match;
+      if (code[0] === '#') {
+        // Numeric entity
+        const isHex = code[1] === 'x' || code[1] === 'X';
+        const num = parseInt(code.slice(isHex ? 2 : 1), isHex ? 16 : 10);
+        if (!isNaN(num)) {
+          try { return String.fromCodePoint(num); } catch { return String.fromCharCode(num); }
         }
-        // Named entity
-        return Object.prototype.hasOwnProperty.call(named, code) ? named[code] : match;
+        return match;
+      }
+      // Named entity
+      return Object.prototype.hasOwnProperty.call(named, code) ? named[code] : match;
     });
   };
 
@@ -264,7 +264,7 @@ export default function Post({ postData, relatedPostCandidates, hasMorePosts }) 
           <h1 id={titleId} className={utilStyles.headingXl}>{postData.title}</h1>
           <div className={utilStyles.postMeta}>
             <div className={utilStyles.lightText}>
-              <Date dateString={postData.date} />
+              <DayDate dateString={postData.date} />
             </div>
             <a
               href={`https://github.com/SeanPedersen/seanpedersen.github.io/edit/main/posts/${postData.id}.md`}
@@ -293,7 +293,7 @@ export default function Post({ postData, relatedPostCandidates, hasMorePosts }) 
                       {title}
                     </Link>
                     <small className={utilStyles.lightText}>
-                      <Date dateString={date} />
+                      <DayDate dateString={date} />
                     </small>
                   </li>
                 ))}
