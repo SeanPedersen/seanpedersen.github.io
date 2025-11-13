@@ -57,7 +57,7 @@ export default function TableOfContents({ content, title, titleId }) {
         <nav className={styles.toc}>
             <div className={styles.tocHeader}>
                 {title && titleId ? (
-                    <h2><a href={`#${titleId}`}>{title}</a></h2>
+                    <h2 id={titleId}><a href={`#${titleId}`}>{title}</a></h2>
                 ) : (
                     <h2>Contents</h2>
                 )}
