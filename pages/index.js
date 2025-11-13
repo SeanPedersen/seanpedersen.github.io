@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import { useState, useEffect } from 'react' // Import useEffect
-import Date from '../components/date'
 import Layout, { siteTitle } from '../components/layout'
 import utilStyles from '../styles/utils.module.css'
 import { getSortedPostsData, getAllTags } from '../lib/posts'
@@ -160,7 +159,7 @@ export default function Home({ allPostsData, allTags }) {
         </section>
       </Layout>
       <footer className={utilStyles.footer}>
-        <p>Copyright © 2025 | All rights reserved.</p>
+        <p>Copy©at ᓚᘏᗢ {new Date().getFullYear()} | All lights served .:.</p>
       </footer>
       {/* Theme Toggle Button (always mounted; fades via CSS) */}
       <button
