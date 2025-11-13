@@ -255,8 +255,9 @@
 }
 
 .postTags a:hover {
-  color: var(--primary-color);
-  text-decoration: underline;
+  background-color: var(--primary-color);
+  color: var(--tag-selected-text);
+  text-decoration: none;
 }
 
 /* Related Posts Footer Styles */
