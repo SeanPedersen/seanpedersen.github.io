@@ -261,7 +261,8 @@ export default function Post({ postData, relatedPostCandidates, hasMorePosts }) 
               titleId={titleId}
             />
           )}
-          <h1 id={titleId} className={`${utilStyles.headingXl} ${hasTableOfContents ? utilStyles.hideOnMobile : ''}`}>{postData.title}</h1>
+          <span id={titleId} style={{ position: 'absolute', top: 0, visibility: 'hidden' }} aria-hidden="true"></span>
+          <h1 className={`${utilStyles.headingXl} ${hasTableOfContents ? utilStyles.hideOnMobile : ''}`}>{postData.title}</h1>
           <div className={utilStyles.postMeta}>
             <div className={utilStyles.lightText}>
               <DayDate dateString={postData.date} />
