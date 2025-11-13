@@ -1,6 +1,6 @@
 ---
 title: 'Crypto-Currencies'  
-date: '2025-11-23'
+date: '2025-11-07'
 ---
 Bitcoin, Ethereum and co (crypto-coins) have arrived in the mainstream - everybody and their mother has heard about it, but what does it all mean?
 
