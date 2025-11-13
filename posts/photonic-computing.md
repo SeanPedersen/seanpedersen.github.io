@@ -39,11 +39,11 @@ Several startups have achieved significant milestones:
 
 Photonic computing delivers three key advantages for AI workloads:
 
-1. **Massive Parallelism**: Matrix multiplication operations can be performed passively in optical components at the speed of light
-2. **Ultra-low Energy Consumption**: Up to 1,000x more power efficiency than digital networks
-3. **Speed**: 2 to 3 orders of magnitude faster than traditional electronic processors
+1. **Massive Parallelism**: Matrix multiplication operations can be performed passively
+2. **Ultra-low Energy Consumption**: Up to 1,000x more power efficienct than digital chips
+3. **Speed**: 2 to 3 orders of magnitude faster than digital chips
 
-Real-world applications include computer vision for autonomous vehicles, natural language processing with Transformers, wireless communications for 6G systems, and scientific computing for climate modeling.
+Real-world applications include computer vision for autonomous vehicles, natural language processing with Transformers, wireless communications for 6G systems and scientific computing for climate modeling.
 
 ## Conclusion
 
@@ -56,6 +56,7 @@ The technology has moved beyond promising research to deliver practical solution
 - <https://www.nature.com/articles/s41586-025-08786-6>
 - <https://news.mit.edu/2024/photonic-processor-could-enable-ultrafast-ai-computations-1202>
 - <https://insidehpc.com/2025/07/q-ant-raises-e62m-for-photonic-processing/>
+- <https://www.tsinghua.edu.cn/en/info/1399/12830.htm>
 - <https://qant.com/press-releases/leibniz-supercomputing-centre-computes-with-light-worlds-first-photonic-ai-processor-from-q-ant-goes-into-operation/>
 
 #AI
