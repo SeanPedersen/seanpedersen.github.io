@@ -95,11 +95,6 @@ export default function Home({ allPostsData, allTags }) {
         </Head>
         <section className={utilStyles.headingMd}>
           <p>Machine Learning / Data Privacy / Cybernetics / Memetics</p>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '16px', margin: '12px 0' }}>
-            <p style={{ margin: 0 }}>
-              Building <a href="https://solo.digger.lol/">Digger Solo</a>: Digital Cartography for Your Files
-            </p>
-          </div>
         </section>
 
         <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>

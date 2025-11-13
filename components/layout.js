@@ -33,8 +33,14 @@ export default function Layout({ children, home, title }) {
             alignItems: "center",
             gap: "1rem",
             padding: "1rem",
-            maxWidth: "100%"
+            maxWidth: "100%",
+            position: "relative"
           }}>
+            <div className={styles.speechBubble}>
+              Building <a href="https://solo.digger.lol/" target="_blank" rel="noopener noreferrer">
+                Digger Solo
+              </a>
+            </div>
             <img
               src="/images/profile.webp"
               className={`${styles.headerHomeImage} ${utilStyles.borderCircle}`}

@@ -164,3 +164,103 @@
   height: 18px;
   fill: currentColor;
 }
+
+/* Comic-style speech bubble */
+.speechBubble {
+  position: relative;
+  background: #ffffff;
+  border: 3px solid #000000;
+  border-radius: 12px;
+  padding: 10px 16px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  animation: popIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+  transform-origin: bottom right;
+  z-index: 10;
+  margin-top: -15px;
+}
+
+.speechBubble a {
+  padding: 0 !important;
+}
+
+/* Speech bubble tail pointing to the right (towards the profile image) */
+.speechBubble::after {
+  content: '';
+  position: absolute;
+  right: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border: 10px solid transparent;
+  border-left-color: #000000;
+  z-index: 1;
+}
+
+.speechBubble::before {
+  content: '';
+  position: absolute;
+  right: -15px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border: 8px solid transparent;
+  border-left-color: #ffffff;
+  z-index: 2;
+}
+
+/* Pop-in animation with bounce */
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0) rotate(-5deg);
+  }
+  50% {
+    transform: scale(1.1) rotate(2deg);
+  }
+  70% {
+    transform: scale(0.95) rotate(-1deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 767px) {
+  .speechBubble {
+    font-size: 0.7rem;
+    padding: 8px 12px;
+    border-width: 2px;
+  }
+
+  .speechBubble::after {
+    right: -15px;
+    border-width: 8px;
+  }
+
+  .speechBubble::before {
+    right: -11px;
+    border-width: 6px;
+  }
+}
+
+/* Dark theme support */
+@media (prefers-color-scheme: dark) {
+  :global(body[data-theme="dark"]) .speechBubble {
+    background: #1a1a1a;
+    border-color: #ffffff;
+  }
+
+  :global(body[data-theme="dark"]) .speechBubble::after {
+    border-left-color: #ffffff;
+  }
+
+  :global(body[data-theme="dark"]) .speechBubble::before {
+    border-left-color: #1a1a1a;
+  }
+}
