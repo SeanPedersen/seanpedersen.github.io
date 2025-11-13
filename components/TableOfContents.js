@@ -34,7 +34,6 @@ export default function TableOfContents({ content, title, titleId }) {
 
         while ((match = regex.exec(content)) !== null) {
             const level = Number(match[1]);
-            if (level < 2) continue; // skip H1 to avoid duplicating the page title
             const rawText = match[2].replace(/<[^>]*>/g, '');
             // Display text should decode entities like &#x26; -> &
             const displayText = decodeHTMLEntities(rawText);
@@ -63,7 +62,7 @@ export default function TableOfContents({ content, title, titleId }) {
                 {headings.map((heading, index) => (
                     <li
                         key={index}
-                        style={{ marginLeft: `${Math.max(0, (heading.level - 2) * 12)}px` }}
+                        style={{ marginLeft: `${Math.max(0, (heading.level - 1) * 12)}px` }}
                     >
                         <a href={`#${heading.id}`}>{heading.text}</a>
                     </li>

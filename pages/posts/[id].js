@@ -186,7 +186,7 @@ export default function Post({ postData, relatedPostCandidates, hasMorePosts }) 
     });
   };
 
-  const hasTableOfContents = postData.contentHtml.includes('<h2') || postData.contentHtml.includes('<h3');
+  const hasTableOfContents = postData.contentHtml.includes('<h1') || postData.contentHtml.includes('<h2') || postData.contentHtml.includes('<h3');
   const titleId = postData.title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
 
   return (
