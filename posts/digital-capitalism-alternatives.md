@@ -182,3 +182,5 @@ Technology becomes human when it serves people rather than extracting from them,
 - https://joinmastodon.org/
 - https://signal.org/
 - https://www.fairphone.com/
+
+#idea
