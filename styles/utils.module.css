@@ -33,6 +33,13 @@
   transition: border-bottom-color 0.3s ease;
 }
 
+/* Hide article heading on mobile when ToC is present (ToC header becomes the heading) */
+@media (max-width: 1400px) {
+  .headingXl.hideOnMobile {
+    display: none;
+  }
+}
+
 .headingLg {
   font-size: 1.5rem;
   line-height: 1.4;

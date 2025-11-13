@@ -253,15 +253,15 @@ export default function Post({ postData, relatedPostCandidates, hasMorePosts }) 
         />
       </Head>
       <div className={`${styles.main} ${styles.postPage} ${!hasTableOfContents ? styles.noToc : ''}`}>
-        {hasTableOfContents && (
-          <TableOfContents
-            content={postData.contentHtml}
-            title={postData.title}
-            titleId={titleId}
-          />
-        )}
         <article className={utilStyles.postContainer}>
-          <h1 id={titleId} className={utilStyles.headingXl}>{postData.title}</h1>
+          {hasTableOfContents && (
+            <TableOfContents
+              content={postData.contentHtml}
+              title={postData.title}
+              titleId={titleId}
+            />
+          )}
+          <h1 id={titleId} className={`${utilStyles.headingXl} ${hasTableOfContents ? utilStyles.hideOnMobile : ''}`}>{postData.title}</h1>
           <div className={utilStyles.postMeta}>
             <div className={utilStyles.lightText}>
               <DayDate dateString={postData.date} />
