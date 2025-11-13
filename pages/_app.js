@@ -50,8 +50,10 @@ export default function App(
   useEffect(() => {
     if (theme === 'light') {
       document.body.classList.add('light-theme');
+      document.body.removeAttribute('data-theme');
     } else {
       document.body.classList.remove('light-theme');
+      document.body.setAttribute('data-theme', 'dark');
     }
     // Cookie is now set only on manual toggle
   }, [theme]);

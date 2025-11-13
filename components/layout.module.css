@@ -304,12 +304,24 @@
 }
 
 /* Dark theme support */
-@media (prefers-color-scheme: dark) {
-  :global(body[data-theme="dark"]) .speechBubble {
-    background: #1a1a1a;
-    border-color: #ffffff;
+:global(body[data-theme="dark"]) .speechBubble {
+  background: #1a1a1a;
+  border-color: #ffffff;
+}
+
+/* Mobile: down-pointing tail */
+@media (max-width: 767px) {
+  :global(body[data-theme="dark"]) .speechBubble::after {
+    border-top-color: #ffffff;
   }
 
+  :global(body[data-theme="dark"]) .speechBubble::before {
+    border-top-color: #1a1a1a;
+  }
+}
+
+/* Desktop: right-pointing tail */
+@media (min-width: 768px) {
   :global(body[data-theme="dark"]) .speechBubble::after {
     border-left-color: #ffffff;
   }
