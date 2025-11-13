@@ -24,6 +24,9 @@ export default function Home({ allPostsData, allTags }) {
   const [hasMounted, setHasMounted] = useState(false);
   const [showToggle, setShowToggle] = useState(true);
   const [searchExpanded, setSearchExpanded] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchData, setSearchData] = useState(null);
+  const [isLoadingSearch, setIsLoadingSearch] = useState(false);
 
   useEffect(() => {
     setHasMounted(true);
@@ -66,6 +69,54 @@ export default function Home({ allPostsData, allTags }) {
     };
   }, [allTags]);
 
+  // Load search data from RSS when search is first used
+  useEffect(() => {
+    if (searchQuery && !searchData && !isLoadingSearch) {
+      setIsLoadingSearch(true);
+
+      fetch('/rss.xml')
+        .then(response => response.text())
+        .then(xmlText => {
+          const parser = new DOMParser();
+          const xmlDoc = parser.parseFromString(xmlText, 'text/xml');
+          const items = xmlDoc.querySelectorAll('item');
+
+          const posts = Array.from(items).map(item => {
+            const title = item.querySelector('title')?.textContent || '';
+            const link = item.querySelector('link')?.textContent || '';
+            const contentEncoded = item.querySelector('encoded')?.textContent || '';
+            const categories = Array.from(item.querySelectorAll('category')).map(
+              cat => cat.textContent
+            );
+
+            // Strip HTML tags from content for searching
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = contentEncoded;
+            const textContent = tempDiv.textContent || tempDiv.innerText || '';
+
+            // Extract post ID from link
+            const urlObj = new URL(link);
+            const id = urlObj.pathname.split('/').filter(Boolean).pop();
+
+            return {
+              id,
+              title,
+              content: textContent,
+              categories,
+              searchText: `${title} ${textContent} ${categories.join(' ')}`.toLowerCase()
+            };
+          });
+
+          setSearchData(posts);
+          setIsLoadingSearch(false);
+        })
+        .catch(error => {
+          console.error('Failed to load RSS feed:', error);
+          setIsLoadingSearch(false);
+        });
+    }
+  }, [searchQuery, searchData, isLoadingSearch]);
+
   // Handle tag selection
   const handleTagSelect = (tag) => {
     setSelectedTag(tag);
@@ -81,10 +132,120 @@ export default function Home({ allPostsData, allTags }) {
     }
   };
 
-  // Filter posts by selected tag
-  const filteredPosts = selectedTag
-    ? allPostsData.filter(post => post.tags && post.tags.includes(selectedTag))
-    : allPostsData
+  // Highlight matching text in title
+  const highlightTitle = (title, query) => {
+    if (!query.trim()) return title;
+
+    const lowerTitle = title.toLowerCase();
+    const lowerQuery = query.toLowerCase();
+    const index = lowerTitle.indexOf(lowerQuery);
+
+    if (index === -1) return title;
+
+    const before = title.slice(0, index);
+    const match = title.slice(index, index + query.length);
+    const after = title.slice(index + query.length);
+
+    return (
+      <>
+        {before}
+        <mark style={{
+          backgroundColor: 'var(--primary-color)',
+          color: 'var(--color-background)',
+          padding: '2px 4px',
+          borderRadius: '3px'
+        }}>
+          {match}
+        </mark>
+        {after}
+      </>
+    );
+  };
+
+  // Filter posts by selected tag and search query
+  const filteredPosts = (() => {
+    let posts = allPostsData.filter(post => {
+      // First filter by tag if one is selected
+      return !selectedTag || (post.tags && post.tags.includes(selectedTag));
+    });
+
+    // If no search query, return tag-filtered posts
+    if (!searchQuery.trim()) {
+      return posts;
+    }
+
+    const query = searchQuery.toLowerCase();
+
+    // If search data is loaded, use full-text search with scoring
+    if (searchData) {
+      const scoredPosts = posts
+        .map(post => {
+          const postSearchData = searchData.find(p => p.id === post.id);
+          if (!postSearchData) return null;
+
+          let score = 0;
+          let titleMatch = false;
+
+          const lowerTitle = postSearchData.title.toLowerCase();
+          const lowerContent = postSearchData.content.toLowerCase();
+
+          // Check if title matches
+          if (lowerTitle.includes(query)) {
+            // Count occurrences in title (worth 10 points each)
+            const titleMatches = (lowerTitle.match(new RegExp(query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g')) || []).length;
+            score += titleMatches * 10;
+            titleMatch = true;
+          }
+
+          // Check if content matches
+          if (lowerContent.includes(query)) {
+            // Count occurrences in content (worth 1 point each)
+            const contentMatches = (lowerContent.match(new RegExp(query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g')) || []).length;
+            score += contentMatches;
+          }
+
+          // Check if categories match
+          postSearchData.categories.forEach(cat => {
+            if (cat.toLowerCase().includes(query)) {
+              score += 5;
+            }
+          });
+
+          // Only include posts with matches
+          if (score === 0) return null;
+
+          return { ...post, score, titleMatch };
+        })
+        .filter(Boolean)
+        .sort((a, b) => b.score - a.score); // Sort by score (highest first)
+
+      return scoredPosts;
+    }
+
+    // Fallback to title/tag search if RSS not loaded yet
+    const scoredPosts = posts
+      .map(post => {
+        let score = 0;
+        let titleMatch = false;
+
+        if (post.title.toLowerCase().includes(query)) {
+          score += 10;
+          titleMatch = true;
+        }
+
+        if (post.tags && post.tags.some(tag => tag.toLowerCase().includes(query))) {
+          score += 5;
+        }
+
+        if (score === 0) return null;
+
+        return { ...post, score, titleMatch };
+      })
+      .filter(Boolean)
+      .sort((a, b) => b.score - a.score);
+
+    return scoredPosts;
+  })()
 
   return (
     <div className={utilStyles.flexer}>
@@ -103,6 +264,7 @@ export default function Home({ allPostsData, allTags }) {
             <Search
               isExpanded={searchExpanded}
               onToggle={() => setSearchExpanded(!searchExpanded)}
+              onSearch={(query) => setSearchQuery(query)}
             />
 
             {/* Tags Filter */}
@@ -126,10 +288,10 @@ export default function Home({ allPostsData, allTags }) {
           </div>
 
           <ul className={utilStyles.list}>
-            {filteredPosts.map(({ id, date, title, tags }) => (
+            {filteredPosts.map(({ id, date, title, tags, titleMatch }) => (
               <li className={utilStyles.listItem} key={id}>
                 <Link href={`/posts/${id}`}>
-                  {title}
+                  {titleMatch && searchQuery ? highlightTitle(title, searchQuery) : title}
                 </Link>
                 {tags && tags.length > 0 && (
                   <small className={utilStyles.lightText}>
