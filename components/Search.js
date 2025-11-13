@@ -151,11 +151,9 @@ const Search = ({ isExpanded = false, onToggle = null }) => {
       window.addEventListener('resize', updatePosition);
       window.addEventListener('scroll', updatePosition);
 
-      // Auto-focus input
+      // Auto-focus input immediately - don't wait for animation
       if (inputRef.current) {
-        setTimeout(() => {
-          inputRef.current?.focus();
-        }, 500); // Wait for animation to complete
+        inputRef.current.focus();
       }
 
       return () => {
