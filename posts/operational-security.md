@@ -10,5 +10,6 @@ How to secure a VPS running in production (important service + data)?
 - Use docker for your services
 - Set up regular automatic updates
 - Set up append only backups (whole server or DB) with regular validity tests (restore the backup)
+- Advanced: Set up disk level encryption (f.e. LUKS) - in case the hard drives will be resold: customer data can not be recovered
 
 #programming
