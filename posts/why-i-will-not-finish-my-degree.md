@@ -13,4 +13,7 @@ I judge people by their and myself want to be judged by my **personality**: whic
 About the CS degree itself:
 The knowledge / curriculum is full of gems: Trees, Graphs, Algorithmic Complexity and Artificial Intelligence to name a few that stood out to me. I have studied the theory of them in depth. It is just that the way how the knowledge is often transferred and especially how it is examined and marked is sadly too often not goal orientated. I am happy that I spent a lot of time on my CS education in university, I just see no point in "finishing" it (getting the "special" graduation paper). I encourage anyone reading this to develop their own style of learning and advise strongly against overfitting academic exams. Your time is better spent studying deep theory, get confused, ask hard questions, find easy but often surprising answers and most importantly: apply the theory - build it.
 
+References:
+- <https://colah.github.io/posts/2020-05-University/>
+
 #personal
