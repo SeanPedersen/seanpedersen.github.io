@@ -60,7 +60,7 @@ Two major sources of health issues hide in plain sight: chemicals from plastic f
 
 Chemicals like BPA and phthalates leach from plastic containers into food and drinks. These compounds act as endocrine disruptors, mimicking hormones in your body. **Consumer Reports found phthalates in 84 out of 85 food products they tested**, with levels in some items exceeding those typically found in fast food.
 
-The science links these chemicals to cardiovascular problems, diabetes risk, and reproductive health issues. While regulatory agencies maintain current safety levels, the research continues to raise concerns about cumulative exposure over time.
+The science links these chemicals to cardiovascular problems, cognitive decline (diabetes risk + anxiety) and reproductive health issues. While regulatory agencies maintain current safety levels, the research continues to raise concerns about cumulative exposure over time.
 
 Sugar sweetened beverages create multiple health problems. Beyond the obvious weight gain from liquid calories that don't satisfy hunger like solid food, regular soda consumption increases diabetes risk through high glycemic loads and fructose metabolism effects. **Studies following hundreds of thousands of people show clear dose response relationships**, where more soda equals higher disease risk.
 
@@ -71,5 +71,9 @@ The dental damage alone should give pause. Sodas have a pH of 2 to 3, creating a
 These five areas represent changes backed by solid research that can meaningfully impact health. Focus on eating more whole foods and adequate protein, limit exposure to plastic chemicals and sugary drinks, and consider creatine and magnesium supplementation if appropriate for your situation.
 
 The beauty of these approaches lies in their simplicity and strong evidence base. You don't need perfect implementation to see benefits. Start with one or two areas that resonate most, make consistent changes, and build from there. Your body will respond to these evidence based improvements in nutrition over time.
+
+## References
+
+- [YouTube: Alarming Effects From Microplastics on Human Health](https://youtu.be/v2w3zWzADgo) - Anton Petrov
 
 #tutorial
