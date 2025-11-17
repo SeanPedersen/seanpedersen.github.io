@@ -2,7 +2,7 @@
 title: 'Postgres as Vector DB - a benchmark'
 date: '2025-10-08'
 ---
-There is a flood of vector databases - which ones are actually useful? IMO extending a relational DBMS with ACID compliance and existing datasets, is for most use cases the ideal choice. Using a dedicated vector DB like ([Chroma](https://www.trychroma.com/), [Turbopuffer](https://turbopuffer.com/), [LanceDB](https://github.com/lancedb/lancedb), [Milvus](https://milvus.io/) etc.) only makes sense for narrow use cases where no complicated meta-data filters are needed (e.g. just simple RAG) and data synchronisation is no issue.
+There is a flood of vector databases - which ones are actually useful? IMO extending a relational DBMS with ACID compliance and existing datasets, is for most use cases the ideal choice. Using a dedicated vector DB like ([Chroma](https://www.trychroma.com/), [Vespa](https://github.com/vespa-engine/vespa), [Turbopuffer](https://turbopuffer.com/), [LanceDB](https://github.com/lancedb/lancedb), [Milvus](https://milvus.io/) etc.) only makes sense for narrow use cases where no complicated meta-data filters are needed (e.g. just simple RAG) and data synchronisation is no issue.
 
 So let's have a look how we can store and search vectors using Postgres - there are three notable extensions for Postgres: pgvector, pgvectorscale and vectorchord.
 
