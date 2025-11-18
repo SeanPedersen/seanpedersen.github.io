@@ -729,7 +729,7 @@ You are a relational database system and SQL expert capable of analyzing and opt
 
 ## MCP Toolbox
 
-While MCP tools are cool they can also bloat your context (costing valuable tokens and increase context rot) as there API definitions are always in context - the github MCP for example is really bloated but the github CLI is working as well and LLM's already know how to use it properly. So only add really useful MCP servers.
+While MCP tools are cool they can also bloat your context (costing valuable tokens and increase context rot) as there API definitions are always in context - the github MCP for example is really bloated but the github CLI is working as well and LLM's already know how to use it properly. So only activate MCP servers needed for the current session.
 
 ### Browser Control
 
@@ -769,7 +769,21 @@ Now you can instruct claude to work on github issues (read or create).
 
 [Graphiti](https://github.com/getzep/graphiti): <https://github.com/getzep/graphiti/blob/main/mcp_server/README.md>
 
-### GUI Apps
+## Statusbar
+
+Add context usage to status bar:
+- Download <https://github.com/delexw/claude-code-misc/blob/main/.claude/statusline/ctx_monitor.js> to `~/.claude/statusline` (create dir if non existing)
+- Make executable: `chmod +x ctx_monitor.js`
+- Add to settings (`~/.claude/settings.json`):
+```json
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/statusline/ctx_monitor.js",
+    "padding": 0
+  }
+```
+
+## GUI Apps
 
 Using GUI apps can make sense as they motivate writing longer and more detailed prompts.
 
