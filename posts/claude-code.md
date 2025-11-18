@@ -46,15 +46,15 @@ Use git working branches to start multiple sub-agents on the same code base.
 
 ### Basic Commands
 
-- Plan mode: shift + tab (activate to plan complex features - claude asks many clarifying questions)
-- Thinking mode: tab (activate for complex reasoning)
-- /clear: clear context (do it if you are stuck)
-- /compact: summarizes context (do it if stuck or long session)
-- /resume: resume last session
-- /context: show your usage
-- /export: save current chat context to clipboard / file
-- esc: interrupt, esc + esc: revert to previous state
-- /config: recommended to disable auto-compact (rarely helps)
+- Plan mode: SHIFT + TAB (activate to plan complex features - claude asks many clarifying questions)
+- Thinking mode: TAB (activate for complex reasoning)
+- `/clear`: clear context (do it if you are stuck)
+- `/compact <specify what to include in summary>`: summarizes context (do it if stuck or long session)
+- ESC: interrupt, ESC + ESC: revert to previous state
+- `/resume`: resume last session
+- `/context`: show your usage
+- `/export`: save current chat context to clipboard / file
+- `/config`: recommended to disable auto-compact (rarely helps)
 
 ## Directing Claude
 
