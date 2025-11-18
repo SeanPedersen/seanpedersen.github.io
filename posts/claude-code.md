@@ -21,16 +21,6 @@ Now you can ask claude about the project or instruct it to implement a new featu
 
 Bonus: Use [this awesome project](https://github.com/ericc-ch/copilot-api) to use your Github Copilot subscription with claude code
 
-### GUI
-
-Using GUI apps can make sense as they motivate writing longer and more detailed prompts.
-
-- Desktop app: <https://opcode.sh/>
-- Desktop app (for subagents): <https://github.com/wandb/catnip>
-- Desktop app (for subagents): <https://github.com/generalaction/emdash>
-- Desktop app (for subagents): <https://conductor.build/>
-- Mobile app: <https://happy.engineering/>
-
 ## Starting Projects
 
 It is recommended to use proven code base templates / example repositories that are correctly configured with all needed boilerplate for a project (based on a popular tech stack as mentioned before) - so that the code agents has a working starting point and can not fumble the project setup. Always aim to create tight evaluation / test loops where the agent can verify its progress on its own without you needing to hold hands.
@@ -46,7 +36,7 @@ Vibe code project flow:
 
 ## General Advice
 
-As with every LLM, Claude Code suffers from context rot - meaning the longer and noisier the context (input context windows) becomes, the worse the performance gets and the more tokens are used. Thus it is best practice to frequently use the `/clear` (deletes whole context) and `/compact` (creates summary of current context)  commands to reduce / reset the context when Claude finished a task or gets stuck on a task - to provide a fresh start. Also try to keep your code files cohesive and small to avoid bloating the context (saving tokens again).
+As with every LLM, Claude Code suffers from context rot - meaning the longer and noisier the context (input context windows) becomes, the worse the performance gets and the more tokens are used. Thus it is best practice to frequently use the `/clear` (deletes whole context) or `/compact` (creates summary of current context)  commands to reduce / reset the context when Claude finished a task or gets stuck on a task - to provide a fresh start. Also try to keep your code files cohesive and small to avoid bloating the context (saving tokens again). Also disable mcp's by default only load when needed (to save context).
 
 Use frequent git commits to save working versions in case Claude gets stuck producing bullshit.
 
@@ -62,6 +52,9 @@ Use git working branches to start multiple sub-agents on the same code base.
 - /compact: summarizes context (do it if stuck or long session)
 - /resume: resume last session
 - /context: show your usage
+- /export: save current chat context to clipboard / file
+- esc: interrupt, esc + esc: revert to previous state
+- /config: recommended to disable auto-compact (rarely helps)
 
 ## Directing Claude
 
@@ -775,6 +768,16 @@ Now you can instruct claude to work on github issues (read or create).
 ### Knowledge Base
 
 [Graphiti](https://github.com/getzep/graphiti): <https://github.com/getzep/graphiti/blob/main/mcp_server/README.md>
+
+### GUI Apps
+
+Using GUI apps can make sense as they motivate writing longer and more detailed prompts.
+
+- Desktop app: <https://opcode.sh/>
+- Web app (for subagents): <https://github.com/wandb/catnip>
+- Desktop app (for subagents): <https://github.com/generalaction/emdash>
+- Desktop app (for subagents): <https://conductor.build/>
+- Mobile app: <https://happy.engineering/>
 
 ## TODO
 
