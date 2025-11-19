@@ -771,7 +771,7 @@ Now you can instruct claude to work on github issues (read or create).
 
 ## Statusbar
 
-Add context usage to status bar:
+Add context window usage for the current session to claude's status bar:
 - Download <https://github.com/delexw/claude-code-misc/blob/main/.claude/statusline/ctx_monitor.js> to `~/.claude/statusline` (create dir if non existing)
 - Make executable: `chmod +x ctx_monitor.js`
 - Add to settings (`~/.claude/settings.json`):
