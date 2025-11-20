@@ -88,6 +88,10 @@ All of the following techniques trade retrieval accuracy for speed / storage cos
 - Vector Quantization
     - Reduce bit representation (f.e. to INT8 instead of FP32)
 
+## Diversification
+
+It often makes sense to present the user for general queries not only the top nearest neighbors but a diverse set of results, so the ambiguity of the query is reflected. Ideally the user can then narrow down (load more relevant results) based on the diverse result set.
+
 ## Evaluation Metrics
 
 As you see there are many knobs to tune a modern search pipeline and thus we need hard evaluation metrics to judge the quality of our search pipeline. Creating a custom dataset that mirrors our real world search use case as closely and diversely as possible is essential to improving our search.
