@@ -10,7 +10,7 @@ Alternatives to privacy invading data kraken services.
 
 Google Chrome:
 
-Firefox, Brave etc. also track their users.
+Firefox, Brave etc. also track their users (with default settings).
 
 - [Ungoogled Chromium](https://github.com/ungoogled-software/ungoogled-chromium) - Chromium without Google Services (spy ware)
 
@@ -51,6 +51,11 @@ Google Drive / Dropbox:
 Google Calendar / Contacts:
 
 - [Etesync](https://www.etesync.com/) ([Code](https://github.com/etesync/server)) - end-to-end encrypted, self-hostable
+
+Android:
+
+- [LineageOS](https://lineageos.org/)
+- [GrapheneOS](https://grapheneos.org/)
 
 Facebook / Twitter:
 
