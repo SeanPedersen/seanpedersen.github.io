@@ -18,6 +18,10 @@ Backups: <https://github.com/RostislavDugin/postgresus/>
 
 ## Scaling & Optimisations
 
+### Indexes
+
+Indexes speed up queries by generating data structures (binary trees, hash tables, etc.) that aid them - at the cost of storage and write performance. [Dexter](https://ankane.org/introducing-dexter) is a tool that analyses your DB's common queries and automatically suggests indexes to speed them up.
+
 ### Vertical Scaling (bigger server)
 
 TL;DR - get a beefy server
