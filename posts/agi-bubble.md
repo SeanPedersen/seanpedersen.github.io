@@ -26,7 +26,7 @@ The knowledge representation (weight matrices) in neural networks is fractured /
 
 ## Problem Classes
 
-Current LLM can solve low complexity tasks with lots of training data available (text, code, video, audio) and high-complexity tasks which are easy to verify (so big training data with high-signal can be generated) like chess, programming and math - by interpolating on existing data. It is easy to verify who won a chess or go game and thus possible to generate high-signal training data. The same is true for certain classes of programming problems (does it compile? does it run without errors? does it pass tests? does it produce same output as an existing program? does it better on benchmark X?).
+Current AI systems can solve low complexity tasks with lots of training data available (text, code, video, audio) and high-complexity tasks which are easy to verify (so big training data with high-signal can be generated) like chess, programming and math - by interpolating on existing data. It is easy to verify who won a chess or go game and thus possible to generate high-signal training data. The same is true for certain classes of programming problems (does it compile? does it run without errors? does it pass tests? does it produce same output as an existing program? does it better on benchmark X?).
 
 It is much harder to generate meaningful rewards for more abstract programming tasks though (is the UI design polished? is the user experience sensible?) - this data can only be inferred from expensive human usage.
 
