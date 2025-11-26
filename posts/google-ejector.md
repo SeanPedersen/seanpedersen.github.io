@@ -26,12 +26,13 @@ Google Mail / Outlook:
 - [Protonmail](https://proton.me/mail) - privacy focused
 - [TutaMail](https://tuta.com/) - privacy focused
 
-ChatGPT / Claude / Gemini:
+Google Maps:
+
+- [OpenStreetMap](https://www.openstreetmap.org/) - open data, privacy focused
+
+ChatGPT / Claude / Gemini / Perplexity:
 
 - [Local LLM Apps](https://seanpedersen.github.io/posts/local-ai-chat-apps)
-
-Perplexity:
-
 - [Perplexica](https://github.com/ItzCrazyKns/Perplexica) - Open source answer engine
 - [Morphic](https://github.com/miurla/morphic) - Open source answer engine
 
