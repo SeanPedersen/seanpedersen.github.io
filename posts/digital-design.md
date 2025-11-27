@@ -11,6 +11,7 @@ Digital design is concerned with the creation and optimization of user interface
 - Design languages / trends:
   - minimalistic (grey): obsidian
   - bold colorful + playful: posthog
+  - neobrutalism: [gumroad](https://gumroad.com/)
   - liquid glass: apple
   - functional: [mcmaster](https://www.mcmaster.com/)
 - Emotional Design: playful / rewards
