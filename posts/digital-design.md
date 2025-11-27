@@ -9,12 +9,23 @@ Digital design is concerned with the creation and optimization of user interface
 - Use rows instead of boxes for items that have numerical values to compare
 - Use hover highlight effects only for interactive components (links, buttons)
 - Design languages / trends:
-  - minimalistic (grey): obsidian
+  - minimalistic: obsidian (grey), [UsByNight](https://www.usbynight.be/) (bold)
   - bold colorful + playful: posthog
   - neobrutalism: [gumroad](https://gumroad.com/)
   - liquid glass: apple
   - functional: [mcmaster](https://www.mcmaster.com/)
 - Emotional Design: playful / rewards
 - Cultural Differences: japanese love information dense UI
+
+## Bad Design
+
+In order to produce good design, it is very helpful to just feel bad designs.
+
+- Pop-ups (visual distractions)
+- Breaking historical UI patterns
+
+## References
+
+- [Principles of bad software design](https://digdeeper.club/articles/design.xhtml)
 
 #programming
