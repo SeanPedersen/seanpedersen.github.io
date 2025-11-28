@@ -29,6 +29,8 @@ TL;DR - get a beefy server
 - Lots of fast RAM
 - Beefy CPU cores (lots of em)
 
+Check out: <https://pgtune.leopard.in.ua/>
+
 #### PGBench
 
 Run pgbench to eval server performance quickly.
