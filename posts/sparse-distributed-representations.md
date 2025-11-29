@@ -92,7 +92,7 @@ SDRs support several efficient operations:
 
 ## How to generate SDR?
 
-Jeff Hawkins / Numenta has not published any open-source implementation that I am aware of.
+Jeff Hawkins / [Numenta](https://www.numenta.com/) has not published any open-source implementation that I am aware of.
 
 I came up with this simple implementation:
 
@@ -108,6 +108,7 @@ A different implemenation I found: <https://github.com/dizcza/EmbedderSDR>
 
 ## References
 
+- <https://www.cortical.io/freetools/extract-keywords/>
 - <https://www.numenta.com/assets/pdf/biological-and-machine-intelligence/BaMI-SDR.pdf>
 - <https://www.numenta.com/assets/pdf/whitepapers/hierarchical-temporal-memory-cortical-learning-algorithm-0.2.1-en.pdf>
 - <https://arxiv.org/abs/1503.07469>
