@@ -117,6 +117,90 @@ export default function Post({ postData, relatedPostCandidates, hasMorePosts }) 
     Promise.all(promises).then(scrollToHash);
   }, [postData.id]);
 
+  // Add ">" to each rendered line in blockquotes
+  useEffect(() => {
+    const addQuoteMarkers = () => {
+      const blockquotes = document.querySelectorAll('.markdown-content blockquote');
+
+      blockquotes.forEach(blockquote => {
+        // Skip if already processed
+        if (blockquote.dataset.quoteProcessed) return;
+        blockquote.dataset.quoteProcessed = 'true';
+
+        // Set up blockquote positioning
+        blockquote.style.position = 'relative';
+        blockquote.style.paddingLeft = '1.5rem';
+
+        // Get all text elements
+        const elements = blockquote.querySelectorAll('p, li');
+        if (elements.length === 0) return;
+
+        const blockquoteRect = blockquote.getBoundingClientRect();
+
+        // Process each element that contains text
+        elements.forEach(element => {
+          // Skip empty elements
+          if (!element.textContent.trim()) return;
+
+          const computedStyle = getComputedStyle(element);
+          const lineHeight = parseFloat(computedStyle.lineHeight);
+
+          // Get element position relative to blockquote
+          const elementRect = element.getBoundingClientRect();
+          const elementTop = elementRect.top - blockquoteRect.top;
+
+          // Calculate number of lines this element spans
+          const elementHeight = element.scrollHeight;
+          const numLines = Math.max(1, Math.round(elementHeight / lineHeight));
+
+          // Add markers for each line of this element
+          for (let i = 0; i < numLines; i++) {
+            const marker = document.createElement('span');
+            marker.textContent = '>';
+            marker.className = 'quote-marker';
+            marker.style.cssText = `
+              position: absolute;
+              left: 0;
+              top: ${elementTop + (i * lineHeight)}px;
+              opacity: 0.5;
+              user-select: none;
+              pointer-events: none;
+              line-height: ${lineHeight}px;
+              height: ${lineHeight}px;
+            `;
+            blockquote.appendChild(marker);
+          }
+        });
+      });
+    };
+
+    // Run after content is rendered
+    const timer = setTimeout(addQuoteMarkers, 100);
+
+    // Re-run on window resize
+    let resizeTimer;
+    const handleResize = () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        // Reset all blockquotes
+        document.querySelectorAll('.markdown-content blockquote').forEach(bq => {
+          delete bq.dataset.quoteProcessed;
+          bq.style.paddingLeft = '';
+          bq.querySelectorAll('.quote-marker').forEach(m => m.remove());
+        });
+        addQuoteMarkers();
+      }, 250);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      clearTimeout(timer);
+      clearTimeout(resizeTimer);
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [postData.contentHtml]);
+
   const decodeHTMLEntitiesForId = (str) => {
     if (!str || typeof str !== 'string') return str;
     const named = {

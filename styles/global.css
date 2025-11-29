@@ -260,3 +260,14 @@ img {
     white-space: nowrap;
   }
 }
+
+/* Blockquote styles */
+.markdown-content blockquote {
+  margin: 1rem 0;
+}
+
+.markdown-content blockquote p,
+.markdown-content blockquote li {
+  margin: 0;
+  line-height: 1.4;
+}
