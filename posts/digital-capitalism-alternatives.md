@@ -27,6 +27,8 @@ Power pools in a few firms. Risk shifts to users and workers: algorithmic gig co
 
 ## Human Centered Technology
 
+...serving humans instead of exploiting them for maximum profits.
+
 ### Open Source
 Code you can read, verify and change. True digital independence. In the future everyone may change their apps using local LLM's.
 
@@ -65,7 +67,7 @@ Mastodon: Decentralized social network; users pick servers and rules. Signal: En
 
 ## Path Forward
 
-Change needs tools, laws, ownership shifts, and new norms together. Nothing is inevitable. We can choose designs that cut surveillance, spread power, support democracy, and respect dignity.
+Change needs tools, laws, ownership shifts, and new norms together. Nothing is inevitable. We can choose designs that cut surveillance, spread power, support democracy and respect dignity.
 
 Human tech serves people, not extracts from them. It shares power, not hoards it. It grows under public oversight, not private decree. Choose and build accordingly.
 
