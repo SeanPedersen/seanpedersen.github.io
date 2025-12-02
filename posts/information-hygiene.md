@@ -24,4 +24,8 @@ Built a social trust network of individuals (personal blogs) and organizations y
 
 Valuable information is information that increases your self-agency. Learning a new skill, learning about science, talking with your neighbor - everything that has even a small purpose / impact on your real life is valuable.
 
+## References
+
+- https://fokus.cool/2025/11/25/i-dont-care-how-well-your-ai-works.html
+
 #privacy #idea
