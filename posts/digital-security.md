@@ -45,9 +45,17 @@ Remember that anything shared online can potentially be weaponized. Stalkers can
 
 ### [Remove Data Kraken like Google and co](https://seanpedersen.github.io/posts/google-ejector)
 
-## Advanced: Device Encryption
+## Advanced
+
+### Device Encryption
 
 Encrypt your devices to protect data if they're lost or stolen. Most smartphones are encrypted by default when you use a passcode, while computers may require setting up encryption (BitLocker on Windows, FileVault on Mac).
+
+### Tor Browser (darknet)
+
+Tor Browser provides anonymity by routing traffic through multiple encrypted relays. For secure use: keep it updated, avoid maximizing the window (to prevent fingerprinting), don't install additional extensions and **never log into personal accounts or share identifying information while using it**. Use HTTPS sites when possible and remember that Tor protects your connection but not the endpoints, so avoid downloading suspicious files or entering sensitive data on untrusted sites.
+
+Download it here: <https://www.torproject.org/download/>
 
 ## Don't Waste Your Money
 
@@ -59,7 +67,7 @@ Modern operating systems have built-in protection that performs as well as or be
 
 ### VPN Services
 
-For typical browsing on HTTPS-secured websites (which is most of the internet now), paid VPN services add minimal security benefit. The privacy claims in their marketing are largely exaggerated for everyday use.
+For typical browsing on HTTPS-secured websites (which is most of the internet now), paid VPN services add minimal security benefit. The privacy claims in their marketing are largely exaggerated for everyday use. The core question is: do you trust your ISP less than your VPN provider? Check [this article](https://digdeeper.love/articles/vpn.xhtml) out for more info.
 
 ## Conclusion
 
