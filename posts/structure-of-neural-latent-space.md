@@ -73,5 +73,9 @@ This would make them easier to interpret for humans and potentially offer some o
 
 TODO:
 - How do image (continuous input space) and text (discrete input space) embedding spaces differ (number of clusters, density, etc.)?
+- How sparse are dense embeddings (how much information do they lose if sparsified -> compare different embeddings based on layer depth)?
+
+References:
+- Hyperbolic embeddings: https://markkm.com/blog/embeddings-in-data-science/
 
 #machine-learning
