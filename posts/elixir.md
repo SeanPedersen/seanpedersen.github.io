@@ -2,7 +2,7 @@
 title: 'Elixir'
 date: '2025-11-14'
 ---
-Elixir is [Erlang](https://seanpedersen.github.io/posts/erlang) with syntax sugar and transpiled to Erlang code.
+[Elixir](https://elixir-lang.org/docs.html) is [Erlang](https://seanpedersen.github.io/posts/erlang) with syntactic sugar (transpiling to Erlang code).
 
 Parallel function process map:
 ```elixir
