@@ -17,4 +17,4 @@ Knowledge representation in brain:
 Learning / forming new memories:
 - fire together, wire together: similar patterns that repeatedly fire together, will bind together (even across different input domains), translational invariance is not only spatial but also temporal (to bind two stimuli they must not co-occur exactly at same time)
 
-#AI
+#book #AI
