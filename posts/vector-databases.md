@@ -108,17 +108,39 @@ In the future I want to extend it:
 
 ## ANN Benchmark Results
 
-For 450K text embeddings 1024D float32 vectors - measure the recall@100.
+The table below was computed using 100K CLIP Matryoshka text embeddings.
 
-| Method | Query Latency (ms) | Retrieval Recall | Speedup vs Baseline | Index Build Time (s) | Index Size (MB) |
-|--------|-------------------|---------------------|---------------------|---------------------|-----------------|
-| Baseline (Brute Force) | 1400.93 | 100.00% | 1.00x | - | - |
-| **VectorChord (vchordrq)** | 468.64 | 100.00% | 2.99x | 1383.62 | 2229 |
-| **pgvectorscale (DiskANN)** | 6.39 | 2.00% | 219.22x | 550.29 | 254 |
-| **pgvector (HNSW)** | 611.54 | 100.00% | 2.29x | 1235.13 | 3555 |
-| **pgvector (IVFFlat)** | 411.62 | 100.00% | 3.40x | 968.53 | 3561 |
-
-**Note:** At 450K vectors, all approximate indices show strong speedups. HNSW, IVFFlat, and VectorChord achieve ~100% recall with 2-3.5x speedups. DiskANN has the fastest build time and best speed up (200x) but with significantly lower recall (2%).
+| Index | Recall@100 (%) | Latency (ms) | Dim | Storage | Build (s) | Storage (MB) | Index (MB) |
+|-------|------------|--------------|-----|---------|-----------|--------------|------------|
+| binary_mean_ivf_rerank | 90.0 | 14.20 | 1024 | float32 | 2.12 | 429.7 | 14.6 |
+| binary_mean_ivf_rerank | 92.0 | 15.10 | 1024 | float16 | 0.86 | 214.8 | 14.6 |
+| binary_uint8_ivf_rerank | 100.0 | 37.67 | 1024 | float32 | 7.43 | 429.7 | 98.1 |
+| binary_uint8_ivf_rerank | 100.0 | 39.94 | 1024 | float16 | 4.75 | 214.8 | 98.1 |
+| binary_uint4_ivf_rerank | 100.0 | 17.00 | 1024 | float32 | 2.77 | 429.7 | 52.5 |
+| binary_uint4_ivf_rerank | 100.0 | 17.06 | 1024 | float16 | 3.78 | 214.8 | 52.5 |
+| vchordrq | 96.0 | 18.06 | 1024 | float32 | 12.34 | 429.7 | 50.2 |
+| vchordrq | 97.0 | 25.38 | 1024 | float16 | 11.68 | 214.8 | 47.6 |
+| diskann | 96.0 | 18.48 | 1024 | float32 | 156.78 | 429.7 | 55.8 |
+||
+| binary_mean_ivf_rerank | 84.0 | 13.90 | 512 | float32 | 0.84 | 214.8 | 8.5 |
+| binary_mean_ivf_rerank | 84.0 | 11.70 | 512 | float16 | 0.77 | 107.4 | 8.5 |
+| binary_uint8_ivf_rerank | 94.0 | 21.77 | 512 | float32 | 2.54 | 214.8 | 52.5 |
+| binary_uint8_ivf_rerank | 94.0 | 20.03 | 512 | float16 | 3.47 | 107.4 | 52.5 |
+| binary_uint4_ivf_rerank | 94.0 | 14.34 | 512 | float32 | 1.15 | 214.8 | 27.3 |
+| binary_uint4_ivf_rerank | 94.0 | 12.03 | 512 | float16 | 1.23 | 107.4 | 27.4 |
+| vchordrq | 94.0 | 27.55 | 512 | float32 | 7.70 | 214.8 | 41.5 |
+| vchordrq | 94.0 | 23.27 | 512 | float16 | 7.51 | 107.4 | 40.0 |
+| diskann | 94.0 | 31.49 | 512 | float32 | 159.26 | 214.8 | 55.8 |
+||
+| binary_mean_ivf_rerank | 73.0 | 11.88 | 256 | float32 | 0.47 | 107.4 | 5.4 |
+| binary_mean_ivf_rerank | 73.0 | 9.72 | 256 | float16 | 0.33 | 53.7 | 5.4 |
+| binary_uint8_ivf_rerank | 86.0 | 13.94 | 256 | float32 | 1.63 | 107.4 | 27.4 |
+| binary_uint8_ivf_rerank | 86.0 | 11.89 | 256 | float16 | 1.26 | 53.7 | 27.3 |
+| binary_uint4_ivf_rerank | 84.0 | 75.42 | 256 | float32 | 1.26 | 107.4 | 14.6 |
+| binary_uint4_ivf_rerank | 84.0 | 13.22 | 256 | float16 | 1.15 | 53.7 | 14.6 |
+| vchordrq | 86.0 | 22.14 | 256 | float32 | 7.22 | 107.4 | 36.6 |
+| vchordrq | 86.0 | 16.66 | 256 | float16 | 7.16 | 53.7 | 35.9 |
+| diskann | 86.0 | 25.21 | 256 | float32 | 152.00 | 107.4 | 48.8 |
 
 ## Optimizing Vector & Index Storage
 
@@ -133,60 +155,9 @@ When things scale up one should strive for efficient vector storage using:
       - In pgvector: binary quantization will reduce any positive value to 1, and any zero or negative value to 0
       - Mean-based thresholding: binarize each dimension using its corpus-wide mean as the threshold, ensuring ~50/50 bit distribution per dimension for better information preservation and more discriminative binary codes.
 
-We can see that using IvfFlat index on binary representation with a top-K factor of 10x (overfetching), then reranking in higher precision (float32 or float16) results excellent recall, low vector storage costs (float16) and very fast retrieval latencies.
-
-A good trade-off seems to be using the first 512D (Matryoshka dims.), storing them as float16 and using ivf+binary(L500,P93,10x) index with float16 reranking delivers 13.59 ms retrieval latency with a 93% recall. Float16 for 512D vector storage is 322.3MB (4x reduction compared to 1024D float32) and index size is only 26.4MB (~33x reduction compared to vchordrq 1024D float16 index).
+We can see that using IvfFlat index on binary representation with a top-K factor of 10x (overfetching), then reranking in higher precision (float32 or float16) results in excellent recall, low vector storage costs (float16) and very fast retrieval latencies.
 
 Though the reranking can lead to complications with queries using metadata filtering, so just using vchordrq index with 512D and float16 can also make sense.
-
-The table below was computed on an 8 core Intel server using 300K CLIP Matryoshka text embeddings.
-
-| Dim   | Storage  | Index                               | Latency (ms)   | Recall  (%) | Build   (s)  | Storage (MB)   | Index  (MB)    |
-|-------|----------|----------------------------------|-------|-------|--------|-------|--------|
-| 256   | float32  | vchordrq                            |       0.77 |     36.0 |    30.55 |      322.3 |      379.1 |
-| 256   | float16  | vchordrq                            |       0.65 |     49.0 |    18.78 |      161.1 |      200.5 |
-| 256   | float32  | ivfflat(L500,P31)                   |      48.94 |     88.0 |     8.59 |      322.3 |      337.1 |
-| 256   | float16  | ivfflat(L500,P31)                   |      50.60 |     88.0 |    10.14 |      161.1 |      158.4 |
-| 256   | float32  | hnsw+binary(ef1000,10x)             |       9.25 |     83.0 |   228.73 |      322.3 |      156.2 |
-| 256   | float16  | hnsw+binary(ef1000,10x)             |       7.56 |     82.0 |   233.40 |      161.1 |      156.2 |
-| 256   | float32  | ivf+binary(L500,P93,10x)            |      13.54 |     83.0 |     2.06 |      322.3 |       17.3 |
-| 256   | float16  | ivf+binary(L500,P93,10x)            |      12.96 |     82.0 |     2.23 |      161.1 |       17.2 |
-| 256   | float32  | exact-binary(10x)                   |     117.95 |     82.0 |     0.00 |      322.3 |        0.0 |
-| 256   | float16  | exact-binary(10x)                   |      87.77 |     83.0 |     0.00 |      161.1 |        0.0 |
-| 256   | float32  | exact-binary(1x)                    |      39.80 |     35.0 |     0.00 |      322.3 |        0.0 |
-| 256   | float16  | exact-binary(1x)                    |      38.73 |     34.0 |     0.00 |      161.1 |        0.0 |
-| 256   | float32  | exact                               |      49.61 |     88.0 |     0.00 |      322.3 |        0.0 |
-| 256   | float16  | exact                               |      39.24 |     88.0 |     0.00 |      161.1 |        0.0 |
-||
-| 512   | float32  | vchordrq                            |      25.56 |     96.0 |    40.21 |      644.5 |      844.3 |
-| 512   | float16  | vchordrq                            |      25.57 |     97.0 |    26.32 |      322.3 |      397.8 |
-| 512   | float32  | ivfflat(L500,P31)                   |      29.54 |     96.0 |    17.79 |      644.5 |      783.9 |
-| 512   | float16  | ivfflat(L500,P31)                   |      27.04 |     97.0 |    14.50 |      322.3 |      337.1 |
-| 512   | float32  | hnsw+binary(ef1000,10x)             |      15.13 |     94.0 |   209.95 |      644.5 |      160.4 |
-| 512   | float16  | hnsw+binary(ef1000,10x)             |       7.73 |     94.0 |   212.17 |      322.3 |      160.4 |
-| 512   | float32  | ivf+binary(L500,P93,10x)            |      21.15 |     93.0 |     3.87 |      644.5 |       26.3 |
-| 512   | float16  | ivf+binary(L500,P93,10x)            |      13.59 |     93.0 |     3.72 |      322.3 |       26.4 |
-| 512   | float32  | exact-binary(10x)                   |      57.11 |     92.0 |     0.00 |      644.5 |        0.0 |
-| 512   | float16  | exact-binary(10x)                   |     106.79 |     94.0 |     0.00 |      322.3 |        0.0 |
-| 512   | float32  | exact-binary(1x)                    |      32.77 |     49.0 |     0.00 |      644.5 |        0.0 |
-| 512   | float16  | exact-binary(1x)                    |      45.30 |     47.0 |     0.00 |      322.3 |        0.0 |
-| 512   | float32  | exact                               |     324.18 |     96.0 |     0.00 |      644.5 |        0.0 |
-| 512   | float16  | exact                               |      47.51 |     96.0 |     0.00 |      322.3 |        0.0 |
-||
-| 1024  | float32  | vchordrq                            |      29.76 |    100.0 |    68.99 |     1289.1 |     1465.4 |
-| 1024  | float16  | vchordrq                            |      28.08 |    100.0 |    38.46 |      644.5 |      882.5 |
-| 1024  | float32  | ivfflat(L500,P31)                   |      29.09 |    100.0 |    39.74 |     1289.1 |     2347.7 |
-| 1024  | float16  | ivfflat(L500,P31)                   |      27.11 |    100.0 |    33.48 |      644.5 |      784.0 |
-| 1024  | float32  | hnsw+binary(ef1000,10x)             |      12.63 |    100.0 |   201.75 |     1289.1 |      181.0 |
-| 1024  | float16  | hnsw+binary(ef1000,10x)             |      13.32 |    100.0 |   200.80 |      644.5 |      181.0 |
-| 1024  | float32  | ivf+binary(L500,P93,10x)            |      16.60 |    100.0 |     6.61 |     1289.1 |       44.9 |
-| 1024  | float16  | ivf+binary(L500,P93,10x)            |      18.17 |    100.0 |     6.52 |      644.5 |       44.9 |
-| 1024  | float32  | exact-binary(10x)                   |      59.38 |    100.0 |     0.00 |     1289.1 |        0.0 |
-| 1024  | float16  | exact-binary(10x)                   |      62.07 |    100.0 |     0.00 |      644.5 |        0.0 |
-| 1024  | float32  | exact-binary(1x)                    |      29.04 |     55.0 |     0.00 |     1289.1 |        0.0 |
-| 1024  | float16  | exact-binary(1x)                    |      33.51 |     56.0 |     0.00 |      644.5 |        0.0 |
-| 1024  | float32  | exact                               |     480.70 |    100.0 |     0.00 |     1289.1 |        0.0 |
-| 1024  | float16  | exact                               |     337.50 |    100.0 |     0.00 |      644.5 |        0.0 |
 
 ## Show me the code
 
