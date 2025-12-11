@@ -199,6 +199,7 @@ VectorChord is a good choice - providing superior performance and better develop
 ## References
 
 - The gold standard ANN benchmark: <https://github.com/erikbern/ann-benchmarks>
+- <https://vector-index-bench.github.io/overview.html>
 - <https://docs.vectorchord.ai/vectorchord/usage/indexing.html>
 - <https://blog.vectorchord.ai/vectorchord-store-400k-vectors-for-1-in-postgresql#heading-ivf-vs-hnsw>
 - <https://blog.vectorchord.ai/3-billion-vectors-in-postgresql-to-protect-the-earth>
