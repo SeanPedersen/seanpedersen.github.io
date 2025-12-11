@@ -6,4 +6,4 @@ date: '2025-10-01'
 
 Now available in the [App Store](https://apps.apple.com/de/app/drop-gps-social-net/id6742256570?l=en-GB) and soon also in the Play Store
 
-#personal
+#launch

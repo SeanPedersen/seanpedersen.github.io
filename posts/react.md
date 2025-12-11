@@ -42,4 +42,4 @@ Derive state instead of duplicating: If a state can be derived from props or oth
 - <https://x.com/_ryannystrom/status/1970292793877643556/photo/1>
 - [Evaluating Frameworks for Mobile Performance](https://www.lorenstew.art/blog/10-kanban-boards/)
 
-#programming
+#coding

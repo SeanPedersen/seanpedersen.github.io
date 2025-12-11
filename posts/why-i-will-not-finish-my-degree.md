@@ -16,4 +16,4 @@ The knowledge / curriculum is full of gems: Trees, Graphs, Algorithmic Complexit
 References:
 - <https://colah.github.io/posts/2020-05-University/>
 
-#personal
+#idea

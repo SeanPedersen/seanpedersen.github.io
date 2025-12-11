@@ -61,4 +61,4 @@ const results = await Promise.all([
 - TypeScript performance tips: <https://github.com/microsoft/TypeScript/wiki/Performance>
 - <https://jovidecroock.com/blog/state-vs-signals/>
 
-#programming
+#coding

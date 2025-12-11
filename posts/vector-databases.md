@@ -181,4 +181,4 @@ VectorChord is a good choice - providing superior performance and better develop
 - <https://medium.com/nlp-experiment/product-quantization-d66fdb860047>
 - <https://medium.com/@bavalpreetsinghh/pgvector-hnsw-vs-ivfflat-a-comprehensive-study-21ce0aaab931>
 
-#programming #machine-learning
+#coding #ML

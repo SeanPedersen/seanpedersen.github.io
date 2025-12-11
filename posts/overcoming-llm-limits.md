@@ -137,4 +137,4 @@ The endgame would be language models that actively create and verify new knowled
 - <https://blog.jxmo.io/p/we-should-stop-talking-about-agi>
 - [The Reversal Curse: LLMs trained on "A is B" fail to learn "B is A"](https://arxiv.org/abs/2309.12288)
 
-#machine-learning
+#ML

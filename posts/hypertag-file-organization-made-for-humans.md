@@ -97,4 +97,4 @@ Another small but very useful feature: Quickly get an overview of your HyperTag 
 
 I have wanted to use and also build a tagging based file organizer for a long time. In the beginning of 2021 I finally came around to do so. After evaluating existing options, I concluded none of them really satisfied my requirements. So I built HyperTag. Using Python the first prototype was working after only 4 hours of coding. 7 days later and HyperTag provides a rich set of features that help it achieve the goal I set out for it: Minimize the time between a thought and access to all relevant files. I hope others will find use for it as well and maybe even contribute back to it. I am certainly excited for the future of HyperTag and hope you are by now too.
 
-#programming
+#coding

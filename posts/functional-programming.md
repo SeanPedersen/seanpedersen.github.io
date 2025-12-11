@@ -140,4 +140,4 @@ def main(path_in, path_out):  # impure shell
 
 Functional programming offers a different way to think about code. By focusing on pure functions and immutable data, you can write programs that are more predictable and easier to reason about. The paradigm won't solve every problem, but it provides valuable tools for managing complexity in software development.
 
-#programming
+#coding

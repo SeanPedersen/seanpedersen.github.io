@@ -169,4 +169,4 @@ Use a profiler ([pyinstrument](https://github.com/joerick/pyinstrument)) to find
 
 Use C / C++ / Rust / Zig / Mojo etc. for performance critical code or try [PyPy](https://pypy.org/) and [Cython](https://cython.org/) first. Or check out a transpiler <https://github.com/py2many/py2many> / <https://github.com/paiml/depyler>.
 
-#programming
+#coding

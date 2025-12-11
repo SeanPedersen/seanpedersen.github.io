@@ -822,4 +822,4 @@ Using GUI apps can make sense as they motivate writing longer and more detailed 
   - <https://github.com/block/goose>
   - <https://github.com/sst/opencode>
 
-#programming #tutorial #AI
+#coding #tutorial #AI

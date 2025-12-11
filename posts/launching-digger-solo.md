@@ -32,4 +32,4 @@ Your files never leave your computer. All processing happens locally. No usage d
 - Remove (near) duplicate files easily
 - Find specific objects in images using semantic search
 
-#personal
+#launch

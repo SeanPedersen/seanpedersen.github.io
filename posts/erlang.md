@@ -91,4 +91,4 @@ start(PingNode) ->
 - <https://www.erlang-in-anger.com/>
 - Erlang project build manager: <http://www.rebar3.org>
 
-#programming
+#coding

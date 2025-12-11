@@ -23,4 +23,4 @@ And a knowledge base that describes how to infer new information from existing h
 
 The language model would then only need a general understanding of language and logic and the ability to retrieve information from its data and knowledge base.
 
-#AI #machine-learning
+#AI #ML

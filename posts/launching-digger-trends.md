@@ -10,4 +10,4 @@ date: '2025-07-30'
 - Find relevant influencers
 - Find viral posts
 
-#personal
+#launch

@@ -13,4 +13,4 @@ There is a [desktop version](https://digger.lol/?desktop=true) and a [mobile ver
 
 Follow Digger on [X (Twitter)](https://x.com/digger_ai) to stay up to date on novel developments. Give it a try and dig in!
 
-#personal
+#launch

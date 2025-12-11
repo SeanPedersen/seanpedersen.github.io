@@ -28,4 +28,4 @@ In order to produce good design, it is very helpful to just feel bad designs.
 
 - [Principles of bad software design](https://digdeeper.club/articles/design.xhtml)
 
-#programming
+#coding

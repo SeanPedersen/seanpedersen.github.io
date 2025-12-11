@@ -372,4 +372,4 @@ SELECT pg_terminate_backend(PID);
 - <https://www.pixelstech.net/article/1747708863-openai%3a-scaling-postgresql-to-the-next-level>
   - [HN Discussion](https://news.ycombinator.com/item?id=44071418)
 
-#programming
+#coding

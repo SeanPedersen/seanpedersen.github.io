@@ -220,4 +220,4 @@ Does Zipf's law occur in sentences? -> maybe use semantic sentence clusters (gre
 - (5) Art of the Problem. [The Pattern of Intelligence Life](https://youtu.be/MGecptPVQrU). YouTube.
 - (6) <https://accraze.info/exploring-frequency-distribution-with-chinese-words/>
 
-#idea #programming
+#idea #coding
