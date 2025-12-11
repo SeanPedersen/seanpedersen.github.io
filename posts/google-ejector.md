@@ -27,6 +27,7 @@ Google Mail / Outlook:
 
 - [Protonmail](https://proton.me/mail) - privacy focused
 - [TutaMail](https://tuta.com/) - privacy focused
+- [E-Mail Comparison](https://digdeeper.club/articles/email.xhtml#Summary)
 
 Google Maps:
 
