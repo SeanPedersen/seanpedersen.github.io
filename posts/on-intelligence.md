@@ -2,15 +2,15 @@
 title: 'On Intelligence - Jeff Hawkins'
 date: '2025-12-10'
 ---
-Neo Cortex forms a uniform structure: 6 layers of cortical columns composed mostly of pyramidal neurons. Information flows bidirectionally: down the hierarchy to relate to known patterns and up the hierarchy to predict unknown patterns.
+Neo Cortex forms a uniform structure: 6 layers of cortical columns composed mostly of pyramidal neurons. Information flows bidirectionally: down the hierarchy to relate to known patterns and up the hierarchy to predict unknown / complete partial patterns.
 
 Brain does not compute mathematical equations to navigate the world but creates and recalls memories. Catching a flying ball involves (muscle sequence) memories of previous catches that can be efficiently parameterized to adapt to the current flying ball situation.
 
 Knowledge representation in brain:
 - sequential (easy to recite A-Z, hard to do the reverse)
 - invariant (to geometric translations in space and time)
-- auto-associative
-- hierarchical
+- auto-associative (informations connect by observing in shared context)
+- hierarchical (complex/abstract patterns are composed of simple patterns)
 - SDR: [sparse distributed representations](https://seanpedersen.github.io/posts/sparse-distributed-representations)
 - topographic: neighboring neurons, activate to similar patterns
 
