@@ -67,6 +67,7 @@ LLM (+ RL) unsolveable examples:
 
 ## References
 
+- <https://timdettmers.com/2025/12/10/why-agi-will-not-happen/>
 - <https://wonderfall.dev/autoregressive/>
 - Collapse of Self-trained Language Models - <https://arxiv.org/abs/2404.02305v1>
 - The wall confronting large language models - <https://arxiv.org/abs/2507.19703>
