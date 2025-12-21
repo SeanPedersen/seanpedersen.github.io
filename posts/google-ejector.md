@@ -12,9 +12,9 @@ Google Chrome:
 
 Firefox, Brave etc. also track their users (with default settings). Test [here](https://coveryourtracks.eff.org/) how trackable your browser is.
 
-- [Ungoogled Chromium](https://github.com/ungoogled-software/ungoogled-chromium) - Chromium without Google Services (spy ware)
+- [Mullvad](https://mullvad.net/en/browser) - Privacy focused Firefox fork (basically Tor browser without Tor network)
 - [LibreWolf](https://librewolf.net/) - Privacy focused Firefox fork
-- [Mullvad](https://mullvad.net/en/browser) - Privacy focused Firefox fork
+- [Ungoogled Chromium](https://github.com/ungoogled-software/ungoogled-chromium) - Chromium without Google Services (spy ware)
 - [Browser Comparison](https://digdeeper.club/articles/browsers.xhtml#fullsummary)
 
 Google Search:
