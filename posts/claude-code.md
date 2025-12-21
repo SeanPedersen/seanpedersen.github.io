@@ -735,6 +735,8 @@ While MCP tools are cool they can also bloat your context (costing valuable toke
 
 Allows claude to use a web browser to test and debug webapps.
 
+TODO: https://github.com/remorses/playwriter/
+
 [**Playwright**](https://github.com/microsoft/playwright)
 
 `claude mcp add playwright npx '@playwright/mcp@latest'`
