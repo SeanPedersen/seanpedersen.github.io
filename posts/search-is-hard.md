@@ -162,5 +162,6 @@ User steered semantic search by selecting N matches and finding the common subsp
 - [Building a web search engine from scratch in two months with 3 billion neural embeddings](https://blog.wilsonl.in/search-engine/)
 - [On the Theoretical Limitations of Embedding-Based Retrieval](https://arxiv.org/abs/2508.21038)
 - [Building a Simple Search Engine That Actually Works](https://karboosx.net/post/4eZxhBon/building-a-simple-search-engine-that-actually-works)
+- <https://ashvardanian.com/posts/search-utf8/>
 
 #coding #ML
