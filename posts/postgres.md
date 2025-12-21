@@ -137,7 +137,7 @@ There are two complementary search modes:
 
 When to choose which:
 - Use tsvector/tsquery (TF‑IDF-like ranking) for language-aware search, stemming, stop words and boolean/phrase queries.
-- Use pg_trgm for substring/prefix matches, fuzzy lookup and autocomplete. It does not stem or understand language but excels at partial matches.
+- Use pg_trgm for substring/prefix matches, fuzzy lookup and autocomplete. It does not stem or understand language but excels at partial matches. Checkout [biscuit](https://github.com/CrystallineCore/Biscuit) index for even faster substring searches (though trading index size for speed)
 - Scaling: tsvector (TF‑IDF) generally scales better on large corpora (smaller, more selective indexes and lower write overhead). pg_trgm (trigram) indexes grow with text length and unique trigrams, can be much larger and heavier to maintain; prefer it for small/medium tables or short text fields (titles, usernames) and autocomplete.
 
 #### Token Search (TF-IDF)
