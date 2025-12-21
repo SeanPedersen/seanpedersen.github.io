@@ -61,9 +61,15 @@
 .flexer {
   height: 100%;
   width: 100%;
-  padding-top: 2.5rem;
+  padding-top: 0.5rem;
   display: flex;
   flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .flexer {
+    padding-top: 2.5rem;
+  }
 }
 
 .footer {
