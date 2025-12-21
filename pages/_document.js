@@ -4,8 +4,7 @@ export default class MyDocument extends Document {
   render() {
     return (
       <Html lang="en">
-        <Head />
-        <body>
+        <Head>
           <script
             dangerouslySetInnerHTML={{
               __html: `
@@ -14,11 +13,36 @@ export default class MyDocument extends Document {
                     var storedTheme = document.cookie
                       .split('; ')
                       .find(function(row) { return row.startsWith('theme='); });
-                    
-                    var theme = storedTheme ? storedTheme.split('=')[1] : 
+
+                    var theme = storedTheme ? storedTheme.split('=')[1] :
                       (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
-                    
+
+                    // Inject style to set background immediately
+                    var style = document.createElement('style');
+                    style.innerHTML = theme === 'light'
+                      ? 'body{background-color:#f0f0f0!important;color:#111!important}'
+                      : 'body{background-color:#000!important;color:#fff!important}';
+                    document.head.appendChild(style);
+
+                    // Also set class for CSS variables
                     if (theme === 'light') {
+                      document.documentElement.classList.add('light-theme-pending');
+                    }
+                  } catch (e) {}
+                })();
+              `
+            }}
+          />
+        </Head>
+        <body>
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+                (function() {
+                  try {
+                    // Move class from html to body now that body exists
+                    if (document.documentElement.classList.contains('light-theme-pending')) {
+                      document.documentElement.classList.remove('light-theme-pending');
                       document.body.classList.add('light-theme');
                     }
                   } catch (e) {}

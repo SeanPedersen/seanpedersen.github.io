@@ -48,6 +48,14 @@ export default function App(
   const [theme, setTheme] = useState(getInitialTheme);
 
   useEffect(() => {
+    // Remove the inline style injected for anti-flicker on first render
+    const inlineStyles = document.head.querySelectorAll('style');
+    inlineStyles.forEach(style => {
+      if (style.innerHTML.includes('body{background-color:')) {
+        style.remove();
+      }
+    });
+
     if (theme === 'light') {
       document.body.classList.add('light-theme');
       document.body.removeAttribute('data-theme');
