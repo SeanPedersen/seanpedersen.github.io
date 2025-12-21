@@ -10,7 +10,7 @@
 .main {
   width: 100%;
   max-width: 100%;
-  padding: 0 1rem;
+  padding: 0 0.25rem;
   margin: 0;
   flex: 1 0 auto;
   box-sizing: border-box;
@@ -246,6 +246,8 @@
   .headerContainer {
     flex-direction: row;
     align-items: center;
+    gap: 1rem;
+    padding: 1rem;
   }
 
   .speechBubble {
