@@ -164,17 +164,16 @@ export default function Home({ allPostsData, allTags }) {
 
   // Filter posts by selected tag and search query
   const filteredPosts = (() => {
-    let posts = allPostsData.filter(post => {
-      // First filter by tag if one is selected
-      return !selectedTag || (post.tags && post.tags.includes(selectedTag));
-    });
-
-    // If no search query, return tag-filtered posts
+    // If no search query, filter by tag
     if (!searchQuery.trim()) {
-      return posts;
+      return allPostsData.filter(post => {
+        return !selectedTag || (post.tags && post.tags.includes(selectedTag));
+      });
     }
 
+    // When searching, search ALL posts regardless of selected tag
     const query = searchQuery.toLowerCase();
+    const posts = allPostsData;
 
     // If search data is loaded, use full-text search with scoring
     if (searchData) {
