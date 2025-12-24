@@ -6,7 +6,7 @@ Modern deep learning architectures are dominated by dense embeddings. While spar
 
 ## What are SDR?
 
-SDRs are sparse matrices with spatially meaningful dimensions - the nearer two dimensions (cells) are the closer the concepts (vectors) they represent are. This gives SDRs many useful properties that dense embeddings lack.
+SDRs are sparse, positive matrices with spatially meaningful dimensions - the nearer two dimensions (cells) are the closer the concepts (vectors) they represent are. This gives SDRs many useful properties over dense embeddings.
 
 ## What are the benefits of SDR over dense embeddings?
 
