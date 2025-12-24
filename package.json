@@ -9,9 +9,10 @@
   },
   "dependencies": {
     "date-fns": "^2.16.1",
-    "eslint-config-next": "^14.2.4",
+    "eslint": "^9.39.2",
+    "eslint-config-next": "^16.1.1",
     "gray-matter": "^4.0.2",
-    "next": "^16.0.0",
+    "next": "^16.1.1",
     "posthog-js": "^1.164.2",
     "prismjs": "^1.30.0",
     "react": "^19.2.0",
@@ -22,6 +23,6 @@
     "remark-prism": "^1.3.6"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "^15.5.4"
+    "@next/bundle-analyzer": "^16.1.1"
   }
 }
