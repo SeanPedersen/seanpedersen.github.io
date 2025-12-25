@@ -2,7 +2,9 @@
 title: 'Structure of Neural Embeddings'
 date: '2024-12-27'
 ---
-A small collection of insights on the structure of embeddings (latent spaces) produced by deep neural networks. Embeddings are a collection of vectors (list of numbers) arranged in a meaningful way - representing relationships via distances between each other.
+A small collection of insights on the structure of embeddings (latent spaces) produced by deep neural networks.
+
+Embeddings mirror relationships of objects (f.e. words / images) by embedding them in a vector space - a collection of vectors (list of numbers) representing relationships via distances between each other.
 
 ## General Principles
 
