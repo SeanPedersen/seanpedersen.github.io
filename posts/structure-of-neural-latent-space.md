@@ -4,7 +4,7 @@ date: '2024-12-27'
 ---
 A small collection of insights on the structure of embeddings (latent spaces) produced by deep neural networks.
 
-Embeddings capture relationships of objects (like words or images) by embedding them in a vector space - a collection of vectors representing relationships via distances between each other.
+Embeddings capture semantic relationships between objects (like words or images) by representing them in a vector space - a collection of vectors representing relationships via distances between each other.
 
 ## General Principles
 
