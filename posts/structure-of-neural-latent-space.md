@@ -4,7 +4,7 @@ date: '2024-12-27'
 ---
 A small collection of insights on the structure of embeddings (latent spaces) produced by deep neural networks.
 
-Embeddings mirror relationships of objects (f.e. words / images) by embedding them in a vector space - a collection of vectors (list of numbers) representing relationships via distances between each other.
+Embeddings capture relationships of objects (like words or images) by embedding them in a vector space - a collection of vectors representing relationships via distances between each other.
 
 ## General Principles
 
@@ -52,6 +52,10 @@ Embeddings mirror relationships of objects (f.e. words / images) by embedding th
 
 - [Prevalence of Neural Collapse during the terminal phase of deep learning training](https://arxiv.org/abs/2008.08186)
 
+## Relation to Graphs
+
+Any set of vectors can be converted into a graph by representing every vector as a node and connecting all nodes with each other using the vector spaces distance metric (f.e. cosine) as edge weight. Typically only edges of the K nearest neighbors are kept for efficiency.
+
 ## Limits of Dense Embeddings
 
 Most neural network architectures process data as dense vectors, making them hard to interpret for humans.
@@ -64,7 +68,7 @@ This would make them easier to interpret for humans and potentially offer some o
 
 **Modality Gap**: Multi-modal training strategies like CLIP that unify text and image in a shared embedding space, suffer from the Modality Gap, where text and image vectors form distinct clusters instead of occupying a shared cluster in the embedding space (relative similarities are working though). This separation can limit the effectiveness of cross-modal retrieval and transfer tasks.
 
-- <https://jina.ai/news/the-what-and-why-of-text-image-modality-gap-in-clip-models/?nocache=1>
+- <https://jina.ai/news/the-what-and-why-of-text-image-modality-gap-in-clip-models/>
 - <https://seanpedersen.github.io/posts/closing-clip-modality-gap>
 - [Connect, Collapse, Corrupt: Learning Cross-Modal Tasks with Uni-Modal Data](https://arxiv.org/abs/2401.08567)
 
@@ -73,11 +77,12 @@ This would make them easier to interpret for humans and potentially offer some o
 - [Understanding Dimensional Collapse in Contrastive Self-supervised Learning](https://arxiv.org/abs/2110.09348)
 - [Dimensional Collapse in Video Representation Learning](https://www.static.tu.berlin/fileadmin/www/10002219/132153_-_digitale_Abschlussarbeiten/Dimensional_Collapse_in_Video_Representation_Learning_Publication_Paul_Kapust.pdf)
 
+## References
+
+- Hyperbolic embeddings: https://markkm.com/blog/embeddings-in-data-science/
+
 TODO:
 - How do image (continuous input space) and text (discrete input space) embedding spaces differ (number of clusters, density, etc.)?
 - How sparse are dense embeddings (how much information do they lose if sparsified -> compare different embeddings based on layer depth)?
-
-References:
-- Hyperbolic embeddings: https://markkm.com/blog/embeddings-in-data-science/
 
 #ML
