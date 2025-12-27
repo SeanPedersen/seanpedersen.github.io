@@ -56,13 +56,21 @@ Use git working branches to start multiple sub-agents on the same code base.
 - `/export`: save current chat context to clipboard / file
 - `/config`: recommended to disable auto-compact (rarely helps)
 
+### Custom Commands
+
+By creating a dir ~/.claude/commands and creating markdown files like follow-up.md, we can call them as custom commands in claude using /follow-up - this allows us to inject custom instructions to claude - boosting its performance.
+
+/follow-up
+```
+Your context window is becoming too full. Create a brief prompt for yourself that informs you in few words of the essential data needed for you to continue this task in a new session.
+**ATTENTION:** Do not perform the task! Instead, only return the prompt that will provide the necessary context for you to carry it out in a new session!
+```
+
 ## Directing Claude
 
 By creating a file named CLAUDE.md in ~/.claude/CLAUDE.md we can add system wide instructions (should be general workflow oriented), add CLAUDE.md also in the root of a project, to add custom prompts to providing relevant context for the project. By creating context specific CLAUDE.md files also in subdirectories, we can provide more precise context.
 
-By creating a dir ~/.claude/commands and creating markdown files like python.md, react.md or design.md, we can call them as custom commands in claude using /python, /react or /design - this allows us to add context specific instructions to claude boosting its performance (ideally claude would automatically inject prompts based on file types it is working with but I did not get this working yet...).
-
-Try to avoid negative rules like "do not use random data to test the environment" as current AI systems have a hard time to follow these kind of instructions. Instead formulate it positively: "use deterministic (rule based) data to the test the environment". This way the LLM will not have the thing you are trying to avoid in its context.
+Try to avoid negative rules like "do not use random data to test the environment" as current AI systems have a hard time to follow these kind of instructions. Instead formulate it positively: "Only use deterministic (rule based) data to the test the environment". This way the LLM will not have the thing you are trying to avoid in its context.
 
 **General CLAUDE.md Prompt**:
 ```
