@@ -259,6 +259,8 @@ Query optimization requires proper index usage and simplified geometries. Add bo
 
 Check out [PGLite](https://pglite.dev/) for a small embeddable WebAssembly version of Postgres - being a good alternative to SQLite and thus ideal for testing and client-side deployments of Postgres (with the limitation of accepting only one connection though).
 
+And check out [postgresql-embedded](https://github.com/theseus-rs/postgresql-embedded) for a Rust package that embeds Postgres without the limitations.
+
 ## Useful Commands
 
 **Show sizes of all tables** + index + toast (The Oversized Attribute Storage Technique - used for long texts / json storage):
