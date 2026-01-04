@@ -11,7 +11,9 @@ The internet is a war zone and you are an active participant if you like it or n
 
 ### Password Management
 
-Use a password manager ([KeePass](https://keepassxc.org/) or other solutions) to create and store unique, complex passwords for each service. This is your first line of defense. Enable Multi-Factor Authentication (MFA) wherever available, as it drastically reduces account takeover risk. Check if accounts including passwords of yours have been breached using [haveibeenpwned.com](https://haveibeenpwned.com/) and replace these passwords using your password manager.
+Use a password manager ([KeePass](https://keepassxc.org/) or other solutions) to create and store unique, complex (random) passwords for each service / web size. Advanced: manually add another PW (that you only remember) to every stored PW when logging in - this nullifys the risk of your PW manager leaking all your stored passwords.
+
+Enable Multi-Factor Authentication (MFA) wherever available, as it drastically reduces account takeover risk. Check if accounts including passwords of yours have been breached using [haveibeenpwned.com](https://haveibeenpwned.com/) and replace these passwords using your password manager.
 
 ### Keep Everything Updated
 
