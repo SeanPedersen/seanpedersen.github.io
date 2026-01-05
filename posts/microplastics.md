@@ -45,5 +45,6 @@ Minimize single use plastics like takeout containers and straws. This lowers bot
 ## References
 
 - <https://en.wikipedia.org/wiki/Microplastics>
+- [YouTube: Alarming Effects From Microplastics on Human Health](https://youtu.be/v2w3zWzADgo) - Anton Petrov
 
 #tutorial
