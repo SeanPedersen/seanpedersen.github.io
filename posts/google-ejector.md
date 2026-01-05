@@ -96,8 +96,9 @@ Github / Gitlab / Bitbucket:
 
 Windows / MacOS:
 
-- [Fedora](https://www.fedoraproject.org/) (Linux)
-- [Mint](https://linuxmint.com/) (Linux)
+- [Nobara](https://nobaraproject.org/) (Fedora Linux)
+- [Mint](https://linuxmint.com/) (Ubuntu Linux)
+- [CachyOS](https://cachyos.org/) (Arch Linux)
 
 ## Export All Your Google Data
 
