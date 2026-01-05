@@ -64,7 +64,7 @@ Android:
 - [LineageOS](https://lineageos.org/)
 - [GrapheneOS](https://grapheneos.org/)
 
-Facebook / Twitter:
+Facebook / Twitter / Instagram:
 
 - [Nostr](https://nostr.com/) ([Code](https://github.com/nostr-protocol/nostr)) - decentralized, self-hostable
 - [Mastodon](https://joinmastodon.org/) ([Code](https://github.com/tootsuite/mastodon)) - federated, self-hostable
@@ -93,6 +93,11 @@ HTTP(S):
 Github / Gitlab / Bitbucket:
 
 - [Radicle](https://radicle.xyz/) ([Code](https://github.com/radicle-dev/radicle-upstream)) - decentralized, self-hostable
+
+Windows / MacOS:
+
+- [Fedora](https://www.fedoraproject.org/) (Linux)
+- [Mint](https://linuxmint.com/) (Linux)
 
 ## Export All Your Google Data
 
