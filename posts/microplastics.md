@@ -2,7 +2,7 @@
 title: 'Microplastics - A silent killer'
 date: '2026-01-05'
 ---
-Microplastics are tiny plastic particles present in food, water, air and dust. Research links higher exposure to inflammation, fertility problems and cardiovascular issues. Complete avoidance is impossible, but intake can be reduced.
+Microplastics are tiny plastic particles present in food, water, air and dust. Research links higher exposure to inflammation, fertility problems and cardiovascular issues. Complete avoidance is impossible, but intake can be reduced. Mass usage of plastics in the economy is a huge mistake (as most organisms lack metabolism to deal with it) and must be stopped.
 
 ## Water Sources
 
@@ -38,7 +38,7 @@ Wooden or bamboo spoons are softer and cause less surface damage than metal. The
 
 ## Priority Actions
 
-Start with high impact changes for maximum reduction. Stop buying bottled water. Never heat food in plastic. Use natural materials for food preparation. These steps target the main exposure pathways: water, food, and air.
+Start with high impact changes for maximum reduction. Stop buying bottled water. Never heat food in plastic. Use natural materials for food preparation. These steps target the main exposure pathways: water, food and air.
 
 Minimize single use plastics like takeout containers and straws. This lowers both environmental release and personal exposure.
 
