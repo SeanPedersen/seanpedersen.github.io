@@ -292,28 +292,31 @@ export default function Home({ allPostsData, allTags }) {
                 <Link href={`/posts/${id}`}>
                   {titleMatch && searchQuery ? highlightTitle(title, searchQuery) : title}
                 </Link>
-                {tags && tags.length > 0 && (
-                  <small className={utilStyles.lightText}>
-                    {' •'}
-                    <span className={utilStyles.postTags}>
-                      {tags.map((tag, index) => (
-                        <span key={tag}>
-                          <Link
-                            href="#"
-                            onClick={(e) => {
-                              e.preventDefault();
-                              e.stopPropagation();
-                              handleTagSelect(tag);
-                            }}
-                          >
-                            {tag}
-                          </Link>
-                          {index < tags.length - 1 ? ', ' : ''}
-                        </span>
-                      ))}
-                    </span>
-                  </small>
-                )}
+                {tags && tags.length > 0 && (() => {
+                  const displayTags = tags.filter(tag => tag !== selectedTag);
+                  return displayTags.length > 0 && (
+                    <small className={utilStyles.lightText}>
+                      {' •'}
+                      <span className={utilStyles.postTags}>
+                        {displayTags.map((tag, index) => (
+                          <span key={tag}>
+                            <Link
+                              href="#"
+                              onClick={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                handleTagSelect(tag);
+                              }}
+                            >
+                              {tag}
+                            </Link>
+                            {index < displayTags.length - 1 ? ', ' : ''}
+                          </span>
+                        ))}
+                      </span>
+                    </small>
+                  );
+                })()}
               </li>
             ))}
           </ul>
