@@ -127,6 +127,10 @@ end
 
 ## [Export Your Twitter (X) Data](https://seanpedersen.github.io/posts/analyze-twitter-likes)
 
+## TODO: Replace Instagram
+
+How to remove your data from Zuckerberg and backup it up to host it privacy focused.
+
 ## Glossary
 
 **End-to-end encrypted** means your data is en- & decrypted only on your machine, resulting in maximum security with maximum responsibility (password loss equals data loss).
