@@ -44,6 +44,7 @@ WhatsApp / Telegram:
 - [Signal](https://signal.org/) - Privacy focused messenger
 - [Matrix](https://matrix.org/) ([Code](https://github.com/matrix-org/synapse)) - end-to-end encrypted, federated, self-hostable
 - [BitChat](https://bitchat.free/) - decentralized chat app via bluetooth
+- [Messenger Comparison](https://www.messenger-matrix.de/messenger-matrix.html)
 
 Google Docs:
 
