@@ -8,6 +8,7 @@ A short how to (re)search for and access relevant information in the age of sema
 ## Useful Search Engines
 
 - <https://exa.ai/search>: Semantic search engine which often spits out relevant papers and blog articles
+- <https://kagi.com/>: Paid ad-free search engine (Google in good.)
 - <https://arxivxplorer.com/>: Semantic search for arxiv papers
 - <https://web.archive.org/>: Wayback machine (stores snapshots of websites)
 
