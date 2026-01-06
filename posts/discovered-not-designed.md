@@ -1,9 +1,6 @@
 ---
-title: 'Discovered, Not Designed'  
 date: '2025-07-09'
 ---
-# Discovered, Not Designed
-
 # Discovered, Not Designed
 
 Concerned with the difference between complicated (causal, explicit and deterministically) versus complex (emergent, implicit, non-deterministic) designed objects and processes.

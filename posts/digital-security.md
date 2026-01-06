@@ -1,11 +1,6 @@
 ---
-
-title: 'Digital Security for Everyone'  
 date: '2025-05-15'
-
 ---
-# Digital Security for Everyone
-
 # Digital Security for Everyone
 
 

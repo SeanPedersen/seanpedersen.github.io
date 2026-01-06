@@ -1,9 +1,6 @@
 ---
-title: 'Digital Capitalism and Alternatives'  
 date: '2025-11-13'
 ---
-# Digital Capitalism and Alternatives
-
 # Digital Capitalism and Alternatives
 
 Digital capitalism shapes how we interact with technology, the world and even how we understand its role in society. These mechanisms tend to hide the true power relations while presenting inhumane technological developments as neutral, natural progress.

@@ -1,9 +1,6 @@
 ---
-title: 'Getting started with Claude Code'  
 date: '2025-07-03'
 ---
-# Getting started with Claude Code
-
 # Getting started with Claude Code
 
 Claude Code is a powerful coding agent that you use from the command line. It comes with MCP support which enables it to use external tools like web browsers to automatically validate and test new features it added to web apps.
