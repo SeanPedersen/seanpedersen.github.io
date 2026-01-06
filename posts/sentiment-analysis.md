@@ -1,7 +1,8 @@
 ---
-title: 'Natural Language Processing: Sentiment Analysis'
 date: '2018-10-13'
 ---
+# Natural Language Processing: Sentiment Analysis
+
 In this article we will take a closer look at sentiment analysis. Given an input text predict the sentiment (emotional state) as either negative (0) or positive (1). Sentiment analysis is useful to understand human text interactions at big scales. (Updated: 13th January, 2021)
 
 ## Dataset: IMDB Movie Reviews

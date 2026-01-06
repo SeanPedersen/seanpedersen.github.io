@@ -1,7 +1,8 @@
 ---
-title: 'PostgreSQL Database'
 date: '2025-10-13'
 ---
+# PostgreSQL Database
+
 Postgres is a versatile, powerful open-source relational DBMS - which means it is capable of lots of things: spanning from advanced search capabilities for text, vector search and geographic data to optimizations like partitioning and sharding. Understanding these optimization techniques can transform a moderately performing database into a high-performance system handling millions of queries per second with sub-millisecond latency.
 
 ## Database Maintenance

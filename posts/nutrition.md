@@ -2,6 +2,10 @@
 title: 'Nutrition - a strong mind needs a healthy body'  
 date: '2025-09-11'
 ---
+# Nutrition - a strong mind needs a healthy body
+
+# Nutrition - a strong mind needs a healthy body
+
 Getting healthy through food doesn't have to be complicated. Research shows that focusing on a few key areas can make a real difference in how you feel and function. Here's what the science says about eating better, based on current studies from major health institutions.
 
 ## Why whole foods beat processed options

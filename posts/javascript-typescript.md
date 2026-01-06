@@ -1,7 +1,8 @@
 ---
-title: 'Javascript (TypeScript)'
 date: '2025-09-18'
 ---
+# Javascript (TypeScript)
+
 [TypeScript](https://www.typescriptlang.org/) is a superset of JavaScript that brings static typing, preventing many bugs found in vanilla JS code bases. TypeScript can both be used in the frontend as well in the backend (server) using NodeJS. JavaScript is a neccessary evil (that has many strange quirks), which TypeScript alleviates some of at least.
 
 ## Basics

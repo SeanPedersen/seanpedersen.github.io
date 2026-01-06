@@ -1,7 +1,8 @@
 ---
-title: 'Digital (Re)Search'
 date: '2025-04-22'
 ---
+# Digital (Re)Search
+
 A short how to (re)search for and access relevant information in the age of semantic search and open information.
 
 ## Useful Search Engines

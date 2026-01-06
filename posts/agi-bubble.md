@@ -2,6 +2,10 @@
 title: 'Popping the AGI Bubble'  
 date: '2025-07-26'
 ---
+# Popping the AGI Bubble
+
+# Popping the AGI Bubble
+
 It is becoming clearer and clearer that scaling up LLM's will not solve their fundamental limits like hallucinations (making up bullshit) and context rot (decreasing performance with growing noisy input context). While LLM companies are still slashing benchmarks (often by training on test data directly or guessing the test data) - users of LLM's know the truth: LLM's are a useful tool but nowhere near a robust AGI (that can reliably solve complex tasks without human supervision) and there is nothing in sight suggesting this will change soon.
 
 ## Fundamental Limits

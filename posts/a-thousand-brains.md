@@ -1,7 +1,8 @@
 ---
-title: 'A Thousand Brains - Jeff Hawkins'
 date: '2025-12-27'
 ---
+# A Thousand Brains - Jeff Hawkins
+
 
 ## Reference Frames
 

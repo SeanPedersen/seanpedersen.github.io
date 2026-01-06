@@ -1,7 +1,8 @@
 ---
-title: 'Understanding understanding'
 date: '2019-07-08'
 ---
+# Understanding understanding
+
 What does it mean to understand something?
 
 If an agent produces a solution for a problem, does it necessarily follow that the agent understands it? Many people would clearly say no. A chess computer excels at the problem of playing chess but has no understanding of what he does, it’s just an algorithm crunching numbers after all, right?

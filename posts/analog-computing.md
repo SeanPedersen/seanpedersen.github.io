@@ -1,7 +1,8 @@
 ---
-title: 'Analog Computing - The future is continuous'
 date: '2025-09-12'
 ---
+# Analog Computing - The future is continuous
+
 The artificial intelligence industry faces a growing energy crisis. Training large language models consumes massive amounts of power, while deploying AI at the edge demands efficiency that traditional digital processors struggle to deliver. This challenge has created interest in analog computing: which performs calculations using continuous physical quantities rather than discrete digital values. Recent breakthroughs suggest **analog computing could deliver 10-40x energy efficiency improvements** over conventional digital AI accelerators while maintaining competitive accuracy for specific applications.
 
 ## Recent academic breakthroughs

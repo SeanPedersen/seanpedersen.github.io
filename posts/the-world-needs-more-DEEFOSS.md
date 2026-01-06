@@ -1,7 +1,8 @@
 ---
-title: 'The world needs more #DEEFOSS'
 date: '2021-01-11'
 ---
+# The world needs more #DEEFOSS
+
 It is no secret that the idea of an open, free and accessible word wide web is just that: an idea. The WWW is dominated by a few big corporations that dominate search and social media. They control and monitor what you see, who you talk to, your emotions, political views, the list is too long to continue. But the trend is easy to recognize: Total control over all your personal online and to some extent even offline activities.
 
 This needs to stop. Before anyone has to ask why, here are a few good reasons:

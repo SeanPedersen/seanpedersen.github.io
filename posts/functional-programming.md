@@ -1,7 +1,8 @@
 ---
-title: 'Functional Programming'
 date: '2025-06-26'
 ---
+# Functional Programming
+
 A programming paradigm gaining traction with good reasons. The selling point of functional programming are easy to reason about code through simple chains of data transformations.
 
 ## Pure Functions vs Dirty Methods

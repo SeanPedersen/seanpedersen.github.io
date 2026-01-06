@@ -1,7 +1,8 @@
 ---
-title: '(Sub)Conscious (Re)Programming'
 date: '2025-04-09'
 ---
+# (Sub)Conscious (Re)Programming
+
 Have you ever found yourself in similar uncomfortable situations, only to later wonder: "Why did this happen again?" That moment of questioning is the first step toward "conscious reprogramming". The process of identifying subconscious patterns that no longer serve us and consciously changing them.
 
 ## The Problem of Subconscious Programming

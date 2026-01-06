@@ -1,7 +1,8 @@
 ---
-title: 'Metrics for Artificial General Intelligence'
 date: '2025-07-16'
 ---
+# Metrics for Artificial General Intelligence
+
 
 We need a new benchmark score that expresses the robustness of models within a coherent problem set (punish brittleness -> making stupid mistakes while otherwise achieving good scores). Humans possess very robust (generalizable) intelligence, preventing hallucinations and adversarial examples (small changes in input space causing large changes in prediction space).
 

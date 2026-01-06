@@ -1,7 +1,8 @@
 ---
-title: 'Deep Learning: Variational Auto-Encoders'
 date: '2018-09-30'
 ---
+# Deep Learning: Variational Auto-Encoders
+
 Variational Auto-Encoders (VAE) are a probabilistic (variational) extension of classical auto-encoders. Disclaimer: This article does not approach the concept of VAE from a bayesian perspective (check out the references below for this). The focus lies instead on highlighting the key components and their effects on the practical results such as the latent embedding space structure.
 
 ## Building Blocks of an Auto-Encoder

@@ -1,7 +1,8 @@
 ---
-title: 'HyperTag: File Organization made for Humans'
 date: '2021-01-10'
 ---
+# HyperTag: File Organization made for Humans
+
 [HyperTag](https://github.com/Ravn-Tech/HyperTag) let's humans intuitively express how they think about their files using tags and the power of modern machine learning. Instead of introducing proprietary file formats like other existing file organization solutions, HyperTag just layers on top of your existing files without any fuss.
 
 HyperTag is built around one simple goal: **Minimize the time between a thought and access to all relevant files.**

@@ -1,7 +1,8 @@
 ---
-title: 'Digital Future: Personal Assistant'
 date: '2025-07-04'
 ---
+# Digital Future: Personal Assistant
+
 Personal assistant powered by LLM via chat and voice interface
 - informs you every day what is happening (daily agenda)
 - executes tasks for you (setup a blog for me, order my favorite pizza, etc.)

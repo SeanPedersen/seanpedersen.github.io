@@ -1,7 +1,8 @@
 ---
-title: 'On Intelligence - Jeff Hawkins'
 date: '2025-12-10'
 ---
+# On Intelligence - Jeff Hawkins
+
 Neo Cortex forms a uniform structure: 6 layers of cortical columns composed mostly of pyramidal neurons. Information flows bidirectionally: down the hierarchy to relate to known patterns and up the hierarchy to predict unknown / complete partial patterns.
 
 Brain does not compute mathematical equations to navigate the world but creates and recalls memories. Catching a flying ball involves (muscle sequence) memories of previous catches that can be efficiently parameterized to adapt to the current flying ball situation.

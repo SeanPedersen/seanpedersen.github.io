@@ -1,7 +1,8 @@
 ---
-title: 'Information Hygiene'
 date: '2025-06-08'
 ---
+# Information Hygiene
+
 Do you control what information you consume or is your mind controlled by social media companies? Wake up Neo...
 
 ## Algorithmic Feeds

@@ -1,7 +1,8 @@
 ---
-title: 'Meta Design: Design of a Design'
 date: '2019-04-20'
 ---
+# Meta Design: Design of a Design
+
 **Why even write a design?** The design process animates thinking through ideas deeply before getting lost in the details building them. It provides the chance for different stakeholders to develop a shared vision.
 
 **What makes a successful design?**

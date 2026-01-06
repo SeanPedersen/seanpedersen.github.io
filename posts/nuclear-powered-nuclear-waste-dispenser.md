@@ -1,7 +1,8 @@
 ---
-title: 'A Nuclear Powered Nuclear Waste Dispenser'
 date: '2019-11-13'
 ---
+# A Nuclear Powered Nuclear Waste Dispenser
+
 Nuclear power has many advantages but the few disadvantages are severe. One of the  major pain points is leftover nuclear waste produced by nuclear fission power plants. It is highly toxic and stays radioactive for thousands of years, leaving a pandora box packed with nuclear death for future humans to enjoy. To sum it up: We urgently need to clean up after our nuclear shit trail.
 
 The current approach is archaic: We dig a hole somewhere and hope it will not come back to haunt us any time soon. This is naive, wishful thinking. Give it enough time and it will leak into our living environments. So how can we do better? My answer is quite simple and radical: Shoot the nuclear waste straight into space, either into deep space leaving our solar system or directly into the sun. This would remove the problem from mother earth for good.

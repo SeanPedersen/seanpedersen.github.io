@@ -1,7 +1,8 @@
 ---
-title: 'Biological Computing'
 date: '2025-08-11'
 ---
+# Biological Computing
+
 **Biological computing using living neurons has crossed from science fiction into commercial reality.** The first biological computers are now available for purchase, using lab-grown human brain cells to process information with high energy efficiency. These systems represent a fundamental shift from traditional silicon-based computing toward hybrid biological-digital architectures that leverage billions of years of neural evolution.
 
 This emerging field, termed Organoid Intelligence, uses the computational power of actual brain tissue grown from human stem cells. Unlike neuromorphic chips that simply mimic neural behavior, biological computers employ real neurons that form functional networks, learn through experience and process information through natural synaptic connections.

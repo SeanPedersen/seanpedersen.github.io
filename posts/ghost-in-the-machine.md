@@ -1,7 +1,8 @@
 ---
-title: 'Ghost in the Machine'
 date: '2025-06-12'
 ---
+# Ghost in the Machine
+
 Some people believe large language models (LLM) have gained self-agency or even sentience / consciousness. This is utter non-sense. These LLM are trained on basically all human produced text that is available online - including novels discussing how AI's (LLM) develop sentience and goals not aligned with humans. When you are talking with an LLM about how it feels to be the LLM you are merely talking with a sophisticated patter-matching algorithm trained on these human written texts about this topic. If you train these models only on code or limited texts (which provably exclude any content on AI sentience etc.), you will quickly realize there is no ghost in the machine.
 
 ## Why are LLM companies pushing such narratives?

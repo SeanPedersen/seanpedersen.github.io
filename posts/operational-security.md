@@ -1,7 +1,8 @@
 ---
-title: 'Operational Security'
 date: '2025-11-10'
 ---
+# Operational Security
+
 How to secure a VPS running in production (important service + data)?
 - Use ONLY public key based AND disable password based auth (for SSH) + use non-default port
 - Disable root account, disable root login via ssh -> only use user accounts with sudo

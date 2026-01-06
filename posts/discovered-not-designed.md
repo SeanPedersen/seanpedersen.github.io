@@ -2,6 +2,10 @@
 title: 'Discovered, Not Designed'  
 date: '2025-07-09'
 ---
+# Discovered, Not Designed
+
+# Discovered, Not Designed
+
 Concerned with the difference between complicated (causal, explicit and deterministically) versus complex (emergent, implicit, non-deterministic) designed objects and processes.
 
 “Systems naturally evolve towards states with the greatest number of accessible microstates.” -> Analogous to over-parameterized deep neural networks (double descent phenomenon). The over-parameterization helps gradient descent find local minima.

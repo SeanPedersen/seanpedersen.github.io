@@ -1,7 +1,8 @@
 ---
-title: 'Erlang'
 date: '2025-09-18'
 ---
+# Erlang
+
 Erlang is a powerful functional programming language invented in Sweden at Ericsson in 1987, that excels at concurrency and fault-tolerance. Erlang processes are light-weight and share  no memory and thus can scale easily across machines and CPU cores. Processes communicate via messages which are received in a queue that is pattern matched against the state loop (actor model). The process supervision tree allows fine-grained error management (let it crash), leading to robust production-ready apps.
 
 Erlang is not made for math heavy computations though but can easily call C or other faster languages for that.

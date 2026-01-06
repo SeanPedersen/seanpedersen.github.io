@@ -1,7 +1,8 @@
 ---
-title: 'Online Marketing'
 date: '2025-05-23'
 ---
+# Online Marketing
+
 You have a product (solution for a problem) and need customers (has problem, needs solution) - how do you find them?
 
 ## Data Driven Validation

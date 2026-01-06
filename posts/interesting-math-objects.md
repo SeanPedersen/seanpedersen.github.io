@@ -1,7 +1,8 @@
 ---
-title: 'Interesting Mathematical Objects'
 date: '2024-09-26'
 ---
+# Interesting Mathematical Objects
+
 A list of mathematical objects I find interesting. If you have access to a 3D printer, these might be worth a print or two.
 
 - [Gömboc](https://en.wikipedia.org/wiki/G%C3%B6mb%C3%B6c): <https://www.thingiverse.com/thing:5173406>

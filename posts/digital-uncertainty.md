@@ -1,7 +1,8 @@
 ---
-title: 'Digital Uncertainty'
 date: '2024-10-21'
 ---
+# Digital Uncertainty
+
 
 We are entering the age of digital uncertainty. An age where any digital artifact can not be deemed to be real (grounded in reality like a photography) anymore.
 

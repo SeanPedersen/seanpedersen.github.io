@@ -1,7 +1,8 @@
 ---
-title: 'Python'
 date: '2025-08-19'
 ---
+# Python
+
 Just some notes on how to use Python effectively. Python strives to be simple and concise and is a good choice for rapid software development. The average execution speed is rather slow, which is ok because it nicely interacts with C, C++ and Rust which are fast. Another major selling point is the rich ecosystem of useful packages, spanning web development, data science and much more.
 
 ## General Tips

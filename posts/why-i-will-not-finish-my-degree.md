@@ -1,7 +1,8 @@
 ---
-title: "Why I won't graduate"
 date: '2021-01-14'
 ---
+# Why I won
+
 Every single time I mention in a conversation that I am actually not interested in finishing my CS degree, every person is kind of flabbergasted and tries to convince me to finish it for my own good. This is to y'all. I fully understand that you trying to convince me to invest into a degree awarded by a university which promises a safe future, is only with good intentions. But I respectfully decline your advice and take the opposite stance that it is my duty to not devote my time for years to staged academic exercises but instead work on real problems. From my privileged position as a citizen of the EU I am safe, even without a degree. So I may take this "risky" move and skip the graduation.
 
 And to be totally frank: I could not give less of a shit for a piece of paper that acts as a signal to other people that I am a smart / hard working / qualified individual that is good to hire / work with.

@@ -1,7 +1,8 @@
 ---
-title: 'Hyper-Primes'
 date: '2025-11-17'
 ---
+# Hyper-Primes
+
 A hyper-prime is a prime number p where all prime factors and all exponents in the prime factorization of p-1 are themselves hyper-primes.
 
 ## Definition

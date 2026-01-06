@@ -1,7 +1,8 @@
 ---
-title: 'On the Artificial Intelligence Hype'
 date: '2024-07-08'
 ---
+# On the Artificial Intelligence Hype
+
 The release of so-called Large Language Models by OpenAI and others has fueled another AI hype wave which fueled a fierce debate of how dangerous this technology is and how imminent Artificial General / Super Intelligence is.
 
 Current LLMs will be bottlenecked by the quality of available training data. High signal text / language data is limited and will become scarcer since LLMs themselves will fuel a flood of low quality content spam (slop). So I expect a stagnation in LLM progress, since high signal data will be a problem. Compute will steadily grow (powered by Moore's law). Algorithmic advances are the greatest unknown factor.

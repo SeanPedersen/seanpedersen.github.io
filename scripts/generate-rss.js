@@ -16,6 +16,18 @@ function escapeXml(unsafe) {
     .replace(/'/g, "&#39;")
 }
 
+// Function to extract the title from the first H1 heading
+function extractTitle(content) {
+  const lines = content.trim().split('\n');
+  for (const line of lines) {
+    const match = line.match(/^#\s+(.+)$/);
+    if (match) {
+      return match[1].trim();
+    }
+  }
+  return '';
+}
+
 // Function to extract hashtag-style tags from the last line of a markdown file
 function extractTags(content) {
   const lines = content.split('\n').filter(line => line.trim() !== '');
@@ -68,6 +80,9 @@ function getSortedPostsData() {
     // Use gray-matter to parse the post metadata section
     const matterResult = matter(fileContents)
 
+    // Extract title from first H1 heading
+    const title = extractTitle(matterResult.content)
+
     // Extract tags from the last line
     const tags = extractTags(fileContents)
 
@@ -75,9 +90,10 @@ function getSortedPostsData() {
     const htmlFile = path.join(outDirectory, `${id}.html`)
     const htmlContent = fs.existsSync(htmlFile) ? extractContentFromHtml(htmlFile) : ''
 
-    // Combine the data with the id, tags, and HTML content
+    // Combine the data with the id, title, tags, and HTML content
     return {
       id,
+      title,
       tags,
       contentHtml: htmlContent,
       ...matterResult.data

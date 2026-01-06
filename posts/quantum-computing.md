@@ -1,7 +1,8 @@
 ---
-title: 'Quantum Computing'
 date: '2025-05-23'
 ---
+# Quantum Computing
+
 Quantum computing uses quantum bits (qubits) that can represent multiple states simultaneously due to superposition, unlike classical bits that represent only 0 or 1. Rather than exploring solutions in parallel, quantum algorithms manipulate probability amplitudes through interference to amplify correct answers, providing exponential speedups for specific problems like integer factorization and certain quantum simulations. Classical computers process information sequentially or with limited parallelism, making them slower for these specialized problem types with exponential complexity growth. The computational complexity class BQP (bounded-error quantum polynomial time) captures problems solvable efficiently by quantum computers, which includes some problems believed intractable for classical ones. However, quantum computing offers advantages only for particular mathematical structures rather than universal performance improvements, reducing time complexity from exponential to polynomial only for select algorithms.
 
 ## Terminology

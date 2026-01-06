@@ -1,7 +1,8 @@
 ---
-title: 'Overcoming the limits of current LLM'
 date: '2024-07-18'
 ---
+# Overcoming the limits of current LLM
+
 
 Large language models (LLM) have been all the rage for quite some time now. Looking beyond the hype though, they have severe limitations: hallucinations, lack of confidence estimates and lack of citations.
 

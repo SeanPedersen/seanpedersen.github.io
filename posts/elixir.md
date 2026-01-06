@@ -1,7 +1,8 @@
 ---
-title: 'Elixir'
 date: '2025-11-14'
 ---
+# Elixir
+
 [Elixir](https://elixir-lang.org/docs.html) is [Erlang](https://seanpedersen.github.io/posts/erlang) with syntactic sugar (transpiling to Erlang code).
 
 Parallel function process map:

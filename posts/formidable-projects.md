@@ -1,7 +1,8 @@
 ---
-title: 'Formidable Projects'
 date: '2024-08-01'
 ---
+# Formidable Projects
+
 A list of causes benefitting humanity as a whole. Some call it philanthropy.
 
 **World Peace**: Connect people across politically diametrical systems. Let humans not forget that we are all human. Sponsor foreign student exchanges across politically diametrical countries.

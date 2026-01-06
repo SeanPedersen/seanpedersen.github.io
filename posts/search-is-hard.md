@@ -1,7 +1,8 @@
 ---
-title: 'Search is hard'
 date: '2025-08-16'
 ---
+# Search is hard
+
 Search is the process of finding useful matches in a (large) set of objects (search corpus). A search engine is only as good as the representations it uses to match queries to the objects. To find things fast, one orders the search corpus by structuring the objects in a way (a graph) that makes it easy to navigate - this is called an index. A useful search engine understands the users intent and mirrors how humans associate information (semantics, syntax, sound, visual), so the results feel intuitive.
 
 ## Use Cases

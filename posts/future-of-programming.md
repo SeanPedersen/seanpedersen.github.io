@@ -1,7 +1,8 @@
 ---
-title: 'The Future of Programming'
 date: '2020-12-29'
 ---
+# The Future of Programming
+
 I want to briefly introduce you into what I believe to be the future of programming.
 
 The current state of programming is in my opinion best described as a big rapidly evolving cluster fuck of programming languages and frameworks. What is needed is a way to reduce the cluster fuck without compromising on the ongoing forces of innovation.

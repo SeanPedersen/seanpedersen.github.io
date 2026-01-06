@@ -1,7 +1,8 @@
 ---
-title: 'Information, Knowledge & Self-Awareness'
 date: '2025-02-06'
 ---
+# Information, Knowledge & Self-Awareness
+
 Humans aquire vast amounts of information. Some information are hard facts, while other is meta-information aka knowledge: Information describing itself how to infer new information from existing information atoms (facts).
 
 ## Self-awareness

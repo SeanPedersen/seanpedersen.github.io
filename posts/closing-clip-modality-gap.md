@@ -1,7 +1,8 @@
 ---
-title: 'Closing the CLIP Modality Gap'
 date: '2025-04-29'
 ---
+# Closing the CLIP Modality Gap
+
 ## What is the Modality Gap?
 
 The modality gap refers to a phenomenon observed in multi-modal embedding models such as CLIP (Contrastive Language-Image Pre-training). These models learn joint representations of images and text, but often struggle with a systematic separation between the embedding spaces of different modalities. In simple terms, even when an image and text are perfectly matched in meaning, their vector representations may be distant in the joint embedding space.

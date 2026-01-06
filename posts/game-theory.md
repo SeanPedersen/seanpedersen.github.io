@@ -1,7 +1,8 @@
 ---
-title: 'Understanding Game Theory Fundamentals'
 date: '2025-09-10'
 ---
+# Understanding Game Theory Fundamentals
+
 We all are players in games though mostly unaware.
 To win at a game (at least maximize the chance of winning) one has to know the rules of the game (what is legal / possible) and be aware of other players intentions by observing and analyzing their moves, in order to adapt their own strategy (exploiting weaknesses of other players).
 

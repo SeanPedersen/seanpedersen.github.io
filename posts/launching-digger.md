@@ -1,7 +1,8 @@
 ---
-title: 'Launching Digger.lol'
 date: '2024-10-19'
 ---
+# Launching Digger.lol
+
 
 [Digger.lol](https://digger.lol/) is a visual search & exploration engine, allowing users to browse efficiently and intuitively giant pools of data.
 

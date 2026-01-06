@@ -1,7 +1,8 @@
 ---
-title: 'Microplastics - A silent killer'
 date: '2026-01-05'
 ---
+# Microplastics - A silent killer
+
 Microplastics are tiny plastic particles present in food, water, air and dust. Research links higher exposure to inflammation, fertility problems and cardiovascular issues. Complete avoidance is impossible, but intake can be reduced. Mass usage of plastics in the economy is a huge mistake (as most organisms lack metabolism to deal with it) and must be stopped.
 
 ## Water Sources

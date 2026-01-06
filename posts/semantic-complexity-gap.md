@@ -1,7 +1,8 @@
 ---
-title: 'Semantic Complexity Gap'
 date: '2025-01-28'
 ---
+# Semantic Complexity Gap
+
 Recently I came across an interesting phenomenon concerning the CLIP text encoder embedding space: I have discovered yet another gap in the CLIP embedding space - the semantic complexity gap. I played around with embeddings of words and sentences when I noticed an interesting pattern: atomic words occupy the same cluster with single-concept sentences while multi-concept sentences form a distinct cluster.
 
 ## Single- vs Multi-Concept Sentences

@@ -1,7 +1,8 @@
 ---
-title: 'Launching Digger Solo'
 date: '2025-03-24'
 ---
+# Launching Digger Solo
+
 
 [Digger Solo](https://solo.digger.lol/) is a machine learning powered file explorer. The two core features are the intuitive file search and file exploration using semantic data maps.
 

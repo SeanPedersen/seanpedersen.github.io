@@ -1,7 +1,8 @@
 ---
-title: 'Comparing Local AI Chat Apps'
 date: '2025-04-17'
 ---
+# Comparing Local AI Chat Apps
+
 
 A short list of free AI chat apps for local LLM execution that work offline and promise privacy first (no user data collection).
 

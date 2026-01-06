@@ -1,7 +1,8 @@
 ---
-title: 'Sparse Distributed Representations'
 date: '2024-12-29'
 ---
+# Sparse Distributed Representations
+
 Modern deep learning architectures are dominated by dense embeddings. While sparse auto-encoders have gained some attention, the field lacks a clear vision for better embedding representations. In this post, we will explore a promising alternative: Sparse Distributed Representations (SDR). This concept, popularized by Jeff Hawkins in his Hierarchical Temporal Memory (HTM) framework, draws direct inspiration from biological brains. Despite their potential advantages, SDRs have yet to gain widespread adoption in the deep learning community.
 
 ## What are SDR?

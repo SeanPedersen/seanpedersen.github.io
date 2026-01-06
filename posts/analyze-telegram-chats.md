@@ -1,7 +1,8 @@
 ---
-title: 'Analyze Your Telegram Chats'
 date: '2025-04-17'
 ---
+# Analyze Your Telegram Chats
+
 A small tutorial how you can easily explore your Telegram (<https://desktop.telegram.org/>) chat messages using [Digger Solo](https://solo.digger.lol).
 
 Export the messages of a Telegram chat by clicking the three dots (top right corner) and select "Export chat history". Next select as export format JSON (not HTML).

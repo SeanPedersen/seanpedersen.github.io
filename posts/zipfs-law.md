@@ -1,7 +1,8 @@
 ---
-title: "Zipf's Law"
 date: '2025-05-10'
 ---
+# Zipf
+
 
 ## Basic idea
 
