@@ -1,11 +1,11 @@
 :root {
   --background-color: #000;
   --text-color: #fff;
-  --primary-color: #ff0;
-  /* yellow */
+  --primary-color: #3399ff;
+  /* blue */
   --border-color: #fff;
-  --link-hover-bg: #ff0;
-  --link-hover-text: #000;
+  --link-hover-bg: #3399ff;
+  --link-hover-text: #fff;
   --article-border-color: #fff;
   --footer-border-color: #fff;
   --image-border-color: #fff;
@@ -21,10 +21,10 @@
   --tag-text: #fff;
   --tag-border: #666;
   --tag-hover-bg: #444;
-  --tag-selected-text: #000;
-  /* Text color for selected tag (yellow bg) */
-  --tag-selected-hover-bg: #dd0;
-  /* Darker yellow for hover */
+  --tag-selected-text: #fff;
+  /* Text color for selected tag (blue bg) */
+  --tag-selected-hover-bg: #2288ee;
+  /* Darker blue for hover */
   --related-posts-border: #333;
   --tag-display-border: #555;
 
@@ -33,7 +33,7 @@
   --color-text: #fff;
   --color-text-secondary: #888;
   --color-border: #666;
-  --color-primary: #ff0;
+  --color-primary: #3399ff;
   --color-hover: #111;
   --color-tag: #333;
 }
