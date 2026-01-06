@@ -22,7 +22,19 @@ Digital design is concerned with the creation and optimization of user interface
 In order to produce good design, it is very helpful to just feel bad designs.
 
 - Pop-ups (visual distractions)
-- Breaking historical UI patterns
+- Deviating significantly from proven historical UI patterns
+- Infinite scroll feeds (no ending - addictive for the user)
+- Auto-playing videos with sound
+- Fake urgency (countdown timers, "only 2 left!")
+- Hiding the unsubscribe button
+- Requiring account creation before showing content
+- Inconsistent navigation patterns between pages
+- Disabling zoom on mobile
+- Low contrast text (poor accessibility)
+- Confirmation dialogs for every minor action
+- Non-descriptive error messages
+- Loading spinners that never end / indicate no progress
+- Forced app downloads to view mobile websites
 
 ## References
 
