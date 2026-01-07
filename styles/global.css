@@ -87,6 +87,10 @@ body.light-theme {
   --color-tag: #ddd;
 }
 
+html {
+  scrollbar-gutter: stable;
+}
+
 html,
 body {
   width: 100%;
