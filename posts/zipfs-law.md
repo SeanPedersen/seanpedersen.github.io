@@ -1,7 +1,7 @@
 ---
 date: '2025-05-10'
 ---
-# Zipf
+# Zipf's Law
 
 
 ## Basic idea
