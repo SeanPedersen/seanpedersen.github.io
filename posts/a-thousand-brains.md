@@ -3,7 +3,6 @@ date: '2025-12-27'
 ---
 # A Thousand Brains - Jeff Hawkins
 
-
 ## Reference Frames
 
 Identifies so called reference frames (grids / maps) as key concept unifying all neural network processing for robust / invariant sequence prediction (allowing sequence prediction in changing environments by using relative positions).
@@ -19,7 +18,7 @@ Key points:
 ref frame = map
 
 for abstract concepts like words in a language f.e. democracy
-we create abstract maps that encode how democracy is structured and how it behaves
+we create abstract maps that encode how democracy is structured and how it behaves (model)
 how to navigate democracy: how to create a new party? etc.
 
 Properties of maps:
@@ -27,13 +26,15 @@ Properties of maps:
 - structured by locality (abstract: similarity)
 - find routes from location / concept A to B
 
+Useful knowledge representation uses object based models: allowing to make inferences by predicting interactions / behavior. Storing hard facts (as text) is necessary but not sufficient for a useful knowledge base. Storing knowledge in gigantic, fractured weight matrices (like used in LLMs) is useful and interesting but does not produce human like adaptive intelligence.
+
 ## Road to AGI
 
-Hawkins is sure that deep learning (including LLM) will not lead to AGI. Instead he identified the following properties for AGI.
+Hawkins is sure that deep learning (including LLM) will not lead to AGI - as they lack model based knowledge representation. Instead he identified the following properties for realizing AGI.
 
 - continuous learning
 - learning via movement
-- compositional world model of objects
+- compositional world model: predictive (behavior) models of objects
 - knowledge stored in reference frames
 
 ## References
