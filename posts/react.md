@@ -13,11 +13,11 @@ Only use state variables (useState) for user facing state dependent UI component
 
 useEffect hook:
 
-`useEffect(() => {   // Runs after every render });`
-
-`useEffect(() => {   // Runs only once after initial render }, []);`
-
-`useEffect(() => {   // Runs when count changes }, [count]);`
+```javascript
+useEffect(() => {   // Runs after every render });
+useEffect(() => {   // Runs only once after initial render }, []);
+useEffect(() => {   // Runs when count changes }, [count]);
+```
 
 [Zustand](https://github.com/pmndrs/zustand) is a global state manager for React which can reduce state complexity in your application by reducing property drilling (passing many state vars as props through nested components). Use it with immer for sane state management.
 
