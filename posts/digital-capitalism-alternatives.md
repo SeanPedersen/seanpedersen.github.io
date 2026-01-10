@@ -10,7 +10,7 @@ Digital capitalism shapes how we interact with technology, the world and even ho
 ### Solutionism
 Tech firms recast hard social problems as simple tech tasks. Debate over law and justice shifts into product tweaks.
 
-Example: using filters and bots to police hate speech instead of asking who should set speech rules. This story defends deregulation, giant scale, and ignores waste, labor abuse, and social harm.
+Example: using filters and bots to police hate speech instead of asking who should set speech rules. This story defends deregulation, giant scale and ignores waste, labor abuse and social harm.
 
 ### Forced Transparency and Self Tracking
 People are scored nonstop: credit, clicks, steps, ratings. Being watched makes us adjust to please the watcher.
@@ -58,7 +58,7 @@ Co‑ops, user boards, multi‑stakeholder councils. Invite affected groups into
 
 ## Social Shifts
 
-- Digital Literacy: Teach how platforms track, rank, and shape behavior. Not just code—power analysis.
+- Digital Literacy: Teach how platforms track, rank and shape behavior. Not just code—power analysis.
 - Collective Action: Unions, advocacy, movements change systems; single user choices rarely do.
 - Cultural Norms: If people expect data rights and low surveillance, firms must adapt. Norms spread through media, art, daily talk.
 
@@ -68,7 +68,7 @@ Mastodon: Decentralized social network; users pick servers and rules. Signal: En
 
 ## Path Forward
 
-Change needs tools, laws, ownership shifts, and new norms together. Nothing is inevitable. We can choose designs that cut surveillance, spread power, support democracy and respect dignity.
+Change needs tools, laws, ownership shifts and new norms together. Nothing is inevitable. We can choose designs that cut surveillance, spread power, support democracy and respect dignity.
 
 Human tech serves people, not extracts from them. It shares power, not hoards it. It grows under public oversight, not private decree. Choose and build accordingly.
 
