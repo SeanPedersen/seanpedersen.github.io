@@ -14,9 +14,7 @@ Key points:
 - Location + feature: Each column stores what features exist at specific locations within an object's reference frame. Moving your sensor updates the location signal.
 - Compositional models: Reference frames allow hierarchical object models - a wheel has its own frame nested within a car's frame.
 
-for abstract concepts like words in a language f.e. democracy
-we create abstract maps (ref. frame) that encode how democracy is structured and how it behaves (model)
-how to navigate democracy: how to create a new party? etc.
+For abstract concepts like words in a language f.e. democracy, we create abstract maps (ref. frame) that encode how democracy is structured and how it behaves (model). This allows agents to navigate democracy: how to create a new party? etc.
 
 Properties of reference frames:
 - indexable (knowing a few bits of a location, allows us to fetch the correct map & location)
