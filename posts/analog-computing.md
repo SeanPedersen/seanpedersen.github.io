@@ -21,15 +21,15 @@ Measured results consistently show 10-40x energy efficiency improvements. IBM's 
 
 ## Digital computing retains advantages
 
-Despite analog computing's energy benefits, digital AI accelerators maintain important advantages. Modern GPUs and TPUs achieve higher precision with controllable bit widths (FP32/FP16/INT8) and error-free computation, while analog systems typically operate at 3-4 bits effective precision due to device variations and noise. NVIDIA's H100 delivers ~2,000 TOPS peak theoretical performance, and while its practical inference efficiency (~30-50 TOPS/W) lags analog systems, it handles much larger models with proven reliability.
+Despite analog computing's energy benefits, digital AI accelerators maintain important advantages. Modern GPUs and TPUs achieve higher precision with controllable bit widths (FP32/FP16/INT8) and error-free computation, while analog systems typically operate at 3-4 bits effective precision due to device variations and noise. NVIDIA's H100 delivers ~2,000 TOPS peak theoretical performance and while its practical inference efficiency (~30-50 TOPS/W) lags analog systems, it handles much larger models with proven reliability.
 
-Digital systems also demonstrate superior scalability for large models. Current analog computing demonstrations are limited to roughly 45 million parameters, while digital systems routinely handle models with 175+ billion parameters. The software ecosystem for digital AI is mature, with established frameworks, debugging tools, and deployment pipelines that analog systems lack.
+Digital systems also demonstrate superior scalability for large models. Current analog computing demonstrations are limited to roughly 45 million parameters, while digital systems routinely handle models with 175+ billion parameters. The software ecosystem for digital AI is mature, with established frameworks, debugging tools and deployment pipelines that analog systems lack.
 
 Manufacturing represents another advantage for digital approaches. Standard CMOS processes achieve >99% yield routinely, while analog precision requirements reduce effective yield and increase costs. Digital circuits tolerate process variations better than analog devices, which require tight control over materials and dimensions to maintain computational accuracy.
 
 ## Commercial adoption
 
-The commercial analog AI landscape shows both promising developments and notable failures. [BrainChip](https://brainchip.com/technology/) leads commercial deployment with their Akida neuromorphic processor, claiming to be the world's first commercial neuromorphic AI producer. Their development kits are available for $799, and they recently secured licensing deals for space applications with Frontgrade Gaisler.
+The commercial analog AI landscape shows both promising developments and notable failures. [BrainChip](https://brainchip.com/technology/) leads commercial deployment with their Akida neuromorphic processor, claiming to be the world's first commercial neuromorphic AI producer. Their development kits are available for $799 and they recently secured licensing deals for space applications with Frontgrade Gaisler.
 
 [SynSense](https://www.synsense.ai/), a Swiss-Chinese company, has raised $10 million and serves over 100 business clients with their ultra-low-power neuromorphic processors consuming less than 500μW. Their Xylo family targets smart wearables and industrial monitoring applications where battery life is critical.
 
