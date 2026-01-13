@@ -80,7 +80,8 @@ This would make them easier to interpret for humans and potentially offer some o
 
 ## References
 
-- Hyperbolic embeddings: https://markkm.com/blog/embeddings-in-data-science/
+- [What is a manifold?](https://www.quantamagazine.org/what-is-a-manifold-20251103/)
+- [Hyperbolic embeddings](https://markkm.com/blog/embeddings-in-data-science/)
 
 TODO:
 - How do image (continuous input space) and text (discrete input space) embedding spaces differ (number of clusters, density, etc.)?
