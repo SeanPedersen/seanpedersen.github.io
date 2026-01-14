@@ -23,6 +23,8 @@ Properties of reference frames:
 
 Useful knowledge representation uses object based models: allowing to make inferences by predicting interactions / behavior. Storing hard facts (as text) is necessary but not sufficient for a useful knowledge base. Storing knowledge in gigantic, fractured weight matrices (like used in LLMs) is useful and interesting but does not produce human like adaptive intelligence.
 
+Language understanding entails thus creating and manipulating a small world model of the text one is reading. For example: The apple was rolling off the table. -> To understand this sentence, a model of gravity is needed to predict what will most likely happen next to the apple (hit the ground).
+
 ## Road to AGI
 
 Hawkins is sure that deep learning (including LLM) will not lead to AGI - as they lack model based knowledge representation. Instead he identified the following properties for realizing AGI.
@@ -31,6 +33,10 @@ Hawkins is sure that deep learning (including LLM) will not lead to AGI - as the
 - Learning via movement
 - Compositional world model: predictive (behavior) models of objects
 - Knowledge stored in reference frames
+
+## Critique
+
+On Page 186: Hawkins gives a false sense of evolution IMO, invoking the sense that evolution always optimizes traits of individuals but it is more random: many things stick that do not create a disadvantage to procreate instead of only traits that increase procreation chance.
 
 ## References
 
