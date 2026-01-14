@@ -23,7 +23,7 @@ Properties of reference frames:
 
 Useful knowledge representation uses object based models: allowing to make inferences by predicting interactions / behavior. Storing hard facts (as text) is necessary but not sufficient for a useful knowledge base. Storing knowledge in gigantic, fractured weight matrices (like used in LLMs) is useful and interesting but does not produce human like adaptive intelligence.
 
-Language understanding entails thus creating and manipulating a small world model of the text one is reading. For example: The apple was rolling off the table. -> To understand this sentence, a model of gravity is needed to predict what will most likely happen next to the apple (hit the ground).
+Language understanding entails thus creating and manipulating a small world model of the text one is reading. For example: The apple was rolling off the table. -> To understand this sentence, a model of gravity is needed to predict what will most likely happen next to the apple (hit the ground). LLMs lack this predictive word model and merely predict the next token (creating at best fractured / brittle models).
 
 ## Road to AGI
 
