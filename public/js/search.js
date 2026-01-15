@@ -24,8 +24,11 @@
       </div>
     `;
 
-    // Add event listener to icon button
-    document.getElementById('searchIconBtn').addEventListener('click', expandSearch);
+    // Add event listener to icon button - use mousedown for instant response
+    document.getElementById('searchIconBtn').addEventListener('mousedown', (e) => {
+      e.preventDefault(); // Prevent default to avoid focus issues
+      expandSearch();
+    });
   }
 
   // Expand search bar
@@ -37,11 +40,6 @@
 
     searchExpanded = true;
     const wrapperWidth = wrapper.offsetWidth;
-
-    // Preload search data when expanding
-    if (!searchData && !isLoadingSearch) {
-      loadSearchData();
-    }
 
     // Replace with expanded search bar
     container.classList.remove('collapsed');
@@ -76,6 +74,12 @@
     const input = document.getElementById('searchInput');
     if (input) {
       input.focus();
+
+      // Backup focus attempt after render (helps on some mobile browsers)
+      requestAnimationFrame(() => {
+        input.focus();
+      });
+
       input.addEventListener('input', handleSearchInput);
       input.addEventListener('blur', handleSearchBlur);
 
@@ -94,6 +98,14 @@
 
     // Setup click outside handler
     setupClickOutside();
+
+    // Load RSS data asynchronously in background AFTER UI has expanded
+    // Use setTimeout to ensure this happens after the current call stack
+    setTimeout(() => {
+      if (!searchData && !isLoadingSearch) {
+        loadSearchData();
+      }
+    }, 0);
   }
 
   // Collapse search bar
@@ -127,8 +139,11 @@
       tagsContainer.classList.remove('tagsHidden');
     }
 
-    // Re-add icon button event listener
-    document.getElementById('searchIconBtn').addEventListener('click', expandSearch);
+    // Re-add icon button event listener - use mousedown for instant response
+    document.getElementById('searchIconBtn').addEventListener('mousedown', (e) => {
+      e.preventDefault(); // Prevent default to avoid focus issues
+      expandSearch();
+    });
 
     // Perform search with empty query
     performSearch('');
@@ -148,11 +163,6 @@
     if (searchQuery.toLowerCase() === 'matrix') {
       activateMatrixEasterEgg();
       return;
-    }
-
-    // Load search data if not already loaded
-    if (!searchData && !isLoadingSearch && searchQuery) {
-      loadSearchData();
     }
 
     // Perform search
@@ -277,11 +287,10 @@
     }
 
     if (!query.trim()) {
-      // Restore original order
+      // Restore original order and remove highlights
       originalPostOrder.forEach(post => {
         post.style.display = '';
         postList.appendChild(post);
-        // Remove highlights
         const link = post.querySelector('a');
         if (link && searchData) {
           const postId = post.getAttribute('data-id');
@@ -294,93 +303,31 @@
       return;
     }
 
+    // Only perform RSS-based search if data is loaded
+    if (!searchData) {
+      // RSS not loaded yet, inline search (in templates.js) is handling it
+      return;
+    }
+
     const lowerQuery = query.toLowerCase();
 
-    // If search data is loaded, use full-text search
-    if (searchData) {
-      const scoredPosts = posts.map(post => {
-        const postId = post.getAttribute('data-id');
-        const postSearchData = searchData.find(p => p.id === postId);
+    // RSS full-text search with scoring and sorting (combines title/tag/content matches)
+    const scoredPosts = posts.map(post => {
+      const postId = post.getAttribute('data-id');
+      const postSearchData = searchData.find(p => p.id === postId);
 
-        if (!postSearchData) {
-          return { post, score: 0, titleMatch: false };
-        }
+      let score = 0;
+      let titleMatch = false;
+      let tagMatch = false;
 
-        let score = 0;
-        let titleMatch = false;
+      // Get DOM tags for tag matching
+      const tagsAttr = post.getAttribute('data-tags');
+      const tags = tagsAttr ? JSON.parse(tagsAttr) : [];
 
-        const lowerTitle = postSearchData.title.toLowerCase();
-        const lowerContent = postSearchData.content.toLowerCase();
-
-        // Check if title matches
-        if (lowerTitle.includes(lowerQuery)) {
-          const regex = new RegExp(lowerQuery.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g');
-          const titleMatches = (lowerTitle.match(regex) || []).length;
-          score += titleMatches * 10;
-          titleMatch = true;
-        }
-
-        // Check if content matches
-        if (lowerContent.includes(lowerQuery)) {
-          const regex = new RegExp(lowerQuery.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g');
-          const contentMatches = (lowerContent.match(regex) || []).length;
-          score += contentMatches;
-        }
-
-        // Check if categories match
-        postSearchData.categories.forEach(cat => {
-          if (cat.toLowerCase().includes(lowerQuery)) {
-            score += 5;
-          }
-        });
-
-        return { post, score, titleMatch };
-      });
-
-      // Sort by title match first, then by score
-      scoredPosts.sort((a, b) => {
-        // Title matches always come first
-        if (a.titleMatch && !b.titleMatch) return -1;
-        if (!a.titleMatch && b.titleMatch) return 1;
-        // If both have or don't have title matches, sort by score
-        return b.score - a.score;
-      });
-
-      // Reorder DOM elements by appending in sorted order
-      scoredPosts.forEach(({ post, score, titleMatch }) => {
-        if (score > 0) {
-          post.style.display = '';
-
-          // Highlight title if it matches
-          const link = post.querySelector('a');
-          if (link) {
-            const postId = post.getAttribute('data-id');
-            const postSearchData = searchData.find(p => p.id === postId);
-            if (postSearchData) {
-              if (titleMatch) {
-                link.innerHTML = highlightTitle(postSearchData.title, query);
-              } else {
-                // No title match, just display plain title without highlighting
-                link.innerHTML = escapeHtml(postSearchData.title);
-              }
-            }
-          }
-
-          // Reorder by appending to end (in sorted order)
-          postList.appendChild(post);
-        } else {
-          post.style.display = 'none';
-        }
-      });
-    } else {
-      // Fallback to title/tag search
-      posts.forEach(post => {
-        const title = post.querySelector('a')?.textContent || '';
-        const tagsAttr = post.getAttribute('data-tags');
-        const tags = tagsAttr ? JSON.parse(tagsAttr) : [];
-
-        let score = 0;
-        let titleMatch = false;
+      if (!postSearchData) {
+        // No RSS data, fall back to title/tag only
+        const link = post.querySelector('a');
+        const title = link?.textContent || '';
 
         if (title.toLowerCase().includes(lowerQuery)) {
           score += 10;
@@ -389,22 +336,81 @@
 
         if (tags.some(tag => tag.toLowerCase().includes(lowerQuery))) {
           score += 5;
+          tagMatch = true;
         }
 
-        if (score > 0) {
-          post.style.display = '';
+        return { post, score, titleMatch, tagMatch };
+      }
 
-          if (titleMatch) {
-            const link = post.querySelector('a');
-            if (link) {
-              link.innerHTML = highlightTitle(title.trim(), query);
-            }
-          }
-        } else {
-          post.style.display = 'none';
+      const lowerTitle = postSearchData.title.toLowerCase();
+      const lowerContent = postSearchData.content.toLowerCase();
+
+      // Check if title matches
+      if (lowerTitle.includes(lowerQuery)) {
+        const regex = new RegExp(lowerQuery.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g');
+        const titleMatches = (lowerTitle.match(regex) || []).length;
+        score += titleMatches * 10;
+        titleMatch = true;
+      }
+
+      // Check if tags match (DOM tags, not RSS categories)
+      if (tags.some(tag => tag.toLowerCase().includes(lowerQuery))) {
+        score += 5;
+        tagMatch = true;
+      }
+
+      // Check if content matches
+      if (lowerContent.includes(lowerQuery)) {
+        const regex = new RegExp(lowerQuery.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g');
+        const contentMatches = (lowerContent.match(regex) || []).length;
+        score += contentMatches;
+      }
+
+      // Check if categories match (RSS categories as additional signal)
+      postSearchData.categories.forEach(cat => {
+        if (cat.toLowerCase().includes(lowerQuery)) {
+          score += 3;
         }
       });
-    }
+
+      return { post, score, titleMatch, tagMatch };
+    });
+
+    // Sort by title match first, then tag match, then by score
+    scoredPosts.sort((a, b) => {
+      if (a.titleMatch && !b.titleMatch) return -1;
+      if (!a.titleMatch && b.titleMatch) return 1;
+      if (a.tagMatch && !b.tagMatch) return -1;
+      if (!a.tagMatch && b.tagMatch) return 1;
+      return b.score - a.score;
+    });
+
+    // Reorder DOM elements by appending in sorted order
+    scoredPosts.forEach(({ post, score, titleMatch }) => {
+      if (score > 0) {
+        post.style.display = '';
+
+        // Highlight title if it matches
+        const link = post.querySelector('a');
+        if (link) {
+          const postId = post.getAttribute('data-id');
+          const postSearchData = searchData.find(p => p.id === postId);
+          if (postSearchData) {
+            if (titleMatch) {
+              link.innerHTML = highlightTitle(postSearchData.title, query);
+            } else {
+              // No title match, just display plain title without highlighting
+              link.innerHTML = escapeHtml(postSearchData.title);
+            }
+          }
+        }
+
+        // Reorder by appending to end (in sorted order)
+        postList.appendChild(post);
+      } else {
+        post.style.display = 'none';
+      }
+    });
   }
 
   // Highlight matching text in title
@@ -539,13 +545,55 @@
 
   // Initialize search on page load
   function initSearch() {
-    createSearchUI();
-    setupKeyboardShortcuts();
+    const existingInput = document.getElementById('searchInput');
 
-    // Auto-expand if flag is set (lazy loaded via click)
-    if (window.__expandSearchOnLoad) {
-      window.__expandSearchOnLoad = false;
-      expandSearch();
+    if (existingInput) {
+      // Inline search already initialized, enhance it
+      enhanceInlineSearch();
+    } else {
+      // Normal initialization (keyboard shortcut case)
+      createSearchUI();
+    }
+
+    setupKeyboardShortcuts();
+  }
+
+  // Enhance existing inline search with full functionality
+  function enhanceInlineSearch() {
+    const input = document.getElementById('searchInput');
+    if (!input) return;
+
+    // Store current value and replace inline handler with full handler
+    searchQuery = window.__searchInputValue || input.value || '';
+
+    // Remove inline listeners by cloning and replacing the input
+    const newInput = input.cloneNode(true);
+    input.parentNode.replaceChild(newInput, input);
+
+    // Setup full search handlers
+    newInput.addEventListener('input', handleSearchInput);
+    newInput.addEventListener('blur', handleSearchBlur);
+
+    // Setup clear button with full handler
+    const clearBtn = document.getElementById('clearSearchBtn');
+    if (clearBtn) {
+      const newClearBtn = clearBtn.cloneNode(true);
+      clearBtn.parentNode.replaceChild(newClearBtn, clearBtn);
+      newClearBtn.addEventListener('mousedown', clearSearch);
+    }
+
+    setupClickOutside();
+
+    // Load RSS in background
+    setTimeout(() => {
+      if (!searchData && !isLoadingSearch) {
+        loadSearchData();
+      }
+    }, 0);
+
+    // Trigger search with current value for highlighting
+    if (searchQuery) {
+      performSearch(searchQuery);
     }
   }
 

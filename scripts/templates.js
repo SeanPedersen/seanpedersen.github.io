@@ -202,59 +202,139 @@ ${posts}
   </div>
   <script src="/js/theme.js" defer></script>
   <script>
-    // Lazy load search.js on first interaction with search icon
+    // Lazy load search.js on search button interaction
     (function() {
-      let searchLoaded = false;
+      let searchScriptLoaded = false;
 
-      function loadSearchAndExpand() {
-        if (searchLoaded) return;
-        searchLoaded = true;
+      function initInlineSearch() {
+        const container = document.getElementById('searchContainerEl');
+        const wrapper = document.getElementById('searchTagsWrapper');
+        if (!container || !wrapper) return;
 
-        // Mark that we should auto-expand after load
-        window.__expandSearchOnLoad = true;
+        // Expand UI immediately
+        container.classList.remove('collapsed');
+        container.classList.add('expanded');
+        container.innerHTML = \`
+          <div class="searchInputWrapper" style="--wrapper-width: \${wrapper.offsetWidth}px">
+            <svg class="searchIcon" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="6" />
+              <line x1="19.59" y1="19.59" x2="15.24" y2="15.24" />
+            </svg>
+            <input id="searchInput" type="text" class="searchInput" placeholder="Search posts..." />
+            <button class="clearButton" id="clearSearchBtn" aria-label="Clear search" style="display: none;">×</button>
+          </div>
+        \`;
 
-        const script = document.createElement('script');
-        script.src = '/js/search.js';
-        document.head.appendChild(script);
+        wrapper.classList.add('searchExpanded');
+        const tagsContainer = document.getElementById('tagsContainer');
+        if (tagsContainer) tagsContainer.classList.add('tagsHidden');
+
+        const input = document.getElementById('searchInput');
+        const clearBtn = document.getElementById('clearSearchBtn');
+
+        // Focus input with mobile compatibility
+        if (input) {
+          input.focus();
+          requestAnimationFrame(() => input.focus());
+
+          // Basic inline search (before search.js loads)
+          input.addEventListener('input', function(e) {
+            const query = e.target.value;
+            const lowerQuery = query.toLowerCase();
+            if (clearBtn) clearBtn.style.display = query ? 'flex' : 'none';
+
+            const postList = document.getElementById('postList');
+            if (!postList) return;
+
+            Array.from(postList.children).forEach(post => {
+              const link = post.querySelector('a');
+              if (!link) return;
+
+              // Get original title (strip any existing HTML)
+              const title = link.textContent || '';
+              const tagsAttr = post.getAttribute('data-tags');
+              const tags = tagsAttr ? JSON.parse(tagsAttr) : [];
+
+              const titleMatches = title.toLowerCase().includes(lowerQuery);
+              const tagMatches = tags.some(tag => tag.toLowerCase().includes(lowerQuery));
+
+              if (!query || titleMatches || tagMatches) {
+                post.style.display = '';
+
+                // Highlight title match
+                if (query && titleMatches) {
+                  const index = title.toLowerCase().indexOf(lowerQuery);
+                  const before = title.slice(0, index);
+                  const match = title.slice(index, index + query.length);
+                  const after = title.slice(index + query.length);
+
+                  const escapeHtml = (text) => {
+                    const div = document.createElement('div');
+                    div.textContent = text;
+                    return div.innerHTML;
+                  };
+
+                  link.innerHTML = \`\${escapeHtml(before)}<mark style="background-color: var(--primary-color); color: var(--color-background); padding: 2px 4px; border-radius: 3px;">\${escapeHtml(match)}</mark>\${escapeHtml(after)}\`;
+                } else {
+                  // No title match or empty query - restore plain text
+                  link.textContent = title;
+                }
+              } else {
+                post.style.display = 'none';
+              }
+            });
+          });
+
+          // Clear button
+          if (clearBtn) {
+            clearBtn.addEventListener('mousedown', function(e) {
+              e.preventDefault();
+              input.value = '';
+              clearBtn.style.display = 'none';
+              const postList = document.getElementById('postList');
+              if (postList) {
+                Array.from(postList.children).forEach(post => post.style.display = '');
+              }
+              setTimeout(() => input.focus(), 0);
+            });
+          }
+        }
+
+        // Load search.js for full functionality (highlighting, RSS, etc.)
+        if (!searchScriptLoaded) {
+          searchScriptLoaded = true;
+          window.__searchInputValue = input?.value || ''; // Pass current value
+          const script = document.createElement('script');
+          script.src = '/js/search.js';
+          document.head.appendChild(script);
+        }
       }
 
-      // Wait for DOM to be ready
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', function() {
-          // Create initial search icon that triggers lazy load
-          const container = document.getElementById('searchContainer');
-          if (container) {
-            container.innerHTML = \`
-              <div class="searchContainer collapsed" id="searchContainerEl">
-                <button class="searchIconButton" id="searchIconBtn" aria-label="Open search">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="11" cy="11" r="6" />
-                    <line x1="19.59" y1="19.59" x2="15.24" y2="15.24" />
-                  </svg>
-                </button>
-              </div>
-            \`;
-
-            document.getElementById('searchIconBtn').addEventListener('click', loadSearchAndExpand, { once: true });
-          }
-        });
-      } else {
-        // DOM already loaded
+      function setupSearchButton() {
         const container = document.getElementById('searchContainer');
-        if (container) {
-          container.innerHTML = \`
-            <div class="searchContainer collapsed" id="searchContainerEl">
-              <button class="searchIconButton" id="searchIconBtn" aria-label="Open search">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="11" cy="11" r="6" />
-                  <line x1="19.59" y1="19.59" x2="15.24" y2="15.24" />
-                </svg>
-              </button>
-            </div>
-          \`;
+        if (!container) return;
 
-          document.getElementById('searchIconBtn').addEventListener('click', loadSearchAndExpand, { once: true });
-        }
+        container.innerHTML = \`
+          <div class="searchContainer collapsed" id="searchContainerEl">
+            <button class="searchIconButton" id="searchIconBtn" aria-label="Open search">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="6" />
+                <line x1="19.59" y1="19.59" x2="15.24" y2="15.24" />
+              </svg>
+            </button>
+          </div>
+        \`;
+
+        document.getElementById('searchIconBtn').addEventListener('mousedown', function(e) {
+          e.preventDefault();
+          initInlineSearch();
+        }, { once: true });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupSearchButton);
+      } else {
+        setupSearchButton();
       }
     })();
   </script>
