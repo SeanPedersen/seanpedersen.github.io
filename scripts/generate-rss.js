@@ -53,9 +53,16 @@ function extractContentFromHtml(htmlFile) {
     const htmlContent = fs.readFileSync(htmlFile, 'utf8')
 
     // Extract content from the markdown-content div
-    const contentMatch = htmlContent.match(/<div class="markdown-content"[^>]*>([\s\S]*?)<\/div>\s*(?:<footer|<\/article)/i)
+    // Match everything between opening and closing tags, accounting for nested divs
+    const contentMatch = htmlContent.match(/<div class="markdown-content"[^>]*>([\s\S]*?)<\/div>\s*$/im)
 
-    if (contentMatch && contentMatch[1]) {
+    if (!contentMatch) {
+      // Try alternative pattern that looks for the closing div followed by anything
+      const altMatch = htmlContent.match(/<div class="markdown-content"[^>]*>([\s\S]*?)<\/div>/i)
+      if (altMatch && altMatch[1]) {
+        return altMatch[1].trim()
+      }
+    } else if (contentMatch[1]) {
       return contentMatch[1].trim()
     }
 
@@ -69,6 +76,11 @@ function extractContentFromHtml(htmlFile) {
 function getSortedPostsData() {
   const postsDirectory = path.join(process.cwd(), 'posts')
   const outDirectory = path.join(process.cwd(), 'out', 'posts')
+
+  // Ensure the out directory exists and wait for file system to sync
+  if (!fs.existsSync(outDirectory)) {
+    throw new Error('Output directory does not exist. Run build-static.js first.')
+  }
 
   // Get file names under /posts
   const fileNames = fs.readdirSync(postsDirectory)
@@ -91,7 +103,28 @@ function getSortedPostsData() {
 
     // Get HTML content from built file
     const htmlFile = path.join(outDirectory, `${id}.html`)
-    const htmlContent = fs.existsSync(htmlFile) ? extractContentFromHtml(htmlFile) : ''
+    let htmlContent = ''
+
+    if (fs.existsSync(htmlFile)) {
+      // Force a synchronous read to ensure file is fully written
+      try {
+        const stats = fs.statSync(htmlFile)
+        if (stats.size > 0) {
+          htmlContent = extractContentFromHtml(htmlFile)
+
+          // Log warning if content extraction failed
+          if (!htmlContent || htmlContent.trim() === '') {
+            console.warn(`Warning: No content extracted from ${htmlFile}`)
+          }
+        } else {
+          console.warn(`Warning: HTML file ${htmlFile} is empty`)
+        }
+      } catch (err) {
+        console.warn(`Warning: Could not read ${htmlFile}: ${err.message}`)
+      }
+    } else {
+      console.warn(`Warning: HTML file not found: ${htmlFile}`)
+    }
 
     // Combine the data with the id, title, tags, and HTML content
     return {
