@@ -184,11 +184,11 @@
   width: 100%;
 }
 
-/* Comic-style speech bubble */
+/* Comic-style speech bubble - dark theme by default */
 .speechBubble {
   position: relative;
-  background: #ffffff;
-  border: 3px solid #000000;
+  background: #1a1a1a;
+  border: 3px solid #ffffff;
   border-radius: 12px;
   padding: 10px 16px;
   font-weight: 600;
@@ -222,7 +222,7 @@
     height: 0;
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
-    border-top: 10px solid #000000;
+    border-top: 10px solid #ffffff;
     z-index: 1;
   }
 
@@ -236,7 +236,7 @@
     height: 0;
     border-left: 8px solid transparent;
     border-right: 8px solid transparent;
-    border-top: 8px solid #ffffff;
+    border-top: 8px solid #1a1a1a;
     z-index: 2;
   }
 }
@@ -266,7 +266,7 @@
     height: 0;
     border-top: 10px solid transparent;
     border-bottom: 10px solid transparent;
-    border-left: 13px solid #000000;
+    border-left: 13px solid #ffffff;
     z-index: 1;
   }
 
@@ -281,35 +281,35 @@
     height: 0;
     border-top: 8px solid transparent;
     border-bottom: 8px solid transparent;
-    border-left: 10px solid #ffffff;
+    border-left: 10px solid #1a1a1a;
     z-index: 2;
   }
 }
 
-/* Dark theme support */
-:global(body[data-theme="dark"]) .speechBubble {
-  background: #1a1a1a;
-  border-color: #ffffff;
+/* Light theme support */
+:global(body.light-theme) .speechBubble {
+  background: #ffffff;
+  border-color: #000000;
 }
 
 /* Mobile: down-pointing tail */
 @media (max-width: 767px) {
-  :global(body[data-theme="dark"]) .speechBubble::after {
-    border-top-color: #ffffff;
+  :global(body.light-theme) .speechBubble::after {
+    border-top-color: #000000;
   }
 
-  :global(body[data-theme="dark"]) .speechBubble::before {
-    border-top-color: #1a1a1a;
+  :global(body.light-theme) .speechBubble::before {
+    border-top-color: #ffffff;
   }
 }
 
 /* Desktop: right-pointing tail */
 @media (min-width: 768px) {
-  :global(body[data-theme="dark"]) .speechBubble::after {
-    border-left-color: #ffffff;
+  :global(body.light-theme) .speechBubble::after {
+    border-left-color: #000000;
   }
 
-  :global(body[data-theme="dark"]) .speechBubble::before {
-    border-left-color: #1a1a1a;
+  :global(body.light-theme) .speechBubble::before {
+    border-left-color: #ffffff;
   }
 }

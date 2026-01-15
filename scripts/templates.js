@@ -299,7 +299,7 @@ function generatePostHTML(postData, relatedPosts = []) {
       <article class="postContainer">
         ${hasTableOfContents ? '<div id="tocContainer"></div>' : ''}
         <span id="${titleId}" style="position: absolute; top: 0; visibility: hidden;" aria-hidden="true"></span>
-        <h1 class="headingXl ${hasTableOfContents ? 'hideOnMobile' : ''}">${title}</h1>
+        <h1 class="headingXl">${title}</h1>
         <div class="postMeta">
           <div class="lightText">
             ${formatDate(postData.date)}

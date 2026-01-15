@@ -80,6 +80,12 @@
 
     tocContainer.innerHTML = tocHTML;
 
+    // Hide the main h1 heading on mobile when TOC is present (since TOC shows the title)
+    const mainHeading = document.querySelector('.headingXl');
+    if (mainHeading) {
+      mainHeading.classList.add('hideOnMobile');
+    }
+
     // Setup toggle button
     const toggleButton = document.getElementById('tocToggle');
     const tocList = document.getElementById('tocList');
