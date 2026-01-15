@@ -4,6 +4,9 @@
   // Track which URLs have already been prefetched
   const prefetchedUrls = new Set();
 
+  // Track the current active prefetch controller
+  let currentPrefetchController = null;
+
   // Prefetch a URL using fetch API
   function prefetchUrl(url) {
     // Avoid prefetching the same URL multiple times
@@ -11,20 +14,37 @@
       return;
     }
 
+    // Cancel any previous pending prefetch
+    if (currentPrefetchController) {
+      currentPrefetchController.abort();
+    }
+
     // Mark as prefetched
     prefetchedUrls.add(url);
+
+    // Create new AbortController for this prefetch
+    currentPrefetchController = new AbortController();
 
     // Use fetch with low priority for prefetching
     if (window.fetch) {
       try {
         fetch(url, {
           priority: 'low',
-          credentials: 'same-origin'
-        }).catch(function() {
+          credentials: 'same-origin',
+          signal: currentPrefetchController.signal
+        }).then(function() {
+          // Prefetch completed successfully
+          currentPrefetchController = null;
+        }).catch(function(err) {
           // Silently fail - this is just a prefetch hint
+          // Don't clear controller if it was an abort (we want to keep the new one)
+          if (err.name !== 'AbortError') {
+            currentPrefetchController = null;
+          }
         });
       } catch (e) {
         // Silently fail
+        currentPrefetchController = null;
       }
     }
   }
