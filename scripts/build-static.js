@@ -149,7 +149,7 @@ async function build() {
   console.log('  ✓ Copied utils.css');
 
   // Copy layout.module.css as layout.css
-  const layoutModulePath = path.join(process.cwd(), 'components', 'layout.module.css');
+  const layoutModulePath = path.join(process.cwd(), 'styles', 'layout.module.css');
   const layoutCssPath = path.join(stylesOutDir, 'layout.css');
 
   if (fs.existsSync(layoutModulePath)) {

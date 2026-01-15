@@ -9,7 +9,7 @@ const __dirname = path.dirname(__filename);
 // Read CSS files at build time
 const globalCSS = fs.readFileSync(path.join(__dirname, '../styles/global.css'), 'utf-8');
 const utilsCSS = fs.readFileSync(path.join(__dirname, '../styles/utils.module.css'), 'utf-8');
-let layoutCSS = fs.readFileSync(path.join(__dirname, '../components/layout.module.css'), 'utf-8');
+let layoutCSS = fs.readFileSync(path.join(__dirname, '../styles/layout.module.css'), 'utf-8');
 // Remove :global() wrappers from layout CSS
 layoutCSS = layoutCSS.replace(/:global\((.*?)\)/g, '$1');
 const prismCSS = fs.readFileSync(path.join(__dirname, '../node_modules/prismjs/themes/prism-tomorrow.css'), 'utf-8');
