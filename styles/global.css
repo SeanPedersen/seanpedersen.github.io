@@ -716,3 +716,26 @@ img {
     background: var(--primary-color);
     color: var(--background-color);
 }
+
+/* Post hashtags styling at the end of posts */
+.post-hashtags {
+    margin-top: 2rem;
+    font-size: 1rem;
+    opacity: 0.8;
+}
+
+.post-hashtags a {
+    color: var(--primary-color);
+    text-decoration: none;
+    padding: 0.25rem 0.5rem;
+    margin-right: 0.5rem;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+    border-bottom: none !important;
+}
+
+.post-hashtags a:hover {
+    background-color: var(--tag-hover-bg);
+    text-decoration: none;
+    border-bottom: none !important;
+}
