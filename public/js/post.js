@@ -1,4 +1,4 @@
-(function() {
+(function () {
   'use strict';
 
   const POST_DATA = window.__POST_DATA__ || {};
@@ -86,7 +86,7 @@
     let isExpanded = false;
 
     if (toggleButton && tocList) {
-      toggleButton.addEventListener('click', function() {
+      toggleButton.addEventListener('click', function () {
         isExpanded = !isExpanded;
         if (isExpanded) {
           tocList.classList.remove('collapsed');
@@ -160,7 +160,7 @@
 
       let isExpanded = false;
 
-      expandBtn.addEventListener('click', function() {
+      expandBtn.addEventListener('click', function () {
         isExpanded = !isExpanded;
 
         if (isExpanded) {
@@ -197,14 +197,14 @@
     copyBtn.title = 'Copy code';
     copyBtn.innerHTML = `
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="3" y="3" width="13" height="13" rx="2" stroke="currentColor" strokeWidth="1.5" fill="none"/>
-        <rect x="7" y="7" width="13" height="13" rx="2" stroke="currentColor" strokeWidth="1.5" fill="none"/>
+        <rect x="3" y="3" width="13" height="13" rx="2" stroke="currentColor" stroke-width="1.5" fill="none"/>
+        <rect x="7" y="7" width="13" height="13" rx="2" stroke="currentColor" stroke-width="1.5" fill="none"/>
       </svg>
     `;
 
     let copied = false;
 
-    copyBtn.addEventListener('click', async function() {
+    copyBtn.addEventListener('click', async function () {
       try {
         await navigator.clipboard.writeText(code.textContent);
         copied = true;
@@ -212,7 +212,7 @@
         // Show checkmark
         copyBtn.innerHTML = `
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M20 6L9 17l-5-5" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.5" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
         `;
 
@@ -220,8 +220,8 @@
           copied = false;
           copyBtn.innerHTML = `
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="3" y="3" width="13" height="13" rx="2" stroke="currentColor" strokeWidth="1.5" fill="none"/>
-              <rect x="7" y="7" width="13" height="13" rx="2" stroke="currentColor" strokeWidth="1.5" fill="none"/>
+              <rect x="3" y="3" width="13" height="13" rx="2" stroke="currentColor" stroke-width="1.5" fill="none"/>
+              <rect x="7" y="7" width="13" height="13" rx="2" stroke="currentColor" stroke-width="1.5" fill="none"/>
             </svg>
           `;
         }, 2000);
@@ -367,7 +367,7 @@
   }
 
   // Initialize everything on page load
-  document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('DOMContentLoaded', function () {
     generateTableOfContents();
     makeCodeBlocksExpandable();
     addBlockquoteMarkers();
