@@ -14,11 +14,11 @@
     // Mark as prefetched
     prefetchedUrls.add(url);
 
-    // Use fetch with high priority for prefetching
+    // Use fetch with low priority for prefetching
     if (window.fetch) {
       try {
         fetch(url, {
-          priority: 'high',
+          priority: 'low',
           credentials: 'same-origin'
         }).catch(function() {
           // Silently fail - this is just a prefetch hint
@@ -77,8 +77,8 @@
         return;
       }
 
-      // Prefetch on mousedown (when user starts clicking)
-      link.addEventListener('mousedown', function() {
+      // Prefetch on mouseenter (hover)
+      link.addEventListener('mouseenter', function() {
         prefetchUrl(href);
       }, { once: true, passive: true });
 
