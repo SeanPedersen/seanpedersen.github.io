@@ -4,7 +4,7 @@
   // Track which URLs have already been prefetched
   const prefetchedUrls = new Set();
 
-  // Prefetch a URL by creating a <link rel="prefetch"> element
+  // Prefetch a URL using multiple strategies for better browser compatibility
   function prefetchUrl(url) {
     // Avoid prefetching the same URL multiple times
     if (prefetchedUrls.has(url)) {
@@ -14,7 +14,21 @@
     // Mark as prefetched
     prefetchedUrls.add(url);
 
-    // Create prefetch link element
+    // Strategy 1: Try fetch with priority hint (best for modern browsers)
+    if (window.fetch) {
+      try {
+        fetch(url, {
+          priority: 'low',
+          credentials: 'same-origin'
+        }).catch(function() {
+          // Silently fail - this is just a prefetch hint
+        });
+      } catch (e) {
+        // Browser doesn't support priority hint, fallback below
+      }
+    }
+
+    // Strategy 2: Also create prefetch link element as fallback
     const link = document.createElement('link');
     link.rel = 'prefetch';
     link.href = url;
