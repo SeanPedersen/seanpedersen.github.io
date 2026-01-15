@@ -205,6 +205,7 @@ ${posts}
   <script src="/js/theme.js" defer></script>
   <script src="/js/search.js" defer></script>
   <script src="/js/tags.js" defer></script>
+  <script src="/js/prefetch.js" defer></script>
   <script>${getPostHogScript()}</script>
 </body>
 </html>`;
@@ -339,6 +340,7 @@ function generatePostHTML(postData, relatedPosts = []) {
   </script>
   <script src="/js/theme.js" defer></script>
   <script src="/js/post.js" defer></script>
+  <script src="/js/prefetch.js" defer></script>
   <script>${getPostHogScript()}</script>
 </body>
 </html>`;
