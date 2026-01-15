@@ -56,6 +56,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
+  width: 100%;
 }
 
 .flexer {
@@ -179,8 +181,8 @@
 /* Search and Tags Wrapper */
 .searchTagsWrapper {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  justify-content: flex-start;
   gap: 0.5rem;
   margin-bottom: 1.5rem;
   width: 100%;
@@ -192,7 +194,6 @@
   position: relative;
   padding: 0 1rem;
   box-sizing: border-box;
-  flex-wrap: wrap;
   /* Reserve space for search button to prevent layout shift */
   contain: layout;
 }
@@ -203,8 +204,8 @@
     padding: 0;
     gap: 1rem;
     align-items: center;
-    justify-content: center;
     flex-wrap: nowrap;
+    justify-content: center;
   }
 }
 
@@ -214,11 +215,7 @@
 
 /* Tag styles */
 .tagsContainer {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  /* Prevent layout shift by reserving minimum height */
-  min-height: 28px;
+  display: contents;
 }
 
 @media (min-width: 768px) {
