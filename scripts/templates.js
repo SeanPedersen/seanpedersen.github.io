@@ -96,11 +96,9 @@ function generateIndexHTML(allPostsData, allTags) {
     return `    <li class="listItem" data-id="${escapeHtml(post.id)}" data-tags="${escapeHtml(JSON.stringify(tags))}">
       <a href="/posts/${escapeHtml(post.id)}.html">${escapeHtml(post.title)}</a>
       ${tags.length > 0 ? `<small class="lightText post-tags-container">
-        •<span class="postTags">
-          ${tags.map((tag, idx) =>
+        •<span class="postTags">${tags.map((tag, idx) =>
       `<span><a href="#${escapeHtml(tag)}" onclick="return false;">${escapeHtml(tag)}</a>${idx < tags.length - 1 ? ', ' : ''}</span>`
-    ).join('')}
-        </span>
+    ).join('')}</span>
       </small>` : ''}
     </li>`;
   }).join('\n');
