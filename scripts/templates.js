@@ -94,9 +94,7 @@ function generateIndexHTML(allPostsData, allTags) {
   const posts = allPostsData.map(post => {
     const tags = post.tags && Array.isArray(post.tags) ? post.tags : [];
     return `    <li class="listItem" data-id="${escapeHtml(post.id)}" data-tags="${escapeHtml(JSON.stringify(tags))}">
-      <a href="/posts/${escapeHtml(post.id)}.html">
-        ${escapeHtml(post.title)}
-      </a>
+      <a href="/posts/${escapeHtml(post.id)}.html">${escapeHtml(post.title)}</a>
       ${tags.length > 0 ? `<small class="lightText post-tags-container">
         •<span class="postTags">
           ${tags.map((tag, idx) =>

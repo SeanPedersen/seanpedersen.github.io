@@ -5,6 +5,7 @@
   let isLoadingSearch = false;
   let searchQuery = '';
   let searchExpanded = false;
+  let originalPostOrder = []; // Store original order of posts
 
   // Create search UI
   function createSearchUI() {
@@ -87,7 +88,8 @@
     // Setup clear button
     const clearBtn = document.getElementById('clearSearchBtn');
     if (clearBtn) {
-      clearBtn.addEventListener('click', clearSearch);
+      // Use mousedown instead of click to prevent blur event from firing first
+      clearBtn.addEventListener('mousedown', clearSearch);
     }
 
     // Setup click outside handler
@@ -161,12 +163,21 @@
   }
 
   // Clear search
-  function clearSearch() {
+  function clearSearch(event) {
+    // Prevent blur handler from collapsing the search
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
     searchQuery = '';
     const input = document.getElementById('searchInput');
     if (input) {
       input.value = '';
-      input.focus();
+      // Use setTimeout to refocus after the click event completes
+      setTimeout(() => {
+        input.focus();
+      }, 0);
     }
 
     const clearBtn = document.getElementById('clearSearchBtn');
@@ -254,18 +265,23 @@
 
     const posts = Array.from(postList.children);
 
+    // Capture original order on first search
+    if (originalPostOrder.length === 0) {
+      originalPostOrder = posts.slice();
+    }
+
     if (!query.trim()) {
-      // Show all posts
-      posts.forEach(post => {
+      // Restore original order
+      originalPostOrder.forEach(post => {
         post.style.display = '';
+        postList.appendChild(post);
         // Remove highlights
         const link = post.querySelector('a');
-        if (link) {
+        if (link && searchData) {
           const postId = post.getAttribute('data-id');
-          const postEl = posts.find(p => p.getAttribute('data-id') === postId);
-          if (postEl) {
-            const titleText = postEl.querySelector('a')?.textContent || '';
-            link.innerHTML = escapeHtml(titleText);
+          const postSearchData = searchData.find(p => p.id === postId);
+          if (postSearchData) {
+            link.innerHTML = escapeHtml(postSearchData.title);
           }
         }
       });
@@ -315,21 +331,37 @@
         return { post, score, titleMatch };
       });
 
-      // Sort by score and show/hide posts
-      scoredPosts.sort((a, b) => b.score - a.score);
+      // Sort by title match first, then by score
+      scoredPosts.sort((a, b) => {
+        // Title matches always come first
+        if (a.titleMatch && !b.titleMatch) return -1;
+        if (!a.titleMatch && b.titleMatch) return 1;
+        // If both have or don't have title matches, sort by score
+        return b.score - a.score;
+      });
 
+      // Reorder DOM elements by appending in sorted order
       scoredPosts.forEach(({ post, score, titleMatch }) => {
         if (score > 0) {
           post.style.display = '';
 
           // Highlight title if it matches
-          if (titleMatch) {
-            const link = post.querySelector('a');
-            if (link) {
-              const title = link.textContent;
-              link.innerHTML = highlightTitle(title, query);
+          const link = post.querySelector('a');
+          if (link) {
+            const postId = post.getAttribute('data-id');
+            const postSearchData = searchData.find(p => p.id === postId);
+            if (postSearchData) {
+              if (titleMatch) {
+                link.innerHTML = highlightTitle(postSearchData.title, query);
+              } else {
+                // No title match, just display plain title without highlighting
+                link.innerHTML = escapeHtml(postSearchData.title);
+              }
             }
           }
+
+          // Reorder by appending to end (in sorted order)
+          postList.appendChild(post);
         } else {
           post.style.display = 'none';
         }
@@ -359,7 +391,7 @@
           if (titleMatch) {
             const link = post.querySelector('a');
             if (link) {
-              link.innerHTML = highlightTitle(title, query);
+              link.innerHTML = highlightTitle(title.trim(), query);
             }
           }
         } else {
