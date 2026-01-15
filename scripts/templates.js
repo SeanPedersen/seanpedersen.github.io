@@ -1,6 +1,18 @@
 import fs from 'fs';
 import path from 'path';
 import { format } from 'date-fns';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Read CSS files at build time
+const globalCSS = fs.readFileSync(path.join(__dirname, '../styles/global.css'), 'utf-8');
+const utilsCSS = fs.readFileSync(path.join(__dirname, '../styles/utils.module.css'), 'utf-8');
+let layoutCSS = fs.readFileSync(path.join(__dirname, '../components/layout.module.css'), 'utf-8');
+// Remove :global() wrappers from layout CSS
+layoutCSS = layoutCSS.replace(/:global\((.*?)\)/g, '$1');
+const prismCSS = fs.readFileSync(path.join(__dirname, '../node_modules/prismjs/themes/prism-tomorrow.css'), 'utf-8');
 
 // Escape HTML to prevent XSS
 function escapeHtml(unsafe) {
@@ -112,8 +124,7 @@ function generateIndexHTML(allPostsData, allTags) {
   <meta name="twitter:image" content="https://seanpedersen.github.io/images/sierpinski-twitter-square.png">
   <link rel="icon" href="/favicon.ico">
   <link rel="alternate" type="application/rss+xml" href="/rss.xml" title="RSS Feed">
-  <link rel="stylesheet" href="/styles/global.css">
-  <link rel="stylesheet" href="/styles/utils.css">
+  <style>${globalCSS}${layoutCSS}${utilsCSS}</style>
   <script>${getThemeInitScript()}</script>
 </head>
 <body>
@@ -257,9 +268,7 @@ function generatePostHTML(postData, relatedPosts = []) {
 
   <link rel="icon" href="/favicon.ico">
   <link rel="alternate" type="application/rss+xml" href="/rss.xml" title="RSS Feed">
-  <link rel="stylesheet" href="/styles/global.css">
-  <link rel="stylesheet" href="/styles/utils.css">
-  <link rel="stylesheet" href="/styles/prism-tomorrow.css">
+  <style>${globalCSS}${layoutCSS}${utilsCSS}${prismCSS}</style>
   <script>${getThemeInitScript()}</script>
   <script type="application/ld+json">
   ${JSON.stringify({
