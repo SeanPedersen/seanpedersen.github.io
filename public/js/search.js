@@ -144,6 +144,12 @@
       clearBtn.style.display = searchQuery ? 'flex' : 'none';
     }
 
+    // Check for matrix easter egg
+    if (searchQuery.toLowerCase() === 'matrix') {
+      activateMatrixEasterEgg();
+      return;
+    }
+
     // Load search data if not already loaded
     if (!searchData && !isLoadingSearch && searchQuery) {
       loadSearchData();
@@ -423,6 +429,84 @@
     const div = document.createElement('div');
     div.textContent = text;
     return div.innerHTML;
+  }
+
+  // Matrix easter egg
+  let matrixActive = false;
+  let matrixScriptLoaded = false;
+
+  function activateMatrixEasterEgg() {
+    // Don't toggle off if already active - only ESC can deactivate
+    if (matrixActive) {
+      return;
+    }
+
+    // Load matrix.js if not already loaded
+    if (!matrixScriptLoaded) {
+      const script = document.createElement('script');
+      script.src = '/js/matrix.js';
+      script.onload = function() {
+        matrixScriptLoaded = true;
+        startMatrix();
+      };
+      document.head.appendChild(script);
+    } else {
+      startMatrix();
+    }
+  }
+
+  function startMatrix() {
+    if (window.Matrix && !matrixActive) {
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      window.Matrix.init(width, height);
+      matrixActive = true;
+
+      // Make body background transparent so matrix shows through
+      document.body.style.backgroundColor = 'transparent';
+      document.documentElement.style.backgroundColor = '#000'; // Keep html black for contrast
+
+      // Handle window resize
+      window.addEventListener('resize', handleMatrixResize);
+
+      // Add escape handler to deactivate
+      document.addEventListener('keydown', handleMatrixEscape);
+    }
+  }
+
+  function handleMatrixResize() {
+    if (matrixActive && window.Matrix) {
+      window.Matrix.destroy();
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      window.Matrix.init(width, height);
+    }
+  }
+
+  function handleMatrixEscape(e) {
+    if (e.key === 'Escape' && matrixActive) {
+      if (window.Matrix) {
+        window.Matrix.destroy();
+        matrixActive = false;
+      }
+
+      // Restore body background
+      document.body.style.backgroundColor = '';
+      document.documentElement.style.backgroundColor = '';
+
+      // Also clear the search input
+      const input = document.getElementById('searchInput');
+      if (input) {
+        input.value = '';
+        searchQuery = '';
+        const clearBtn = document.getElementById('clearSearchBtn');
+        if (clearBtn) {
+          clearBtn.style.display = 'none';
+        }
+      }
+      document.removeEventListener('keydown', handleMatrixEscape);
+      window.removeEventListener('resize', handleMatrixResize);
+    }
   }
 
   // Keyboard shortcuts
