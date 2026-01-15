@@ -37,6 +37,11 @@
     searchExpanded = true;
     const wrapperWidth = wrapper.offsetWidth;
 
+    // Preload search data when expanding
+    if (!searchData && !isLoadingSearch) {
+      loadSearchData();
+    }
+
     // Replace with expanded search bar
     container.classList.remove('collapsed');
     container.classList.add('expanded');
@@ -210,8 +215,10 @@
           );
 
           // Strip HTML tags from content for searching
+          // Remove img tags first to prevent browser from loading images
+          const contentWithoutImages = contentEncoded.replace(/<img[^>]*>/gi, '');
           const tempDiv = document.createElement('div');
-          tempDiv.innerHTML = contentEncoded;
+          tempDiv.innerHTML = contentWithoutImages;
           const textContent = tempDiv.textContent || tempDiv.innerText || '';
 
           // Extract post ID from link
@@ -415,8 +422,21 @@
   }
 
   // Initialize search on page load
-  document.addEventListener('DOMContentLoaded', function () {
+  function initSearch() {
     createSearchUI();
     setupKeyboardShortcuts();
-  });
+
+    // Auto-expand if flag is set (lazy loaded via click)
+    if (window.__expandSearchOnLoad) {
+      window.__expandSearchOnLoad = false;
+      expandSearch();
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSearch);
+  } else {
+    // DOM already loaded (lazy loaded case)
+    initSearch();
+  }
 })();

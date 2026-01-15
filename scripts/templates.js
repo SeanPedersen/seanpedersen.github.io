@@ -203,7 +203,63 @@ ${posts}
     </button>
   </div>
   <script src="/js/theme.js" defer></script>
-  <script src="/js/search.js" defer></script>
+  <script>
+    // Lazy load search.js on first interaction with search icon
+    (function() {
+      let searchLoaded = false;
+
+      function loadSearchAndExpand() {
+        if (searchLoaded) return;
+        searchLoaded = true;
+
+        // Mark that we should auto-expand after load
+        window.__expandSearchOnLoad = true;
+
+        const script = document.createElement('script');
+        script.src = '/js/search.js';
+        document.head.appendChild(script);
+      }
+
+      // Wait for DOM to be ready
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() {
+          // Create initial search icon that triggers lazy load
+          const container = document.getElementById('searchContainer');
+          if (container) {
+            container.innerHTML = \`
+              <div class="searchContainer collapsed" id="searchContainerEl">
+                <button class="searchIconButton" id="searchIconBtn" aria-label="Open search">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="6" />
+                    <line x1="19.59" y1="19.59" x2="15.24" y2="15.24" />
+                  </svg>
+                </button>
+              </div>
+            \`;
+
+            document.getElementById('searchIconBtn').addEventListener('click', loadSearchAndExpand, { once: true });
+          }
+        });
+      } else {
+        // DOM already loaded
+        const container = document.getElementById('searchContainer');
+        if (container) {
+          container.innerHTML = \`
+            <div class="searchContainer collapsed" id="searchContainerEl">
+              <button class="searchIconButton" id="searchIconBtn" aria-label="Open search">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="11" cy="11" r="6" />
+                  <line x1="19.59" y1="19.59" x2="15.24" y2="15.24" />
+                </svg>
+              </button>
+            </div>
+          \`;
+
+          document.getElementById('searchIconBtn').addEventListener('click', loadSearchAndExpand, { once: true });
+        }
+      }
+    })();
+  </script>
   <script src="/js/tags.js" defer></script>
   <script src="/js/prefetch.js" defer></script>
   <script>${getPostHogScript()}</script>
