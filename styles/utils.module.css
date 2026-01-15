@@ -212,15 +212,10 @@
   .searchTagsWrapper {
     max-width: fit-content;
     padding: 0;
-    gap: 1rem;
     align-items: center;
     flex-wrap: nowrap;
     justify-content: center;
   }
-}
-
-.searchTagsWrapper.searchExpanded {
-  gap: 0;
 }
 
 /* Tag styles */
