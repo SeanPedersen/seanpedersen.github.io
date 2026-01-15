@@ -56,25 +56,20 @@ function getThemeBodyScript() {
 })();`;
 }
 
-// Generate PostHog initialization script
+// Generate PostHog initialization script (using lightweight posthog-lite.js)
 function getPostHogScript() {
   return `(function() {
   if (typeof window === 'undefined') return;
 
-  // Lazy load PostHog
+  // Load PostHog Lite
   var script = document.createElement('script');
-  script.async = true;
-  script.src = 'https://unpkg.com/posthog-js@1.164.2/dist/array.full.js';
+  script.src = '/js/posthog-lite.js';
   script.onload = function() {
-    if (window.posthog) {
-      window.posthog.init('phc_9XPlyPALuefIMAMSfsvBk4jVuSelJyjl7xwhXigkHAP', {
-        api_host: 'https://us.i.posthog.com',
+    if (window.PostHogLite) {
+      window.posthog = new window.PostHogLite('phc_9XPlyPALuefIMAMSfsvBk4jVuSelJyjl7xwhXigkHAP', {
+        host: 'https://us.i.posthog.com',
         person_profiles: 'identified_only',
-        loaded: function(ph) {
-          if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-            ph.debug();
-          }
-        }
+        capturePageview: true
       });
     }
   };
