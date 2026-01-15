@@ -139,6 +139,8 @@ function generateIndexHTML(allPostsData, allTags) {
               src="/images/profile.webp"
               class="headerHomeImage borderCircle"
               alt="Sean Pedersen"
+              decoding="async"
+              fetchpriority="high"
             />
             <div style="display: flex; flex-direction: column; align-items: flex-start;">
               <h1 class="heading2Xl nameBreak">
