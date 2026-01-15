@@ -10,6 +10,7 @@
     if (hash) {
       selectedTag = hash;
       selectTagByName(hash);
+      filterPosts();
     }
 
     // Listen for hash changes (back/forward navigation)
