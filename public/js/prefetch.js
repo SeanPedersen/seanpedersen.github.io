@@ -4,7 +4,7 @@
   // Track which URLs have already been prefetched
   const prefetchedUrls = new Set();
 
-  // Prefetch a URL using multiple strategies for better browser compatibility
+  // Prefetch a URL using fetch API
   function prefetchUrl(url) {
     // Avoid prefetching the same URL multiple times
     if (prefetchedUrls.has(url)) {
@@ -14,7 +14,7 @@
     // Mark as prefetched
     prefetchedUrls.add(url);
 
-    // Strategy 1: Try fetch with priority hint (best for modern browsers)
+    // Use fetch with low priority for prefetching
     if (window.fetch) {
       try {
         fetch(url, {
@@ -24,18 +24,9 @@
           // Silently fail - this is just a prefetch hint
         });
       } catch (e) {
-        // Browser doesn't support priority hint, fallback below
+        // Silently fail
       }
     }
-
-    // Strategy 2: Also create prefetch link element as fallback
-    const link = document.createElement('link');
-    link.rel = 'prefetch';
-    link.href = url;
-    link.as = 'document';
-
-    // Append to head
-    document.head.appendChild(link);
   }
 
   // Check if URL should be prefetched (only internal links)
