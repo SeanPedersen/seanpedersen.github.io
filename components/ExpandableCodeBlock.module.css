@@ -95,6 +95,11 @@
     overflow: hidden;
 }
 
+.codeBlock.collapsed pre {
+    max-height: 400px !important;
+    overflow: hidden !important;
+}
+
 .fadeOverlay {
     position: absolute;
     bottom: 0;

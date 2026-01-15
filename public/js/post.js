@@ -115,7 +115,7 @@
       if (!code) return;
 
       const textContent = code.textContent;
-      const lineCount = textContent.split('\\n').filter(line => line.trim()).length;
+      const lineCount = textContent.split('\n').length;
 
       // Only make expandable if more than 20 lines
       if (lineCount <= 20) {

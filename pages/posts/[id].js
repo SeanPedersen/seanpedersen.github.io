@@ -281,7 +281,7 @@ export default function Post({ postData, relatedPostCandidates, hasMorePosts }) 
         const innerContent = codeBlockMatch[1];
         // Remove HTML tags to count actual code lines
         const textContent = innerContent.replace(/<[^>]*>/g, '');
-        const lineCount = textContent.split('\n').filter(line => line.trim()).length;
+        const lineCount = textContent.split('\n').length;
 
         return (
           <ExpandableCodeBlock key={index} lineCount={lineCount}>
