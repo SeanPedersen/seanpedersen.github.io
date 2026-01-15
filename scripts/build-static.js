@@ -1,11 +1,14 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { getSortedPostsData, getAllTags, getPostData, getRelatedPostsByTag, getAllPostIds } from '../lib/posts.js';
-import { generateIndexHTML, generatePostHTML } from './templates.js';
+import { Worker } from 'worker_threads';
+import os from 'os';
+import { getSortedPostsData, getAllTags, getAllPostIds } from '../lib/posts.js';
+import { generateIndexHTML } from './templates.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+const MAX_WORKERS = os.cpus().length * 2;
 
 // Helper to copy directory recursively
 function copyDir(src, dest) {
@@ -64,44 +67,74 @@ async function build() {
   fs.mkdirSync(postsDir, { recursive: true });
 
   const allPostIds = getAllPostIds();
-  let processedCount = 0;
+  const totalPosts = allPostIds.length;
+  console.log(`  Processing ${totalPosts} posts using ${MAX_WORKERS} workers...`);
 
-  for (const { params } of allPostIds) {
-    const postData = await getPostData(params.id);
+  // Process all posts using worker threads with concurrency limit
+  const startTime = Date.now();
+  let completed = 0;
+  let activeWorkers = 0;
+  const queue = [...allPostIds];
+  const errors = [];
 
-    // Get related posts if there are tags
-    let relatedPostCandidates = [];
-    if (postData.tags && postData.tags.length > 0) {
-      const firstTag = postData.tags[0];
-      const result = getRelatedPostsByTag(params.id, firstTag, 3, 10);
-      relatedPostCandidates = result.posts;
+  await new Promise((resolve, reject) => {
+    function startWorker() {
+      if (queue.length === 0) {
+        if (activeWorkers === 0) {
+          resolve();
+        }
+        return;
+      }
+
+      const { params } = queue.shift();
+      activeWorkers++;
+
+      const worker = new Worker(path.join(__dirname, 'workers', 'post-worker.js'), {
+        workerData: {
+          postId: params.id,
+          postsDir
+        }
+      });
+
+      worker.on('message', (result) => {
+        if (result.success) {
+          completed++;
+          if (completed % 10 === 0 || completed === totalPosts) {
+            console.log(`  [${completed}/${totalPosts}] posts completed...`);
+          }
+        } else {
+          errors.push(`Failed to process ${result.postId}: ${result.error}`);
+        }
+        activeWorkers--;
+        startWorker();
+      });
+
+      worker.on('error', (error) => {
+        errors.push(`Worker error: ${error.message}`);
+        activeWorkers--;
+        startWorker();
+      });
+
+      worker.on('exit', (code) => {
+        if (code !== 0) {
+          errors.push(`Worker stopped with exit code ${code}`);
+        }
+      });
     }
 
-    // Randomly select 3 related posts (or fewer if not enough)
-    let relatedPosts = [];
-    if (relatedPostCandidates.length <= 3) {
-      relatedPosts = relatedPostCandidates;
-    } else {
-      // Get the latest 2 posts
-      const latestTwo = relatedPostCandidates.slice(0, 2);
-
-      // Get one random from the rest
-      const remainingPosts = relatedPostCandidates.slice(2);
-      const randomIndex = Math.floor(Math.random() * remainingPosts.length);
-      const randomPost = remainingPosts[randomIndex];
-
-      relatedPosts = [...latestTwo, randomPost];
+    // Start initial batch of workers
+    for (let i = 0; i < Math.min(MAX_WORKERS, totalPosts); i++) {
+      startWorker();
     }
+  });
 
-    const postHTML = generatePostHTML(postData, relatedPosts);
-    fs.writeFileSync(path.join(postsDir, `${params.id}.html`), postHTML, 'utf8');
-
-    processedCount++;
-    if (processedCount % 10 === 0) {
-      console.log(`  Processed ${processedCount}/${allPostIds.length} posts...`);
-    }
+  if (errors.length > 0) {
+    console.error('\n⚠️  Some posts failed to generate:');
+    errors.forEach(err => console.error(`  ${err}`));
   }
-  console.log(`✓ Generated ${allPostIds.length} post pages\n`);
+
+  const duration = ((Date.now() - startTime) / 1000).toFixed(2);
+  console.log(`✓ Generated ${totalPosts} post pages in ${duration}s using ${MAX_WORKERS} workers\n`);
 
   // Copy static assets
   console.log('Copying static assets...');
