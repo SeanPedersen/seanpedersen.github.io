@@ -52,12 +52,11 @@ function extractContentFromHtml(htmlFile) {
   try {
     const htmlContent = fs.readFileSync(htmlFile, 'utf8')
 
-    // Extract JSON from __NEXT_DATA__ script tag
-    const scriptMatch = htmlContent.match(/<script id="__NEXT_DATA__" type="application\/json">(.*?)<\/script>/)
+    // Extract content from the markdown-content div
+    const contentMatch = htmlContent.match(/<div class="markdown-content"[^>]*>([\s\S]*?)<\/div>\s*(?:<footer|<\/article)/i)
 
-    if (scriptMatch && scriptMatch[1]) {
-      const jsonData = JSON.parse(scriptMatch[1])
-      return jsonData.props.pageProps.postData.contentHtml || ''
+    if (contentMatch && contentMatch[1]) {
+      return contentMatch[1].trim()
     }
 
     return ''
