@@ -290,7 +290,7 @@ function generatePostHTML(postData, relatedPosts = []) {
     <header class="header">
       <div style="display: flex; align-items: center; gap: 1rem; padding: 0.5rem;">
         <h2 class="headingLg">
-          <a href="/index.html" class="colorInherit">Sean's Blog</a>
+          <a href="/" class="colorInherit">Sean's Blog</a>
         </h2>
       </div>
     </header>
