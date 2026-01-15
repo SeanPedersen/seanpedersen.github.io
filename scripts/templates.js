@@ -1,6 +1,6 @@
-const fs = require('fs');
-const path = require('path');
-const { format } = require('date-fns');
+import fs from 'fs';
+import path from 'path';
+import { format } from 'date-fns';
 
 // Escape HTML to prevent XSS
 function escapeHtml(unsafe) {
@@ -340,7 +340,7 @@ function generatePostHTML(postData, relatedPosts = []) {
 </html>`;
 }
 
-module.exports = {
+export {
   generateIndexHTML,
   generatePostHTML,
   escapeHtml,

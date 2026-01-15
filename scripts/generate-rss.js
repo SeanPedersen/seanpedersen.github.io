@@ -1,6 +1,10 @@
-const fs = require('fs')
-const path = require('path')
-const matter = require('gray-matter')
+import fs from 'fs';
+import path from 'path';
+import matter from 'gray-matter';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const SITE_URL = 'https://seanpedersen.github.io'
 const SITE_TITLE = "Sean's Blog"

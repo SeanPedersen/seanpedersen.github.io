@@ -2,6 +2,7 @@
   "name": "sean-blog",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "build": "node scripts/build-static.js && node scripts/generate-rss.js && node scripts/optimize.js",
     "build:unoptimized": "node scripts/build-static.js && node scripts/generate-rss.js",
