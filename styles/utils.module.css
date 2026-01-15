@@ -56,8 +56,18 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+/* Center text only for the about section (first headingMd without padding1px) */
+.headingMd:not(.padding1px) {
   text-align: center;
   width: 100%;
+}
+
+/* Post list section should not have centered text */
+.headingMd.padding1px {
+  align-items: stretch;
+  text-align: left;
 }
 
 .flexer {
