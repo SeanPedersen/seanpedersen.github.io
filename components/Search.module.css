@@ -2,14 +2,19 @@
   position: relative;
   flex-shrink: 0;
   width: 40px;
+  height: 40px;
+  /* Prevent layout shift during hydration */
+  contain: layout style;
 }
 
 .searchContainer.collapsed {
   width: 40px;
+  height: 40px;
 }
 
 .searchContainer.expanded {
   width: 40px;
+  height: 40px;
   /* Make this a positioning context for absolute children */
   position: relative;
 }
@@ -27,6 +32,9 @@
   transition: all 0.2s ease;
   width: 40px;
   height: 40px;
+  /* Ensure stable dimensions */
+  box-sizing: border-box;
+  flex-shrink: 0;
 }
 
 .searchIconButton:hover {
