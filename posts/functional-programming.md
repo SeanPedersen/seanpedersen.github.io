@@ -87,7 +87,7 @@ You don't need to abandon your current programming language to try functional pr
 
 The transition takes practice, but the payoff is code that's easier to understand, test, and maintain. Your future self will thank you for the clarity. I can recommend [Erlang](https://seanpedersen.github.io/posts/erlang) and Elixir as functional programming languages (many prefer Elixir syntax).
 
-## Advanced Functional Concepts
+## More Functional Concepts
 
 ### Idempotence
 
@@ -110,20 +110,9 @@ assert normalize_email(normalize_email("  Foo@Bar.COM ")) == normalize_email("  
 
 Note: idempotence also applies to effects. In HTTP, PUT is designed to be idempotent (repeating the same PUT yields the same state), while POST generally is not.
 
-### Referential Transparency
-
-An expression is referentially transparent if it can be replaced by its value without changing program behavior. This property enables safe refactoring, caching, and equational reasoning.
-
-```python
-def area(r):  # pure
-    return 3.14159 * r * r
-
-# Any occurrence of area(2) can be replaced with its numeric value.
-```
-
 ### Effects at the Boundary
 
-Keep core logic pure; perform I/O at the edges.
+Keep core logic pure; perform I/O at the edges -> helps to test and verify functionality more easily.
 
 ```python
 def transform(data):  # pure
