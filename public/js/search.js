@@ -563,11 +563,11 @@
     const input = document.getElementById('searchInput');
     if (!input) return;
 
-    // Store current value and whether input had focus
+    // Store current value and focus state
     searchQuery = window.__searchInputValue || input.value || '';
     const hadFocus = document.activeElement === input;
 
-    // Remove inline listeners by cloning and replacing the input
+    // Clone input to remove inline event listeners
     const newInput = input.cloneNode(true);
     input.parentNode.replaceChild(newInput, input);
 
@@ -580,7 +580,7 @@
       newInput.focus();
     }
 
-    // Setup clear button with full handler
+    // Clone clear button to remove inline event listeners
     const clearBtn = document.getElementById('clearSearchBtn');
     if (clearBtn) {
       const newClearBtn = clearBtn.cloneNode(true);

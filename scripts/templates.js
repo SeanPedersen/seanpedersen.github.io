@@ -232,103 +232,87 @@ ${posts}
         const tagsContainer = document.getElementById('tagsContainer');
         if (tagsContainer) tagsContainer.classList.add('tagsHidden');
 
-        // Get input element immediately
+        // Get input element and focus it
         const input = document.getElementById('searchInput');
         const clearBtn = document.getElementById('clearSearchBtn');
 
-        // Focus MUST happen synchronously in the click handler for security
+        // Focus input synchronously for mobile compatibility
         if (input) {
-          // Blur any currently focused element to prevent blocking
-          if (document.activeElement && document.activeElement !== document.body) {
-            document.activeElement.blur();
+          input.focus();
+          // Single backup focus for mobile browsers
+          requestAnimationFrame(() => input.focus());
+
+          // Basic inline search (before search.js loads)
+          input.addEventListener('input', function(e) {
+            const query = e.target.value;
+            const lowerQuery = query.toLowerCase();
+            if (clearBtn) clearBtn.style.display = query ? 'flex' : 'none';
+
+            const postList = document.getElementById('postList');
+            if (!postList) return;
+
+            Array.from(postList.children).forEach(post => {
+              const link = post.querySelector('a');
+              if (!link) return;
+
+              // Get original title (strip any existing HTML)
+              const title = link.textContent || '';
+              const tagsAttr = post.getAttribute('data-tags');
+              const tags = tagsAttr ? JSON.parse(tagsAttr) : [];
+
+              const titleMatches = title.toLowerCase().includes(lowerQuery);
+              const tagMatches = tags.some(tag => tag.toLowerCase().includes(lowerQuery));
+
+              if (!query || titleMatches || tagMatches) {
+                post.style.display = '';
+
+                // Highlight title match
+                if (query && titleMatches) {
+                  const index = title.toLowerCase().indexOf(lowerQuery);
+                  const before = title.slice(0, index);
+                  const match = title.slice(index, index + query.length);
+                  const after = title.slice(index + query.length);
+
+                  const escapeHtml = (text) => {
+                    const div = document.createElement('div');
+                    div.textContent = text;
+                    return div.innerHTML;
+                  };
+
+                  link.innerHTML = \`\${escapeHtml(before)}<mark style="background-color: var(--primary-color); color: var(--color-background); padding: 2px 4px; border-radius: 3px;">\${escapeHtml(match)}</mark>\${escapeHtml(after)}\`;
+                } else {
+                  // No title match or empty query - restore plain text
+                  link.textContent = title;
+                }
+              } else {
+                post.style.display = 'none';
+              }
+            });
+          });
+
+          // Clear button
+          if (clearBtn) {
+            clearBtn.addEventListener('mousedown', function(e) {
+              e.preventDefault();
+              input.value = '';
+              clearBtn.style.display = 'none';
+              const postList = document.getElementById('postList');
+              if (postList) {
+                Array.from(postList.children).forEach(post => post.style.display = '');
+              }
+              setTimeout(() => input.focus(), 0);
+            });
           }
 
-          // Now focus the input
-          input.focus();
+          // Load search.js for full functionality (highlighting, RSS, etc.)
+          if (!searchScriptLoaded) {
+            searchScriptLoaded = true;
+            window.__searchInputValue = input.value || '';
+            const script = document.createElement('script');
+            script.src = '/js/search.js';
+            document.head.appendChild(script);
+          }
         }
-
-        // Setup event listeners and additional focus attempts
-        requestAnimationFrame(() => {
-          requestAnimationFrame(() => {
-            // Additional focus attempts for reliability
-            if (input) {
-              input.focus();
-              setTimeout(() => input.focus(), 0);
-              setTimeout(() => input.focus(), 50);
-
-              // Basic inline search (before search.js loads)
-              input.addEventListener('input', function(e) {
-                const query = e.target.value;
-                const lowerQuery = query.toLowerCase();
-                if (clearBtn) clearBtn.style.display = query ? 'flex' : 'none';
-
-                const postList = document.getElementById('postList');
-                if (!postList) return;
-
-                Array.from(postList.children).forEach(post => {
-                  const link = post.querySelector('a');
-                  if (!link) return;
-
-                  // Get original title (strip any existing HTML)
-                  const title = link.textContent || '';
-                  const tagsAttr = post.getAttribute('data-tags');
-                  const tags = tagsAttr ? JSON.parse(tagsAttr) : [];
-
-                  const titleMatches = title.toLowerCase().includes(lowerQuery);
-                  const tagMatches = tags.some(tag => tag.toLowerCase().includes(lowerQuery));
-
-                  if (!query || titleMatches || tagMatches) {
-                    post.style.display = '';
-
-                    // Highlight title match
-                    if (query && titleMatches) {
-                      const index = title.toLowerCase().indexOf(lowerQuery);
-                      const before = title.slice(0, index);
-                      const match = title.slice(index, index + query.length);
-                      const after = title.slice(index + query.length);
-
-                      const escapeHtml = (text) => {
-                        const div = document.createElement('div');
-                        div.textContent = text;
-                        return div.innerHTML;
-                      };
-
-                      link.innerHTML = \`\${escapeHtml(before)}<mark style="background-color: var(--primary-color); color: var(--color-background); padding: 2px 4px; border-radius: 3px;">\${escapeHtml(match)}</mark>\${escapeHtml(after)}\`;
-                    } else {
-                      // No title match or empty query - restore plain text
-                      link.textContent = title;
-                    }
-                  } else {
-                    post.style.display = 'none';
-                  }
-                });
-              });
-
-              // Clear button
-              if (clearBtn) {
-                clearBtn.addEventListener('mousedown', function(e) {
-                  e.preventDefault();
-                  input.value = '';
-                  clearBtn.style.display = 'none';
-                  const postList = document.getElementById('postList');
-                  if (postList) {
-                    Array.from(postList.children).forEach(post => post.style.display = '');
-                  }
-                  setTimeout(() => input.focus(), 0);
-                });
-              }
-            }
-
-            // Load search.js for full functionality (highlighting, RSS, etc.)
-            if (!searchScriptLoaded) {
-              searchScriptLoaded = true;
-              window.__searchInputValue = input?.value || ''; // Pass current value
-              const script = document.createElement('script');
-              script.src = '/js/search.js';
-              document.head.appendChild(script);
-            }
-          });
-        });
       }
 
       function setupSearchButton() {
