@@ -28,7 +28,7 @@ The Rust implementation uses:
 
 ## Features
 
-✅ Full feature parity with Node.js build:
+✅ **Complete Rust implementation:**
 - Markdown to HTML conversion
 - GitHub Flavored Markdown (tables, strikethrough, task lists)
 - Frontmatter parsing (YAML)
@@ -37,18 +37,22 @@ The Rust implementation uses:
 - Inline CSS/JS
 - SEO meta tags
 - Table of contents detection
+- **Asset optimization (CSS, JS, HTML, Images)**
+- **RSS feed generation**
 
 ## Usage
 
-### Fast Build (Rust)
+### Fast Build (Rust - Everything included!)
 ```bash
 ./build-fast.sh
 ```
 
-### Fast Build + Optimization
-```bash
-./build-fast.sh --optimize
-```
+This single command now does **everything**:
+- ✅ Generates all HTML pages from Markdown
+- ✅ Optimizes CSS, JS, and HTML
+- ✅ Compresses images (PNG, JPEG, WebP)
+- ✅ Generates RSS feed
+- ✅ All in ~0.8 seconds!
 
 ### Original Node.js Build (for comparison)
 ```bash
@@ -89,13 +93,19 @@ post_ids.par_iter().try_for_each(|post_id| -> Result<()> {
 ### Dependencies
 
 ```toml
-pulldown-cmark = "0.13"  # Markdown parser
-rayon = "1.10"           # Parallel iterators
-serde = "1.0"            # Serialization
-serde_yaml = "0.9"       # YAML frontmatter
-chrono = "0.4"           # Date formatting
-regex = "1.11"           # Pattern matching
-anyhow = "1.0"           # Error handling
+pulldown-cmark = "0.13"           # Markdown parser
+rayon = "1.10"                    # Parallel iterators
+serde = "1.0"                     # Serialization
+serde_yaml = "0.9"                # YAML frontmatter
+chrono = "0.4"                    # Date formatting
+regex = "1.11"                    # Pattern matching
+anyhow = "1.0"                    # Error handling
+
+# Asset optimization
+lightningcss = "1.0.0-alpha.68"   # CSS minification
+minify-html = "0.15"              # HTML minification
+image = "0.25"                    # Image processing
+oxipng = "9.1"                    # PNG optimization
 ```
 
 ### Release Profile Optimizations
@@ -113,9 +123,10 @@ strip = true         # Remove debug symbols
 Potential areas for even more speed:
 
 - [ ] Incremental builds (only rebuild changed posts)
-- [ ] Asset optimization in Rust (replace Node.js optimize step)
-- [ ] RSS generation in Rust
+- [x] ~~Asset optimization in Rust~~ ✅ **Implemented!**
+- [x] ~~RSS generation in Rust~~ ✅ **Implemented!**
 - [ ] Watch mode for development
+- [ ] Advanced JS minification with SWC
 
 ## Benchmarking
 

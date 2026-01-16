@@ -9,7 +9,14 @@ use std::fs::{self, File};
 use std::io::{BufWriter, Write};
 use std::path::{Path, PathBuf};
 use std::sync::Arc;
+use std::sync::atomic::{AtomicUsize, Ordering};
 use std::time::Instant;
+
+// Optimization imports
+use lightningcss::stylesheet::{ParserOptions, PrinterOptions, StyleSheet};
+use minify_html::{Cfg, minify};
+use minify_js::minify as minify_js_code;
+use minify_js::{Session, TopLevelMode};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 struct PostMetadata {
@@ -104,10 +111,24 @@ fn main() -> Result<()> {
     println!("Copying static assets...");
     copy_static_assets(&out_dir)?;
 
+    // Optimize assets
+    println!("\nOptimizing assets...");
+    let optimize_start = Instant::now();
+    optimize_assets(&out_dir)?;
+    let optimize_duration = optimize_start.elapsed().as_secs_f64();
+    println!("✓ Optimized assets in {:.2}s\n", optimize_duration);
+
+    // Generate RSS feed (after optimization so we get minified HTML)
+    println!("Generating RSS feed...");
+    let rss_start = Instant::now();
+    generate_rss(&out_dir, &posts_arc)?;
+    let rss_duration = rss_start.elapsed().as_secs_f64();
+    println!("✓ Generated RSS feed in {:.2}s\n", rss_duration);
+
     let total_duration = total_start.elapsed().as_secs_f64();
     println!("\n✅ Build complete in {:.2}s!", total_duration);
     println!("   Output directory: {}", out_dir.display());
-    println!("   Total files: {} HTML pages", total_posts + 1);
+    println!("   Total files: {} HTML pages + RSS feed", total_posts + 1);
 
     Ok(())
 }
@@ -864,3 +885,267 @@ fn get_posthog_script() -> &'static str {
   document.head.appendChild(script);
 })();"#
 }
+
+// ============================================================================
+// Asset Optimization
+// ============================================================================
+
+fn optimize_assets(out_dir: &Path) -> Result<()> {
+    // Collect all files to optimize
+    let mut css_files = Vec::new();
+    let mut js_files = Vec::new();
+    let mut html_files = Vec::new();
+    let mut image_files = Vec::new();
+
+    collect_files(out_dir, &mut css_files, &mut js_files, &mut html_files, &mut image_files)?;
+
+    let total_files = css_files.len() + js_files.len() + html_files.len() + image_files.len();
+    println!("  Found {} files to optimize", total_files);
+
+    // Optimize in parallel
+    let css_count = AtomicUsize::new(0);
+    let js_count = AtomicUsize::new(0);
+    let html_count = AtomicUsize::new(0);
+    let img_count = AtomicUsize::new(0);
+
+    rayon::scope(|s| {
+        s.spawn(|_| {
+            css_files.par_iter().for_each(|path| {
+                if minify_css_file(path).is_ok() {
+                    css_count.fetch_add(1, Ordering::Relaxed);
+                }
+            });
+        });
+
+        s.spawn(|_| {
+            js_files.par_iter().for_each(|path| {
+                if minify_js_file(path).is_ok() {
+                    js_count.fetch_add(1, Ordering::Relaxed);
+                }
+            });
+        });
+
+        s.spawn(|_| {
+            html_files.par_iter().for_each(|path| {
+                if minify_html_file(path).is_ok() {
+                    html_count.fetch_add(1, Ordering::Relaxed);
+                }
+            });
+        });
+
+        s.spawn(|_| {
+            image_files.par_iter().for_each(|path| {
+                if optimize_image_file(path).is_ok() {
+                    img_count.fetch_add(1, Ordering::Relaxed);
+                }
+            });
+        });
+    });
+
+    println!("  ✓ CSS: {} files", css_count.load(Ordering::Relaxed));
+    println!("  ✓ JS: {} files", js_count.load(Ordering::Relaxed));
+    println!("  ✓ HTML: {} files", html_count.load(Ordering::Relaxed));
+    println!("  ✓ Images: {} files", img_count.load(Ordering::Relaxed));
+
+    Ok(())
+}
+
+fn collect_files(
+    dir: &Path,
+    css_files: &mut Vec<PathBuf>,
+    js_files: &mut Vec<PathBuf>,
+    html_files: &mut Vec<PathBuf>,
+    image_files: &mut Vec<PathBuf>,
+) -> Result<()> {
+    if !dir.is_dir() {
+        return Ok(());
+    }
+
+    for entry in fs::read_dir(dir)? {
+        let entry = entry?;
+        let path = entry.path();
+
+        if path.is_dir() {
+            collect_files(&path, css_files, js_files, html_files, image_files)?;
+        } else if let Some(ext) = path.extension().and_then(|s| s.to_str()) {
+            match ext {
+                "css" => css_files.push(path),
+                "js" => js_files.push(path),
+                "html" => html_files.push(path),
+                "png" | "jpg" | "jpeg" | "webp" => image_files.push(path),
+                _ => {}
+            }
+        }
+    }
+
+    Ok(())
+}
+
+fn minify_css_file(path: &Path) -> Result<()> {
+    let css = fs::read_to_string(path)?;
+
+    let stylesheet = StyleSheet::parse(
+        &css,
+        ParserOptions::default(),
+    ).map_err(|e| anyhow::anyhow!("CSS parse error: {:?}", e))?;
+
+    let minified = stylesheet.to_css(PrinterOptions {
+        minify: true,
+        ..Default::default()
+    }).map_err(|e| anyhow::anyhow!("CSS minify error: {:?}", e))?;
+
+    fs::write(path, minified.code)?;
+    Ok(())
+}
+
+fn minify_js_file(path: &Path) -> Result<()> {
+    let js = fs::read_to_string(path)?;
+
+    // Use minify-js for proper JS minification
+    let session = Session::new();
+    let mut output = Vec::new();
+
+    minify_js_code(
+        &session,
+        TopLevelMode::Global,
+        js.as_bytes(),
+        &mut output,
+    ).map_err(|e| anyhow::anyhow!("JS minify error: {:?}", e))?;
+
+    let minified = String::from_utf8(output)
+        .unwrap_or_else(|_| js.clone());
+
+    // Only write if smaller or same size
+    if minified.len() <= js.len() {
+        fs::write(path, minified)?;
+    }
+
+    Ok(())
+}
+
+fn minify_html_file(path: &Path) -> Result<()> {
+    let html = fs::read(path)?;
+
+    let cfg = Cfg {
+        minify_css: false,  // Don't minify CSS inside HTML - lightningcss already did it
+        minify_js: true,
+        ..Default::default()
+    };
+
+    let minified = minify(&html, &cfg);
+    fs::write(path, minified)?;
+    Ok(())
+}
+
+fn optimize_image_file(_path: &Path) -> Result<()> {
+    // Images are already optimized at the source level using Sharp.
+    // No need to re-optimize during build - just copy them as-is.
+    Ok(())
+}
+
+// ============================================================================
+// RSS Generation
+// ============================================================================
+
+fn generate_rss(out_dir: &Path, posts: &Arc<Vec<Post>>) -> Result<()> {
+    let rss_path = out_dir.join("rss.xml");
+    let mut file = BufWriter::new(File::create(rss_path)?);
+
+    let now = chrono::Utc::now();
+    let rss_date = now.to_rfc2822();
+
+    // Write RSS header (match Node.js format with 2-space indentation)
+    write!(file, r#"<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>{}</title>
+    <description>Another place for thought infusion</description>
+    <link>https://seanpedersen.github.io</link>
+    <atom:link href="https://seanpedersen.github.io/rss.xml" rel="self" type="application/rss+xml" />
+    <language>en</language>
+    <pubDate>{}</pubDate>
+    <lastBuildDate>{}</lastBuildDate>
+    <generator>Custom RSS Generator</generator>
+    <managingEditor>Sean Pedersen</managingEditor>
+    <webMaster>Sean Pedersen</webMaster>
+    <ttl>60</ttl>
+"#, escape_xml("Sean's Blog"), rss_date, rss_date)?;
+
+    // Write each post
+    for post in posts.iter() {
+        let post_url = format!("https://seanpedersen.github.io/posts/{}", post.id);
+        let post_date = NaiveDate::parse_from_str(&post.date, "%Y-%m-%d")
+            .ok()
+            .and_then(|d| d.and_hms_opt(0, 0, 0))
+            .and_then(|dt| {
+                let utc = chrono::DateTime::<chrono::Utc>::from_naive_utc_and_offset(dt, chrono::Utc);
+                Some(utc.format("%a, %d %b %Y %H:%M:%S GMT").to_string())
+            })
+            .unwrap_or_else(|| post.date.clone());
+
+        write!(file, "    <item>\n      <title>{}</title>\n      <link>{}</link>\n      <guid isPermaLink=\"true\">{}</guid>\n      <pubDate>{}</pubDate>\n      <author>Sean Pedersen</author>\n",
+            escape_xml(&post.title), post_url, post_url, post_date)?;
+
+        // Write tags as categories
+        for tag in &post.tags {
+            write!(file, "      <category>{}</category>\n", escape_xml(tag))?;
+        }
+
+        // Read minified HTML content from the optimized post file
+        let html_path = out_dir.join("posts").join(format!("{}.html", post.id));
+        let html_content = fs::read_to_string(&html_path)
+            .unwrap_or_default();
+
+        // Extract content from markdown-content div
+        let content = extract_content_from_html(&html_content);
+
+        // Write content
+        write!(file, "      <content:encoded><![CDATA[{}]]></content:encoded>\n    </item>\n", content)?;
+    }
+
+    write!(file, "  </channel>\n</rss>")?;
+
+    Ok(())
+}
+
+fn extract_content_from_html(html: &str) -> String {
+    // Find the start of markdown-content div
+    if let Some(start_idx) = html.find("<div class=markdown-content") {
+        // Find the end of the opening tag
+        if let Some(content_start) = html[start_idx..].find('>') {
+            let content_start = start_idx + content_start + 1;
+
+            // Find the matching closing </div> before <footer
+            // We need to count div depth
+            let mut depth = 1;
+            let mut pos = content_start;
+            let bytes = html.as_bytes();
+
+            while pos < bytes.len() && depth > 0 {
+                if pos + 5 < bytes.len() && &bytes[pos..pos+5] == b"<div " || &bytes[pos..pos+4] == b"<div>" {
+                    depth += 1;
+                    pos += 1;
+                } else if pos + 6 < bytes.len() && &bytes[pos..pos+6] == b"</div>" {
+                    depth -= 1;
+                    if depth == 0 {
+                        return html[content_start..pos].to_string();
+                    }
+                    pos += 6;
+                } else {
+                    pos += 1;
+                }
+            }
+        }
+    }
+
+    String::new()
+}
+
+fn escape_xml(s: &str) -> String {
+    s.replace('&', "&amp;")
+        .replace('<', "&lt;")
+        .replace('>', "&gt;")
+        .replace('"', "&quot;")
+        .replace('\'', "&#39;")
+}
+
