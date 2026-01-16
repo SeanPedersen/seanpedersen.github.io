@@ -1,8 +1,10 @@
 import { parentPort, workerData } from 'worker_threads';
-import { execSync } from 'child_process';
 import sharp from 'sharp';
 import fs from 'fs';
 import path from 'path';
+import { minify as minifyHTML } from 'html-minifier-terser';
+import { minify as minifyJS } from 'terser';
+import { minify as minifyCSS } from 'csso';
 
 const { type, filePath, relativePath } = workerData;
 
@@ -11,17 +13,34 @@ async function processFile() {
     let result = { success: true, type, relativePath };
 
     switch (type) {
-      case 'css':
-        execSync(`npx csso-cli ${filePath} -o ${filePath}`, { stdio: 'pipe' });
+      case 'css': {
+        const css = fs.readFileSync(filePath, 'utf8');
+        const minified = minifyCSS(css);
+        fs.writeFileSync(filePath, minified.css, 'utf8');
         break;
+      }
 
-      case 'js':
-        execSync(`npx terser ${filePath} -o ${filePath} --compress --mangle`, { stdio: 'pipe' });
+      case 'js': {
+        const js = fs.readFileSync(filePath, 'utf8');
+        const minified = await minifyJS(js, {
+          compress: true,
+          mangle: true
+        });
+        fs.writeFileSync(filePath, minified.code, 'utf8');
         break;
+      }
 
-      case 'html':
-        execSync(`npx html-minifier-terser ${filePath} -o ${filePath} --collapse-whitespace --remove-comments --minify-css true --minify-js true`, { stdio: 'pipe' });
+      case 'html': {
+        const html = fs.readFileSync(filePath, 'utf8');
+        const minified = await minifyHTML(html, {
+          collapseWhitespace: true,
+          removeComments: true,
+          minifyCSS: true,
+          minifyJS: true
+        });
+        fs.writeFileSync(filePath, minified, 'utf8');
         break;
+      }
 
       case 'image':
         const ext = path.extname(filePath).toLowerCase();
