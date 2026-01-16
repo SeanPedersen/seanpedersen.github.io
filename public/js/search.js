@@ -563,8 +563,9 @@
     const input = document.getElementById('searchInput');
     if (!input) return;
 
-    // Store current value and replace inline handler with full handler
+    // Store current value and whether input had focus
     searchQuery = window.__searchInputValue || input.value || '';
+    const hadFocus = document.activeElement === input;
 
     // Remove inline listeners by cloning and replacing the input
     const newInput = input.cloneNode(true);
@@ -573,6 +574,11 @@
     // Setup full search handlers
     newInput.addEventListener('input', handleSearchInput);
     newInput.addEventListener('blur', handleSearchBlur);
+
+    // Restore focus if input had it before cloning
+    if (hadFocus) {
+      newInput.focus();
+    }
 
     // Setup clear button with full handler
     const clearBtn = document.getElementById('clearSearchBtn');
