@@ -9,4 +9,3 @@ echo "🦀 Running Rust build (fast mode)..."
 ./target/release/blog-builder
 
 echo "✅ Build complete!"
-

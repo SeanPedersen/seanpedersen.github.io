@@ -18,3 +18,12 @@ Just clone this repo, create a new github project named $your_username.github.io
 - Profile pic in ./website/images/profile.webp
 - Search for "https://github.com/SeanPedersen/seanpedersen.github.io" and change it to your repo so the "Edit on GitHub" link works for your blog
 - Edit / remove Posthog analytics in ./website/html-templates files
+
+### Local
+
+- Install dependencies: `npm ci`
+- [Install Rust](https://rust-lang.org/tools/install/)
+- Compile: `cargo build --release`
+- Build: `npm run build` (generates `out/` directory)
+- Serve locally: `npm start` (http://localhost:8000)
+

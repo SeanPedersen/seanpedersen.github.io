@@ -6,7 +6,7 @@
   "scripts": {
     "build": "./build-fast.sh",
     "build:rust": "cargo build --release",
-    "start": "cd out/ && python3 -m http.server"
+    "start": "echo 'Serving at http://localhost:8000' && cd out/ && python3 -m http.server"
   },
   "dependencies": {
     "date-fns": "^2.16.1",
