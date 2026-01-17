@@ -48,9 +48,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-rust-binary-
 
-      - name: Setup Node.js ⚙️ - Cache dependencies ⚡ - Install dependencies 🔧
-        uses: ./.github/workflows/setup-node
-
       - name: Setup Pages ⚙️
         uses: actions/configure-pages@v4
 

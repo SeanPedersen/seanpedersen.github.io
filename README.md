@@ -21,9 +21,7 @@ Just clone this repo, create a new github project named $your_username.github.io
 
 ### Local
 
-- Install dependencies: `npm ci`
 - [Install Rust](https://rust-lang.org/tools/install/)
 - Compile: `cargo build --release`
-- Build: `npm run build` (generates `out/` directory)
-- Serve locally: `npm start` (http://localhost:8000)
-
+- Build: `./build-fast.sh` (generates `out/` directory)
+- Serve locally: `python3 -m http.server -d out` (http://localhost:8000)

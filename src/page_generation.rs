@@ -460,7 +460,7 @@ pub fn generate_post_page(out_dir: &Path, post: &Post, related: &[PostSummary]) 
     let tera = Tera::new("website/html-templates/**/*")?;
 
     let css = read_inline_css()?;
-    let prism_css = fs::read_to_string("node_modules/prismjs/themes/prism-tomorrow.css")?;
+    let prism_css = fs::read_to_string("website/styles/prism-tomorrow.css")?;
 
     let excerpt = strip_html_tags(&post.content_html)
         .chars()
