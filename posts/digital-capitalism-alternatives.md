@@ -74,16 +74,16 @@ Human tech serves people, not extracts from them. It shares power, not hoards it
 
 ## References
 
-- https://en.wikipedia.org/wiki/Solutionism
-- https://www.inkandswitch.com/local-first/
-- https://ec.europa.eu/digital-markets-act
-- https://info.vtaiwan.tw/
-- https://en.wikipedia.org/wiki/Platform_cooperative
-- https://www.stocksy.com/
-- https://resonate.coop/
-- https://decidim.org/
-- https://gdpr.eu/
-- https://joinmastodon.org/
-- https://www.fairphone.com/
+- <https://en.wikipedia.org/wiki/Solutionism>
+- <https://www.inkandswitch.com/local-first/>
+- <https://ec.europa.eu/digital-markets-act>
+- <https://info.vtaiwan.tw/>
+- <https://en.wikipedia.org/wiki/Platform_cooperative>
+- <https://www.stocksy.com/>
+- <https://resonate.coop/>
+- <https://decidim.org/>
+- <https://gdpr.eu/>
+- <https://joinmastodon.org/>
+- <https://www.fairphone.com/>
 
 #idea
