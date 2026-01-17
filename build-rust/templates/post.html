@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ post_title }} - Sean's Blog</title>
+  <link rel="canonical" href="https://seanpedersen.github.io/posts/{{ post_id }}">
+  <meta name="description" content="{{ excerpt }}">
+  <meta name="keywords" content="{{ keywords }}">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="{{ post_title }}">
+  <meta property="og:description" content="{{ excerpt }}">
+  <meta property="og:url" content="https://seanpedersen.github.io/posts/{{ post_id }}">
+  <meta property="og:image" content="https://seanpedersen.github.io/images/sierpinski-twitter-square.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="{{ post_title }}">
+  <meta name="twitter:description" content="{{ excerpt }}">
+  <meta name="twitter:image" content="https://seanpedersen.github.io/images/sierpinski-twitter-square.png">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="alternate" type="application/rss+xml" href="/rss.xml" title="RSS Feed">
+  <style>{{ css | safe }}{{ prism_css | safe }}</style>
+  <script>
+    (function() {
+      try {
+        var storedTheme = document.cookie
+          .split('; ')
+          .find(function(row) { return row.startsWith('theme='); });
+
+        var theme = storedTheme ? storedTheme.split('=')[1] :
+          (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+
+        var style = document.createElement('style');
+        style.innerHTML = theme === 'light'
+          ? 'body{background-color:#f0f0f0!important;color:#111!important}'
+          : 'body{background-color:#000!important;color:#fff!important}';
+        document.head.appendChild(style);
+
+        if (theme === 'light') {
+          document.documentElement.classList.add('light-theme-pending');
+        }
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+  <script>
+    (function() {
+      try {
+        if (document.documentElement.classList.contains('light-theme-pending')) {
+          document.documentElement.classList.remove('light-theme-pending');
+          document.body.classList.add('light-theme');
+        }
+      } catch (e) {}
+    })();
+  </script>
+  <div class="container">
+    <header class="header">
+      <div style="display: flex; align-items: center; gap: 1rem; padding: 0.5rem;">
+        <h2 class="headingLg">
+          <a href="/" class="colorInherit">Sean's Blog</a>
+        </h2>
+      </div>
+    </header>
+    <main class="main postPage{% if not has_toc %} noToc{% endif %}">
+      <article class="postContainer">
+        {% if has_toc %}
+        <div id="tocContainer"></div>
+        {% endif %}
+        <span id="{{ title_id }}" style="position: absolute; top: 0; visibility: hidden;" aria-hidden="true"></span>
+        <h1 class="headingXl">{{ post_title }}</h1>
+        <div class="postMeta">
+          <div class="lightText">{{ formatted_date }}</div>
+          <a href="https://github.com/SeanPedersen/seanpedersen.github.io/edit/main/posts/{{ post_id }}.md" target="_blank" rel="noopener noreferrer" class="editOnGithubLink">
+            Edit on GitHub
+          </a>
+        </div>
+        <div class="markdown-content" style="padding-bottom: 0.25rem; margin-bottom: 0;">
+          {{ content_html | safe }}
+        </div>
+        {% if related_posts %}
+        <footer class="relatedPostsFooter">
+          <h3>Related Articles</h3>
+          <ul class="relatedPostsList" style="padding-left: 0">
+            {% for rel in related_posts %}
+            <li class="relatedPostItem">
+              <a href="/posts/{{ rel.id }}.html">{{ rel.title }}</a>
+              <small class="lightText">{{ rel.formatted_date }}</small>
+            </li>
+            {% endfor %}
+          </ul>
+        </footer>
+        {% endif %}
+        <footer class="backToTopFooter">
+          <hr aria-hidden="true" style="width: 100%; border: 0; border-top: 1px solid rgba(127,127,127,0.35); margin: 0.25rem 0;" />
+          <div id="backToTopContainer"></div>
+          <p>omnia mirari, gaudium explorandi .:.</p>
+        </footer>
+      </article>
+    </main>
+  </div>
+  <script>
+    window.__POST_DATA__ = {
+      title: {{ post_title_json | safe }},
+      titleId: {{ title_id_json | safe }},
+      hasTableOfContents: {{ has_toc }}
+    };
+  </script>
+  <script src="/js/theme.js" defer></script>
+  <script src="/js/post.js" defer></script>
+  <script src="/js/prefetch.js" defer></script>
+  <script>
+    (function() {
+      if (typeof window === 'undefined') return;
+
+      var script = document.createElement('script');
+      script.src = '/js/posthog-lite.js';
+      script.onload = function() {
+        if (window.PostHogLite) {
+          window.posthog = new window.PostHogLite('phc_9XPlyPALuefIMAMSfsvBk4jVuSelJyjl7xwhXigkHAP', {
+            host: 'https://us.i.posthog.com',
+            person_profiles: 'identified_only',
+            capturePageview: true
+          });
+        }
+      };
+      document.head.appendChild(script);
+    })();
+  </script>
+</body>
+</html>

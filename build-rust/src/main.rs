@@ -1,9 +1,11 @@
 use anyhow::{Context, Result};
 use chrono::{Datelike, NaiveDate};
-use pulldown_cmark::{html, Options, Parser};
+use pulldown_cmark::{html, Options, Parser, Event, Tag, TagEnd, CodeBlockKind};
+use pulldown_cmark_escape::escape_html;
 use rayon::prelude::*;
 use regex::Regex;
 use serde::{Deserialize, Serialize};
+use serde_json::json;
 use std::collections::HashSet;
 use std::fs::{self, File};
 use std::io::{BufWriter, Write};
@@ -11,6 +13,9 @@ use std::path::{Path, PathBuf};
 use std::sync::Arc;
 use std::sync::atomic::{AtomicUsize, Ordering};
 use std::time::Instant;
+use tera::Tera;
+use syntect::parsing::SyntaxSet;
+use syntect::html::{ClassedHTMLGenerator, ClassStyle};
 
 // Optimization imports
 use lightningcss::stylesheet::{ParserOptions, PrinterOptions, StyleSheet};
@@ -111,19 +116,19 @@ fn main() -> Result<()> {
     println!("Copying static assets...");
     copy_static_assets(&out_dir)?;
 
+    // Generate RSS feed (before optimization to get clean, unminified HTML)
+    println!("\nGenerating RSS feed...");
+    let rss_start = Instant::now();
+    generate_rss(&out_dir, &posts_arc)?;
+    let rss_duration = rss_start.elapsed().as_secs_f64();
+    println!("✓ Generated RSS feed in {:.2}s", rss_duration);
+
     // Optimize assets
     println!("\nOptimizing assets...");
     let optimize_start = Instant::now();
     optimize_assets(&out_dir)?;
     let optimize_duration = optimize_start.elapsed().as_secs_f64();
     println!("✓ Optimized assets in {:.2}s\n", optimize_duration);
-
-    // Generate RSS feed (after optimization so we get minified HTML)
-    println!("Generating RSS feed...");
-    let rss_start = Instant::now();
-    generate_rss(&out_dir, &posts_arc)?;
-    let rss_duration = rss_start.elapsed().as_secs_f64();
-    println!("✓ Generated RSS feed in {:.2}s\n", rss_duration);
 
     let total_duration = total_start.elapsed().as_secs_f64();
     println!("\n✅ Build complete in {:.2}s!", total_duration);
@@ -240,8 +245,94 @@ fn markdown_to_html(markdown: &str, tags: &[String]) -> String {
 
     let parser = Parser::new_ext(markdown, options);
 
+    // Load syntax highlighting assets
+    let syntax_set = SyntaxSet::load_defaults_newlines();
+
     let mut html_output = String::new();
-    html::push_html(&mut html_output, parser);
+    let mut in_code_block = false;
+    let mut code_block_lang: Option<String> = None;
+    let mut code_block_content = String::new();
+
+    for event in parser {
+        match event {
+            Event::Start(Tag::CodeBlock(CodeBlockKind::Fenced(lang))) => {
+                in_code_block = true;
+                code_block_lang = if lang.is_empty() {
+                    None
+                } else {
+                    Some(lang.to_string())
+                };
+                code_block_content.clear();
+            }
+            Event::End(TagEnd::CodeBlock) => {
+                if in_code_block {
+                    if let Some(lang) = &code_block_lang {
+                        // Use syntect for syntax highlighting with CSS classes
+                        if let Some(syntax) = syntax_set.find_syntax_by_token(lang) {
+                            let mut html_generator = ClassedHTMLGenerator::new_with_class_style(
+                                syntax,
+                                &syntax_set,
+                                ClassStyle::Spaced
+                            );
+
+                            // Split by lines and add newlines back for syntect
+                            for line in code_block_content.lines() {
+                                let line_with_newline = format!("{}\n", line);
+                                let _ = html_generator.parse_html_for_line_which_includes_newline(&line_with_newline);
+                            }
+
+                            let highlighted = html_generator.finalize();
+                            // Convert syntect classes to Prism-compatible classes
+                            let prism_html = convert_syntect_classes_to_prism(&highlighted);
+                            html_output.push_str(&format!(
+                                r#"<div class="remark-highlight"><pre class="language-{}"><code class="language-{}">{}</code></pre></div>"#,
+                                lang, lang, prism_html
+                            ));
+                        } else {
+                            // Language not found, use plain code block
+                            let mut escaped = String::new();
+                            escape_html(&mut escaped, &code_block_content).unwrap();
+                            html_output.push_str(&format!(
+                                r#"<pre><code class="language-{}">{}</code></pre>"#,
+                                lang, escaped
+                            ));
+                        }
+                    } else {
+                        // No language specified - use language-text for consistent styling with Prism CSS
+                        let mut escaped = String::new();
+                        escape_html(&mut escaped, &code_block_content).unwrap();
+                        html_output.push_str(&format!(
+                            r#"<div class="remark-highlight"><pre class="language-text"><code class="language-text">{}</code></pre></div>"#,
+                            escaped
+                        ));
+                    }
+                    in_code_block = false;
+                    code_block_lang = None;
+                    code_block_content.clear();
+                }
+            }
+            Event::Text(text) => {
+                if in_code_block {
+                    code_block_content.push_str(&text);
+                } else {
+                    let mut escaped = String::new();
+                    escape_html(&mut escaped, &text).unwrap();
+                    html_output.push_str(&escaped);
+                }
+            }
+            Event::Code(code) => {
+                let mut escaped = String::new();
+                escape_html(&mut escaped, &code).unwrap();
+                html_output.push_str(&format!("<code>{}</code>", escaped));
+            }
+            _ => {
+                // For all other events, use the default HTML rendering
+                let mut temp = String::new();
+                html::push_html(&mut temp, std::iter::once(event));
+                html_output.push_str(&temp);
+            }
+        }
+    }
 
     // Add IDs to headings
     html_output = add_heading_ids(&html_output);
@@ -250,6 +341,47 @@ fn markdown_to_html(markdown: &str, tags: &[String]) -> String {
     html_output = convert_hashtags_to_links(&html_output, tags);
 
     html_output
+}
+
+fn convert_syntect_classes_to_prism(html: &str) -> String {
+    // Map syntect scope classes to Prism token classes
+    // Syntect uses TextMate scope names, we need to convert to Prism's simpler classes
+
+    let result = html.to_string();
+
+    // Replace all class attributes with Prism-compatible ones
+    let re = Regex::new(r#"<span class="([^"]+)">"#).unwrap();
+    let result = re.replace_all(&result, |caps: &regex::Captures| {
+        let class_content = &caps[1];
+
+        // Determine the appropriate Prism token class based on syntect scopes
+        let token_class = if class_content.contains("keyword") {
+            "token keyword"
+        } else if class_content.contains("string") {
+            "token string"
+        } else if class_content.contains("comment") {
+            "token comment"
+        } else if class_content.contains("constant") && class_content.contains("numeric") {
+            "token number"
+        } else if class_content.contains("function") || class_content.contains("support function") {
+            "token function"
+        } else if class_content.contains("operator") {
+            "token operator"
+        } else if class_content.contains("punctuation") {
+            "token punctuation"
+        } else if class_content.contains("support") || class_content.contains("builtin") {
+            "token builtin"
+        } else if class_content.contains("variable") {
+            "token variable"
+        } else {
+            // For any other scope, just return empty span (no class needed)
+            return "".to_string();
+        };
+
+        format!(r#"<span class="{}">"#, token_class)
+    });
+
+    result.to_string()
 }
 
 fn add_heading_ids(html: &str) -> String {
@@ -340,14 +472,6 @@ fn get_related_posts(all_posts: &[Post], current_id: &str, tags: &[String], limi
     result
 }
 
-fn escape_html(s: &str) -> String {
-    s.replace('&', "&amp;")
-        .replace('<', "&lt;")
-        .replace('>', "&gt;")
-        .replace('"', "&quot;")
-        .replace('\'', "&#039;")
-}
-
 fn format_date(date_str: &str) -> String {
     if let Ok(date) = NaiveDate::parse_from_str(date_str, "%Y-%m-%d") {
         date.format("%B %-d, %Y").to_string()
@@ -357,138 +481,37 @@ fn format_date(date_str: &str) -> String {
 }
 
 fn generate_index_page(out_dir: &Path, posts: &[PostSummary], tags: &[String]) -> Result<()> {
-    let mut file = BufWriter::new(File::create(out_dir.join("index.html"))?);
+    let tera = Tera::new("build-rust/templates/**/*")?;
 
     let css = read_inline_css()?;
-
-    write!(file, r#"<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Sean's Blog</title>
-  <meta name="description" content="Another place for thought infusion">
-  <meta property="og:image" content="https://seanpedersen.github.io/images/sierpinski-twitter-square.png">
-  <meta name="og:title" content="Sean's Blog">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:image" content="https://seanpedersen.github.io/images/sierpinski-twitter-square.png">
-  <link rel="icon" href="/favicon.ico">
-  <link rel="alternate" type="application/rss+xml" href="/rss.xml" title="RSS Feed">
-  <style>{}</style>
-  <script>{}</script>
-</head>
-<body>
-  <script>{}</script>
-  <div class="flexer">
-    <div class="container">
-      <header class="header">
-        <div class="headerContainer">
-          <div class="speechBubble">
-            Building <a href="https://solo.digger.lol/" target="_blank" rel="noopener noreferrer">Digger Solo</a>
-          </div>
-          <div class="profileContainer">
-            <img
-              src="/images/profile.webp"
-              class="headerHomeImage borderCircle"
-              alt="Sean Pedersen"
-              decoding="async"
-              fetchpriority="high"
-            />
-            <div style="display: flex; flex-direction: column; align-items: flex-start;">
-              <h1 class="heading2Xl nameBreak">
-                <span>Sean</span>
-                <span>Pedersen</span>
-              </h1>
-              <div class="linkRow">
-                <a href="/rss.xml" class="iconLink" aria-label="RSS" title="RSS Feed">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M5 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"></path><path d="M4 4a16 16 0 0 1 16 16"></path><path d="M4 11a9 9 0 0 1 9 9"></path></svg>
-                </a>
-                <div class="socialLinks">
-                  <a href="https://github.com/SeanPedersen" class="iconLink" aria-label="GitHub" title="GitHub" target="_blank" rel="noreferrer noopener">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5"></path></svg>
-                  </a>
-                  <a href="https://x.com/SeanPedersen96" class="iconLink" aria-label="X (Twitter)" title="X (Twitter)" target="_blank" rel="noreferrer noopener">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M4 4l11.733 16h4.267l-11.733 -16z"></path><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"></path></svg>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </header>
-      <main class="main homePage">
-        <section class="headingMd">
-          <p>Machine Learning / Data Privacy / Cybernetics / Memetics</p>
-        </section>
-        <section class="headingMd padding1px">
-          <div class="searchTagsWrapper" id="searchTagsWrapper">
-            <div id="searchContainer"></div>
-            <div class="tagsContainer" id="tagsContainer">
-              <span class="tag tagSelected" data-tag="">All</span>
-"#, css, get_theme_init_script(), get_theme_body_script())?;
-
-    // Write tags
-    for tag in tags {
-        write!(file, r#"              <span class="tag" data-tag="{}">{}</span>
-"#, escape_html(tag), escape_html(tag))?;
-    }
-
-    write!(file, r#"            </div>
-          </div>
-          <ul class="list" id="postList">
-"#)?;
-
-    // Write posts
-    for post in posts {
-        let tags_json = serde_json::to_string(&post.tags).unwrap();
-        write!(file, r#"            <li class="listItem" data-id="{}" data-tags="{}">
-              <a href="/posts/{}.html">{}</a>
-"#, escape_html(&post.id), escape_html(&tags_json), escape_html(&post.id), escape_html(&post.title))?;
-
-        if !post.tags.is_empty() {
-            write!(file, r#"              <small class="lightText post-tags-container">
-                •<span class="postTags">"#)?;
-            for (i, tag) in post.tags.iter().enumerate() {
-                write!(file, r##"<span><a href="#{}" onclick="return false;">{}</a>{}</span>"##,
-                    escape_html(tag), escape_html(tag),
-                    if i < post.tags.len() - 1 { ", " } else { "" })?;
-            }
-            write!(file, r#"</span>
-              </small>
-"#)?;
-        }
-        write!(file, r#"            </li>
-"#)?;
-    }
-
-    // Footer and scripts
     let year = chrono::Local::now().year();
-    write!(file, r#"          </ul>
-        </section>
-      </main>
-    </div>
-    <footer class="footer">
-      <p>Copy©at ᓚᘏᗢ {} | All lights served .:.</p>
-    </footer>
-    <button id="themeToggle" class="themeToggleButton" aria-label="Toggle theme" title="Toggle theme">
-      <svg id="themeIcon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-      </svg>
-    </button>
-  </div>
-  <script src="/js/theme.js" defer></script>
-  <script>{}</script>
-  <script src="/js/tags.js" defer></script>
-  <script src="/js/prefetch.js" defer></script>
-  <script>{}</script>
-</body>
-</html>"#, year, get_search_script(), get_posthog_script())?;
+
+    // Prepare posts data with tags_json
+    let posts_data: Vec<serde_json::Value> = posts.iter().map(|post| {
+        json!({
+            "id": post.id,
+            "title": post.title,
+            "tags": post.tags,
+            "tags_json": serde_json::to_string(&post.tags).unwrap_or_default(),
+        })
+    }).collect();
+
+    let mut context = tera::Context::new();
+    context.insert("css", &css);
+    context.insert("tags", tags);
+    context.insert("posts", &posts_data);
+    context.insert("year", &year);
+
+    let html = tera.render("index.html", &context)?;
+
+    let mut file = BufWriter::new(File::create(out_dir.join("index.html"))?);
+    write!(file, "{}", html)?;
 
     Ok(())
 }
 
 fn generate_post_page(out_dir: &Path, post: &Post, related: &[PostSummary]) -> Result<()> {
-    let mut file = BufWriter::new(File::create(out_dir.join(format!("{}.html", post.id)))?);
+    let tera = Tera::new("build-rust/templates/**/*")?;
 
     let css = read_inline_css()?;
     let prism_css = fs::read_to_string("node_modules/prismjs/themes/prism-tomorrow.css")?;
@@ -511,106 +534,36 @@ fn generate_post_page(out_dir: &Path, post: &Post, related: &[PostSummary]) -> R
                   post.content_html.contains("<h2") ||
                   post.content_html.contains("<h3");
 
-    write!(file, r#"<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{} - Sean's Blog</title>
-  <link rel="canonical" href="https://seanpedersen.github.io/posts/{}">
-  <meta name="description" content="{}">
-  <meta name="keywords" content="{}">
-  <meta property="og:type" content="article">
-  <meta property="og:title" content="{}">
-  <meta property="og:description" content="{}">
-  <meta property="og:url" content="https://seanpedersen.github.io/posts/{}">
-  <meta property="og:image" content="https://seanpedersen.github.io/images/sierpinski-twitter-square.png">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="{}">
-  <meta name="twitter:description" content="{}">
-  <meta name="twitter:image" content="https://seanpedersen.github.io/images/sierpinski-twitter-square.png">
-  <link rel="icon" href="/favicon.ico">
-  <link rel="alternate" type="application/rss+xml" href="/rss.xml" title="RSS Feed">
-  <style>{}{}</style>
-  <script>{}</script>
-</head>
-<body>
-  <script>{}</script>
-  <div class="container">
-    <header class="header">
-      <div style="display: flex; align-items: center; gap: 1rem; padding: 0.5rem;">
-        <h2 class="headingLg">
-          <a href="/" class="colorInherit">Sean's Blog</a>
-        </h2>
-      </div>
-    </header>
-    <main class="main postPage{}">
-      <article class="postContainer">
-"#, escape_html(&post.title), escape_html(&post.id), escape_html(&excerpt),
-    post.tags.iter().map(|t| escape_html(t)).collect::<Vec<_>>().join(", "),
-    escape_html(&post.title), escape_html(&excerpt), escape_html(&post.id),
-    escape_html(&post.title), escape_html(&excerpt),
-    css, prism_css, get_theme_init_script(), get_theme_body_script(),
-    if has_toc { "" } else { " noToc" })?;
+    let keywords = post.tags.join(", ");
 
-    if has_toc {
-        write!(file, r#"        <div id="tocContainer"></div>
-"#)?;
-    }
+    // Prepare related posts data
+    let related_data: Vec<serde_json::Value> = related.iter().map(|rel| {
+        json!({
+            "id": rel.id,
+            "title": rel.title,
+            "formatted_date": format_date(&rel.date),
+        })
+    }).collect();
 
-    write!(file, r#"        <span id="{}" style="position: absolute; top: 0; visibility: hidden;" aria-hidden="true"></span>
-        <h1 class="headingXl">{}</h1>
-        <div class="postMeta">
-          <div class="lightText">{}</div>
-          <a href="https://github.com/SeanPedersen/seanpedersen.github.io/edit/main/posts/{}.md" target="_blank" rel="noopener noreferrer" class="editOnGithubLink">
-            Edit on GitHub
-          </a>
-        </div>
-        <div class="markdown-content" style="padding-bottom: 0.25rem; margin-bottom: 0;">
-          {}
-        </div>
-"#, title_id, escape_html(&post.title), format_date(&post.date), escape_html(&post.id), post.content_html)?;
+    let mut context = tera::Context::new();
+    context.insert("post_title", &post.title);
+    context.insert("post_id", &post.id);
+    context.insert("excerpt", &excerpt);
+    context.insert("keywords", &keywords);
+    context.insert("css", &css);
+    context.insert("prism_css", &prism_css);
+    context.insert("has_toc", &has_toc);
+    context.insert("title_id", &title_id);
+    context.insert("formatted_date", &format_date(&post.date));
+    context.insert("content_html", &post.content_html);
+    context.insert("related_posts", &related_data);
+    context.insert("post_title_json", &serde_json::to_string(&post.title)?);
+    context.insert("title_id_json", &serde_json::to_string(&title_id)?);
 
-    // Related posts
-    if !related.is_empty() {
-        write!(file, r#"        <footer class="relatedPostsFooter">
-          <h3>Related Articles</h3>
-          <ul class="relatedPostsList" style="padding-left: 0">
-"#)?;
-        for rel in related {
-            write!(file, r#"            <li class="relatedPostItem">
-              <a href="/posts/{}.html">{}</a>
-              <small class="lightText">{}</small>
-            </li>
-"#, escape_html(&rel.id), escape_html(&rel.title), format_date(&rel.date))?;
-        }
-        write!(file, r#"          </ul>
-        </footer>
-"#)?;
-    }
+    let html = tera.render("post.html", &context)?;
 
-    write!(file, r#"        <footer class="backToTopFooter">
-          <hr aria-hidden="true" style="width: 100%; border: 0; border-top: 1px solid rgba(127,127,127,0.35); margin: 0.25rem 0;" />
-          <div id="backToTopContainer"></div>
-          <p>omnia mirari, gaudium explorandi .:.</p>
-        </footer>
-      </article>
-    </main>
-  </div>
-  <script>
-    window.__POST_DATA__ = {{
-      title: {},
-      titleId: {},
-      hasTableOfContents: {}
-    }};
-  </script>
-  <script src="/js/theme.js" defer></script>
-  <script src="/js/post.js" defer></script>
-  <script src="/js/prefetch.js" defer></script>
-  <script>{}</script>
-</body>
-</html>"#, serde_json::to_string(&post.title)?, serde_json::to_string(&title_id)?,
-    has_toc, get_posthog_script())?;
+    let mut file = BufWriter::new(File::create(out_dir.join(format!("{}.html", post.id)))?);
+    write!(file, "{}", html)?;
 
     Ok(())
 }
@@ -625,7 +578,20 @@ fn read_inline_css() -> Result<String> {
         .replace_all(&layout, "$1")
         .to_string();
 
-    Ok(format!("{}{}{}", global, layout, utils))
+    let combined = format!("{}{}{}", global, layout, utils);
+
+    // Minify the CSS
+    let stylesheet = StyleSheet::parse(
+        &combined,
+        ParserOptions::default(),
+    ).map_err(|e| anyhow::anyhow!("CSS parse error: {:?}", e))?;
+
+    let minified = stylesheet.to_css(PrinterOptions {
+        minify: true,
+        ..Default::default()
+    }).map_err(|e| anyhow::anyhow!("CSS minify error: {:?}", e))?;
+
+    Ok(minified.code)
 }
 
 fn copy_static_assets(out_dir: &Path) -> Result<()> {
@@ -699,191 +665,6 @@ fn copy_dir_recursive(src: &Path, dest: &Path) -> Result<()> {
         }
     }
     Ok(())
-}
-
-fn get_theme_init_script() -> &'static str {
-    r#"(function() {
-  try {
-    var storedTheme = document.cookie
-      .split('; ')
-      .find(function(row) { return row.startsWith('theme='); });
-
-    var theme = storedTheme ? storedTheme.split('=')[1] :
-      (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
-
-    var style = document.createElement('style');
-    style.innerHTML = theme === 'light'
-      ? 'body{background-color:#f0f0f0!important;color:#111!important}'
-      : 'body{background-color:#000!important;color:#fff!important}';
-    document.head.appendChild(style);
-
-    if (theme === 'light') {
-      document.documentElement.classList.add('light-theme-pending');
-    }
-  } catch (e) {}
-})();"#
-}
-
-fn get_theme_body_script() -> &'static str {
-    r#"(function() {
-  try {
-    if (document.documentElement.classList.contains('light-theme-pending')) {
-      document.documentElement.classList.remove('light-theme-pending');
-      document.body.classList.add('light-theme');
-    }
-  } catch (e) {}
-})();"#
-}
-
-fn get_search_script() -> &'static str {
-    r#"(function() {
-      let searchScriptLoaded = false;
-      let searchInitialized = false;
-
-      function initInlineSearch() {
-        const container = document.getElementById('searchContainerEl');
-        const wrapper = document.getElementById('searchTagsWrapper');
-        if (!container || !wrapper || searchInitialized) return;
-
-        searchInitialized = true;
-
-        container.classList.remove('collapsed');
-        container.classList.add('expanded');
-        container.innerHTML = `
-          <div class="searchInputWrapper" style="--wrapper-width: ${wrapper.offsetWidth}px">
-            <svg class="searchIcon" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <circle cx="11" cy="11" r="6" />
-              <line x1="19.59" y1="19.59" x2="15.24" y2="15.24" />
-            </svg>
-            <input id="searchInput" type="text" class="searchInput" placeholder="Search posts..." />
-            <button class="clearButton" id="clearSearchBtn" aria-label="Clear search" style="display: none;">×</button>
-          </div>
-        `;
-
-        wrapper.classList.add('searchExpanded');
-        const tagsContainer = document.getElementById('tagsContainer');
-        if (tagsContainer) tagsContainer.classList.add('tagsHidden');
-
-        const input = document.getElementById('searchInput');
-        const clearBtn = document.getElementById('clearSearchBtn');
-
-        if (input) {
-          input.focus();
-          requestAnimationFrame(() => input.focus());
-
-          input.addEventListener('input', function(e) {
-            const query = e.target.value;
-            const lowerQuery = query.toLowerCase();
-            if (clearBtn) clearBtn.style.display = query ? 'flex' : 'none';
-
-            const postList = document.getElementById('postList');
-            if (!postList) return;
-
-            Array.from(postList.children).forEach(post => {
-              const link = post.querySelector('a');
-              if (!link) return;
-
-              const title = link.textContent || '';
-              const tagsAttr = post.getAttribute('data-tags');
-              const tags = tagsAttr ? JSON.parse(tagsAttr) : [];
-
-              const titleMatches = title.toLowerCase().includes(lowerQuery);
-              const tagMatches = tags.some(tag => tag.toLowerCase().includes(lowerQuery));
-
-              if (!query || titleMatches || tagMatches) {
-                post.style.display = '';
-
-                if (query && titleMatches) {
-                  const index = title.toLowerCase().indexOf(lowerQuery);
-                  const before = title.slice(0, index);
-                  const match = title.slice(index, index + query.length);
-                  const after = title.slice(index + query.length);
-
-                  const escapeHtml = (text) => {
-                    const div = document.createElement('div');
-                    div.textContent = text;
-                    return div.innerHTML;
-                  };
-
-                  link.innerHTML = `${escapeHtml(before)}<mark style="background-color: var(--primary-color); color: var(--color-background); padding: 2px 4px; border-radius: 3px;">${escapeHtml(match)}</mark>${escapeHtml(after)}`;
-                } else {
-                  link.textContent = title;
-                }
-              } else {
-                post.style.display = 'none';
-              }
-            });
-          });
-
-          if (clearBtn) {
-            clearBtn.addEventListener('mousedown', function(e) {
-              e.preventDefault();
-              input.value = '';
-              clearBtn.style.display = 'none';
-              const postList = document.getElementById('postList');
-              if (postList) {
-                Array.from(postList.children).forEach(post => post.style.display = '');
-              }
-              setTimeout(() => input.focus(), 0);
-            });
-          }
-
-          if (!searchScriptLoaded) {
-            searchScriptLoaded = true;
-            window.__searchInputValue = input.value || '';
-            const script = document.createElement('script');
-            script.src = '/js/search.js';
-            document.head.appendChild(script);
-          }
-        }
-      }
-
-      function setupSearchButton() {
-        const container = document.getElementById('searchContainer');
-        if (!container) return;
-
-        container.innerHTML = `
-          <div class="searchContainer collapsed" id="searchContainerEl">
-            <button class="searchIconButton" id="searchIconBtn" aria-label="Open search">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="11" cy="11" r="6" />
-                <line x1="19.59" y1="19.59" x2="15.24" y2="15.24" />
-              </svg>
-            </button>
-          </div>
-        `;
-
-        document.getElementById('searchIconBtn').addEventListener('click', function(e) {
-          e.preventDefault();
-          initInlineSearch();
-        });
-      }
-
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', setupSearchButton);
-      } else {
-        setupSearchButton();
-      }
-    })();"#
-}
-
-fn get_posthog_script() -> &'static str {
-    r#"(function() {
-  if (typeof window === 'undefined') return;
-
-  var script = document.createElement('script');
-  script.src = '/js/posthog-lite.js';
-  script.onload = function() {
-    if (window.PostHogLite) {
-      window.posthog = new window.PostHogLite('phc_9XPlyPALuefIMAMSfsvBk4jVuSelJyjl7xwhXigkHAP', {
-        host: 'https://us.i.posthog.com',
-        person_profiles: 'identified_only',
-        capturePageview: true
-      });
-    }
-  };
-  document.head.appendChild(script);
-})();"#
 }
 
 // ============================================================================
@@ -1012,14 +793,17 @@ fn minify_js_file(path: &Path) -> Result<()> {
         &mut output,
     ).map_err(|e| anyhow::anyhow!("JS minify error: {:?}", e))?;
 
-    let minified = String::from_utf8(output)
+    let mut minified = String::from_utf8(output)
         .unwrap_or_else(|_| js.clone());
 
-    // Only write if smaller or same size
-    if minified.len() <= js.len() {
-        fs::write(path, minified)?;
-    }
+    // Fix minify-js bug: it over-escapes newlines in string literals
+    // Replace `\\n` with `\n` in string contexts
+    // This is a workaround for: split('\\n') -> split('\n')
+    minified = minified.replace(r#"split(`\\n`)"#, r#"split(`\n`)"#);
+    minified = minified.replace(r#"split('\\n')"#, r#"split('\n')"#);
+    minified = minified.replace(r#"split("\\n")"#, r#"split("\n")"#);
 
+    fs::write(path, minified.as_bytes())?;
     Ok(())
 }
 
@@ -1027,6 +811,9 @@ fn minify_html_file(path: &Path) -> Result<()> {
     let html = fs::read(path)?;
 
     let cfg = Cfg {
+        do_not_minify_doctype: true,
+        ensure_spec_compliant_unquoted_attribute_values: true,
+        keep_html_and_head_opening_tags: true,
         minify_css: false,  // Don't minify CSS inside HTML - lightningcss already did it
         minify_js: true,
         ..Default::default()
@@ -1097,7 +884,10 @@ fn generate_rss(out_dir: &Path, posts: &Arc<Vec<Post>>) -> Result<()> {
             .unwrap_or_default();
 
         // Extract content from markdown-content div
-        let content = extract_content_from_html(&html_content);
+        let mut content = extract_content_from_html(&html_content);
+
+        // Clean up content for RSS (remove syntax highlighting spans)
+        content = clean_content_for_rss(&content);
 
         // Write content
         write!(file, "      <content:encoded><![CDATA[{}]]></content:encoded>\n    </item>\n", content)?;
@@ -1109,36 +899,60 @@ fn generate_rss(out_dir: &Path, posts: &Arc<Vec<Post>>) -> Result<()> {
 }
 
 fn extract_content_from_html(html: &str) -> String {
-    // Find the start of markdown-content div
-    if let Some(start_idx) = html.find("<div class=markdown-content") {
-        // Find the end of the opening tag
-        if let Some(content_start) = html[start_idx..].find('>') {
-            let content_start = start_idx + content_start + 1;
+    // Find the markdown-content div (class can be anywhere in the tag)
+    let re = Regex::new(r#"<div[^>]*\bclass=["']?markdown-content["']?[^>]*>"#).unwrap();
 
-            // Find the matching closing </div> before <footer
-            // We need to count div depth
-            let mut depth = 1;
-            let mut pos = content_start;
-            let bytes = html.as_bytes();
+    if let Some(mat) = re.find(html) {
+        let content_start = mat.end();
 
-            while pos < bytes.len() && depth > 0 {
-                if pos + 5 < bytes.len() && &bytes[pos..pos+5] == b"<div " || &bytes[pos..pos+4] == b"<div>" {
-                    depth += 1;
-                    pos += 1;
-                } else if pos + 6 < bytes.len() && &bytes[pos..pos+6] == b"</div>" {
-                    depth -= 1;
-                    if depth == 0 {
-                        return html[content_start..pos].to_string();
-                    }
-                    pos += 6;
-                } else {
-                    pos += 1;
+        // Find the matching closing </div> before <footer
+        // We need to count div depth
+        let mut depth = 1;
+        let mut pos = content_start;
+        let bytes = html.as_bytes();
+
+        while pos < bytes.len() && depth > 0 {
+            if pos + 5 <= bytes.len() && &bytes[pos..pos+5] == b"<div " {
+                depth += 1;
+                pos += 5;
+            } else if pos + 4 <= bytes.len() && &bytes[pos..pos+4] == b"<div>" {
+                depth += 1;
+                pos += 4;
+            } else if pos + 6 <= bytes.len() && &bytes[pos..pos+6] == b"</div>" {
+                depth -= 1;
+                if depth == 0 {
+                    return html[content_start..pos].to_string();
                 }
+                pos += 6;
+            } else {
+                pos += 1;
             }
         }
     }
 
     String::new()
+}
+
+fn clean_content_for_rss(html: &str) -> String {
+    let mut result = html.to_string();
+
+    // Remove all <span class="token ..."> tags but keep their text content
+    let span_re = Regex::new(r#"<span[^>]*class="token[^"]*"[^>]*>"#).unwrap();
+    result = span_re.replace_all(&result, "").to_string();
+
+    // Remove closing </span> tags
+    result = result.replace("</span>", "");
+
+    // Replace remark-highlight divs with just the code block
+    // Match: <div class="remark-highlight"><pre class="language-X"><code class="language-X">
+    // Replace with: <pre><code>
+    let remark_re = Regex::new(r#"<div class="remark-highlight"><pre class="language-[^"]*"><code class="language-[^"]*">"#).unwrap();
+    result = remark_re.replace_all(&result, "<pre><code>").to_string();
+
+    // Close the remark-highlight div properly: </code></pre></div>
+    result = result.replace("</code></pre></div>", "</code></pre>");
+
+    result
 }
 
 fn escape_xml(s: &str) -> String {

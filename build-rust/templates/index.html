@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sean's Blog</title>
+  <meta name="description" content="Another place for thought infusion">
+  <meta property="og:image" content="https://seanpedersen.github.io/images/sierpinski-twitter-square.png">
+  <meta name="og:title" content="Sean's Blog">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://seanpedersen.github.io/images/sierpinski-twitter-square.png">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="alternate" type="application/rss+xml" href="/rss.xml" title="RSS Feed">
+  <style>{{ css | safe }}</style>
+  <script>
+    (function() {
+      try {
+        var storedTheme = document.cookie
+          .split('; ')
+          .find(function(row) { return row.startsWith('theme='); });
+
+        var theme = storedTheme ? storedTheme.split('=')[1] :
+          (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+
+        var style = document.createElement('style');
+        style.innerHTML = theme === 'light'
+          ? 'body{background-color:#f0f0f0!important;color:#111!important}'
+          : 'body{background-color:#000!important;color:#fff!important}';
+        document.head.appendChild(style);
+
+        if (theme === 'light') {
+          document.documentElement.classList.add('light-theme-pending');
+        }
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+  <script>
+    (function() {
+      try {
+        if (document.documentElement.classList.contains('light-theme-pending')) {
+          document.documentElement.classList.remove('light-theme-pending');
+          document.body.classList.add('light-theme');
+        }
+      } catch (e) {}
+    })();
+  </script>
+  <div class="flexer">
+    <div class="container">
+      <header class="header">
+        <div class="headerContainer">
+          <div class="speechBubble">
+            Building <a href="https://solo.digger.lol/" target="_blank" rel="noopener noreferrer">Digger Solo</a>
+          </div>
+          <div class="profileContainer">
+            <img
+              src="/images/profile.webp"
+              class="headerHomeImage borderCircle"
+              alt="Sean Pedersen"
+              decoding="async"
+              fetchpriority="high"
+            />
+            <div style="display: flex; flex-direction: column; align-items: flex-start;">
+              <h1 class="heading2Xl nameBreak">
+                <span>Sean</span>
+                <span>Pedersen</span>
+              </h1>
+              <div class="linkRow">
+                <a href="/rss.xml" class="iconLink" aria-label="RSS" title="RSS Feed">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M5 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"></path><path d="M4 4a16 16 0 0 1 16 16"></path><path d="M4 11a9 9 0 0 1 9 9"></path></svg>
+                </a>
+                <div class="socialLinks">
+                  <a href="https://github.com/SeanPedersen" class="iconLink" aria-label="GitHub" title="GitHub" target="_blank" rel="noreferrer noopener">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5"></path></svg>
+                  </a>
+                  <a href="https://x.com/SeanPedersen96" class="iconLink" aria-label="X (Twitter)" title="X (Twitter)" target="_blank" rel="noreferrer noopener">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M4 4l11.733 16h4.267l-11.733 -16z"></path><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"></path></svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+      <main class="main homePage">
+        <section class="headingMd">
+          <p>Machine Learning / Data Privacy / Cybernetics / Memetics</p>
+        </section>
+        <section class="headingMd padding1px">
+          <div class="searchTagsWrapper" id="searchTagsWrapper">
+            <div id="searchContainer"></div>
+            <div class="tagsContainer" id="tagsContainer">
+              <span class="tag tagSelected" data-tag="">All</span>
+              {% for tag in tags %}
+              <span class="tag" data-tag="{{ tag }}">{{ tag }}</span>
+              {% endfor %}
+            </div>
+          </div>
+          <ul class="list" id="postList">
+            {% for post in posts %}
+            <li class="listItem" data-id="{{ post.id }}" data-tags="{{ post.tags_json }}">
+              <a href="/posts/{{ post.id }}.html">{{ post.title }}</a>
+              {% if post.tags %}
+              <small class="lightText post-tags-container">
+                •<span class="postTags">
+                  {%- for tag in post.tags -%}
+                  <span><a href="#{{ tag }}" onclick="return false;">{{ tag }}</a>{% if not loop.last %}, {% endif %}</span>
+                  {%- endfor -%}
+                </span>
+              </small>
+              {% endif %}
+            </li>
+            {% endfor %}
+          </ul>
+        </section>
+      </main>
+    </div>
+    <footer class="footer">
+      <p>Copy©at ᓚᘏᗢ {{ year }} | All lights served .:.</p>
+    </footer>
+    <button id="themeToggle" class="themeToggleButton" aria-label="Toggle theme" title="Toggle theme">
+      <svg id="themeIcon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+      </svg>
+    </button>
+  </div>
+  <script src="/js/theme.js" defer></script>
+  <script>
+    (function() {
+      let searchScriptLoaded = false;
+      let searchInitialized = false;
+
+      function initInlineSearch() {
+        const container = document.getElementById('searchContainerEl');
+        const wrapper = document.getElementById('searchTagsWrapper');
+        if (!container || !wrapper || searchInitialized) return;
+
+        searchInitialized = true;
+
+        container.classList.remove('collapsed');
+        container.classList.add('expanded');
+        container.innerHTML = `
+          <div class="searchInputWrapper" style="--wrapper-width: ${wrapper.offsetWidth}px">
+            <svg class="searchIcon" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="6" />
+              <line x1="19.59" y1="19.59" x2="15.24" y2="15.24" />
+            </svg>
+            <input id="searchInput" type="text" class="searchInput" placeholder="Search posts..." />
+            <button class="clearButton" id="clearSearchBtn" aria-label="Clear search" style="display: none;">×</button>
+          </div>
+        `;
+
+        wrapper.classList.add('searchExpanded');
+        const tagsContainer = document.getElementById('tagsContainer');
+        if (tagsContainer) tagsContainer.classList.add('tagsHidden');
+
+        const input = document.getElementById('searchInput');
+        const clearBtn = document.getElementById('clearSearchBtn');
+
+        if (input) {
+          input.focus();
+          requestAnimationFrame(() => input.focus());
+
+          input.addEventListener('input', function(e) {
+            const query = e.target.value;
+            const lowerQuery = query.toLowerCase();
+            if (clearBtn) clearBtn.style.display = query ? 'flex' : 'none';
+
+            const postList = document.getElementById('postList');
+            if (!postList) return;
+
+            Array.from(postList.children).forEach(post => {
+              const link = post.querySelector('a');
+              if (!link) return;
+
+              const title = link.textContent || '';
+              const tagsAttr = post.getAttribute('data-tags');
+              const tags = tagsAttr ? JSON.parse(tagsAttr) : [];
+
+              const titleMatches = title.toLowerCase().includes(lowerQuery);
+              const tagMatches = tags.some(tag => tag.toLowerCase().includes(lowerQuery));
+
+              if (!query || titleMatches || tagMatches) {
+                post.style.display = '';
+
+                if (query && titleMatches) {
+                  const index = title.toLowerCase().indexOf(lowerQuery);
+                  const before = title.slice(0, index);
+                  const match = title.slice(index, index + query.length);
+                  const after = title.slice(index + query.length);
+
+                  const escapeHtml = (text) => {
+                    const div = document.createElement('div');
+                    div.textContent = text;
+                    return div.innerHTML;
+                  };
+
+                  link.innerHTML = `${escapeHtml(before)}<mark style="background-color: var(--primary-color); color: var(--color-background); padding: 2px 4px; border-radius: 3px;">${escapeHtml(match)}</mark>${escapeHtml(after)}`;
+                } else {
+                  link.textContent = title;
+                }
+              } else {
+                post.style.display = 'none';
+              }
+            });
+          });
+
+          if (clearBtn) {
+            clearBtn.addEventListener('mousedown', function(e) {
+              e.preventDefault();
+              input.value = '';
+              clearBtn.style.display = 'none';
+              const postList = document.getElementById('postList');
+              if (postList) {
+                Array.from(postList.children).forEach(post => post.style.display = '');
+              }
+              setTimeout(() => input.focus(), 0);
+            });
+          }
+
+          if (!searchScriptLoaded) {
+            searchScriptLoaded = true;
+            window.__searchInputValue = input.value || '';
+            const script = document.createElement('script');
+            script.src = '/js/search.js';
+            document.head.appendChild(script);
+          }
+        }
+      }
+
+      function setupSearchButton() {
+        const container = document.getElementById('searchContainer');
+        if (!container) return;
+
+        container.innerHTML = `
+          <div class="searchContainer collapsed" id="searchContainerEl">
+            <button class="searchIconButton" id="searchIconBtn" aria-label="Open search">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="6" />
+                <line x1="19.59" y1="19.59" x2="15.24" y2="15.24" />
+              </svg>
+            </button>
+          </div>
+        `;
+
+        document.getElementById('searchIconBtn').addEventListener('click', function(e) {
+          e.preventDefault();
+          initInlineSearch();
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupSearchButton);
+      } else {
+        setupSearchButton();
+      }
+    })();
+  </script>
+  <script src="/js/tags.js" defer></script>
+  <script src="/js/prefetch.js" defer></script>
+  <script>
+    (function() {
+      if (typeof window === 'undefined') return;
+
+      var script = document.createElement('script');
+      script.src = '/js/posthog-lite.js';
+      script.onload = function() {
+        if (window.PostHogLite) {
+          window.posthog = new window.PostHogLite('phc_9XPlyPALuefIMAMSfsvBk4jVuSelJyjl7xwhXigkHAP', {
+            host: 'https://us.i.posthog.com',
+            person_profiles: 'identified_only',
+            capturePageview: true
+          });
+        }
+      };
+      document.head.appendChild(script);
+    })();
+  </script>
+</body>
+</html>
