@@ -56,7 +56,7 @@ jobs:
         run: cargo build --release
 
       - name: Build static site 🏗️
-        run: npm run build
+        run: ./target/release/blog-builder
 
       - name: Upload artifact 📡
         uses: actions/upload-pages-artifact@v3
