@@ -35,9 +35,18 @@ jobs:
             ~/.cargo/registry/cache/
             ~/.cargo/git/db/
             target/
-          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+          key: ${{ runner.os }}-cargo-deps-${{ hashFiles('**/Cargo.lock') }}
           restore-keys: |
-            ${{ runner.os }}-cargo-
+            ${{ runner.os }}-cargo-deps-
+
+      - name: Cache Rust binary 📦
+        id: cache-rust-binary
+        uses: actions/cache@v4
+        with:
+          path: target/release/blog-builder
+          key: ${{ runner.os }}-rust-binary-${{ hashFiles('src/**/*.rs', 'Cargo.toml', 'Cargo.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-rust-binary-
 
       - name: Setup Node.js ⚙️ - Cache dependencies ⚡ - Install dependencies 🔧
         uses: ./.github/workflows/setup-node
@@ -46,6 +55,7 @@ jobs:
         uses: actions/configure-pages@v4
 
       - name: Build Rust blog builder 🔨
+        if: steps.cache-rust-binary.outputs.cache-hit != 'true'
         run: cargo build --release
 
       - name: Build static site 🏗️
