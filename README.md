@@ -23,5 +23,5 @@ Just clone this repo, create a new github project named $your_username.github.io
 
 - [Install Rust](https://rust-lang.org/tools/install/)
 - Compile: `cargo build --release`
-- Build: `./build-fast.sh` (generates `out/` directory)
+- Build: `./target/release/blog-builder` (generates `out/` directory)
 - Serve locally: `python3 -m http.server -d out` (http://localhost:8000)
