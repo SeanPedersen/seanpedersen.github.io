@@ -38,6 +38,7 @@ Bad UI:
 - Confirmation dialogs for every minor action
 - Non-descriptive error messages
 - Disabling zoom on mobile
+- Missing auto-focus of text input (seach bars etc.)
 - Low contrast text (poor accessibility)
 
 ## References
