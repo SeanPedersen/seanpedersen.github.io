@@ -21,12 +21,23 @@ jobs:
       - name: Checkout 🛎️
         uses: actions/checkout@v4
 
+      - name: Cache Rust binary 📦
+        id: cache-rust-binary
+        uses: actions/cache@v4
+        with:
+          path: target/release/blog-builder
+          key: ${{ runner.os }}-rust-binary-${{ hashFiles('src/**/*.rs', 'Cargo.toml', 'Cargo.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-rust-binary-
+
       - name: Setup Rust 🦀
+        if: steps.cache-rust-binary.outputs.cache-hit != 'true'
         uses: actions-rust-lang/setup-rust-toolchain@v1
         with:
           toolchain: stable
 
       - name: Cache Rust dependencies ⚡
+        if: steps.cache-rust-binary.outputs.cache-hit != 'true'
         uses: actions/cache@v4
         with:
           path: |
@@ -38,15 +49,6 @@ jobs:
           key: ${{ runner.os }}-cargo-deps-${{ hashFiles('**/Cargo.lock') }}
           restore-keys: |
             ${{ runner.os }}-cargo-deps-
-
-      - name: Cache Rust binary 📦
-        id: cache-rust-binary
-        uses: actions/cache@v4
-        with:
-          path: target/release/blog-builder
-          key: ${{ runner.os }}-rust-binary-${{ hashFiles('src/**/*.rs', 'Cargo.toml', 'Cargo.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-rust-binary-
 
       - name: Setup Pages ⚙️
         uses: actions/configure-pages@v4
