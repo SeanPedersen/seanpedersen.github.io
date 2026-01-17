@@ -49,6 +49,15 @@
         if (document.documentElement.classList.contains('light-theme-pending')) {
           document.documentElement.classList.remove('light-theme-pending');
           document.body.classList.add('light-theme');
+
+          // Remove the anti-flicker inline style
+          const inlineStyles = document.head.querySelectorAll('style');
+          inlineStyles.forEach(style => {
+            const content = style.textContent || style.innerHTML;
+            if (content && content.length < 200 && content.includes('!important') && content.includes('body{')) {
+              style.remove();
+            }
+          });
         }
       } catch (e) {}
     })();

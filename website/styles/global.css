@@ -217,6 +217,13 @@ img {
   scroll-margin-top: 1rem;
 }
 
+/* Add spacing before tables when they follow headings */
+.markdown-content h2 + table,
+.markdown-content h2 + .table-wrapper,
+.markdown-content h2 + * > table {
+  margin-top: 1rem;
+}
+
 /* Ensure all elements with IDs have proper scroll margin for anchor links */
 [id] {
   scroll-margin-top: 1rem;
@@ -244,6 +251,10 @@ img {
 .markdown-content table th {
   background-color: var(--tag-bg);
   font-weight: bold;
+}
+
+.markdown-content table td {
+  font-weight: normal;
 }
 
 /* Mobile-specific table scrolling */

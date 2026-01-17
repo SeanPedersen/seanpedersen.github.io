@@ -20,10 +20,16 @@
 
   // Apply theme to document
   function applyTheme(theme) {
-    // Remove the inline style injected for anti-flicker
-    const inlineStyles = document.head.querySelectorAll('style');
+    // Remove ALL inline style tags that look like anti-flicker styles
+    // These have body{background-color with !important
+    const inlineStyles = Array.from(document.head.querySelectorAll('style'));
     inlineStyles.forEach(style => {
-      if (style.innerHTML.includes('body{background-color:')) {
+      const content = style.textContent || style.innerHTML || '';
+      // Check if it's a short inline style with !important and body background
+      if (content.includes('!important') &&
+          content.includes('body{') &&
+          content.includes('background-color') &&
+          content.length < 300) {
         style.remove();
       }
     });

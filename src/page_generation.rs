@@ -153,6 +153,7 @@ fn markdown_to_html(markdown: &str, tags: &[String]) -> String {
     let mut in_code_block = false;
     let mut code_block_lang: Option<String> = None;
     let mut code_block_content = String::new();
+    let mut in_table_head = false;
 
     for event in parser {
         match event {
@@ -226,6 +227,32 @@ fn markdown_to_html(markdown: &str, tags: &[String]) -> String {
                 let mut escaped = String::new();
                 escape_html(&mut escaped, &code).unwrap();
                 html_output.push_str(&format!("<code>{}</code>", escaped));
+            }
+            Event::Start(Tag::TableHead) => {
+                in_table_head = true;
+                let mut temp = String::new();
+                html::push_html(&mut temp, std::iter::once(Event::Start(Tag::TableHead)));
+                html_output.push_str(&temp);
+            }
+            Event::End(TagEnd::TableHead) => {
+                in_table_head = false;
+                let mut temp = String::new();
+                html::push_html(&mut temp, std::iter::once(Event::End(TagEnd::TableHead)));
+                html_output.push_str(&temp);
+            }
+            Event::Start(Tag::TableCell) => {
+                if in_table_head {
+                    html_output.push_str("<th>");
+                } else {
+                    html_output.push_str("<td>");
+                }
+            }
+            Event::End(TagEnd::TableCell) => {
+                if in_table_head {
+                    html_output.push_str("</th>");
+                } else {
+                    html_output.push_str("</td>");
+                }
             }
             _ => {
                 // For all other events, use the default HTML rendering

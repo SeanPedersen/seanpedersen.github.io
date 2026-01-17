@@ -42,6 +42,15 @@
         if (document.documentElement.classList.contains('light-theme-pending')) {
           document.documentElement.classList.remove('light-theme-pending');
           document.body.classList.add('light-theme');
+
+          // Remove the anti-flicker inline style
+          const inlineStyles = document.head.querySelectorAll('style');
+          inlineStyles.forEach(style => {
+            const content = style.textContent || style.innerHTML;
+            if (content && content.length < 200 && content.includes('!important') && content.includes('body{')) {
+              style.remove();
+            }
+          });
         }
       } catch (e) {}
     })();
@@ -120,7 +129,7 @@
       <p>Copy©at ᓚᘏᗢ {{ year }} | All lights served .:.</p>
     </footer>
     <button id="themeToggle" class="themeToggleButton" aria-label="Toggle theme" title="Toggle theme">
-      <svg id="themeIcon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" strokeLinecap="round" strokeLinejoin="round">
+      <svg id="themeIcon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
       </svg>
     </button>
