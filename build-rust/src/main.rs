@@ -1,6 +1,6 @@
 use anyhow::{Context, Result};
 use chrono::{Datelike, NaiveDate};
-use pulldown_cmark::{html, Options, Parser, Event, Tag, TagEnd, CodeBlockKind};
+use pulldown_cmark::{html, CodeBlockKind, Event, Options, Parser, Tag, TagEnd};
 use pulldown_cmark_escape::escape_html;
 use rayon::prelude::*;
 use regex::Regex;
@@ -10,16 +10,16 @@ use std::collections::HashSet;
 use std::fs::{self, File};
 use std::io::{BufWriter, Write};
 use std::path::{Path, PathBuf};
-use std::sync::Arc;
 use std::sync::atomic::{AtomicUsize, Ordering};
+use std::sync::Arc;
 use std::time::Instant;
-use tera::Tera;
+use syntect::html::{ClassStyle, ClassedHTMLGenerator};
 use syntect::parsing::SyntaxSet;
-use syntect::html::{ClassedHTMLGenerator, ClassStyle};
+use tera::Tera;
 
 // Optimization imports
 use lightningcss::stylesheet::{ParserOptions, PrinterOptions, StyleSheet};
-use minify_html::{Cfg, minify};
+use minify_html::{minify, Cfg};
 use minify_js::minify as minify_js_code;
 use minify_js::{Session, TopLevelMode};
 
@@ -75,12 +75,15 @@ fn main() -> Result<()> {
 
     // Generate index page
     println!("Generating index page...");
-    let post_summaries: Vec<PostSummary> = posts.iter().map(|p| PostSummary {
-        id: p.id.clone(),
-        title: p.title.clone(),
-        date: p.date.clone(),
-        tags: p.tags.clone(),
-    }).collect();
+    let post_summaries: Vec<PostSummary> = posts
+        .iter()
+        .map(|p| PostSummary {
+            id: p.id.clone(),
+            title: p.title.clone(),
+            date: p.date.clone(),
+            tags: p.tags.clone(),
+        })
+        .collect();
 
     generate_index_page(&out_dir, &post_summaries, &all_tags)?;
     println!("✓ Generated index.html\n");
@@ -110,7 +113,10 @@ fn main() -> Result<()> {
     })?;
 
     let posts_duration = start_posts.elapsed().as_secs_f64();
-    println!("✓ Generated {} post pages in {:.2}s\n", total_posts, posts_duration);
+    println!(
+        "✓ Generated {} post pages in {:.2}s\n",
+        total_posts, posts_duration
+    );
 
     // Copy static assets
     println!("Copying static assets...");
@@ -144,10 +150,9 @@ fn read_all_posts(posts_dir: &Path) -> Result<Vec<Post>> {
         .filter(|e| e.path().extension().and_then(|s| s.to_str()) == Some("md"))
         .collect();
 
-    let posts: Vec<Post> = entries.par_iter()
-        .filter_map(|entry| {
-            read_post(&entry.path()).ok().flatten()
-        })
+    let posts: Vec<Post> = entries
+        .par_iter()
+        .filter_map(|entry| read_post(&entry.path()).ok().flatten())
         .collect();
 
     Ok(posts)
@@ -155,7 +160,8 @@ fn read_all_posts(posts_dir: &Path) -> Result<Vec<Post>> {
 
 fn read_post(path: &Path) -> Result<Option<Post>> {
     let content = fs::read_to_string(path)?;
-    let id = path.file_stem()
+    let id = path
+        .file_stem()
         .and_then(|s| s.to_str())
         .context("Invalid filename")?
         .to_string();
@@ -213,7 +219,8 @@ fn extract_tags(content: &str) -> Vec<String> {
     let lines: Vec<&str> = content.lines().filter(|l| !l.trim().is_empty()).collect();
     if let Some(last_line) = lines.last() {
         let re = Regex::new(r"#([a-zA-Z0-9_-]+)").unwrap();
-        return re.captures_iter(last_line)
+        return re
+            .captures_iter(last_line)
             .map(|cap| cap[1].to_string())
             .collect();
     }
@@ -224,7 +231,8 @@ fn remove_first_h1(markdown: &str) -> String {
     let lines: Vec<&str> = markdown.lines().collect();
     let mut found_h1 = false;
 
-    lines.into_iter()
+    lines
+        .into_iter()
         .filter(|line| {
             if !found_h1 && line.starts_with("# ") {
                 found_h1 = true;
@@ -272,13 +280,14 @@ fn markdown_to_html(markdown: &str, tags: &[String]) -> String {
                             let mut html_generator = ClassedHTMLGenerator::new_with_class_style(
                                 syntax,
                                 &syntax_set,
-                                ClassStyle::Spaced
+                                ClassStyle::Spaced,
                             );
 
                             // Split by lines and add newlines back for syntect
                             for line in code_block_content.lines() {
                                 let line_with_newline = format!("{}\n", line);
-                                let _ = html_generator.parse_html_for_line_which_includes_newline(&line_with_newline);
+                                let _ = html_generator
+                                    .parse_html_for_line_which_includes_newline(&line_with_newline);
                             }
 
                             let highlighted = html_generator.finalize();
@@ -390,7 +399,8 @@ fn add_heading_ids(html: &str) -> String {
         let level = &caps[1];
         let content = &caps[2];
         let plain_text = strip_html_tags(content);
-        let id = plain_text.to_lowercase()
+        let id = plain_text
+            .to_lowercase()
             .chars()
             .map(|c| if c.is_alphanumeric() { c } else { '-' })
             .collect::<String>()
@@ -399,7 +409,8 @@ fn add_heading_ids(html: &str) -> String {
             .collect::<Vec<_>>()
             .join("-");
         format!(r#"<h{} id="{}">{}</h{}>"#, level, id, content, level)
-    }).to_string()
+    })
+    .to_string()
 }
 
 fn strip_html_tags(html: &str) -> String {
@@ -412,7 +423,8 @@ fn convert_hashtags_to_links(html: &str, tags: &[String]) -> String {
         return html.to_string();
     }
 
-    let tag_pattern = tags.iter()
+    let tag_pattern = tags
+        .iter()
         .map(|tag| format!("#{}", regex::escape(tag)))
         .collect::<Vec<_>>()
         .join("|");
@@ -424,10 +436,15 @@ fn convert_hashtags_to_links(html: &str, tags: &[String]) -> String {
         let hashtag_re = Regex::new(r"#([a-zA-Z0-9_-]+)").unwrap();
         let links = hashtag_re.replace_all(hashtags_text, |c: &regex::Captures| {
             let tag = &c[1];
-            format!(r#"<a href="/index.html#{}">{}</a>"#, tag, format!("#{}", tag))
+            format!(
+                r#"<a href="/index.html#{}">{}</a>"#,
+                tag,
+                format!("#{}", tag)
+            )
         });
         format!(r#"<p class="post-hashtags">{}</p>"#, links)
-    }).to_string()
+    })
+    .to_string()
 }
 
 fn extract_all_tags(posts: &[Post]) -> Vec<String> {
@@ -442,13 +459,19 @@ fn extract_all_tags(posts: &[Post]) -> Vec<String> {
     tags
 }
 
-fn get_related_posts(all_posts: &[Post], current_id: &str, tags: &[String], limit: usize) -> Vec<PostSummary> {
+fn get_related_posts(
+    all_posts: &[Post],
+    current_id: &str,
+    tags: &[String],
+    limit: usize,
+) -> Vec<PostSummary> {
     if tags.is_empty() {
         return Vec::new();
     }
 
     let first_tag = &tags[0];
-    let mut related: Vec<_> = all_posts.iter()
+    let mut related: Vec<_> = all_posts
+        .iter()
         .filter(|p| p.id != current_id && p.tags.contains(first_tag))
         .take(10)
         .map(|p| PostSummary {
@@ -487,14 +510,17 @@ fn generate_index_page(out_dir: &Path, posts: &[PostSummary], tags: &[String]) -
     let year = chrono::Local::now().year();
 
     // Prepare posts data with tags_json
-    let posts_data: Vec<serde_json::Value> = posts.iter().map(|post| {
-        json!({
-            "id": post.id,
-            "title": post.title,
-            "tags": post.tags,
-            "tags_json": serde_json::to_string(&post.tags).unwrap_or_default(),
+    let posts_data: Vec<serde_json::Value> = posts
+        .iter()
+        .map(|post| {
+            json!({
+                "id": post.id,
+                "title": post.title,
+                "tags": post.tags,
+                "tags_json": serde_json::to_string(&post.tags).unwrap_or_default(),
+            })
         })
-    }).collect();
+        .collect();
 
     let mut context = tera::Context::new();
     context.insert("css", &css);
@@ -521,7 +547,9 @@ fn generate_post_page(out_dir: &Path, post: &Post, related: &[PostSummary]) -> R
         .take(160)
         .collect::<String>();
 
-    let title_id = post.title.to_lowercase()
+    let title_id = post
+        .title
+        .to_lowercase()
         .chars()
         .map(|c| if c.is_alphanumeric() { c } else { '-' })
         .collect::<String>()
@@ -530,20 +558,23 @@ fn generate_post_page(out_dir: &Path, post: &Post, related: &[PostSummary]) -> R
         .collect::<Vec<_>>()
         .join("-");
 
-    let has_toc = post.content_html.contains("<h1") ||
-                  post.content_html.contains("<h2") ||
-                  post.content_html.contains("<h3");
+    let has_toc = post.content_html.contains("<h1")
+        || post.content_html.contains("<h2")
+        || post.content_html.contains("<h3");
 
     let keywords = post.tags.join(", ");
 
     // Prepare related posts data
-    let related_data: Vec<serde_json::Value> = related.iter().map(|rel| {
-        json!({
-            "id": rel.id,
-            "title": rel.title,
-            "formatted_date": format_date(&rel.date),
+    let related_data: Vec<serde_json::Value> = related
+        .iter()
+        .map(|rel| {
+            json!({
+                "id": rel.id,
+                "title": rel.title,
+                "formatted_date": format_date(&rel.date),
+            })
         })
-    }).collect();
+        .collect();
 
     let mut context = tera::Context::new();
     context.insert("post_title", &post.title);
@@ -574,22 +605,23 @@ fn read_inline_css() -> Result<String> {
     let layout = fs::read_to_string("styles/layout.module.css")?;
 
     // Remove :global() wrappers more carefully
-    let layout = Regex::new(r":global\(([^)]+)\)").unwrap()
+    let layout = Regex::new(r":global\(([^)]+)\)")
+        .unwrap()
         .replace_all(&layout, "$1")
         .to_string();
 
     let combined = format!("{}{}{}", global, layout, utils);
 
     // Minify the CSS
-    let stylesheet = StyleSheet::parse(
-        &combined,
-        ParserOptions::default(),
-    ).map_err(|e| anyhow::anyhow!("CSS parse error: {:?}", e))?;
+    let stylesheet = StyleSheet::parse(&combined, ParserOptions::default())
+        .map_err(|e| anyhow::anyhow!("CSS parse error: {:?}", e))?;
 
-    let minified = stylesheet.to_css(PrinterOptions {
-        minify: true,
-        ..Default::default()
-    }).map_err(|e| anyhow::anyhow!("CSS minify error: {:?}", e))?;
+    let minified = stylesheet
+        .to_css(PrinterOptions {
+            minify: true,
+            ..Default::default()
+        })
+        .map_err(|e| anyhow::anyhow!("CSS minify error: {:?}", e))?;
 
     Ok(minified.code)
 }
@@ -617,14 +649,18 @@ fn copy_static_assets(out_dir: &Path) -> Result<()> {
     fs::copy("styles/global.css", styles_out.join("global.css"))?;
     println!("  ✓ Copied global.css");
 
-    fs::copy("node_modules/prismjs/themes/prism-tomorrow.css", styles_out.join("prism-tomorrow.css"))?;
+    fs::copy(
+        "node_modules/prismjs/themes/prism-tomorrow.css",
+        styles_out.join("prism-tomorrow.css"),
+    )?;
     println!("  ✓ Copied prism-tomorrow.css");
 
     fs::copy("styles/utils.module.css", styles_out.join("utils.css"))?;
     println!("  ✓ Copied utils.css");
 
     let layout_css = fs::read_to_string("styles/layout.module.css")?;
-    let layout_css = Regex::new(r":global\(([^)]+)\)").unwrap()
+    let layout_css = Regex::new(r":global\(([^)]+)\)")
+        .unwrap()
         .replace_all(&layout_css, "$1")
         .to_string();
     fs::write(styles_out.join("layout.css"), &layout_css)?;
@@ -678,7 +714,13 @@ fn optimize_assets(out_dir: &Path) -> Result<()> {
     let mut html_files = Vec::new();
     let mut image_files = Vec::new();
 
-    collect_files(out_dir, &mut css_files, &mut js_files, &mut html_files, &mut image_files)?;
+    collect_files(
+        out_dir,
+        &mut css_files,
+        &mut js_files,
+        &mut html_files,
+        &mut image_files,
+    )?;
 
     let total_files = css_files.len() + js_files.len() + html_files.len() + image_files.len();
     println!("  Found {} files to optimize", total_files);
@@ -765,15 +807,15 @@ fn collect_files(
 fn minify_css_file(path: &Path) -> Result<()> {
     let css = fs::read_to_string(path)?;
 
-    let stylesheet = StyleSheet::parse(
-        &css,
-        ParserOptions::default(),
-    ).map_err(|e| anyhow::anyhow!("CSS parse error: {:?}", e))?;
+    let stylesheet = StyleSheet::parse(&css, ParserOptions::default())
+        .map_err(|e| anyhow::anyhow!("CSS parse error: {:?}", e))?;
 
-    let minified = stylesheet.to_css(PrinterOptions {
-        minify: true,
-        ..Default::default()
-    }).map_err(|e| anyhow::anyhow!("CSS minify error: {:?}", e))?;
+    let minified = stylesheet
+        .to_css(PrinterOptions {
+            minify: true,
+            ..Default::default()
+        })
+        .map_err(|e| anyhow::anyhow!("CSS minify error: {:?}", e))?;
 
     fs::write(path, minified.code)?;
     Ok(())
@@ -786,15 +828,10 @@ fn minify_js_file(path: &Path) -> Result<()> {
     let session = Session::new();
     let mut output = Vec::new();
 
-    minify_js_code(
-        &session,
-        TopLevelMode::Global,
-        js.as_bytes(),
-        &mut output,
-    ).map_err(|e| anyhow::anyhow!("JS minify error: {:?}", e))?;
+    minify_js_code(&session, TopLevelMode::Global, js.as_bytes(), &mut output)
+        .map_err(|e| anyhow::anyhow!("JS minify error: {:?}", e))?;
 
-    let mut minified = String::from_utf8(output)
-        .unwrap_or_else(|_| js.clone());
+    let mut minified = String::from_utf8(output).unwrap_or_else(|_| js.clone());
 
     // Fix minify-js bug: it over-escapes newlines in string literals
     // Replace `\\n` with `\n` in string contexts
@@ -814,7 +851,7 @@ fn minify_html_file(path: &Path) -> Result<()> {
         do_not_minify_doctype: true,
         ensure_spec_compliant_unquoted_attribute_values: true,
         keep_html_and_head_opening_tags: true,
-        minify_css: false,  // Don't minify CSS inside HTML - lightningcss already did it
+        minify_css: false, // Don't minify CSS inside HTML - lightningcss already did it
         minify_js: true,
         ..Default::default()
     };
@@ -842,7 +879,9 @@ fn generate_rss(out_dir: &Path, posts: &Arc<Vec<Post>>) -> Result<()> {
     let rss_date = now.to_rfc2822();
 
     // Write RSS header (match Node.js format with 2-space indentation)
-    write!(file, r#"<?xml version="1.0" encoding="UTF-8"?>
+    write!(
+        file,
+        r#"<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>{}</title>
@@ -856,7 +895,11 @@ fn generate_rss(out_dir: &Path, posts: &Arc<Vec<Post>>) -> Result<()> {
     <managingEditor>Sean Pedersen</managingEditor>
     <webMaster>Sean Pedersen</webMaster>
     <ttl>60</ttl>
-"#, escape_xml("Sean's Blog"), rss_date, rss_date)?;
+"#,
+        escape_xml("Sean's Blog"),
+        rss_date,
+        rss_date
+    )?;
 
     // Write each post
     for post in posts.iter() {
@@ -865,7 +908,8 @@ fn generate_rss(out_dir: &Path, posts: &Arc<Vec<Post>>) -> Result<()> {
             .ok()
             .and_then(|d| d.and_hms_opt(0, 0, 0))
             .and_then(|dt| {
-                let utc = chrono::DateTime::<chrono::Utc>::from_naive_utc_and_offset(dt, chrono::Utc);
+                let utc =
+                    chrono::DateTime::<chrono::Utc>::from_naive_utc_and_offset(dt, chrono::Utc);
                 Some(utc.format("%a, %d %b %Y %H:%M:%S GMT").to_string())
             })
             .unwrap_or_else(|| post.date.clone());
@@ -880,8 +924,7 @@ fn generate_rss(out_dir: &Path, posts: &Arc<Vec<Post>>) -> Result<()> {
 
         // Read minified HTML content from the optimized post file
         let html_path = out_dir.join("posts").join(format!("{}.html", post.id));
-        let html_content = fs::read_to_string(&html_path)
-            .unwrap_or_default();
+        let html_content = fs::read_to_string(&html_path).unwrap_or_default();
 
         // Extract content from markdown-content div
         let mut content = extract_content_from_html(&html_content);
@@ -890,7 +933,11 @@ fn generate_rss(out_dir: &Path, posts: &Arc<Vec<Post>>) -> Result<()> {
         content = clean_content_for_rss(&content);
 
         // Write content
-        write!(file, "      <content:encoded><![CDATA[{}]]></content:encoded>\n    </item>\n", content)?;
+        write!(
+            file,
+            "      <content:encoded><![CDATA[{}]]></content:encoded>\n    </item>\n",
+            content
+        )?;
     }
 
     write!(file, "  </channel>\n</rss>")?;
@@ -912,13 +959,13 @@ fn extract_content_from_html(html: &str) -> String {
         let bytes = html.as_bytes();
 
         while pos < bytes.len() && depth > 0 {
-            if pos + 5 <= bytes.len() && &bytes[pos..pos+5] == b"<div " {
+            if pos + 5 <= bytes.len() && &bytes[pos..pos + 5] == b"<div " {
                 depth += 1;
                 pos += 5;
-            } else if pos + 4 <= bytes.len() && &bytes[pos..pos+4] == b"<div>" {
+            } else if pos + 4 <= bytes.len() && &bytes[pos..pos + 4] == b"<div>" {
                 depth += 1;
                 pos += 4;
-            } else if pos + 6 <= bytes.len() && &bytes[pos..pos+6] == b"</div>" {
+            } else if pos + 6 <= bytes.len() && &bytes[pos..pos + 6] == b"</div>" {
                 depth -= 1;
                 if depth == 0 {
                     return html[content_start..pos].to_string();
@@ -962,4 +1009,3 @@ fn escape_xml(s: &str) -> String {
         .replace('"', "&quot;")
         .replace('\'', "&#39;")
 }
-
