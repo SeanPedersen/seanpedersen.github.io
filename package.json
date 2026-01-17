@@ -4,8 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "node scripts/build-static.js && node scripts/generate-rss.js && node scripts/optimize.js",
-    "build:unoptimized": "node scripts/build-static.js && node scripts/generate-rss.js",
+    "build": "./build-fast.sh",
+    "build:rust": "cd build-rust && cargo build --release",
     "start": "cd out/ && python3 -m http.server"
   },
   "dependencies": {
@@ -17,12 +17,5 @@
     "remark-gfm": "^1.0.0",
     "remark-html": "^13.0.1",
     "remark-prism": "^1.3.6"
-  },
-  "devDependencies": {
-    "csso": "^5.0.5",
-    "csso-cli": "^4.0.2",
-    "html-minifier-terser": "^7.2.0",
-    "sharp": "^0.34.5",
-    "terser": "^5.44.1"
   }
 }
