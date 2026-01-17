@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "build": "./build-fast.sh",
-    "build:rust": "cd build-rust && cargo build --release",
+    "build:rust": "cargo build --release",
     "start": "cd out/ && python3 -m http.server"
   },
   "dependencies": {

@@ -504,7 +504,7 @@ fn format_date(date_str: &str) -> String {
 }
 
 fn generate_index_page(out_dir: &Path, posts: &[PostSummary], tags: &[String]) -> Result<()> {
-    let tera = Tera::new("build-rust/templates/**/*")?;
+    let tera = Tera::new("website/html-templates/**/*")?;
 
     let css = read_inline_css()?;
     let year = chrono::Local::now().year();
@@ -537,7 +537,7 @@ fn generate_index_page(out_dir: &Path, posts: &[PostSummary], tags: &[String]) -
 }
 
 fn generate_post_page(out_dir: &Path, post: &Post, related: &[PostSummary]) -> Result<()> {
-    let tera = Tera::new("build-rust/templates/**/*")?;
+    let tera = Tera::new("website/html-templates/**/*")?;
 
     let css = read_inline_css()?;
     let prism_css = fs::read_to_string("node_modules/prismjs/themes/prism-tomorrow.css")?;
@@ -600,9 +600,9 @@ fn generate_post_page(out_dir: &Path, post: &Post, related: &[PostSummary]) -> R
 }
 
 fn read_inline_css() -> Result<String> {
-    let global = fs::read_to_string("styles/global.css")?;
-    let utils = fs::read_to_string("styles/utils.module.css")?;
-    let layout = fs::read_to_string("styles/layout.module.css")?;
+    let global = fs::read_to_string("website/styles/global.css")?;
+    let utils = fs::read_to_string("website/styles/utils.module.css")?;
+    let layout = fs::read_to_string("website/styles/layout.module.css")?;
 
     // Remove :global() wrappers more carefully
     let layout = Regex::new(r":global\(([^)]+)\)")
@@ -628,7 +628,7 @@ fn read_inline_css() -> Result<String> {
 
 fn copy_static_assets(out_dir: &Path) -> Result<()> {
     // Copy images
-    let images_src = Path::new("public/images");
+    let images_src = Path::new("website/images");
     if images_src.exists() {
         let images_dest = out_dir.join("images");
         copy_dir_recursive(images_src, &images_dest)?;
@@ -636,7 +636,7 @@ fn copy_static_assets(out_dir: &Path) -> Result<()> {
     }
 
     // Copy favicon
-    let favicon_src = Path::new("public/favicon.ico");
+    let favicon_src = Path::new("website/favicon.ico");
     if favicon_src.exists() {
         fs::copy(favicon_src, out_dir.join("favicon.ico"))?;
         println!("  ✓ Copied favicon.ico");
@@ -646,7 +646,7 @@ fn copy_static_assets(out_dir: &Path) -> Result<()> {
     let styles_out = out_dir.join("styles");
     fs::create_dir_all(&styles_out)?;
 
-    fs::copy("styles/global.css", styles_out.join("global.css"))?;
+    fs::copy("website/styles/global.css", styles_out.join("global.css"))?;
     println!("  ✓ Copied global.css");
 
     fs::copy(
@@ -655,10 +655,10 @@ fn copy_static_assets(out_dir: &Path) -> Result<()> {
     )?;
     println!("  ✓ Copied prism-tomorrow.css");
 
-    fs::copy("styles/utils.module.css", styles_out.join("utils.css"))?;
+    fs::copy("website/styles/utils.module.css", styles_out.join("utils.css"))?;
     println!("  ✓ Copied utils.css");
 
-    let layout_css = fs::read_to_string("styles/layout.module.css")?;
+    let layout_css = fs::read_to_string("website/styles/layout.module.css")?;
     let layout_css = Regex::new(r":global\(([^)]+)\)")
         .unwrap()
         .replace_all(&layout_css, "$1")
@@ -678,7 +678,7 @@ fn copy_static_assets(out_dir: &Path) -> Result<()> {
     fs::create_dir_all(&js_out)?;
     println!("  ✓ Created js/ directory");
 
-    let js_src = Path::new("public/js");
+    let js_src = Path::new("website/js");
     if js_src.exists() {
         copy_dir_recursive(js_src, &js_out)?;
         println!("  ✓ Copied JavaScript files");

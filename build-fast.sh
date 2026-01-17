@@ -6,7 +6,7 @@
 set -e
 
 echo "🦀 Running Rust build (fast mode)..."
-./build-rust/target/release/blog-builder
+./target/release/blog-builder
 
 echo "✅ Build complete!"
 

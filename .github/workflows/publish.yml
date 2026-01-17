@@ -34,7 +34,7 @@ jobs:
             ~/.cargo/registry/index/
             ~/.cargo/registry/cache/
             ~/.cargo/git/db/
-            build-rust/target/
+            target/
           key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
           restore-keys: |
             ${{ runner.os }}-cargo-
@@ -46,7 +46,7 @@ jobs:
         uses: actions/configure-pages@v4
 
       - name: Build Rust blog builder 🔨
-        run: cd build-rust && cargo build --release
+        run: cargo build --release
 
       - name: Build static site 🏗️
         run: npm run build
