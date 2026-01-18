@@ -1,5 +1,6 @@
 use anyhow::{Context, Result};
 use chrono::{Datelike, NaiveDate};
+use once_cell::sync::Lazy;
 use pulldown_cmark::{html, CodeBlockKind, Event, Options, Parser, Tag, TagEnd};
 use pulldown_cmark_escape::escape_html;
 use rayon::prelude::*;
@@ -12,8 +13,24 @@ use std::io::{BufWriter, Write};
 use std::path::Path;
 use std::sync::Arc;
 use syntect::html::{ClassStyle, ClassedHTMLGenerator};
-use syntect::parsing::SyntaxSet;
+use syntect::parsing::{SyntaxSet, SyntaxSetBuilder};
 use tera::Tera;
+
+// Load custom syntaxes once at startup
+static CUSTOM_SYNTAXES: Lazy<Option<SyntaxSet>> = Lazy::new(|| {
+    if Path::new("syntaxes").exists() {
+        let mut builder = SyntaxSetBuilder::new();
+        match builder.add_from_folder("syntaxes", true) {
+            Ok(_) => Some(builder.build()),
+            Err(e) => {
+                eprintln!("Warning: Failed to load custom syntaxes: {}", e);
+                None
+            }
+        }
+    } else {
+        None
+    }
+});
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct PostMetadata {
@@ -138,6 +155,18 @@ fn remove_first_h1(markdown: &str) -> String {
         .join("\n")
 }
 
+fn find_syntax<'a>(syntax_set: &'a SyntaxSet, lang: &str) -> Option<&'a syntect::parsing::SyntaxReference> {
+    // First try custom syntaxes
+    if let Some(custom_set) = &*CUSTOM_SYNTAXES {
+        if let Some(syntax) = custom_set.find_syntax_by_token(lang) {
+            return Some(syntax);
+        }
+    }
+
+    // Fall back to defaults
+    syntax_set.find_syntax_by_token(lang)
+}
+
 fn markdown_to_html(markdown: &str, tags: &[String]) -> String {
     let mut options = Options::empty();
     options.insert(Options::ENABLE_TABLES);
@@ -170,10 +199,22 @@ fn markdown_to_html(markdown: &str, tags: &[String]) -> String {
                 if in_code_block {
                     if let Some(lang) = &code_block_lang {
                         // Use syntect for syntax highlighting with CSS classes
-                        if let Some(syntax) = syntax_set.find_syntax_by_token(lang) {
+                        // Try to find syntax in custom syntaxes first, then defaults
+                        if let Some(syntax) = find_syntax(&syntax_set, lang) {
+                            // Determine which syntax set to use for the generator
+                            let (syntax_ref, syntax_set_ref) = if let Some(custom_set) = &*CUSTOM_SYNTAXES {
+                                if let Some(custom_syntax) = custom_set.find_syntax_by_token(lang) {
+                                    (custom_syntax, custom_set)
+                                } else {
+                                    (syntax, &syntax_set)
+                                }
+                            } else {
+                                (syntax, &syntax_set)
+                            };
+
                             let mut html_generator = ClassedHTMLGenerator::new_with_class_style(
-                                syntax,
-                                &syntax_set,
+                                syntax_ref,
+                                syntax_set_ref,
                                 ClassStyle::Spaced,
                             );
 

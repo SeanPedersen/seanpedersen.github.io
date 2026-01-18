@@ -1,0 +1,57 @@
+%YAML 1.2
+---
+# http://www.sublimetext.com/docs/syntax.html
+name: Elixir
+file_extensions:
+  - ex
+  - exs
+scope: source.elixir
+
+contexts:
+  main:
+    - include: comments
+    - include: keywords
+    - include: strings
+    - include: numbers
+    - include: atoms
+    - include: modules
+    - include: functions
+
+  comments:
+    - match: '#'
+      scope: punctuation.definition.comment.elixir
+      push:
+        - meta_scope: comment.line.number-sign.elixir
+        - match: $
+          pop: true
+
+  keywords:
+    - match: \b(do|end|def|defp|defmodule|defmacro|defmacrop|defprotocol|defimpl|defstruct|defexception|fn|when|case|cond|if|unless|try|catch|rescue|after|else|raise|quote|unquote|receive|for|with)\b
+      scope: keyword.control.elixir
+
+  strings:
+    - match: '"'
+      scope: punctuation.definition.string.begin.elixir
+      push:
+        - meta_scope: string.quoted.double.elixir
+        - match: '"'
+          scope: punctuation.definition.string.end.elixir
+          pop: true
+        - match: \\[\\"]
+          scope: constant.character.escape.elixir
+
+  numbers:
+    - match: \b\d+(\.\d+)?\b
+      scope: constant.numeric.elixir
+
+  atoms:
+    - match: ':[\w_]+'
+      scope: constant.other.symbol.elixir
+
+  modules:
+    - match: '\b[A-Z][A-Za-z0-9_]*\b'
+      scope: support.class.elixir
+
+  functions:
+    - match: '\b[a-z_][a-z0-9_]*[?!]?\s*(?=\()'
+      scope: entity.name.function.elixir
