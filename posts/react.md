@@ -5,7 +5,7 @@ date: '2025-09-24'
 
 React is a very popular front-end framework allowing to modularize web UI elements in components (even allowing to create mobile apps using [React Native](https://reactnative.dev/) / [Expo](https://expo.dev/)). Components render UI elements conditioned on state variables. Components are made of other components which can be passed state using so called props.
 
-Consider [Svelte](https://svelte.dev/) over React since it is a simpler and more performant (using [signals](https://jovidecroock.com/blog/state-vs-signals/)) competitor. React is more popular though and thus has a bigger eco-system and more experienced developers.
+Consider [Svelte](https://svelte.dev/), [SolidJS](https://www.solidjs.com/) or [MarkoJS](https://markojs.com/) over React for simpler and more performant (using [signals](https://jovidecroock.com/blog/state-vs-signals/)) alternatives. React is more popular though and thus has a bigger eco-system and more experienced developers.
 
 ## State
 
@@ -37,6 +37,7 @@ Derive state instead of duplicating: If a state can be derived from props or oth
 
 ## References
 
+- <https://react.dev/learn>
 - <https://github.com/instructa/constructa-starter/blob/main/docs/best-practices/tanstack-start/avoid-useEffect-summary.md>
 - <https://github.com/jantimon/react-hydration-rules>
 - <https://dev.to/paripsky/using-effects-effectively-in-react-stop-misusing-useeffect-once-and-for-all-5fpm>
