@@ -25,8 +25,8 @@ fn main() -> Result<()> {
     build_rss_feed(&out_dir, &posts)?;
     optimization::optimize_website_assets(&out_dir)?;
 
-    println!("\nComplete in {:.2}s!", total_start.elapsed().as_secs_f64());
-    println!("   Output directory: {}", out_dir.display());
+    println!("\nCompleted in {:.2}s", total_start.elapsed().as_secs_f64());
+    println!("Output directory: {}", out_dir.display());
 
     Ok(())
 }
