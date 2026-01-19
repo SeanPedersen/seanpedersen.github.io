@@ -5,12 +5,29 @@ use std::fs::{self, File};
 use std::io::{BufWriter, Write};
 use std::path::Path;
 use std::sync::Arc;
+use std::time::Instant;
 use tera::Tera;
 
 use crate::page_generation::{
     extract_headings, format_date, generate_toc_html, read_post_css, strip_html_tags, Post,
     PostSummary,
 };
+
+pub fn build_post_pages(out_dir: &Path, posts: &Arc<Vec<Post>>) -> Result<()> {
+    let start = Instant::now();
+
+    let posts_out_dir = out_dir.join("posts");
+    fs::create_dir_all(&posts_out_dir)?;
+
+    generate_all_post_pages(&posts_out_dir, posts)?;
+
+    println!(
+        "✓ Generated {} post pages in {:.2}s",
+        posts.len(),
+        start.elapsed().as_secs_f64()
+    );
+    Ok(())
+}
 
 pub fn get_related_posts(
     all_posts: &[Post],
@@ -121,11 +138,7 @@ pub fn generate_post_page(out_dir: &Path, post: &Post, related: &[PostSummary]) 
     Ok(())
 }
 
-pub fn generate_all_post_pages(
-    posts_out_dir: &Path,
-    posts: &Arc<Vec<Post>>,
-    total_posts: usize,
-) -> Result<()> {
+pub fn generate_all_post_pages(posts_out_dir: &Path, posts: &Arc<Vec<Post>>) -> Result<()> {
     let post_ids: Vec<String> = posts.iter().map(|p| p.id.clone()).collect();
     let completed = std::sync::atomic::AtomicUsize::new(0);
 
@@ -133,11 +146,7 @@ pub fn generate_all_post_pages(
         let post = posts.iter().find(|p| &p.id == post_id).unwrap();
         let related = get_related_posts(posts, post_id, &post.tags, 3);
         generate_post_page(posts_out_dir, post, &related)?;
-
-        let done = completed.fetch_add(1, std::sync::atomic::Ordering::Relaxed) + 1;
-        if done % 10 == 0 || done == total_posts {
-            println!("  [{}/{}] posts completed...", done, total_posts);
-        }
+        completed.fetch_add(1, std::sync::atomic::Ordering::Relaxed);
         Ok(())
     })?;
 

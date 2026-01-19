@@ -9,6 +9,7 @@ use serde::{Deserialize, Serialize};
 use std::collections::HashSet;
 use std::fs;
 use std::path::Path;
+use std::sync::Arc;
 use syntect::html::{ClassStyle, ClassedHTMLGenerator};
 use syntect::parsing::{SyntaxSet, SyntaxSetBuilder};
 
@@ -48,6 +49,14 @@ pub struct PostSummary {
     pub title: String,
     pub date: String,
     pub tags: Vec<String>,
+}
+
+pub fn get_posts_data(_out_dir: &Path) -> Result<Arc<Vec<Post>>> {
+    let posts_dir = Path::new("posts");
+    let mut posts = read_all_posts(posts_dir)?;
+    // Sort by date descending
+    posts.sort_by(|a, b| b.date.cmp(&a.date));
+    Ok(Arc::new(posts))
 }
 
 pub fn read_all_posts(posts_dir: &Path) -> Result<Vec<Post>> {

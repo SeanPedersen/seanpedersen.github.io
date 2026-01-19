@@ -5,8 +5,21 @@ use std::fs::{self, File};
 use std::io::{BufWriter, Write};
 use std::path::Path;
 use std::sync::Arc;
+use std::time::Instant;
 
 use crate::page_generation::Post;
+
+pub fn build_rss_feed(out_dir: &Path, posts: &Arc<Vec<Post>>) -> Result<()> {
+    let start = Instant::now();
+
+    generate_rss(out_dir, posts)?;
+
+    println!(
+        "✓ Generated RSS feed in {:.2}s",
+        start.elapsed().as_secs_f64()
+    );
+    Ok(())
+}
 
 pub fn generate_rss(out_dir: &Path, posts: &Arc<Vec<Post>>) -> Result<()> {
     let rss_path = out_dir.join("rss.xml");

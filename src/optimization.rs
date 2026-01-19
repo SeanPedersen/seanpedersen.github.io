@@ -7,6 +7,14 @@ use rayon::prelude::*;
 use std::fs;
 use std::path::{Path, PathBuf};
 use std::sync::atomic::{AtomicUsize, Ordering};
+use std::time::Instant;
+
+pub fn optimize_website_assets(out_dir: &Path) -> Result<()> {
+    copy_static_assets(out_dir)?;
+    optimize_assets(out_dir)?;
+
+    Ok(())
+}
 
 pub fn copy_static_assets(out_dir: &Path) -> Result<()> {
     // Copy images
@@ -14,14 +22,12 @@ pub fn copy_static_assets(out_dir: &Path) -> Result<()> {
     if images_src.exists() {
         let images_dest = out_dir.join("images");
         copy_dir_recursive(images_src, &images_dest)?;
-        println!("  ✓ Copied images/");
     }
 
     // Copy favicon
     let favicon_src = Path::new("website/favicon.ico");
     if favicon_src.exists() {
         fs::copy(favicon_src, out_dir.join("favicon.ico"))?;
-        println!("  ✓ Copied favicon.ico");
     }
 
     // Create styles directory and copy CSS
@@ -29,29 +35,19 @@ pub fn copy_static_assets(out_dir: &Path) -> Result<()> {
     fs::create_dir_all(&styles_out)?;
 
     fs::copy("website/styles/global.css", styles_out.join("global.css"))?;
-    println!("  ✓ Copied global.css");
-
     fs::copy("website/styles/index.css", styles_out.join("index.css"))?;
-    println!("  ✓ Copied index.css");
-
     fs::copy("website/styles/post.css", styles_out.join("post.css"))?;
-    println!("  ✓ Copied post.css");
-
     fs::copy(
         "website/styles/prism-tomorrow.css",
         styles_out.join("prism-tomorrow.css"),
     )?;
-    println!("  ✓ Copied prism-tomorrow.css");
-
     // Copy JS files
     let js_out = out_dir.join("js");
     fs::create_dir_all(&js_out)?;
-    println!("  ✓ Created js/ directory");
 
     let js_src = Path::new("website/js");
     if js_src.exists() {
         copy_dir_recursive(js_src, &js_out)?;
-        println!("  ✓ Copied JavaScript files");
     }
 
     Ok(())
@@ -74,6 +70,7 @@ fn copy_dir_recursive(src: &Path, dest: &Path) -> Result<()> {
 }
 
 pub fn optimize_assets(out_dir: &Path) -> Result<()> {
+    let start = Instant::now();
     // Collect all files to optimize
     let mut css_files = Vec::new();
     let mut js_files = Vec::new();
@@ -89,7 +86,6 @@ pub fn optimize_assets(out_dir: &Path) -> Result<()> {
     )?;
 
     let total_files = css_files.len() + js_files.len() + html_files.len() + image_files.len();
-    println!("  Found {} files to optimize", total_files);
 
     // Optimize in parallel
     let css_count = AtomicUsize::new(0);
@@ -130,12 +126,11 @@ pub fn optimize_assets(out_dir: &Path) -> Result<()> {
             });
         });
     });
-
-    println!("  ✓ CSS: {} files", css_count.load(Ordering::Relaxed));
-    println!("  ✓ JS: {} files", js_count.load(Ordering::Relaxed));
-    println!("  ✓ HTML: {} files", html_count.load(Ordering::Relaxed));
-    println!("  ✓ Images: {} files", img_count.load(Ordering::Relaxed));
-
+    println!(
+        "✓ Optimized {} assets in {:.2}s",
+        total_files,
+        start.elapsed().as_secs_f64()
+    );
     Ok(())
 }
 
