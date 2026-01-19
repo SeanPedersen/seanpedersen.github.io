@@ -185,6 +185,7 @@ fn markdown_to_html(markdown: &str, tags: &[String]) -> String {
     let mut in_table_head = false;
     let mut in_table = false;
     let mut table_body_started = false;
+    let mut in_blockquote = false;
 
     for event in parser {
         match event {
@@ -314,6 +315,21 @@ fn markdown_to_html(markdown: &str, tags: &[String]) -> String {
                     html_output.push_str("</th>");
                 } else {
                     html_output.push_str("</td>");
+                }
+            }
+            Event::Start(Tag::BlockQuote(_)) => {
+                in_blockquote = true;
+                html_output.push_str("<blockquote>");
+            }
+            Event::End(TagEnd::BlockQuote(_)) => {
+                in_blockquote = false;
+                html_output.push_str("</blockquote>");
+            }
+            Event::Start(Tag::Paragraph) => {
+                if in_blockquote {
+                    html_output.push_str(r#"<p class="quote-line">"#);
+                } else {
+                    html_output.push_str("<p>");
                 }
             }
             _ => {

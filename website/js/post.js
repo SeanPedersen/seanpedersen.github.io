@@ -39,79 +39,6 @@
     });
   }
 
-  // Add blockquote markers
-  function addBlockquoteMarkers() {
-    setTimeout(() => {
-      const blockquotes = document.querySelectorAll('.markdown-content blockquote');
-
-      blockquotes.forEach(blockquote => {
-        // Skip if already processed
-        if (blockquote.dataset.quoteProcessed) return;
-        blockquote.dataset.quoteProcessed = 'true';
-
-        // Set up blockquote positioning
-        blockquote.style.position = 'relative';
-        blockquote.style.paddingLeft = '1.5rem';
-
-        // Get all text elements
-        const elements = blockquote.querySelectorAll('p, li');
-        if (elements.length === 0) return;
-
-        const blockquoteRect = blockquote.getBoundingClientRect();
-
-        // Process each element that contains text
-        elements.forEach(element => {
-          // Skip empty elements
-          if (!element.textContent.trim()) return;
-
-          const computedStyle = getComputedStyle(element);
-          const lineHeight = parseFloat(computedStyle.lineHeight);
-
-          // Get element position relative to blockquote
-          const elementRect = element.getBoundingClientRect();
-          const elementTop = elementRect.top - blockquoteRect.top;
-
-          // Calculate number of lines this element spans
-          const elementHeight = element.scrollHeight;
-          const numLines = Math.max(1, Math.round(elementHeight / lineHeight));
-
-          // Add markers for each line of this element
-          for (let i = 0; i < numLines; i++) {
-            const marker = document.createElement('span');
-            marker.textContent = '>';
-            marker.className = 'quote-marker';
-            marker.style.cssText = `
-              position: absolute;
-              left: 0;
-              top: ${elementTop + (i * lineHeight)}px;
-              opacity: 0.5;
-              user-select: none;
-              pointer-events: none;
-              line-height: ${lineHeight}px;
-              height: ${lineHeight}px;
-            `;
-            blockquote.appendChild(marker);
-          }
-        });
-      });
-    }, 100);
-
-    // Re-run on window resize
-    let resizeTimer;
-    window.addEventListener('resize', () => {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(() => {
-        // Reset all blockquotes
-        document.querySelectorAll('.markdown-content blockquote').forEach(bq => {
-          delete bq.dataset.quoteProcessed;
-          bq.style.paddingLeft = '';
-          bq.querySelectorAll('.quote-marker').forEach(m => m.remove());
-        });
-        addBlockquoteMarkers();
-      }, 250);
-    });
-  }
-
   // Handle back to top button
   function setupBackToTop() {
     const container = document.getElementById('backToTopContainer');
@@ -142,7 +69,6 @@
   // Initialize everything on page load
   document.addEventListener('DOMContentLoaded', function () {
     setupTocToggle();
-    addBlockquoteMarkers();
     setupBackToTop();
   });
 })();

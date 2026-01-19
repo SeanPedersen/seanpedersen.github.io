@@ -279,12 +279,44 @@ img {
 /* Blockquote styles */
 .markdown-content blockquote {
   margin: 1rem 0;
+  position: relative;
+  padding-left: 1.5rem;
 }
 
 .markdown-content blockquote p,
 .markdown-content blockquote li {
   margin: 0;
   line-height: 1.4;
+  position: relative;
+}
+
+/* Add '>' marker per visual line using repeated content with newlines */
+.markdown-content blockquote p.quote-line::before,
+.markdown-content blockquote li::before {
+  content: '>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A';
+  position: absolute;
+  left: -1.5rem;
+  top: 0;
+  opacity: 0.5;
+  pointer-events: none;
+  user-select: none;
+  white-space: pre;
+  line-height: 1.4;
+  overflow: hidden;
+  height: 100%;
+}
+
+/* For list items, we need to account for the list indentation and position relative to blockquote */
+.markdown-content blockquote ul,
+.markdown-content blockquote ol {
+  padding-left: 2rem;
+  position: relative;
+}
+
+.markdown-content blockquote li::before {
+  /* Calculate position: list has 2rem indent, we want marker at blockquote edge (-1.5rem from blockquote) */
+  /* So from li position: -1.5rem (to blockquote edge) - 2rem (list padding) = -3.5rem */
+  left: -3.5rem;
 }
 
 /* Reserve space for search button before JavaScript loads to prevent layout shift */
