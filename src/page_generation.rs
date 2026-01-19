@@ -183,6 +183,8 @@ fn markdown_to_html(markdown: &str, tags: &[String]) -> String {
     let mut code_block_lang: Option<String> = None;
     let mut code_block_content = String::new();
     let mut in_table_head = false;
+    let mut in_table = false;
+    let mut table_body_started = false;
 
     for event in parser {
         match event {
@@ -269,17 +271,36 @@ fn markdown_to_html(markdown: &str, tags: &[String]) -> String {
                 escape_html(&mut escaped, &code).unwrap();
                 html_output.push_str(&format!("<code>{}</code>", escaped));
             }
+            Event::Start(Tag::Table(_)) => {
+                in_table = true;
+                table_body_started = false;
+                html_output.push_str(r#"<div class="table-wrapper"><table>"#);
+            }
+            Event::End(TagEnd::Table) => {
+                if table_body_started {
+                    html_output.push_str("</tbody>");
+                    table_body_started = false;
+                }
+                in_table = false;
+                html_output.push_str("</table></div>");
+            }
             Event::Start(Tag::TableHead) => {
                 in_table_head = true;
-                let mut temp = String::new();
-                html::push_html(&mut temp, std::iter::once(Event::Start(Tag::TableHead)));
-                html_output.push_str(&temp);
+                html_output.push_str("<thead>");
             }
             Event::End(TagEnd::TableHead) => {
                 in_table_head = false;
-                let mut temp = String::new();
-                html::push_html(&mut temp, std::iter::once(Event::End(TagEnd::TableHead)));
-                html_output.push_str(&temp);
+                html_output.push_str("</thead>");
+            }
+            Event::Start(Tag::TableRow) => {
+                if in_table && !in_table_head && !table_body_started {
+                    html_output.push_str("<tbody>");
+                    table_body_started = true;
+                }
+                html_output.push_str("<tr>");
+            }
+            Event::End(TagEnd::TableRow) => {
+                html_output.push_str("</tr>");
             }
             Event::Start(Tag::TableCell) => {
                 if in_table_head {
