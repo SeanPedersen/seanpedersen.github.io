@@ -30,11 +30,15 @@ Language understanding entails thus creating and manipulating a small world mode
 Hawkins is sure that deep learning (including LLM) will not lead to AGI - as they lack model based knowledge representation. Instead he identified the following properties for realizing AGI.
 
 - Continuous learning
-- Learning via movement
+- Learning via movement / interaction
 - Compositional world model: predictive (behavior) models of objects
 - Knowledge stored in reference frames
 
 ## Critique
+
+Hawkins maybe too focused on some specifics of the human / mammal brain structure - he identified cortical columns as the key building part of intelligence but there are other intelligent animals which lack cortical columns (smart birds like crows / ravens and octpus). A better way forward is thus to understand the structural similarities between these independently co-evolved intelligent species brains - to truly get at the essential parts for intelligence that are shared among all smart animals.
+
+Mammals, corvids and octopi all share a columnar brain structure, while less intelligent species like goldfish and reptiles lack these and instead have nuclear neural clusters. Parrots have less pronounced columnar brain structure like corvids while showing similar cognitive abilities (but corvids seem smarter w.r.t. tool use / metacognition). Hawkins theory would be falsified by identifying a species with advanced cognition that lacks similarity to cortical columnar brain structure found in mammals.
 
 On Page 186: Hawkins gives a false sense of evolution IMO, invoking the sense that evolution always optimizes traits of individuals but it is more random: many things stick that do not create a disadvantage to procreate instead of only traits that increase procreation chance.
 
