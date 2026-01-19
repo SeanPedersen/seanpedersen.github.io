@@ -19,6 +19,9 @@
   <link rel="icon" href="/favicon.ico">
   <link rel="alternate" type="application/rss+xml" href="/rss.xml" title="RSS Feed">
   <style>{{ css | safe }}{{ prism_css | safe }}</style>
+  {% if has_toc %}
+  <style>@media (min-width: 1400px) { .toc { position: fixed; width: 250px; left: calc(50% - 770px); top: 100px; } }</style>
+  {% endif %}
   <script>
     (function() {
       try {
@@ -72,11 +75,16 @@
     </header>
     <main class="main postPage{% if not has_toc %} noToc{% endif %}">
       <article class="postContainer">
-        {% if has_toc %}
-        <div id="tocContainer"></div>
-        {% endif %}
         <span id="{{ title_id }}" style="position: absolute; top: 0; visibility: hidden;" aria-hidden="true"></span>
-        <h1 class="headingXl">{{ post_title }}</h1>
+        <div class="heading-with-toc">
+          <h1 class="headingXl">{{ post_title }}</h1>
+          {% if has_toc %}
+          <button class="toc-mobile-toggle" id="tocMobileToggle" aria-label="Toggle table of contents">▽</button>
+          {% endif %}
+        </div>
+        {% if has_toc %}
+        {{ toc_html | safe }}
+        {% endif %}
         <div class="postMeta">
           <div class="lightText">{{ formatted_date }}</div>
           <a href="https://github.com/SeanPedersen/seanpedersen.github.io/edit/main/posts/{{ post_id }}.md" target="_blank" rel="noopener noreferrer" class="editOnGithubLink">
@@ -116,6 +124,9 @@
   </script>
   <script src="/js/theme.js" defer></script>
   <script src="/js/post.js" defer></script>
+  {% if has_code_blocks %}
+  <script src="/js/code-blocks.js" defer></script>
+  {% endif %}
   <script src="/js/prefetch.js" defer></script>
   <script>
     (function() {

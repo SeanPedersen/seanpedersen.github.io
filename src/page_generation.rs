@@ -395,6 +395,101 @@ fn add_heading_ids(html: &str) -> String {
     .to_string()
 }
 
+#[derive(Debug, Clone)]
+struct Heading {
+    level: u8,
+    text: String,
+    id: String,
+}
+
+fn extract_headings(html: &str) -> Vec<Heading> {
+    let re = Regex::new(r"<h([1-6])[^>]*>(.*?)</h[1-6]>").unwrap();
+    re.captures_iter(html)
+        .map(|caps| {
+            let level = caps[1].parse::<u8>().unwrap_or(1);
+            let raw_text = &caps[2];
+            let plain_text = strip_html_tags(raw_text);
+            let text = decode_html_entities(&plain_text);
+            let id = text
+                .to_lowercase()
+                .chars()
+                .map(|c| if c.is_alphanumeric() { c } else { '-' })
+                .collect::<String>()
+                .split('-')
+                .filter(|s| !s.is_empty())
+                .collect::<Vec<_>>()
+                .join("-");
+            Heading { level, text, id }
+        })
+        .collect()
+}
+
+fn decode_html_entities(text: &str) -> String {
+    let re = Regex::new(r"&(#(?:x[0-9a-fA-F]+|\d+)|[a-zA-Z]+);").unwrap();
+    re.replace_all(text, |caps: &regex::Captures| {
+        let code = &caps[1];
+        if code.starts_with('#') {
+            let is_hex = code.starts_with("#x") || code.starts_with("#X");
+            let num_str = if is_hex { &code[2..] } else { &code[1..] };
+            if let Ok(num) = u32::from_str_radix(num_str, if is_hex { 16 } else { 10 }) {
+                if let Some(ch) = char::from_u32(num) {
+                    return ch.to_string();
+                }
+            }
+            caps[0].to_string()
+        } else {
+            match code {
+                "amp" => "&".to_string(),
+                "lt" => "<".to_string(),
+                "gt" => ">".to_string(),
+                "quot" => "\"".to_string(),
+                "apos" => "'".to_string(),
+                "nbsp" => "\u{00A0}".to_string(),
+                _ => caps[0].to_string(),
+            }
+        }
+    })
+    .to_string()
+}
+
+fn generate_toc_html(headings: &[Heading], title: &str, title_id: &str) -> String {
+    if headings.is_empty() {
+        return String::new();
+    }
+
+    let heading_items: Vec<String> = headings
+        .iter()
+        .map(|h| {
+            let margin = (h.level.saturating_sub(1) as usize) * 12;
+            format!(
+                "<li style=\"margin-left: {}px;\"><a href=\"#{}\">{}</a></li>",
+                margin, h.id, h.text
+            )
+        })
+        .collect();
+
+    format!(
+        "<nav class=\"toc\">
+        <div class=\"tocHeader\">
+          <h2><a href=\"#{}\">{}</a></h2>
+          <button
+            class=\"toggleButton\"
+            id=\"tocToggle\"
+            aria-label=\"Toggle table of contents\"
+          >
+            ▽
+          </button>
+        </div>
+        <ul class=\"tocList collapsed\" id=\"tocList\">
+          {}
+        </ul>
+      </nav>",
+        title_id,
+        title,
+        heading_items.join("\n          ")
+    )
+}
+
 fn strip_html_tags(html: &str) -> String {
     let re = Regex::new(r"<[^>]*>").unwrap();
     re.replace_all(html, "").to_string()
@@ -540,9 +635,17 @@ pub fn generate_post_page(out_dir: &Path, post: &Post, related: &[PostSummary]) 
         .collect::<Vec<_>>()
         .join("-");
 
-    let has_toc = post.content_html.contains("<h1")
-        || post.content_html.contains("<h2")
-        || post.content_html.contains("<h3");
+    // Extract headings and generate TOC HTML
+    let headings = extract_headings(&post.content_html);
+    let has_toc = !headings.is_empty();
+    let toc_html = if has_toc {
+        generate_toc_html(&headings, &post.title, &title_id)
+    } else {
+        String::new()
+    };
+
+    // Detect if page has code blocks
+    let has_code_blocks = post.content_html.contains("<pre");
 
     let keywords = post.tags.join(", ");
 
@@ -566,6 +669,8 @@ pub fn generate_post_page(out_dir: &Path, post: &Post, related: &[PostSummary]) 
     context.insert("css", &css);
     context.insert("prism_css", &prism_css);
     context.insert("has_toc", &has_toc);
+    context.insert("toc_html", &toc_html);
+    context.insert("has_code_blocks", &has_code_blocks);
     context.insert("title_id", &title_id);
     context.insert("formatted_date", &format_date(&post.date));
     context.insert("content_html", &post.content_html);

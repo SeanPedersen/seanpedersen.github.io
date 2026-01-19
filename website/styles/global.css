@@ -218,9 +218,9 @@ img {
 }
 
 /* Add spacing before tables when they follow headings */
-.markdown-content h2 + table,
-.markdown-content h2 + .table-wrapper,
-.markdown-content h2 + * > table {
+.markdown-content h2+table,
+.markdown-content h2+.table-wrapper,
+.markdown-content h2+*>table {
   margin-top: 1rem;
 }
 
@@ -365,6 +365,7 @@ img {
     width: 40px;
     transform: translateY(-50%);
   }
+
   to {
     opacity: 1;
     width: min(var(--wrapper-width, 100%), calc(100vw - 2rem));
@@ -383,6 +384,7 @@ img {
       width: 40px;
       transform: translateY(-50%);
     }
+
     to {
       opacity: 1;
       width: var(--wrapper-width, 100%);
@@ -446,307 +448,358 @@ img {
 }
 
 .toc {
-    background-color: var(--background-color);
-    border: 2px solid var(--border-color);
-    padding: 1rem;
-    transition: background-color 0.3s ease, border-color 0.3s ease;
+  background-color: var(--background-color);
+  border: 2px solid var(--border-color);
+  padding: 1rem;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.toc-hidden {
+  opacity: 0;
 }
 
 @media (min-width: 1400px) {
-    .toc {
-        position: fixed;
-        width: 250px;
-        left: calc(50% - 770px);
-        top: 100px;
-        max-height: calc(100vh - 120px);
-        overflow-y: auto;
-        margin-left: 2rem;
-    }
+  .toc {
+    position: fixed;
+    width: 250px;
+    left: calc(50% - 770px);
+    top: 100px;
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+    margin-left: 2rem;
+  }
+}
+
+@media (max-width: 1399px) {
+  .toc {
+    display: none;
+  }
+
+  .heading-with-toc {
+    position: relative;
+  }
+
+  .toc-mobile-toggle {
+    display: none;
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    background: var(--background-color);
+    border: none;
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0 0.5rem;
+    z-index: 10;
+    transition: transform 0.2s;
+  }
+
+  .toc-mobile-toggle:hover {
+    transform: scale(1.2);
+  }
+
+  .toc-mobile-toggle.expanded {
+    transform: rotate(180deg);
+  }
+
+  .toc.toc-visible {
+    display: block;
+  }
+}
+
+@media (min-width: 1400px) {
+  .toc-mobile-toggle {
+    display: none !important;
+  }
 }
 
 .tocHeader {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .toc h2 {
-    font-size: 1.2rem;
-    text-transform: uppercase;
-    margin: 0 0 1rem 0;
-    padding-bottom: 0.5rem;
-    border-bottom: 2px solid var(--primary-color);
-    color: var(--text-color);
-    transition: border-bottom-color 0.3s ease, color 0.3s ease;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  margin: 0 0 1rem 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--primary-color);
+  color: var(--text-color);
+  transition: border-bottom-color 0.3s ease, color 0.3s ease;
 }
 
 .toggleButton {
-    display: none;
-    background: transparent;
-    color: var(--primary-color);
-    border: 2px solid var(--primary-color);
-    border-radius: 4px;
-    width: 32px;
-    height: 32px;
-    font-size: 1.5rem;
-    line-height: 1;
-    cursor: pointer;
-    transition: all 0.2s;
-    flex-shrink: 0;
-    margin-left: 1rem;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
+  display: none;
+  background: transparent;
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+  border-radius: 4px;
+  width: 32px;
+  height: 32px;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: all 0.2s;
+  flex-shrink: 0;
+  margin-left: 1rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
 }
 
 .toggleButton:hover {
-    background-color: var(--primary-color);
-    color: var(--link-hover-text);
-    transform: scale(1.05);
+  background-color: var(--primary-color);
+  color: var(--link-hover-text);
+  transform: scale(1.05);
 }
 
 .toggleButton:active {
-    background: transparent;
-    color: var(--primary-color);
-    transform: scale(0.95);
+  background: transparent;
+  color: var(--primary-color);
+  transform: scale(0.95);
 }
 
 .toggleButton:focus {
-    outline: none;
-    background: transparent;
-    color: var(--primary-color);
+  outline: none;
+  background: transparent;
+  color: var(--primary-color);
 }
 
 .tocList {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    transition: max-height 0.3s ease, opacity 0.3s ease;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
 }
 
 .toc li {
-    margin-bottom: 0.3rem;
-    font-size: 0.9rem;
+  margin-bottom: 0.3rem;
+  font-size: 0.9rem;
 }
 
 .toc a {
-    color: var(--text-color);
-    text-decoration: none;
-    border-left: 2px solid var(--primary-color);
-    padding-left: 0.5rem;
-    transition: all 0.2s;
-    display: block;
-    border-bottom: none;
-    /* Overrides global 'a' styles if any */
+  color: var(--text-color);
+  text-decoration: none;
+  border-left: 2px solid var(--primary-color);
+  padding-left: 0.5rem;
+  transition: all 0.2s;
+  display: block;
+  border-bottom: none;
+  /* Overrides global 'a' styles if any */
 }
 
 .toc a:hover {
-    background-color: var(--primary-color);
-    color: var(--link-hover-text);
-    /* Use variable for text color on hover */
-    border-left: 4px solid var(--primary-color);
+  background-color: var(--primary-color);
+  color: var(--link-hover-text);
+  /* Use variable for text color on hover */
+  border-left: 4px solid var(--primary-color);
 }
 
 @media (max-width: 1400px) {
-    .toc {
-        position: static;
-        width: 100%;
-        margin: 0.5rem 0 0.25rem 0;
-        padding: 0;
-        border: none;
-        background-color: transparent;
-    }
+  .toc {
+    position: static;
+    width: 100%;
+    margin: 0.5rem 0;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+  }
 
-    .toc h2 {
-        margin: 0;
-        border-bottom: none;
-        font-size: 2rem;
-        padding-bottom: 0;
-        line-height: 1.15;
-        letter-spacing: -0.05rem;
-        font-weight: 800;
-        text-transform: none;
-    }
+  .toc h2 {
+    display: none;
+  }
 
-    .toc h2 a {
-        color: var(--text-color);
-        text-decoration: none;
-        border-left: none;
-        padding-left: 0;
-    }
+  .tocHeader {
+    display: none;
+  }
 
-    .toc h2 a:hover {
-        background-color: transparent;
-        color: var(--text-color);
-        border-left: none;
-    }
+  .tocList {
+    padding-left: 0;
+  }
 
-    .tocHeader {
-        padding-bottom: 0.5rem;
-        border-bottom: 4px solid var(--border-color);
-        margin-bottom: 0.5rem;
-    }
+  .toc h2 a {
+    color: var(--text-color);
+    text-decoration: none;
+    border-left: none;
+    padding-left: 0;
+  }
 
-    .toggleButton {
-        display: flex;
-    }
+  .toc h2 a:hover {
+    background-color: transparent;
+    color: var(--text-color);
+    border-left: none;
+  }
 
-    .tocList.collapsed {
-        max-height: 0;
-        opacity: 0;
-        overflow: hidden;
-        margin: 0;
-    }
+  .tocHeader {
+    padding-bottom: 0.5rem;
+    border-bottom: 4px solid var(--border-color);
+    margin-bottom: 0.5rem;
+  }
 
-    .tocList.expanded {
-        max-height: 2000px;
-        opacity: 1;
-    }
-}.codeBlockWrapper {
-    position: relative;
-    margin: 1rem 0;
+  .toggleButton {
+    display: flex;
+  }
+
+  .tocList.collapsed {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    margin: 0;
+  }
+
+  .tocList.expanded {
+    max-height: 2000px;
+    opacity: 1;
+  }
+}
+
+.codeBlockWrapper {
+  position: relative;
+  margin: 1rem 0;
 }
 
 .codeBlockContainer {
-    position: relative;
-    /* Add padding-top to account for the copy button */
-    padding-top: 0;
+  position: relative;
+  /* Add padding-top to account for the copy button */
+  padding-top: 0;
 }
 
 /* Ensure pre elements have proper positioning context */
 .codeBlockContainer pre,
 .codeBlockWrapper pre {
-    position: relative !important;
+  position: relative !important;
 }
 
 .copyButtonNormal {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(8px);
-    color: white;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 8px;
-    padding: 8px;
-    cursor: pointer;
-    z-index: 20;
-    transition: all 0.2s ease;
-    opacity: 0.8;
-    width: 44px;
-    height: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 8px;
+  cursor: pointer;
+  z-index: 20;
+  transition: all 0.2s ease;
+  opacity: 0.8;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .copyButton {
-    position: absolute;
-    top: 20px;
-    right: 12px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(8px);
-    color: white;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 8px;
-    padding: 8px;
-    cursor: pointer;
-    z-index: 20;
-    transition: all 0.2s ease;
-    opacity: 0.8;
-    width: 44px;
-    height: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  position: absolute;
+  top: 20px;
+  right: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 8px;
+  cursor: pointer;
+  z-index: 20;
+  transition: all 0.2s ease;
+  opacity: 0.8;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .copyButtonExpanded {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(8px);
-    color: white;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 8px;
-    padding: 8px;
-    cursor: pointer;
-    z-index: 20;
-    transition: all 0.2s ease;
-    opacity: 0.8;
-    width: 44px;
-    height: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 8px;
+  cursor: pointer;
+  z-index: 20;
+  transition: all 0.2s ease;
+  opacity: 0.8;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .copyButton:hover {
-    opacity: 1;
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(12px);
-    transform: scale(1.05);
-    border-color: rgba(255, 255, 255, 0.3);
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(12px);
+  transform: scale(1.05);
+  border-color: rgba(255, 255, 255, 0.3);
 }
 
 .codeBlock {
-    position: relative;
+  position: relative;
 }
 
 .codeBlock.collapsed {
-    max-height: 400px;
-    overflow: hidden;
+  max-height: 400px;
+  overflow: hidden;
 }
 
 .fadeOverlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 60px;
-    background: linear-gradient(transparent, var(--background-color));
-    pointer-events: none;
-    z-index: 10;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: linear-gradient(transparent, var(--background-color));
+  pointer-events: none;
+  z-index: 10;
 }
 
 .expandButton {
-    width: 100%;
-    padding: 8px 16px;
-    background: var(--background-color);
-    color: var(--text-color);
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 0.9rem;
-    transition: background-color 0.2s;
-    margin-top: 0;
+  width: 100%;
+  padding: 8px 16px;
+  background: var(--background-color);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s;
+  margin-top: 0;
 }
 
 .expandButton:hover {
-    background: var(--primary-color);
-    color: var(--background-color);
+  background: var(--primary-color);
+  color: var(--background-color);
 }
 
 /* Post hashtags styling at the end of posts */
 .post-hashtags {
-    margin-top: 2rem;
-    font-size: 1rem;
-    opacity: 0.8;
+  margin-top: 2rem;
+  font-size: 1rem;
+  opacity: 0.8;
 }
 
 .post-hashtags a {
-    color: var(--primary-color);
-    text-decoration: none;
-    padding: 0.25rem 0.5rem;
-    margin-right: 0.5rem;
-    border-radius: 4px;
-    transition: background-color 0.2s ease;
-    border-bottom: none !important;
+  color: var(--primary-color);
+  text-decoration: none;
+  padding: 0.25rem 0.5rem;
+  margin-right: 0.5rem;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+  border-bottom: none !important;
 }
 
 .post-hashtags a:hover {
-    background-color: var(--tag-hover-bg);
-    text-decoration: none;
-    border-bottom: none !important;
+  background-color: var(--tag-hover-bg);
+  text-decoration: none;
+  border-bottom: none !important;
 }

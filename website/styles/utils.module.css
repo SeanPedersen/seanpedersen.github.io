@@ -29,12 +29,13 @@
   font-weight: 800;
   letter-spacing: -0.05rem;
   margin: 0.5rem 0;
+  padding-bottom: 0.5rem;
   border-bottom: 4px solid var(--border-color);
   transition: border-bottom-color 0.3s ease;
 }
 
-/* Hide article heading on mobile when ToC is present (ToC header becomes the heading) */
-@media (max-width: 1400px) {
+/* Hide article heading on desktop when ToC is present (ToC header becomes the heading) */
+@media (min-width: 1400px) {
   .headingXl.hideOnMobile {
     display: none;
   }
