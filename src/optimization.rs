@@ -4,7 +4,6 @@ use minify_html::{minify, Cfg};
 use minify_js::minify as minify_js_code;
 use minify_js::{Session, TopLevelMode};
 use rayon::prelude::*;
-use regex::Regex;
 use std::fs;
 use std::path::{Path, PathBuf};
 use std::sync::atomic::{AtomicUsize, Ordering};
@@ -32,29 +31,17 @@ pub fn copy_static_assets(out_dir: &Path) -> Result<()> {
     fs::copy("website/styles/global.css", styles_out.join("global.css"))?;
     println!("  ✓ Copied global.css");
 
+    fs::copy("website/styles/index.css", styles_out.join("index.css"))?;
+    println!("  ✓ Copied index.css");
+
+    fs::copy("website/styles/post.css", styles_out.join("post.css"))?;
+    println!("  ✓ Copied post.css");
+
     fs::copy(
         "website/styles/prism-tomorrow.css",
         styles_out.join("prism-tomorrow.css"),
     )?;
     println!("  ✓ Copied prism-tomorrow.css");
-
-    fs::copy("website/styles/utils.module.css", styles_out.join("utils.css"))?;
-    println!("  ✓ Copied utils.css");
-
-    let layout_css = fs::read_to_string("website/styles/layout.module.css")?;
-    let layout_css = Regex::new(r":global\(([^)]+)\)")
-        .unwrap()
-        .replace_all(&layout_css, "$1")
-        .to_string();
-    fs::write(styles_out.join("layout.css"), &layout_css)?;
-    println!("  ✓ Copied layout.css");
-
-    // Merge layout into global
-    let mut global = fs::read_to_string(styles_out.join("global.css"))?;
-    global.push_str("\n\n/* Layout styles */\n");
-    global.push_str(&layout_css);
-    fs::write(styles_out.join("global.css"), global)?;
-    println!("  ✓ Merged layout.css into global.css");
 
     // Copy JS files
     let js_out = out_dir.join("js");

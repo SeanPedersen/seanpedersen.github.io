@@ -6,12 +6,12 @@ use std::io::{BufWriter, Write};
 use std::path::Path;
 use tera::Tera;
 
-use crate::page_generation::{read_inline_css, PostSummary};
+use crate::page_generation::{read_index_css, PostSummary};
 
 pub fn generate_index_page(out_dir: &Path, posts: &[PostSummary], tags: &[String]) -> Result<()> {
     let tera = Tera::new("website/html-templates/**/*")?;
 
-    let css = read_inline_css()?;
+    let css = read_index_css()?;
     let year = chrono::Local::now().year();
 
     // Prepare posts data with tags_json

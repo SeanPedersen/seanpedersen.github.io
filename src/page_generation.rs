@@ -151,7 +151,10 @@ fn remove_first_h1(markdown: &str) -> String {
         .join("\n")
 }
 
-fn find_syntax<'a>(syntax_set: &'a SyntaxSet, lang: &str) -> Option<&'a syntect::parsing::SyntaxReference> {
+fn find_syntax<'a>(
+    syntax_set: &'a SyntaxSet,
+    lang: &str,
+) -> Option<&'a syntect::parsing::SyntaxReference> {
     // First try custom syntaxes
     if let Some(custom_set) = &*CUSTOM_SYNTAXES {
         if let Some(syntax) = custom_set.find_syntax_by_token(lang) {
@@ -201,7 +204,9 @@ fn markdown_to_html(markdown: &str, tags: &[String]) -> String {
                         // Try to find syntax in custom syntaxes first, then defaults
                         if let Some(syntax) = find_syntax(&syntax_set, lang) {
                             // Determine which syntax set to use for the generator
-                            let (syntax_ref, syntax_set_ref) = if let Some(custom_set) = &*CUSTOM_SYNTAXES {
+                            let (syntax_ref, syntax_set_ref) = if let Some(custom_set) =
+                                &*CUSTOM_SYNTAXES
+                            {
                                 if let Some(custom_syntax) = custom_set.find_syntax_by_token(lang) {
                                     (custom_syntax, custom_set)
                                 } else {
@@ -556,20 +561,35 @@ pub fn format_date(date_str: &str) -> String {
     }
 }
 
-pub fn read_inline_css() -> Result<String> {
+pub fn read_index_css() -> Result<String> {
     use lightningcss::stylesheet::{ParserOptions, PrinterOptions, StyleSheet};
 
     let global = fs::read_to_string("website/styles/global.css")?;
-    let utils = fs::read_to_string("website/styles/utils.module.css")?;
-    let layout = fs::read_to_string("website/styles/layout.module.css")?;
+    let index = fs::read_to_string("website/styles/index.css")?;
 
-    // Remove :global() wrappers more carefully
-    let layout = Regex::new(r":global\(([^)]+)\)")
-        .unwrap()
-        .replace_all(&layout, "$1")
-        .to_string();
+    let combined = format!("{}{}", global, index);
 
-    let combined = format!("{}{}{}", global, layout, utils);
+    // Minify the CSS
+    let stylesheet = StyleSheet::parse(&combined, ParserOptions::default())
+        .map_err(|e| anyhow::anyhow!("CSS parse error: {:?}", e))?;
+
+    let minified = stylesheet
+        .to_css(PrinterOptions {
+            minify: true,
+            ..Default::default()
+        })
+        .map_err(|e| anyhow::anyhow!("CSS minify error: {:?}", e))?;
+
+    Ok(minified.code)
+}
+
+pub fn read_post_css() -> Result<String> {
+    use lightningcss::stylesheet::{ParserOptions, PrinterOptions, StyleSheet};
+
+    let global = fs::read_to_string("website/styles/global.css")?;
+    let post = fs::read_to_string("website/styles/post.css")?;
+
+    let combined = format!("{}{}", global, post);
 
     // Minify the CSS
     let stylesheet = StyleSheet::parse(&combined, ParserOptions::default())
