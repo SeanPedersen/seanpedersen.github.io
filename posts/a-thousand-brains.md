@@ -5,7 +5,7 @@ date: '2025-12-27'
 
 ## Reference Frames
 
-Identifies so called reference frames (grids / maps) as key concept unifying all neural network processing for robust / invariant sequence prediction (allowing sequence prediction in changing environments by using relative positions).
+Identifies so called reference frames (grids / maps) as key concept unifying all biological neural processing for robust / invariant sequence prediction (allowing sequence prediction in changing environments by using relative positions).
 
 Key points:
 - Grid cells: Each cortical column uses grid cell-like mechanisms (from the entorhinal cortex) to create reference frames anchored to objects, not just spatial locations.
