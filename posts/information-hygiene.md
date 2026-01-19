@@ -27,6 +27,6 @@ Valuable information is information that increases your self-agency. Learning a 
 
 ## References
 
-- https://fokus.cool/2025/11/25/i-dont-care-how-well-your-ai-works.html
+- <https://fokus.cool/2025/11/25/i-dont-care-how-well-your-ai-works.html>
 
 #privacy #idea
