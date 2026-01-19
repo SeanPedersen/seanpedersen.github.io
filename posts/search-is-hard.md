@@ -32,7 +32,7 @@ Tricks:
 ### Neural Representations
 
 - Multi-Modal (shared) Embedding Spaces (CLIP)
-- Dense vs Sparse ([SDR](https://seanpedersen.github.io/posts/sparse-distributed-representations))
+- Dense vs Sparse ([SDR](/posts/sparse-distributed-representations))
 - Query vs document prefix for embedding models optimized for search
 - Visual Document Embeddings
     - Instead of embedding sequences of tokens (often words), embed images of pages directly -> this helps to process complex documents containing tables, graphs and imagery
@@ -78,7 +78,7 @@ fast but may contain irrelevant results
 
 ## Scaling Things Up
 
-All of the following techniques trade retrieval accuracy for speed / storage costs. For production use cases, using a [Vector DB](https://seanpedersen.github.io/posts/vector-databases) is the right choice.
+All of the following techniques trade retrieval accuracy for speed / storage costs. For production use cases, using a [Vector DB](/posts/vector-databases) is the right choice.
 
 - Approximate Nearest Neighbor (Search Index)
     - HNSW (high RAM usage) and DiskANN (low RAM usage, needs SSD)

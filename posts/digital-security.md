@@ -44,7 +44,7 @@ Be skeptical of unexpected emails and calls: do not blindly follow instructions 
 
 Remember that anything shared online can potentially be weaponized. Stalkers can use background details in photos to determine your location (a short window view can reveal your exact location), while hackers can gather your personal information for impersonation attacks. Set your accounts visibility to private and always be mindful and cautious about what you share.
 
-### [Remove Data Kraken like Google and co](https://seanpedersen.github.io/posts/google-ejector)
+### [Remove Data Kraken like Google and co](/posts/google-ejector)
 
 ## Advanced
 

@@ -9,7 +9,7 @@ Erlang is not made for math heavy computations though but can easily call C or o
 
 The BEAM (ErlangVM) powers big apps like WhattsApp and Discord, demonstrating its commercial viability.
 
-[Elixir](https://seanpedersen.github.io/posts/elixir) and [Gleam](https://gleam.run/) are notable modern dialects of Erlang that transpile straight to Erlang. Elixir offers syntactic sugar and a thriving open-source community with popular frameworks like Phoenix. Gleam is a type-safe alternative.
+[Elixir](/posts/elixir) and [Gleam](https://gleam.run/) are notable modern dialects of Erlang that transpile straight to Erlang. Elixir offers syntactic sugar and a thriving open-source community with popular frameworks like Phoenix. Gleam is a type-safe alternative.
 
 ## Show me some code
 

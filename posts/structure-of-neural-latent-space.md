@@ -31,7 +31,7 @@ Embeddings capture semantic relationships between objects (like words or images)
 **Entangled Representation Hypothesis**: Gradient descent optimised neural networks tend to develop redundant and fractured features instead of unified, modular representations that can be reused and controlled separately.
 
 - [The Fractured Entangled Representation Hypothesis](https://arxiv.org/abs/2505.11581)
-- <https://seanpedersen.github.io/posts/vae#beta-vae>
+- [Beta-VAE](/posts/vae#beta-vae)
 
 **Universality Hypothesis**: Neural circuits reappear across different models trained on similar data: models trained on the same modality (text, images, video, etc.) share the same relative semantic structure (angles, distances between concepts) in their embeddings (activations), even if absolute positions/orientations differ. This suggests embeddings converge to a "universal" semantic manifold for a given modality/data distribution.
 
@@ -63,14 +63,14 @@ Most neural network architectures process data as dense vectors, making them har
 
 A more human interpretable embedding representation would be sparse (few dimensions are active) and spatially meaningful (position of dimensions encodes information).
 
-This would make them easier to interpret for humans and potentially offer some other benefits: encode single-concept objects vs multi-concept objects, encode novelty (outliers), increase robustness and reduce storage / increase efficiency. But this is another [blog post](https://seanpedersen.github.io/posts/sparse-distributed-representations).
+This would make them easier to interpret for humans and potentially offer some other benefits: encode single-concept objects vs multi-concept objects, encode novelty (outliers), increase robustness and reduce storage / increase efficiency. But this is another [blog post](/posts/sparse-distributed-representations).
 
 ## Problems with Contrastive Embeddings
 
 **Modality Gap**: Multi-modal training strategies like CLIP that unify text and image in a shared embedding space, suffer from the Modality Gap, where text and image vectors form distinct clusters instead of occupying a shared cluster in the embedding space (relative similarities are working though). This separation can limit the effectiveness of cross-modal retrieval and transfer tasks.
 
 - <https://jina.ai/news/the-what-and-why-of-text-image-modality-gap-in-clip-models/>
-- <https://seanpedersen.github.io/posts/closing-clip-modality-gap>
+- </posts/closing-clip-modality-gap>
 - [Connect, Collapse, Corrupt: Learning Cross-Modal Tasks with Uni-Modal Data](https://arxiv.org/abs/2401.08567)
 
 **Dimensional Collapse**: A phenomenon in contrastive learning where the learned representations tend to occupy a lower-dimensional subspace than intended, effectively "collapsing" along certain dimensions. This results in embeddings that don't fully utilize the available embedding dimensions, leading to highly correlated dimensions rather than capturing independent features.

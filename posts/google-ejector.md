@@ -36,7 +36,7 @@ Google Maps:
 
 ChatGPT / Claude / Gemini / Perplexity:
 
-- [Local LLM Apps](https://seanpedersen.github.io/posts/local-ai-chat-apps)
+- [Local LLM Apps](/posts/local-ai-chat-apps)
 - [Perplexica](https://github.com/ItzCrazyKns/Perplexica) - Open source answer engine
 - [Morphic](https://github.com/miurla/morphic) - Open source answer engine
 
@@ -127,7 +127,7 @@ end
 
 5. Remove all docx files: `$ find . -type f -name "*.docx" -delete`
 
-## [Export Your Twitter (X) Data](https://seanpedersen.github.io/posts/analyze-twitter-likes)
+## [Export Your Twitter (X) Data](/posts/analyze-twitter-likes)
 
 ## TODO: Replace Instagram
 

@@ -12,7 +12,7 @@ Brain does not compute mathematical equations to navigate the world but creates 
 - invariant (to geometric translations in space and time)
 - auto-associative (informations connect by observing in shared context)
 - hierarchical (complex/abstract patterns are composed of simple patterns)
-- SDR: [sparse distributed representations](https://seanpedersen.github.io/posts/sparse-distributed-representations)
+- SDR: [sparse distributed representations](/posts/sparse-distributed-representations)
 - topographic: neighboring neurons, activate to similar patterns
 
 ## Learning / Forming Memories

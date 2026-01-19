@@ -85,7 +85,7 @@ The paradigm also scales well. Pure functions can run in parallel without coordi
 
 You don't need to abandon your current programming language to try functional programming. Most modern languages support functional features. Start by writing pure functions where possible. Use map, filter, and reduce instead of loops. Avoid mutating data.
 
-The transition takes practice, but the payoff is code that's easier to understand, test, and maintain. Your future self will thank you for the clarity. I can recommend [Erlang](https://seanpedersen.github.io/posts/erlang) and Elixir as functional programming languages (many prefer Elixir syntax).
+The transition takes practice, but the payoff is code that's easier to understand, test, and maintain. Your future self will thank you for the clarity. I can recommend [Erlang](/posts/erlang) and Elixir as functional programming languages (many prefer Elixir syntax).
 
 ## More Functional Concepts
 

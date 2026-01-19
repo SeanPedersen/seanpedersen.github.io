@@ -8,8 +8,8 @@ Claude Code is a powerful coding agent that you use from the command line. It co
 Simple and popular tech stacks that are fast to validate are the ideal choices for vibe coding (lots of training data available -> less hallucinations and fast / no  compilation -> allows for rapid iteration).
 
 Recommendations:
-- [JavaScript / TypeScript](https://seanpedersen.github.io/posts/javascript-typescript): React, Next, Svelte
-- [Python](https://seanpedersen.github.io/posts/python): Flask, FastAPI
+- [JavaScript / TypeScript](/posts/javascript-typescript): React, Next, Svelte
+- [Python](/posts/python): Flask, FastAPI
 - Go / Zig / Elixir: all come with fast compilation speeds
 
 ## Setting Things up

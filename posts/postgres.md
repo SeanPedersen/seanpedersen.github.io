@@ -213,7 +213,7 @@ SELECT set_limit(0.4);  -- session-level
 
 ### Vector Search
 
-There are multiple powerful extensions for vector similarity search for Postgres - check out [this article](https://seanpedersen.github.io/posts/vector-databases) for an overview with benchmarks.
+There are multiple powerful extensions for vector similarity search for Postgres - check out [this article](/posts/vector-databases) for an overview with benchmarks.
 
 ### Geospatial Queries (PostGIS)
 
