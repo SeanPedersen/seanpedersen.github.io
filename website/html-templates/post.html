@@ -109,7 +109,7 @@
         {% endif %}
         <footer class="backToTopFooter">
           <hr aria-hidden="true" style="width: 100%; border: 0; border-top: 1px solid rgba(127,127,127,0.35); margin: 0.25rem 0;" />
-          <div id="backToTopContainer"></div>
+          <a href="#{{ title_id }}" class="backToTopLink">↑ Back to top</a>
           <p>omnia mirari, gaudium explorandi .:.</p>
         </footer>
       </article>
@@ -121,6 +121,10 @@
       titleId: {{ title_id_json | safe }},
       hasTableOfContents: {{ has_toc }}
     };
+    // Show back to top link only if page is scrollable (minimal detection)
+    if (document.documentElement.scrollHeight > document.documentElement.clientHeight) {
+      document.body.classList.add('has-scrollbar');
+    }
   </script>
   <script src="/js/theme.js" defer></script>
   <script src="/js/post.js" defer></script>

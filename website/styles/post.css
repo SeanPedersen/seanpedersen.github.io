@@ -563,3 +563,12 @@
   text-align: center;
   min-height: 0;
 }
+
+/* Hide by default, show via JS if page is scrollable */
+.backToTopLink {
+  display: none;
+}
+
+body.has-scrollbar .backToTopLink {
+  display: inline-block;
+}

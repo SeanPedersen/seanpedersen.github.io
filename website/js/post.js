@@ -39,36 +39,8 @@
     });
   }
 
-  // Handle back to top button
-  function setupBackToTop() {
-    const container = document.getElementById('backToTopContainer');
-    if (!container) return;
-
-    const checkScrollbar = () => {
-      const el = document.scrollingElement || document.documentElement;
-      const hasScrollbar = el.scrollHeight > el.clientHeight + 1;
-
-      if (hasScrollbar && POST_DATA.titleId) {
-        container.innerHTML = `<a href="#${POST_DATA.titleId}">↑ Back to top</a>`;
-      } else {
-        container.innerHTML = '';
-      }
-    };
-
-    checkScrollbar();
-
-    window.addEventListener('resize', checkScrollbar);
-
-    // Re-check when images load
-    const imgs = Array.from(document.images || []);
-    imgs.forEach(img => {
-      if (!img.complete) img.addEventListener('load', checkScrollbar, { once: true });
-    });
-  }
-
   // Initialize everything on page load
   document.addEventListener('DOMContentLoaded', function () {
     setupTocToggle();
-    setupBackToTop();
   });
 })();
