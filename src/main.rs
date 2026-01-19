@@ -1,12 +1,13 @@
+mod index_generation;
 mod optimization;
 mod page_generation;
+mod post_generation;
 mod rss_generation;
 
 use anyhow::Result;
-use page_generation::{
-    extract_all_tags, generate_all_post_pages, generate_index_page, read_all_posts,
-    PostSummary,
-};
+use index_generation::generate_index_page;
+use page_generation::{extract_all_tags, read_all_posts, PostSummary};
+use post_generation::generate_all_post_pages;
 use std::fs;
 use std::path::PathBuf;
 use std::sync::Arc;
