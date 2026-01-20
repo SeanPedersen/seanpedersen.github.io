@@ -5,14 +5,14 @@ date: '2024-12-27'
 
 A small collection of insights on the structure of embeddings (latent spaces) produced by deep neural networks.
 
-Embeddings capture semantic relationships between objects (like words or images) by representing them in a vector space - a collection of vectors representing relationships via distances between each other.
+Embeddings represent semantic relationships between objects (like words or images) in a vector space, a collection of vectors (points) with distances between each other, by ideally placing related items closely together and unrelated items far apart.
 
 ## General Principles
 
 **Manifold Hypothesis**: High-dimensional data sampled from natural (real-world) processes lies in a low-dimensional manifold. A manifold is a space that looks like flat (Euclidean) space when zooming in on any of its points, f.e. earths (a 3D object) surface looks like flat 2D space (a manifold) when zooming in.
 
 - <https://colah.github.io/posts/2014-03-NN-Manifolds-Topology/>
-- <https://www.quantamagazine.org/what-is-a-manifold-20251103/>
+- [What is a manifold?](https://www.quantamagazine.org/what-is-a-manifold-20251103/)
 
 **Hierarchical Organization**: Features organize hierarchically across layers - earlier layers capture local, low-level (small context) features while deeper layers represent increasingly abstract and compositional (large context) concepts by integrating information from earlier layers.
 
@@ -80,7 +80,6 @@ This would make them easier to interpret for humans and potentially offer some o
 
 ## References
 
-- [What is a manifold?](https://www.quantamagazine.org/what-is-a-manifold-20251103/)
 - [Hyperbolic embeddings](https://markkm.com/blog/embeddings-in-data-science/)
 
 TODO:
