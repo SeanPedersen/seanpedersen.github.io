@@ -69,7 +69,22 @@ pub fn generate_post_page(out_dir: &Path, post: &Post, related: &[PostSummary]) 
     let tera = Tera::new("website/html-templates/**/*")?;
 
     let css = read_post_css()?;
-    let prism_css = fs::read_to_string("website/styles/prism-tomorrow.css")?;
+
+    // Detect if page has code blocks
+    let has_code_blocks = post.content_html.contains("<pre");
+
+    // Only load code block CSS and Prism CSS if there are code blocks
+    let code_blocks_css = if has_code_blocks {
+        fs::read_to_string("website/styles/code-blocks.css")?
+    } else {
+        String::new()
+    };
+
+    let prism_css = if has_code_blocks {
+        fs::read_to_string("website/styles/prism-tomorrow.css")?
+    } else {
+        String::new()
+    };
 
     let excerpt = strip_html_tags(&post.content_html)
         .chars()
@@ -96,9 +111,6 @@ pub fn generate_post_page(out_dir: &Path, post: &Post, related: &[PostSummary]) 
         String::new()
     };
 
-    // Detect if page has code blocks
-    let has_code_blocks = post.content_html.contains("<pre");
-
     let keywords = post.tags.join(", ");
 
     // Prepare related posts data
@@ -119,6 +131,7 @@ pub fn generate_post_page(out_dir: &Path, post: &Post, related: &[PostSummary]) 
     context.insert("excerpt", &excerpt);
     context.insert("keywords", &keywords);
     context.insert("css", &css);
+    context.insert("code_blocks_css", &code_blocks_css);
     context.insert("prism_css", &prism_css);
     context.insert("has_toc", &has_toc);
     context.insert("toc_html", &toc_html);
