@@ -12,12 +12,23 @@ Rust also shines through its ergnomic package manager cargo that provides a smoo
 
 Great introduction: <https://fasterthanli.me/articles/a-half-hour-to-learn-rust>
 
+## HTTP Server
+
+- <https://github.com/actix/actix-web>
+- <https://github.com/tokio-rs/axum>
+- <https://github.com/poem-web/poem>
+
+## Processing Tensors
+
+- [ndarray](https://docs.rs/ndarray/latest/ndarray/doc/ndarray_for_numpy_users/index.html)
+- [loading npy files](https://docs.rs/npy/latest/npy/) (from Python numpy)
+
 ## References
 - [Error handling](https://www.howtocodeit.com/guides/the-definitive-guide-to-rust-error-handling)
-- [Erlang OTP-style actor framework](https://github.com/pixperk/cineyma)
 - <https://jmmv.dev/2018/06/rust-review-borrow-checker.html>
 - <https://doc.rust-lang.org/book/>
 - <https://news.ycombinator.com/item?id=24867610>
 - <https://lubeno.dev/blog/rusts-productivity-curve>
+- [Erlang inspired OTP-style actor framework](https://github.com/pixperk/cineyma)
 
 #coding
