@@ -4,6 +4,7 @@ use minify_html::{minify, Cfg};
 use minify_js::minify as minify_js_code;
 use minify_js::{Session, TopLevelMode};
 use rayon::prelude::*;
+use regex::Regex;
 use std::fs;
 use std::path::{Path, PathBuf};
 use std::sync::atomic::{AtomicUsize, Ordering};
@@ -93,12 +94,17 @@ pub fn optimize_assets(out_dir: &Path) -> Result<()> {
         .map(|meta| meta.len())
         .sum();
 
-    // Optimize in parallel
+    // Optimize in phases:
+    // 1. Minify CSS and JS files (in parallel)
+    // 2. Inline CSS into HTML files (requires minified CSS)
+    // 3. Minify HTML files (after CSS inlining)
     let css_count = AtomicUsize::new(0);
     let js_count = AtomicUsize::new(0);
     let html_count = AtomicUsize::new(0);
     let img_count = AtomicUsize::new(0);
+    let inline_count = AtomicUsize::new(0);
 
+    // Phase 1: Minify CSS, JS, and optimize images in parallel
     rayon::scope(|s| {
         s.spawn(|_| {
             css_files.par_iter().for_each(|path| {
@@ -117,20 +123,26 @@ pub fn optimize_assets(out_dir: &Path) -> Result<()> {
         });
 
         s.spawn(|_| {
-            html_files.par_iter().for_each(|path| {
-                if minify_html_file(path).is_ok() {
-                    html_count.fetch_add(1, Ordering::Relaxed);
-                }
-            });
-        });
-
-        s.spawn(|_| {
             image_files.par_iter().for_each(|path| {
                 if optimize_image_file(path).is_ok() {
                     img_count.fetch_add(1, Ordering::Relaxed);
                 }
             });
         });
+    });
+
+    // Phase 2: Inline CSS into HTML files (now that CSS is minified)
+    html_files.par_iter().for_each(|path| {
+        if inline_css_in_html_file(out_dir, path).is_ok() {
+            inline_count.fetch_add(1, Ordering::Relaxed);
+        }
+    });
+
+    // Phase 3: Minify HTML files (after CSS has been inlined)
+    html_files.par_iter().for_each(|path| {
+        if minify_html_file(path).is_ok() {
+            html_count.fetch_add(1, Ordering::Relaxed);
+        }
     });
 
     // Calculate total size after optimization
@@ -255,5 +267,34 @@ fn minify_html_file(path: &Path) -> Result<()> {
 fn optimize_image_file(_path: &Path) -> Result<()> {
     // Images are already optimized at the source level using Sharp.
     // No need to re-optimize during build - just copy them as-is.
+    Ok(())
+}
+
+/// Inline CSS files into HTML by replacing <!-- INLINE_CSS:/path/to/file.css --> placeholders.
+/// This should be called AFTER CSS minification so the inlined CSS is already minified.
+fn inline_css_in_html_file(out_dir: &Path, html_path: &Path) -> Result<()> {
+    let html = fs::read_to_string(html_path)?;
+
+    // Match placeholders like <!-- INLINE_CSS:/styles/global.css -->
+    let re = Regex::new(r"<!-- INLINE_CSS:(/[^>]+\.css) -->")?;
+
+    let result = re.replace_all(&html, |caps: &regex::Captures| {
+        let css_path = &caps[1];
+        // Convert absolute URL path to filesystem path (remove leading /)
+        let full_css_path = out_dir.join(&css_path[1..]);
+
+        match fs::read_to_string(&full_css_path) {
+            Ok(css) => format!("<style>{}</style>", css),
+            Err(e) => {
+                eprintln!("Warning: Could not inline CSS {}: {}", css_path, e);
+                caps[0].to_string() // Keep placeholder if file not found
+            }
+        }
+    });
+
+    if result != html {
+        fs::write(html_path, result.as_bytes())?;
+    }
+
     Ok(())
 }

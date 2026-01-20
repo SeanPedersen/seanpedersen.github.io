@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,37 +12,38 @@
   <meta name="twitter:image" content="https://seanpedersen.github.io/images/sierpinski-twitter-square.png">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="alternate" type="application/rss+xml" href="/rss.xml" title="RSS Feed">
-  <link rel="stylesheet" href="/styles/global.css">
-  <link rel="stylesheet" href="/styles/index.css">
+  {{ inline_css(path="/styles/global.css") | safe }}
+  {{ inline_css(path="/styles/index.css") | safe }}
   <script>
-      (function () {
-        const initialColorScheme = ""; // "light" | "dark"
-        const currentTheme = localStorage.getItem("theme");
+    (function () {
+      const initialColorScheme = ""; // "light" | "dark"
+      const currentTheme = localStorage.getItem("theme");
 
-        function getPreferTheme() {
-          if (currentTheme) return currentTheme;
-          if (initialColorScheme) return initialColorScheme;
-          return window.matchMedia("(prefers-color-scheme: dark)").matches
-            ? "dark"
-            : "light";
-        }
+      function getPreferTheme() {
+        if (currentTheme) return currentTheme;
+        if (initialColorScheme) return initialColorScheme;
+        return window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light";
+      }
 
-        const themeValue = getPreferTheme();
+      const themeValue = getPreferTheme();
 
-        // Set theme immediately to prevent flash
-        document.firstElementChild?.setAttribute("data-theme", themeValue);
+      // Set theme immediately to prevent flash
+      document.firstElementChild?.setAttribute("data-theme", themeValue);
 
-        // Export minimal API for external script
-        window.theme = {
-          themeValue: themeValue,
-          getTheme: () => window.theme.themeValue,
-          setTheme: val => {
-            window.theme.themeValue = val;
-          },
-        };
-      })();
+      // Export minimal API for external script
+      window.theme = {
+        themeValue: themeValue,
+        getTheme: () => window.theme.themeValue,
+        setTheme: val => {
+          window.theme.themeValue = val;
+        },
+      };
+    })();
   </script>
 </head>
+
 <body>
   <div class="flexer">
     <div class="container">
@@ -51,13 +53,8 @@
             Building <a href="https://solo.digger.lol/" target="_blank" rel="noopener noreferrer">Digger Solo</a>
           </div>
           <div class="profileContainer">
-            <img
-              src="/images/profile.webp"
-              class="headerHomeImage borderCircle"
-              alt="Sean Pedersen"
-              decoding="async"
-              fetchpriority="high"
-            />
+            <img src="/images/profile.webp" class="headerHomeImage borderCircle" alt="Sean Pedersen" decoding="async"
+              fetchpriority="high" />
             <div style="display: flex; flex-direction: column; align-items: flex-start;">
               <h1 class="heading2Xl nameBreak">
                 <span>Sean</span>
@@ -65,14 +62,33 @@
               </h1>
               <div class="linkRow">
                 <a href="/rss.xml" class="iconLink" aria-label="RSS" title="RSS Feed">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M5 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"></path><path d="M4 4a16 16 0 0 1 16 16"></path><path d="M4 11a9 9 0 0 1 9 9"></path></svg>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M5 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"></path>
+                    <path d="M4 4a16 16 0 0 1 16 16"></path>
+                    <path d="M4 11a9 9 0 0 1 9 9"></path>
+                  </svg>
                 </a>
                 <div class="socialLinks">
-                  <a href="https://github.com/SeanPedersen" class="iconLink" aria-label="GitHub" title="GitHub" target="_blank" rel="noreferrer noopener">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5"></path></svg>
+                  <a href="https://github.com/SeanPedersen" class="iconLink" aria-label="GitHub" title="GitHub"
+                    target="_blank" rel="noreferrer noopener">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                      <path
+                        d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5">
+                      </path>
+                    </svg>
                   </a>
-                  <a href="https://x.com/SeanPedersen96" class="iconLink" aria-label="X (Twitter)" title="X (Twitter)" target="_blank" rel="noreferrer noopener">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M4 4l11.733 16h4.267l-11.733 -16z"></path><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"></path></svg>
+                  <a href="https://x.com/SeanPedersen96" class="iconLink" aria-label="X (Twitter)" title="X (Twitter)"
+                    target="_blank" rel="noreferrer noopener">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                      <path d="M4 4l11.733 16h4.267l-11.733 -16z"></path>
+                      <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"></path>
+                    </svg>
                   </a>
                 </div>
               </div>
@@ -102,7 +118,8 @@
               <small class="lightText post-tags-container">
                 •<span class="postTags">
                   {%- for tag in post.tags -%}
-                  <span><a href="#{{ tag }}" onclick="return false;">{{ tag }}</a>{% if not loop.last %}, {% endif %}</span>
+                  <span><a href="#{{ tag }}" onclick="return false;">{{ tag }}</a>{% if not loop.last %}, {% endif
+                    %}</span>
                   {%- endfor -%}
                 </span>
               </small>
@@ -117,13 +134,14 @@
       <p>Copy©at ᓚᘏᗢ {{ year }} | All lights served .:.</p>
     </footer>
     <button id="themeToggle" class="themeToggleButton" aria-label="Toggle theme" title="Toggle theme">
-      <svg id="themeIcon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <svg id="themeIcon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
       </svg>
     </button>
   </div>
   <script>
-    (function() {
+    (function () {
       'use strict';
       function updateIcon(theme) {
         var icon = document.getElementById('themeIcon');
@@ -141,12 +159,12 @@
         window.theme.setTheme(newTheme);
         updateIcon(newTheme);
       }
-      document.addEventListener('DOMContentLoaded', function() {
+      document.addEventListener('DOMContentLoaded', function () {
         updateIcon(window.theme.getTheme());
         var btn = document.getElementById('themeToggle');
         if (btn) {
           btn.addEventListener('click', toggle);
-          window.addEventListener('scroll', function() {
+          window.addEventListener('scroll', function () {
             btn.classList.toggle('isHidden', window.scrollY > 10);
           });
           btn.classList.toggle('isHidden', window.scrollY > 10);
@@ -155,7 +173,7 @@
     })();
   </script>
   <script>
-    (function() {
+    (function () {
       let searchScriptLoaded = false;
       let searchInitialized = false;
 
@@ -190,7 +208,7 @@
           input.focus();
           requestAnimationFrame(() => input.focus());
 
-          input.addEventListener('input', function(e) {
+          input.addEventListener('input', function (e) {
             const query = e.target.value;
             const lowerQuery = query.toLowerCase();
             if (clearBtn) clearBtn.style.display = query ? 'flex' : 'none';
@@ -235,7 +253,7 @@
           });
 
           if (clearBtn) {
-            clearBtn.addEventListener('mousedown', function(e) {
+            clearBtn.addEventListener('mousedown', function (e) {
               e.preventDefault();
               input.value = '';
               clearBtn.style.display = 'none';
@@ -272,7 +290,7 @@
           </div>
         `;
 
-        document.getElementById('searchIconBtn').addEventListener('click', function(e) {
+        document.getElementById('searchIconBtn').addEventListener('click', function (e) {
           e.preventDefault();
           initInlineSearch();
         });
@@ -288,12 +306,12 @@
   <script src="/js/tags.js" defer></script>
   <script src="/js/prefetch.js" defer></script>
   <script>
-    (function() {
+    (function () {
       if (typeof window === 'undefined') return;
 
       var script = document.createElement('script');
       script.src = '/js/posthog-lite.js';
-      script.onload = function() {
+      script.onload = function () {
         if (window.PostHogLite) {
           window.posthog = new window.PostHogLite('phc_9XPlyPALuefIMAMSfsvBk4jVuSelJyjl7xwhXigkHAP', {
             host: 'https://us.i.posthog.com',
@@ -306,4 +324,5 @@
     })();
   </script>
 </body>
+
 </html>

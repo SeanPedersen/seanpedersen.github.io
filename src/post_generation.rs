@@ -1,16 +1,28 @@
 use anyhow::Result;
 use rayon::prelude::*;
 use serde_json::json;
+use std::collections::HashMap;
 use std::fs::{self, File};
 use std::io::{BufWriter, Write};
 use std::path::Path;
 use std::sync::Arc;
 use std::time::Instant;
-use tera::Tera;
+use tera::{Tera, Value};
 
 use crate::page_generation::{
     extract_headings, format_date, strip_html_tags, Post, PostSummary,
 };
+
+/// Tera function that outputs a placeholder for CSS inlining.
+/// Usage in template: {{ inline_css(path="/styles/global.css") }}
+/// The placeholder is replaced with actual CSS content during optimization.
+fn inline_css_placeholder(args: &HashMap<String, Value>) -> tera::Result<Value> {
+    let path = args
+        .get("path")
+        .and_then(|v| v.as_str())
+        .ok_or_else(|| tera::Error::msg("inline_css requires a 'path' argument"))?;
+    Ok(Value::String(format!("<!-- INLINE_CSS:{} -->", path)))
+}
 
 pub fn build_post_pages(out_dir: &Path, posts: &Arc<Vec<Post>>) -> Result<()> {
     let start = Instant::now();
@@ -65,7 +77,8 @@ pub fn get_related_posts(
 }
 
 pub fn generate_post_page(out_dir: &Path, post: &Post, related: &[PostSummary]) -> Result<()> {
-    let tera = Tera::new("website/html-templates/**/*")?;
+    let mut tera = Tera::new("website/html-templates/**/*")?;
+    tera.register_function("inline_css", inline_css_placeholder);
 
     // Detect if page has code blocks
     let has_code_blocks = post.content_html.contains("<pre");
