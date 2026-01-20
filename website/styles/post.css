@@ -68,7 +68,16 @@
 .markdown-content h2+table,
 .markdown-content h2+.table-wrapper,
 .markdown-content h2+*>table {
-  margin-top: 1rem;
+  margin-top: 1.5rem;
+}
+
+@media (max-width: 768px) {
+
+  .markdown-content h2+table,
+  .markdown-content h2+.table-wrapper,
+  .markdown-content h2+*>table {
+    margin-top: 0.6rem;
+  }
 }
 
 /* Ensure all elements with IDs have proper scroll margin for anchor links */
