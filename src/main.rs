@@ -26,7 +26,7 @@ fn main() -> Result<()> {
     optimization::optimize_website_assets(&out_dir)?;
 
     println!("\nCompleted in {:.2}s", total_start.elapsed().as_secs_f64());
-    println!("Output directory: {}", out_dir.display());
+    println!("Output directory: {}/", out_dir.display());
 
     Ok(())
 }
