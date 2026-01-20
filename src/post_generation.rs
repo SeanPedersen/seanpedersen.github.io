@@ -9,8 +9,7 @@ use std::time::Instant;
 use tera::Tera;
 
 use crate::page_generation::{
-    extract_headings, format_date, generate_toc_html, read_post_css, strip_html_tags, Post,
-    PostSummary,
+    extract_headings, format_date, generate_toc_html, strip_html_tags, Post, PostSummary,
 };
 
 pub fn build_post_pages(out_dir: &Path, posts: &Arc<Vec<Post>>) -> Result<()> {
@@ -68,23 +67,8 @@ pub fn get_related_posts(
 pub fn generate_post_page(out_dir: &Path, post: &Post, related: &[PostSummary]) -> Result<()> {
     let tera = Tera::new("website/html-templates/**/*")?;
 
-    let css = read_post_css()?;
-
     // Detect if page has code blocks
     let has_code_blocks = post.content_html.contains("<pre");
-
-    // Only load code block CSS and Prism CSS if there are code blocks
-    let code_blocks_css = if has_code_blocks {
-        fs::read_to_string("website/styles/code-blocks.css")?
-    } else {
-        String::new()
-    };
-
-    let prism_css = if has_code_blocks {
-        fs::read_to_string("website/styles/prism-tomorrow.css")?
-    } else {
-        String::new()
-    };
 
     let excerpt = strip_html_tags(&post.content_html)
         .chars()
@@ -130,9 +114,6 @@ pub fn generate_post_page(out_dir: &Path, post: &Post, related: &[PostSummary]) 
     context.insert("post_id", &post.id);
     context.insert("excerpt", &excerpt);
     context.insert("keywords", &keywords);
-    context.insert("css", &css);
-    context.insert("code_blocks_css", &code_blocks_css);
-    context.insert("prism_css", &prism_css);
     context.insert("has_toc", &has_toc);
     context.insert("toc_html", &toc_html);
     context.insert("has_code_blocks", &has_code_blocks);

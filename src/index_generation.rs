@@ -8,7 +8,7 @@ use std::sync::Arc;
 use std::time::Instant;
 use tera::Tera;
 
-use crate::page_generation::{extract_all_tags, read_index_css, Post, PostSummary};
+use crate::page_generation::{extract_all_tags, Post, PostSummary};
 
 pub fn build_index_page(out_dir: &Path, posts: &Arc<Vec<Post>>) -> Result<()> {
     let start = Instant::now();
@@ -36,7 +36,6 @@ pub fn build_index_page(out_dir: &Path, posts: &Arc<Vec<Post>>) -> Result<()> {
 pub fn generate_index_page(out_dir: &Path, posts: &[PostSummary], tags: &[String]) -> Result<()> {
     let tera = Tera::new("website/html-templates/**/*")?;
 
-    let css = read_index_css()?;
     let year = chrono::Local::now().year();
 
     // Prepare posts data with tags_json
@@ -53,7 +52,6 @@ pub fn generate_index_page(out_dir: &Path, posts: &[PostSummary], tags: &[String
         .collect();
 
     let mut context = tera::Context::new();
-    context.insert("css", &css);
     context.insert("tags", tags);
     context.insert("posts", &posts_data);
     context.insert("year", &year);

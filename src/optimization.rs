@@ -31,16 +31,12 @@ pub fn copy_static_assets(out_dir: &Path) -> Result<()> {
     }
 
     // Create styles directory and copy CSS
-    let styles_out = out_dir.join("styles");
-    fs::create_dir_all(&styles_out)?;
+    let styles_src = Path::new("website/styles");
+    if styles_src.exists() {
+        let styles_dest = out_dir.join("styles");
+        copy_dir_recursive(styles_src, &styles_dest)?;
+    }
 
-    fs::copy("website/styles/global.css", styles_out.join("global.css"))?;
-    fs::copy("website/styles/index.css", styles_out.join("index.css"))?;
-    fs::copy("website/styles/post.css", styles_out.join("post.css"))?;
-    fs::copy(
-        "website/styles/prism-tomorrow.css",
-        styles_out.join("prism-tomorrow.css"),
-    )?;
     // Copy JS files
     let js_out = out_dir.join("js");
     fs::create_dir_all(&js_out)?;
