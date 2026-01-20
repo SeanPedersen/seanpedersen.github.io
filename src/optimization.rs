@@ -83,6 +83,14 @@ pub fn optimize_assets(out_dir: &Path) -> Result<()> {
 
     let total_files = css_files.len() + js_files.len() + html_files.len() + image_files.len();
 
+    // Calculate total size before optimization
+    let before_size: u64 = [&css_files, &js_files, &html_files, &image_files]
+        .iter()
+        .flat_map(|files| files.iter())
+        .filter_map(|path| fs::metadata(path).ok())
+        .map(|meta| meta.len())
+        .sum();
+
     // Optimize in parallel
     let css_count = AtomicUsize::new(0);
     let js_count = AtomicUsize::new(0);
@@ -122,10 +130,32 @@ pub fn optimize_assets(out_dir: &Path) -> Result<()> {
             });
         });
     });
+
+    // Calculate total size after optimization
+    let after_size: u64 = [&css_files, &js_files, &html_files, &image_files]
+        .iter()
+        .flat_map(|files| files.iter())
+        .filter_map(|path| fs::metadata(path).ok())
+        .map(|meta| meta.len())
+        .sum();
+
+    let saved = before_size.saturating_sub(after_size);
+    let percent_saved = if before_size > 0 {
+        (saved as f64 / before_size as f64) * 100.0
+    } else {
+        0.0
+    };
+
     println!(
         "✓ Optimized {} assets in {:.2}s",
         total_files,
         start.elapsed().as_secs_f64()
+    );
+    println!(
+        "  ({:.2} KB → {:.2} KB, saved {:.1}%)",
+        before_size as f64 / 1024.0,
+        after_size as f64 / 1024.0,
+        percent_saved
     );
     Ok(())
 }
