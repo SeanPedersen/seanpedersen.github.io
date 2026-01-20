@@ -293,8 +293,9 @@
         postList.appendChild(post);
         const link = post.querySelector('a');
         if (link && searchData) {
-          const postId = post.getAttribute('data-id');
-          const postSearchData = searchData.find(p => p.id === postId);
+          const href = link.getAttribute('href') || '';
+          const postId = href.match(/\/posts\/(.+)\.html$/)?.[1] || '';
+          const postSearchData = postId && searchData.find(p => p.id === postId);
           if (postSearchData) {
             link.innerHTML = escapeHtml(postSearchData.title);
           }
@@ -313,8 +314,10 @@
 
     // RSS full-text search with scoring and sorting (combines title/tag/content matches)
     const scoredPosts = posts.map(post => {
-      const postId = post.getAttribute('data-id');
-      const postSearchData = searchData.find(p => p.id === postId);
+      const link = post.querySelector('a');
+      const href = link?.getAttribute('href') || '';
+      const postId = href.match(/\/posts\/(.+)\.html$/)?.[1] || '';
+      const postSearchData = postId && searchData.find(p => p.id === postId);
 
       let score = 0;
       let titleMatch = false;
@@ -326,7 +329,6 @@
 
       if (!postSearchData) {
         // No RSS data, fall back to title/tag only
-        const link = post.querySelector('a');
         const title = link?.textContent || '';
 
         if (title.toLowerCase().includes(lowerQuery)) {
@@ -393,8 +395,9 @@
         // Highlight title if it matches
         const link = post.querySelector('a');
         if (link) {
-          const postId = post.getAttribute('data-id');
-          const postSearchData = searchData.find(p => p.id === postId);
+          const href = link.getAttribute('href') || '';
+          const postId = href.match(/\/posts\/(.+)\.html$/)?.[1] || '';
+          const postSearchData = postId && searchData.find(p => p.id === postId);
           if (postSearchData) {
             if (titleMatch) {
               link.innerHTML = highlightTitle(postSearchData.title, query);

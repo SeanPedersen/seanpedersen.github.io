@@ -109,7 +109,7 @@
           </div>
           <ul class="list" id="postList">
             {% for post in posts %}
-            <li class="listItem" data-id="{{ post.id }}" data-tags="{{ post.tags_json }}">
+            <li class="listItem" data-tags="{{ post.tags_json }}">
               <a href="/posts/{{ post.id }}.html">{{ post.title }}</a>
               {% if post.tags %}
               <small class="lightText post-tags-container">
