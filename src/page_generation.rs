@@ -194,6 +194,9 @@ fn markdown_to_html(markdown: &str, tags: &[String]) -> String {
     let mut in_table = false;
     let mut table_body_started = false;
     let mut in_blockquote = false;
+    let mut in_image = false;
+    let mut image_alt_text = String::new();
+    let mut image_url = String::new();
 
     for event in parser {
         match event {
@@ -271,11 +274,29 @@ fn markdown_to_html(markdown: &str, tags: &[String]) -> String {
             Event::Text(text) => {
                 if in_code_block {
                     code_block_content.push_str(&text);
+                } else if in_image {
+                    image_alt_text.push_str(&text);
                 } else {
                     let mut escaped = String::new();
                     escape_html(&mut escaped, &text).unwrap();
                     html_output.push_str(&escaped);
                 }
+            }
+            Event::Start(Tag::Image { dest_url, .. }) => {
+                in_image = true;
+                image_alt_text.clear();
+                image_url = dest_url.to_string();
+            }
+            Event::End(TagEnd::Image) => {
+                let mut escaped_alt = String::new();
+                escape_html(&mut escaped_alt, &image_alt_text).unwrap();
+                html_output.push_str(&format!(
+                    r#"<img src="{}" alt="{}">"#,
+                    image_url, escaped_alt
+                ));
+                in_image = false;
+                image_alt_text.clear();
+                image_url.clear();
             }
             Event::Code(code) => {
                 let mut escaped = String::new();
