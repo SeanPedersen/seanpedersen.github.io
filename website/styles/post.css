@@ -188,9 +188,7 @@
 }
 
 .tocHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: block;
 }
 
 .toc h2 {
@@ -270,17 +268,16 @@
     cursor: pointer;
     color: var(--primary-color);
     background-color: var(--background-color);
-    font-size: 1.6rem;
-    line-height: 2.5rem;
-    text-align: center;
   }
 
-  .tocToggle::before {
-    content: "▽";
+  .tocToggle svg {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.2s ease;
   }
 
-  .toc-checkbox:checked ~ .tocToggle::before {
-    content: "△";
+  .toc-checkbox:checked ~ .tocToggle svg {
+    transform: rotate(180deg);
   }
 
   /* Hide content by default on mobile */

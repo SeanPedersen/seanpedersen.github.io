@@ -72,7 +72,9 @@
         {% if has_toc %}
         <nav class="toc">
           <input type="checkbox" id="toc-toggle" class="toc-checkbox">
-          <label for="toc-toggle" class="tocToggle" aria-label="Toggle table of contents"></label>
+          <label for="toc-toggle" class="tocToggle" aria-label="Toggle table of contents">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </label>
           <div class="tocHeader">
             <h2><a href="#{{ title_id }}">{{ post_title }}</a></h2>
           </div>
