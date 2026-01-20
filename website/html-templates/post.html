@@ -28,17 +28,35 @@
   <style>@media (min-width: 1400px) { .toc { position: fixed; width: 250px; left: calc(50% - 770px); top: 100px; } }</style>
   {% endif %}
   <script>
-    (function() {
-      var c = document.cookie.split('; ').find(function(r) { return r.startsWith('theme='); });
-      window.__theme = c ? c.split('=')[1] : (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
-    })();
+      (function () {
+        const initialColorScheme = ""; // "light" | "dark"
+        const currentTheme = localStorage.getItem("theme");
+
+        function getPreferTheme() {
+          if (currentTheme) return currentTheme;
+          if (initialColorScheme) return initialColorScheme;
+          return window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light";
+        }
+
+        const themeValue = getPreferTheme();
+
+        // Set theme immediately to prevent flash
+        document.firstElementChild?.setAttribute("data-theme", themeValue);
+
+        // Export minimal API for external script
+        window.theme = {
+          themeValue: themeValue,
+          getTheme: () => window.theme.themeValue,
+          setTheme: val => {
+            window.theme.themeValue = val;
+          },
+        };
+      })();
   </script>
 </head>
 <body>
-  <script>
-    if (window.__theme === 'light') document.body.classList.add('light-theme');
-    else document.body.setAttribute('data-theme', 'dark');
-  </script>
   <div class="container">
     <header class="header">
       <div style="display: flex; align-items: center; gap: 1rem; padding: 0.5rem;">

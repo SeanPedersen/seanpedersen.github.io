@@ -412,29 +412,29 @@
 }
 
 /* Light theme support */
-body.light-theme .speechBubble {
+html[data-theme="light"] .speechBubble {
   background: #ffffff;
   border-color: #000000;
 }
 
 /* Mobile: down-pointing tail */
 @media (max-width: 767px) {
-  body.light-theme .speechBubble::after {
+  html[data-theme="light"] .speechBubble::after {
     border-top-color: #000000;
   }
 
-  body.light-theme .speechBubble::before {
+  html[data-theme="light"] .speechBubble::before {
     border-top-color: #ffffff;
   }
 }
 
 /* Desktop: right-pointing tail */
 @media (min-width: 768px) {
-  body.light-theme .speechBubble::after {
+  html[data-theme="light"] .speechBubble::after {
     border-left-color: #000000;
   }
 
-  body.light-theme .speechBubble::before {
+  html[data-theme="light"] .speechBubble::before {
     border-left-color: #ffffff;
   }
 }

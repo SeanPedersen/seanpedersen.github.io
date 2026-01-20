@@ -14,17 +14,35 @@
   <link rel="stylesheet" href="/styles/global.css">
   <link rel="stylesheet" href="/styles/index.css">
   <script>
-    (function() {
-      var c = document.cookie.split('; ').find(function(r) { return r.startsWith('theme='); });
-      window.__theme = c ? c.split('=')[1] : (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
-    })();
+      (function () {
+        const initialColorScheme = ""; // "light" | "dark"
+        const currentTheme = localStorage.getItem("theme");
+
+        function getPreferTheme() {
+          if (currentTheme) return currentTheme;
+          if (initialColorScheme) return initialColorScheme;
+          return window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light";
+        }
+
+        const themeValue = getPreferTheme();
+
+        // Set theme immediately to prevent flash
+        document.firstElementChild?.setAttribute("data-theme", themeValue);
+
+        // Export minimal API for external script
+        window.theme = {
+          themeValue: themeValue,
+          getTheme: () => window.theme.themeValue,
+          setTheme: val => {
+            window.theme.themeValue = val;
+          },
+        };
+      })();
   </script>
 </head>
 <body>
-  <script>
-    if (window.__theme === 'light') document.body.classList.add('light-theme');
-    else document.body.setAttribute('data-theme', 'dark');
-  </script>
   <div class="flexer">
     <div class="container">
       <header class="header">
@@ -116,20 +134,15 @@
         icon.setAttribute('title', 'Switch to ' + (theme === 'dark' ? 'light' : 'dark') + ' mode');
       }
       function toggle() {
-        var isLight = document.body.classList.contains('light-theme');
-        var newTheme = isLight ? 'dark' : 'light';
-        if (newTheme === 'light') {
-          document.body.classList.add('light-theme');
-          document.body.removeAttribute('data-theme');
-        } else {
-          document.body.classList.remove('light-theme');
-          document.body.setAttribute('data-theme', 'dark');
-        }
-        document.cookie = 'theme=' + newTheme + '; path=/; max-age=31536000; SameSite=Lax';
+        var currentTheme = window.theme.getTheme();
+        var newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        window.theme.setTheme(newTheme);
         updateIcon(newTheme);
       }
       document.addEventListener('DOMContentLoaded', function() {
-        updateIcon(window.__theme || 'dark');
+        updateIcon(window.theme.getTheme());
         var btn = document.getElementById('themeToggle');
         if (btn) {
           btn.addEventListener('click', toggle);
