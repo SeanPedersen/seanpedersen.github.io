@@ -15,27 +15,15 @@
   <link rel="stylesheet" href="/styles/index.css">
   <script>
     (function() {
-      try {
-        var c = document.cookie.split('; ').find(function(r) { return r.startsWith('theme='); });
-        window.__theme = c ? c.split('=')[1] : (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
-        var s = document.createElement('style');
-        s.id = 'antiFlicker';
-        s.innerHTML = window.__theme === 'light' ? 'body{background-color:#f0f0f0!important;color:#111!important}' : 'body{background-color:#000!important;color:#fff!important}';
-        document.head.appendChild(s);
-      } catch (e) {}
+      var c = document.cookie.split('; ').find(function(r) { return r.startsWith('theme='); });
+      window.__theme = c ? c.split('=')[1] : (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
     })();
   </script>
 </head>
 <body>
   <script>
-    (function() {
-      try {
-        if (window.__theme === 'light') document.body.classList.add('light-theme');
-        else document.body.setAttribute('data-theme', 'dark');
-        var af = document.getElementById('antiFlicker');
-        if (af) af.remove();
-      } catch (e) {}
-    })();
+    if (window.__theme === 'light') document.body.classList.add('light-theme');
+    else document.body.setAttribute('data-theme', 'dark');
   </script>
   <div class="flexer">
     <div class="container">
