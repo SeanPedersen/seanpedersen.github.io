@@ -203,28 +203,6 @@ article {
   margin-bottom: 0rem;
 }
 
-.headerImage {
-  width: 4rem;
-  height: 4rem;
-}
-
-.headerHomeImage {
-  width: 4rem;
-  height: 4rem;
-}
-
-@media (min-width: 768px) {
-  .headerImage {
-    width: 6rem;
-    height: 6rem;
-  }
-
-  .headerHomeImage {
-    width: 6rem;
-    height: 6rem;
-  }
-}
-
 /* Footer */
 footer {
   margin-top: auto;
@@ -248,14 +226,6 @@ footer {
   padding-top: 1rem;
   padding-bottom: 1rem;
   transition: border-top-color 0.3s ease;
-}
-
-#__next {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 /* Typography */
@@ -350,81 +320,6 @@ img {
   display: block;
   border: 4px solid var(--image-border-color);
   transition: border-color 0.3s ease;
-}
-
-.borderCircle {
-  border-radius: 0;
-  border: 4px solid var(--border-color);
-  transition: border-color 0.3s ease;
-}
-
-/* Theme toggle button */
-.themeToggleButton {
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
-  background-color: var(--toggle-bg);
-  color: var(--toggle-text);
-  border: 2px solid var(--text-color);
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  font-size: 24px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  opacity: 1;
-  transition: background-color 0.2s, color 0.2s, border-color 0.2s, opacity 0.3s ease;
-}
-
-.themeToggleButton:hover {
-  opacity: 0.8;
-}
-
-.themeToggleButton.isHidden {
-  opacity: 0;
-  pointer-events: none;
-}
-
-/* Social links */
-.linkRow {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-top: 0.25rem;
-}
-
-.socialLinks {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-}
-
-.iconLink {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 26px;
-  height: 26px;
-  border-radius: 6px;
-  color: var(--text-color);
-  text-decoration: none;
-  border-bottom: none !important;
-  padding: 0 !important;
-  transition: background-color 0.2s ease, transform 0.1s ease;
-}
-
-.iconLink:hover {
-  color: var(--primary-color);
-  background-color: transparent;
-}
-
-.icon {
-  width: 18px;
-  height: 18px;
-  fill: currentColor;
 }
 
 /* Utility classes */
