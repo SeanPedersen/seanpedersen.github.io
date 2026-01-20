@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <path fill="currentColor" d="
+    M16 2 L12.5 9 L19.5 9 Z
+    M12.5 9 L9 16 L16 16 Z
+    M19.5 9 L16 16 L23 16 Z
+    M9 16 L5.5 23 L12.5 23 Z
+    M5.5 23 L2 30 L9 30 Z
+    M12.5 23 L9 30 L16 30 Z
+    M23 16 L19.5 23 L26.5 23 Z
+    M19.5 23 L16 30 L23 30 Z
+    M26.5 23 L23 30 L30 30 Z
+  "/>
+</svg>

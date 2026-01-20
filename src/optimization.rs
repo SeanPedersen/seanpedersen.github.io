@@ -24,10 +24,12 @@ pub fn copy_static_assets(out_dir: &Path) -> Result<()> {
         copy_dir_recursive(images_src, &images_dest)?;
     }
 
-    // Copy favicon
-    let favicon_src = Path::new("website/favicon.ico");
-    if favicon_src.exists() {
-        fs::copy(favicon_src, out_dir.join("favicon.ico"))?;
+    // Copy favicons
+    for favicon in &["favicon.svg", "favicon.ico"] {
+        let favicon_src = Path::new("website").join(favicon);
+        if favicon_src.exists() {
+            fs::copy(&favicon_src, out_dir.join(favicon))?;
+        }
     }
 
     // Create styles directory and copy CSS
