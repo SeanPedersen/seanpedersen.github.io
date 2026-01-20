@@ -5,7 +5,7 @@ date: '2024-12-27'
 
 A small collection of insights on the structure of embeddings (latent spaces) produced by deep neural networks.
 
-Embeddings represent semantic relationships between objects (like words or images) in a vector space, a collection of vectors (points) with distances between each other, by ideally placing related items closely together and unrelated items far apart.
+Embeddings represent semantic relationships between objects (like words or images) as points in a vector space, where related items are positioned close together and unrelated ones far apart.
 
 ## General Principles
 
