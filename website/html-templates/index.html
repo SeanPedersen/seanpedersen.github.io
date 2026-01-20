@@ -16,22 +16,12 @@
   <script>
     (function() {
       try {
-        var storedTheme = document.cookie
-          .split('; ')
-          .find(function(row) { return row.startsWith('theme='); });
-
-        var theme = storedTheme ? storedTheme.split('=')[1] :
-          (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
-
-        var style = document.createElement('style');
-        style.innerHTML = theme === 'light'
-          ? 'body{background-color:#f0f0f0!important;color:#111!important}'
-          : 'body{background-color:#000!important;color:#fff!important}';
-        document.head.appendChild(style);
-
-        if (theme === 'light') {
-          document.documentElement.classList.add('light-theme-pending');
-        }
+        var c = document.cookie.split('; ').find(function(r) { return r.startsWith('theme='); });
+        window.__theme = c ? c.split('=')[1] : (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+        var s = document.createElement('style');
+        s.id = 'antiFlicker';
+        s.innerHTML = window.__theme === 'light' ? 'body{background-color:#f0f0f0!important;color:#111!important}' : 'body{background-color:#000!important;color:#fff!important}';
+        document.head.appendChild(s);
       } catch (e) {}
     })();
   </script>
@@ -40,19 +30,10 @@
   <script>
     (function() {
       try {
-        if (document.documentElement.classList.contains('light-theme-pending')) {
-          document.documentElement.classList.remove('light-theme-pending');
-          document.body.classList.add('light-theme');
-
-          // Remove the anti-flicker inline style
-          const inlineStyles = document.head.querySelectorAll('style');
-          inlineStyles.forEach(style => {
-            const content = style.textContent || style.innerHTML;
-            if (content && content.length < 200 && content.includes('!important') && content.includes('body{')) {
-              style.remove();
-            }
-          });
-        }
+        if (window.__theme === 'light') document.body.classList.add('light-theme');
+        else document.body.setAttribute('data-theme', 'dark');
+        var af = document.getElementById('antiFlicker');
+        if (af) af.remove();
       } catch (e) {}
     })();
   </script>
@@ -135,7 +116,43 @@
       </svg>
     </button>
   </div>
-  <script src="/js/theme.js" defer></script>
+  <script>
+    (function() {
+      'use strict';
+      function updateIcon(theme) {
+        var icon = document.getElementById('themeIcon');
+        if (!icon) return;
+        icon.innerHTML = theme === 'dark'
+          ? '<circle cx="12" cy="12" r="4"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>'
+          : '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+        icon.setAttribute('title', 'Switch to ' + (theme === 'dark' ? 'light' : 'dark') + ' mode');
+      }
+      function toggle() {
+        var isLight = document.body.classList.contains('light-theme');
+        var newTheme = isLight ? 'dark' : 'light';
+        if (newTheme === 'light') {
+          document.body.classList.add('light-theme');
+          document.body.removeAttribute('data-theme');
+        } else {
+          document.body.classList.remove('light-theme');
+          document.body.setAttribute('data-theme', 'dark');
+        }
+        document.cookie = 'theme=' + newTheme + '; path=/; max-age=31536000; SameSite=Lax';
+        updateIcon(newTheme);
+      }
+      document.addEventListener('DOMContentLoaded', function() {
+        updateIcon(window.__theme || 'dark');
+        var btn = document.getElementById('themeToggle');
+        if (btn) {
+          btn.addEventListener('click', toggle);
+          window.addEventListener('scroll', function() {
+            btn.classList.toggle('isHidden', window.scrollY > 10);
+          });
+          btn.classList.toggle('isHidden', window.scrollY > 10);
+        }
+      });
+    })();
+  </script>
   <script>
     (function() {
       let searchScriptLoaded = false;
