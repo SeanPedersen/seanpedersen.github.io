@@ -9,7 +9,7 @@ use std::time::Instant;
 use tera::Tera;
 
 use crate::page_generation::{
-    extract_headings, format_date, generate_toc_html, strip_html_tags, Post, PostSummary,
+    extract_headings, format_date, strip_html_tags, Post, PostSummary,
 };
 
 pub fn build_post_pages(out_dir: &Path, posts: &Arc<Vec<Post>>) -> Result<()> {
@@ -86,14 +86,9 @@ pub fn generate_post_page(out_dir: &Path, post: &Post, related: &[PostSummary]) 
         .collect::<Vec<_>>()
         .join("-");
 
-    // Extract headings and generate TOC HTML
+    // Extract headings for TOC
     let headings = extract_headings(&post.content_html);
     let has_toc = !headings.is_empty();
-    let toc_html = if has_toc {
-        generate_toc_html(&headings, &post.title, &title_id)
-    } else {
-        String::new()
-    };
 
     let keywords = post.tags.join(", ");
 
@@ -115,7 +110,7 @@ pub fn generate_post_page(out_dir: &Path, post: &Post, related: &[PostSummary]) 
     context.insert("excerpt", &excerpt);
     context.insert("keywords", &keywords);
     context.insert("has_toc", &has_toc);
-    context.insert("toc_html", &toc_html);
+    context.insert("headings", &headings);
     context.insert("has_code_blocks", &has_code_blocks);
     context.insert("title_id", &title_id);
     context.insert("formatted_date", &format_date(&post.date));

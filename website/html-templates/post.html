@@ -68,14 +68,22 @@
     <main class="main postPage{% if not has_toc %} noToc{% endif %}">
       <article class="postContainer">
         <span id="{{ title_id }}" style="position: absolute; top: 0; visibility: hidden;" aria-hidden="true"></span>
-        <div class="heading-with-toc">
-          <h1 class="headingXl">{{ post_title }}</h1>
-          {% if has_toc %}
-          <button class="toc-mobile-toggle" id="tocMobileToggle" aria-label="Toggle table of contents">▽</button>
-          {% endif %}
-        </div>
+        <h1 class="headingXl">{{ post_title }}</h1>
         {% if has_toc %}
-        {{ toc_html | safe }}
+        <nav class="toc">
+          <input type="checkbox" id="toc-toggle" class="toc-checkbox">
+          <label for="toc-toggle" class="tocToggle" aria-label="Toggle table of contents"></label>
+          <div class="tocHeader">
+            <h2><a href="#{{ title_id }}">{{ post_title }}</a></h2>
+          </div>
+          <ul class="tocList">
+            {% for h in headings %}
+            <li style="margin-left: {{ (h.level - 1) * 12 }}px;">
+              <a href="#{{ h.id }}">{{ h.text }}</a>
+            </li>
+            {% endfor %}
+          </ul>
+        </nav>
         {% endif %}
         <div class="postMeta">
           <div class="lightText">{{ formatted_date }}</div>
@@ -118,7 +126,6 @@
       document.body.classList.add('has-scrollbar');
     }
   </script>
-  <script src="/js/post.js" defer></script>
   {% if has_code_blocks %}
   <script src="/js/code-blocks.js" defer></script>
   {% endif %}

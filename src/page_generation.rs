@@ -442,7 +442,7 @@ fn add_heading_ids(html: &str) -> String {
     .to_string()
 }
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Serialize)]
 pub struct Heading {
     pub level: u8,
     pub text: String,
@@ -497,44 +497,6 @@ fn decode_html_entities(text: &str) -> String {
         }
     })
     .to_string()
-}
-
-pub fn generate_toc_html(headings: &[Heading], title: &str, title_id: &str) -> String {
-    if headings.is_empty() {
-        return String::new();
-    }
-
-    let heading_items: Vec<String> = headings
-        .iter()
-        .map(|h| {
-            let margin = (h.level.saturating_sub(1) as usize) * 12;
-            format!(
-                "<li style=\"margin-left: {}px;\"><a href=\"#{}\">{}</a></li>",
-                margin, h.id, h.text
-            )
-        })
-        .collect();
-
-    format!(
-        "<nav class=\"toc\">
-        <div class=\"tocHeader\">
-          <h2><a href=\"#{}\">{}</a></h2>
-          <button
-            class=\"toggleButton\"
-            id=\"tocToggle\"
-            aria-label=\"Toggle table of contents\"
-          >
-            ▽
-          </button>
-        </div>
-        <ul class=\"tocList collapsed\" id=\"tocList\">
-          {}
-        </ul>
-      </nav>",
-        title_id,
-        title,
-        heading_items.join("\n          ")
-    )
 }
 
 pub fn strip_html_tags(html: &str) -> String {
