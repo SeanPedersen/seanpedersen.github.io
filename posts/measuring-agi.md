@@ -115,7 +115,6 @@ observations).
 -   Is there a practical way to compute / estimate the problem
     complexity for a problem? Theoretical measures like Kolmogorov
     complexity tend to be incomputable in praxis.
-
 -   Think about complete sets of similar problems, which would prevent
     the agent from being able to have had some similar exposure to a
     problem preventing any form of transfer learning / solving by
@@ -147,9 +146,7 @@ Composed of:
 
 -   prior knowledge (meta knowledge helping to acquire problem specific
     knowledge)
-
 -   perceived data (experience in problem domain)
-
 -   knowledge (learned skills to solve the problem)
 
 **Energy Consumption**: Instead of using a physical measure of energy like Joule one might want
@@ -226,7 +223,6 @@ or simply:
     simple solutions ...but spent energy as well -> what is the
     correlation or even causation between short (simple) solutions and
     spent energy?
-
 -   Which of the two are easier to implement?
 
 ## Back to the Roots
