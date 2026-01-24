@@ -59,11 +59,10 @@
 <body>
   <div class="container">
     <header class="header">
-      <div style="display: flex; align-items: center; gap: 1rem; padding: 0.5rem;">
-        <h2 class="headingLg">
-          <a href="/" class="colorInherit">Sean's Blog</a>
-        </h2>
-      </div>
+      <a href="/" class="headerLink">
+        <img src="/favicon.svg" alt="" class="headerLogo">
+        <h2 class="headingLg">Sean's Blog</h2>
+      </a>
     </header>
     <main class="main postPage{% if not has_toc %} noToc{% endif %}">
       <article class="postContainer">

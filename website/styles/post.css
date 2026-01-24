@@ -276,7 +276,7 @@
     transition: transform 0.2s ease;
   }
 
-  .toc-checkbox:checked ~ .tocToggle svg {
+  .toc-checkbox:checked~.tocToggle svg {
     transform: rotate(180deg);
   }
 
@@ -288,7 +288,7 @@
   }
 
   /* Show content when checkbox is checked */
-  .toc-checkbox:checked ~ .tocList {
+  .toc-checkbox:checked~.tocList {
     display: block;
   }
 }
@@ -370,4 +370,40 @@
 
 body.has-scrollbar .backToTopLink {
   display: inline-block;
+}
+
+
+.headerLink {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  border: none;
+  color: inherit;
+}
+
+.headerLink:hover {
+  background-color: var(--link-hover-bg);
+}
+
+.headerLink:hover .headingLg {
+  color: var(--link-hover-text);
+}
+
+.headerLink .headingLg {
+  border-left: none;
+  padding-left: 0;
+  margin: 0;
+  border-bottom: 2px solid var(--primary-color);
+}
+
+.headerLogo {
+  width: 1.5rem;
+  height: 1.5rem;
+  border: none;
+  filter: invert(1);
+}
+
+html[data-theme="light"] .headerLogo {
+  filter: none;
 }
