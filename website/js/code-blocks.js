@@ -18,8 +18,14 @@
 
       // Only make expandable if more than 20 lines
       if (lineCount <= 20) {
-        // Just add copy button
-        addCopyButton(pre, code, false, false);
+        // Wrap in container for proper button positioning
+        const wrapper = document.createElement('div');
+        wrapper.className = 'codeBlockSimple';
+        pre.parentNode.insertBefore(wrapper, pre);
+        wrapper.appendChild(pre);
+
+        // Add copy button to wrapper (outside scrollable pre)
+        addCopyButton(wrapper, code, false, false);
         return;
       }
 
@@ -129,7 +135,6 @@
       }
     });
 
-    parent.style.position = 'relative';
     parent.appendChild(copyBtn);
   }
 

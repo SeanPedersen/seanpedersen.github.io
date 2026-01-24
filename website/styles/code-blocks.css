@@ -4,14 +4,14 @@
   margin: 1rem 0;
 }
 
+.codeBlockSimple {
+  position: relative;
+  margin: 1rem 0;
+}
+
 .codeBlockContainer {
   position: relative;
   padding-top: 0;
-}
-
-.codeBlockContainer pre,
-.codeBlockWrapper pre {
-  position: relative !important;
 }
 
 .copyButtonNormal {
