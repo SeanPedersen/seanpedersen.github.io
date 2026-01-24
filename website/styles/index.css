@@ -439,12 +439,6 @@ html[data-theme="light"] .speechBubble {
   }
 }
 
-.nameBreak {
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-}
-
 .nameBreak span {
   display: block;
 }
