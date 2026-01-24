@@ -298,15 +298,10 @@ footer {
 a {
   color: var(--primary-color);
   text-decoration: none;
-  border-bottom: 2px solid var(--primary-color);
-  padding: 2px 4px;
-  transition: background-color 0.2s, color 0.2s, border-bottom-color 0.2s;
 }
 
 a:hover {
-  text-decoration: none;
-  background-color: var(--link-hover-bg);
-  color: var(--link-hover-text);
+  text-decoration: underline;
 }
 
 .colorInherit {

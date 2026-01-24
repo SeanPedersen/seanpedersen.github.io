@@ -383,18 +383,14 @@ body.has-scrollbar .backToTopLink {
 }
 
 .headerLink:hover {
-  background-color: var(--link-hover-bg);
-}
-
-.headerLink:hover .headingLg {
-  color: var(--link-hover-text);
+  background-color: transparent;
+  color: inherit;
 }
 
 .headerLink .headingLg {
   border-left: none;
   padding-left: 0;
   margin: 0;
-  border-bottom: 2px solid var(--primary-color);
 }
 
 .headerLogo {
