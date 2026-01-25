@@ -444,7 +444,8 @@ fn add_heading_ids(html: &str) -> String {
         let level = &caps[1];
         let content = &caps[2];
         let plain_text = strip_html_tags(content);
-        let id = plain_text
+        let text = decode_html_entities(&plain_text);
+        let id = text
             .to_lowercase()
             .chars()
             .map(|c| if c.is_alphanumeric() { c } else { '-' })
