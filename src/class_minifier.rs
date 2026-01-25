@@ -198,6 +198,31 @@ fn replace_classes_in_js(js: &str, class_map: &HashMap<String, String>) -> Strin
         format!("class='{}'", replaced.join(" "))
     });
 
+    // 9. Replace class names in ternary expression results (? 'className' or : 'className')
+    // This handles patterns like: isExpanded ? 'copyButtonExpanded' : 'copyButton'
+    let ternary_single_re = Regex::new(r#"([?:])\s*'([a-zA-Z_][a-zA-Z0-9_-]*)'"#).unwrap();
+    let result = ternary_single_re.replace_all(&result, |caps: &regex::Captures| {
+        let op = &caps[1];
+        let class_name = &caps[2];
+        if let Some(minified) = class_map.get(class_name) {
+            format!("{} '{}'", op, minified)
+        } else {
+            caps[0].to_string()
+        }
+    });
+
+    // 10. Replace class names in ternary expression results (double quotes)
+    let ternary_double_re = Regex::new(r#"([?:])\s*"([a-zA-Z_][a-zA-Z0-9_-]*)""#).unwrap();
+    let result = ternary_double_re.replace_all(&result, |caps: &regex::Captures| {
+        let op = &caps[1];
+        let class_name = &caps[2];
+        if let Some(minified) = class_map.get(class_name) {
+            format!("{} \"{}\"", op, minified)
+        } else {
+            caps[0].to_string()
+        }
+    });
+
     result.to_string()
 }
 
@@ -359,6 +384,21 @@ mod tests {
         let result = replace_classes_in_js(js, &map);
         // Should NOT replace element.className (DOM property)
         assert_eq!(result, r#"element.className = 'foo';"#);
+    }
+
+    #[test]
+    fn test_replace_ternary_class_names() {
+        let mut map = HashMap::new();
+        map.insert("copyButtonExpanded".to_string(), "a".to_string());
+        map.insert("copyButton".to_string(), "b".to_string());
+        map.insert("copyButtonNormal".to_string(), "c".to_string());
+
+        let js = r#"btn.className = isExpandable ? (isExpanded ? 'copyButtonExpanded' : 'copyButton') : 'copyButtonNormal';"#;
+        let result = replace_classes_in_js(js, &map);
+        assert_eq!(
+            result,
+            r#"btn.className = isExpandable ? (isExpanded ? 'a' : 'b') : 'c';"#
+        );
     }
 
     #[test]
