@@ -3,14 +3,9 @@ date: '2025-07-03'
 ---
 # Getting started with Claude Code
 
-Claude Code is a powerful coding agent that you use from the command line. It comes with MCP support which enables it to use external tools like web browsers to automatically validate and test new features it added to web apps.
+Claude Code is a powerful CLI based coding agent. It comes with MCP support which enables it to use external tools like web browsers to automatically validate and test new features in web apps. Popular alternatives are OpenAI's [codex](https://openai.com/codex/) and [opencode](https://opencode.ai/).
 
 Simple and popular tech stacks that are fast to validate are the ideal choices for vibe coding (lots of training data available -> less hallucinations and fast / no  compilation -> allows for rapid iteration).
-
-Recommendations:
-- [JavaScript / TypeScript](/posts/javascript-typescript): React, Next, Svelte
-- [Python](/posts/python): Flask, FastAPI
-- Go / Zig / Elixir: all come with fast compilation speeds
 
 ## Setting Things up
 
@@ -798,11 +793,12 @@ Add context window usage for the current session to claude's status bar:
 
 Using GUI apps can make sense as they motivate writing longer and more detailed prompts.
 
-- Desktop app: <https://opcode.sh/>
 - Web app (for subagents): <https://github.com/wandb/catnip>
 - Desktop app (for subagents): <https://github.com/generalaction/emdash>
 - Desktop app (for subagents): <https://conductor.build/>
 - Mobile app: <https://happy.engineering/>
+- Paid desktop app: <https://conare.ai/>
+- [Dev. stopped] Desktop app: <https://opcode.sh/>
 
 ## TODO
 
