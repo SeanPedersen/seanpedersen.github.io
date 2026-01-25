@@ -811,6 +811,7 @@ Using GUI apps can make sense as they motivate writing longer and more detailed 
 - <https://diwank.space/field-notes-from-shipping-real-code-with-claude>
 - <https://every.to/source-code/my-ai-had-already-fixed-the-code-before-i-saw-it>
 - <https://steipete.me/posts/just-talk-to-it>
+- <https://lucumr.pocoo.org/2025/6/12/agentic-coding/>
 - <https://www.john-rush.com/posts/ai-20250701.html>
 - <https://www.youtube.com/watch?v=eIUYSC6SilA>
 - <https://www.anthropic.com/engineering/claude-code-best-practices>
