@@ -176,6 +176,28 @@ fn replace_classes_in_js(js: &str, class_map: &HashMap<String, String>) -> Strin
         format!(".className = \"{}\"", replaced.join(" "))
     });
 
+    // 7. Replace class="className" in HTML template strings (double quotes)
+    let class_attr_double_re = Regex::new(r#"class="([^"]*)""#).unwrap();
+    let result = class_attr_double_re.replace_all(&result, |caps: &regex::Captures| {
+        let classes_str = &caps[1];
+        let replaced: Vec<_> = classes_str
+            .split_whitespace()
+            .map(|class| class_map.get(class).map(|s| s.as_str()).unwrap_or(class))
+            .collect();
+        format!("class=\"{}\"", replaced.join(" "))
+    });
+
+    // 8. Replace class='className' in HTML template strings (single quotes)
+    let class_attr_single_re = Regex::new(r#"class='([^']*)'"#).unwrap();
+    let result = class_attr_single_re.replace_all(&result, |caps: &regex::Captures| {
+        let classes_str = &caps[1];
+        let replaced: Vec<_> = classes_str
+            .split_whitespace()
+            .map(|class| class_map.get(class).map(|s| s.as_str()).unwrap_or(class))
+            .collect();
+        format!("class='{}'", replaced.join(" "))
+    });
+
     result.to_string()
 }
 
