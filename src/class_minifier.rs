@@ -95,140 +95,88 @@ fn replace_classes_in_html(html: &str, class_map: &HashMap<String, String>) -> S
     result.to_string()
 }
 
-/// Replace class names in JavaScript code using regex for efficiency
-/// Handles both:
+/// Replace class names in JavaScript code
+/// Handles:
 /// - CSS selectors in strings: '.container .item', '.tag'
-/// - classList operations: classList.add('className')
+/// - classList operations: classList.add('className'), classList.toggle('className')
+/// - className assignments: className = 'class1 class2'
 fn replace_classes_in_js(js: &str, class_map: &HashMap<String, String>) -> String {
-    // First pass: replace class selectors within string literals
-    // Match .className where the dot is preceded by a selector context character
-    // Use (?<= ) for lookbehind isn't supported in rust regex, so we match the prefix
-    // and preserve it using a non-consuming approach
+    // Use regex-based replacements for safety - avoids corrupting nested strings
 
-    // Track if we're inside a string literal
-    let mut result = String::new();
-    let chars: Vec<char> = js.chars().collect();
-    let mut i = 0;
-    let mut in_string: Option<char> = None;
-
-    while i < chars.len() {
-        let c = chars[i];
-
-        // Track string state
-        if in_string.is_none() && (c == '\'' || c == '"' || c == '`') {
-            in_string = Some(c);
-            result.push(c);
-            i += 1;
-            continue;
+    // 1. Replace .className patterns in querySelector-style strings
+    // Match: '.className' or ".className" where className is a known class
+    let selector_re = Regex::new(r#"(['"`])\.([a-zA-Z_][a-zA-Z0-9_-]*)"#).unwrap();
+    let result = selector_re.replace_all(js, |caps: &regex::Captures| {
+        let quote = &caps[1];
+        let class_name = &caps[2];
+        if let Some(minified) = class_map.get(class_name) {
+            format!("{}.{}", quote, minified)
+        } else {
+            caps[0].to_string()
         }
+    });
 
-        if let Some(quote) = in_string {
-            if c == quote && (i == 0 || chars[i - 1] != '\\') {
-                in_string = None;
-                result.push(c);
-                i += 1;
-                continue;
-            }
-
-            // Inside string: check for .className pattern
-            if c == '.' && i + 1 < chars.len() {
-                // Check if previous char is a selector context (space, quote, combinator)
-                let prev = if i > 0 { chars[i - 1] } else { ' ' };
-                let is_selector_context =
-                    prev == quote || prev == ' ' || prev == '>' || prev == '+' || prev == '~';
-
-                if is_selector_context {
-                    // Extract potential class name
-                    let mut class_end = i + 1;
-                    while class_end < chars.len() {
-                        let nc = chars[class_end];
-                        if nc.is_ascii_alphanumeric() || nc == '_' || nc == '-' {
-                            class_end += 1;
-                        } else {
-                            break;
-                        }
-                    }
-
-                    if class_end > i + 1 {
-                        let class_name: String = chars[i + 1..class_end].iter().collect();
-                        if let Some(minified) = class_map.get(&class_name) {
-                            result.push('.');
-                            result.push_str(minified);
-                            i = class_end;
-                            continue;
-                        }
-                    }
-                }
-            }
-
-            result.push(c);
-            i += 1;
-            continue;
+    // 2. Replace class names after space in selectors: ' .className'
+    let spaced_selector_re = Regex::new(r#"( )\.([a-zA-Z_][a-zA-Z0-9_-]*)"#).unwrap();
+    let result = spaced_selector_re.replace_all(&result, |caps: &regex::Captures| {
+        let space = &caps[1];
+        let class_name = &caps[2];
+        if let Some(minified) = class_map.get(class_name) {
+            format!("{}.{}", space, minified)
+        } else {
+            caps[0].to_string()
         }
+    });
 
-        result.push(c);
-        i += 1;
-    }
+    // 3. Replace classList.add/remove/toggle/contains('className') - single quotes
+    let classlist_single_re =
+        Regex::new(r#"classList\.(add|remove|toggle|contains)\s*\(\s*'([^']*)'\s*\)"#).unwrap();
+    let result = classlist_single_re.replace_all(&result, |caps: &regex::Captures| {
+        let method = &caps[1];
+        let classes_str = &caps[2];
+        let replaced: Vec<_> = classes_str
+            .split_whitespace()
+            .map(|class| class_map.get(class).map(|s| s.as_str()).unwrap_or(class))
+            .collect();
+        format!("classList.{}('{}')", method, replaced.join(" "))
+    });
 
-    // Second pass: replace class names in quoted strings
-    // Handles both single class names and space-separated class lists like 'class1 class2'
-    for quote in &['\'', '"', '`'] {
-        let quote_char = *quote;
-        let mut new_result = String::new();
-        let chars: Vec<char> = result.chars().collect();
-        let mut i = 0;
+    // 4. Replace classList.add/remove/toggle/contains("className") - double quotes
+    let classlist_double_re =
+        Regex::new(r#"classList\.(add|remove|toggle|contains)\s*\(\s*"([^"]*)"\s*\)"#).unwrap();
+    let result = classlist_double_re.replace_all(&result, |caps: &regex::Captures| {
+        let method = &caps[1];
+        let classes_str = &caps[2];
+        let replaced: Vec<_> = classes_str
+            .split_whitespace()
+            .map(|class| class_map.get(class).map(|s| s.as_str()).unwrap_or(class))
+            .collect();
+        format!("classList.{}(\"{}\")", method, replaced.join(" "))
+    });
 
-        while i < chars.len() {
-            if chars[i] == quote_char {
-                // Found opening quote, find closing quote
-                let start = i;
-                i += 1;
-                let mut content = String::new();
+    // 5. Replace className = 'class1 class2' assignments - single quotes
+    let classname_single_re = Regex::new(r#"\.className\s*=\s*'([^']*)'"#).unwrap();
+    let result = classname_single_re.replace_all(&result, |caps: &regex::Captures| {
+        let classes_str = &caps[1];
+        let replaced: Vec<_> = classes_str
+            .split_whitespace()
+            .map(|class| class_map.get(class).map(|s| s.as_str()).unwrap_or(class))
+            .collect();
+        format!(".className = '{}'", replaced.join(" "))
+    });
 
-                while i < chars.len() && chars[i] != quote_char {
-                    if chars[i] == '\\' && i + 1 < chars.len() {
-                        content.push(chars[i]);
-                        content.push(chars[i + 1]);
-                        i += 2;
-                    } else {
-                        content.push(chars[i]);
-                        i += 1;
-                    }
-                }
+    // 6. Replace className = "class1 class2" assignments - double quotes
+    let classname_double_re = Regex::new(r#"\.className\s*=\s*"([^"]*)""#).unwrap();
+    let result = classname_double_re.replace_all(&result, |caps: &regex::Captures| {
+        let classes_str = &caps[1];
+        let replaced: Vec<_> = classes_str
+            .split_whitespace()
+            .map(|class| class_map.get(class).map(|s| s.as_str()).unwrap_or(class))
+            .collect();
+        format!(".className = \"{}\"", replaced.join(" "))
+    });
 
-                if i < chars.len() {
-                    // Found closing quote
-                    // Replace class names in the content (space-separated words)
-                    let replaced_content: String = content
-                        .split(' ')
-                        .map(|word| {
-                            class_map
-                                .get(word)
-                                .map(|s| s.as_str())
-                                .unwrap_or(word)
-                        })
-                        .collect::<Vec<_>>()
-                        .join(" ");
-
-                    new_result.push(quote_char);
-                    new_result.push_str(&replaced_content);
-                    new_result.push(quote_char);
-                    i += 1;
-                } else {
-                    // Unclosed quote, just copy as-is
-                    new_result.push_str(&result[start..]);
-                    break;
-                }
-            } else {
-                new_result.push(chars[i]);
-                i += 1;
-            }
-        }
-
-        result = new_result;
-    }
-
-    result
+    result.to_string()
 }
 
 /// Replace class names in inline <style> tags within HTML
