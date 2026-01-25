@@ -44,7 +44,8 @@ Discovered by Jennifer Doudna and Emmanuelle Charpentier, who won the 2020 Nobel
 
 ## Surprising Q&A
 
-### complexity of an organism does not correlate with number of chromosomes
+**Does number of chromosome pairs correlate with complexity of an organism?**
+
 Chromosome number varies widely across species without correlation to complexity:
 - Humans: 23 pairs
 - Dogs: 39 pairs
@@ -53,14 +54,14 @@ Chromosome number varies widely across species without correlation to complexity
 
 What matters for complexity of an organism is gene regulation, alternative splicing, non-coding RNAs and protein interactions - not just chromosome count or even total gene number.
 
-### what does it mean our DNA is 99% similar to chimps? how is DNA similarity computed
+**What does it mean our DNA is 99% similar to chimps? how is DNA similarity computed?**
 
 - The 99% refers to aligned sequences (comparable regions)
 - Doesn't account for insertions/deletions (indels) - chimps have different chromosome counts
 - Non-coding regions can differ more than genes
 - Overall genome similarity is closer to 96-98% when including structural differences
 
-### how was the tree of life calculated?
+**How was the tree of life calculated?**
 
 Key breakthrough:
 Carl Woese (1977) used ribosomal RNA sequences to reveal three domains of life (Bacteria, Archaea, Eukarya), revolutionizing classification that was previously based on visible features.
@@ -75,7 +76,8 @@ Challenges:
 - Incomplete fossil record
 - Convergent evolution (similar traits, different origins)
 
-### how many genes mutate in human sexual reproduction on average?
+**How many genes mutate in human sexual reproduction on average?**
+
 In human sexual reproduction, approximately 60-100 new mutations occur per offspring on average. These are de novo mutations—changes that appear in the child but weren't present in either parent's genome. Most occur during sperm production (~80% are paternal in origin and increase with age). Most mutations are in non-coding regions and have no effect.
 
 ## Geographical Genetic Heritage
