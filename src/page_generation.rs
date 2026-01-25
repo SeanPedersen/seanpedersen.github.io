@@ -55,8 +55,7 @@ pub struct PostSummary {
 pub fn get_posts_data(_out_dir: &Path) -> Result<Arc<Vec<Post>>> {
     let start = Instant::now();
     let posts_dir = Path::new("posts");
-    let repo = gix::open(".").ok();
-    let mut posts = read_all_posts(posts_dir, repo.as_ref())?;
+    let mut posts = read_all_posts(posts_dir)?;
     posts.sort_by(|a, b| b.date.cmp(&a.date));
     println!(
         "✓ Loaded {} posts in {:.2}s",
@@ -66,29 +65,13 @@ pub fn get_posts_data(_out_dir: &Path) -> Result<Arc<Vec<Post>>> {
     Ok(Arc::new(posts))
 }
 
-pub fn read_all_posts(posts_dir: &Path, repo: Option<&gix::Repository>) -> Result<Vec<Post>> {
+pub fn read_all_posts(posts_dir: &Path) -> Result<Vec<Post>> {
     let entries: Vec<_> = fs::read_dir(posts_dir)?
         .filter_map(|e| e.ok())
         .filter(|e| e.path().extension().and_then(|s| s.to_str()) == Some("md"))
         .map(|e| e.path())
         .collect();
 
-    // First pass: resolve dates for files missing frontmatter dates (sequential for git access)
-    let mut git_dates: std::collections::HashMap<std::path::PathBuf, String> =
-        std::collections::HashMap::new();
-    for path in &entries {
-        // Quick check: read just enough to extract frontmatter date
-        if let Ok(content) = fs::read_to_string(path) {
-            let (metadata, _) = parse_frontmatter(&content);
-            if metadata.date.is_none() {
-                if let Some(date) = repo.and_then(|r| get_git_first_add_date(r, path)) {
-                    git_dates.insert(path.clone(), date);
-                }
-            }
-        }
-    }
-
-    // Second pass: parse everything in parallel
     let posts: Vec<Post> = entries
         .par_iter()
         .filter_map(|path| {
@@ -96,9 +79,7 @@ pub fn read_all_posts(posts_dir: &Path, repo: Option<&gix::Repository>) -> Resul
             let id = path.file_stem()?.to_str()?.to_string();
             let (metadata, markdown) = parse_frontmatter(&content);
 
-            let date = metadata
-                .date
-                .or_else(|| git_dates.get(path).cloned())?;
+            let date = metadata.date.or_else(|| get_git_first_add_date(path))?;
 
             let title = extract_title(&markdown);
             if title.is_empty() {
@@ -134,7 +115,8 @@ fn parse_frontmatter(content: &str) -> (PostMetadata, String) {
     }
 }
 
-fn get_git_first_add_date(repo: &gix::Repository, file_path: &Path) -> Option<String> {
+fn get_git_first_add_date(file_path: &Path) -> Option<String> {
+    let repo = gix::open(".").ok()?;
     let head = repo.head_commit().ok()?;
 
     // Walk newest to oldest, track last commit where file exists
