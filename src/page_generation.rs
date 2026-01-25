@@ -1,15 +1,16 @@
-use anyhow::{Context, Result};
+use anyhow::Result;
 use chrono::NaiveDate;
 use once_cell::sync::Lazy;
 use pulldown_cmark::{html, CodeBlockKind, Event, Options, Parser, Tag, TagEnd};
 use pulldown_cmark_escape::escape_html;
-use rayon::prelude::*;
 use regex::Regex;
 use serde::{Deserialize, Serialize};
+use rayon::prelude::*;
 use std::collections::HashSet;
 use std::fs;
 use std::path::Path;
 use std::sync::Arc;
+use std::time::Instant;
 use syntect::html::{ClassStyle, ClassedHTMLGenerator};
 use syntect::parsing::{SyntaxSet, SyntaxSetBuilder};
 
@@ -29,9 +30,9 @@ static CUSTOM_SYNTAXES: Lazy<Option<SyntaxSet>> = Lazy::new(|| {
     }
 });
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize, Default)]
 pub struct PostMetadata {
-    pub date: String,
+    pub date: Option<String>,
 }
 
 #[derive(Debug, Clone)]
@@ -52,73 +53,106 @@ pub struct PostSummary {
 }
 
 pub fn get_posts_data(_out_dir: &Path) -> Result<Arc<Vec<Post>>> {
+    let start = Instant::now();
     let posts_dir = Path::new("posts");
-    let mut posts = read_all_posts(posts_dir)?;
-    // Sort by date descending
+    let repo = gix::open(".").ok();
+    let mut posts = read_all_posts(posts_dir, repo.as_ref())?;
     posts.sort_by(|a, b| b.date.cmp(&a.date));
+    println!(
+        "✓ Loaded {} posts in {:.2}s",
+        posts.len(),
+        start.elapsed().as_secs_f64()
+    );
     Ok(Arc::new(posts))
 }
 
-pub fn read_all_posts(posts_dir: &Path) -> Result<Vec<Post>> {
+pub fn read_all_posts(posts_dir: &Path, repo: Option<&gix::Repository>) -> Result<Vec<Post>> {
     let entries: Vec<_> = fs::read_dir(posts_dir)?
         .filter_map(|e| e.ok())
         .filter(|e| e.path().extension().and_then(|s| s.to_str()) == Some("md"))
+        .map(|e| e.path())
         .collect();
 
+    // First pass: resolve dates for files missing frontmatter dates (sequential for git access)
+    let mut git_dates: std::collections::HashMap<std::path::PathBuf, String> =
+        std::collections::HashMap::new();
+    for path in &entries {
+        // Quick check: read just enough to extract frontmatter date
+        if let Ok(content) = fs::read_to_string(path) {
+            let (metadata, _) = parse_frontmatter(&content);
+            if metadata.date.is_none() {
+                if let Some(date) = repo.and_then(|r| get_git_first_add_date(r, path)) {
+                    git_dates.insert(path.clone(), date);
+                }
+            }
+        }
+    }
+
+    // Second pass: parse everything in parallel
     let posts: Vec<Post> = entries
         .par_iter()
-        .filter_map(|entry| read_post(&entry.path()).ok().flatten())
+        .filter_map(|path| {
+            let content = fs::read_to_string(path).ok()?;
+            let id = path.file_stem()?.to_str()?.to_string();
+            let (metadata, markdown) = parse_frontmatter(&content);
+
+            let date = metadata
+                .date
+                .or_else(|| git_dates.get(path).cloned())?;
+
+            let title = extract_title(&markdown);
+            if title.is_empty() {
+                return None;
+            }
+            let tags = extract_tags(&content);
+            let markdown_without_title = remove_first_h1(&markdown);
+            let content_html = markdown_to_html(&markdown_without_title, &tags);
+
+            Some(Post {
+                id,
+                title,
+                date,
+                tags,
+                content_html,
+            })
+        })
         .collect();
 
     Ok(posts)
 }
 
-fn read_post(path: &Path) -> Result<Option<Post>> {
-    let content = fs::read_to_string(path)?;
-    let id = path
-        .file_stem()
-        .and_then(|s| s.to_str())
-        .context("Invalid filename")?
-        .to_string();
-
-    // Parse frontmatter
-    let (metadata, markdown) = parse_frontmatter(&content)?;
-
-    // Extract title from first H1
-    let title = extract_title(&markdown);
-    if title.is_empty() {
-        return Ok(None);
-    }
-
-    // Extract tags from last line
-    let tags = extract_tags(&content);
-
-    // Remove first H1 from content
-    let markdown_without_title = remove_first_h1(&markdown);
-
-    // Convert markdown to HTML
-    let content_html = markdown_to_html(&markdown_without_title, &tags);
-
-    Ok(Some(Post {
-        id,
-        title,
-        date: metadata.date,
-        tags,
-        content_html,
-    }))
-}
-
-fn parse_frontmatter(content: &str) -> Result<(PostMetadata, String)> {
+fn parse_frontmatter(content: &str) -> (PostMetadata, String) {
     let re = Regex::new(r"(?s)^---\s*\n(.*?)\n---\s*\n(.*)$").unwrap();
 
     if let Some(caps) = re.captures(content) {
         let yaml = caps.get(1).unwrap().as_str();
         let markdown = caps.get(2).unwrap().as_str();
-        let metadata: PostMetadata = serde_yaml::from_str(yaml)?;
-        Ok((metadata, markdown.to_string()))
+        let metadata: PostMetadata = serde_yaml::from_str(yaml).unwrap_or_default();
+        (metadata, markdown.to_string())
     } else {
-        anyhow::bail!("No frontmatter found");
+        (PostMetadata::default(), content.to_string())
     }
+}
+
+fn get_git_first_add_date(repo: &gix::Repository, file_path: &Path) -> Option<String> {
+    let head = repo.head_commit().ok()?;
+
+    // Walk newest to oldest, track last commit where file exists
+    let mut first_add_date = None;
+    for info in head.ancestors().all().ok()?.flatten() {
+        let commit = info.id().object().ok()?.try_into_commit().ok()?;
+        let tree = commit.tree().ok()?;
+
+        if tree.lookup_entry_by_path(file_path).ok().flatten().is_some() {
+            let time = commit.time().ok()?;
+            first_add_date = chrono::DateTime::from_timestamp(time.seconds, 0)
+                .map(|dt| dt.format("%Y-%m-%d").to_string());
+        } else if first_add_date.is_some() {
+            break;
+        }
+    }
+
+    first_add_date
 }
 
 fn extract_title(markdown: &str) -> String {

@@ -4,6 +4,7 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+gix = { version = "0.72", default-features = false, features = ["revision", "max-performance"] }
 pulldown-cmark = "0.13"
 pulldown-cmark-escape = "0.11"
 rayon = "1.10"
