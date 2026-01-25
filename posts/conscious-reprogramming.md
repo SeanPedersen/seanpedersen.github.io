@@ -59,7 +59,7 @@ These practices require commitment but provide powerful tools for bringing aware
 
 ## Conclusion
 
-Overcoming trauma and subconscious (re)programming requires continuous reflection, self-awareness, and the will to grow. By addressing these hidden influences, we can reprogram ourselves with new positive behaviors.
+Overcoming trauma and (re)programming our subconsiousness require continuous reflection, self-awareness and the will to grow. By integrating these habits, we can reprogram ourselves with new positive behaviors - ultimately increasing our self-agency.
 
 > Until you make the unconscious conscious, it will direct your life and you will call it fate.
 - Unknown author (often wrongly attributed to Carl Jung)
