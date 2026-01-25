@@ -1,3 +1,4 @@
+mod class_minifier;
 mod index_generation;
 mod optimization;
 mod page_generation;

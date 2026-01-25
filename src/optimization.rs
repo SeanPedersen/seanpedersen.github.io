@@ -1,3 +1,4 @@
+use crate::class_minifier::minify_css_classes;
 use anyhow::Result;
 use lightningcss::stylesheet::{ParserOptions, PrinterOptions, StyleSheet};
 use minify_html::{minify, Cfg};
@@ -95,6 +96,7 @@ pub fn optimize_assets(out_dir: &Path) -> Result<()> {
         .sum();
 
     // Optimize in phases:
+    // 0. Minify CSS class names across all files
     // 1. Minify CSS and JS files (in parallel)
     // 2. Inline CSS into HTML files (requires minified CSS)
     // 3. Minify HTML files (after CSS inlining)
@@ -103,6 +105,9 @@ pub fn optimize_assets(out_dir: &Path) -> Result<()> {
     let html_count = AtomicUsize::new(0);
     let img_count = AtomicUsize::new(0);
     let inline_count = AtomicUsize::new(0);
+
+    // Phase 0: Minify CSS class names (must happen before CSS/JS minification)
+    minify_css_classes(&css_files, &html_files, &js_files)?;
 
     // Phase 1: Minify CSS, JS, and optimize images in parallel
     rayon::scope(|s| {
