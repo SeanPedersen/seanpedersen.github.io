@@ -204,7 +204,8 @@ mod tests {
 │   ├── global_generation.rs # Global HTML page generation
 │   ├── rss_generation.rs    # RSS feed generation
 │   ├── class_minifier.rs    # CSS class name minification
-│   └── optimization.rs      # Asset optimization (CSS/JS minification)
+│   ├── optimization.rs      # Asset optimization (CSS/JS minification)
+│   └── syntaxes/            # Custom syntax definitions for syntax highlighting
 ├── posts/                   # Markdown blog posts
 ├── website/
 │   ├── index/               # Files for index page building (HTML template, CSS, JS)

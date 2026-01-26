@@ -16,9 +16,9 @@ use syntect::parsing::{SyntaxSet, SyntaxSetBuilder};
 
 // Load custom syntaxes once at startup
 static CUSTOM_SYNTAXES: Lazy<Option<SyntaxSet>> = Lazy::new(|| {
-    if Path::new("syntaxes").exists() {
+    if Path::new("src/syntaxes").exists() {
         let mut builder = SyntaxSetBuilder::new();
-        match builder.add_from_folder("syntaxes", true) {
+        match builder.add_from_folder("src/syntaxes", true) {
             Ok(_) => Some(builder.build()),
             Err(e) => {
                 eprintln!("Warning: Failed to load custom syntaxes: {}", e);
