@@ -26,11 +26,18 @@ pub fn copy_static_assets(out_dir: &Path) -> Result<()> {
         copy_dir_recursive(images_src, &images_dest)?;
     }
 
-    // Copy favicons
+    // Copy favicons from website/ and website/global/
     for favicon in &["favicon.svg", "favicon.ico"] {
-        let favicon_src = Path::new("website").join(favicon);
-        if favicon_src.exists() {
-            fs::copy(&favicon_src, out_dir.join(favicon))?;
+        // First check in website/global/
+        let favicon_src_global = Path::new("website/global").join(favicon);
+        if favicon_src_global.exists() {
+            fs::copy(&favicon_src_global, out_dir.join(favicon))?;
+        } else {
+            // Then check in website/ root
+            let favicon_src = Path::new("website").join(favicon);
+            if favicon_src.exists() {
+                fs::copy(&favicon_src, out_dir.join(favicon))?;
+            }
         }
     }
 

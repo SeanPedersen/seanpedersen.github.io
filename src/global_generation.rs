@@ -25,7 +25,30 @@ pub fn build_global_html_pages(out_dir: &Path) -> Result<()> {
         return Ok(());
     }
 
-    let mut tera = Tera::new("website/global/**/*")?;
+    // Collect HTML files first
+    let mut html_files = Vec::new();
+    for entry in std::fs::read_dir(global_dir)? {
+        let entry = entry?;
+        let path = entry.path();
+        if let Some(ext) = path.extension() {
+            if ext == "html" {
+                html_files.push(path);
+            }
+        }
+    }
+
+    if html_files.is_empty() {
+        return Ok(());
+    }
+
+    // Initialize Tera
+    let mut tera = Tera::new("")?;
+    for html_path in &html_files {
+        tera.add_template_file(
+            html_path,
+            Some(html_path.file_name().unwrap().to_str().unwrap()),
+        )?;
+    }
     tera.register_function("inline_css", inline_css_placeholder);
 
     let year = chrono::Local::now().year();
@@ -34,18 +57,12 @@ pub fn build_global_html_pages(out_dir: &Path) -> Result<()> {
     context.insert("year", &year);
 
     let mut count = 0;
-    for entry in std::fs::read_dir(global_dir)? {
-        let entry = entry?;
-        let path = entry.path();
-        if let Some(ext) = path.extension() {
-            if ext == "html" {
-                if let Some(file_name) = path.file_name().and_then(|n| n.to_str()) {
-                    let html = tera.render(file_name, &context)?;
-                    let mut file = BufWriter::new(File::create(out_dir.join(file_name))?);
-                    write!(file, "{}", html)?;
-                    count += 1;
-                }
-            }
+    for html_path in html_files {
+        if let Some(file_name) = html_path.file_name().and_then(|n| n.to_str()) {
+            let html = tera.render(file_name, &context)?;
+            let mut file = BufWriter::new(File::create(out_dir.join(file_name))?);
+            write!(file, "{}", html)?;
+            count += 1;
         }
     }
 
