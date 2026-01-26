@@ -417,6 +417,11 @@ html[data-theme="light"] .headerLogo {
   border: none;
   position: relative;
   z-index: 2;
+  filter: invert(1);
+}
+
+html[data-theme="light"] .postTitle .postIcon {
+  filter: none;
 }
 
 .relatedPostLink {
@@ -429,4 +434,9 @@ html[data-theme="light"] .headerLogo {
   width: 1.4rem;
   height: 1.4rem;
   border: none;
+  filter: invert(1);
+}
+
+html[data-theme="light"] .relatedPostLink .postIcon {
+  filter: none;
 }

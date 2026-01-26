@@ -305,6 +305,11 @@
   display: inline;
   vertical-align: middle;
   margin-right: 0.4rem;
+  filter: invert(1);
+}
+
+html[data-theme="light"] .postIcon {
+  filter: none;
 }
 
 .postTitleText {
