@@ -1,5 +1,7 @@
 # Sean's Blog
 
+Custom static site generator using Rust - builds an optimized build in ~300ms.
+
 ## Selected Articles
 
 - [AGI Bubble](https://seanpedersen.github.io/posts/agi-bubble)
@@ -11,7 +13,7 @@
 
 ## Setup
 
-Just clone this repo, create a new github project named $your_username.github.io, follow instructions below and push the modified repo up (on each push the site is getting rebuild and published).
+Just clone this repo, create a new github project named $your_username.github.io, follow instructions below and push the modified repo up (on each push the site is getting rebuild and published via Github pages).
 
 - Posts live in ./posts/ as normal markdown files
   - date can be added at top as metadata or not (falls back to git first added)
