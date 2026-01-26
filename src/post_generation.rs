@@ -135,7 +135,11 @@ pub fn generate_post_page(out_dir: &Path, post: &Post, related: &[PostSummary]) 
 
     let html = tera.render("post.html", &context)?;
 
-    let mut file = BufWriter::new(File::create(out_dir.join(format!("{}.html", post.id)))?);
+    // Create directory-based URLs for clean GitHub Pages routing
+    // e.g., /posts/python/index.html serves at /posts/python
+    let post_dir = out_dir.join(&post.id);
+    fs::create_dir_all(&post_dir)?;
+    let mut file = BufWriter::new(File::create(post_dir.join("index.html"))?);
     write!(file, "{}", html)?;
 
     Ok(())

@@ -73,7 +73,7 @@ pub fn generate_rss(out_dir: &Path, posts: &Arc<Vec<Post>>) -> Result<()> {
         }
 
         // Read minified HTML content from the optimized post file
-        let html_path = out_dir.join("posts").join(format!("{}.html", post.id));
+        let html_path = out_dir.join("posts").join(&post.id).join("index.html");
         let html_content = fs::read_to_string(&html_path).unwrap_or_default();
 
         // Extract content from markdown-content div

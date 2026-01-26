@@ -106,7 +106,7 @@
           <ul class="relatedPostsList" style="padding-left: 0">
             {% for rel in related_posts %}
             <li class="relatedPostItem">
-              <a href="/posts/{{ rel.id }}.html" class="relatedPostLink">
+              <a href="/posts/{{ rel.id }}" class="relatedPostLink">
                 {% if rel.icon %}
                 <img src="{{ rel.icon }}" alt="" class="postIcon" aria-hidden="true">
                 {% endif %}

@@ -250,7 +250,7 @@
 
           // Extract post ID from link
           const url = new URL(link);
-          const id = url.pathname.split('/').filter(Boolean).pop().replace('.html', '');
+          const id = url.pathname.split('/').filter(Boolean).pop();
 
           return {
             id,
@@ -294,7 +294,7 @@
         const link = post.querySelector('a');
         if (link && searchData) {
           const href = link.getAttribute('href') || '';
-          const postId = href.match(/\/posts\/(.+)\.html$/)?.[1] || '';
+          const postId = href.match(/\/posts\/([^/]+)\/?$/)?.[1] || '';
           const postSearchData = postId && searchData.find(p => p.id === postId);
           if (postSearchData) {
             link.innerHTML = escapeHtml(postSearchData.title);
@@ -316,7 +316,7 @@
     const scoredPosts = posts.map(post => {
       const link = post.querySelector('a');
       const href = link?.getAttribute('href') || '';
-      const postId = href.match(/\/posts\/(.+)\.html$/)?.[1] || '';
+      const postId = href.match(/\/posts\/([^/]+)\/?$/)?.[1] || '';
       const postSearchData = postId && searchData.find(p => p.id === postId);
 
       let score = 0;
@@ -396,7 +396,7 @@
         const link = post.querySelector('a');
         if (link) {
           const href = link.getAttribute('href') || '';
-          const postId = href.match(/\/posts\/(.+)\.html$/)?.[1] || '';
+          const postId = href.match(/\/posts\/([^/]+)\/?$/)?.[1] || '';
           const postSearchData = postId && searchData.find(p => p.id === postId);
           if (postSearchData) {
             if (titleMatch) {
