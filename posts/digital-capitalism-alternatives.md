@@ -1,9 +1,10 @@
 ---
 date: '2025-11-13'
+icon: "/images/icons/surveillance-camera.webp"
 ---
-# Digital Capitalism and Alternatives
+# Digital Surveillance Capitalism
 
-Digital capitalism shapes how we interact with technology, the world and even how we understand its role in society. These mechanisms tend to hide the true power relations while presenting inhumane technological developments as neutral, natural progress.
+Digital sureveillance capitalism shapes how we interact with technology, the world and even how we understand its role in society. These mechanisms tend to hide the true power relations while presenting inhumane, privacy violating technological developments as neutral, natural progress.
 
 ## Core Mechanisms
 
