@@ -411,8 +411,8 @@ html[data-theme="light"] .headerLogo {
 }
 
 .postTitle .postIcon {
-  width: 1.6rem;
-  height: 1.6rem;
+  width: 2rem;
+  height: 2rem;
   flex-shrink: 0;
   border: none;
 }
@@ -424,7 +424,7 @@ html[data-theme="light"] .headerLogo {
 }
 
 .relatedPostLink .postIcon {
-  width: 1.2rem;
-  height: 1.2rem;
+  width: 1.4rem;
+  height: 1.4rem;
   border: none;
 }
