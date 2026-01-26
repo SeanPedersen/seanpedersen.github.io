@@ -1,6 +1,6 @@
 # Sean's Blog
 
-Custom static site generator using Rust - builds an optimized build in ~300ms.
+Custom static site generator using Rust - builds a minified build in <200ms.
 
 ## Selected Articles
 
