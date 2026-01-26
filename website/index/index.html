@@ -117,7 +117,7 @@
             <li class="listItem" data-tags="{{ post.tags_json }}">
               <a href="/posts/{{ post.id }}.html" class="postTitleLink">
                 {% if post.icon %}
-                <img src="{{ post.icon }}" alt="" class="postIcon" aria-hidden="true">
+                <img src="{{ post.icon }}" alt="" class="postIcon" aria-hidden="true" loading="lazy">
                 {% endif %}
                 <span class="postTitleText">{{ post.title }}</span>
               </a>
