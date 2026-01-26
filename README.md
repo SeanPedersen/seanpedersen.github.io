@@ -14,10 +14,10 @@
 Just clone this repo, create a new github project named $your_username.github.io, follow instructions below and push the modified repo up (on each push the site is getting rebuild and published).
 
 - Posts live in ./posts/ as markdown files
-- Blog name (etc) in ./website/html-templates/index.html (search heading2Xl)
+- Blog name (etc) in ./website/index/index.html (search heading2Xl)
 - Profile pic in ./website/images/profile.webp
 - Search for "https://github.com/SeanPedersen/seanpedersen.github.io" and change it to your repo so the "Edit on GitHub" link works for your blog
-- Edit / remove Posthog analytics in ./website/html-templates files
+- Edit / remove Posthog analytics in all html files in ./website
 
 ### Local
 
