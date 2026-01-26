@@ -29,3 +29,6 @@ Just clone this repo, create a new github project named $your_username.github.io
 - Compile: `cargo build --release`
 - Build: `./target/release/blog-builder` (generates `out/` directory)
 - Serve locally: `python3 -m http.server -d out` (http://localhost:8000)
+
+## Credits
+- Icons by <https://www.svgrepo.com/>
