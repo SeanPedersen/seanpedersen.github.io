@@ -1,7 +1,39 @@
 use anyhow::Result;
+use once_cell::sync::Lazy;
 use regex::Regex;
 use std::collections::{HashMap, HashSet};
 use std::fs;
+
+static CSS_CLASS_RE: Lazy<Regex> =
+    Lazy::new(|| Regex::new(r"\.([a-zA-Z_][a-zA-Z0-9_-]*)").unwrap());
+static HTML_CLASS_ATTR_RE: Lazy<Regex> =
+    Lazy::new(|| Regex::new(r#"class\s*=\s*["']([^"']*)["']"#).unwrap());
+static HTML_STYLE_RE: Lazy<Regex> =
+    Lazy::new(|| Regex::new(r"(?s)<style[^>]*>(.*?)</style>").unwrap());
+static HTML_SCRIPT_RE: Lazy<Regex> =
+    Lazy::new(|| Regex::new(r"(?s)<script[^>]*>(.*?)</script>").unwrap());
+static JS_SELECTOR_RE: Lazy<Regex> =
+    Lazy::new(|| Regex::new(r#"(['"`])\.([a-zA-Z_][a-zA-Z0-9_-]*)"#).unwrap());
+static JS_SPACED_SELECTOR_RE: Lazy<Regex> =
+    Lazy::new(|| Regex::new(r#"( )\.([a-zA-Z_][a-zA-Z0-9_-]*)"#).unwrap());
+static JS_CLASSLIST_SINGLE_RE: Lazy<Regex> = Lazy::new(|| {
+    Regex::new(r#"classList\.(add|remove|toggle|contains)\s*\(\s*'([^']*)'\s*"#).unwrap()
+});
+static JS_CLASSLIST_DOUBLE_RE: Lazy<Regex> = Lazy::new(|| {
+    Regex::new(r#"classList\.(add|remove|toggle|contains)\s*\(\s*\"([^\"]*)\"\s*"#).unwrap()
+});
+static JS_CLASSNAME_SINGLE_RE: Lazy<Regex> =
+    Lazy::new(|| Regex::new(r#"\.className\s*=\s*'([^']*)'"#).unwrap());
+static JS_CLASSNAME_DOUBLE_RE: Lazy<Regex> =
+    Lazy::new(|| Regex::new(r#"\.className\s*=\s*\"([^\"]*)\""#).unwrap());
+static JS_CLASS_ATTR_DOUBLE_RE: Lazy<Regex> =
+    Lazy::new(|| Regex::new(r#"class=\"([^\"]*)\""#).unwrap());
+static JS_CLASS_ATTR_SINGLE_RE: Lazy<Regex> =
+    Lazy::new(|| Regex::new(r#"class='([^']*)'"#).unwrap());
+static JS_TERNARY_SINGLE_RE: Lazy<Regex> =
+    Lazy::new(|| Regex::new(r#"([?:])\s*'([a-zA-Z_][a-zA-Z0-9_-]*)'"#).unwrap());
+static JS_TERNARY_DOUBLE_RE: Lazy<Regex> =
+    Lazy::new(|| Regex::new(r#"([?:])\s*\"([a-zA-Z_][a-zA-Z0-9_-]*)\""#).unwrap());
 
 /// Generates short class names: a, b, c, ..., z, A, B, ..., Z, aa, ab, ...
 fn generate_short_name(index: usize) -> String {
@@ -12,16 +44,17 @@ fn generate_short_name(index: usize) -> String {
         return (CHARS[index] as char).to_string();
     }
 
-    let mut result = String::new();
     let mut n = index;
+    let mut bytes = Vec::new();
 
     while n >= base {
-        result.insert(0, CHARS[n % base] as char);
+        bytes.push(CHARS[n % base]);
         n = n / base - 1;
     }
-    result.insert(0, CHARS[n] as char);
+    bytes.push(CHARS[n]);
+    bytes.reverse();
 
-    result
+    String::from_utf8(bytes).unwrap()
 }
 
 /// Extract all CSS class names from CSS content
@@ -30,9 +63,7 @@ fn extract_classes_from_css(css: &str) -> HashSet<String> {
 
     // Match class selectors: .classname (followed by various things like :, [, ., {, space, comma, >)
     // This regex captures the class name after a dot, stopping at selector boundaries
-    let class_re = Regex::new(r"\.([a-zA-Z_][a-zA-Z0-9_-]*)").unwrap();
-
-    for cap in class_re.captures_iter(css) {
+    for cap in CSS_CLASS_RE.captures_iter(css) {
         let class_name = &cap[1];
         // Skip classes that look like decimal numbers (e.g., .5rem -> skip "5rem")
         if !class_name.chars().next().unwrap_or('0').is_ascii_digit() {
@@ -59,9 +90,7 @@ fn build_class_map(classes: &HashSet<String>) -> HashMap<String, String> {
 /// Replace class names in CSS content
 fn replace_classes_in_css(css: &str, class_map: &HashMap<String, String>) -> String {
     // Use regex with word boundary to match complete class names only
-    let class_re = Regex::new(r"\.([a-zA-Z_][a-zA-Z0-9_-]*)").unwrap();
-
-    class_re
+    CSS_CLASS_RE
         .replace_all(css, |caps: &regex::Captures| {
             let class_name = &caps[1];
             if let Some(short_name) = class_map.get(class_name) {
@@ -76,15 +105,13 @@ fn replace_classes_in_css(css: &str, class_map: &HashMap<String, String>) -> Str
 /// Replace class names in HTML class attributes
 fn replace_classes_in_html(html: &str, class_map: &HashMap<String, String>) -> String {
     // Match class="..." or class='...'
-    let class_attr_re = Regex::new(r#"class\s*=\s*["']([^"']*)["']"#).unwrap();
-
-    let result = class_attr_re.replace_all(html, |caps: &regex::Captures| {
+    let result = HTML_CLASS_ATTR_RE.replace_all(html, |caps: &regex::Captures| {
         let classes_str = &caps[1];
-        let replaced: Vec<_> = classes_str
-            .split_whitespace()
-            .map(|class| class_map.get(class).map(|s| s.as_str()).unwrap_or(class))
-            .collect();
-        format!("class=\"{}\"", replaced.join(" "))
+        if let Some(replaced) = replace_space_separated_classes(classes_str, class_map) {
+            format!("class=\"{}\"", replaced)
+        } else {
+            caps[0].to_string()
+        }
     });
 
     result.to_string()
@@ -100,8 +127,7 @@ fn replace_classes_in_js(js: &str, class_map: &HashMap<String, String>) -> Strin
 
     // 1. Replace .className patterns in querySelector-style strings
     // Match: '.className' or ".className" where className is a known class
-    let selector_re = Regex::new(r#"(['"`])\.([a-zA-Z_][a-zA-Z0-9_-]*)"#).unwrap();
-    let result = selector_re.replace_all(js, |caps: &regex::Captures| {
+    let result = JS_SELECTOR_RE.replace_all(js, |caps: &regex::Captures| {
         let quote = &caps[1];
         let class_name = &caps[2];
         if let Some(minified) = class_map.get(class_name) {
@@ -112,8 +138,7 @@ fn replace_classes_in_js(js: &str, class_map: &HashMap<String, String>) -> Strin
     });
 
     // 2. Replace class names after space in selectors: ' .className'
-    let spaced_selector_re = Regex::new(r#"( )\.([a-zA-Z_][a-zA-Z0-9_-]*)"#).unwrap();
-    let result = spaced_selector_re.replace_all(&result, |caps: &regex::Captures| {
+    let result = JS_SPACED_SELECTOR_RE.replace_all(&result, |caps: &regex::Captures| {
         let space = &caps[1];
         let class_name = &caps[2];
         if let Some(minified) = class_map.get(class_name) {
@@ -124,79 +149,70 @@ fn replace_classes_in_js(js: &str, class_map: &HashMap<String, String>) -> Strin
     });
 
     // 3. Replace classList.add/remove/toggle/contains('className') - single quotes
-    let classlist_single_re =
-        Regex::new(r#"classList\.(add|remove|toggle|contains)\s*\(\s*'([^']*)'\s*"#).unwrap();
-    let result = classlist_single_re.replace_all(&result, |caps: &regex::Captures| {
+    let result = JS_CLASSLIST_SINGLE_RE.replace_all(&result, |caps: &regex::Captures| {
         let method = &caps[1];
         let classes_str = &caps[2];
-        let replaced: Vec<_> = classes_str
-            .split_whitespace()
-            .map(|class| class_map.get(class).map(|s| s.as_str()).unwrap_or(class))
-            .collect();
-        format!("classList.{}('{}'", method, replaced.join(" "))
+        if let Some(replaced) = replace_space_separated_classes(classes_str, class_map) {
+            format!("classList.{}('{}'", method, replaced)
+        } else {
+            caps[0].to_string()
+        }
     });
 
     // 4. Replace classList.add/remove/toggle/contains("className") - double quotes
-    let classlist_double_re =
-        Regex::new(r#"classList\.(add|remove|toggle|contains)\s*\(\s*"([^"]*)"\s*"#).unwrap();
-    let result = classlist_double_re.replace_all(&result, |caps: &regex::Captures| {
+    let result = JS_CLASSLIST_DOUBLE_RE.replace_all(&result, |caps: &regex::Captures| {
         let method = &caps[1];
         let classes_str = &caps[2];
-        let replaced: Vec<_> = classes_str
-            .split_whitespace()
-            .map(|class| class_map.get(class).map(|s| s.as_str()).unwrap_or(class))
-            .collect();
-        format!("classList.{}(\"{}\")", method, replaced.join(" "))
+        if let Some(replaced) = replace_space_separated_classes(classes_str, class_map) {
+            format!("classList.{}(\"{}\")", method, replaced)
+        } else {
+            caps[0].to_string()
+        }
     });
 
     // 5. Replace className = 'class1 class2' assignments - single quotes
-    let classname_single_re = Regex::new(r#"\.className\s*=\s*'([^']*)'"#).unwrap();
-    let result = classname_single_re.replace_all(&result, |caps: &regex::Captures| {
+    let result = JS_CLASSNAME_SINGLE_RE.replace_all(&result, |caps: &regex::Captures| {
         let classes_str = &caps[1];
-        let replaced: Vec<_> = classes_str
-            .split_whitespace()
-            .map(|class| class_map.get(class).map(|s| s.as_str()).unwrap_or(class))
-            .collect();
-        format!(".className = '{}'", replaced.join(" "))
+        if let Some(replaced) = replace_space_separated_classes(classes_str, class_map) {
+            format!(".className = '{}'", replaced)
+        } else {
+            caps[0].to_string()
+        }
     });
 
     // 6. Replace className = "class1 class2" assignments - double quotes
-    let classname_double_re = Regex::new(r#"\.className\s*=\s*"([^"]*)""#).unwrap();
-    let result = classname_double_re.replace_all(&result, |caps: &regex::Captures| {
+    let result = JS_CLASSNAME_DOUBLE_RE.replace_all(&result, |caps: &regex::Captures| {
         let classes_str = &caps[1];
-        let replaced: Vec<_> = classes_str
-            .split_whitespace()
-            .map(|class| class_map.get(class).map(|s| s.as_str()).unwrap_or(class))
-            .collect();
-        format!(".className = \"{}\"", replaced.join(" "))
+        if let Some(replaced) = replace_space_separated_classes(classes_str, class_map) {
+            format!(".className = \"{}\"", replaced)
+        } else {
+            caps[0].to_string()
+        }
     });
 
     // 7. Replace class="className" in HTML template strings (double quotes)
-    let class_attr_double_re = Regex::new(r#"class="([^"]*)""#).unwrap();
-    let result = class_attr_double_re.replace_all(&result, |caps: &regex::Captures| {
+    let result = JS_CLASS_ATTR_DOUBLE_RE.replace_all(&result, |caps: &regex::Captures| {
         let classes_str = &caps[1];
-        let replaced: Vec<_> = classes_str
-            .split_whitespace()
-            .map(|class| class_map.get(class).map(|s| s.as_str()).unwrap_or(class))
-            .collect();
-        format!("class=\"{}\"", replaced.join(" "))
+        if let Some(replaced) = replace_space_separated_classes(classes_str, class_map) {
+            format!("class=\"{}\"", replaced)
+        } else {
+            caps[0].to_string()
+        }
     });
 
     // 8. Replace class='className' in HTML template strings (single quotes)
-    let class_attr_single_re = Regex::new(r#"class='([^']*)'"#).unwrap();
-    let result = class_attr_single_re.replace_all(&result, |caps: &regex::Captures| {
+    let result = JS_CLASS_ATTR_SINGLE_RE.replace_all(&result, |caps: &regex::Captures| {
         let classes_str = &caps[1];
-        let replaced: Vec<_> = classes_str
-            .split_whitespace()
-            .map(|class| class_map.get(class).map(|s| s.as_str()).unwrap_or(class))
-            .collect();
-        format!("class='{}'", replaced.join(" "))
+        if let Some(replaced) = replace_space_separated_classes(classes_str, class_map) {
+            format!("class='{}'", replaced)
+        } else {
+            caps[0].to_string()
+        }
     });
 
     // 9. Replace class names in ternary expression results (? 'className' or : 'className')
     // This handles patterns like: isExpanded ? 'copyButtonExpanded' : 'copyButton'
-    let ternary_single_re = Regex::new(r#"([?:])\s*'([a-zA-Z_][a-zA-Z0-9_-]*)'"#).unwrap();
-    let result = ternary_single_re.replace_all(&result, |caps: &regex::Captures| {
+    let result = JS_TERNARY_SINGLE_RE.replace_all(&result, |caps: &regex::Captures| {
         let op = &caps[1];
         let class_name = &caps[2];
         if let Some(minified) = class_map.get(class_name) {
@@ -207,8 +223,7 @@ fn replace_classes_in_js(js: &str, class_map: &HashMap<String, String>) -> Strin
     });
 
     // 10. Replace class names in ternary expression results (double quotes)
-    let ternary_double_re = Regex::new(r#"([?:])\s*"([a-zA-Z_][a-zA-Z0-9_-]*)""#).unwrap();
-    let result = ternary_double_re.replace_all(&result, |caps: &regex::Captures| {
+    let result = JS_TERNARY_DOUBLE_RE.replace_all(&result, |caps: &regex::Captures| {
         let op = &caps[1];
         let class_name = &caps[2];
         if let Some(minified) = class_map.get(class_name) {
@@ -223,9 +238,7 @@ fn replace_classes_in_js(js: &str, class_map: &HashMap<String, String>) -> Strin
 
 /// Replace class names in inline <style> tags within HTML
 fn replace_classes_in_inline_styles(html: &str, class_map: &HashMap<String, String>) -> String {
-    let style_re = Regex::new(r"(?s)<style[^>]*>(.*?)</style>").unwrap();
-
-    style_re
+    HTML_STYLE_RE
         .replace_all(html, |caps: &regex::Captures| {
             let style_content = &caps[1];
             let replaced = replace_classes_in_css(style_content, class_map);
@@ -236,9 +249,7 @@ fn replace_classes_in_inline_styles(html: &str, class_map: &HashMap<String, Stri
 
 /// Replace class names in inline <script> tags within HTML
 fn replace_classes_in_inline_scripts(html: &str, class_map: &HashMap<String, String>) -> String {
-    let script_re = Regex::new(r"(?s)<script[^>]*>(.*?)</script>").unwrap();
-
-    script_re
+    HTML_SCRIPT_RE
         .replace_all(html, |caps: &regex::Captures| {
             let script_content = &caps[1];
             // Extract the opening tag to preserve attributes
@@ -250,6 +261,31 @@ fn replace_classes_in_inline_scripts(html: &str, class_map: &HashMap<String, Str
             format!("{}{}</script>", opening_tag, replaced)
         })
         .to_string()
+}
+
+fn replace_space_separated_classes(
+    classes_str: &str,
+    class_map: &HashMap<String, String>,
+) -> Option<String> {
+    let mut changed = false;
+    let mut out = String::with_capacity(classes_str.len());
+    for (i, class) in classes_str.split_whitespace().enumerate() {
+        if i > 0 {
+            out.push(' ');
+        }
+        if let Some(minified) = class_map.get(class) {
+            changed = true;
+            out.push_str(minified);
+        } else {
+            out.push_str(class);
+        }
+    }
+
+    if changed {
+        Some(out)
+    } else {
+        None
+    }
 }
 
 /// Main entry point: minify CSS class names across all assets
