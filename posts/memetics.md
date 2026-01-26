@@ -1,5 +1,6 @@
 ---
 date: '2025-04-21'
+icon: "/images/icons/idea-head.webp"
 ---
 # Memetics: An Introduction
 

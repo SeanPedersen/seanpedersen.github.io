@@ -1,5 +1,6 @@
 ---
 date: '2025-06-12'
+icon: "/images/icons/ghost.svg"
 ---
 # Ghost in the Machine
 

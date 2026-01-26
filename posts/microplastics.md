@@ -1,5 +1,6 @@
 ---
 date: '2026-01-05'
+icon: "/images/icons/toxic-warning.webp"
 ---
 # Microplastics - A silent killer
 

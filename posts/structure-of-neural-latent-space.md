@@ -1,5 +1,6 @@
 ---
 date: '2024-12-27'
+icon: "/images/icons/deep-learning.svg"
 ---
 # Structure of Neural Embeddings
 
