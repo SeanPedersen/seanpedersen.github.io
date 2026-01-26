@@ -1,5 +1,6 @@
 ---
 date: '2025-10-13'
+icon: "/images/icons/postgresql.webp"
 ---
 # PostgreSQL Database
 
