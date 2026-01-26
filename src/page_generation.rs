@@ -129,11 +129,21 @@ fn get_git_first_add_date(file_path: &Path) -> Option<String> {
     let repo = gix::open(".").ok()?;
     let head = repo.head_commit().ok()?;
 
-    // Walk newest to oldest, track last commit where file exists
-    let mut first_add_date = None;
+    let mut oldest_timestamp: Option<i64> = None;
+    let mut file_found = false;
+
     for info in head.ancestors().all().ok()?.flatten() {
-        let commit = info.id().object().ok()?.try_into_commit().ok()?;
-        let tree = commit.tree().ok()?;
+        let Some(commit) = info
+            .id()
+            .object()
+            .ok()
+            .and_then(|o| o.try_into_commit().ok())
+        else {
+            continue;
+        };
+        let Some(tree) = commit.tree().ok() else {
+            continue;
+        };
 
         if tree
             .lookup_entry_by_path(file_path)
@@ -141,15 +151,21 @@ fn get_git_first_add_date(file_path: &Path) -> Option<String> {
             .flatten()
             .is_some()
         {
-            let time = commit.time().ok()?;
-            first_add_date = chrono::DateTime::from_timestamp(time.seconds, 0)
-                .map(|dt| dt.format("%Y-%m-%d").to_string());
-        } else if first_add_date.is_some() {
+            file_found = true;
+            if let Ok(time) = commit.time() {
+                let ts = time.seconds;
+                if oldest_timestamp.is_none() || ts < oldest_timestamp.unwrap() {
+                    oldest_timestamp = Some(ts);
+                }
+            }
+        } else if file_found {
             break;
         }
     }
 
-    first_add_date
+    oldest_timestamp.and_then(|ts| {
+        chrono::DateTime::from_timestamp(ts, 0).map(|dt| dt.format("%Y-%m-%d").to_string())
+    })
 }
 
 fn extract_title(markdown: &str) -> String {
