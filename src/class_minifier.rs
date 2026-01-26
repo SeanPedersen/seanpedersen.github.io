@@ -125,7 +125,7 @@ fn replace_classes_in_js(js: &str, class_map: &HashMap<String, String>) -> Strin
 
     // 3. Replace classList.add/remove/toggle/contains('className') - single quotes
     let classlist_single_re =
-        Regex::new(r#"classList\.(add|remove|toggle|contains)\s*\(\s*'([^']*)'\s*\)"#).unwrap();
+        Regex::new(r#"classList\.(add|remove|toggle|contains)\s*\(\s*'([^']*)'\s*"#).unwrap();
     let result = classlist_single_re.replace_all(&result, |caps: &regex::Captures| {
         let method = &caps[1];
         let classes_str = &caps[2];
@@ -133,12 +133,12 @@ fn replace_classes_in_js(js: &str, class_map: &HashMap<String, String>) -> Strin
             .split_whitespace()
             .map(|class| class_map.get(class).map(|s| s.as_str()).unwrap_or(class))
             .collect();
-        format!("classList.{}('{}')", method, replaced.join(" "))
+        format!("classList.{}('{}'", method, replaced.join(" "))
     });
 
     // 4. Replace classList.add/remove/toggle/contains("className") - double quotes
     let classlist_double_re =
-        Regex::new(r#"classList\.(add|remove|toggle|contains)\s*\(\s*"([^"]*)"\s*\)"#).unwrap();
+        Regex::new(r#"classList\.(add|remove|toggle|contains)\s*\(\s*"([^"]*)"\s*"#).unwrap();
     let result = classlist_double_re.replace_all(&result, |caps: &regex::Captures| {
         let method = &caps[1];
         let classes_str = &caps[2];

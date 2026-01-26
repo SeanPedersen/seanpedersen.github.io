@@ -143,38 +143,43 @@
       </svg>
     </button>
   </div>
-  <script>
-    (function () {
-      'use strict';
-      function updateIcon(theme) {
-        var icon = document.getElementById('themeIcon');
-        if (!icon) return;
-        icon.innerHTML = theme === 'dark'
-          ? '<circle cx="12" cy="12" r="4"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>'
-          : '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
-        icon.setAttribute('title', 'Switch to ' + (theme === 'dark' ? 'light' : 'dark') + ' mode');
-      }
-      function toggle() {
-        var currentTheme = window.theme.getTheme();
-        var newTheme = currentTheme === 'light' ? 'dark' : 'light';
-        document.documentElement.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
-        window.theme.setTheme(newTheme);
-        updateIcon(newTheme);
-      }
-      document.addEventListener('DOMContentLoaded', function () {
-        updateIcon(window.theme.getTheme());
-        var btn = document.getElementById('themeToggle');
-        if (btn) {
-          btn.addEventListener('click', toggle);
-          window.addEventListener('scroll', function () {
-            btn.classList.toggle('isHidden', window.scrollY > 10);
-          });
-          btn.classList.toggle('isHidden', window.scrollY > 10);
-        }
-      });
-    })();
-  </script>
+     <script>
+       (function () {
+         'use strict';
+         function updateIcon(theme) {
+           var icon = document.getElementById('themeIcon');
+           if (!icon) return;
+           icon.innerHTML = theme === 'dark'
+             ? '<circle cx="12" cy="12" r="4"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>'
+             : '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+           icon.setAttribute('title', 'Switch to ' + (theme === 'dark' ? 'light' : 'dark') + ' mode');
+         }
+         function toggle() {
+           var currentTheme = window.theme.getTheme();
+           var newTheme = currentTheme === 'light' ? 'dark' : 'light';
+           document.documentElement.setAttribute('data-theme', newTheme);
+           localStorage.setItem('theme', newTheme);
+           window.theme.setTheme(newTheme);
+           updateIcon(newTheme);
+         }
+         function init() {
+           updateIcon(window.theme.getTheme());
+           var btn = document.getElementById('themeToggle');
+           if (btn) {
+             btn.addEventListener('click', toggle);
+             window.addEventListener('scroll', function () {
+               btn.classList.toggle('isHidden', window.scrollY > 10);
+             });
+             btn.classList.toggle('isHidden', window.scrollY > 10);
+           }
+         }
+         if (document.readyState === 'loading') {
+           document.addEventListener('DOMContentLoaded', init);
+         } else {
+           init();
+         }
+       })();
+     </script>
   <script>
     (function () {
       let searchScriptLoaded = false;
