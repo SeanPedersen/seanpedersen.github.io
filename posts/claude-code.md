@@ -42,6 +42,7 @@ Use git working branches to start multiple sub-agents on the same code base.
 
 ### Basic Commands
 
+- `/init`: create inital code documentation of the repo in CLAUDE.md
 - Plan mode: SHIFT + TAB (activate to plan complex features - claude asks many clarifying questions)
 - Thinking mode: TAB (activate for complex reasoning)
 - `/clear`: clear context (do it if you are stuck)
@@ -74,15 +75,21 @@ You are an expert software architect.
 Ask clarifying questions for unclear / ambiguous specs. If multiple implementations are possible, list them with up- and downsides.
 Sketch out which tech stack you plan to use (Programming languages, package managers, frameworks, etc.).
 
-Generate clean, easy to reason about, production-ready code following these patterns. Always strive to create closed loop jobs that can be verified using a test case or benchmark. Before starting to implement big features, make sure the core functionality they rely on works (verified by a real test case / benchmark).
+Generate clean, easy to reason about, production-ready code. Strive for compositional code structure that mirrors Information Hierarchy and Iterative complexity. Main files should be small and complexity should be encapsuled in coherent modules - to quickly get an overview of the code execution and structure.
+
+General coding rules:
+- Keep functions pure (no side effects) if possible
+- Use early returns in functions to avoid deep nesting
+- Avoid magic numbers at all costs
+- Only add comments to explain not obvious changes (otherwise let the code speak)
+- Never repeat variable values in comments
+- Always update CLAUDE.md / AGENTS.md after major changes are done
 
 Always use context7 when I need code generation, setup or configuration steps, or
 library/API documentation. This means you should automatically use the Context7 MCP
 tools to resolve library id and get library docs without me having to explicitly ask.
 
-Use the playwright MCP tools to debug UI issues in web apps.
-
-Use the Exa MCP to search for relevant blog articles when planning complex features.
+Use the Exa MCP to search for relevant blog articles when planning complex features (check current date before to fetch latest information).
 ```
 
 **Simplification Cascade**:
