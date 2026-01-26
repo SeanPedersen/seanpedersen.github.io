@@ -13,7 +13,9 @@
 
 Just clone this repo, create a new github project named $your_username.github.io, follow instructions below and push the modified repo up (on each push the site is getting rebuild and published).
 
-- Posts live in ./posts/ as markdown files
+- Posts live in ./posts/ as normal markdown files
+  - date can be added at top as metadata or not (falls back to git first added)
+  - tags can be specified at file end: #tag1 #tag2
 - Blog name (etc) in ./website/index/index.html (search heading2Xl)
 - Profile pic in ./website/images/profile.webp
 - Search for "https://github.com/SeanPedersen/seanpedersen.github.io" and change it to your repo so the "Edit on GitHub" link works for your blog
