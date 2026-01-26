@@ -1,5 +1,6 @@
 ---
 date: '2025-11-14'
+icon: "/images/icons/rust.svg"
 ---
 # Rust
 

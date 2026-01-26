@@ -1,5 +1,6 @@
 ---
 date: '2025-08-19'
+icon: "/images/icons/python.svg"
 ---
 # Python
 

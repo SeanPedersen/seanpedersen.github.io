@@ -1,3 +1,6 @@
+---
+icon: "/images/icons/dna.svg"
+---
 # Genetics
 The science of genes and evolution in organisms.
 
