@@ -297,7 +297,12 @@
           const postId = href.match(/\/posts\/([^/]+)\/?$/)?.[1] || '';
           const postSearchData = postId && searchData.find(p => p.id === postId);
           if (postSearchData) {
-            link.innerHTML = escapeHtml(postSearchData.title);
+            const titleEl = link.querySelector('.postTitleText');
+            if (titleEl) {
+              titleEl.innerHTML = escapeHtml(postSearchData.title);
+            } else {
+              link.innerHTML = escapeHtml(postSearchData.title);
+            }
           }
         }
       });
@@ -399,11 +404,13 @@
           const postId = href.match(/\/posts\/([^/]+)\/?$/)?.[1] || '';
           const postSearchData = postId && searchData.find(p => p.id === postId);
           if (postSearchData) {
+            const titleEl = link.querySelector('.postTitleText');
+            const targetEl = titleEl || link;
             if (titleMatch) {
-              link.innerHTML = highlightTitle(postSearchData.title, query);
+              targetEl.innerHTML = highlightTitle(postSearchData.title, query);
             } else {
               // No title match, just display plain title without highlighting
-              link.innerHTML = escapeHtml(postSearchData.title);
+              targetEl.innerHTML = escapeHtml(postSearchData.title);
             }
           }
         }
