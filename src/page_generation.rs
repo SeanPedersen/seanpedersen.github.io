@@ -3,9 +3,9 @@ use chrono::NaiveDate;
 use once_cell::sync::Lazy;
 use pulldown_cmark::{html, CodeBlockKind, Event, Options, Parser, Tag, TagEnd};
 use pulldown_cmark_escape::escape_html;
+use rayon::prelude::*;
 use regex::Regex;
 use serde::{Deserialize, Serialize};
-use rayon::prelude::*;
 use std::collections::HashSet;
 use std::fs;
 use std::path::Path;
@@ -125,7 +125,12 @@ fn get_git_first_add_date(file_path: &Path) -> Option<String> {
         let commit = info.id().object().ok()?.try_into_commit().ok()?;
         let tree = commit.tree().ok()?;
 
-        if tree.lookup_entry_by_path(file_path).ok().flatten().is_some() {
+        if tree
+            .lookup_entry_by_path(file_path)
+            .ok()
+            .flatten()
+            .is_some()
+        {
             let time = commit.time().ok()?;
             first_add_date = chrono::DateTime::from_timestamp(time.seconds, 0)
                 .map(|dt| dt.format("%Y-%m-%d").to_string());

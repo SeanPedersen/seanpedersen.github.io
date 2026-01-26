@@ -82,12 +82,7 @@ fn replace_classes_in_html(html: &str, class_map: &HashMap<String, String>) -> S
         let classes_str = &caps[1];
         let replaced: Vec<_> = classes_str
             .split_whitespace()
-            .map(|class| {
-                class_map
-                    .get(class)
-                    .map(|s| s.as_str())
-                    .unwrap_or(class)
-            })
+            .map(|class| class_map.get(class).map(|s| s.as_str()).unwrap_or(class))
             .collect();
         format!("class=\"{}\"", replaced.join(" "))
     });

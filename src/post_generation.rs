@@ -9,9 +9,7 @@ use std::sync::Arc;
 use std::time::Instant;
 use tera::{Tera, Value};
 
-use crate::page_generation::{
-    extract_headings, format_date, strip_html_tags, Post, PostSummary,
-};
+use crate::page_generation::{extract_headings, format_date, strip_html_tags, Post, PostSummary};
 
 /// Tera function that outputs a placeholder for CSS inlining.
 /// Usage in template: {{ inline_css(path="/styles/global.css") }}
@@ -77,7 +75,7 @@ pub fn get_related_posts(
 }
 
 pub fn generate_post_page(out_dir: &Path, post: &Post, related: &[PostSummary]) -> Result<()> {
-    let mut tera = Tera::new("website/html-templates/**/*")?;
+    let mut tera = Tera::new("website/post/**/*")?;
     tera.register_function("inline_css", inline_css_placeholder);
 
     // Detect if page has code blocks

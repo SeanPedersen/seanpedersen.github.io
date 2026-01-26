@@ -34,20 +34,34 @@ pub fn copy_static_assets(out_dir: &Path) -> Result<()> {
         }
     }
 
-    // Create styles directory and copy CSS
-    let styles_src = Path::new("website/styles");
-    if styles_src.exists() {
-        let styles_dest = out_dir.join("styles");
-        copy_dir_recursive(styles_src, &styles_dest)?;
-    }
+    // Create styles and js directories
+    let styles_dest = out_dir.join("styles");
+    fs::create_dir_all(&styles_dest)?;
+    let js_dest = out_dir.join("js");
+    fs::create_dir_all(&js_dest)?;
 
-    // Copy JS files
-    let js_out = out_dir.join("js");
-    fs::create_dir_all(&js_out)?;
-
-    let js_src = Path::new("website/js");
-    if js_src.exists() {
-        copy_dir_recursive(js_src, &js_out)?;
+    // Copy CSS and JS files from index/, post/, global/
+    for dir_name in &["index", "post", "global"] {
+        let src_dir = Path::new("website").join(dir_name);
+        if src_dir.exists() {
+            for entry in fs::read_dir(src_dir)? {
+                let entry = entry?;
+                let path = entry.path();
+                if path.is_file() {
+                    if let Some(ext) = path.extension() {
+                        let dest = if ext == "css" {
+                            &styles_dest
+                        } else if ext == "js" {
+                            &js_dest
+                        } else {
+                            continue;
+                        };
+                        let file_name = path.file_name().unwrap();
+                        fs::copy(&path, dest.join(file_name))?;
+                    }
+                }
+            }
+        }
     }
 
     Ok(())

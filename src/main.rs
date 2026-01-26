@@ -1,4 +1,5 @@
 mod class_minifier;
+mod global_generation;
 mod index_generation;
 mod optimization;
 mod page_generation;
@@ -6,6 +7,7 @@ mod post_generation;
 mod rss_generation;
 
 use anyhow::Result;
+use global_generation::build_global_html_pages;
 use index_generation::build_index_page;
 use post_generation::build_post_pages;
 use rss_generation::build_rss_feed;
@@ -23,6 +25,7 @@ fn main() -> Result<()> {
     let posts = page_generation::get_posts_data(&out_dir)?;
     build_index_page(&out_dir, &posts)?;
     build_post_pages(&out_dir, &posts)?;
+    build_global_html_pages(&out_dir)?;
     build_rss_feed(&out_dir, &posts)?;
     optimization::optimize_website_assets(&out_dir)?;
 

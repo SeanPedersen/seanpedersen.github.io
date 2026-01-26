@@ -46,7 +46,7 @@ pub fn build_index_page(out_dir: &Path, posts: &Arc<Vec<Post>>) -> Result<()> {
 }
 
 pub fn generate_index_page(out_dir: &Path, posts: &[PostSummary], tags: &[String]) -> Result<()> {
-    let mut tera = Tera::new("website/html-templates/**/*")?;
+    let mut tera = Tera::new("website/index/**/*")?;
     tera.register_function("inline_css", inline_css_placeholder);
 
     let year = chrono::Local::now().year();
