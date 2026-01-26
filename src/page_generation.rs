@@ -414,7 +414,8 @@ fn convert_syntect_classes_to_prism(html: &str) -> String {
         let class_content = &caps[1];
 
         // Determine the appropriate Prism token class based on syntect scopes
-        let token_class = if class_content.contains("keyword") {
+        let token_class = if class_content.contains("keyword") || class_content.contains("storage")
+        {
             "token keyword"
         } else if class_content.contains("string") {
             "token string"
@@ -422,7 +423,9 @@ fn convert_syntect_classes_to_prism(html: &str) -> String {
             "token comment"
         } else if class_content.contains("constant") && class_content.contains("numeric") {
             "token number"
-        } else if class_content.contains("function") || class_content.contains("support function") {
+        } else if class_content.contains("entity.name.function")
+            || class_content.contains("support.function")
+        {
             "token function"
         } else if class_content.contains("operator") {
             "token operator"
