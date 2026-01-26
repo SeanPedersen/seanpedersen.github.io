@@ -16,7 +16,8 @@ Custom static site generator using Rust - builds a minified build in <200ms.
 Just clone this repo, create a new github project named $your_username.github.io, follow instructions below and push the modified repo up (on each push the site is getting rebuild and published via Github pages).
 
 - Posts live in ./posts/ as normal markdown files
-  - date can be added at top as metadata or not (falls back to git first added)
+  - date can be added as top metadata or not (falls back to git first added)
+  - icon path can be added as top metadata (optional)
   - tags can be specified at file end: #tag1 #tag2
 - Blog name (etc) in ./website/index/index.html (search heading2Xl)
 - Profile pic in ./website/images/profile.webp
