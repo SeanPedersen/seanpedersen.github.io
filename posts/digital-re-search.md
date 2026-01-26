@@ -1,5 +1,6 @@
 ---
 date: '2025-04-22'
+icon: "/images/icons/internet-search.svg"
 ---
 # Digital (Re)Search
 
