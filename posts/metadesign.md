@@ -1,5 +1,6 @@
 ---
 date: '2019-04-20'
+icon: "/images/icons/tree.svg"
 ---
 # Meta Design: Design of a Design
 

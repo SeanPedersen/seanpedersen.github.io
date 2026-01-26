@@ -1,5 +1,6 @@
 ---
 date: '2025-09-18'
+icon: "/images/icons/javascript.webp"
 ---
 # Javascript (TypeScript)
 

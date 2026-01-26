@@ -1,5 +1,6 @@
 ---
 date: '2018-09-30'
+icon: "/images/icons/network.svg"
 ---
 # Deep Learning: Variational Auto-Encoders
 

@@ -1,5 +1,6 @@
 ---
 date: '2025-07-26'
+icon: "/images/icons/bubbles.svg"
 ---
 # Popping the AGI Bubble
 

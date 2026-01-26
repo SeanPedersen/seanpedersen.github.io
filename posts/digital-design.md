@@ -1,5 +1,6 @@
 ---
 date: '2025-09-24'
+icon: "/images/icons/design.svg"
 ---
 # Digital Design
 
