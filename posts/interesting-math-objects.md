@@ -16,4 +16,4 @@ References:
 
 - <https://all3dp.com/2/3d-printed-math-3d-printed-geometric-shapes/>
 
-#idea
+#math
