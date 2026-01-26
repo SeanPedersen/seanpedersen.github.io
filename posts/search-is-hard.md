@@ -1,5 +1,6 @@
 ---
 date: '2025-08-16'
+icon: "/images/icons/search.svg"
 ---
 # Search is hard
 

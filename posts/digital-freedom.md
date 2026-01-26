@@ -1,5 +1,6 @@
 ---
 date: '2025-03-31'
+icon: "/images/icons/file-user.svg"
 ---
 # Digital Freedom
 

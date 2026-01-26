@@ -1,5 +1,6 @@
 ---
 date: '2025-04-09'
+icon: "/images/icons/eye.webp"
 ---
 # (Sub)Conscious (Re)Programming
 
