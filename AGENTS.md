@@ -237,6 +237,7 @@ The project uses GitHub Actions for automated deployment:
 ## Common Tasks
 
 - **Add new post**: Create Markdown file in `posts/` with frontmatter
+- **Add post icon**: Set optional `icon` in post frontmatter with inline SVG (rendered in index and post title)
 - **Modify templates**: Edit files in `website/index/`, `website/post/`, or `website/global/`
 - **Update styles**: Modify CSS in `website/index/`, `website/post/`, or `website/global/`
 - **Add functionality**: Implement in appropriate `src/*.rs` module
@@ -247,5 +248,4 @@ The project uses GitHub Actions for automated deployment:
 - No user input processing in the static site generator
 - All content is pre-processed Markdown (trusted input)
 - Generated HTML is safe for static hosting
-- No database or external service dependencies</content>
-<parameter name="filePath">AGENTS.md
+- No database or external service dependencies

@@ -58,6 +58,7 @@ pub fn get_related_posts(
             title: p.title.clone(),
             date: p.date.clone(),
             tags: p.tags.clone(),
+            icon: p.icon.clone(),
         })
         .collect();
 
@@ -111,12 +112,14 @@ pub fn generate_post_page(out_dir: &Path, post: &Post, related: &[PostSummary]) 
                 "id": rel.id,
                 "title": rel.title,
                 "formatted_date": format_date(&rel.date),
+                "icon": rel.icon,
             })
         })
         .collect();
 
     let mut context = tera::Context::new();
     context.insert("post_title", &post.title);
+    context.insert("post_icon", &post.icon);
     context.insert("post_id", &post.id);
     context.insert("excerpt", &excerpt);
     context.insert("keywords", &keywords);

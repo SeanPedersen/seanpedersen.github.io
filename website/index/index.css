@@ -294,6 +294,23 @@
   }
 }
 
+.postTitleLink {
+  display: inline;
+}
+
+.postIcon {
+  width: 1.3rem;
+  height: 1.3rem;
+  border: none;
+  display: inline;
+  vertical-align: middle;
+  margin-right: 0.4rem;
+}
+
+.postTitleText {
+  display: inline;
+}
+
 /* Header with profile */
 .headerContainer {
   display: flex;

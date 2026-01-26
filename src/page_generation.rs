@@ -33,6 +33,7 @@ static CUSTOM_SYNTAXES: Lazy<Option<SyntaxSet>> = Lazy::new(|| {
 #[derive(Debug, Clone, Serialize, Deserialize, Default)]
 pub struct PostMetadata {
     pub date: Option<String>,
+    pub icon: Option<String>,
 }
 
 #[derive(Debug, Clone)]
@@ -41,6 +42,7 @@ pub struct Post {
     pub title: String,
     pub date: String,
     pub tags: Vec<String>,
+    pub icon: Option<String>,
     pub content_html: String,
 }
 
@@ -50,6 +52,7 @@ pub struct PostSummary {
     pub title: String,
     pub date: String,
     pub tags: Vec<String>,
+    pub icon: Option<String>,
 }
 
 pub fn get_posts_data(_out_dir: &Path) -> Result<Arc<Vec<Post>>> {
@@ -94,6 +97,13 @@ pub fn read_all_posts(posts_dir: &Path) -> Result<Vec<Post>> {
                 title,
                 date,
                 tags,
+                icon: metadata.icon.and_then(|icon| {
+                    if icon.trim().is_empty() {
+                        None
+                    } else {
+                        Some(icon)
+                    }
+                }),
                 content_html,
             })
         })

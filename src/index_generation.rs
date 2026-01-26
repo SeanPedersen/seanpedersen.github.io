@@ -32,6 +32,7 @@ pub fn build_index_page(out_dir: &Path, posts: &Arc<Vec<Post>>) -> Result<()> {
             title: p.title.clone(),
             date: p.date.clone(),
             tags: p.tags.clone(),
+            icon: p.icon.clone(),
         })
         .collect();
 
@@ -58,6 +59,7 @@ pub fn generate_index_page(out_dir: &Path, posts: &[PostSummary], tags: &[String
             json!({
                 "id": post.id,
                 "title": post.title,
+                "icon": post.icon,
                 "tags": post.tags,
                 "tags_json": serde_json::to_string(&post.tags).unwrap_or_default(),
             })

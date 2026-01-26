@@ -115,7 +115,12 @@
           <ul class="list" id="postList">
             {% for post in posts %}
             <li class="listItem" data-tags="{{ post.tags_json }}">
-              <a href="/posts/{{ post.id }}.html">{{ post.title }}</a>
+              <a href="/posts/{{ post.id }}.html" class="postTitleLink">
+                {% if post.icon %}
+                <img src="{{ post.icon }}" alt="" class="postIcon" aria-hidden="true">
+                {% endif %}
+                <span class="postTitleText">{{ post.title }}</span>
+              </a>
               {% if post.tags %}
               <small class="lightText post-tags-container">
                 •<span class="postTags">
@@ -228,7 +233,8 @@
               const link = post.querySelector('a');
               if (!link) return;
 
-              const title = link.textContent || '';
+              const titleEl = link.querySelector('.postTitleText');
+              const title = titleEl ? titleEl.textContent || '' : link.textContent || '';
               const tagsAttr = post.getAttribute('data-tags');
               const tags = tagsAttr ? JSON.parse(tagsAttr) : [];
 
@@ -250,9 +256,18 @@
                     return div.innerHTML;
                   };
 
-                  link.innerHTML = `${escapeHtml(before)}<mark style="background-color: var(--primary-color); color: var(--color-background); padding: 2px 4px; border-radius: 3px;">${escapeHtml(match)}</mark>${escapeHtml(after)}`;
+                  const highlighted = `${escapeHtml(before)}<mark style="background-color: var(--primary-color); color: var(--color-background); padding: 2px 4px; border-radius: 3px;">${escapeHtml(match)}</mark>${escapeHtml(after)}`;
+                  if (titleEl) {
+                    titleEl.innerHTML = highlighted;
+                  } else {
+                    link.innerHTML = highlighted;
+                  }
                 } else {
-                  link.textContent = title;
+                  if (titleEl) {
+                    titleEl.textContent = title;
+                  } else {
+                    link.textContent = title;
+                  }
                 }
               } else {
                 post.style.display = 'none';

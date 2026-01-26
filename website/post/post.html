@@ -67,7 +67,12 @@
     <main class="main postPage{% if not has_toc %} noToc{% endif %}">
       <article class="postContainer">
         <span id="{{ title_id }}" style="position: absolute; top: 0; visibility: hidden;" aria-hidden="true"></span>
-        <h1 class="headingXl">{{ post_title }}</h1>
+        <h1 class="headingXl postTitle">
+          {% if post_icon %}
+          <img src="{{ post_icon }}" alt="" class="postIcon" aria-hidden="true">
+          {% endif %}
+          <span class="postTitleText">{{ post_title }}</span>
+        </h1>
         {% if has_toc %}
         <nav class="toc">
           <input type="checkbox" id="toc-toggle" class="toc-checkbox">
@@ -101,7 +106,12 @@
           <ul class="relatedPostsList" style="padding-left: 0">
             {% for rel in related_posts %}
             <li class="relatedPostItem">
-              <a href="/posts/{{ rel.id }}.html">{{ rel.title }}</a>
+              <a href="/posts/{{ rel.id }}.html" class="relatedPostLink">
+                {% if rel.icon %}
+                <img src="{{ rel.icon }}" alt="" class="postIcon" aria-hidden="true">
+                {% endif %}
+                <span class="postTitleText">{{ rel.title }}</span>
+              </a>
               <small class="lightText">{{ rel.formatted_date }}</small>
             </li>
             {% endfor %}

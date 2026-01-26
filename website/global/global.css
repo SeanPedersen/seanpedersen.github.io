@@ -255,6 +255,10 @@ footer {
   transition: border-bottom-color 0.3s ease;
 }
 
+.postIcon {
+  flex-shrink: 0;
+}
+
 @media (min-width: 1400px) {
   .headingXl.hideOnMobile {
     display: none;
