@@ -1,5 +1,6 @@
 ---
 date: '2024-12-29'
+icon: "/images/icons/sdr.svg"
 ---
 # Sparse Distributed Representations
 

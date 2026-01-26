@@ -1,5 +1,6 @@
 ---
 date: '2025-11-10'
+icon: "/images/icons/operational-security.svg"
 ---
 # Operational Security
 

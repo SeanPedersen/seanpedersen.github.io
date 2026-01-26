@@ -1,5 +1,6 @@
 ---
 date: '2025-05-15'
+icon: "/images/icons/digital-security.webp"
 ---
 # Digital Security for Everyone
 

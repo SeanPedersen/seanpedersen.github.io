@@ -1,5 +1,6 @@
 ---
 date: '2019-11-13'
+icon: "/images/icons/nuclear-waste.webp"
 ---
 # A Nuclear Powered Nuclear Waste Dispenser
 
