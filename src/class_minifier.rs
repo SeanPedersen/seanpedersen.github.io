@@ -164,7 +164,7 @@ fn replace_classes_in_js(js: &str, class_map: &HashMap<String, String>) -> Strin
         let method = &caps[1];
         let classes_str = &caps[2];
         if let Some(replaced) = replace_space_separated_classes(classes_str, class_map) {
-            format!("classList.{}(\"{}\")", method, replaced)
+            format!("classList.{}(\"{}\"", method, replaced)
         } else {
             caps[0].to_string()
         }
