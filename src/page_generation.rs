@@ -129,7 +129,7 @@ fn get_git_first_add_date(file_path: &Path) -> Option<String> {
     let repo = gix::open(".").ok()?;
     let head = repo.head_commit().ok()?;
 
-    let mut oldest_timestamp: Option<i64> = None;
+    let mut oldest_time: Option<(i64, i32)> = None;
     let mut file_found = false;
 
     for info in head.ancestors().all().ok()?.flatten() {
@@ -154,8 +154,8 @@ fn get_git_first_add_date(file_path: &Path) -> Option<String> {
             file_found = true;
             if let Ok(time) = commit.time() {
                 let ts = time.seconds;
-                if oldest_timestamp.is_none() || ts < oldest_timestamp.unwrap() {
-                    oldest_timestamp = Some(ts);
+                if oldest_time.is_none() || ts < oldest_time.unwrap().0 {
+                    oldest_time = Some((ts, time.offset));
                 }
             }
         } else if file_found {
@@ -163,8 +163,9 @@ fn get_git_first_add_date(file_path: &Path) -> Option<String> {
         }
     }
 
-    oldest_timestamp.and_then(|ts| {
-        chrono::DateTime::from_timestamp(ts, 0).map(|dt| dt.format("%Y-%m-%d").to_string())
+    oldest_time.and_then(|(ts, offset)| {
+        let local_ts = ts + offset as i64;
+        chrono::DateTime::from_timestamp(local_ts, 0).map(|dt| dt.format("%Y-%m-%d").to_string())
     })
 }
 
