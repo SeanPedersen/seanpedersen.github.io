@@ -12,6 +12,8 @@ Genes are specific segments of DNA that contain instructions for producing prote
 
 A gene is defined as a DNA segment that contains the code to produce a specific protein or functional RNA molecule. It is typically a few thousand base pairs long for humans (though can range from hundreds to a million). Genes have defined start and end boundaries identified through special combinations of base pairs (like promoters, start / stop codons).
 
+Bonus: Take a look at the genome of a [Corona virus (SARS-CoV-2)](https://www.ncbi.nlm.nih.gov/nuccore/NC_045512.2?report=fasta)
+
 ## Polymerase Chain Reaction
 
 PCR is one of the most important breakthroughs in the last century - allowing us to read DNA samples easily by exponentially copying specific DNA sequences, making millions of copies from a tiny sample.
