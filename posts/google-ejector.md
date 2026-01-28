@@ -14,8 +14,9 @@ Software that treats you as a human - respectful.
 
 - [Signal](https://signal.org/) - Privacy focused messenger
 - [Matrix](https://matrix.org/) - end-to-end encrypted, federated, self-hostable
-  - [Matrix Server](https://github.com/matrix-construct/tuwunel) - Rust
-  - [Matrix Bot SDK](https://turt2live.github.io/matrix-bot-sdk/tutorial-bot.html) - JS
+  - [Clients](https://matrix.org/ecosystem/clients/)
+  - [Server](https://github.com/matrix-construct/tuwunel) - Rust
+  - [Bot SDK](https://codeberg.org/imbev/simplematrixbotlib) - Python
 - [BitChat](https://bitchat.free/) - decentralized chat app via bluetooth
 - [Messenger Comparison](https://www.messenger-matrix.de/messenger-matrix.html)
 
