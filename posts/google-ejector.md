@@ -4,13 +4,21 @@ icon: "/images/icons/internet-security.webp"
 ---
 # Google & Co Ejector
 
-Is closed source, centralized, privacy invading software still part of your digital life? Eject now and start using user privacy respecting software. This is a small curated collection of awesome FOSS and privacy respecting services, capable of replacing many popular, centralized, privacy invading online services so you can sleep better at night. At least do not feed the giant data kraken like Google and Meta anymore - export your data and delete your accounts to stop feeding them your personal data.
+Is closed source, centralized, privacy invading software still part of your digital life? Eject now and start using user privacy respecting software. This is a small curated collection of awesome FOSS and privacy respecting services, capable of replacing many popular, centralized, privacy invading software services so you can sleep better at night. Stop feeding giant invasive data kraken like Google and Meta - export your data and delete your accounts to stop feeding them your personal data.
 
-## Awesome Alternatives
+## Awesome Software
 
-Alternatives to privacy invading data kraken services.
+Software that treats you as a human - respectful.
 
-Google Chrome:
+Messenger:
+
+- [Signal](https://signal.org/) - Privacy focused messenger
+- [Matrix](https://matrix.org/) ([Code](https://github.com/matrix-org/synapse)) - end-to-end encrypted, federated, self-hostable
+  - [Matrix Server](https://github.com/matrix-construct/tuwunel)
+- [BitChat](https://bitchat.free/) - decentralized chat app via bluetooth
+- [Messenger Comparison](https://www.messenger-matrix.de/messenger-matrix.html)
+
+Web Browser:
 
 Firefox, Brave etc. also track their users (with default settings). Test [here](https://coveryourtracks.eff.org/) how trackable your browser is.
 
@@ -19,71 +27,59 @@ Firefox, Brave etc. also track their users (with default settings). Test [here](
 - [Ungoogled Chromium](https://github.com/ungoogled-software/ungoogled-chromium) - Chromium without Google Services (spy ware)
 - [Browser Comparison](https://digdeeper.club/articles/browsers.xhtml#fullsummary)
 
-Google Search:
+Search Engine:
 
 - [SearX](https://searx.si/) ([Code](https://github.com/searx/searx)) - Privacy-respecting metasearch engine, self-hostable
 - [StartPage](https://www.startpage.com/) - Privacy focused search engine
 - [Search Engine Comparison](https://digdeeper.club/articles/search.xhtml#summary)
 
-Google Mail / Outlook:
+E-Mail Provider:
 
 - [Protonmail](https://proton.me/mail) - privacy focused
 - [TutaMail](https://tuta.com/) - privacy focused
 - [E-Mail Comparison](https://digdeeper.club/articles/email.xhtml#Summary)
 
-Google Maps:
+Global Maps:
 
 - [OpenStreetMap](https://www.openstreetmap.org/) - open data, privacy focused
 
-ChatGPT / Claude / Gemini / Perplexity:
+ChatBot:
 
 - [Local LLM Apps](/posts/local-ai-chat-apps)
 - [Perplexica](https://github.com/ItzCrazyKns/Perplexica) - Open source answer engine
 - [Morphic](https://github.com/miurla/morphic) - Open source answer engine
 
-WhatsApp / Telegram:
-
-- [Signal](https://signal.org/) - Privacy focused messenger
-- [Matrix](https://matrix.org/) ([Code](https://github.com/matrix-org/synapse)) - end-to-end encrypted, federated, self-hostable
-- [BitChat](https://bitchat.free/) - decentralized chat app via bluetooth
-- [Messenger Comparison](https://www.messenger-matrix.de/messenger-matrix.html)
-
-Google Docs:
+Shared Docs:
 
 - [Fileverse](https://docs.fileverse.io/) ([Code](https://github.com/fileverse/fileverse-ddoc)) - end-to-end encrypted, real-time collaborative editing, self-hostable
 - [Cryptpad](https://cryptpad.fr/) ([Code](https://github.com/xwiki-labs/cryptpad)) - end-to-end encrypted, real-time collaborative editing, self-hostable
 
-Google Drive / Dropbox:
+File Sync:
 
 - [Syncthing](https://syncthing.net/) ([Code](https://github.com/syncthing/syncthing)) - decentralized, self-hostable, fast & unix aligned
 
-Google Calendar / Contacts:
+Calendar / Contacts:
 
 - [Etesync](https://www.etesync.com/) ([Code](https://github.com/etesync/server)) - end-to-end encrypted, self-hostable
 
-Android:
-
-- [LineageOS](https://lineageos.org/)
-- [GrapheneOS](https://grapheneos.org/)
-
-Facebook / Twitter / Instagram:
+Social Network:
 
 - [Nostr](https://nostr.com/) ([Code](https://github.com/nostr-protocol/nostr)) - decentralized, self-hostable
 - [Mastodon](https://joinmastodon.org/) ([Code](https://github.com/tootsuite/mastodon)) - federated, self-hostable
 - [Scuttlebutt](https://scuttlebutt.nz/) ([Code](https://github.com/ssbc/ssb-server)) - decentralized, self-hostable
 
-YouTube:
+Video Platform:
 
 - [Invidious](https://invidious.io/) - privacy respecting YouTube frontend
 - [FreeTube](https://github.com/FreeTubeApp/FreeTube) - privacy respecting desktop client
 - [PeerTube](https://joinpeertube.org/) ([Code](https://github.com/Chocobozzz/PeerTube)) - decentralized, federated, self-hostable
 
-Spotify:
+Music:
 
 - [Funkwhale](https://funkwhale.audio/) ([Code](https://dev.funkwhale.audio/funkwhale/funkwhale)) - federated, self-hostable
 - [Airsonic](https://airsonic.github.io/) ([Code](https://github.com/airsonic/airsonic)) - self-hostable
 
-Google Authenticator:
+Multi-Factor Authenticator:
 
 - [Ente Auth](https://ente.io/auth/) ([Code](https://github.com/ente-io/ente)) - open source
 - [Proton Authenticator](https://proton.me/authenticator) - privacy focused
@@ -92,11 +88,16 @@ HTTP(S):
 
 - [IPFS](https://ipfs.io/) ([Code](https://github.com/ipfs/go-ipfs)) - decentralized, self-hostable
 
-Github / Gitlab / Bitbucket:
+Source Code:
 
 - [Radicle](https://radicle.xyz/) ([Code](https://github.com/radicle-dev/radicle-upstream)) - decentralized, self-hostable
 
-Windows / MacOS:
+Mobile OS:
+
+- [LineageOS](https://lineageos.org/)
+- [GrapheneOS](https://grapheneos.org/)
+
+Operating System:
 
 - [Nobara](https://nobaraproject.org/) (Fedora Linux)
 - [Mint](https://linuxmint.com/) (Ubuntu Linux)
