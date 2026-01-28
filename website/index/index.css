@@ -285,6 +285,7 @@
   border: 2px solid var(--border-color);
   box-sizing: border-box;
   transition: background-color 0.2s, border-color 0.3s ease;
+  position: relative;
 }
 
 @media (min-width: 768px) {
@@ -524,7 +525,13 @@ html[data-theme="light"] .speechBubble {
   fill: currentColor;
 }
 
-/* Theme toggle button */
+.postDate {
+  position: absolute;
+  bottom: 0.5rem;
+  right: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--light-text-color);
+}
 .themeToggleButton {
   position: fixed;
   bottom: 20px;

@@ -1,5 +1,5 @@
 use anyhow::Result;
-use chrono::Datelike;
+use chrono::{Datelike, NaiveDate};
 use serde_json::json;
 use std::collections::HashMap;
 use std::fs::File;
@@ -20,6 +20,14 @@ fn inline_css_placeholder(args: &HashMap<String, Value>) -> tera::Result<Value> 
         .and_then(|v| v.as_str())
         .ok_or_else(|| tera::Error::msg("inline_css requires a 'path' argument"))?;
     Ok(Value::String(format!("<!-- INLINE_CSS:{} -->", path)))
+}
+
+fn format_date_display(date_str: &str) -> String {
+    if let Ok(date) = NaiveDate::parse_from_str(date_str, "%Y-%m-%d") {
+        format!("{}/{}", date.month(), date.year() % 100)
+    } else {
+        date_str.to_string()
+    }
 }
 
 pub fn build_index_page(out_dir: &Path, posts: &Arc<Vec<Post>>) -> Result<()> {
@@ -59,6 +67,8 @@ pub fn generate_index_page(out_dir: &Path, posts: &[PostSummary], tags: &[String
             json!({
                 "id": post.id,
                 "title": post.title,
+                "date": post.date,
+                "date_display": format_date_display(&post.date),
                 "icon": post.icon,
                 "tags": post.tags,
                 "tags_json": serde_json::to_string(&post.tags).unwrap_or_default(),
