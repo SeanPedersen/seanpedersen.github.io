@@ -6,7 +6,11 @@ The science of genes and their mutations in organisms.
 
 DNA (DeoxyriboNucleic Acid) is the spiral molecular structure (double helix) made of 4 nucleotide bases (Adenine, Thymine, Guanine, Cytosine). These pair up symmetrically: A<->T, G<->C, forming a base 4 information system that encodes the instructions for living organisms to grow.
 
-Genes are specific segments of DNA that contain instructions for producing proteins. DNA molecules are packaged by coiling up into structures called chromosomes. Human cells contain 23 pairs of chromosomes - one set inherited from each parent - and each chromosome carries thousands of gene segments along its DNA sequence.
+## Structure of Genes
+
+Genes are specific segments of DNA that contain instructions for producing proteins (or functional RNA). DNA molecules are packaged by coiling up into structures called chromosomes. Human cells contain 23 pairs of chromosomes - one set inherited from each parent - and each chromosome carries thousands of gene segments along its DNA sequence.
+
+A gene is defined as a DNA segment that contains the code to produce a specific protein or functional RNA molecule. It is typically a few thousand base pairs long for humans (though can range from hundreds to a million). Genes have defined start and end boundaries identified through special combinations of base pairs (like promoters, start / stop codons).
 
 ## Polymerase Chain Reaction
 
