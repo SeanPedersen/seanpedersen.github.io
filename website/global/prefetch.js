@@ -4,47 +4,45 @@
   // Track which URLs have already been prefetched
   const prefetchedUrls = new Set();
 
-  // Track the current active prefetch controller
-  let currentPrefetchController = null;
+  // Stack to manage prefetch requests (LIFO)
+  const prefetchStack = [];
+
+  // Track URLs currently being prefetched
+  const inProgressUrls = new Set();
 
   // Prefetch a URL using fetch API
   function prefetchUrl(url) {
-    // Avoid prefetching the same URL multiple times
-    if (prefetchedUrls.has(url)) {
+    // Avoid prefetching if already done, in progress, or queued
+    if (prefetchedUrls.has(url) || inProgressUrls.has(url) || prefetchStack.includes(url)) {
       return;
     }
 
-    // Cancel any previous pending prefetch
-    if (currentPrefetchController) {
-      currentPrefetchController.abort();
-    }
+    // Add to stack and process
+    prefetchStack.push(url);
+    processStack();
+  }
 
-    // Mark as prefetched
-    prefetchedUrls.add(url);
+  // Process the prefetch stack
+  function processStack() {
+    while (prefetchStack.length > 0) {
+      const url = prefetchStack.pop();
+      inProgressUrls.add(url);
 
-    // Create new AbortController for this prefetch
-    currentPrefetchController = new AbortController();
-
-    // Use fetch with low priority for prefetching
-    if (window.fetch) {
-      try {
+      // Use fetch with low priority for prefetching
+      if (window.fetch) {
         fetch(url, {
           priority: 'low',
-          credentials: 'same-origin',
-          signal: currentPrefetchController.signal
+          credentials: 'same-origin'
         }).then(function() {
           // Prefetch completed successfully
-          currentPrefetchController = null;
+          prefetchedUrls.add(url);
+          inProgressUrls.delete(url);
         }).catch(function(err) {
           // Silently fail - this is just a prefetch hint
-          // Don't clear controller if it was an abort (we want to keep the new one)
-          if (err.name !== 'AbortError') {
-            currentPrefetchController = null;
-          }
+          inProgressUrls.delete(url);
         });
-      } catch (e) {
-        // Silently fail
-        currentPrefetchController = null;
+      } else {
+        inProgressUrls.delete(url);
       }
     }
   }
