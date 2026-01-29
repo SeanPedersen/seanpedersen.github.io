@@ -115,7 +115,7 @@
           <ul class="list" id="postList">
             {% for post in posts %}
             <li class="listItem" data-tags="{{ post.tags_json }}">
-              <a href="/posts/{{ post.id }}" class="listItemLink">
+              <a href="/posts/{{ post.id }}/" class="listItemLink">
                 {% if post.icon %}
                 <div class="postIconArea">
                   <img src="{{ post.icon }}" alt="" class="postIcon" loading="lazy">
