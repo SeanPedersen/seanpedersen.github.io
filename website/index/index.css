@@ -240,21 +240,6 @@
   color: var(--tag-selected-text);
 }
 
-.postTags {
-  margin-left: 0.5rem;
-}
-
-.postTags a {
-  color: var(--light-text-color);
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-.postTags a:hover {
-  background-color: var(--primary-color);
-  color: var(--tag-selected-text);
-  text-decoration: none;
-}
 
 /* Post list */
 .list {
@@ -281,40 +266,96 @@
 
 .listItem {
   margin: 0 0 1.25rem;
-  padding: 0.5rem;
-  border: 2px solid var(--border-color);
   box-sizing: border-box;
-  transition: background-color 0.2s, border-color 0.3s ease;
   position: relative;
+  height: 100%;
 }
 
 @media (min-width: 768px) {
   .listItem {
     margin: 0;
+  }
+}
+
+.listItemLink {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem;
+  border: 2px solid var(--border-color);
+  box-sizing: border-box;
+  transition: background-color 0.2s, border-color 0.3s ease;
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
+  height: 100%;
+}
+
+@media (min-width: 768px) {
+  .listItemLink {
     padding: 0.75rem;
   }
 }
 
-.postTitleLink {
-  display: inline;
+.postIconArea {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
 .postIcon {
-  width: 1.6rem;
-  height: 1.6rem;
+  width: 2rem;
+  height: 2rem;
   border: none;
-  display: inline;
-  vertical-align: middle;
-  margin-right: 0.4rem;
+  display: block;
   filter: invert(1);
+  transition: transform 0.2s ease;
 }
 
 html[data-theme="light"] .postIcon {
   filter: none;
 }
 
+.postContent {
+  flex: 1;
+  min-width: 0;
+  line-height: 1.5;
+}
+
+
+
 .postTitleText {
   display: inline;
+}
+
+.postTagsSeparator {
+  color: var(--light-text-color);
+  margin: 0 0.25rem;
+}
+
+.postTagsRow {
+  display: inline;
+}
+
+.postTag {
+  display: inline-block;
+  margin-right: 0.25rem;
+}
+
+.postTag {
+  font-size: 0.7rem;
+  color: var(--light-text-color);
+  text-decoration: none;
+  padding: 0.1rem 0.4rem;
+  background: var(--tag-bg);
+  border-radius: 3px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.postTag:hover {
+  background-color: var(--primary-color);
+  color: var(--tag-selected-text);
 }
 
 /* Header with profile */
@@ -527,11 +568,12 @@ html[data-theme="light"] .speechBubble {
 
 .postDate {
   position: absolute;
-  bottom: 0.5rem;
-  right: 0.5rem;
-  font-size: 0.8rem;
+  bottom: 0.2rem;
+  right: 0.3rem;
+  font-size: 0.75rem;
   color: var(--light-text-color);
 }
+
 .themeToggleButton {
   position: fixed;
   bottom: 20px;

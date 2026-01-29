@@ -115,23 +115,17 @@
           <ul class="list" id="postList">
             {% for post in posts %}
             <li class="listItem" data-tags="{{ post.tags_json }}">
-              <a href="/posts/{{ post.id }}" class="postTitleLink">
+              <a href="/posts/{{ post.id }}" class="listItemLink">
                 {% if post.icon %}
-                <img src="{{ post.icon }}" alt="" class="postIcon" aria-hidden="true" loading="lazy">
+                <div class="postIconArea">
+                  <img src="{{ post.icon }}" alt="" class="postIcon" loading="lazy">
+                </div>
                 {% endif %}
-                <span class="postTitleText">{{ post.title }}</span>
+                <div class="postContent">
+                  <span class="postTitleText">{{ post.title }}</span>
+                </div>
+                <span class="postDate">{{ post.date_display }}</span>
               </a>
-              {% if post.tags %}
-              <small class="lightText post-tags-container">
-                •<span class="postTags">
-                  {%- for tag in post.tags -%}
-                  <span><a href="#{{ tag }}" onclick="return false;">{{ tag }}</a>{% if not loop.last %}, {% endif
-                    %}</span>
-                  {%- endfor -%}
-                </span>
-              </small>
-              {% endif %}
-              <span class="postDate">{{ post.date_display }}</span>
             </li>
             {% endfor %}
           </ul>
@@ -149,43 +143,43 @@
       </svg>
     </button>
   </div>
-     <script>
-       (function () {
-         'use strict';
-         function updateIcon(theme) {
-           var icon = document.getElementById('themeIcon');
-           if (!icon) return;
-           icon.innerHTML = theme === 'dark'
-             ? '<circle cx="12" cy="12" r="4"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>'
-             : '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
-           icon.setAttribute('title', 'Switch to ' + (theme === 'dark' ? 'light' : 'dark') + ' mode');
-         }
-         function toggle() {
-           var currentTheme = window.theme.getTheme();
-           var newTheme = currentTheme === 'light' ? 'dark' : 'light';
-           document.documentElement.setAttribute('data-theme', newTheme);
-           localStorage.setItem('theme', newTheme);
-           window.theme.setTheme(newTheme);
-           updateIcon(newTheme);
-         }
-         function init() {
-           updateIcon(window.theme.getTheme());
-           var btn = document.getElementById('themeToggle');
-           if (btn) {
-             btn.addEventListener('click', toggle);
-             window.addEventListener('scroll', function () {
-               btn.classList.toggle('isHidden', window.scrollY > 10);
-             });
-             btn.classList.toggle('isHidden', window.scrollY > 10);
-           }
-         }
-         if (document.readyState === 'loading') {
-           document.addEventListener('DOMContentLoaded', init);
-         } else {
-           init();
-         }
-       })();
-     </script>
+  <script>
+    (function () {
+      'use strict';
+      function updateIcon(theme) {
+        var icon = document.getElementById('themeIcon');
+        if (!icon) return;
+        icon.innerHTML = theme === 'dark'
+          ? '<circle cx="12" cy="12" r="4"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>'
+          : '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+        icon.setAttribute('title', 'Switch to ' + (theme === 'dark' ? 'light' : 'dark') + ' mode');
+      }
+      function toggle() {
+        var currentTheme = window.theme.getTheme();
+        var newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        window.theme.setTheme(newTheme);
+        updateIcon(newTheme);
+      }
+      function init() {
+        updateIcon(window.theme.getTheme());
+        var btn = document.getElementById('themeToggle');
+        if (btn) {
+          btn.addEventListener('click', toggle);
+          window.addEventListener('scroll', function () {
+            btn.classList.toggle('isHidden', window.scrollY > 10);
+          });
+          btn.classList.toggle('isHidden', window.scrollY > 10);
+        }
+      }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    })();
+  </script>
   <script>
     (function () {
       let searchScriptLoaded = false;
@@ -347,20 +341,20 @@
       document.head.appendChild(script);
     })();
   </script>
-<!-- Chatbot Widget -->
-<script>
-(function() {
-  var script = document.createElement('script');
-  script.src = 'https://pagebot.digger.lol/api/embed/chatbot.js';
-  script.async = true;
-script.dataset.websiteId = 'b9689a42-7ff6-48ae-ae4a-68e37b535a50';  
-script.dataset.apiUrl = 'https://pagebot.digger.lol';
-  script.dataset.position = 'bottom-right';
-  script.dataset.title = 'Chat McBotface';
-  script.dataset.color = '#0e0e58';
-  document.head.appendChild(script);
-})();
-</script>
+  <!-- Chatbot Widget -->
+  <script>
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://pagebot.digger.lol/api/embed/chatbot.js';
+      script.async = true;
+      script.dataset.websiteId = 'b9689a42-7ff6-48ae-ae4a-68e37b535a50';
+      script.dataset.apiUrl = 'https://pagebot.digger.lol';
+      script.dataset.position = 'bottom-right';
+      script.dataset.title = 'Chat McBotface';
+      script.dataset.color = '#0e0e58';
+      document.head.appendChild(script);
+    })();
+  </script>
 </body>
 
 </html>
