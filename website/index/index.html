@@ -102,19 +102,23 @@
         <section class="headingMd">
           <p>Machine Learning / Data Privacy / Cybernetics / Memetics</p>
         </section>
-        <section class="headingMd padding1px">
+        <section class="headingMd padding1px tagFilterSection">
+          <input type="radio" name="tagFilter" id="tag-all" class="tagRadio" checked>
+          {% for tag in tags %}
+          <input type="radio" name="tagFilter" id="tag-{{ tag }}" class="tagRadio">
+          {% endfor %}
           <div class="searchTagsWrapper" id="searchTagsWrapper">
             <div id="searchContainer"></div>
             <div class="tagsContainer" id="tagsContainer">
-              <span class="tag tagSelected" data-tag="">All</span>
+              <label for="tag-all" class="tag">All</label>
               {% for tag in tags %}
-              <span class="tag" data-tag="{{ tag }}">{{ tag }}</span>
+              <label for="tag-{{ tag }}" class="tag">{{ tag }}</label>
               {% endfor %}
             </div>
           </div>
           <ul class="list" id="postList">
             {% for post in posts %}
-            <li class="listItem" data-tags="{{ post.tags_json }}">
+            <li class="listItem{% for t in post.tags %} tag-{{ t }}{% endfor %}">
               <a href="/posts/{{ post.id }}/" class="listItemLink">
                 {% if post.icon %}
                 <div class="postIconArea">
@@ -230,8 +234,7 @@
 
               const titleEl = link.querySelector('.postTitleText');
               const title = titleEl ? titleEl.textContent || '' : link.textContent || '';
-              const tagsAttr = post.getAttribute('data-tags');
-              const tags = tagsAttr ? JSON.parse(tagsAttr) : [];
+              const tags = Array.from(post.classList).filter(c => c.startsWith('tag-')).map(c => c.slice(4));
 
               const titleMatches = title.toLowerCase().includes(lowerQuery);
               const tagMatches = tags.some(tag => tag.toLowerCase().includes(lowerQuery));
@@ -321,7 +324,6 @@
       }
     })();
   </script>
-  <script src="/js/tags.js" defer></script>
   <script src="/js/prefetch.js" defer></script>
   <script>
     (function () {

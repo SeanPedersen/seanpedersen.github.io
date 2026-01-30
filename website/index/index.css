@@ -186,6 +186,11 @@
 }
 
 /* Tag styles */
+.tagRadio {
+  display: none;
+}
+
+
 .tagsContainer {
   display: contents;
 }
@@ -229,13 +234,45 @@
   background-color: var(--tag-hover-bg);
 }
 
-.tagSelected {
+/* Pure CSS tag filtering */
+#tag-AI:checked ~ .list .listItem:not(.tag-AI),
+#tag-ML:checked ~ .list .listItem:not(.tag-ML),
+#tag-book:checked ~ .list .listItem:not(.tag-book),
+#tag-coding:checked ~ .list .listItem:not(.tag-coding),
+#tag-idea:checked ~ .list .listItem:not(.tag-idea),
+#tag-launch:checked ~ .list .listItem:not(.tag-launch),
+#tag-math:checked ~ .list .listItem:not(.tag-math),
+#tag-privacy:checked ~ .list .listItem:not(.tag-privacy),
+#tag-tutorial:checked ~ .list .listItem:not(.tag-tutorial) {
+  display: none;
+}
+
+/* Highlight selected tag label */
+#tag-all:checked ~ .searchTagsWrapper .tagsContainer label[for="tag-all"],
+#tag-AI:checked ~ .searchTagsWrapper .tagsContainer label[for="tag-AI"],
+#tag-ML:checked ~ .searchTagsWrapper .tagsContainer label[for="tag-ML"],
+#tag-book:checked ~ .searchTagsWrapper .tagsContainer label[for="tag-book"],
+#tag-coding:checked ~ .searchTagsWrapper .tagsContainer label[for="tag-coding"],
+#tag-idea:checked ~ .searchTagsWrapper .tagsContainer label[for="tag-idea"],
+#tag-launch:checked ~ .searchTagsWrapper .tagsContainer label[for="tag-launch"],
+#tag-math:checked ~ .searchTagsWrapper .tagsContainer label[for="tag-math"],
+#tag-privacy:checked ~ .searchTagsWrapper .tagsContainer label[for="tag-privacy"],
+#tag-tutorial:checked ~ .searchTagsWrapper .tagsContainer label[for="tag-tutorial"] {
   background-color: var(--primary-color);
   color: var(--tag-selected-text);
   border-color: var(--primary-color);
 }
 
-.tagSelected:hover {
+#tag-all:checked ~ .searchTagsWrapper .tagsContainer label[for="tag-all"]:hover,
+#tag-AI:checked ~ .searchTagsWrapper .tagsContainer label[for="tag-AI"]:hover,
+#tag-ML:checked ~ .searchTagsWrapper .tagsContainer label[for="tag-ML"]:hover,
+#tag-book:checked ~ .searchTagsWrapper .tagsContainer label[for="tag-book"]:hover,
+#tag-coding:checked ~ .searchTagsWrapper .tagsContainer label[for="tag-coding"]:hover,
+#tag-idea:checked ~ .searchTagsWrapper .tagsContainer label[for="tag-idea"]:hover,
+#tag-launch:checked ~ .searchTagsWrapper .tagsContainer label[for="tag-launch"]:hover,
+#tag-math:checked ~ .searchTagsWrapper .tagsContainer label[for="tag-math"]:hover,
+#tag-privacy:checked ~ .searchTagsWrapper .tagsContainer label[for="tag-privacy"]:hover,
+#tag-tutorial:checked ~ .searchTagsWrapper .tagsContainer label[for="tag-tutorial"]:hover {
   background-color: var(--tag-selected-hover-bg);
   color: var(--tag-selected-text);
 }

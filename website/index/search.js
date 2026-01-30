@@ -328,9 +328,8 @@
       let titleMatch = false;
       let tagMatch = false;
 
-      // Get DOM tags for tag matching
-      const tagsAttr = post.getAttribute('data-tags');
-      const tags = tagsAttr ? JSON.parse(tagsAttr) : [];
+      // Get DOM tags for tag matching (from class names like tag-AI, tag-ML)
+      const tags = Array.from(post.classList).filter(c => c.startsWith('tag-')).map(c => c.slice(4));
 
       if (!postSearchData) {
         // No RSS data, fall back to title/tag only
