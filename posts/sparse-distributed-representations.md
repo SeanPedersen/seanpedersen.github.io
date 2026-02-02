@@ -10,6 +10,8 @@ Modern deep learning architectures are dominated by dense embeddings. While spar
 
 SDRs are sparse, positive matrices with spatially meaningful dimensions - the nearer two dimensions (cells) are the closer the concepts (vectors) they represent are. This gives SDRs many useful properties over dense embeddings.
 
+Why "Distributed"? The semantic meaning of a concept is distributed across the pattern of active bits.
+
 ## What are the benefits of SDR over dense embeddings?
 
 ![SDR vs Dense Embedding Benefits](/images/dense-vs-sdr.svg)
