@@ -24,6 +24,11 @@ Great introduction: <https://fasterthanli.me/articles/a-half-hour-to-learn-rust>
 - [ndarray](https://docs.rs/ndarray/latest/ndarray/doc/ndarray_for_numpy_users/index.html)
 - [loading npy files](https://docs.rs/npy/latest/npy/) (from Python numpy)
 
+## GUI
+
+- [GPUI](https://www.gpui.rs/): UI lib created by and used in Zed editor
+  - [GPUI components](https://github.com/longbridge/gpui-component)
+
 ## References
 - [Error handling](https://www.howtocodeit.com/guides/the-definitive-guide-to-rust-error-handling)
 - <https://jmmv.dev/2018/06/rust-review-borrow-checker.html>
