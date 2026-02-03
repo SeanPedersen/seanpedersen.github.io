@@ -56,5 +56,6 @@ systemctl enable --now docker-prune.timer
 
 - <https://x.com/levelsio/status/1957526292045393976>
 - <https://x.com/levelsio/status/1953025356585169372>
+- <https://www.kkyri.com/p/how-to-secure-your-new-vps-a-step-by-step-guide>
 
 #coding
