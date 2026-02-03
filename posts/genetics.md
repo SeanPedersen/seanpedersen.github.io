@@ -106,8 +106,8 @@ The intelligence of an individual is fundamentally limited by their DNA. The int
 - [PCR: The Man Who Took LSD and Changed The World](https://www.youtube.com/watch?v=zaXKQ70q4KQ)
 
 TODO:
-- https://en.wikipedia.org/wiki/Mirror-image_life
-- https://www.scientificamerican.com/article/lifes-evil-twins-mirror-cells-could-doom-earth-if-scientists-dont-stop-them/
-- https://en.wikipedia.org/wiki/Artificially_Expanded_Genetic_Information_System
+- <https://en.wikipedia.org/wiki/Mirror-image_life>
+- <https://www.scientificamerican.com/article/lifes-evil-twins-mirror-cells-could-doom-earth-if-scientists-dont-stop-them/>
+- <https://en.wikipedia.org/wiki/Artificially_Expanded_Genetic_Information_System>
 
 #idea
