@@ -10,8 +10,9 @@ How to secure a VPS running in production (important service + data)?
 - Setup firewall (lockdown all unused ports - main: 80, 443)
 - Setup fail2ban (ban IP's failing ssh login attempts)
 - Use docker for your services
-- Set up regular automatic updates
-- Set up append only backups (whole server or DB) with regular validity tests (restore the backup)
+- Setup regular automatic updates
+- Setup append only backups (whole server or DB) with regular validity tests (restore the backup)
+- Setup notification (via E-Mail) critical events: high disk or RAM usage, unusual network traffic
 - Advanced: Set up disk level encryption (f.e. LUKS) - in case the hard drives will be resold: customer data can not be recovered
 
 ## Limit Disk Usage
@@ -50,5 +51,10 @@ Enable service:
 systemctl daemon-reexec
 systemctl enable --now docker-prune.timer
 ```
+
+## References
+
+- <https://x.com/levelsio/status/1957526292045393976>
+- <https://x.com/levelsio/status/1953025356585169372>
 
 #coding
