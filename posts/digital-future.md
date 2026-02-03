@@ -9,7 +9,7 @@ Personal assistant powered by LLM via chat and voice interface
 
 ## Integrations
 
-Instead of having separate apps installed to order products, food, find events, plan my next travel trip, etc. - we will use one unified chat interface (LLM agent) with integrations for services / data sources that enable your agent to do all these things for you.
+Instead of having separate apps installed or navigating to specialized websites to order products / food, find events, plan my next travel trip, etc. - we will use one unified chat interface (LLM agent) with integrations for services / data sources that enable your agent to do all these things for you.
 
 ## Custom Interfaces
 
@@ -25,5 +25,9 @@ Every media file can be manipulated with natural language
 - decompose a song into its segments i.e. replace or remove the vocals, change the bass line, remove this annoying segment etc.
 - change the style of an image / video
 - create completely new custom videos (including spin-offs of your favorite TV shows)
+
+## Ethics
+
+This unified interface has immense abuse potential and thus it is of importance to build a local privacy first version of this - fuck off privacy invading kraken services.
 
 #idea
