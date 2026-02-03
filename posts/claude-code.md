@@ -815,6 +815,7 @@ Using GUI apps can make sense as they motivate writing longer and more detailed 
 
 ## References
 
+- [Great X Thread from the creator of Claude Code](https://x.com/bcherny/status/2017742741636321619)
 - <https://diwank.space/field-notes-from-shipping-real-code-with-claude>
 - <https://every.to/source-code/my-ai-had-already-fixed-the-code-before-i-saw-it>
 - <https://steipete.me/posts/just-talk-to-it>
