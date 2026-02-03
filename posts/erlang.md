@@ -8,7 +8,7 @@ Erlang is a powerful functional programming language invented in Sweden at Erics
 
 Erlang is not made for math heavy computations though but can easily call C or other faster languages for that.
 
-The BEAM (ErlangVM) powers big apps like WhattsApp and Discord, demonstrating its commercial viability.
+The BEAM (ErlangVM) powers big apps like WhatsApp and Discord, demonstrating its commercial viability.
 
 [Elixir](/posts/elixir) and [Gleam](https://gleam.run/) are notable modern dialects of Erlang that transpile straight to Erlang. Elixir offers syntactic sugar and a thriving open-source community with popular frameworks like Phoenix. Gleam is a type-safe alternative.
 
