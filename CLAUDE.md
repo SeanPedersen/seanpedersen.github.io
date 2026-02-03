@@ -1,6 +1,4 @@
-# AGENTS.md - Agent Guidelines for SeanPedersen.github.io
-
-## Project Overview
+# Project Overview
 
 This is a static site generator written in Rust that builds a personal blog website. The project processes html/css/js files from the `website/` directory (organized in `index/`, `post/`, and `global/` subdirectories) and Markdown posts from the `posts/` directory to generate optimized HTML/CSS/JS output in the `out/` directory.
 
