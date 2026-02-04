@@ -33,7 +33,7 @@ Tricks:
 ### Neural Representations
 
 - Multi-Modal (shared) Embedding Spaces (CLIP)
-- Dense vs Sparse ([SDR](/posts/sparse-distributed-representations))
+- Dense vs Sparse embeddings ([SDR](/posts/sparse-distributed-representations))
 - Query vs document prefix for embedding models optimized for search
 - Visual Document Embeddings
     - Instead of embedding sequences of tokens (often words), embed images of pages directly -> this helps to process complex documents containing tables, graphs and imagery
@@ -90,7 +90,7 @@ All of the following techniques trade retrieval accuracy for speed / storage cos
 - Vector Quantization
     - Reduce bit representation (f.e. to INT8 instead of FP32)
 
-Excellent article detailing an efficient search pipeline: <https://huggingface.co/blog/embedding-quantization>
+Excellent article detailing an efficient vector search pipeline: <https://huggingface.co/blog/embedding-quantization>
 
 ## Diversification
 
@@ -157,15 +157,15 @@ User steered semantic search by selecting N matches and finding the common subsp
 ## References
 
 - [https://github.com/frutik/awesome-search](https://github.com/frutik/awesome-search)
--   [https://softwaredoug.com/blog/2022/07/16/what-is-presentation-bias-in-search](https://softwaredoug.com/blog/2022/07/16/what-is-presentation-bias-in-search)
--   [https://softwaredoug.com/blog/2024/06/25/what-ai-engineers-need-to-know-search](https://softwaredoug.com/blog/2024/06/25/what-ai-engineers-need-to-know-search)
--   [https://news.ycombinator.com/item?id=15231302](https://news.ycombinator.com/item?id=15231302)
--   [https://binal.pub/2023/04/ranking-anything-with-gpt4/](https://binal.pub/2023/04/ranking-anything-with-gpt4/)
--   [https://arxiv.org/abs/2312.02724](https://arxiv.org/abs/2312.02724)
--   [https://python.useinstructor.com/blog/2024/10/23/building-an-llm-based-reranker-for-your-rag-pipeline/](https://python.useinstructor.com/blog/2024/10/23/building-an-llm-based-reranker-for-your-rag-pipeline/)
+-   [What is Presentation Bias in search?](https://softwaredoug.com/blog/2022/07/16/what-is-presentation-bias-in-search)
+-   [What AI Engineers Should Know about Search](https://softwaredoug.com/blog/2024/06/25/what-ai-engineers-need-to-know-search)
+-   [HN Discussion: What every software engineer should know about search](https://news.ycombinator.com/item?id=15231302)
+-   [Ranking Anything with GPT4](https://binal.pub/2023/04/ranking-anything-with-gpt4/)
+-   [RankZephyr: Effective and Robust Zero-Shot Listwise Reranking is a Breeze!](https://arxiv.org/abs/2312.02724)
+-   [LLM based reranker](https://python.useinstructor.com/blog/2024/10/23/building-an-llm-based-reranker-for-your-rag-pipeline/)
 - [Building a web search engine from scratch in two months with 3 billion neural embeddings](https://blog.wilsonl.in/search-engine/)
 - [On the Theoretical Limitations of Embedding-Based Retrieval](https://arxiv.org/abs/2508.21038)
 - [Building a Simple Search Engine That Actually Works](https://karboosx.net/post/4eZxhBon/building-a-simple-search-engine-that-actually-works)
-- <https://ashvardanian.com/posts/search-utf8/>
+- [Full Unicode Search at 50× ICU Speed with AVX‑512](https://ashvardanian.com/posts/search-utf8/)
 
 #coding #ML
