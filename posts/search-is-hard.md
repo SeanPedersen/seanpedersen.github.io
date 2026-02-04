@@ -81,14 +81,16 @@ fast but may contain irrelevant results
 
 All of the following techniques trade retrieval accuracy for speed / storage costs. For production use cases, using a [Vector DB](/posts/vector-databases) is the right choice.
 
-- Approximate Nearest Neighbor (Search Index)
-    - HNSW (high RAM usage) and DiskANN (low RAM usage, needs SSD)
-    - <https://github.com/erikbern/ann-benchmarks>
+- Approximate Nearest Neighbor (Search Index) - [benchmark](https://github.com/erikbern/ann-benchmarks)
+    - HNSW: builds a hierachical graph, good data drift handling -> high RAM usage
+    - IVFFlat: low RAM usage, bad data drift handling -> needs frequent rebuilds
+    - DiskANN: low RAM usage, achieved by using disk (needs fast disk read)
 - Vector Dimensionality Reduction
     - PCA / UMAP
     - Matryoshka Embeddings
 - Vector Quantization
     - Reduce bit representation (f.e. to INT8 instead of FP32)
+    - [Near-lossless compression for unit-norm embedding vectors using spherical coordinates](https://jina.ai/embedding-compression.pdf) - [code](https://github.com/jina-ai/jzip-compressor)
 
 Excellent article detailing an efficient vector search pipeline: <https://huggingface.co/blog/embedding-quantization>
 
@@ -157,12 +159,12 @@ User steered semantic search by selecting N matches and finding the common subsp
 ## References
 
 - [https://github.com/frutik/awesome-search](https://github.com/frutik/awesome-search)
--   [What is Presentation Bias in search?](https://softwaredoug.com/blog/2022/07/16/what-is-presentation-bias-in-search)
--   [What AI Engineers Should Know about Search](https://softwaredoug.com/blog/2024/06/25/what-ai-engineers-need-to-know-search)
--   [HN Discussion: What every software engineer should know about search](https://news.ycombinator.com/item?id=15231302)
--   [Ranking Anything with GPT4](https://binal.pub/2023/04/ranking-anything-with-gpt4/)
--   [RankZephyr: Effective and Robust Zero-Shot Listwise Reranking is a Breeze!](https://arxiv.org/abs/2312.02724)
--   [LLM based reranker](https://python.useinstructor.com/blog/2024/10/23/building-an-llm-based-reranker-for-your-rag-pipeline/)
+- [What is Presentation Bias in search?](https://softwaredoug.com/blog/2022/07/16/what-is-presentation-bias-in-search)
+- [What AI Engineers Should Know about Search](https://softwaredoug.com/blog/2024/06/25/what-ai-engineers-need-to-know-search)
+- [HN Discussion: What every software engineer should know about search](https://news.ycombinator.com/item?id=15231302)
+- [Ranking Anything with GPT4](https://binal.pub/2023/04/ranking-anything-with-gpt4/)
+- [RankZephyr: Effective and Robust Zero-Shot Listwise Reranking is a Breeze!](https://arxiv.org/abs/2312.02724)
+- [LLM based reranker](https://python.useinstructor.com/blog/2024/10/23/building-an-llm-based-reranker-for-your-rag-pipeline/)
 - [Building a web search engine from scratch in two months with 3 billion neural embeddings](https://blog.wilsonl.in/search-engine/)
 - [On the Theoretical Limitations of Embedding-Based Retrieval](https://arxiv.org/abs/2508.21038)
 - [Building a Simple Search Engine That Actually Works](https://karboosx.net/post/4eZxhBon/building-a-simple-search-engine-that-actually-works)
