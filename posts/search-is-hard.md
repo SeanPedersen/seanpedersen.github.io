@@ -102,23 +102,23 @@ It often makes sense to present the user for general queries not only the top ne
 
 ## Evaluation Metrics
 
-As you see there are many knobs to tune a modern search pipeline and thus we need hard evaluation metrics to judge the quality of our search pipeline. Creating a custom dataset that mirrors our real world search use case as closely and diversely as possible is essential to improving our search.
+As you see there are many knobs to tune a modern search pipeline and thus we need hard evaluation metrics to judge the quality of our search pipeline. Creating a custom dataset that mirrors our real world search use case as closely and diversely as possible is essential to improving our search. Relevant [post](https://x.com/bo_wangbo/status/2011075744978649199) - recommends optimizing for recall with K > 100.
 
-### Precision
+### Precision@K
 
-- What: Fraction of evaluated results that are relevant
-- Formula: Relevant results ÷ evaluated results
-- Use when: You care about the quality of what users see
-- Limitation: Doesn’t measure how many relevant documents were missed
+- What: Fraction of top K results that are relevant
+- Formula: Relevant results in top K ÷ K
+- Use when: You only care about the quality of what users see
+- Limitation: Doesn't measure how many relevant documents were missed
 
-### Recall
+### Recall@K
 
-- What: Fraction of all relevant documents that were retrieved
-- Formula: Relevant results retrieved ÷ total relevant documents
+- What: Fraction of all relevant documents found in top K
+- Formula: Relevant found in top K ÷ total relevant documents
 - Use when: Missing relevant information is costly
 - Limitation: Requires knowing all relevant documents
 
-### F1 Score
+### F1 Score@K
 
 - What: Balance between precision and recall
 - Formula: 2 × (Precision × Recall) ÷ (Precision + Recall)
@@ -137,6 +137,7 @@ User steered semantic search by selecting N matches and finding the common subsp
 - [HN Discussion: What every software engineer should know about search](https://news.ycombinator.com/item?id=15231302)
 - [Ranking Anything with GPT4](https://binal.pub/2023/04/ranking-anything-with-gpt4/)
 - [RankZephyr: Effective and Robust Zero-Shot Listwise Reranking is a Breeze!](https://arxiv.org/abs/2312.02724)
+- [Applying Embedding-Based Retrieval to Airbnb Search](https://arxiv.org/abs/2601.06873)
 - [LLM based reranker](https://python.useinstructor.com/blog/2024/10/23/building-an-llm-based-reranker-for-your-rag-pipeline/)
 - [Building a web search engine from scratch in two months with 3 billion neural embeddings](https://blog.wilsonl.in/search-engine/)
 - [On the Theoretical Limitations of Embedding-Based Retrieval](https://arxiv.org/abs/2508.21038)
