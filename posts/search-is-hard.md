@@ -85,9 +85,11 @@ All of the following techniques trade retrieval accuracy for speed / storage cos
     - HNSW: builds a hierachical graph, good data drift handling -> high RAM usage
     - IVFFlat: low RAM usage, bad data drift handling -> needs frequent rebuilds
     - DiskANN: low RAM usage, achieved by using disk (needs fast disk read)
+    - TODO (eval): <https://github.com/yichuan-w/LEANN>
 - Vector Dimensionality Reduction
-    - PCA / UMAP
-    - Matryoshka Embeddings
+    - Matryoshka Embeddings: dim. red. baked into training via loss function
+    - PCA (linear)
+    - t-SNE / UMAP (non-linear)
 - Vector Quantization
     - Reduce bit representation (f.e. to INT8 instead of FP32)
     - [Near-lossless compression for unit-norm embedding vectors using spherical coordinates](https://jina.ai/embedding-compression.pdf) - [code](https://github.com/jina-ai/jzip-compressor)
@@ -102,55 +104,26 @@ It often makes sense to present the user for general queries not only the top ne
 
 As you see there are many knobs to tune a modern search pipeline and thus we need hard evaluation metrics to judge the quality of our search pipeline. Creating a custom dataset that mirrors our real world search use case as closely and diversely as possible is essential to improving our search.
 
-**Precision@K**
+### Precision
 
-What it measures: Of the first K results returned, what percentage are actually relevant?
+- What: Fraction of evaluated results that are relevant
+- Formula: Relevant results ÷ evaluated results
+- Use when: You care about the quality of what users see
+- Limitation: Doesn’t measure how many relevant documents were missed
 
-Formula: Precision@K = (Number of relevant results in top K) / K
+### Recall
 
-Example:
+- What: Fraction of all relevant documents that were retrieved
+- Formula: Relevant results retrieved ÷ total relevant documents
+- Use when: Missing relevant information is costly
+- Limitation: Requires knowing all relevant documents
 
-- Search returns 10 results (K=10)
-- 7 of those 10 are relevant to the query
-- Precision@10 = 7/10 = 0.7 (70%)
+### F1 Score
 
-When to use: When you care about the quality of results shown to users. High precision means users see fewer irrelevant results, improving their experience.
-
-Limitations: Doesn't consider how many total relevant documents exist in your corpus. A system could have high precision but miss many relevant documents.
-
-
-**Recall@K**
-
-What it measures: Of all the relevant documents that exist in your corpus, what percentage appear in the top K results?
-
-Formula: Recall@K = (Number of relevant results in top K) / (Total relevant documents in corpus)
-
-Example:
-
-- Your corpus contains 50 documents relevant to a query
-- Top 10 results include 7 relevant documents
-- Recall@10 = 7/50 = 0.14 (14%)
-
-When to use: When it's important not to miss relevant information. Critical in medical, legal, or research contexts where missing a relevant document could have serious consequences.
-
-Limitations: Requires knowing the total number of relevant documents in your corpus, which is often impractical for large datasets.
-
-
-**F1@K**
-
-What it measures: Harmonic mean of Precision@K and Recall@K, providing a single score that balances both metrics.
-
-Formula: F1@K = 2 × (Precision@K × Recall@K) / (Precision@K + Recall@K)
-
-Example:
-
-- Precision@10 = 0.7
-- Recall@10 = 0.14
-- F1@10 = 2 × (0.7 × 0.14) / (0.7 + 0.14) = 0.233
-
-When to use: When you need to balance precision and recall. Useful for comparing systems with different precision/recall trade-offs.
-
-Key insight: F1 score is closer to the lower of the two values, so it penalizes systems that optimize one metric at the expense of the other.
+- What: Balance between precision and recall
+- Formula: 2 × (Precision × Recall) ÷ (Precision + Recall)
+- Use when: Comparing systems with different precision/recall trade-offs
+- Key insight: Penalizes systems that optimize only one metric
 
 ## Ideas to Explore
 
