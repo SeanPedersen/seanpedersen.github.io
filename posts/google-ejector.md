@@ -101,7 +101,8 @@ Mobile OS:
 
 Operating System:
 
-- [Nobara](https://nobaraproject.org/) (Fedora Linux)
+- [Fedora Linux](https://fedoraproject.org/workstation/download/)
+  - [Nobara](https://nobaraproject.org/) (optimized for gaming / streaming)
 - [Mint](https://linuxmint.com/) (Ubuntu Linux)
 - [CachyOS](https://cachyos.org/) (Arch Linux)
 
