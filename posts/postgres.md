@@ -369,6 +369,52 @@ ORDER BY
 SELECT pg_terminate_backend(PID);
 ```
 
+## Export / Import
+
+Export schema only (no indices / constraints):
+```
+pg_dump \
+  -Fc \
+  --schema-only \
+  --section=pre-data \
+  --no-owner \
+  --no-privileges \
+  -U postgres \
+  -d your_db \
+  > your_db_tables_only.dump
+```
+
+Export data only (rows):
+```
+pg_dump \
+  -Fc \
+  --data-only \
+  --exclude-schema=_timescaledb_internal \
+  --no-owner \
+  --no-privileges \
+  -U postgres \
+  -d your_db \
+  > your_db_data.dump
+```
+
+Restore (on same Posgres version):
+```
+# 1. Tables only
+pg_restore \
+  -U postgres \
+  -d your_db \
+  your_db_tables_only.dump
+
+# 2. Data
+pg_restore \
+  --data-only \
+  --disable-triggers \
+  -j 8 \
+  -U postgres \
+  -d your_db \
+  < your_db_data.dump
+```
+
 ## References
 
 - <https://github.com/postgres/postgres>
