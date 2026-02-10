@@ -33,7 +33,7 @@ fi
 echo "📦 Adding $OUT_DIR to IPFS..."
 CID=$(ipfs add -r -Q "$OUT_DIR")
 echo "✅ CID: $CID"
-echo "🌐 Direct IPFS link:"
+echo "🌐 Direct IPFS link (works offline):"
 echo "https://ipfs.io/ipfs/$CID"
 
 # 6. Publish to IPNS
@@ -42,6 +42,5 @@ ipfs name publish --key="$IPNS_KEY" /ipfs/"$CID"
 
 # 7. Get IPNS hash
 IPNS_HASH=$(ipfs key list -l | grep "$IPNS_KEY" | awk '{print $1}')
-echo "🌐 Access your blog via IPNS (stable link):"
+echo "🌐 Access your blog via IPNS (stable link - works offline):"
 echo "https://ipfs.io/ipns/$IPNS_HASH"
-echo "http://$IPNS_HASH.ipns.localhost:8080/"
