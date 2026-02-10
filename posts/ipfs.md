@@ -1,6 +1,12 @@
 # InterPlanetary File System
 
-IPFS is a content based decentralized file system powered by Merkle DAG (similar to git).
+IPFS is a content based decentralized file system powered by Merkle DAG (similar to git) - allowing for local networking between nodes (separate from the internet).
+
+Install [IPFS Desktop](https://docs.ipfs.tech/install/ipfs-desktop/#install-instructions)
+
+Browser Extension (so ipfs.io links work):
+- [Chrome](https://chromewebstore.google.com/detail/ipfs-companion)
+- [Firefox](https://addons.mozilla.org/en-US/firefox/addon/ipfs-companion/)
 
 ## Publishing Static Website
 
@@ -59,9 +65,9 @@ echo "https://ipfs.io/ipns/$IPNS_HASH"
 
 This works in a local network - allowing true decentralized networking.
 
-- Show connected nodes (returns list of $NODE_ID): ipfs swarm peers
-- Discover public self IPNS content of node: ipfs ls /ipns/$NODE_ID
-- Show index: ipfs cat /ipns/$NODE_ID/index.json
+- Show connected nodes (returns list of $NODE_ID): `ipfs swarm peers`
+- Discover public self IPNS content of node: `ipfs ls /ipns/$NODE_ID`
+- Show index: `ipfs cat /ipns/$NODE_ID/index.json`
 
 ## Publish your IPNS name keys in Self Index
 
@@ -174,31 +180,19 @@ echo "  http://ipfs.io/ipns/$(ipfs id -f='<id>')"
 
 Show connected nodes (returns list of $NODE_ID): ipfs swarm peers
 
-Discover public self IPNS content of node:
-ipfs ls /ipns/$NODE_ID
+Discover public self IPNS content of node: ipfs ls /ipns/$NODE_ID
 
 Fetch file from node: ipfs get $CID
 
 Fetch dir from node: ipfs get -r $CID
 
-```bash
-# Publish to IPNS
-echo "🔗 Publishing $CID via IPNS self (public discoverable)..."
-ipfs name publish /ipfs/"$CID"
+Publish to public self IPNS: ipfs name publish /ipfs/"$CID"
 
-echo "🔗 Publishing $CID via IPNS key: $IPNS_KEY..."
-ipfs name publish --key="$IPNS_KEY" /ipfs/"$CID"
+Publish to IPNS key: ipfs name publish --key="$IPNS_KEY" /ipfs/"$CID"
 
-# Update self IPNS of peer
-ipfs name resolve --nocache /ipns/$NODE_ID
+Update self IPNS of peer: ipfs name resolve --nocache /ipns/$NODE_ID
 
-# Resolve IPNS name to CID
-ipfs resolve -r $IPNS_NAME
-```
-
-Browser Extension (so ipfs.io links work):
-- [Chrome](https://chromewebstore.google.com/detail/ipfs-companion)
-- Firefox
+Resolve IPNS name to CID: ipfs resolve -r $IPNS_NAME
 
 Publish static website: <http://docs.ipfs.tech.ipns.localhost:8080/how-to/websites-on-ipfs/multipage-website>
 
