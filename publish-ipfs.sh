@@ -37,8 +37,8 @@ echo "🌐 Direct IPFS link (works offline):"
 echo "https://ipfs.io/ipfs/$CID"
 
 # 6. Publish to IPNS
-echo "🔗 Publishing $CID via IPNS key: $IPNS_KEY..."
-ipfs name publish --key="$IPNS_KEY" /ipfs/"$CID"
+echo "🔗 Publishing IPNS key $IPNS_KEY..."
+ipfs name publish --ttl 1m --key="$IPNS_KEY" /ipfs/"$CID"
 
 # 7. Get IPNS hash
 IPNS_HASH=$(ipfs key list -l | grep "$IPNS_KEY" | awk '{print $1}')
