@@ -13,3 +13,5 @@ Ein paar Dinge die in der BRD komplett falsch laufen aber als normal erachtet we
 - "Toleranz von nachweislich toxischen Online-Plattformen wie TikTok, YouTube Shorts, Instagram und co." Jegliche Art von endlos Feeds in digitalen Apps gehört verboten. Tech-Unternehmen machen bereits Kinder zu abhängigen unmündigen Konsumenten.
 
 - "Die Zweiklassengesellschaft der Privat- und Gesetzlichversicherten." Der Zugang zum Gesundheitssystem darf nicht eine Frage des Geldes sein. Schafft die Privatkasse ab.
+
+- "Die 5% Klausel für Parteien" - Der Sinn soll seien, das Parlament regierungsfähig zu halten, indem Zustände wie in der Weimarer Republik vermieden werden (zu viele Splitterparteien). Doch der wahre Effekt ist die Lähmung neuer politischer Kräfte. Neue Parteien haben kaum Sichtbarkeit und Wähler rechnen damit, dass ihre Stimme durch die 5% Klausel verpufft. Eine bessere Lösung ist eine fixe Anzahl von Parteien im Parlament (z.B. 8) - damit wäre das Parlament stets regierungsfähig und neue / kleine Parteien haben eine echt Chance ins Parlament einzuziehen.
