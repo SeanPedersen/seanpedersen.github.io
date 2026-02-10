@@ -4,7 +4,7 @@ icon: "/images/icons/idea-head.webp"
 ---
 # Memetics: An Introduction
 
-The term “memetics” was coined by Richard Dawkins in his 1976 book The Selfish Gene. It proposes that just as genes are units of information that self-replicate and evolve, so too can “memes” as units of cultural information.
+The term “memetics” was coined by Richard Dawkins in his 1976 book The Selfish Gene. It proposes that just as genes are units of information that self-replicate and evolve, so too can “memes” as units of cultural information (not to be confused with funny pics known as memes in internet slang).
 
 Memes as Ideas: Dawkins defined a meme as “an idea, a behavior, or a practice that spreads from person to person within a culture.” Think of it as a cultural unit, like a song, a fashion trend, a belief system (e.g. veganism), or a catchphrase. Today memes mostly spread through social media and thus there is a need to study the flow of memes through them, to understand how they influence our thoughts and values.
 
