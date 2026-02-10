@@ -9,6 +9,10 @@ Content based decentralized file system powered by Merkle DAG (similar to git).
 
 **Pin file at node:** ipfs pin $FILE_PATH
 
+Show connected peers: ipfs swarm peers
+
+Fetch file from peers: ipfs get $CID
+
 Chrome Extension:
 <https://chromewebstore.google.com/detail/ipfs-companion>
 

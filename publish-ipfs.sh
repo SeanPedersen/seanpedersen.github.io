@@ -44,3 +44,4 @@ ipfs name publish --key="$IPNS_KEY" /ipfs/"$CID"
 IPNS_HASH=$(ipfs key list -l | grep "$IPNS_KEY" | awk '{print $1}')
 echo "🌐 Access your blog via IPNS (stable link):"
 echo "https://ipfs.io/ipns/$IPNS_HASH"
+echo "http://$IPNS_HASH.ipns.localhost:8080/"
