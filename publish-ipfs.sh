@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 set -e
 
-OUT_DIR="out"
+OUT_DIR="out/"
 IPNS_KEY="sean-blog"
 
 # 1. Detect IPFS
