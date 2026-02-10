@@ -223,4 +223,8 @@ QUESTIONS:
 - Can I run an IPFS http proxy that automatically replaces HTTP requests with local IPFS response if available (basically an IPFS cache for HTTP, so stuff works offline in my local net)? Basically I want a daemon that caches HTTP/S downloads in IPFS and will use the cache for future HTTP/S requests with same URL.
 - Can we use IPFS to create a content-based package manager to lock down dependencies accurately?
 - IPFS over local bluetooth / wi-fi networks?
-- Can I run a website discoverable by anyone in my local network via IPFS?
+- Can I run a website discoverable by anyone in my local network via IPFS? Yes via IPNS self - see: Publish your IPNS name keys in Self Index.
+
+TODO:
+- Make the IPNS self a standard to discover local IPNS content via index.html and index.json
+- Create an app that helps you publish websites and browse from local peers
