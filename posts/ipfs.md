@@ -9,9 +9,22 @@ Content based decentralized file system powered by Merkle DAG (similar to git).
 
 **Pin file at node:** ipfs pin $FILE_PATH
 
-Show connected peers: ipfs swarm peers
+Show connected nodes: ipfs swarm peers
 
-Fetch file from peers: ipfs get $CID
+Discover public self IPNS content of node:
+curl http://127.0.0.1:8080/ipns/$NODE_ID
+
+Fetch file from node: ipfs get $CID
+
+# 6. Publish to IPNS
+echo "🔗 Publishing $CID via IPNS self (public discoverable)..."
+ipfs name publish /ipfs/"$CID"
+
+echo "🔗 Publishing $CID via IPNS key: $IPNS_KEY..."
+ipfs name publish --key="$IPNS_KEY" /ipfs/"$CID"
+
+# Resolve IPNS name to CID
+ipfs resolve -r $IPNS_NAME
 
 Chrome Extension:
 <https://chromewebstore.google.com/detail/ipfs-companion>
