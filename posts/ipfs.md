@@ -1,3 +1,6 @@
+---
+icon: "/images/icons/ipfs.svg"
+---
 # InterPlanetary File System
 
 IPFS is a content based decentralized file system powered by Merkle DAG (similar to git) - allowing for local networking between nodes (separate from the internet).
