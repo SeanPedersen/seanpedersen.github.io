@@ -211,7 +211,8 @@ Publish static website: <http://docs.ipfs.tech.ipns.localhost:8080/how-to/websit
 
 ## References
 
-- [Kubo: IPFS Implementation in Go](https://github.com/ipfs/kubo)
+- [Kubo](https://github.com/ipfs/kubo): IPFS Implementation in Go
+- [Peergos](https://github.com/Peergos/Peergos): A p2p, secure file storage, social network and application protocol
 - <https://youtu.be/HUVmypx9HGI>
 - <https://wiki.archlinux.org/index.php/IPFS>
 - <https://github.com/ipfs/roadmap#2019-epics>
