@@ -226,6 +226,7 @@ QUESTIONS:
 - Can we use IPFS to create a content-based package manager to lock down dependencies accurately?
 - IPFS over local bluetooth / wi-fi networks?
 - Can I run a website discoverable by anyone in my local network via IPFS? Yes via IPNS self - see: Publish your IPNS name keys in Self Index.
+- Can we host open-source code on IPFS similar to Radicle?
 
 TODO:
 - Make the IPNS self a standard to discover local IPNS content via index.html and index.json
