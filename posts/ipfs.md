@@ -7,7 +7,7 @@ IPFS is a content based decentralized file system powered by Merkle DAG (similar
 
 The IPFS protocol addresses content by what it is (a cryptographic hash - named CID), not where it is (like http), so the same content can be fetched from any peer that has it. This makes content immutable, cacheable and available offline or over local networks once retrieved.
 
-The IPNS protocol provides stable IPNS name links (a public key) that resolve to an IPFS CID, allowing the referenced content (CID) to change over time while the IPNS name stays the same.
+The IPNS protocol provides a fixed IPNS name with a mutable pointer to an IPFS CID, allowing the referenced content (CID) to change over time while the IPNS name stays the same (similar to http links).
 
 Install [IPFS Desktop](https://docs.ipfs.tech/install/ipfs-desktop/#install-instructions)
 
