@@ -30,7 +30,7 @@ fi
 
 # Add site to IPFS
 echo "📦 Adding $OUT_DIR to IPFS..."
-CID=$(ipfs add -r -Q "$OUT_DIR")
+CID=$(ipfs add -r -Q --cid-version=1 --raw-leaves "$OUT_DIR")
 echo "✅ CID: $CID"
 echo "🌐 Direct IPFS link (works offline):"
 echo "http://ipfs.io/ipfs/$CID"
@@ -42,7 +42,9 @@ ipfs name publish --key="$IPNS_KEY" /ipfs/"$CID"
 # Get IPNS hash
 IPNS_HASH=$(ipfs key list -l | grep "$IPNS_KEY" | awk '{print $1}')
 echo "🌐 Access your blog via IPNS (stable link - works offline):"
-echo "http://ipfs.io/ipns/$IPNS_HASH"
+echo "ipns://$IPNS_HASH"
+echo "🌐 Access your blog via IPNS gateway (works online even without IPFS installed):"
+echo "https://$IPNS_HASH.ipns.dweb.link"
 ```
 
 ## Decentral IPNS Discovery
@@ -119,7 +121,7 @@ EOF
 
 # Add to IPFS
 echo "📦 Adding discovery index to IPFS..."
-CID=$(ipfs add -r -Q "$DISCOVERY_DIR")
+CID=$(ipfs add -r -Q --cid-version=1 --raw-leaves "$OUT_DIR")
 echo "✅ CID: $CID"
 
 # Publish under self
@@ -132,6 +134,7 @@ echo "🔍 Discoverable via:"
 echo "  ipfs ls /ipns/$(ipfs id -f='<id>')"
 echo "  ipfs cat /ipns/$(ipfs id -f='<id>')/index.json"
 echo "  http://ipfs.io/ipns/$(ipfs id -f='<id>')"
+echo "  https://$IPNS_HASH.ipns.dweb.link"
 ```
 
 ## More

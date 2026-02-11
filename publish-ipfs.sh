@@ -31,10 +31,9 @@ fi
 
 # 5. Add site to IPFS
 echo "📦 Adding $OUT_DIR to IPFS..."
-CID=$(ipfs add -r -Q "$OUT_DIR")
-echo "✅ CID: $CID"
-echo "🌐 Direct IPFS link (works offline):"
-echo "http://ipfs.io/ipfs/$CID"
+CID=$(ipfs add -r -Q --cid-version=1 --raw-leaves "$OUT_DIR")
+echo "🌐 CID IPFS link (works offline):"
+echo "ipfs://$CID"
 
 # 6. Publish to IPNS
 echo "🔗 Publishing IPNS key $IPNS_KEY..."
@@ -43,4 +42,6 @@ ipfs name publish --ttl 1m --key="$IPNS_KEY" /ipfs/"$CID"
 # 7. Get IPNS hash
 IPNS_HASH=$(ipfs key list -l | grep "$IPNS_KEY" | awk '{print $1}')
 echo "🌐 Access your blog via IPNS (stable link - works offline):"
-echo "http://ipfs.io/ipns/$IPNS_HASH"
+echo "ipns://$IPNS_HASH"
+echo "🌐 Access your blog via IPNS gateway (works online even without IPFS installed):"
+echo "https://$IPNS_HASH.ipns.dweb.link"
