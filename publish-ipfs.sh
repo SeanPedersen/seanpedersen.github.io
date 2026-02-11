@@ -26,7 +26,7 @@ fi
 # 4. Create IPNS key if missing
 if ! ipfs key list | grep -q "$IPNS_KEY"; then
   echo "🔑 Creating IPNS key: $IPNS_KEY"
-  ipfs key gen "$IPNS_KEY" --type=rsa --size=2048
+  ipfs key gen "$IPNS_KEY"
 fi
 
 # 5. Add site to IPFS
