@@ -346,6 +346,10 @@
   <!-- Chatbot Widget -->
   <script>
     (function () {
+      if (!navigator.onLine) {
+        console.warn('Chatbot not loaded: offline');
+        return;
+      }
       var script = document.createElement('script');
       script.src = 'https://pagebot.digger.lol/api/embed/chatbot.js';
       script.async = true;

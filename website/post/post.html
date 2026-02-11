@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -25,37 +26,47 @@
   <link rel="stylesheet" href="/styles/prism-tomorrow.css">
   {% endif %}
   {% if has_toc %}
-  <style>@media (min-width: 1400px) { .toc { position: fixed; width: 250px; left: calc(50% - 770px); top: 100px; } }</style>
+  <style>
+    @media (min-width: 1400px) {
+      .toc {
+        position: fixed;
+        width: 250px;
+        left: calc(50% - 770px);
+        top: 100px;
+      }
+    }
+  </style>
   {% endif %}
   <script>
-      (function () {
-        const initialColorScheme = ""; // "light" | "dark"
-        const currentTheme = localStorage.getItem("theme");
+    (function () {
+      const initialColorScheme = ""; // "light" | "dark"
+      const currentTheme = localStorage.getItem("theme");
 
-        function getPreferTheme() {
-          if (currentTheme) return currentTheme;
-          if (initialColorScheme) return initialColorScheme;
-          return window.matchMedia("(prefers-color-scheme: dark)").matches
-            ? "dark"
-            : "light";
-        }
+      function getPreferTheme() {
+        if (currentTheme) return currentTheme;
+        if (initialColorScheme) return initialColorScheme;
+        return window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light";
+      }
 
-        const themeValue = getPreferTheme();
+      const themeValue = getPreferTheme();
 
-        // Set theme immediately to prevent flash
-        document.firstElementChild?.setAttribute("data-theme", themeValue);
+      // Set theme immediately to prevent flash
+      document.firstElementChild?.setAttribute("data-theme", themeValue);
 
-        // Export minimal API for external script
-        window.theme = {
-          themeValue: themeValue,
-          getTheme: () => window.theme.themeValue,
-          setTheme: val => {
-            window.theme.themeValue = val;
-          },
-        };
-      })();
+      // Export minimal API for external script
+      window.theme = {
+        themeValue: themeValue,
+        getTheme: () => window.theme.themeValue,
+        setTheme: val => {
+          window.theme.themeValue = val;
+        },
+      };
+    })();
   </script>
 </head>
+
 <body>
   <div class="container">
     <header class="header">
@@ -77,7 +88,10 @@
         <nav class="toc">
           <input type="checkbox" id="toc-toggle" class="toc-checkbox">
           <label for="toc-toggle" class="tocToggle" aria-label="Toggle table of contents">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+              stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
           </label>
           <div class="tocHeader">
             <h2><a href="#{{ title_id }}">{{ post_title }}</a></h2>
@@ -93,7 +107,8 @@
         {% endif %}
         <div class="postMeta">
           <div class="lightText">{{ formatted_date }}</div>
-          <a href="https://github.com/SeanPedersen/seanpedersen.github.io/edit/main/posts/{{ post_id }}.md" target="_blank" rel="noopener noreferrer" class="editOnGithubLink">
+          <a href="https://github.com/SeanPedersen/seanpedersen.github.io/edit/main/posts/{{ post_id }}.md"
+            target="_blank" rel="noopener noreferrer" class="editOnGithubLink">
             Edit on GitHub
           </a>
         </div>
@@ -118,7 +133,8 @@
         </footer>
         {% endif %}
         <footer class="backToTopFooter">
-          <hr aria-hidden="true" style="width: 100%; border: 0; border-top: 1px solid rgba(127,127,127,0.35); margin: 0.25rem 0;" />
+          <hr aria-hidden="true"
+            style="width: 100%; border: 0; border-top: 1px solid rgba(127,127,127,0.35); margin: 0.25rem 0;" />
           <a href="#{{ title_id }}" class="backToTopLink">↑ Back to top</a>
           <p>omnia mirari, gaudium explorandi .:.</p>
         </footer>
@@ -128,8 +144,8 @@
   <script>
     window.__POST_DATA__ = {
       title: {{ post_title_json | safe }},
-      titleId: {{ title_id_json | safe }},
-      hasTableOfContents: {{ has_toc }}
+    titleId: { { title_id_json | safe } },
+    hasTableOfContents: { { has_toc } }
     };
     // Show back to top link only if page is scrollable (minimal detection)
     if (document.documentElement.scrollHeight > document.documentElement.clientHeight) {
@@ -141,12 +157,12 @@
   {% endif %}
   <script src="/js/prefetch.js" defer></script>
   <script>
-    (function() {
+    (function () {
       if (typeof window === 'undefined') return;
 
       var script = document.createElement('script');
       script.src = '/js/posthog-lite.js';
-      script.onload = function() {
+      script.onload = function () {
         if (window.PostHogLite) {
           window.posthog = new window.PostHogLite('phc_9XPlyPALuefIMAMSfsvBk4jVuSelJyjl7xwhXigkHAP', {
             host: 'https://us.i.posthog.com',
@@ -161,6 +177,10 @@
   <!-- Chatbot Widget -->
   <script>
     (function () {
+      if (!navigator.onLine) {
+        console.warn('Chatbot not loaded: offline');
+        return;
+      }
       var script = document.createElement('script');
       script.src = 'https://pagebot.digger.lol/api/embed/chatbot.js';
       script.async = true;
@@ -174,4 +194,5 @@
     })();
   </script>
 </body>
+
 </html>
