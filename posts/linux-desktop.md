@@ -18,6 +18,7 @@ File Manager:
 
 Code Editor:
 - [Zed](https://zed.dev/): fast + lightweight (similar to VS Code)
+- [MarkText](https://github.com/marktext/marktext): WYSIWYG markdown editor
 
 Media Player:
 - VLC
