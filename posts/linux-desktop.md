@@ -1,3 +1,6 @@
+---
+icon: "/images/icons/linux.webp"
+---
 # Linux Desktop
 
 My choice: [CachyOS](https://cachyos.org/) ([Arch Linux](https://archlinux.org/)) with GNOME DE
@@ -12,25 +15,33 @@ File Manager:
 	- supports showing dir size bytes
 	- supports sftp (ssh remote access)
 - PCManFM
+
 Code Editor:
 - [Zed](https://zed.dev/): fast + lightweight (similar to VS Code)
+
 Media Player:
 - VLC
 - mpv
+
 PW Manager:
 - KeePassXC
+
 Terminal:
 - [ghostty](https://ghostty.org/): fast
 - guake (drop down terminal)
+
 Shell:
 - ZSH + [ZEAL](https://github.com/SeanPedersen/zeal)
+
 Process Monitor:
 - NeoHtop / Neop (my fork)
 - [Mission Center](https://missioncenter.io/)
 - [Glances](https://github.com/nicolargo/glances)
+
 Useful Daemons:
 - [Syncthing](https://syncthing.net/)
 - [IPFS](/posts/ipfs)
+
 Tweaks:
 - [ananicy-cpp](https://gitlab.com/ananicy-cpp/ananicy-cpp): prevents system slow down on high disk usage (CachyOS ships with it)
 
