@@ -1,5 +1,4 @@
 ---
-
 icon: "/images/icons/linux.webp"
 ---
 
