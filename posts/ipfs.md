@@ -177,7 +177,6 @@ echo "  ipns://$(ipfs id -f='<id>')"
 - [Helia](https://github.com/ipfs/helia): TypeScript IPFS Implementation for browsers
 - [Fipsy](https://github.com/SeanPedersen/fipsy): Local discovery and sharing using IPFS
 - [Peergos](https://github.com/Peergos/Peergos): A p2p, secure file storage, social network and application protocol
-
 - [IPFS Forum](https://discuss.ipfs.tech/)
 - [IPFS Ecosystem](https://ecosystem.ipfs.tech/) / [IPFS Project List](https://github.com/ipfs/awesome-ipfs)
 - [Package Manager Integrations](https://github.com/ipfs/package-managers#current-ipfs-integrations)
@@ -234,3 +233,5 @@ QUESTIONS:
 TODO:
 - Make the IPNS self a standard to discover local IPNS content via index.html and index.json
 - Create an app that helps you publish websites and browse from local peers
+
+#privacy #coding
