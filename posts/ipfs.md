@@ -142,6 +142,7 @@ echo "  https://$IPNS_HASH.ipns.dweb.link"
 - [Kubo](https://github.com/ipfs/kubo): Standard IPFS Implementation in Go
 - [Helia](https://github.com/ipfs/helia): TypeScript IPFS Implementation for browsers
 - [Peergos](https://github.com/Peergos/Peergos): A p2p, secure file storage, social network and application protocol
+- [Berty](https://berty.tech/features): p2p, decentral, secure messenger (not yet open-sourced)
 - [IPFS Forum](https://discuss.ipfs.tech/)
 - [IPFS Ecosystem](https://ecosystem.ipfs.tech/) / [IPFS Project List](https://github.com/ipfs/awesome-ipfs)
 - [Package Manager Integrations](https://github.com/ipfs/package-managers#current-ipfs-integrations)
