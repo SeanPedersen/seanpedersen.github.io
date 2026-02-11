@@ -7,7 +7,7 @@ IPFS is a content based decentralized file system powered by Merkle DAG (similar
 
 Install [IPFS Desktop](https://docs.ipfs.tech/install/ipfs-desktop/#install-instructions)
 
-Browser Extension (so ipfs.io links work):
+IPFS Browser Extension (so ipfs:// and ipns:// work using your IPFS node):
 - [Chrome](https://chromewebstore.google.com/detail/ipfs-companion)
 - [Firefox](https://addons.mozilla.org/en-US/firefox/addon/ipfs-companion/)
 
@@ -173,6 +173,18 @@ echo "  http://ipfs.io/ipns/$(ipfs id -f='<id>')"
 
 ## More
 
+- [Kubo](https://github.com/ipfs/kubo): IPFS Implementation in Go
+- [Helia](https://github.com/ipfs/helia): TypeScript IPFS Implementation for browsers
+- [Fipsy](https://github.com/SeanPedersen/fipsy): Local discovery and sharing using IPFS
+- [Peergos](https://github.com/Peergos/Peergos): A p2p, secure file storage, social network and application protocol
+
+- [IPFS Forum](https://discuss.ipfs.tech/)
+- [IPFS Ecosystem](https://ecosystem.ipfs.tech/) / [IPFS Project List](https://github.com/ipfs/awesome-ipfs)
+- [Package Manager Integrations](https://github.com/ipfs/package-managers#current-ipfs-integrations)
+- [File encryption](https://github.com/ipfs/faq/issues/116)
+
+## Commands
+
 **Initialize local node in working dir:**  ipfs init
 
 **Start long running node process:** ipfs daemon
@@ -203,17 +215,8 @@ Publish static website: <http://docs.ipfs.tech.ipns.localhost:8080/how-to/websit
 
 **Synchronize Pins across distributed daemons:** <https://github.com/ipfs/ipfs-cluster>
 
-**Package Manager Integrations:** <https://github.com/ipfs/package-managers#current-ipfs-integrations>
-
-**File encryption:**
-
-- <https://github.com/ipfs/faq/issues/116>
-
 ## References
 
-- [Kubo](https://github.com/ipfs/kubo): IPFS Implementation in Go
-- [Peergos](https://github.com/Peergos/Peergos): A p2p, secure file storage, social network and application protocol
-- [Fipsy](https://github.com/SeanPedersen/fipsy): Local discovery and sharing using IPFS
 - <https://youtu.be/HUVmypx9HGI>
 - <https://wiki.archlinux.org/index.php/IPFS>
 - <https://github.com/ipfs/roadmap#2019-epics>
