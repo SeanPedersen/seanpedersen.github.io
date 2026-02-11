@@ -22,43 +22,24 @@ set -e
 OUT_DIR="out/"
 IPNS_KEY="your-website-id"
 
-# 1. Detect IPFS
-if ! command -v ipfs >/dev/null 2>&1; then
-  echo "❌ ipfs not installed"
-  exit 1
-fi
-
-# 2. Ensure daemon is running
-if ! ipfs id >/dev/null 2>&1; then
-  echo "🚀 Starting IPFS daemon..."
-  ipfs daemon --init &
-  sleep 5
-fi
-
-# 3. Check out/ exists
-if [ ! -d "$OUT_DIR" ]; then
-  echo "❌ $OUT_DIR directory not found"
-  exit 1
-fi
-
-# 4. Create IPNS key if missing
+# Create IPNS key if missing
 if ! ipfs key list | grep -q "$IPNS_KEY"; then
   echo "🔑 Creating IPNS key: $IPNS_KEY"
   ipfs key gen "$IPNS_KEY" --type=rsa --size=2048
 fi
 
-# 5. Add site to IPFS
+# Add site to IPFS
 echo "📦 Adding $OUT_DIR to IPFS..."
 CID=$(ipfs add -r -Q "$OUT_DIR")
 echo "✅ CID: $CID"
 echo "🌐 Direct IPFS link (works offline):"
 echo "ipfs://$CID"
 
-# 6. Publish to IPNS
+# Publish to IPNS
 echo "🔗 Publishing $CID via IPNS key: $IPNS_KEY..."
 ipfs name publish --key="$IPNS_KEY" /ipfs/"$CID"
 
-# 7. Get IPNS hash
+# Get IPNS hash
 IPNS_HASH=$(ipfs key list -l | grep "$IPNS_KEY" | awk '{print $1}')
 echo "🌐 Access your blog via IPNS (stable link - works offline):"
 echo "ipns://$IPNS_HASH"
@@ -70,7 +51,7 @@ This works in a local network - allowing true decentralized networking.
 
 - Show connected nodes (returns list of $NODE_ID): `ipfs swarm peers`
 - Discover public self IPNS content of node: `ipfs ls /ipns/$NODE_ID`
-- Show index: `ipfs cat /ipns/$NODE_ID/index.json`
+- Show index (only there if setup): `ipfs cat /ipns/$NODE_ID/index.json`
 
 ## Publish your IPNS name keys in Self Index
 
@@ -84,26 +65,11 @@ DISCOVERY_DIR=".ipns-index"
 
 echo "📡 Building IPNS discovery index..."
 
-# 1. Ensure IPFS is available
-command -v ipfs >/dev/null 2>&1 || {
-  echo "❌ ipfs not installed"
-  exit 1
-}
-
-# 2. Ensure daemon is running
-if ! ipfs id >/dev/null 2>&1; then
-  echo "🚀 Starting IPFS daemon..."
-  ipfs daemon >/tmp/ipfs.log 2>&1 &
-  until ipfs id >/dev/null 2>&1; do
-    sleep 1
-  done
-fi
-
-# 3. Prepare directory
+# Prepare directory
 rm -rf "$DISCOVERY_DIR"
 mkdir -p "$DISCOVERY_DIR"
 
-# 4. Generate index.json
+# Generate index.json
 echo "🧾 Generating index.json..."
 
 echo '{ "ipns": {' > "$DISCOVERY_DIR/index.json"
@@ -123,7 +89,7 @@ done
 echo '' >> "$DISCOVERY_DIR/index.json"
 echo '} }' >> "$DISCOVERY_DIR/index.json"
 
-# 5. Generate index.html
+# Generate index.html
 echo "🌐 Generating index.html..."
 
 cat > "$DISCOVERY_DIR/index.html" <<'EOF'
@@ -154,12 +120,12 @@ cat >> "$DISCOVERY_DIR/index.html" <<'EOF'
 </html>
 EOF
 
-# 6. Add to IPFS
+# Add to IPFS
 echo "📦 Adding discovery index to IPFS..."
 CID=$(ipfs add -r -Q "$DISCOVERY_DIR")
 echo "✅ CID: $CID"
 
-# 7. Publish under self
+# Publish under self
 echo "🔗 Publishing discovery index under self..."
 ipfs name publish --lifetime=1m /ipfs/"$CID"
 
