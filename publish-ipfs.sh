@@ -4,6 +4,9 @@ set -e
 OUT_DIR="out/"
 IPNS_KEY="sean-blog"
 
+# Build website
+./target/release/blog-builder
+
 # Check out/ exists
 if [ ! -d "$OUT_DIR" ]; then
   echo "❌ $OUT_DIR directory not found"
