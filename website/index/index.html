@@ -345,22 +345,19 @@
   </script>
   <!-- Chatbot Widget -->
   <script>
-    (function () {
-      if (!navigator.onLine) {
-        console.warn('Chatbot not loaded: offline');
-        return;
-      }
-      var script = document.createElement('script');
-      script.src = 'https://pagebot.digger.lol/api/embed/chatbot.js';
-      script.async = true;
-      script.dataset.websiteId = 'b9689a42-7ff6-48ae-ae4a-68e37b535a50';
-      script.dataset.apiUrl = 'https://pagebot.digger.lol';
-      script.dataset.position = 'bottom-right';
-      script.dataset.displayMode = 'closed';
-      script.dataset.title = 'Chat McBotface';
-      script.dataset.color = '#0e0e58';
-      document.head.appendChild(script);
-    })();
+    window.addEventListener('load', function () {
+      setTimeout(function () {
+        var script = document.createElement('script');
+        script.src = 'https://pagebot.digger.lol/api/embed/chatbot.js';
+        script.dataset.websiteId = 'b9689a42-7ff6-48ae-ae4a-68e37b535a50';
+        script.dataset.apiUrl = 'https://pagebot.digger.lol';
+        script.dataset.position = 'bottom-right';
+        script.dataset.displayMode = 'closed';
+        script.dataset.title = 'Chat McBotface';
+        script.dataset.color = '#0e0e58';
+        document.body.appendChild(script);
+      }, 0);
+    });
   </script>
 </body>
 
