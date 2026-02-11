@@ -52,7 +52,7 @@ echo "📦 Adding $OUT_DIR to IPFS..."
 CID=$(ipfs add -r -Q "$OUT_DIR")
 echo "✅ CID: $CID"
 echo "🌐 Direct IPFS link (works offline):"
-echo "https://ipfs.io/ipfs/$CID"
+echo "ipfs://$CID"
 
 # 6. Publish to IPNS
 echo "🔗 Publishing $CID via IPNS key: $IPNS_KEY..."
@@ -61,7 +61,7 @@ ipfs name publish --key="$IPNS_KEY" /ipfs/"$CID"
 # 7. Get IPNS hash
 IPNS_HASH=$(ipfs key list -l | grep "$IPNS_KEY" | awk '{print $1}')
 echo "🌐 Access your blog via IPNS (stable link - works offline):"
-echo "https://ipfs.io/ipns/$IPNS_HASH"
+echo "ipns://$IPNS_HASH"
 ```
 
 ## Discover Self Index of Peers
@@ -145,7 +145,7 @@ EOF
 
 ipfs key list -l | while read -r KEY_ID KEY_NAME; do
   [ "$KEY_NAME" = "self" ] && continue
-  echo "    <li><a href=\"http://ipfs.io/ipns/$KEY_ID\">$KEY_NAME</a> <code>$KEY_ID</code></li>" >> "$DISCOVERY_DIR/index.html"
+  echo "    <li><a href=\"ipns://$KEY_ID\">$KEY_NAME</a> <code>$KEY_ID</code></li>" >> "$DISCOVERY_DIR/index.html"
 done
 
 cat >> "$DISCOVERY_DIR/index.html" <<'EOF'
@@ -168,7 +168,7 @@ echo
 echo "🔍 Discoverable via:"
 echo "  ipfs ls /ipns/$(ipfs id -f='<id>')"
 echo "  ipfs cat /ipns/$(ipfs id -f='<id>')/index.json"
-echo "  http://ipfs.io/ipns/$(ipfs id -f='<id>')"
+echo "  ipns://$(ipfs id -f='<id>')"
 ```
 
 ## More
