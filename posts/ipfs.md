@@ -3,7 +3,7 @@ icon: "/images/icons/ipfs.svg"
 ---
 # InterPlanetary File System
 
-IPFS is a content based decentralized file system powered by Merkle DAG (similar to git) - allowing for local networking between nodes (separate from the internet).
+IPFS is a content based decentralized file system powered by Merkle DAG (similar to git) - allowing for local networking between nodes (separate from the internet). This technology is revolutionary and the key to a digital future with more freedom and privacy.
 
 Install [IPFS Desktop](https://docs.ipfs.tech/install/ipfs-desktop/#install-instructions)
 
@@ -33,7 +33,7 @@ echo "📦 Adding $OUT_DIR to IPFS..."
 CID=$(ipfs add -r -Q "$OUT_DIR")
 echo "✅ CID: $CID"
 echo "🌐 Direct IPFS link (works offline):"
-echo "ipfs://$CID"
+echo "http://ipfs.io/ipfs/$CID"
 
 # Publish to IPNS
 echo "🔗 Publishing $CID via IPNS key: $IPNS_KEY..."
@@ -42,21 +42,18 @@ ipfs name publish --key="$IPNS_KEY" /ipfs/"$CID"
 # Get IPNS hash
 IPNS_HASH=$(ipfs key list -l | grep "$IPNS_KEY" | awk '{print $1}')
 echo "🌐 Access your blog via IPNS (stable link - works offline):"
-echo "ipns://$IPNS_HASH"
+echo "http://ipfs.io/ipns/$IPNS_HASH"
 ```
 
-## Discover Self Index of Peers
+## Decentral IPNS Discovery
 
-This works in a local network - allowing true decentralized networking.
+[Fipsy](https://github.com/SeanPedersen/fipsy): Decentral discovery and sharing of content using IPFS. This works in a local network - allowing true decentralized file exchange.
 
 - Show connected nodes (returns list of $NODE_ID): `ipfs swarm peers`
 - Discover public self IPNS content of node: `ipfs ls /ipns/$NODE_ID`
-- Show index (only there if setup): `ipfs cat /ipns/$NODE_ID/index.json`
+- Show index of peer (only there if setup): `ipfs cat /ipns/$NODE_ID/index.json`
 
-## Publish your IPNS name keys in Self Index
-
-This creates an index of all your local IPNS keys and makes it publicly discoverable for peers in the network.
-
+Publish all your IPNS keys as an index (for other peers in your local network to discover):
 ```bash
 #!/usr/bin/env sh
 set -e
@@ -111,7 +108,7 @@ EOF
 
 ipfs key list -l | while read -r KEY_ID KEY_NAME; do
   [ "$KEY_NAME" = "self" ] && continue
-  echo "    <li><a href=\"ipns://$KEY_ID\">$KEY_NAME</a> <code>$KEY_ID</code></li>" >> "$DISCOVERY_DIR/index.html"
+  echo "    <li><a href=\"http://ipfs.io/ipns/$KEY_ID\">$KEY_NAME</a> <code>$KEY_ID</code></li>" >> "$DISCOVERY_DIR/index.html"
 done
 
 cat >> "$DISCOVERY_DIR/index.html" <<'EOF'
@@ -134,14 +131,13 @@ echo
 echo "🔍 Discoverable via:"
 echo "  ipfs ls /ipns/$(ipfs id -f='<id>')"
 echo "  ipfs cat /ipns/$(ipfs id -f='<id>')/index.json"
-echo "  ipns://$(ipfs id -f='<id>')"
+echo "  http://ipfs.io/ipns/$(ipfs id -f='<id>')"
 ```
 
 ## More
 
-- [Kubo](https://github.com/ipfs/kubo): IPFS Implementation in Go
+- [Kubo](https://github.com/ipfs/kubo): Standard IPFS Implementation in Go
 - [Helia](https://github.com/ipfs/helia): TypeScript IPFS Implementation for browsers
-- [Fipsy](https://github.com/SeanPedersen/fipsy): Local discovery and sharing using IPFS
 - [Peergos](https://github.com/Peergos/Peergos): A p2p, secure file storage, social network and application protocol
 - [IPFS Forum](https://discuss.ipfs.tech/)
 - [IPFS Ecosystem](https://ecosystem.ipfs.tech/) / [IPFS Project List](https://github.com/ipfs/awesome-ipfs)
@@ -195,6 +191,7 @@ QUESTIONS:
 - IPFS over local bluetooth / wi-fi networks?
 - Can I run a website discoverable by anyone in my local network via IPFS? Yes via IPNS self - see: Publish your IPNS name keys in Self Index.
 - Can we host open-source code on IPFS similar to Radicle?
+- Why does http://ipfs.io/ipfs/ work better (offline) than ipfs:// -> ipfs.io usage does not destory relative links in websites... WTF why does ipfs:// destroy them
 
 TODO:
 - Make the IPNS self a standard to discover local IPNS content via index.html and index.json
