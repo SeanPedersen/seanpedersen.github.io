@@ -1,5 +1,4 @@
 ---
-
 icon: "/images/icons/ipfs.svg"
 ---
 
@@ -151,6 +150,9 @@ echo "  https://$(ipfs id -f='<id>').ipns.dweb.link"
 - [Helia](https://github.com/ipfs/helia): TypeScript IPFS Implementation for browsers
 - [Peergos](https://github.com/Peergos/Peergos): A p2p, secure file storage, social network and application protocol
 - [Berty](https://berty.tech/features): p2p, decentral, secure messenger (not yet open-sourced)
+- [Git IPFS bridge]([https://github.com/dhappy/git-remote-ipfs)
+  - https://discuss.ipfs.tech/t/ipfs-remote-bridge-for-git-version-1-0-0-is-now-available/19897
+  - Alternative: https://radicle.xyz
 - [IPFS Forum](https://discuss.ipfs.tech/)
 - [IPFS Ecosystem](https://ecosystem.ipfs.tech/) / [IPFS Project List](https://github.com/ipfs/awesome-ipfs)
 - [Package Manager Integrations](https://github.com/ipfs/package-managers#current-ipfs-integrations)
