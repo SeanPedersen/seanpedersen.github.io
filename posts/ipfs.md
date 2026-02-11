@@ -1,6 +1,8 @@
 ---
+
 icon: "/images/icons/ipfs.svg"
 ---
+
 # InterPlanetary File System
 
 IPFS is a content based decentralized file system powered by Merkle DAG (similar to git) - allowing for local networking between nodes (separate from the internet). This technology is revolutionary and the key to a digital future with more freedom and privacy.
@@ -12,6 +14,7 @@ The IPNS protocol provides a fixed IPNS name with a mutable pointer to an IPFS C
 Install [IPFS Desktop](https://docs.ipfs.tech/install/ipfs-desktop/#install-instructions)
 
 IPFS Browser Extension (so ipfs:// and ipns:// work using your IPFS node):
+
 - [Chrome](https://chromewebstore.google.com/detail/ipfs-companion)
 - [Firefox](https://addons.mozilla.org/en-US/firefox/addon/ipfs-companion/)
 
@@ -60,6 +63,7 @@ echo "https://$IPNS_NAME.ipns.dweb.link"
 - Show index of peer (only there if setup): `ipfs cat /ipns/$NODE_ID/index.json`
 
 Publish all your IPNS keys as an index (for other peers in your local network to discover):
+
 ```bash
 #!/usr/bin/env sh
 set -e
@@ -191,8 +195,10 @@ Publish static website: <http://docs.ipfs.tech.ipns.localhost:8080/how-to/websit
 - <https://github.com/ipfs/roadmap#2019-epics>
 - <https://youtu.be/GJ2980DWdyc?t=264>
 - <https://decentralized.blog/ten-terrible-attempts-to-make-ipfs-human-friendly.html>
+- [Lumera: Alternative to IPFS](https://www.lumera.io/wp-content/uploads/2022/11/946341062907548779pastel_storage_layer_yellow_paper.pdf)
 
 QUESTIONS:
+
 - Can I replace SyncThing with IPFS?
 - Can I run an IPFS http proxy that automatically replaces HTTP requests with local IPFS response if available (basically an IPFS cache for HTTP, so stuff works offline in my local net)? Basically I want a daemon that caches HTTP/S downloads in IPFS and will use the cache for future HTTP/S requests with same URL.
 - Can we use IPFS to create a content-based package manager to lock down dependencies accurately?
@@ -202,6 +208,7 @@ QUESTIONS:
 - Why does http://ipfs.io/ipfs/ work better (offline) than ipfs:// -> ipfs.io usage does not destory relative links in websites... WTF why does ipfs:// destroy them
 
 TODO:
+
 - [DONE] Make the IPNS self a standard to discover local IPNS content via index.html and index.json
 - [DONE] Create an app that helps you publish websites and browse from local peers -> [Fipsy](https://github.com/SeanPedersen/fipsy)
 
