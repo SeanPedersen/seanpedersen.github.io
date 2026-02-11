@@ -88,7 +88,7 @@ Multi-Factor Authenticator:
 
 HTTP(S):
 
-- [IPFS](https://ipfs.io/) ([Code](https://github.com/ipfs/go-ipfs)) - decentralized, self-hostable
+- [IPFS](/posts/ipfs) ([Code](https://github.com/ipfs/kubo)) - decentralized, self-hostable
 
 Source Code:
 
