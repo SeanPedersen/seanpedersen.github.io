@@ -44,11 +44,11 @@ echo "🔗 Publishing $CID via IPNS key: $IPNS_KEY..."
 ipfs name publish --key="$IPNS_KEY" /ipfs/"$CID"
 
 # Get IPNS hash
-IPNS_HASH=$(ipfs key list -l | grep "$IPNS_KEY" | awk '{print $1}')
+IPNS_NAME=$(ipfs key list -l | grep "$IPNS_KEY" | awk '{print $1}')
 echo "🌐 Access your blog via IPNS (stable link - works offline):"
-echo "ipns://$IPNS_HASH"
+echo "ipns://$IPNS_NAME"
 echo "🌐 Access your blog via IPNS gateway (works online even without IPFS installed):"
-echo "https://$IPNS_HASH.ipns.dweb.link"
+echo "https://$IPNS_NAME.ipns.dweb.link"
 ```
 
 ## Decentral IPNS Discovery
@@ -138,7 +138,7 @@ echo "🔍 Discoverable via:"
 echo "  ipfs ls /ipns/$(ipfs id -f='<id>')"
 echo "  ipfs cat /ipns/$(ipfs id -f='<id>')/index.json"
 echo "  http://ipfs.io/ipns/$(ipfs id -f='<id>')"
-echo "  https://$IPNS_HASH.ipns.dweb.link"
+echo "  https://$(ipfs id -f='<id>').ipns.dweb.link"
 ```
 
 ## More
