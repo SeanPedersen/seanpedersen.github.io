@@ -5,6 +5,10 @@ icon: "/images/icons/ipfs.svg"
 
 IPFS is a content based decentralized file system powered by Merkle DAG (similar to git) - allowing for local networking between nodes (separate from the internet). This technology is revolutionary and the key to a digital future with more freedom and privacy.
 
+The IPFS protocol addresses content by what it is (a cryptographic hash - named CID), not where it is (like http), so the same content can be fetched from any peer that has it. This makes content immutable, cacheable and available offline or over local networks once retrieved.
+
+The IPNS protocol provides stable IPNS name links (a public key) that resolve to an IPFS CID, allowing the referenced content (CID) to change over time while the IPNS name stays the same.
+
 Install [IPFS Desktop](https://docs.ipfs.tech/install/ipfs-desktop/#install-instructions)
 
 IPFS Browser Extension (so ipfs:// and ipns:// work using your IPFS node):
