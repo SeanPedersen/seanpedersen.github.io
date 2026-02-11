@@ -198,7 +198,7 @@ QUESTIONS:
 - Why does http://ipfs.io/ipfs/ work better (offline) than ipfs:// -> ipfs.io usage does not destory relative links in websites... WTF why does ipfs:// destroy them
 
 TODO:
-- Make the IPNS self a standard to discover local IPNS content via index.html and index.json
-- Create an app that helps you publish websites and browse from local peers
+- [DONE] Make the IPNS self a standard to discover local IPNS content via index.html and index.json
+- [DONE] Create an app that helps you publish websites and browse from local peers -> [Fipsy](https://github.com/SeanPedersen/fipsy)
 
 #privacy #coding
