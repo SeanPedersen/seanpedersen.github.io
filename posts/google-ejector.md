@@ -92,7 +92,7 @@ HTTP(S):
 
 Source Code:
 
-- [Radicle](https://radicle.xyz/) ([Code](https://github.com/radicle-dev/radicle-upstream)) - decentralized, self-hostable
+- [Radicle](https://radicle.xyz/) ([Code](https://app.radicle.xyz/nodes/iris.radicle.xyz/rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5)) - decentralized, self-hostable
 
 Mobile OS:
 
