@@ -93,6 +93,7 @@ HTTP(S):
 Source Code:
 
 - [Radicle](https://radicle.xyz/) ([Code](https://app.radicle.xyz/nodes/iris.radicle.xyz/rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5)) - decentralized, self-hostable
+  - [User Guide](https://radicle.xyz/guides/user)
 
 Mobile OS:
 
