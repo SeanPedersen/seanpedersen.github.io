@@ -13,23 +13,24 @@ Rust also shines through its ergnomic package manager cargo that provides a smoo
 Great introduction: <https://fasterthanli.me/articles/a-half-hour-to-learn-rust>
 
 ## HTTP Server
-
 - <https://github.com/actix/actix-web>
 - <https://github.com/tokio-rs/axum>
 - <https://github.com/poem-web/poem>
 
 ## Processing Tensors
-
 - [ndarray](https://docs.rs/ndarray/latest/ndarray/doc/ndarray_for_numpy_users/index.html)
 - [loading npy files](https://docs.rs/npy/latest/npy/) (from Python numpy)
 
 ## GUI
-
+- Tauri: Use Rust in backend and web stack in frontend
 - [GPUI](https://www.gpui.rs/): UI lib created by and used in Zed editor
   - [GPUI components](https://github.com/longbridge/gpui-component)
 
-## Coding Agents
+## PDF Extraction
+- [pdf_oxide](https://github.com/yfedoseev/pdf_oxide): fast text extraction
+- [ferrules](https://github.com/AmineDiro/ferrules/tree/main): structured text extraction
 
+## Coding Agents
 - [OpenAI Codex](https://github.com/openai/codex)
 
 ## References
