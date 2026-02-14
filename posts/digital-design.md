@@ -1,8 +1,6 @@
 ---
-
 date: '2025-09-24'
 icon: "/images/icons/design.svg"
-
 ---
 
 # Digital Design
@@ -39,6 +37,7 @@ Bad UI:
 - Pop-ups (visual distractions)
 - Deviating significantly from proven historical UI patterns
 - Inconsistent navigation patterns between pages
+- Overusage of animations (only move UI elements with a clear signal / purpose)
 - Loading spinners that never end / indicate no progress
 - Auto-playing videos with sound
 - Confirmation dialogs for every minor action
