@@ -48,6 +48,13 @@ Bad UI:
 - Missing auto-focus of text input (seach bars etc.)
 - Low contrast text (poor accessibility)
 
+## Impact
+Digital interfaces are control surfaces: they don’t just enable actions, they shape which actions are likely to occur. Layout, defaults, friction and feedback loops guide attention and influence our behavior - often without the user’s conscious awareness.
+
+Because of this, design is never neutral. Repeated interaction patterns become memetic: they train habits, normalize expectations and propagate values across products and cultures. An infinite feed normalizes consumption without closure; an opaque system teaches dependence; a reversible, inspectable UI teaches agency.
+
+Bad design is therefore not just inconvenient - it is political. It encodes power asymmetries into everyday interactions by extracting our attention, data and autonomy. Good design does the opposite: it makes data control explicit and preserves optionality, to give the user the control they deserve.
+
 ## References
 - [Principles of bad software design](https://digdeeper.club/articles/design.xhtml)
 
