@@ -6,7 +6,7 @@ icon: "/images/icons/design.svg"
 Digital design is concerned with the creation and optimization of user interfaces and experiences across digital platforms (apps, web sites, etc.). At its foundation, effective digital design balances aesthetic appeal with functional usability, ensuring that users can accomplish their goals efficiently while enjoying the interaction. The design of a product sets the tone and communicates (subconsciously) values to the user.
 
 ## Good Design
-Feels natural - usable without thinking how. Respects the user needs.
+Feels natural - usable without thinking how. Respects the user: increases user agency; bad design extracts it.
 
 - User controls their data
   - Use common file formats (for export / storage)
