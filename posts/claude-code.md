@@ -52,6 +52,7 @@ Use git working branches to start multiple sub-agents on the same code base.
 - `/context`: show your usage
 - `/export`: save current chat context to clipboard / file
 - `/config`: recommended to disable auto-compact (rarely helps)
+- CTRL + G: edit your input prompt with default text editor
 
 ### Custom Commands
 
