@@ -71,14 +71,14 @@ LLM (+ RL) unsolveable examples:
 
 - <https://timdettmers.com/2025/12/10/why-agi-will-not-happen/>
 - <https://wonderfall.dev/autoregressive/>
-- Collapse of Self-trained Language Models - <https://arxiv.org/abs/2404.02305v1>
-- The wall confronting large language models - <https://arxiv.org/abs/2507.19703>
-- Cats Confuse Reasoning LLM (study on context rot phenomenon) - <https://arxiv.org/abs/2503.01781>
+- [Collapse of Self-trained Language Models](https://arxiv.org/abs/2404.02305v1)
+- [The wall confronting large language models](https://arxiv.org/abs/2507.19703)
+- [Cats Confuse Reasoning LLM](https://arxiv.org/abs/2503.01781) (study on context rot phenomenon)
 - <https://blog.jxmo.io/p/superintelligence-from-first-principles>
 - <https://blog.jxmo.io/p/we-should-stop-talking-about-agi>
 - <https://garymarcus.substack.com/p/dear-elon-musk-here-are-five-things>
-- This video will change your mind about the AI hype - <https://www.youtube.com/watch?v=uB9yZenVLzg>
-- Questioning Representational Optimism in Deep Learning: The Fractured Entangled Representation Hypothesis - <https://arxiv.org/abs/2505.11581>
+- [This video will change your mind about the AI hype](https://www.youtube.com/watch?v=uB9yZenVLzg)
+- [Questioning Representational Optimism in Deep Learning: The Fractured Entangled Representation Hypothesis](https://arxiv.org/abs/2505.11581)
 - <https://machine-bullshit.github.io/>
 - <https://unherd.com/2025/08/is-the-ai-bubble-about-to-burst/?lang=us>
 
