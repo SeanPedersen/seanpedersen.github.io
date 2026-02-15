@@ -36,4 +36,4 @@ Projects like OpenClaw have shown the first glimpse of LLM powered personal assi
 - https://the-decoder.de/openclaw-aka-clawdbot-und-moltbook-sind-ein-paradies-fuer-datendiebe/
 - https://seksbot.com/
 
-#idea
+#ai
