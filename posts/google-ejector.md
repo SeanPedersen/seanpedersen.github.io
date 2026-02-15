@@ -59,7 +59,7 @@ Shared Docs:
 File Sync:
 
 - [Syncthing](https://syncthing.net/) ([Code](https://github.com/syncthing/syncthing)) - decentralized, self-hostable, fast & unix aligned
-
+  
 Calendar / Contacts:
 
 - [Etesync](https://www.etesync.com/) ([Code](https://github.com/etesync/server)) - end-to-end encrypted, self-hostable
@@ -102,10 +102,10 @@ Mobile OS:
 
 Operating System:
 
+- [CachyOS](https://cachyos.org/) (Arch Linux)
 - [Fedora Linux](https://fedoraproject.org/workstation/download/)
   - [Nobara](https://nobaraproject.org/) (optimized for gaming / streaming)
 - [Mint](https://linuxmint.com/) (Ubuntu Linux)
-- [CachyOS](https://cachyos.org/) (Arch Linux)
 
 ## Export All Your Google Data
 
