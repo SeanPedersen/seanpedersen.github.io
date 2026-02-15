@@ -5,8 +5,9 @@ icon: "/images/icons/design.svg"
 # Digital Design
 Digital design is concerned with the creation and optimization of user interfaces and experiences across digital platforms (apps, web sites, etc.). At its foundation, effective digital design balances aesthetic appeal with functional usability, ensuring that users can accomplish their goals efficiently while enjoying the interaction. The design of a product sets the tone and communicates (subconsciously) values to the user.
 
-- Information Hierarchy
-- Iterative complexity (progressive disclosure)
+- Information Hierarchy (pack UI elements together based on their semantics)
+  - Minimizes mouse movement / provide keyboard shortcuts for common inputs
+- Iterative complexity (progressive disclosure of options)
 - Use rows instead of boxes for items that have numerical values to compare
 - Use hover highlight effects only for interactive components (links, buttons)
 - Design languages / trends:
