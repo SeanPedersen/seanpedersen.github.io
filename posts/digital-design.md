@@ -5,6 +5,11 @@ icon: "/images/icons/design.svg"
 # Digital Design
 Digital design is concerned with the creation and optimization of user interfaces and experiences across digital platforms (apps, web sites, etc.). At its foundation, effective digital design balances aesthetic appeal with functional usability, ensuring that users can accomplish their goals efficiently while enjoying the interaction. The design of a product sets the tone and communicates (subconsciously) values to the user.
 
+## Good Design
+Feels natural - usable without thinking how. Respects the user needs.
+
+- User controls their data
+  - Use common file formats (for export / storage)
 - Information Hierarchy (pack UI elements together based on their semantics)
   - Minimizes mouse movement / provide keyboard shortcuts for common inputs
 - Iterative complexity (progressive disclosure of options)
@@ -23,7 +28,8 @@ Digital design is concerned with the creation and optimization of user interface
 In order to produce good design, it is very helpful to just feel bad designs.
 
 Dark UX:
-- Infinite scroll feeds (no ending - addictive for the user)
+- Locking up user data (in a server / custom storage format)
+ - Infinite scroll feeds (no ending - addictive for the user)
 - Fake urgency (countdown timers, "only 2 left!")
 - Requiring account creation before showing content
 - Hiding the unsubscribe button (small text / many clicks)
