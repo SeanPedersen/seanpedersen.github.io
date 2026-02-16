@@ -8,6 +8,10 @@ It is becoming clearer and clearer that scaling up LLM's will not solve their fu
 
 ## Fundamental Limits
 
+### Lacking a World Model
+
+LLM's are not designed with a world model (allowing to predict 3D physical scenarios over time). They have a word model which entails a brittle world model that does not generalize well. Read this [post](posts/a-thousand-brains/#road-to-agi) on necessary modules for AGI identified by Jeff Hawkins.
+
 ### Auto-Regressive Architectures
 
 Current LLM's face a core architectural constraint: they generate text sequentially, one token at a time. As Yann LeCun argues, this creates exponential error accumulation. Each prediction depends on all previous tokens, so early mistakes cascade through long sequences, causing models to derail from coherent long-formed reasoning (an issue well known among LLM users - known as context rot).
@@ -81,5 +85,6 @@ LLM (+ RL) unsolveable examples:
 - [Questioning Representational Optimism in Deep Learning: The Fractured Entangled Representation Hypothesis](https://arxiv.org/abs/2505.11581)
 - <https://machine-bullshit.github.io/>
 - <https://unherd.com/2025/08/is-the-ai-bubble-about-to-burst/?lang=us>
+- <https://dlants.me/agi-not-imminent.html>
 
 #AI
