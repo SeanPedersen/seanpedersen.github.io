@@ -10,7 +10,7 @@ It is becoming clearer and clearer that scaling up LLM's will not solve their fu
 
 ### Lacking a World Model
 
-LLM's are not designed with a world model (allowing to predict 3D physical scenarios over time). They have a word model which entails a brittle world model that does not generalize well. Read this [post](posts/a-thousand-brains/#road-to-agi) on necessary modules for AGI identified by Jeff Hawkins.
+LLM's are not designed with a world model (allowing to predict 3D physical scenarios over time). They have a word model which entails a brittle world model that does not generalize well. Read this [post](/posts/a-thousand-brains/#road-to-agi) on necessary modules for AGI identified by Jeff Hawkins.
 
 ### Auto-Regressive Architectures
 
