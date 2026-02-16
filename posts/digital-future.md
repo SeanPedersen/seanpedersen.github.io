@@ -31,8 +31,13 @@ Every media file can be manipulated with natural language
 This unified interface has immense abuse potential and thus it is of importance to build a local privacy first version of this - fuck off privacy invading kraken services.
 
 ## Security
+
 Projects like OpenClaw have shown the first glimpse of LLM powered personal assistant but the security concerns are real: all your personal information your personal LLM agent has access to can be potentially exposed via prompt injection.
 
+## References
+
+- https://openclaw.ai/
+- https://github.com/nearai/ironclaw
 - https://the-decoder.de/openclaw-aka-clawdbot-und-moltbook-sind-ein-paradies-fuer-datendiebe/
 - https://seksbot.com/
 
