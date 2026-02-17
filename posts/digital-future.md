@@ -38,6 +38,7 @@ Projects like OpenClaw have shown the first glimpse of LLM powered personal assi
 
 - https://openclaw.ai/
 - https://github.com/nearai/ironclaw
+- https://www.docker.com/blog/run-nanoclaw-in-docker-shell-sandboxes/
 - https://the-decoder.de/openclaw-aka-clawdbot-und-moltbook-sind-ein-paradies-fuer-datendiebe/
 - https://seksbot.com/
 
