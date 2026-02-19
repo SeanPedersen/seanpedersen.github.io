@@ -802,6 +802,10 @@ Add context window usage for the current session to claude's status bar:
 Using GUI apps can make sense as they motivate writing longer and more detailed prompts.
 
 - Web app (for subagents): <https://github.com/wandb/catnip>
+- Web apps
+  - https://github.com/chadbyte/claude-relay
+  - https://github.com/davydany/ClawIDE
+  - https://github.com/getpaseo/paseo
 - Desktop app (for subagents): <https://github.com/generalaction/emdash>
 - Desktop app (for subagents): <https://conductor.build/>
 - Mobile app: <https://happy.engineering/>
