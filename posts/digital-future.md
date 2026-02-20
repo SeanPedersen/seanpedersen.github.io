@@ -34,9 +34,12 @@ This unified interface has immense abuse potential and thus it is of importance 
 
 Projects like OpenClaw have shown the first glimpse of LLM powered personal assistant but the security concerns are real: all your personal information your personal LLM agent has access to can be potentially exposed via prompt injection.
 
+A good agent security layer would let me scope data access for every agent running + ask me via notifications to approve / deny data access in ongoing tasks.
+
 ## References
 
 - https://openclaw.ai/
+- https://github.com/Dicklesworthstone/pi_agent_rust
 - https://github.com/nearai/ironclaw
 - https://www.docker.com/blog/run-nanoclaw-in-docker-shell-sandboxes/
 - https://the-decoder.de/openclaw-aka-clawdbot-und-moltbook-sind-ein-paradies-fuer-datendiebe/
