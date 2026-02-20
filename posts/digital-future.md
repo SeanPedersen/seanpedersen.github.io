@@ -36,6 +36,9 @@ Projects like OpenClaw have shown the first glimpse of LLM powered personal assi
 
 A good agent security layer would let me scope data access for every agent running + ask me via notifications to approve / deny data access in ongoing tasks.
 
+- https://github.com/botiverse/agent-vault
+- https://github.com/clawshell/clawshell
+
 ## References
 
 - https://openclaw.ai/
