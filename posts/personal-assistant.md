@@ -1,9 +1,9 @@
 ---
 date: '2025-07-04'
 ---
-# Digital Future: Personal Assistant
+# Personal Assistant
 
-Personal assistant powered by LLM via chat and voice interface
+A PA powered by LLM via chat and voice interface
 - informs you every day what is happening (daily agenda)
 - executes tasks for you (setup a blog for me, order my favorite pizza, etc.)
 
@@ -32,7 +32,7 @@ This unified interface has immense abuse potential and thus it is of importance 
 
 ## Security
 
-Projects like OpenClaw have shown the first glimpse of LLM powered personal assistant but the security concerns are real: all your personal information your personal LLM agent has access to can be potentially exposed via prompt injection.
+Projects like OpenClaw have shown the first glimpse of LLM powered personal assistant but the security concerns are real: all personal information your personal LLM agent has access to can be potentially exposed via prompt injection and other exploit techniques.
 
 A good agent security layer would let me scope data access for every agent running + ask me via notifications to approve / deny data access in ongoing tasks.
 
