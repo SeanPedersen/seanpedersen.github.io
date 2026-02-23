@@ -4,7 +4,14 @@ icon: "/images/icons/operational-security.svg"
 ---
 # Operational Security
 
-How to secure a VPS running in production (important service + data)?
+How to secure a VPS running in production (important service + customer data)
+
+## VPS Providers (EU)
+- [hetzner](https://hetzner.de/): Germany
+- [ovhcloud](https://www.ovhcloud.com/en/vps/): France
+- [scaleway](https://www.scaleway.com/en): France
+
+## Checklist
 - Use ONLY public key based AND disable password based auth (for SSH) + use non-default port
 - Disable root account, disable root login via ssh -> only use user accounts with sudo
 - Setup firewall - lockdown all unused ports, keep: 22 (SSH), 80 (HTTP), 443 (HTTPS)
