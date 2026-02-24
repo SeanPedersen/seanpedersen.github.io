@@ -31,8 +31,13 @@ Great introduction: <https://fasterthanli.me/articles/a-half-hour-to-learn-rust>
 - [pdf_oxide](https://github.com/yfedoseev/pdf_oxide): fast text extraction
 - [ferrules](https://github.com/AmineDiro/ferrules/tree/main): structured text extraction
 
+## Concurrency
+- [cineyma](https://github.com/pixperk/cineyma): Erlang inspired OTP-style actor framework
+- [asupersync](https://github.com/Dicklesworthstone/asupersync): Async runtime for Rust where correctness is structural: region-owned tasks, cancel-correct protocols, capability-gated effects, and deterministic replay testing
+
 ## Coding Agents
 - [OpenAI Codex](https://github.com/openai/codex)
+- [pi_agent_rust](https://github.com/Dicklesworthstone/pi_agent_rust): Rust port of [pi agent](https://github.com/badlogic/pi-mono)
 
 ## References
 - [Error handling](https://www.howtocodeit.com/guides/the-definitive-guide-to-rust-error-handling)
@@ -40,6 +45,5 @@ Great introduction: <https://fasterthanli.me/articles/a-half-hour-to-learn-rust>
 - <https://doc.rust-lang.org/book/>
 - <https://news.ycombinator.com/item?id=24867610>
 - <https://lubeno.dev/blog/rusts-productivity-curve>
-- [Erlang inspired OTP-style actor framework](https://github.com/pixperk/cineyma)
 
 #coding
