@@ -122,6 +122,8 @@ The result is a fundamental bottleneck. Tasks requiring sustained logic or compl
 
 True progress requires a paradigm shift toward architectures that form and manipulate complete conceptual structures rather than sequential tokens. Until then, LLMs remain sophisticated stochastic pattern matchers, staying far away from reliable reasoning.
 
+Geoffrey Hinton speaks of confabulations not hallucinations. He says LLMs are very human like in that aspect, as humans also constantly recall things inaccurately. I disagree: LLMs confabulate things a human expert never would. After delivering an accurate logical argument, they make up the dumbest shit - this is not human like at all.
+
 ## Outlook
 
 The endgame would be language models that actively create and verify new knowledge using it to update their world-model / weights on (capable of self-modification).
