@@ -18,6 +18,8 @@ Hallucinations are certainly the toughest nut to crack and their negative impact
 
 The impact of contradictions in the training data: Current language models are incapable of "self-inspection" to uncover logical inconsistencies in their training data. Only in the input context window should they be able to find logical inconsistencies.
 
+The first serious development that tackles some of these challenges: [Steerling 8B](https://www.guidelabs.ai/post/steerling-8b-base-model-release/)
+
 ## Bootstrapping consistent LLM
 
 TL;DR: Exclude contradicting training data -> curate the training data using LLM's.
