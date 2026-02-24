@@ -263,6 +263,20 @@ Check out [PGLite](https://pglite.dev/) for a small embeddable WebAssembly versi
 
 And check out [postgresql-embedded](https://github.com/theseus-rs/postgresql-embedded) for a Rust package that embeds Postgres without limitations (supports extions).
 
+## Useful Features
+
+1. EXCLUDE constraints: To avoid overlapping time slots
+
+If you ever needed to prevent overlapping time slots for the same resource, then the EXCLUDE constraint is extremely useful. It enforces that no two rows can have overlapping ranges for the same key.
+
+2. CHECK constraints: For validating data at the source
+
+CHECK constraints allow you to specify that the value in a column must satisfy a Boolean expression. They enforce rules like "age must be between 0 and 120" or "end_date must be after start_date."
+
+3. GENERATED columns: To let the database do the math
+
+If you’re tired of calculating derived values in your app, you can let PostgreSQL handle it with GENERATED columns.
+
 ## Useful Commands
 
 **Show sizes of all tables** + index + toast (The Oversized Attribute Storage Technique - used for long texts / json storage):
