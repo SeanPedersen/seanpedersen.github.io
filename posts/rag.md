@@ -92,3 +92,5 @@ You can not improve, what you can not see - running evals for your RAG apps is c
 - <https://d-star.ai/dynamic-retrieval-granularity>
 - <https://maven.com/p/acfa67/improving-rag-embedding-models-representation-learning>
 - <https://softwaredoug.com/blog/2025/12/09/rag-users-want-affordances-not-vectors>
+
+#ML #coding
