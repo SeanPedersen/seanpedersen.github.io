@@ -44,4 +44,8 @@ The **tragedy of the commons** extends this logic to resource management. Indivi
 
 **Evolutionary stable strategies** from biological applications show how game theory principles operate in nature. Animal conflicts typically follow "hawk-dove" game patterns where aggressive and passive strategies coexist in stable proportions. This explains why most animal disputes involve displays rather than fights to the death, as pure aggression strategies prove unstable over time.
 
+## References
+
+- https://www.youtube.com/watch?v=5I2VPYPJJ68
+
 #idea
