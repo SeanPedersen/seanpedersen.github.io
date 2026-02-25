@@ -15,7 +15,7 @@ Embeddings represent semantic relationships between objects (like words or image
 - <https://colah.github.io/posts/2014-03-NN-Manifolds-Topology/>
 - [What is a manifold?](https://www.quantamagazine.org/what-is-a-manifold-20251103/)
 
-**Hierarchical Organization**: Features organize hierarchically across layers - earlier layers capture local, low-level (small context) features while deeper layers represent increasingly abstract and compositional (large context) concepts by integrating information from earlier layers.
+**Hierarchical Organization**: Features organize hierarchically across layers - early layers capture local, low-level (small context) features while deeper layers represent increasingly abstract (large context) concepts by composing representations from earlier layers.
 
 - <https://colah.github.io/posts/2015-01-Visualizing-Representations/>
 
@@ -29,7 +29,7 @@ Embeddings represent semantic relationships between objects (like words or image
 
 - <https://transformer-circuits.pub/2022/toy_model/index.html>
 
-**Entangled Representation Hypothesis**: Gradient descent optimised neural networks tend to develop redundant and fractured features instead of unified, modular representations that can be reused and controlled separately.
+**Entangled Representation Hypothesis**: Gradient descent optimised deep neural networks tend to develop redundant and fractured features instead of unified, modular representations that can be reused and controlled separately - explaining their brittleness (like adversarial examples and hallucinations).
 
 - [The Fractured Entangled Representation Hypothesis](https://arxiv.org/abs/2505.11581)
 - [Beta-VAE](/posts/vae#beta-vae)
