@@ -245,6 +245,7 @@ fn markdown_to_html(markdown: &str, tags: &[String]) -> String {
     let mut in_image = false;
     let mut image_alt_text = String::new();
     let mut image_url = String::new();
+    let mut in_link = false;
 
     for event in parser {
         match event {
@@ -319,15 +320,27 @@ fn markdown_to_html(markdown: &str, tags: &[String]) -> String {
                     code_block_content.clear();
                 }
             }
+            Event::Start(Tag::Link { .. }) => {
+                in_link = true;
+                let mut temp = String::new();
+                html::push_html(&mut temp, std::iter::once(event));
+                html_output.push_str(&temp);
+            }
+            Event::End(TagEnd::Link) => {
+                in_link = false;
+                html_output.push_str("</a>");
+            }
             Event::Text(text) => {
                 if in_code_block {
                     code_block_content.push_str(&text);
                 } else if in_image {
                     image_alt_text.push_str(&text);
-                } else {
+                } else if in_link {
                     let mut escaped = String::new();
                     escape_html(&mut escaped, &text).unwrap();
                     html_output.push_str(&escaped);
+                } else {
+                    html_output.push_str(&linkify_bare_urls(&text));
                 }
             }
             Event::Start(Tag::Image { dest_url, .. }) => {
@@ -583,6 +596,43 @@ fn convert_hashtags_to_links(html: &str, tags: &[String]) -> String {
         format!(r#"<p class="post-hashtags">{}</p>"#, links)
     })
     .to_string()
+}
+
+fn linkify_bare_urls(text: &str) -> String {
+    // Match http/https URLs; stop before trailing punctuation that's likely not part of the URL
+    let url_re = Regex::new(r"(https?://[^\s<>]+?)([.,;:!?)]*(?:\s|$))").unwrap();
+    let mut result = String::with_capacity(text.len());
+    let mut last = 0;
+
+    for caps in url_re.captures_iter(text) {
+        let full_match = caps.get(0).unwrap();
+        let url = &caps[1];
+        let trailing = &caps[2];
+
+        // Escape plain text before this URL
+        let before = &text[last..full_match.start()];
+        let mut escaped_before = String::new();
+        escape_html(&mut escaped_before, before).unwrap();
+        result.push_str(&escaped_before);
+
+        // Emit link (URL is already a valid URL, no escaping needed for href)
+        result.push_str(&format!(r#"<a href="{}">{}</a>"#, url, url));
+
+        // Preserve trailing punctuation/whitespace as plain text
+        let mut escaped_trailing = String::new();
+        escape_html(&mut escaped_trailing, trailing).unwrap();
+        result.push_str(&escaped_trailing);
+
+        last = full_match.end();
+    }
+
+    // Escape remaining text after last URL
+    let remainder = &text[last..];
+    let mut escaped_remainder = String::new();
+    escape_html(&mut escaped_remainder, remainder).unwrap();
+    result.push_str(&escaped_remainder);
+
+    result
 }
 
 pub fn extract_all_tags(posts: &[Post]) -> Vec<String> {
