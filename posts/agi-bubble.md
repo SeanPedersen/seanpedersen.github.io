@@ -46,7 +46,10 @@ LLM + RL solveable examples:
   - [faster CUDA kernels](https://arxiv.org/abs/2507.14111v4)
 
 LLM solveable examples:
-- coding in a popular programming language on medium sized code base
+- coding in popular programming languages
+- anything coding related that is verifiable:
+  - translate code base from prog. lang A to B (verify input -> output)
+  - optimize slow code (f.e. PDF extraction) -> measure speed and verify output
 - summarizing complicated technical topics (with lots of training data available)
 - generating (interpolating) texts, audio and video
 
