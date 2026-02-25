@@ -1,6 +1,6 @@
 # Retrieval Augmented Generation
 
-RAG works by augmenting the context window of an LLM with text relevant to the user's query to provide a useful response (reduce hallucinations). Thus if one wants to master RAG, one has to master [search](/posts/search).
+RAG works by augmenting the context window of an LLM with text relevant to the user's query to provide a useful response (reduce hallucinations). Thus if one wants to master RAG, one has to master [search](/posts/search-is-hard).
 
 ## RAG Approaches
 - Simple RAG: basic keyword search / semantic search
