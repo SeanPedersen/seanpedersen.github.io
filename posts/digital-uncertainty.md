@@ -3,7 +3,6 @@ date: '2024-10-21'
 ---
 # Digital Uncertainty
 
-
 We are entering the age of digital uncertainty. An age where any digital artifact can not be deemed to be real (grounded in reality like a photography) anymore.
 
 Any attempt to build AI generated content (deep fake) detection systems is flawed, since the outputs of such a system may be used to train an even better fake data generator. This leads to an equilibrium state of digital uncertainty: nothing in the digital realm can be deemed as real anymore - only as digital.
