@@ -16,7 +16,7 @@ A short how to (re)search for and access relevant information in the age of sema
 ## Free Information Resources
 
 - <https://paperpanda.app/search>: SciHub for free access to papers
-- <https://www.pdfdrive.com/>: Free access to eBooks
+- <https://welib.st/>: Free access to eBooks & papers
 - <https://freedium-mirror.cfd/>: Unlock medium articles
 - <https://archive.org/>: Archive of the Web
   - <https://web.archive.org/>: Wayback machine (stores snapshots of websites)
