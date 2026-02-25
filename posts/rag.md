@@ -61,13 +61,12 @@ Existing Solutions:
 - https://github.com/stanford-oval/WikiChat: Minimal hallucinations
 - https://github.com/D-Star-AI/dsRAG: Advanced chunking for text
 - https://github.com/weaviate/elysia: Agentic RAG (can create custom DB queries + semantic search etc.)
-
 - https://github.com/HKUDS/LightRAG
 - https://github.com/infiniflow/ragflow
 - https://github.com/langgenius/dify
 - https://github.com/datastax/ragstack-ai
 - https://github.com/neuml/txtai
-- Perplexica
+- [Perplexica](https://github.com/ItzCrazyKns/Perplexica)
 - Eliminates RAG: https://github.com/microsoft/KBLaM
 
 Retrieval:
