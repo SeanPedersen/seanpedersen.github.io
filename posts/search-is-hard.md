@@ -57,6 +57,8 @@ Tricks:
 
 ### Neural Representations
 
+Create representations using deep neural networks - typically dense vectors (embeddings).
+
 - Multi-Modal (shared) Embedding Spaces (CLIP)
 - Dense vs Sparse embeddings ([SDR](/posts/sparse-distributed-representations))
 - Query vs document prefix for embedding models optimized for search
