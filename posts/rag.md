@@ -5,7 +5,7 @@ RAG works by augmenting the context window of an LLM with text relevant to the u
 ## RAG Approaches
 - Simple RAG: basic keyword search / semantic search
 - Complex RAG: advanced chunking (e.g. late-interaction / enrich with LLM -> infer questions a chunk can answer or summarize a long document) semantic search
-- Graph RAG: construct knowledge graph to uncover hidden (multi-step) connections
+- Graph RAG: construct knowledge graph to uncover hidden (multi-step) connections for complex queries (how did x evolve over time? how does y compare to z? explain u in terms of v, etc.)
 - Agentic RAG:
   - let LLM create search queries based on user query
   - let LLM make final selection from result candidates
