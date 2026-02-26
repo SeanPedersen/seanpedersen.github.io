@@ -362,7 +362,10 @@ fn markdown_to_html(markdown: &str, tags: &[String]) -> String {
             Event::Code(code) => {
                 let mut escaped = String::new();
                 escape_html(&mut escaped, &code).unwrap();
-                html_output.push_str(&format!("<code>{}</code>", escaped));
+                html_output.push_str(&format!(
+                    r#"<code class="language-text">{}</code>"#,
+                    escaped
+                ));
             }
             Event::Start(Tag::Table(_)) => {
                 in_table = true;
