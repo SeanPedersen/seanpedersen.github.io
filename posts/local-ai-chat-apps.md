@@ -9,9 +9,9 @@ A short list of free AI chat apps for local LLM execution that work offline and 
 
 - Standalone app: easy setup
 - Closed Source
-- Features: RAG over text files, split (copy) conversations, MCP support
+- Features: [RAG over text files](https://lmstudio.ai/docs/app/basics/rag), split (copy) conversations, [remote access](https://lmstudio.ai/link), MCP support
 
-**Jan** - <https://github.com/menloresearch/jan>
+**Jan** - <https://github.com/janhq/jan>
 
 - Standalone app: easy setup
 - Open source
