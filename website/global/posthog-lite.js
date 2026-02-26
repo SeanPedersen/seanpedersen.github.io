@@ -48,6 +48,9 @@ class PostHogLite {
   }
 
   capture(eventName, properties = {}) {
+    const referrer = document.referrer || '$direct';
+    const referringDomain = document.referrer ? new URL(document.referrer).hostname : '$direct';
+
     const payload = {
       api_key: this.apiKey,
       event: eventName,
@@ -56,18 +59,19 @@ class PostHogLite {
         ...properties,
         distinct_id: this.distinctId,
         $session_id: this.sessionId,
-        $lib: 'posthog-lite',
+        $insert_id: Math.random().toString(36).substring(2, 10) + Math.random().toString(36).substring(2, 10),
+        $lib: 'web',
         $lib_version: '1.0.0',
         $current_url: window.location.href,
         $host: window.location.host,
         $pathname: window.location.pathname,
-        $referrer: document.referrer,
-        $referring_domain: document.referrer ? new URL(document.referrer).hostname : '',
+        $title: document.title,
+        $referrer: referrer,
+        $referring_domain: referringDomain,
         $screen_height: window.screen.height,
         $screen_width: window.screen.width,
         $viewport_height: window.innerHeight,
         $viewport_width: window.innerWidth,
-        timestamp: new Date().toISOString()
       },
       timestamp: new Date().toISOString()
     };
