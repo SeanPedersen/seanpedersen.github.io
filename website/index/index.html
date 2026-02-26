@@ -332,12 +332,11 @@
       var script = document.createElement('script');
       script.src = '/js/posthog-lite.js';
       script.onload = function () {
-        if (window.PostHogLite) {
-          window.posthog = new window.PostHogLite('phc_9XPlyPALuefIMAMSfsvBk4jVuSelJyjl7xwhXigkHAP', {
-            host: 'https://us.i.posthog.com',
-            person_profiles: 'identified_only',
-            capturePageview: true
+        if (window.PostHog) {
+          window.posthog = new window.PostHog('phc_9XPlyPALuefIMAMSfsvBk4jVuSelJyjl7xwhXigkHAP', {
+            host: 'https://us.i.posthog.com'
           });
+          window.posthog.capture('$pageview');
         }
       };
       document.head.appendChild(script);

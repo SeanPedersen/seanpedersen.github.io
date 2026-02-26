@@ -232,6 +232,24 @@ The project uses GitHub Actions for automated deployment:
 - Caches Rust dependencies and binary for faster builds
 - Deploys generated `out/` directory to GitHub Pages
 
+## Analytics
+
+PostHog analytics uses the official `posthog-js-lite` package (v4.5.2), pre-bundled into `website/global/posthog-lite.js` via esbuild as a browser-ready IIFE exposing `window.PostHog`.
+
+**Re-bundling after version updates:**
+```bash
+cd /tmp && npm install posthog-js-lite
+echo "import PostHog from 'posthog-js-lite'; window.PostHog = PostHog;" > posthog-entry.js
+npx esbuild posthog-entry.js --bundle --format=iife --platform=browser --minify \
+  --outfile=/path/to/project/website/global/posthog-lite.js
+```
+
+Initialization (in `website/index/index.html` and `website/post/post.html`):
+```javascript
+window.posthog = new window.PostHog('phc_...', { host: 'https://us.i.posthog.com' });
+window.posthog.capture('$pageview');
+```
+
 ## Common Tasks
 
 - **Add new post**: Create Markdown file in `posts/` with frontmatter
