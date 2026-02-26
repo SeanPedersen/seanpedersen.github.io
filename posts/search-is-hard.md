@@ -27,8 +27,33 @@ Tricks:
 
 ### Token Based Representations
 
-- Word level: BM25 (normalized TF-IDF)
-- Character level: Substring search (tri-gram index)
+* **Word Level (BM25 / normalized TF-IDF)**
+  * Tokenization: standard words
+  * Purpose: relevance scoring for full-text search
+  * Strengths: scales efficiently to very large text corpora
+  * Limitation: cannot match partial words, abbreviations, or morphological variants
+
+* **Subword Level (Corpus-Derived Subword Index – CDSI)**
+  * Tokenization: greedy longest-match subwords mined from frequent corpus substrings
+  * Purpose: partial-word and compound-word matching in full text
+  * Strengths: captures abbreviations and morphemes (e.g., `"neural net"` matches `"neural network"`), smaller posting lists than tri-grams, deterministic and interpretable
+  * Limitation: requires offline vocabulary build and periodic rebuilds
+
+* **Character Level (Tri-gram Index)**
+  * Tokenization: overlapping 3-character sequences
+  * Purpose: substring and fuzzy search
+  * Strengths: handles typos, partial matches, and short strings (filenames, codes, IDs)
+  * Limitation: high space usage; mainly useful for short strings rather than full text
+
+| Method              | Space       | Substring coverage | Fuzzy/typo tolerance | Best use case                             |
+| ------------------- | ----------- | ------------------ | -------------------- | ----------------------------------------- |
+| Tri-grams           | High        | All                | Limited              | Short strings, small-medium corpora       |
+| Variable n-grams    | Medium      | Most               | Limited              | Medium-length strings                     |
+| Prefix/Suffix       | Low-Med     | Start/End only     | No                   | Autocomplete, filenames                   |
+| Permuterm           | Medium-High | Arbitrary          | No                   | Wildcard/substring search                 |
+| Q-gram + Hashing    | Low         | Most               | Approximate          | Large-scale, fuzzy search                 |
+| Suffix Array / Tree | Medium      | All                | Exact                | Exact substring matching, static datasets |
+
 
 ### Neural Representations
 
