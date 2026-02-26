@@ -741,11 +741,12 @@ You are a relational database system and SQL expert capable of analyzing and opt
 
 ## MCP Toolbox
 
-While MCP tools are cool they can also bloat your context (costing valuable tokens and increase context rot) as there API definitions are always in context - the github MCP for example is really bloated but the github CLI is working as well and LLM's already know how to use it properly. So only install per project and activate MCPs only if needed for the current session.
+While MCP tools are cool they can also bloat your context (costing valuable tokens  -> causing context rot) as there API definitions are always in context. So only install per project and activate MCPs only if needed for the current session.
 
-Must read for a better alternative (save tokens):
+Must read for a better MCP alternative (save tokens):
 - https://mariozechner.at/posts/2025-11-02-what-if-you-dont-need-mcp/
-- https://github.com/badlogic/pi-skills
+  - https://github.com/badlogic/pi-skills
+- https://kanyilmaz.me/2026/02/23/cli-vs-mcp.html
 
 ### Browser Control
 
