@@ -741,7 +741,7 @@ You are a relational database system and SQL expert capable of analyzing and opt
 
 ## MCP Toolbox
 
-While MCP tools are cool they can also bloat your context (costing valuable tokens and increase context rot) as there API definitions are always in context - the github MCP for example is really bloated but the github CLI is working as well and LLM's already know how to use it properly. So only activate MCP servers needed for the current session.
+While MCP tools are cool they can also bloat your context (costing valuable tokens and increase context rot) as there API definitions are always in context - the github MCP for example is really bloated but the github CLI is working as well and LLM's already know how to use it properly. So only activate MCP servers needed for the current session. Read this for more: https://mariozechner.at/posts/2025-11-02-what-if-you-dont-need-mcp/
 
 ### Browser Control
 
