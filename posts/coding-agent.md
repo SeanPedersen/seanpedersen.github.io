@@ -14,13 +14,13 @@ Uses knowledge base: tool to query existing solved solutions + web access (query
 - defines interfaces / boundaries for modules
 - produces a design with specifications
 - discuss best tools (tech stack) for the design specs
-  
-  ## GENERAL
-  Create the battle plan - brief the troops.
-  
-  #### ORCHESTRATOR
-  
-  Generate the task tree from design + tech stack.
+
+## GENERAL
+Create the battle plan - brief the troops.
+
+#### ORCHESTRATOR
+
+Generate the task tree from design + tech stack.
 
 - create modular plan with task execution dependency tree
   - every task has:
@@ -40,10 +40,10 @@ Refs:
 - https://github.com/joshuadavidthomas/opencode-beads
 - https://github.com/Dicklesworthstone/beads_viewer
 - Claude Code released tasks feature (similar to beads)
-  
-  #### INSTRUCTOR
-  
-  Provides every task with perfect (relevant) Context.
+
+#### INSTRUCTOR
+
+Provides every task with perfect (relevant) Context.
 
 - NEW: code templates for fresh projects
 - relevant and version matching documentation for coding tasks
@@ -61,27 +61,30 @@ Refs:
 - https://ref.tools/
 - https://x.com/karpathy/status/2021633574089416993
 - [CodeRLM](https://github.com/JaredStewart/coderlm/tree/main)
-  
-  ## EXECUTOR SWARM
-  Coding agents work on tasks in parallel - working off the task tree backwards recursively (breadth first, towards the root task - the IDEA).
-  
-  #### CREATOR
+
+## EXECUTOR SWARM
+Coding agents work on tasks in parallel - working off the task tree backwards recursively (breadth first, towards the root task - the IDEA).
+
+#### CREATOR
+
 - use LSP server for precise edits based on TASK problem and context
   - optimal code exploration
   - optimal code editing
-    
-    #### VALIDATOR
+
+#### VALIDATOR
+
 - validates if CREATOR solved tasks Criterion (test / metric)
   - yes: task done
   - no: retry task with modified context (add failures / learnings)
-    
-    #### REFLECTOR
+
+#### REFLECTOR
+
 - uses REPL / MCP to inspect live vars of code produced by CREATOR
 - fixes any issues spotted by VALIDATOR
-  
-  ## TASK Life Cycle
-  
-  State: defined, open, busy, trial, done, fail
+
+## TASK Life Cycle
+
+State: defined, open, busy, trial, done, fail
 
 - defined: ID, Problem, Criterion, Complexity
 - open: added Context by INSTRUCTOR
