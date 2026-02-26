@@ -93,10 +93,11 @@ Problem(Environment)
 
 **Knowledge** is just data (executed as programs) predicting accurately (ideally lossless) unknown / future data.
 
-**Intelligence** is the rate at which an agent generates knowledge solving a given problem
-from data w.r.t. observations or time needed to do so. This definition
+**Intelligence** is the rate at which an agent generates knowledge solving a given problem from data w.r.t. observations or time needed to do so. This definition
 is context (problem) specific. The intelligence of two or more agents
 can thus only be compared for the same problem set.
+
+**Agency** is the speed at which an agent achieves a goal (solve the problem). It must not always rely on intelligence to do so, as it would always imply to acquire optimal knowledge in minimal steps to solve a given problem / reach a goal. An agent can achieve high agency by simply executing random actions, reaching a goal before an highly intelligent agent even starts to act (exploration vs exploitation).
 
 **General intelligence** capabilities of an agent are defined for a set of
 problems, measuring the agent's intelligence for each problem, then
