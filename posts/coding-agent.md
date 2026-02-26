@@ -1,3 +1,6 @@
+---
+icon: "/images/icons/robot-golem.webp"
+---
 # Optimal Coding Agent
 
 My blueprint for the optimal coding agent (team).
