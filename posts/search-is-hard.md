@@ -10,7 +10,7 @@ Search is the process of finding useful matches in a (large) set of objects (sea
 
 - Search Interfaces (for books, web pages, images, etc.)
 - Recommender Systems (for similar movies, products, etc.)
-- Retrieval Augemented Generation (provide relevant context for LLM's)
+- [Retrieval Augemented Generation](/posts/rag) (provide relevant context for LLM's)
 
 ## Representations
 
