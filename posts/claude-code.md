@@ -775,6 +775,12 @@ Enter into claude: `/install-github-app` and follow instructions (install and au
 
 Now you can instruct claude to work on github issues (read or create).
 
+### Tauri
+
+Just like browser control lets claude inspect your Tauri app.
+
+https://github.com/hypothesi/mcp-server-tauri
+
 ### Knowledge Base
 
 [Graphiti](https://github.com/getzep/graphiti): <https://github.com/getzep/graphiti/blob/main/mcp_server/README.md>
