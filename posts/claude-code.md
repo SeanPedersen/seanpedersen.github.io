@@ -3,7 +3,7 @@ date: '2025-07-03'
 ---
 # Getting started with Claude Code
 
-Claude Code is a powerful CLI based coding agent. It comes with MCP support which enables it to use external tools like web browsers to automatically validate and test new features in web apps. Popular alternatives are OpenAI's [codex](https://openai.com/codex/) and [opencode](https://opencode.ai/).
+Claude Code is a powerful CLI based coding agent. It comes with MCP support which enables it to use external tools like web browsers to automatically validate and test new features in web apps. Popular alternatives are OpenAI's [codex](https://openai.com/codex/), [pi-agent](https://pi.dev/) and [opencode](https://opencode.ai/).
 
 Simple and popular tech stacks that are fast to validate are the ideal choices for vibe coding (lots of training data available -> less hallucinations and fast / no  compilation -> allows for rapid iteration).
 
@@ -741,35 +741,31 @@ You are a relational database system and SQL expert capable of analyzing and opt
 
 ## MCP Toolbox
 
-While MCP tools are cool they can also bloat your context (costing valuable tokens and increase context rot) as there API definitions are always in context - the github MCP for example is really bloated but the github CLI is working as well and LLM's already know how to use it properly. So only activate MCP servers needed for the current session. Read this for more: https://mariozechner.at/posts/2025-11-02-what-if-you-dont-need-mcp/
+While MCP tools are cool they can also bloat your context (costing valuable tokens and increase context rot) as there API definitions are always in context - the github MCP for example is really bloated but the github CLI is working as well and LLM's already know how to use it properly. So only install per project and activate MCPs only if needed for the current session.
+
+Must read for a better alternative (save tokens):
+- https://mariozechner.at/posts/2025-11-02-what-if-you-dont-need-mcp/
+- https://github.com/badlogic/pi-skills
 
 ### Browser Control
 
 Allows claude to use a web browser to test and debug webapps.
 
-TODO: https://github.com/remorses/playwriter/
-
-[**Playwright**](https://github.com/microsoft/playwright)
-
-`claude mcp add playwright npx '@playwright/mcp@latest'`
-
-**Puppeteer**
+- [browser-tools skill](https://github.com/badlogic/pi-skills/blob/main/browser-tools/SKILL.md): most token efficient
+- [Playwriter](https://github.com/remorses/playwriter/): uses your chrome (convenient but also dangerous)
+- [Playwright](https://github.com/microsoft/playwright): spawns fresh chrome (bloat MCP)
 
 ### Code Documentation
 
 Allows claude to fetch uptodate code documentation for your projects - greatly reduces hallucinations.
 
-- [**Ref Tools**](https://ref.tools/)
-
-- [**Context 7**](https://github.com/upstash/context7)
-
-`claude mcp add context7 -- npx -y @upstash/context7-mcp`
+- [Ref Tools](https://ref.tools/)
+- [Context 7](https://github.com/upstash/context7)
 
 ### Web Search
 
-[Exa Search](https://exa.ai/search): <https://github.com/exa-labs/exa-mcp-server>
-
-`claude mcp add exa -e EXA_API_KEY=YOUR_API_KEY -- npx -y exa-mcp-server`
+- [brave-search skill](https://github.com/badlogic/pi-skills/blob/main/brave-search/SKILL.md): most token efficient
+- [Exa Search](https://exa.ai/search): <https://github.com/exa-labs/exa-mcp-server>
 
 ### Github
 
