@@ -765,8 +765,9 @@ Allows claude to fetch uptodate code documentation for your projects - greatly r
 
 ### Web Search
 
-- [brave-search skill](https://github.com/badlogic/pi-skills/blob/main/brave-search/SKILL.md): most token efficient
 - [Exa Search](https://exa.ai/search): <https://github.com/exa-labs/exa-mcp-server>
+
+`claude mcp add exa -e EXA_API_KEY=YOUR_API_KEY -- npx -y exa-mcp-server`
 
 ### Github
 
