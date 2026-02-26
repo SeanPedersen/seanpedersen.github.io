@@ -139,3 +139,5 @@ groq.com, https://www.inceptionlabs.ai/, https://chat.z.ai/, https://huggingface
 
 - https://github.com/bmad-code-org/BMAD-METHOD
 - https://xr0am.substack.com/p/what-ralph-wiggum-loops-are-missing
+
+#coding #AI
