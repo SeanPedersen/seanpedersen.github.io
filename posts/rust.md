@@ -17,9 +17,10 @@ Great introduction: <https://fasterthanli.me/articles/a-half-hour-to-learn-rust>
 - <https://github.com/tokio-rs/axum>
 - <https://github.com/poem-web/poem>
 
-## Processing Tensors
-- [ndarray](https://docs.rs/ndarray/latest/ndarray/doc/ndarray_for_numpy_users/index.html)
-- [loading npy files](https://docs.rs/npy/latest/npy/) (from Python numpy)
+## Machine Learning
+- [ndarray](https://docs.rs/ndarray/latest/ndarray/doc/ndarray_for_numpy_users/index.html): numpy equivalent
+  - [loading npy files](https://docs.rs/npy/latest/npy/) (from Python numpy)
+ - [ORT](https://github.com/pykeio/ort): ONNX run time
 
 ## GUI
 - [Tauri](https://tauri.app/): Use Rust in backend and web stack in frontend
