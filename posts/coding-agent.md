@@ -3,6 +3,21 @@
 My blueprint for the optimal coding agent (team).
 Keeping LLMs in the smart zone using short and relevant context.
 
+Usage patterns:
+- quick (small) edit
+  - skip to instructor agent
+- major edit
+  - full coding agent orchestra
+- new project
+  - deep research for best tech stack
+  - use proven project template
+
+UX:
+- Provide idea -> discuss
+- Refine plan with designer -> submit to general
+- General creates the task tree -> review and submit
+- Watch the executors work -> review finished idea
+
 ## IDEATOR / MUSE
 
 Agent helps you crystallize your vision and define a hard success criterion + web access.
@@ -16,7 +31,7 @@ Uses knowledge base: tool to query existing solved solutions + web access (query
 - discuss best tools (tech stack) for the design specs
 
 ## GENERAL
-Create the battle plan - brief the troops.
+Creates the battle plan - brief the troops.
 
 #### ORCHESTRATOR
 
@@ -46,6 +61,7 @@ Refs:
 Provides every task with perfect (relevant) Context.
 
 - NEW: code templates for fresh projects
+- adds only relevant tools (MCP / CLI) to task context (prevents context bloat)
 - relevant and version matching documentation for coding tasks
   - Coding guidelines based on programming languages / code files involved for the task
   - General use: official matching version docs / blog posts
@@ -62,8 +78,8 @@ Refs:
 - https://x.com/karpathy/status/2021633574089416993
 - [CodeRLM](https://github.com/JaredStewart/coderlm/tree/main)
 
-## EXECUTOR SWARM
-Coding agents work on tasks in parallel - working off the task tree backwards recursively (breadth first, towards the root task - the IDEA).
+## EXECUTORS
+Coding agents working on tasks in parallel - working off the task tree backwards recursively (breadth first, towards the root task - the IDEA).
 
 #### CREATOR
 
@@ -81,6 +97,7 @@ Coding agents work on tasks in parallel - working off the task tree backwards re
 
 - uses REPL / MCP to inspect live vars of code produced by CREATOR
 - fixes any issues spotted by VALIDATOR
+- persist learnings in knowledge base for future reference
 
 ## TASK Life Cycle
 
@@ -108,8 +125,18 @@ User Interface:
 new:
 when agent sees multiple solutions explore in parallel
 
-tool usage (MCP / CLI):
-- should be contextual -> orchestrator adds only relevant tools to task context
+Minimal additions that would move it closer to “optimal”:
+Add a GATEKEEPER (cheap, fast) before GENERAL
+Input: idea + rough scope
+Output: route → instructor-only | partial orchestra | full orchestra
+
+Add post‑mortem synthesis (lightweight)
+After task 0 validation:
+
+what task boundaries were wrong?
+what context was unnecessary?
+what should become a template?
+These don’t add conceptual weight—they reduce entropy over time.
 
 ## References
 
