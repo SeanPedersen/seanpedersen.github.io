@@ -11,7 +11,7 @@ Social media like Instagram, Facebook, Twitter and TikTok literally feed you inf
 
 ## Using AI Systems
 
-Be aware that mental tasks you outsource or augment using AI will likely reduce your cognitive abilities for these tasks like using GPS systems did for navigation. Stay sharp and embrace your human uniqueness by not overusing AI systems for creative tasks. Only use AI to automate the boring stuff where your human uniqueness can not shine through.
+Be aware that mental tasks you outsource or augment using AI will likely reduce your cognitive abilities for these tasks like using GPS systems did for offline navigation. Stay sharp and embrace your human uniqueness by not overusing AI systems for creative tasks. Only use AI to automate the boring stuff where your human creativity can not shine.
 
 ## Brain Rot
 
@@ -28,5 +28,6 @@ Valuable information is information that increases your self-agency. Learning a 
 ## References
 
 - <https://fokus.cool/2025/11/25/i-dont-care-how-well-your-ai-works.html>
+- https://tomwojcik.com/posts/2026-02-15/finding-the-right-amount-of-ai/
 
 #privacy #idea
