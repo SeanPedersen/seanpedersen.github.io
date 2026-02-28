@@ -44,6 +44,14 @@ Another thought formation scheme is shifting the context (perceived connotation)
 - "Have to": I have to work vs I want to work - using "have to" to think about things reduces self-agency
 - "Invest in education" vs "spend on schools": investment implies future returns
 
+## LLM Influence
+
+For all of human history, memes only lived inside human minds and institutions. They were altered and spread by humans.
+
+Now, for the first time, memes can change and replicate in silicon at massive speed. LLMs recombine, mutate and propagate them across both biological and synthetic minds.
+
+The key danger: these new meme variants may no longer be aligned with human interests. Like transposable genetic elements that "colonized" genomes, AI-optimized memes may increasingly influence human cognition in ways that serve the memes' own transmission, not human well-being.
+
 ## Questions of Interest
 
 - How do memes spread through social networks (real vs digital)? culture (music, movies)?
