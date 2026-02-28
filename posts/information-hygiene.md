@@ -19,7 +19,7 @@ What purpose does it serve to being uptodate on the latest celibrity gossip news
 
 ## Gaining Control
 
-Built a social trust network of individuals (personal blogs) and organizations you trust and just consume their content. If you use social media use a feed that only shows content from creators you curated.
+Built a social trust network of individuals (personal blogs) and organizations you trust and just consume their content (using tools like RSS). If you use social media use a feed that only shows content from creators you curated.
 
 ## Valuable Information
 
