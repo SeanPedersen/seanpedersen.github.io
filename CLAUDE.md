@@ -234,20 +234,20 @@ The project uses GitHub Actions for automated deployment:
 
 ## Analytics
 
-PostHog analytics uses the official `posthog-js-lite` package (v4.5.2), pre-bundled into `website/global/posthog-lite.js` via esbuild as a browser-ready IIFE exposing `window.PostHog`.
+OpenPanel analytics is loaded via a CDN snippet in `website/index/index.html` and `website/post/post.html`. No local bundle is required.
 
-**Re-bundling after version updates:**
-```bash
-cd /tmp && npm install posthog-js-lite
-echo "import PostHog from 'posthog-js-lite'; window.PostHog = PostHog;" > posthog-entry.js
-npx esbuild posthog-entry.js --bundle --format=iife --platform=browser --minify \
-  --outfile=/path/to/project/website/global/posthog-lite.js
-```
-
-Initialization (in `website/index/index.html` and `website/post/post.html`):
-```javascript
-window.posthog = new window.PostHog('phc_...', { host: 'https://us.i.posthog.com' });
-window.posthog.capture('$pageview');
+```html
+<script>
+  window.op = window.op || function () { var n = []; return new Proxy(function () { arguments.length && n.push([].slice.call(arguments)) }, { get: function (t, r) { return "q" === r ? n : function () { n.push([r].concat([].slice.call(arguments))) } }, has: function (t, r) { return "q" === r } }) }();
+  window.op('init', {
+    clientId: '1edeec6b-891d-439f-b440-fd0cdcee9fbc',
+    apiUrl: 'https://openpanel.digger.lol',
+    trackScreenViews: true,
+    trackOutgoingLinks: true,
+    trackAttributes: true,
+  });
+</script>
+<script src="https://openpanel.dev/op1.js" defer async></script>
 ```
 
 ## Common Tasks
