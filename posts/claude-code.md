@@ -748,6 +748,8 @@ Must read for a better MCP alternative (save tokens):
   - https://github.com/badlogic/pi-skills
 - https://kanyilmaz.me/2026/02/23/cli-vs-mcp.html
 
+Or how to fix MCP: https://mksg.lu/blog/context-mode
+
 ### Browser Control
 
 Allows claude to use a web browser to test and debug webapps.
