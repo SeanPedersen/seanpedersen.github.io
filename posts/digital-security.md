@@ -4,7 +4,6 @@ icon: "/images/icons/digital-security.webp"
 ---
 # Digital Security for Everyone
 
-
 The internet is a war zone and you are an active participant if you like it or not - so learn to defend yourself!
 
 ## Essentials
@@ -70,6 +69,8 @@ Modern operating systems have built-in protection that performs as well as or be
 ### VPN Services
 
 For typical browsing on HTTPS-secured websites (which is most of the internet now), paid VPN services add minimal security benefit. The privacy claims in their marketing are largely exaggerated for everyday use. The core question is: do you trust your ISP less than your VPN provider? Check [this article](https://digdeeper.love/articles/vpn.xhtml) out for more info.
+
+Bonus paranoia: even with HTTPS and secure DNS enabled, a Wi-fi / VPN operator can infer which websites you are browsing based on IPs you visit - so it comes down to trust or use Tor.
 
 ## Conclusion
 
