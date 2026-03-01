@@ -19,3 +19,5 @@ Ein paar Dinge die in der BRD komplett falsch laufen aber als normal erachtet we
 - "Die 5% Klausel für Parteien" - Der Sinn soll seien, das Parlament regierungsfähig zu halten, indem Zustände wie in der Weimarer Republik vermieden werden (zu viele Splitterparteien). Doch der wahre Effekt ist die Lähmung neuer politischer Kräfte. Neue Parteien haben kaum Sichtbarkeit und Wähler rechnen damit, dass ihre Stimme durch die 5% Klausel verpufft (was sie hemmt neue / kleine Parteien zu wählen). Eine bessere Lösung ist eine fixe Anzahl von Fraktionen im Parlament (z.B. 8) mit einer deutlich niedrigeren Parteiensperrklausel (z.b. 1%) - damit wäre das Parlament stets regierungsfähig und neue / kleine Parteien haben eine echt Chance ins Parlament einzuziehen.
 
 - "Wohnraum als Spekulationsobjekt" - Wohnraum ist ein Grundrecht, welches nicht aus Profitgier sabotiert werden darf.
+
+#idea
