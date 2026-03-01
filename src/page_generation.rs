@@ -420,6 +420,9 @@ fn markdown_to_html(markdown: &str, tags: &[String]) -> String {
                 in_blockquote = false;
                 html_output.push_str("</blockquote>");
             }
+            Event::SoftBreak => {
+                html_output.push_str("<br>");
+            }
             Event::Start(Tag::Paragraph) => {
                 if in_blockquote {
                     html_output.push_str(r#"<p class="quote-line">"#);
