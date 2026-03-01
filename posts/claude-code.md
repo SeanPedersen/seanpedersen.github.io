@@ -485,7 +485,8 @@ Now you can instruct claude to work on github issues (read or create).
 
 Just like browser control lets claude inspect your Tauri app.
 
-https://github.com/hypothesi/mcp-server-tauri
+- https://github.com/hypothesi/mcp-server-tauri
+- https://github.com/P3GLEG/tauri-plugin-mcp
 
 ### Knowledge Base
 
