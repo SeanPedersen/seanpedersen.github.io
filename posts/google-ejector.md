@@ -59,6 +59,8 @@ Shared Docs:
 File Sync:
 
 - [Syncthing](https://syncthing.net/) ([Code](https://github.com/syncthing/syncthing)) - decentralized, self-hostable, fast & unix aligned
+  - iOS: https://github.com/pixelspark/sushitrain
+  - Android: https://github.com/researchxxl/syncthing-android
   
 Calendar / Contacts:
 
