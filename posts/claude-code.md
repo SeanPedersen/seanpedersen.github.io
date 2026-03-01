@@ -61,8 +61,8 @@ By creating a dir ~/.claude/commands and creating markdown files like follow-up.
 
 /follow-up
 ```
-Your context window is becoming too full. Create a brief prompt for yourself that informs you in few words of the essential data needed for you to continue this task in a new session.
-**ATTENTION:** Do not perform the task! Instead, only return the prompt that will provide the necessary context for you to carry it out in a new session!
+Your context window is becoming too full - create a brief prompt for yourself that briefly informs you of the essential data needed for you to continue this task in a new session.
+**ATTENTION:** Do not perform the task! Only return the prompt that will provide the needed context for the new session.
 ```
 
 ## Directing Claude
