@@ -24,6 +24,12 @@ Just some notes on how to use Python effectively. Python strives to be simple an
 
 Use [uv](https://github.com/astral-sh/uv) (preferred and popular) or [pixi](https://pixi.sh/latest/python/tutorial/) (can install conda packages - useful for GPU/CUDA stuff) for fast and sane package management.
 
+## Interactive Development
+
+Great for prototyping, one-off analysis scripts and literate programming.
+
+[Jupyter Notebook](https://jupyter.org/) and [Marimo](https://marimo.io/).
+
 ## Web Development
 
 - Use [FastAPI](https://fastapi.tiangolo.com/) to create clean and simple REST API's supporting both synchronous and [asynchronous](https://fastapi.tiangolo.com/async/) routes
@@ -35,13 +41,7 @@ Use [uv](https://github.com/astral-sh/uv) (preferred and popular) or [pixi](http
 - For formatting console output: [rich](https://github.com/Textualize/rich)
 - Progress bar: [tqdm](https://github.com/tqdm/tqdm)
 
-## Interactive Development
-
-Great for prototyping, one-off analysis scripts and literate programming.
-
-[Jupyter Notebook](https://jupyter.org/) and [Marimo](https://marimo.io/).
-
-## Desktop Apps
+## Desktop GUI Apps
 
 [PyTauri](https://github.com/pytauri/pytauri/) / [PyLoid](https://github.com/pyloid/pyloid) / [PyWebView](https://github.com/r0x0r/pywebview)
 
