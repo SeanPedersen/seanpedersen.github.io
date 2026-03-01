@@ -12,7 +12,7 @@ Ein paar Dinge die in der BRD komplett falsch laufen aber als normal erachtet we
 
 - "Die Kriminalisierung von Drogen." - verschwendet wertvolle Polizeiarbeit, lässt potentielle Steuergelder liegen und treibt Konsumenten in echte kriminelle Kreise. Alle Drogen sollen nur in Apotheken oder extra Abgabestellen für Volljährige verfügbar sein mit Hilfsangeboten für Abhängige. Alkohol und Tabak sind ebenso Drogen wie jede andere und sollten nicht in Lebensmittelgeschäften verfügbar sein.
 
-- "Toleranz von nachweislich toxischen Online-Plattformen wie TikTok, YouTube Shorts, Instagram und co." Jegliche Art von endlos Feeds in digitalen Apps gehört verboten. Tech-Unternehmen machen bereits Kinder zu abhängigen unmündigen Konsumenten.
+- "Toleranz von nachweislich toxischen Online-Plattformen wie TikTok, YouTube Shorts, Instagram und co." Jegliche Art von endlos Feeds in digitalen Apps gehört verboten. Tech-Unternehmen machen bereits Kinder zu abhängigen unmündigen Konsumenten. (Selbst ein Verbot bekämpft lediglich das Sympton, die Ursache ist die Normalisierung des digitalen Überwachungskapitalismus durch unstillbare Gier nach Profit und Macht.)
 
 - "Die Zweiklassengesellschaft der Privat- und Gesetzlichversicherten." Der Zugang zum Gesundheitssystem darf nicht eine Frage des Geldes sein. Schafft die Privatkasse ab.
 
