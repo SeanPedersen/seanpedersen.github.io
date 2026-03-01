@@ -78,6 +78,7 @@ Refs:
 - https://github.com/iannuttall/librarian
 - https://github.com/upstash/context7
 - https://ref.tools/
+- https://github.com/GlitterKill/sdl-mcp
 - https://x.com/karpathy/status/2021633574089416993
 - [CodeRLM](https://github.com/JaredStewart/coderlm/tree/main)
 
