@@ -23,7 +23,7 @@ UX:
 
 ## IDEATOR / MUSE
 
-Agent helps you crystallize your vision and define a hard success criterion + web access.
+Agent helps you crystallize your vision and define a hard success criterion (agent has web access to research ideas).
 
 #### DESIGNER
 Uses knowledge base: tool to query existing solved solutions + web access (query tools like deepwiki.com). Designer also needs relevant context to create good architecture (blog posts, papers, books, etc)
@@ -152,6 +152,8 @@ Existing Agents:
   - https://lucumr.pocoo.org/2026/1/31/pi/
 - https://github.com/openai/codex
 - https://github.com/jacobsparts/agentlib - really cool project - drops the agent directly into Python repl
+
+[Verified Spec-Driven Development](https://gist.github.com/dollspace-gay/d8d3bc3ecf4188df049d7a4726bb2a00)
 
 - replace claude code with cheaper + faster alternatives
   - https://steipete.me/posts/2025/self-hosting-ai-models
