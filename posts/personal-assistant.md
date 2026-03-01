@@ -42,7 +42,9 @@ A good agent security layer would let me scope data access for every agent runni
 ## References
 
 - https://openclaw.ai/
-- https://github.com/Dicklesworthstone/pi_agent_rust
+  - https://mksg.lu/blog/clawdbot-two-weeks-in
+- https://pi.dev/
+  - https://github.com/Dicklesworthstone/pi_agent_rust
 - https://github.com/nearai/ironclaw
 - https://www.docker.com/blog/run-nanoclaw-in-docker-shell-sandboxes/
 - https://the-decoder.de/openclaw-aka-clawdbot-und-moltbook-sind-ein-paradies-fuer-datendiebe/
