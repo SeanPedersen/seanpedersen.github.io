@@ -46,6 +46,7 @@ Use git working branches to start multiple sub-agents on the same code base.
 - Plan mode: SHIFT + TAB (activate to plan complex features - claude asks many clarifying questions)
 - Thinking mode: TAB (activate for complex reasoning)
 - `/clear`: clear context (do it if you are stuck)
+- `/batch`: Execute taks in parallel using agents
 - `/compact <specify what to include in summary>`: summarizes context (do it if stuck or long session)
 - `/simplify`: Simplify code / refactor (remove redundancies)
 - ESC: interrupt, ESC + ESC: revert to previous state
