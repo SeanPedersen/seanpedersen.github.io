@@ -69,4 +69,22 @@ Overcoming trauma and (re)programming our subconsiousness require continuous ref
 
 - Source for "Healing the Root Trauma" section: <https://x.com/FU_joehudson/status/1914381665725456722>
 
+TODO:
+1. Somatic (Body‑First) Work
+Techniques like somatic experiencing, breathwork, or body scanning help discharge patterns that journaling alone can’t reach. This complements the “emotion moving all the way through” idea, but makes it actionable at the physiological level.
+
+3. Exposure & Behavioral Rewiring
+Awareness doesn’t automatically change behavior.
+Deliberately placing yourself in mildly triggering situations and responding differently rewires patterns faster than insight alone.
+This mirrors how habits form: repetition under emotional load. The article implies this, but doesn’t emphasize practice under stress as a core mechanism.
+
+3. Identity-Level Reframing
+The focus is on patterns and trauma, but not explicitly on identity narratives.
+Asking “Who am I when I don’t run this pattern?” or “What identity does this pattern protect?” can unlock change faster than working only on behavior.
+This connects to memetics: identity is a high‑level attractor shaping behavior.
+
+4. Environmental Design (External Subconscious)
+Your environment programs you continuously (people, media, routines).
+Reducing exposure to reinforcing stimuli is often more effective than willpower. This aligns with other blog themes like Information Hygiene.
+
 #idea
