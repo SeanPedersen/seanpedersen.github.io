@@ -1,11 +1,11 @@
 ---
 date: '2025-07-04'
 ---
-# Personal Assistant
+# Personal Agent
 
-A PA powered by LLM via chat and voice interface
+A PA powered by an LLM agent via chat and voice interface
 - informs you every day what is happening (daily agenda)
-- executes tasks for you (setup a blog for me, order my favorite pizza, etc.)
+- executes tasks for you (setup a blog for me, order my favorite pizza, make me rich, make world peace  etc.)
 
 ## Integrations
 
