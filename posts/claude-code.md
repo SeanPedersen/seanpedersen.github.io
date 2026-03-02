@@ -15,7 +15,7 @@ Change dir to a code project and start Claude Code using: `claude` and authentic
 
 Now you can ask claude about the project or instruct it to implement a new feature. Generally it is advised to plan out the architecture (design) yourself and then use Claude to implement small features which are easy to validate.
 
-Bonus: Use [this awesome project](https://github.com/ericc-ch/copilot-api) to use your Github Copilot subscription with claude code
+Bonus: Use [this awesome project](https://github.com/caozhiyuan/copilot-api) to use your Github Copilot subscription with claude code
 
 ## Starting Projects
 
