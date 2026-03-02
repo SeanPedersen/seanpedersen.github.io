@@ -154,6 +154,7 @@ Existing Agents:
 - https://github.com/openai/codex
 - https://github.com/jacobsparts/agentlib - really cool project - drops the agent directly into Python repl
 
+- https://agent-flywheel.com/flywheel
 [Verified Spec-Driven Development](https://gist.github.com/dollspace-gay/d8d3bc3ecf4188df049d7a4726bb2a00)
 
 - replace claude code with cheaper + faster alternatives
