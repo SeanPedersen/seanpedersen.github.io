@@ -171,6 +171,10 @@ LIMIT 20;
 
 Advanced features include phrase searches with `phraseto_tsquery()`, prefix matching with `:*` operators and proximity searches with distance operators. Highlight matching terms in results using `ts_headline()` with custom start/stop delimiters. Configure multiple language dictionaries per database to support multilingual content, switching configurations per query.
 
+Extensions:
+- https://github.com/paradedb/paradedb
+- https://github.com/tensorchord/VectorChord-bm25
+
 #### Substring / Fuzzy (trigram)
 
 Use pg_trgm when you need partial matches (`%term%`), autocomplete, or typo-tolerant search. It indexes character trigrams, not tokens, and works great alongside full-text search:
