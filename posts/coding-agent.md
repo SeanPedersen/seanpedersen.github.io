@@ -57,6 +57,7 @@ Refs:
 - https://github.com/steveyegge/beads
 - https://github.com/joshuadavidthomas/opencode-beads
 - https://github.com/Dicklesworthstone/beads_viewer
+- [Why decentral task orchestration wins](https://x.com/doodlestein/status/2013683966495084814)
 - Claude Code released tasks feature (similar to beads)
 
 #### INSTRUCTOR
