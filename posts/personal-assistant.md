@@ -43,6 +43,7 @@ A good agent security layer would let me scope data access for every agent runni
 
 - https://openclaw.ai/
   - https://mksg.lu/blog/clawdbot-two-weeks-in
+  - https://every.to/guides/claw-school
 - https://pi.dev/
   - https://github.com/Dicklesworthstone/pi_agent_rust
 - https://github.com/nearai/ironclaw
