@@ -71,7 +71,7 @@ Overcoming trauma and (re)programming our subconsiousness require continuous ref
 
 TODO:
 1. Somatic (Body‑First) Work
-Techniques like somatic experiencing, breathwork, or body scanning help discharge patterns that journaling alone can’t reach. This complements the “emotion moving all the way through” idea, but makes it actionable at the physiological level.
+Techniques like somatic experiencing, breathwork, or body scanning help discharge patterns that journaling alone can’t reach. This complements the “emotion moving all the way through” idea, but makes it actionable at the physiological level. Your whole body is made of nervous cells (neurons), since neurons are distributed memory - every part of your body contains memories.
 
 3. Exposure & Behavioral Rewiring
 Awareness doesn’t automatically change behavior.
