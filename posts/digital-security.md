@@ -50,7 +50,9 @@ Remember that anything shared online can potentially be weaponized. Stalkers can
 
 ### Device Encryption
 
-Encrypt your devices to protect data if they're lost or stolen. Most smartphones are encrypted by default when you use a passcode, while computers may require setting up encryption (BitLocker on Windows, FileVault on Mac).
+Encrypt your devices to protect data if they're lost or stolen. Most smartphones are encrypted by default when you use a passcode, while computers may require setting up encryption (BitLocker on Windows, FileVault on Mac, LUKS on Linux).
+
+Setting a BIOS / UEFI PW as well - can help to brick the device for technical amateurs.
 
 ### Tor Browser (darknet)
 
