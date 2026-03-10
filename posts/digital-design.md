@@ -13,6 +13,7 @@ Feels natural - usable without thinking how. Respects the user: increases user a
 - Information Hierarchy (pack UI elements together based on their semantics)
   - Minimizes mouse movement / provide keyboard shortcuts for common inputs
 - Iterative complexity (progressive disclosure of options)
+- Minimize visual shift / movement (every moving pixel must add value)
 - Use rows instead of boxes for items that have numerical values to compare
 - Use hover highlight effects only for interactive components (links, buttons)
 - Design languages / trends:
