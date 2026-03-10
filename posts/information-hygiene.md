@@ -3,15 +3,16 @@ date: '2025-06-08'
 ---
 # Information Hygiene
 
-Do you control what information you consume or is your mind controlled by social media companies? Wake up Neo...
+Do you control what information you consume or is your mind controlled by tech companies? Wake up Neo...
 
 ## Algorithmic Feeds
 
-Social media like Instagram, Facebook, Twitter and TikTok literally feed you information with the goal of stealing your valuable attention to **serve you advertisements and to collect personal information about you**. Your brain is being force fed ads and you are the product. For them you are a little rat that they feed digital heroin to harvest it for money (showing ads and selling personal data).
+Social media products like Instagram, Facebook, Twitter and TikTok literally feed you information with the goal of stealing your valuable attention to **serve you advertisements and to collect personal information about you**. Your brain is being force fed ads and you are the product - a little rat being fed digital heroin (infinite scroll feeds) to harvest it for money (showing ads and selling personal data).
 
 ## Using AI Systems
 
-Be aware that mental tasks you outsource or augment using AI will likely reduce your cognitive abilities for these tasks like using GPS systems did for offline navigation. Stay sharp and embrace your human uniqueness by not overusing AI systems for creative tasks. Only use AI to automate the boring stuff where your human creativity can not shine.
+Outsourcing or augmenting mental tasks using generative AI (like coding, drawing or writing) will reduce your own cognitive abilities for these tasks like using GPS systems did for offline navigation.
+Stay sharp and embrace your human uniqueness by not overusing AI systems for creative tasks. Only use AI to automate the boring stuff where your human creativity can not shine.
 
 ## Brain Rot
 
@@ -29,5 +30,7 @@ Valuable information is information that increases your self-agency. Learning a 
 
 - <https://fokus.cool/2025/11/25/i-dont-care-how-well-your-ai-works.html>
 - https://tomwojcik.com/posts/2026-02-15/finding-the-right-amount-of-ai/
+- [How AI Impacts Skill Formation](https://arxiv.org/abs/2601.20245)
+- [Sycophantic AI Decreases Prosocial Intentions and Promotes Dependence](https://arxiv.org/abs/2510.01395)
 
 #privacy #idea
