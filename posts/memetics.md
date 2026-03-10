@@ -31,7 +31,9 @@ The same meme may spread differently depending on the social medium (social zeit
 
 What is the rate of abstraction in natural language (spread of new words that represent a novel composite concept)? How does it differ between languages? How does it affect society?
 
-Perfect project to make some analysis: <https://github.com/rspeer/wordfreq/tree/master>
+Projects to make some word analysis: 
+- https://github.com/rspeer/wordfreq/tree/master
+- https://wyattsell.com/experiments/word-graph/
 
 Who controls the language, controls the thoughts. -> New words spark new thoughts. Thus to control the masses, control which words (concepts) are spread via media and education systems that favor your agenda (how you want people to think about the world).
 
