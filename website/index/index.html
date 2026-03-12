@@ -221,6 +221,7 @@
           requestAnimationFrame(() => input.focus());
 
           input.addEventListener('input', function (e) {
+            if (window.__searchFullyLoaded) return;
             const query = e.target.value;
             const lowerQuery = query.toLowerCase();
             if (clearBtn) clearBtn.style.display = query ? 'flex' : 'none';

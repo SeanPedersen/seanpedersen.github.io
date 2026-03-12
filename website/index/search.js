@@ -572,29 +572,20 @@
     const input = document.getElementById('searchInput');
     if (!input) return;
 
-    // Store current value and focus state
-    searchQuery = window.__searchInputValue || input.value || '';
-    const hadFocus = document.activeElement === input;
+    // Deactivate inline handlers via flag (no cloning needed to avoid focus disruption)
+    window.__searchFullyLoaded = true;
 
-    // Clone input to remove inline event listeners
-    const newInput = input.cloneNode(true);
-    input.parentNode.replaceChild(newInput, input);
+    // Store current value
+    searchQuery = input.value || '';
 
-    // Setup full search handlers
-    newInput.addEventListener('input', handleSearchInput);
-    newInput.addEventListener('blur', handleSearchBlur);
+    // Add full search handlers alongside (now-disabled) inline ones
+    input.addEventListener('input', handleSearchInput);
+    input.addEventListener('blur', handleSearchBlur);
 
-    // Restore focus if input had it before cloning
-    if (hadFocus) {
-      newInput.focus();
-    }
-
-    // Clone clear button to remove inline event listeners
+    // Add full clear button handler
     const clearBtn = document.getElementById('clearSearchBtn');
     if (clearBtn) {
-      const newClearBtn = clearBtn.cloneNode(true);
-      clearBtn.parentNode.replaceChild(newClearBtn, clearBtn);
-      newClearBtn.addEventListener('mousedown', clearSearch);
+      clearBtn.addEventListener('mousedown', clearSearch);
     }
 
     setupClickOutside();
