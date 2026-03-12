@@ -11,6 +11,7 @@ everyone will have LLM powered [personal agent](/posts/personal-assistant.md) ->
 
 Software: will be solved for all verifiable domains -> taste and data rule after
 
+Augmented Reality glasses will gain more and more adoption -> enabling seemless digitalization.
 
 robots: rate of progress unknown -> but certain will be huge impact on economy and geo-politics (warfare)
 
