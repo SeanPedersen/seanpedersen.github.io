@@ -78,7 +78,6 @@ Memory Systems:
 - https://github.com/supermemoryai/supermemory
 - https://github.com/getzep/graphiti
 
-## 
 ## Benchmarks
 You can not improve, what you can not see - running evals for your RAG apps is crucial to ship useful products (bad example: [Elysium by weaviate](https://github.com/weaviate/elysia/issues/48#issuecomment-3286114697)).
 
