@@ -67,8 +67,8 @@ Compression Distance (CD) takes two objects A,B (e.g. text files) as arguments a
 If A & B are very similar c(A+B) will not be much larger than either c(A) or c(B) producing a small CD(A,B), vice versa if A & B are dissimilar c(A+B) will be much larger than c(A) or c(B) producing a big CD(A,B).
 
 TODO:
-
 - [Solomonoff Induction](https://www.lesswrong.com/tag/solomonoff-induction) and [AIXI](https://www.lesswrong.com/tag/aixi): Kolmogorov Complexity as Occam's razor for AGI
 - [Hutter Prize](http://prize.hutter1.net/): Compression (prediction) as key ingredient to AGI
+- Kolmogorov complexity for physical objects: shortest transformation of matter to arrive at an object (matter configuration). K(chess piece knight) > K(chess piece bishop) -> since bishop is rotational symmetric it is easier to produce 
 
 #coding
