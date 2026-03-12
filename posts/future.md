@@ -7,7 +7,7 @@ AI will continue to reshape how we work, increasing leverage of the (creative) i
 
 computer goes faster -> LLM become cheaper and faster
 
-everyone will have LLM powered personal agent -> value lies in providing connectors to services for the agents to use.
+everyone will have LLM powered [personal agent](/posts/personal-assistant.md) -> value lies in providing connectors to services (websites) for the agents to use ([WebMCP](https://webmcp.dev/))
 
 Software: will be solved for all verifiable domains -> taste and data rule after
 
