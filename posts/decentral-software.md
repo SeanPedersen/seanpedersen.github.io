@@ -14,9 +14,12 @@ Interplanetary Trust System: Rate and discover services based on your local peer
 Interplanetary Messaging System: A decentral, secure [messenger](/posts/messenger/) that works.
 
 ## References
+- [Bittorrent](https://www.bittorrent.com/)
 - [Bitcoin](https://bitcoin.org/bitcoin.pdf)
 - [IPFS](https://ipfs.tech/)
 - [SyncThing](https://github.com/syncthing/syncthing)
 - [LocalSend](https://github.com/localsend/localsend)
+- https://satproto.org/
+  - [HN Discussion](https://news.ycombinator.com/item?id=47344548)
 
 #coding
