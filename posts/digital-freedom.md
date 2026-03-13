@@ -20,6 +20,5 @@ Tools to download files:
 
 Mobile Apps to view / play files:
 - [foobar2000](https://www.foobar2000.org/): music player
-- [Readest](https://github.com/readest/readest): eBook reader
 
 #tutorial #privacy
