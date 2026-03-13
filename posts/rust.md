@@ -23,7 +23,7 @@ Great introduction: <https://fasterthanli.me/articles/a-half-hour-to-learn-rust>
  - [ORT](https://github.com/pykeio/ort): ONNX run time
 
 ## GUI
-- [Tauri](https://tauri.app/): Use Rust in backend and web stack in frontend
+- [Tauri](https://tauri.app/): Use Rust in backend and web stack in frontend to build desktop and mobile apps
   - [Tauri MCP Server](https://github.com/hypothesi/mcp-server-tauri)
 - [GPUI](https://www.gpui.rs/): UI lib created by and used in Zed editor
   - [GPUI components](https://github.com/longbridge/gpui-component)
