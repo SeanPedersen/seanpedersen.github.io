@@ -10,6 +10,7 @@ computer goes faster -> LLM become cheaper and faster
 everyone will have LLM powered [personal agent](/posts/personal-assistant.md) -> value lies in providing connectors to services (websites) for the agents to use ([WebMCP](https://webmcp.dev/))
 
 Software: will be solved for all verifiable domains -> taste and data rule after
+Image + Video: Image / Video / TV show production will be solved. -> again value lies in taste.
 
 Augmented Reality glasses will gain more and more adoption -> enabling seemless digitalization.
 
