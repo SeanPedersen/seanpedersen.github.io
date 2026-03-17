@@ -15,8 +15,8 @@ It took about three months and extensive paperwork to obtain ethics approval for
 
 - [X Thread by Prof. Thordarson](https://x.com/PalliThordarson/status/2033013002061136212)
 - Relevant X posts by Paul: Day [#1](https://x.com/paul_conyngham/status/1847813816685646022), [#2](https://x.com/paul_conyngham/status/1848540290594009369), [#3](https://x.com/paul_conyngham/status/1849044007890145734), [#4](https://x.com/paul_conyngham/status/1859091739564536237), [#5](https://x.com/paul_conyngham/status/1859793608989344042), [Images](https://x.com/paul_conyngham/status/2032955217021669779), [DNA sequencing](https://x.com/paul_conyngham/status/2033030685842354594), 
-- [Fortune feature on Paul Conyngham, Rosie, and the mRNA vaccine work at UNSW](https://fortune.com/2026/03/15/australian-tech-entrepreneur-ai-cancer-vaccine-dog-rosie-unsw-mrna/)
-​- [India Today tech article summarizing his use of ChatGPT and AlphaFold and the ethics-approval process](https://www.indiatoday.in/technology/news/story/man-uses-chatgpt-and-alphafold-to-build-diy-mrna-cancer-vaccine-saves-dog-2882198-2026-03-15)
-- [NDTV report on the custom mRNA vaccine and UNSW collaboration](https://www.ndtv.com/feature/australian-entrepreneur-uses-chatgpt-to-create-customised-vaccine-to-cure-dogs-cancer-11219043)
+- [Fortune article](https://fortune.com/2026/03/15/australian-tech-entrepreneur-ai-cancer-vaccine-dog-rosie-unsw-mrna/)
+- [India Today tech article](https://www.indiatoday.in/technology/news/story/man-uses-chatgpt-and-alphafold-to-build-diy-mrna-cancer-vaccine-saves-dog-2882198-2026-03-15)
+- [NDTV article](https://www.ndtv.com/feature/australian-entrepreneur-uses-chatgpt-to-create-customised-vaccine-to-cure-dogs-cancer-11219043)
 ​
 ​#idea
