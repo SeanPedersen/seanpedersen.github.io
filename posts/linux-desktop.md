@@ -28,13 +28,13 @@ PW Manager:
 
 Terminal:
 - [ghostty](https://ghostty.org/): fast
-- guake (drop down terminal)
+- [guake](https://github.com/Guake/guake) (drop down terminal)
 
 Shell:
 - ZSH + [ZEAL](https://github.com/SeanPedersen/zeal)
 
 Process Monitor:
-- NeoHtop / Neop (my fork)
+- NeoHtop / [Neop](https://github.com/SeanPedersen/neop) (my fork)
 - [Mission Center](https://missioncenter.io/)
 - [Glances](https://github.com/nicolargo/glances)
 
