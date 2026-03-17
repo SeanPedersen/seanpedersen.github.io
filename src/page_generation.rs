@@ -320,10 +320,26 @@ fn markdown_to_html(markdown: &str, tags: &[String]) -> String {
                     code_block_content.clear();
                 }
             }
-            Event::Start(Tag::Link { .. }) => {
+            Event::Start(Tag::Link {
+                link_type,
+                dest_url,
+                title,
+                id,
+            }) => {
                 in_link = true;
+                let transformed_url = if dest_url.ends_with(".md") {
+                    dest_url.strip_suffix(".md").unwrap().to_string().into()
+                } else {
+                    dest_url
+                };
+                let new_event = Event::Start(Tag::Link {
+                    link_type,
+                    dest_url: transformed_url,
+                    title,
+                    id,
+                });
                 let mut temp = String::new();
-                html::push_html(&mut temp, std::iter::once(event));
+                html::push_html(&mut temp, std::iter::once(new_event));
                 html_output.push_str(&temp);
             }
             Event::End(TagEnd::Link) => {
