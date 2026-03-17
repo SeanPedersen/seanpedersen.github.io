@@ -3,7 +3,7 @@ date: '2025-07-04'
 ---
 # Personal Agent
 
-A PA powered by an LLM agent via chat and voice interface
+A personal agent (PA) powered by an LLM agent via chat and voice interface
 - informs you every day what is happening (daily agenda)
 - executes tasks for you (setup a blog for me, order my favorite pizza, make me rich, make world peace  etc.)
 
@@ -11,9 +11,10 @@ A PA powered by an LLM agent via chat and voice interface
 
 Instead of having separate apps installed or navigating to specialized websites to order products / food, find events, plan my next travel trip, etc. - we will use one unified chat interface (LLM agent) with integrations for services / data sources that enable your agent to do all these things for you.
 
-## Custom Interfaces
+## Custom Apps
 
-Every app / program can be created / customized with natural language
+Every open-source app / program can be easily created / customized with natural language.
+
 - create an app for me so I stay motivated to do fitness -> uses personal (emotional) triggers to keep you going
 - add function X to my TODO app
 
