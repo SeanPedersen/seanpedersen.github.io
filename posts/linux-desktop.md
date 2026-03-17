@@ -42,8 +42,9 @@ Useful Daemons:
 - [Syncthing](https://syncthing.net/)
 - [IPFS](/posts/ipfs)
 
-Tweaks:
+Tweaks & more:
 - [ananicy-cpp](https://gitlab.com/ananicy-cpp/ananicy-cpp): prevents system slow down on high disk usage (CachyOS ships with it)
+- [OpenZFS](https://openzfs.org/wiki/Main_Page): durable file system with useful features
 
 ## Honorable Mentions
 
