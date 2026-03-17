@@ -30,6 +30,6 @@ To future proof open-source software, we need to identify other high-impact soft
 Similar future attacks maybe even more sophisticated by taking legitimate control of criticial open-source software for years - building up trust by years of reliable and helpful work - and when needed dropping a malicious version. A more resilient structure for critical open-source projects would be decentral and select a group of verifiers randomly from a group.
 
 ## References
-- https://www.youtube.com/watch?v=aoag03mSuXQ
+- [Veritasium YouTube Video](https://www.youtube.com/watch?v=aoag03mSuXQ)
 
 #coding
