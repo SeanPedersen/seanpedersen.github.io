@@ -28,7 +28,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: target/release/blog-builder
-          key: ${{ runner.os }}-rust-binary-${{ hashFiles('src/**/*.rs', 'Cargo.toml', 'Cargo.lock') }}
+          key: ${{ runner.os }}-rust-binary-smart-similar-${{ hashFiles('src/**/*.rs', 'Cargo.toml', 'Cargo.lock') }}
           restore-keys: |
             ${{ runner.os }}-rust-binary-
 
@@ -57,10 +57,16 @@ jobs:
 
       - name: Build Rust blog builder 🔨
         if: steps.cache-rust-binary.outputs.cache-hit != 'true'
-        run: cargo build --release
+        run: cargo build --release --features smart-similar
+
+      - name: Cache HuggingFace model 🧠
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface/hub/models--minishlab--potion-multilingual-128M
+          key: hf-model-potion-multilingual-128M
 
       - name: Build static site 🏗️
-        run: ./target/release/blog-builder
+        run: ./target/release/blog-builder --smart-similar
 
       - name: Upload artifact 📡
         uses: actions/upload-pages-artifact@v3

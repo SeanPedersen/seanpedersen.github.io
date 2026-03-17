@@ -22,13 +22,17 @@ fn inline_css_placeholder(args: &HashMap<String, Value>) -> tera::Result<Value> 
     Ok(Value::String(format!("<!-- INLINE_CSS:{} -->", path)))
 }
 
-pub fn build_post_pages(out_dir: &Path, posts: &Arc<Vec<Post>>) -> Result<()> {
+pub fn build_post_pages(
+    out_dir: &Path,
+    posts: &Arc<Vec<Post>>,
+    similar_map: Option<&HashMap<String, Vec<PostSummary>>>,
+) -> Result<()> {
     let start = Instant::now();
 
     let posts_out_dir = out_dir.join("posts");
     fs::create_dir_all(&posts_out_dir)?;
 
-    generate_all_post_pages(&posts_out_dir, posts)?;
+    generate_all_post_pages(&posts_out_dir, posts, similar_map)?;
 
     println!(
         "✓ Generated {} post pages in {:.2}s",
@@ -145,13 +149,20 @@ pub fn generate_post_page(out_dir: &Path, post: &Post, related: &[PostSummary]) 
     Ok(())
 }
 
-pub fn generate_all_post_pages(posts_out_dir: &Path, posts: &Arc<Vec<Post>>) -> Result<()> {
+pub fn generate_all_post_pages(
+    posts_out_dir: &Path,
+    posts: &Arc<Vec<Post>>,
+    similar_map: Option<&HashMap<String, Vec<PostSummary>>>,
+) -> Result<()> {
     let post_ids: Vec<String> = posts.iter().map(|p| p.id.clone()).collect();
     let completed = std::sync::atomic::AtomicUsize::new(0);
 
     post_ids.par_iter().try_for_each(|post_id| -> Result<()> {
         let post = posts.iter().find(|p| &p.id == post_id).unwrap();
-        let related = get_related_posts(posts, post_id, &post.tags, 3);
+        let related = match similar_map.and_then(|m| m.get(post_id)) {
+            Some(similar) => similar.clone(),
+            None => get_related_posts(posts, post_id, &post.tags, 3),
+        };
         generate_post_page(posts_out_dir, post, &related)?;
         completed.fetch_add(1, std::sync::atomic::Ordering::Relaxed);
         Ok(())

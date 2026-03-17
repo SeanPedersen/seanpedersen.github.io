@@ -44,6 +44,8 @@ pub struct Post {
     pub tags: Vec<String>,
     pub icon: Option<String>,
     pub content_html: String,
+    #[cfg_attr(not(feature = "smart-similar"), allow(dead_code))]
+    pub content_raw: String,
 }
 
 #[derive(Debug, Clone)]
@@ -89,6 +91,7 @@ pub fn read_all_posts(posts_dir: &Path) -> Result<Vec<Post>> {
                 return None;
             }
             let tags = extract_tags(&content);
+            let content_raw = markdown.clone();
             let markdown_without_title = remove_first_h1(&markdown);
             let content_html = markdown_to_html(&markdown_without_title, &tags);
 
@@ -105,6 +108,7 @@ pub fn read_all_posts(posts_dir: &Path) -> Result<Vec<Post>> {
                     }
                 }),
                 content_html,
+                content_raw,
             })
         })
         .collect();

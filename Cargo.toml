@@ -18,11 +18,19 @@ anyhow = "1.0"
 once_cell = "1.20"
 tera = "1.20"
 syntect = "5.2"
+clap = { version = "4", features = ["derive"] }
+
+# Feature-gated
+model2vec-rs = { version = "0.1.4", optional = true }
 
 # Asset optimization
 lightningcss = "1.0.0-alpha.68"
 minify-html = "0.15"
 minify-js = "0.5"
+
+[features]
+default = []
+smart-similar = ["dep:model2vec-rs"]
 
 [profile.release]
 opt-level = 3
