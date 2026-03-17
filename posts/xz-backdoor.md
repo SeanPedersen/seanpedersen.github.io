@@ -14,13 +14,13 @@ A persona called [Jia Tan](https://github.com/JiaT75) spent ~2.5 years:
 2. Taking over as maintainer
 3. Secretly embedding a backdoor inside binary test blobs (invisible in normal code review)
 
-The backdoor exploited a precise chain: XZ → dependency of [OpenSSH](https://github.com/openssh/openssh-portable) → hijacking the RSA authentication step via IFUNC resolvers and dynamic audit hooks, creating a **master key to any server running the infected version**.
+The backdoor exploited a precise chain: XZ ([liblzma](https://github.com/ShiftMediaProject/liblzma)) → dependency of [OpenSSH](https://github.com/openssh/openssh-portable) → hijacking the RSA authentication step via IFUNC resolvers and dynamic audit hooks, creating a **master key to any server running the infected version**.
 
 **The Near-Miss**
-Microsoft engineer [Andres Freund](https://x.com/AndresFreundTec) noticed a tiny ~400ms SSH slowdown while testing an unstable Debian release - not even looking for security bugs. He kept investigating and discovered the backdoor in March 2024, just weeks before it would have shipped in major enterprise Linux releases (RHEL, Fedora, Ubuntu).
+Microsoft engineer and PostgreSQL developer [Andres Freund](https://x.com/AndresFreundTec) noticed a tiny ~400ms SSH slowdown while testing an unstable Debian release - not even looking for security bugs. He kept investigating and discovered the backdoor in March 2024, just weeks before it would have shipped in major enterprise Linux releases (RHEL, Fedora, Ubuntu).
 
 **Who Was Jia Tan?**
-Almost certainly a **nation-state actor** - the operation was too patient and expensive for criminals. Timestamping and other breadcrumbs are no hard evidence, thus no one knows for certain. [Jia Tan](https://github.com/JiaT75) vanished immediately after discovery.
+Almost certainly a **nation-state actor** - the operation was too patient and expensive for criminals. Timestamping and other breadcrumbs can be manipulated and thus provide no hard evidence, so no one knows for certain. [Jia Tan](https://github.com/JiaT75) vanished immediately after discovery.
 
 **The Bigger Lesson**
 The real vulnerability wasn't the code - it was *the structure of the project*. Critical infrastructure was resting on one exhausted, unpaid volunteer. This was not the failure of the maintainer but a structural issue of how we build critical open-source software.
