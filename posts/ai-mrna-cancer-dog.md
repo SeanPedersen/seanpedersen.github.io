@@ -3,9 +3,9 @@ A Sydney tech entrepreneur, [Paul Conyngham](https://x.com/paul_conyngham), had 
 
 He paid for Rosie's tumor sequencing through the [University of New South Wales](https://www.unsw.edu.au/) (UNSW) and then used ChatGPT and AlphaFold to help analyze mutations and think through possible targets and treatment options.
 
-Conyngham is an experienced machine-learning practicioner, not a complete novice to technical fields, and he collaborated with scientists, including [Prof. Pall Thordarson](https://www.unsw.edu.au/staff/pall-thordarson) ([X Profile](https://x.com/PalliThordarson)) at [UNSW’s RNA Institute](https://www.unsw.edu.au/institutes/rna).
+Conyngham is an experienced machine-learning practitioner, not a complete novice to technical fields, and he collaborated with scientists, including [Prof. Pall Thordarson](https://www.unsw.edu.au/staff/pall-thordarson) ([X Profile](https://x.com/PalliThordarson)) at [UNSW’s RNA Institute](https://www.unsw.edu.au/institutes/rna).
 
-Thordarson and his team used the data to design a [personalized mRNA cancer vaccine](https://en.wikipedia.org/wiki/Personalized_mRNA_cancer_vaccine_therapy) for Rosie in under two months, describing it as the first time such a bespoke vaccine had been designed for a dog at their institute.
+Prof. Thordarson and his team used the data to design a [personalized mRNA cancer vaccine](https://en.wikipedia.org/wiki/Personalized_mRNA_cancer_vaccine_therapy) for Rosie in under two months, describing it as the first time such a bespoke vaccine had been designed for a dog at their institute.
 
 Rosie received injections starting in December 2025; within weeks the main tumor shrank dramatically (around 75% in one report), her energy and coat improved, and she is reported as alive and more active, though not definitively “cured.” Prof. Thorardson and others are still actively involved in curing Rosie.
 
