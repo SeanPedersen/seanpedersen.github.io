@@ -19,13 +19,13 @@ jobs:
 
     steps:
       - name: Checkout 🛎️
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
       - name: Cache Rust binary 📦
         id: cache-rust-binary
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: target/release/blog-builder
           key: ${{ runner.os }}-rust-binary-smart-similar-${{ hashFiles('src/**/*.rs', 'Cargo.toml', 'Cargo.lock') }}
@@ -40,7 +40,7 @@ jobs:
 
       - name: Cache Rust dependencies ⚡
         if: steps.cache-rust-binary.outputs.cache-hit != 'true'
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: |
             ~/.cargo/bin/
@@ -53,14 +53,14 @@ jobs:
             ${{ runner.os }}-cargo-deps-
 
       - name: Setup Pages ⚙️
-        uses: actions/configure-pages@v4
+        uses: actions/configure-pages@v5
 
       - name: Build Rust blog builder 🔨
         if: steps.cache-rust-binary.outputs.cache-hit != 'true'
         run: cargo build --release --features smart-similar
 
       - name: Cache HuggingFace model 🧠
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ~/.cache/huggingface/hub/models--minishlab--potion-multilingual-128M
           key: hf-model-potion-multilingual-128M
@@ -69,7 +69,7 @@ jobs:
         run: ./target/release/blog-builder --smart-similar
 
       - name: Upload artifact 📡
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: ./out
 
@@ -84,4 +84,4 @@ jobs:
     steps:
       - name: Publish to GitHub Pages 🚀
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
