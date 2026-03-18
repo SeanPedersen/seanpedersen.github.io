@@ -52,7 +52,7 @@ For all of human history, memes only lived inside human minds and institutions. 
 
 Now, for the first time, memes can change and replicate in silicon at massive speed. LLMs recombine, mutate and propagate them across both biological and synthetic minds.
 
-The key danger: these new meme variants may no longer be aligned with human interests. Like transposable genetic elements that "colonized" genomes, AI-optimized memes may increasingly influence human cognition in ways that serve the memes' own transmission, not human well-being.
+The key danger: these new meme variants may no longer be aligned with human interests. Like transposable genetic elements that "colonized" genomes, AI-optimized memes may increasingly influence human cognition in ways that serve the creators of LLMs, not human well-being.
 
 ## Questions of Interest
 
