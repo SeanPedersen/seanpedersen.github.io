@@ -302,12 +302,12 @@ fn markdown_to_html(markdown: &str, tags: &[String]) -> String {
                                 lang, lang, prism_html
                             ));
                         } else {
-                            // Language not found, use plain code block
+                            // Language not found, use plain code block with consistent styling
                             let mut escaped = String::new();
                             escape_html(&mut escaped, &code_block_content).unwrap();
                             html_output.push_str(&format!(
-                                r#"<pre><code class="language-{}">{}</code></pre>"#,
-                                lang, escaped
+                                r#"<div class="remark-highlight"><pre class="language-{}"><code class="language-{}">{}</code></pre></div>"#,
+                                lang, lang, escaped
                             ));
                         }
                     } else {
