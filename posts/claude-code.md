@@ -38,6 +38,8 @@ Use frequent git commits to save working versions in case Claude gets stuck prod
 
 **The ideal use case for vibe coding is test driven development: write and verify test cases / benchmarks and let the coding agent try to pass / optimize them autonomously.**
 
+For design work it is recommended to prompt claude to create 10 different variations (f.e. html files) to rapidly explore and then narrow down on a good choice.
+
 Use git working branches to start multiple sub-agents on the same code base.
 
 ### Basic Commands
