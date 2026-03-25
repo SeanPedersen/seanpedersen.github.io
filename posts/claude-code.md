@@ -44,6 +44,8 @@ Use git working branches to start multiple sub-agents on the same code base.
 
 ### Basic Commands
 
+[Claude Code Cheat Sheet](https://cc.storyfox.cz/)
+
 - `/init`: create inital code documentation of the repo in CLAUDE.md
 - Plan mode: SHIFT + TAB (activate to plan complex features - claude asks many clarifying questions)
 - Thinking mode: TAB (activate for complex reasoning)
