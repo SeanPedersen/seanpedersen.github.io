@@ -33,7 +33,7 @@ Great for prototyping, one-off analysis scripts and literate programming.
 ## Web Development
 
 - Use [FastAPI](https://fastapi.tiangolo.com/) to create clean and simple REST API's supporting both synchronous and [asynchronous](https://fastapi.tiangolo.com/async/) routes
-- Use [httpx](https://github.com/encode/httpx/) for network requests (also supports sync and async)
+- Use [niquests](https://github.com/jawah/niquests) (the successor of requests) for network requests (being fast, supporting async, http/2 & much more)
 
 ## CLI
 
@@ -73,10 +73,10 @@ I do not like async syntax wise (just personal preference) - I prefer multi-thre
 
 ```python
 import asyncio
-import httpx
+import niquests
 
 async def fetch_multiple_urls(urls):
-    async with httpx.AsyncClient() as client:
+    async with niquests.AsyncSession() as client:
         tasks = [client.get(url) for url in urls]
         responses = await asyncio.gather(*tasks)
         return responses
