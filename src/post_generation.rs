@@ -132,6 +132,8 @@ pub fn generate_post_page(out_dir: &Path, post: &Post, related: &[PostSummary]) 
     context.insert("has_code_blocks", &has_code_blocks);
     context.insert("title_id", &title_id);
     context.insert("post_date", &post.date);
+    context.insert("post_date_modified", &post.date_modified);
+    context.insert("post_tags_first", &post.tags.first().map(|s| s.as_str()).unwrap_or(""));
     context.insert("formatted_date", &format_date(&post.date));
     context.insert("content_html", &post.content_html);
     context.insert("related_posts", &related_data);

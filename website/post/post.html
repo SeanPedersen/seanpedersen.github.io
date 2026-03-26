@@ -42,11 +42,12 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "BlogPosting",
+    "@type": "TechArticle",
     "headline": "{{ post_title }}",
     "description": "{{ excerpt }}",
     "url": "https://seanpedersen.github.io/posts/{{ post_id }}",
     "datePublished": "{{ post_date }}",
+    "dateModified": "{{ post_date_modified }}",
     "author": {
       "@type": "Person",
       "name": "Sean Pedersen",
@@ -60,7 +61,9 @@
       "@type": "WebPage",
       "@id": "https://seanpedersen.github.io/posts/{{ post_id }}"
     },
-    "keywords": "{{ keywords }}"
+    "keywords": "{{ keywords }}",
+    "articleSection": "{{ post_tags_first }}",
+    "inLanguage": "en"
   }
   </script>
   <script>

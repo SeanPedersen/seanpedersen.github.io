@@ -30,6 +30,7 @@
     "name": "Sean Pedersen's Blog",
     "url": "https://seanpedersen.github.io/",
     "description": "The blog of Sean Pedersen — exploring and building Machine Learning, Data Privacy, Cybernetics and Memetics.",
+    "inLanguage": "en",
     "author": {
       "@type": "Person",
       "name": "Sean Pedersen",
@@ -38,7 +39,17 @@
     "publisher": {
       "@type": "Person",
       "name": "Sean Pedersen"
-    }
+    },
+    "blogPost": [
+      {% for post in posts %}
+      {
+        "@type": "BlogPosting",
+        "headline": "{{ post.title }}",
+        "url": "https://seanpedersen.github.io/posts/{{ post.id }}/",
+        "datePublished": "{{ post.date }}"
+      }{% if not loop.last %},{% endif %}
+      {% endfor %}
+    ]
   }
   </script>
   <script>

@@ -41,6 +41,7 @@ pub struct Post {
     pub id: String,
     pub title: String,
     pub date: String,
+    pub date_modified: String,
     pub tags: Vec<String>,
     pub icon: Option<String>,
     pub content_html: String,
@@ -84,7 +85,9 @@ pub fn read_all_posts(posts_dir: &Path) -> Result<Vec<Post>> {
             let id = path.file_stem()?.to_str()?.to_string();
             let (metadata, markdown) = parse_frontmatter(&content);
 
-            let date = metadata.date.or_else(|| get_git_first_add_date(path))?;
+            let (git_first, git_last) = get_git_dates(path);
+            let date = metadata.date.or(git_first)?;
+            let date_modified = git_last.unwrap_or_else(|| date.clone());
 
             let title = extract_title(&markdown);
             if title.is_empty() {
@@ -99,6 +102,7 @@ pub fn read_all_posts(posts_dir: &Path) -> Result<Vec<Post>> {
                 id,
                 title,
                 date,
+                date_modified,
                 tags,
                 icon: metadata.icon.and_then(|icon| {
                     if icon.trim().is_empty() {
@@ -129,14 +133,21 @@ fn parse_frontmatter(content: &str) -> (PostMetadata, String) {
     }
 }
 
-fn get_git_first_add_date(file_path: &Path) -> Option<String> {
-    let repo = gix::open(".").ok()?;
-    let head = repo.head_commit().ok()?;
+fn get_git_dates(file_path: &Path) -> (Option<String>, Option<String>) {
+    let repo = match gix::open(".") {
+        Ok(r) => r,
+        Err(_) => return (None, None),
+    };
+    let head = match repo.head_commit() {
+        Ok(h) => h,
+        Err(_) => return (None, None),
+    };
 
     let mut oldest_time: Option<(i64, i32)> = None;
+    let mut newest_time: Option<(i64, i32)> = None;
     let mut file_found = false;
 
-    for info in head.ancestors().all().ok()?.flatten() {
+    for info in head.ancestors().all().ok().into_iter().flatten().flatten() {
         let Some(commit) = info
             .id()
             .object()
@@ -161,16 +172,23 @@ fn get_git_first_add_date(file_path: &Path) -> Option<String> {
                 if oldest_time.is_none() || ts < oldest_time.unwrap().0 {
                     oldest_time = Some((ts, time.offset));
                 }
+                if newest_time.is_none() || ts > newest_time.unwrap().0 {
+                    newest_time = Some((ts, time.offset));
+                }
             }
         } else if file_found {
             break;
         }
     }
 
-    oldest_time.and_then(|(ts, offset)| {
+    let to_date = |ts: i64, offset: i32| {
         let local_ts = ts + offset as i64;
         chrono::DateTime::from_timestamp(local_ts, 0).map(|dt| dt.format("%Y-%m-%d").to_string())
-    })
+    };
+
+    let first = oldest_time.and_then(|(ts, off)| to_date(ts, off));
+    let last = newest_time.and_then(|(ts, off)| to_date(ts, off));
+    (first, last)
 }
 
 fn extract_title(markdown: &str) -> String {
