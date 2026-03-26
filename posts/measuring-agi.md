@@ -378,7 +378,7 @@ we know of).
 - <http://www.vetta.org/documents/AIQ_Talk.pdf>
 - <https://www.lesswrong.com/posts/vPtMSvnF8B5hM5LdL/intelligence-metrics-and-decision-theories>
 - <https://arxiv.org/pdf/0712.3329.pdf>
-- <https://ws680.nist.gov/publication/get_pdf.cfm?pub_id=824478>
+- <https://web.archive.org/web/2024/https://ws680.nist.gov/publication/get_pdf.cfm?pub_id=824478>
 - <https://arxiv.org/abs/1805.07883>
 - <http://www.incompleteideas.net/IncIdeas/DefinitionOfIntelligence.html>
 - <https://breckyunits.com/intelligence.html>

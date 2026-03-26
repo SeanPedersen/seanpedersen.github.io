@@ -554,7 +554,7 @@ Using GUI apps can make sense as they motivate writing longer and more detailed 
 - Sub-agents:
   - <https://x.com/jasonzhou1993/status/1955970025984287004>
   - <https://simonwillison.net/2025/Oct/5/parallel-coding-agents/>
-- Agents, templates & more: <https://www.aitmpl.com/>, <https://ctx.directory/>
+- Agents, templates & more: <https://www.aitmpl.com/>
 - Open-source alternatives:
   - https://pi.dev/
   - <https://cline.bot/>

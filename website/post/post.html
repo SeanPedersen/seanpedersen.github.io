@@ -13,6 +13,8 @@
   <meta property="og:description" content="{{ excerpt }}">
   <meta property="og:url" content="https://seanpedersen.github.io/posts/{{ post_id }}">
   <meta property="og:image" content="https://seanpedersen.github.io/images/sierpinski-twitter-square.png">
+  <meta property="article:published_time" content="{{ post_date }}">
+  <meta property="article:author" content="Sean Pedersen">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="{{ post_title }}">
   <meta name="twitter:description" content="{{ excerpt }}">
@@ -37,6 +39,30 @@
     }
   </style>
   {% endif %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "{{ post_title }}",
+    "description": "{{ excerpt }}",
+    "url": "https://seanpedersen.github.io/posts/{{ post_id }}",
+    "datePublished": "{{ post_date }}",
+    "author": {
+      "@type": "Person",
+      "name": "Sean Pedersen",
+      "url": "https://seanpedersen.github.io/"
+    },
+    "publisher": {
+      "@type": "Person",
+      "name": "Sean Pedersen"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://seanpedersen.github.io/posts/{{ post_id }}"
+    },
+    "keywords": "{{ keywords }}"
+  }
+  </script>
   <script>
     (function () {
       const initialColorScheme = ""; // "light" | "dark"

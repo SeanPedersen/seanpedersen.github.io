@@ -6,6 +6,7 @@ mod page_generation;
 mod post_generation;
 mod rss_generation;
 mod similarity;
+mod sitemap_generation;
 
 use anyhow::Result;
 use clap::Parser;
@@ -13,6 +14,7 @@ use global_generation::build_global_html_pages;
 use index_generation::build_index_page;
 use post_generation::build_post_pages;
 use rss_generation::build_rss_feed;
+use sitemap_generation::build_sitemap_and_extras;
 use std::path::PathBuf;
 use std::time::Instant;
 
@@ -45,6 +47,7 @@ fn main() -> Result<()> {
     build_post_pages(&out_dir, &posts, similar_map.as_ref())?;
     build_global_html_pages(&out_dir)?;
     build_rss_feed(&out_dir, &posts)?;
+    build_sitemap_and_extras(&out_dir, &posts)?;
     optimization::optimize_website_assets(&out_dir)?;
 
     println!("\nCompleted in {:.2}s", total_start.elapsed().as_secs_f64());
