@@ -5,10 +5,10 @@ date: '2024-10-21'
 
 We are entering the age of digital uncertainty. An age where any digital artifact can not be deemed to be real (grounded in reality like a photography) anymore.
 
-Any attempt to build AI generated content (deep fake) detection systems is flawed, since the outputs of such a system may be used to train an even better fake data generator. This leads to an equilibrium state of digital uncertainty: nothing in the digital realm can be deemed as real anymore - only as digital.
+Any attempt to build AI generated content (deep fake) detection systems is flawed, since the outputs of such a system may be used to train an even better fake data generator. This leads to an equilibrium state of digital uncertainty: nothing in the digital realm can be deemed as real anymore - only as digital. I do not care if a digital artifact is human or AI made - I only care if it is useful to me. Useful content is on point, factual and at best surprising (teaches something new).
 
 ## Snake-Oil Services
-Following services claim to detect AI generated content but their goal is impossible: the output signal they provide can just be used to train a better AI until we reach the equilibrium state (human vs AI made).
+Following services claim to detect AI generated content but their goal is impossible: the output signal they provide can just be used to train a better AI until we reach the equilibrium state (human vs AI made slop).
 
 Text AI Detection:
 - https://gptzero.me/
