@@ -91,6 +91,7 @@ pub fn read_all_posts(posts_dir: &Path) -> Result<Vec<Post>> {
 
             let title = extract_title(&markdown);
             if title.is_empty() {
+                eprintln!("Warning: Skipping post '{}' — no H1 title found", id);
                 return None;
             }
             let tags = extract_tags(&content);
