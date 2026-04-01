@@ -9,15 +9,15 @@ Documenteries like the "The Age of Disclosure" brought to a wider audience the n
 
 ## Notable Incidents
 ### Nimitz 2004 incident (Tic-Tac UFO)
-– Multiple military witnesses (David Fravor, Alex Dietrich, radar operators on USS Princeton).
-– Separate sensor tracks (F/A-18’s APG-73 radar, AN/SPY-1 ship radar, FLIR video).
-– Chain-of-custody FLIR footage officially released by the Pentagon.
+- Multiple military witnesses (David Fravor, Alex Dietrich, radar operators on USS Princeton).
+- Separate sensor tracks (F/A-18’s APG-73 radar, AN/SPY-1 ship radar, FLIR video).
+- Chain-of-custody FLIR footage officially released by the Pentagon.
 
 https://www.cbsnews.com/news/tic-tac-ufo-sighting-uap-video-dave-fravor-alex-dietrich-navy-fighter-pilots-house-testimony/
 
 ### Pentagon FLIR videos (“GIMBAL”, “GOFAST”, “FLIR1”)
-– Declassified and published by the U.S. Navy/DoD in 2017-2021.
-– Accompanied by incident reports and pilot voice recordings.
+- Declassified and published by the U.S. Navy/DoD in 2017-2021.
+- Accompanied by incident reports and pilot voice recordings.
 
 https://www.popularmechanics.com/military/research/a32289669/navy-official-release-ufo-videos/
 
