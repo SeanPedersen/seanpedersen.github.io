@@ -7,6 +7,20 @@ The UFO / UAP phenomenon is since the 1940s part of western pop culture.
 
 Documenteries like the "The Age of Disclosure" brought to a wider audience the narrative that US government officials say it is real and a real threat to US national security.
 
+## Notable Incidents
+### Nimitz 2004 incident (Tic-Tac UFO)
+– Multiple military witnesses (David Fravor, Alex Dietrich, radar operators on USS Princeton).
+– Separate sensor tracks (F/A-18’s APG-73 radar, AN/SPY-1 ship radar, FLIR video).
+– Chain-of-custody FLIR footage officially released by the Pentagon.
+
+https://www.cbsnews.com/news/tic-tac-ufo-sighting-uap-video-dave-fravor-alex-dietrich-navy-fighter-pilots-house-testimony/
+
+### Pentagon FLIR videos (“GIMBAL”, “GOFAST”, “FLIR1”)
+– Declassified and published by the U.S. Navy/DoD in 2017-2021.
+– Accompanied by incident reports and pilot voice recordings.
+
+https://www.popularmechanics.com/military/research/a32289669/navy-official-release-ufo-videos/
+
 ## The Age of Disclosure - Protagonists
 
 [Lue Elizondo](https://en.wikipedia.org/wiki/Luis_Elizondo) — Former Army intelligence officer, ran AATIP for the US government. Claims: UAPs are real, non-human, and represent a national security threat; a secret "Legacy Program" has been retrieving and reverse-engineering non-human craft since 1947; a disinformation campaign was run against him by the Pentagon; he and David Grusch were allegedly threatened with assassination.
@@ -31,6 +45,7 @@ Brett Feddersen — Former NSC aviation security director / FAA National Securit
 
 Retired Navy Oceanographer — Claims: 80% of ocean volume is unexplored, making it a plausible hiding place for non-human intelligence.
 Various nuclear weapons witnesses — Multiple Air Force and missile silo personnel claim UAPs have both deactivated and activated US nuclear missiles, and hovered silently over launch facilities.
+Although not part of the documentary the story of [Bob Lazar](https://en.wikipedia.org/wiki/Bob_Lazar), seems to fit the narrative of the show.
 
 ## The 4 Hypotheses for UAP
 
@@ -48,7 +63,6 @@ The UFO / UAP phenomenon has moved into mainstream focus and warrants more resea
 - The Age of Disclosure (Transcript: https://pastebin.com/raw/Kf2tvXKz)
 - https://en.wikipedia.org/wiki/Pentagon_UFO_videos
 - https://en.wikipedia.org/wiki/UFO_reports_and_disinformation
-- https://en.wikipedia.org/wiki/Bob_Lazar
 - [More Evidence for UAPs! Scientists Afraid to Speak Out](https://youtu.be/lYVxRHk258g) 
 - https://science.nasa.gov/wp-content/uploads/2023/09/uap-independent-study-team-final-report.pdf
 
