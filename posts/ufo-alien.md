@@ -47,6 +47,8 @@ The UFO / UAP phenomenon has moved into mainstream focus and warrants more resea
 
 - The Age of Disclosure (Transcript: https://pastebin.com/raw/Kf2tvXKz)
 - https://en.wikipedia.org/wiki/Pentagon_UFO_videos
+- https://en.wikipedia.org/wiki/UFO_reports_and_disinformation
+- https://en.wikipedia.org/wiki/Bob_Lazar
 - [More Evidence for UAPs! Scientists Afraid to Speak Out](https://youtu.be/lYVxRHk258g) 
 - https://science.nasa.gov/wp-content/uploads/2023/09/uap-independent-study-team-final-report.pdf
 
