@@ -13,17 +13,17 @@ Documenteries like the "The Age of Disclosure" brought to a wider audience the n
 - Separate sensor tracks (F/A-18’s APG-73 radar, AN/SPY-1 ship radar, FLIR video).
 - Chain-of-custody FLIR footage officially released by the Pentagon.
 
-https://www.cbsnews.com/news/tic-tac-ufo-sighting-uap-video-dave-fravor-alex-dietrich-navy-fighter-pilots-house-testimony/
+[CBSNEWS: Tic-Tac UFO Article](https://www.cbsnews.com/news/tic-tac-ufo-sighting-uap-video-dave-fravor-alex-dietrich-navy-fighter-pilots-house-testimony/)
 
-### Pentagon FLIR videos (“GIMBAL”, “GOFAST”, “FLIR1”)
-- Declassified and published by the U.S. Navy/DoD in 2017-2021.
+### Pentagon FLIR videos
+- Declassified and published “GIMBAL”, “GOFAST”, “FLIR1” videos by the U.S. Navy/DoD in 2017-2021.
 - Accompanied by incident reports and pilot voice recordings.
 
-https://www.popularmechanics.com/military/research/a32289669/navy-official-release-ufo-videos/
+[PopularMechanics: Navy Official UFO Videos Article](https://www.popularmechanics.com/military/research/a32289669/navy-official-release-ufo-videos/)
 
 ## The Age of Disclosure - Protagonists
 
-[Lue Elizondo](https://en.wikipedia.org/wiki/Luis_Elizondo) — Former Army intelligence officer, ran AATIP for the US government. Claims: UAPs are real, non-human, and represent a national security threat; a secret "Legacy Program" has been retrieving and reverse-engineering non-human craft since 1947; a disinformation campaign was run against him by the Pentagon; he and David Grusch were allegedly threatened with assassination.
+[Lue Elizondo](https://en.wikipedia.org/wiki/Luis_Elizondo) — Former Army intelligence officer, ran [AATIP](https://en.wikipedia.org/wiki/Advanced_Aerospace_Threat_Identification_Program) for the US government. Claims: UAPs are real, non-human, and represent a national security threat; a secret "Legacy Program" has been retrieving and reverse-engineering non-human craft since 1947; a disinformation campaign was run against him by the Pentagon; he and David Grusch were allegedly threatened with assassination.
 
 Jay Stratton — 16-year senior intelligence official on UAP, first director of the UAP Task Force. Claims: The Legacy Program withheld from Congress, the SecDef, and the President; non-human bodies were recovered in crash retrievals; religious fundamentalists inside the Pentagon actively blocked UAP investigation.
 
