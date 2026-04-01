@@ -25,7 +25,7 @@ Almost certainly a **nation-state actor** - the operation was too patient and ex
 **The Bigger Lesson**
 The real vulnerability wasn't the code - it was *the structure of the project*. Critical infrastructure was resting on one exhausted, unpaid volunteer. This was not the failure of the maintainer but a structural issue of how we build critical open-source software.
 
-To future proof open-source software, we need to identify other high-impact software projects with similar vulnerable structure (few maintainers) and pour more resources into them. And also increase automated security tests for all dependencies of high-impact projects like [OpenSSH](https://github.com/openssh/openssh-portable).
+To future proof open-source software, we need to identify other high-impact software projects with similar vulnerable structure (few maintainers) and pour more resources into them. And also increase automated security tests for all dependencies of high-impact projects like [OpenSSH](https://github.com/openssh/openssh-portable) using static analysis and automated coding agents (LLM).
 
 Similar future attacks maybe even more sophisticated by taking legitimate control of criticial open-source software for years - building up trust by years of reliable and helpful work - and when needed dropping a malicious version. A more resilient structure for critical open-source projects would be decentral and select a group of verifiers randomly from a group.
 
