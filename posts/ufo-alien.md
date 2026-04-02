@@ -3,7 +3,7 @@ icon: "/images/icons/ufo.svg"
 ---
 # UFO / UAP Phenomenon
 
-The UFO / UAP phenomenon is since the 1940s part of western pop culture.
+The UFO / UAP phenomenon is since the 1940s part of western pop culture. Some claim that this is no coincidence and secret german nazi research programs have developed new types of propulsion (anti-gravity).
 
 Documenteries like the "The Age of Disclosure" brought to a wider audience the narrative that US government officials say it is real and a real threat to US national security.
 
