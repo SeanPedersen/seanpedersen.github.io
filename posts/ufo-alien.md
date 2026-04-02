@@ -3,7 +3,9 @@ icon: "/images/icons/ufo.svg"
 ---
 # UFO / UAP Phenomenon
 
-The UFO / UAP phenomenon is since the 1940s part of western pop culture. Some claim that this is no coincidence and secret german nazi research programs have developed new types of propulsion (anti-gravity).
+Credible UFO / UAP reports date back to WWII, when Allied pilots over both the Pacific and European theaters encountered unexplained aerial objects they called "Foo Fighters." The modern era began in June 1947 with Kenneth Arnold's sighting near Mount Rainier — prompting the U.S. Army Air Force to conclude the phenomenon was real and launch its first official investigation, Project Sign.
+
+The debate shifted fundamentally in 2017 when the Pentagon began declassifying sensor footage and credentialed government insiders, started making specific public claims about what the U.S. government knows and may be concealing.
 
 Documenteries like the "The Age of Disclosure" brought to a wider audience the narrative that US government officials say it is real and a real threat to US national security.
 
@@ -49,7 +51,7 @@ Although not part of the documentary the story of [Bob Lazar](https://en.wikiped
 
 ## The 4 Hypotheses for UAP
 
-1. Foreign adversary technology: China, Russia, or another nation has developed craft so advanced it constitutes the biggest intelligence failure in modern American history.
+1. Foreign adversary technology: China, Russia, or another human group (likely based on secret german nazi research on new types of anti-gravity propulsion systems) has developed craft so advanced it constitutes the biggest intelligence failure in modern American history.
 2. US government counter-intelligence cover: UAPs are a cover story concealing a highly classified US program that has drifted outside congressional oversight.
 3. Extraterrestrial or interdimensional origin: The craft originate from another civilization, dimension, or possibly even Earth itself (cryptoterrestrial, time travelers, or an ancient hidden species).
 4. A combination of the above three: Some UAP activity may be foreign reverse-engineering of retrieved non-human craft, some may be US black programs, and some may be genuinely non-human in origin.
