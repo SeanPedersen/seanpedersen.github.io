@@ -3,11 +3,11 @@ icon: "/images/icons/ufo.svg"
 ---
 # UFO / UAP Phenomenon
 
-Credible UFO / UAP reports date back to WWII, when Allied pilots over both the Pacific and European theaters encountered unexplained aerial objects they called "Foo Fighters." The modern era began in June 1947 with Kenneth Arnold's sighting near Mount Rainier — prompting the U.S. Army Air Force to conclude the phenomenon was real and launch its first official investigation, Project Sign.
+Credible UFO / UAP reports date back to WWII, when Allied pilots over both the Pacific and European theaters encountered unexplained aerial objects they called "Foo Fighters." The modern era began in June 1947 with [Kenneth Arnold's sighting near Mount Rainier](https://en.wikipedia.org/wiki/Kenneth_Arnold_UFO_sighting) — prompting the U.S. Army Air Force to conclude the phenomenon was real and launch its first official investigation, Project Sign.
 
 The debate shifted fundamentally in 2017 when the Pentagon began declassifying sensor footage and credentialed government insiders, started making specific public claims about what the U.S. government knows and may be concealing.
 
-Documenteries like the "The Age of Disclosure" brought to a wider audience the narrative that US government officials say it is real and a real threat to US national security.
+Documenteries like the "[The Age of Disclosure](https://en.wikipedia.org/wiki/The_Age_of_Disclosure)" brought to a wider audience the narrative that US government officials say it is real and a real threat to US national security.
 
 ## Notable Incidents
 ### Nimitz 2004 incident (Tic-Tac UFO)
