@@ -53,7 +53,7 @@ Other areas in active development include:
 
 The platform's key advantage is speed. Once a protein target is identified, the mRNA sequence can be designed computationally and synthesised in weeks. This compresses development timelines that previously took years. During COVID-19, the Moderna vaccine went from sequence design to first human dose in 63 days.
 
-The bottleneck is now delivery. Current LNPs distribute broadly rather than to specific cell types. Targeted delivery, directing mRNA precisely to tumour cells, liver cells, or lung epithelium, would dramatically expand what is possible and reduce off-target effects. This is an active area of research.
+The bottleneck is now delivery. Current LNPs distribute broadly rather than to specific cell types, and tend to accumulate in the liver by default. For immune-based cancer vaccines, the goal is not to reach tumour cells directly — the immune system handles that — but to deliver mRNA efficiently to antigen-presenting cells like dendritic cells, which then orchestrate the immune response. For direct therapeutic approaches, such as gene editing or reprogramming cells within the tumour microenvironment, precise delivery to specific cell types does matter. More broadly, targeting mRNA to tissues like lung epithelium or particular immune cell populations would dramatically expand what is possible and reduce off-target effects. This is an active area of research.
 
 mRNA vaccines are not a narrow tool for infectious disease. They are a general platform for programming cellular protein production. The COVID vaccines were the proof of concept at scale. Personalised cancer treatment may be the first demonstration of their full potential.
 
