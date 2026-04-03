@@ -58,11 +58,10 @@ Other areas in active development include:
 
 **The amplification tradeoff**
 mRNA continuously produces fresh antigen for 72 hours, generating a stronger immune signal than a fixed injected protein dose. This is why protein vaccines need adjuvants and often booster shots to match mRNA efficacy — but it also means mRNA keeps the inflammatory stimulus active longer.
-Vein exposure risk
 
-mRNA: if accidentally injected intravenously, LNPs distribute systemically and cells throughout the body — including cardiac tissue — produce spike protein for up to 72 hours, creating a sustained inflammatory stimulus
-
-Protein vaccine: if accidentally IV injected, you get a fixed bolus that immediately begins degrading — no ongoing production, self-limiting exposure
+**Vein exposure risk**
+- mRNA: if accidentally injected intravenously, LNPs distribute systemically and cells throughout the body — including cardiac tissue — produce spike protein for up to 72 hours, creating a sustained inflammatory stimulus
+- Protein vaccine: if accidentally IV injected, you get a fixed bolus that immediately begins degrading — no ongoing production, self-limiting exposure
 
 **The double hit problem**
 mRNA vaccines have two independent inflammatory sources: the LNP/mRNA delivery mechanism itself, plus the immune response to the expressed protein. Protein vaccines with adjuvants deliberately add back one inflammatory stimulus, but it's more controlled than systemic LNP distribution.
