@@ -49,6 +49,27 @@ Other areas in active development include:
 
 **Rare genetic diseases**: Periodic mRNA dosing could temporarily restore function of a protein the body cannot produce, without permanent gene editing.
 
+## mRNA vs Protein Vaccine — Inflammatory Risk
+
+**Activation timeline**
+- mRNA: protein detectable after ~4 hours, peaks at 24 hours, gone by 72 hours
+- Protein vaccine: antigen immediately available but fixed dose, degrades within hours
+- Immune response timeline is similar for both (~14 days to meaningful antibodies) — the difference is mechanism, not speed of protection
+
+**The amplification tradeoff**
+mRNA continuously produces fresh antigen for 72 hours, generating a stronger immune signal than a fixed injected protein dose. This is why protein vaccines need adjuvants and often booster shots to match mRNA efficacy — but it also means mRNA keeps the inflammatory stimulus active longer.
+Vein exposure risk
+
+mRNA: if accidentally injected intravenously, LNPs distribute systemically and cells throughout the body — including cardiac tissue — produce spike protein for up to 72 hours, creating a sustained inflammatory stimulus
+
+Protein vaccine: if accidentally IV injected, you get a fixed bolus that immediately begins degrading — no ongoing production, self-limiting exposure
+
+**The double hit problem**
+mRNA vaccines have two independent inflammatory sources: the LNP/mRNA delivery mechanism itself, plus the immune response to the expressed protein. Protein vaccines with adjuvants deliberately add back one inflammatory stimulus, but it's more controlled than systemic LNP distribution.
+
+**What the data shows**
+Mouse studies confirm IV mRNA injection causes myocarditis. Some countries (Denmark, Hong Kong) adopted aspiration before injection as a precaution. But the natural experiment — comparing myocarditis rates between countries that did and didn't adopt aspiration — has not been published, leaving your core hypothesis scientifically open.
+
 ## What Comes Next
 
 The platform's key advantage is speed. Once a protein target is identified, the mRNA sequence can be designed computationally and synthesised in weeks. This compresses development timelines that previously took years. During COVID-19, the Moderna vaccine went from sequence design to first human dose in 63 days.
