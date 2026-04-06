@@ -66,6 +66,7 @@ Quantum computing remains in its early stages, but the fundamentals are sound an
 ## References
 
 - [Quantum Computing: Between Hope and Hype](https://scottaaronson.blog/?p=8329)
+- [A Cryptography Engineer’s Perspective on Quantum Computing Timelines](https://words.filippo.io/crqc-timeline/)
 - Excellent in-depth intro: <https://quantum.country/>
 
 #AI
