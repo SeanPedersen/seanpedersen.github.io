@@ -13,7 +13,9 @@ A list of causes benefitting humanity as a whole. Some call it philanthropy.
 
 **Increase Economic Independence**: Invest into education and self activation via start-ups.
 
-**Protect Data Privacy**: Invest into open-source projects aiming to replace privacy invading data kraken like Google, Meta and co with end-to-end encrypted, self-hostable free software.
+**Protect Data Privacy**: Invest into open-source projects aiming to replace privacy invading data kraken like Google, Meta and co with end-to-end encrypted, self-hostable / decentral free software.
+
+**Helpful Free Software**: Educational / health software that helps to self-diagnose or educate people for free. For example detecting potential skin cancer using computer vision on your smart phone.
 
 **Understanding Animals**: Use machine learning to understand the languages of animals with complex social behavior (whales, dolphins, etc.).
 
