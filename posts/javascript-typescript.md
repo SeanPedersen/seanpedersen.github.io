@@ -14,7 +14,7 @@ icon: "/images/icons/javascript.webp"
 
 ## FrontEnd Frameworks
 
-Use [React](/posts/react.html) for a popular framework, with many resources (both knowledge and developers) available. Use [Svelte](https://svelte.dev/), [SolidJS](https://www.solidjs.com/) or [MarkoJS](https://markojs.com/) for smaller and better alternatives - while SolidJS being closest to React in terms of developer experience. Read [this article](https://www.lorenstew.art/blog/10-kanban-boards/) for an excellent comparison of frontend state management frameworks.
+Use [React](/posts/react.html) for a popular framework, with many resources (both knowledge and developers) available. Use [Svelte](https://svelte.dev/), [SolidJS](https://www.solidjs.com/) or [MarkoJS](https://markojs.com/) for smaller and better alternatives - while SolidJS being closest to React in terms of developer experience. Read [this article](https://www.lorenstew.art/blog/10-kanban-boards/) for an excellent comparison of frontend state management frameworks. Checkout [pretext](https://github.com/chenglou/pretext) for fast text rendering. Try [Three.js](https://github.com/mrdoob/three.js/) for 3D rendering like games and [D3.js](https://github.com/d3/d3) for 2D data visualization.
 
 ## Promises (async)
 
