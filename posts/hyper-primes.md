@@ -103,6 +103,8 @@ By definition, 0 and 1 are hyper-primes.
 |    409 | 2 × 2 × 2 × 3 × 17        | 2^3, 3^1, 17^1  |      False |
 |    419 | 2 × 11 × 19               | 2^1, 11^1, 19^1 |       True |
 
+## Code
+
 ```python
 import math
 from collections import Counter
