@@ -3,11 +3,11 @@ date: '2025-05-23'
 ---
 # Quantum Computing
 
-Quantum computing uses quantum bits (qubits) that can represent multiple states simultaneously due to superposition, unlike classical bits that represent only 0 or 1. Rather than exploring solutions in parallel, quantum algorithms manipulate probability amplitudes through interference to amplify correct answers, providing exponential speedups for specific problems like integer factorization and certain quantum simulations. Classical computers process information sequentially or with limited parallelism, making them slower for these specialized problem types with exponential complexity growth. The computational complexity class BQP (bounded-error quantum polynomial time) captures problems solvable efficiently by quantum computers, which includes some problems believed intractable for classical ones. However, quantum computing offers advantages only for particular mathematical structures rather than universal performance improvements, reducing time complexity from exponential to polynomial only for select algorithms.
+Quantum computing uses quantum bits (qubits) that can represent multiple states simultaneously due to superposition, unlike classical bits that represent only 0 or 1. Rather than exploring solutions in parallel, quantum algorithms manipulate probability amplitudes through interference to amplify correct answers, providing exponential speedups for specific problems like integer factorization and certain quantum simulations. Classical computers process information sequentially or with limited parallelism, making them slower for these specialized problem types with exponential complexity growth. The computational complexity class BQP (bounded-error quantum polynomial time) captures problems solvable efficiently by quantum computers, which is believed to include problems intractable for classical computers, though this is not formally proven. However, quantum computing offers advantages only for particular mathematical structures rather than universal performance improvements, reducing time complexity from exponential to polynomial only for select algorithms.
 
 ## Terminology
 
-**Qubits** represent the fundamental unit of quantum information, existing in superposition (probability distribution between 0 and 1). However, the critical distinction lies between physical and logical qubits. Physical qubits are the actual quantum systems (atoms, photons, superconducting circuits). Logical qubits are the error-corrected, fault-tolerant units that can perform reliable computations. Current quantum computers require hundreds or thousands of physical qubits to create a single logical qubit, making this ratio a crucial metric for evaluating progress.
+**Qubits** represent the fundamental unit of quantum information, existing in superposition (stark oversimplification: a probability distribution between 0 and 1). However, the critical distinction lies between physical and logical qubits. Physical qubits are the actual quantum systems (atoms, photons, superconducting circuits). Logical qubits are the error-corrected, fault-tolerant units that can perform reliable computations. Current quantum computers require hundreds or thousands of physical qubits to create a single logical qubit, making this ratio a crucial metric for evaluating progress.
 
 **Quantum decoherence** describes how quantum systems lose their quantum properties when interacting with their environment, effectively imposing a time limit on quantum computations.
 
@@ -23,7 +23,7 @@ The most immediate threat quantum computing poses is to current asymmetric crypt
 
 ### Machine Learning Acceleration
 
-Quantum computers excel at linear algebra operations fundamental to machine learning: matrix inversion, eigenvalue decomposition, and solving systems of linear equations. These operations, when scaled to massive datasets, could benefit significantly from quantum acceleration. Potentially leading to significant speed ups in AI processing and thus potential massive advances in AI in general.
+Quantum computers theoretically offer speedups for certain linear algebra tasks under restrictive assumptions: matrix inversion, eigenvalue decomposition, and solving systems of linear equations. These operations, when scaled to massive datasets, could benefit significantly from quantum acceleration. Potentially leading to significant speed ups in AI processing and thus potential massive advances in AI in general.
 
 ## Scaling Challenges
 
