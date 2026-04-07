@@ -21,6 +21,7 @@ Feels natural - usable without thinking how. Respects the user: increases user a
   - bold colorful + playful: posthog
   - neobrutalism: [gumroad](https://gumroad.com/)
   - liquid glass: apple
+  - blueprint grid aesthetic: [Zed Editor](https://zed.dev/)
   - functional: [mcmaster](https://www.mcmaster.com/)
 - Emotional Design: playful / rewards
 - Cultural Differences: japanese love information dense UI
