@@ -17,7 +17,9 @@ Quantum computing uses quantum bits (qubits) that can represent multiple states 
 
 ### Breaking Cryptography
 
-The most immediate threat quantum computing poses is to current cryptographic systems. RSA encryption, which secures HTTPS connections and underlies much of internet security, relies on the computational difficulty of factoring large prime numbers. Shor's algorithm can factor these numbers exponentially faster on a sufficiently large quantum computer, which is the reason why many organizations are moving to post-quantum cryptographic systems.
+The most immediate threat quantum computing poses is to current asymmetric cryptographic systems like [RSA](https://en.wikipedia.org/wiki/RSA_cryptosystem) and [elliptic curve cryptography](https://en.wikipedia.org/wiki/Elliptic-curve_cryptography) (ECC), which secure HTTPS connections and underlie much of internet security (including most blockchain technology). RSA relies on the computational difficulty of factoring large composite integers into their prime factors, while ECC relies on the hardness of the discrete logarithm problem. [Shor's algorithm](https://en.wikipedia.org/wiki/Shor%27s_algorithm) can factor these numbers exponentially faster (in polynomial time) on a sufficiently large quantum computer, which is the reason why many organizations are moving to post-quantum cryptographic systems. If a quantum computer capable of breaking these crypto systems in praxis is even possible or does already exist in secret government labs is unknown but should not be considered impossible (analogy to the [Bombe computer](https://en.wikipedia.org/wiki/Bombe) developed by [Alan Turing](https://en.wikipedia.org/wiki/Alan_Turing) to crack the [German Enigma cryptographic device](https://en.wikipedia.org/wiki/Enigma_machine) in WW2).
+
+[Symmetric crypto systems](https://en.wikipedia.org/wiki/Symmetric-key_algorithm) like [AES-256 ](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard) remain quantum resistant (even under [Grover's algorithm](https://en.wikipedia.org/wiki/Grover%27s_algorithm) as it only reduces the brute-force search space by square root).
 
 ### Machine Learning Acceleration
 
@@ -67,6 +69,7 @@ Quantum computing remains in its early stages, but the fundamentals are sound an
 
 - [Quantum Computing: Between Hope and Hype](https://scottaaronson.blog/?p=8329)
 - [A Cryptography Engineer’s Perspective on Quantum Computing Timelines](https://words.filippo.io/crqc-timeline/)
+- [YouTube: Post Quantum Cryptography - Computerphile](https://www.youtube.com/watch?v=_MoRcYLN-7U)
 - Excellent in-depth intro: <https://quantum.country/>
 
 #AI
