@@ -414,6 +414,22 @@ html[data-theme="light"] .postIcon {
   width: 100%;
 }
 
+/* Speech bubbles container */
+.speechBubbles {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  z-index: 10;
+}
+
+@media (min-width: 768px) {
+  .speechBubbles {
+    flex-direction: column;
+    align-items: flex-end;
+    margin-top: -15px;
+  }
+}
+
 /* Comic-style speech bubble - dark theme by default */
 .speechBubble {
   position: relative;
@@ -424,22 +440,18 @@ html[data-theme="light"] .postIcon {
   font-weight: 600;
   font-size: 0.85rem;
   white-space: nowrap;
-  z-index: 10;
 }
 
 .speechBubble a {
   padding: 0 !important;
 }
 
-/* Mobile: Speech bubble tail pointing down */
+/* Mobile: both bubbles get down-pointing tails toward profile */
 @media (max-width: 767px) {
   .speechBubble {
     font-size: 0.7rem;
     padding: 8px 12px;
     border-width: 2px;
-    transform-origin: left bottom;
-    margin-bottom: 0;
-    margin-left: 0;
   }
 
   .speechBubble::after {
@@ -469,18 +481,13 @@ html[data-theme="light"] .postIcon {
   }
 }
 
-/* Desktop: Speech bubble tail pointing to the right */
+/* Desktop: both bubbles get right-pointing tails toward profile */
 @media (min-width: 768px) {
   .headerContainer {
     flex-direction: row;
     align-items: center;
     gap: 1rem;
     padding: 1rem;
-  }
-
-  .speechBubble {
-    transform-origin: bottom right;
-    margin-top: -15px;
   }
 
   .speechBubble::after {
@@ -518,7 +525,7 @@ html[data-theme="light"] .speechBubble {
   border-color: #000000;
 }
 
-/* Mobile: down-pointing tail */
+/* Mobile: down-pointing tails */
 @media (max-width: 767px) {
   html[data-theme="light"] .speechBubble::after {
     border-top-color: #000000;
@@ -529,7 +536,7 @@ html[data-theme="light"] .speechBubble {
   }
 }
 
-/* Desktop: right-pointing tail */
+/* Desktop: right-pointing tails */
 @media (min-width: 768px) {
   html[data-theme="light"] .speechBubble::after {
     border-left-color: #000000;
