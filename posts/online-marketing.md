@@ -49,10 +49,11 @@ Publishing high-quality blog articles that lay out how problems / pain points of
 - <https://www.semrush.com/>
   - <https://www.semrush.com/analytics/organic/overview>: enter URL of competitors to analyze their keywords
 - <https://ahrefs.com/>
-- automatic content (blog article) generation
+- automatic content (blog article) + backlink generation
   - <https://rankpill.com>
   - https://www.blogseo.io/
   - https://www.outrank.so/
+  - https://rankloop.io
 
 ### Videos
 
