@@ -51,7 +51,7 @@ Although not part of the documentary the story of [Bob Lazar](https://en.wikiped
 
 ## The 4 Hypotheses for UAP
 
-1. Foreign adversary technology: China, Russia, or another human group (likely based on secret german nazi research on new types of anti-gravity propulsion systems) has developed craft so advanced it constitutes the biggest intelligence failure in modern American history.
+1. Foreign adversary technology: China, Russia, or another human group (some even speculate based on secret german nazi research on new types of anti-gravity propulsion systems) has developed craft so advanced it constitutes the biggest intelligence failure in modern American history.
 2. US government counter-intelligence cover: UAPs are a cover story concealing a highly classified US program that has drifted outside congressional oversight.
 3. Extraterrestrial or interdimensional origin: The craft originate from another civilization, dimension, or possibly even Earth itself (cryptoterrestrial, time travelers, or an ancient hidden species).
 4. A combination of the above three: Some UAP activity may be foreign reverse-engineering of retrieved non-human craft, some may be US black programs, and some may be genuinely non-human in origin.
