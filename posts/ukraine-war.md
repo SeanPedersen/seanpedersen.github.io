@@ -369,21 +369,30 @@ Sources: [SIPRI](https://www.sipri.org/publications/2025/sipri-insights-peace-an
 
 Ukraine spends **~20% of GDP** on defense (up from 3% in 2021) - only possible with Western backing. In 2025, US aid dropped and Europe stepped up (military aid +67%) but didn't fully close the gap. NATO pledged $60B in military aid for 2026.
 
+## Why Ukraine?
+
+Why do both sides fight this hard over meters of ground? Zbigniew Brzezinski's [The Grand Chessboard](https://en.wikipedia.org/wiki/The_Grand_Chessboard) (1997) answers with structure, not ideology.
+
+**Ukraine decides whether Russia is an empire or a regional power.** With Ukraine, Russia gains population, industry, agriculture, Black Sea dominance, and strategic depth. Without it, Russia is boxed into Asia. Brzezinski's most cited line: *"Without Ukraine, Russia ceases to be an empire."*
+
+**Geographic position.** Ukraine sits at the intersection of Black Sea access, east/west land routes, and energy transit corridors. Control over Ukraine gives leverage over European security and enables or blocks NATO's eastern coherence. Brzezinski calls this a *geopolitical pivot state*: not powerful itself, but decisive in who becomes powerful.
+
+**Resources multiply position.** Ukraine is not just buffer space, it is productive space: among the world's largest grain exporters, significant industrial and metallurgical base, energy transit routes and untapped reserves. Its ports (Odesa, Mykolaiv) control warm water naval access and grain/energy logistics. Russia has Black Sea access without Ukraine (Novorossiysk, Krasnodar coast), but it is narrow, easily bottlenecked, and dependent on Turkey via the [Montreux Convention](https://en.wikipedia.org/wiki/Montreux_Convention_Regarding_the_Regime_of_the_Straits). Ukraine does not create access, it makes access robust.
+
+**Preventing a Eurasian hegemon.** Brzezinski's thesis: the US must prevent any single power from dominating Eurasia. Ukraine aligned with the West fragments Eurasia. Aligned with Russia, it consolidates it. The proxy war spending above is not charity, it is structural investment.
+
+**This is why the war does not end.** The strategic payoff is binary, not incremental. Neither side can lose Ukraine without structural decline. Which is exactly what the data shows: enormous casualties, minimal territorial change, relentless continuation. Both sides are playing for the architecture of Eurasia, not for Donbas.
+
 ## Key Takeaways
 
 1. **Territory costs blood.** Russia gained 0.8% of Ukraine in 2025 for ~415,000 casualties. At this rate, taking all of Ukraine would need decades and millions of soldiers.
-
 2. **Record equipment losses.** 4,381 confirmed tank losses beat Soviet losses in Afghanistan, Chechnya I, and Chechnya II combined. And these are confirmed minimums.
-
 3. **Slowest major advance in a century.** Russia's main offensives move 15-70 meters per day - slower than the Somme in WWI. Huliaipole at 297 m/day is the outlier.
-
 4. **Drones changed everything.** $500 FPV drones destroy $3M+ tanks. The cost math of war has flipped.
-
 5. **No air control.** Both sides have strong air defense. Flying manned aircraft is extremely risky for both.
-
 6. **Economic pressure building.** Russia spends 7% of GDP on military while growth drops to 0.6% and manufacturing shrinks. Ukraine's 20% of GDP on defense only works with outside help.
 
-## Likely Outcomes
+## Possible Outcomes
 
 The data points to prolongation, exhaustion, and partial freezes. Not decisive victory.
 
@@ -414,5 +423,6 @@ Despite enormous losses, Russia sustains manpower by lowering quality (T-62s, T-
 - [DeepState Map - Live Frontline Tracking](https://deepstatemap.live/en)
 - [Russia Matters - War Report Card (Apr 8, 2026)](https://www.russiamatters.org/news/russia-ukraine-war-report-card/russia-ukraine-war-report-card-april-8-2026)
 - [Al Jazeera - Mapping Territorial Gains](https://www.aljazeera.com/news/2026/2/24/mapping-russian-attacks-and-territorial-gains-across-ukraine)
+- [Zbigniew Brzezinski - The Grand Chessboard (1997)](https://en.wikipedia.org/wiki/The_Grand_Chessboard)
 
 #idea
