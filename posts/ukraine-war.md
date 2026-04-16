@@ -383,6 +383,28 @@ Ukraine spends **~20% of GDP** on defense (up from 3% in 2021) - only possible w
 
 6. **Economic pressure building.** Russia spends 7% of GDP on military while growth drops to 0.6% and manufacturing shrinks. Ukraine's 20% of GDP on defense only works with outside help.
 
+## Likely Outcomes
+
+The data points to prolongation, exhaustion, and partial freezes. Not decisive victory.
+
+**1. Prolonged attritional stalemate (most likely)**
+
+Russia gained ~0.8% of Ukraine in 2025 for ~415,000 casualties. Advances of 15-70 meters per day are historically slow. Neither side has air superiority. Drones neutralize armor. Breakthroughs are rare. This means years of grinding warfare with shifting front lines but no collapse.
+
+**2. Frozen conflict, Korea-style**
+
+If Western aid holds steady and Russia's economy keeps straining at ~7% GDP military spending, the war settles into a hard frontline. No treaty, just enforced pause. Ukraine can defend, Russia can advance slowly, neither can end the war at acceptable cost.
+
+**3. Negotiated ceasefire under exhaustion**
+
+Less likely short-term, plausible long-term. ~2 million military casualties and economic pressure are cumulative. A ceasefire would probably lock in current lines, not restore full territorial integrity. Neither side is winning fast enough to dictate terms.
+
+**4. Russian collapse or Ukrainian breakthrough (least likely)**
+
+Despite enormous losses, Russia sustains manpower by lowering quality (T-62s, T-55s, mass FPV drones). Ukraine depends on external aid for ~20% GDP defense spending. Without a major shift in technology, alliances, or internal stability, decisive victory is improbable.
+
+**Bottom line:** This war is about industrial capacity, demographics, and political endurance. Time itself is the main weapon, destroying value faster than territory is gained - hopefully stopping this conflict sooner than later.
+
 ## References
 
 - [CSIS - Russia's Grinding War in Ukraine](https://www.csis.org/analysis/russias-grinding-war-ukraine)
