@@ -452,6 +452,9 @@ You are a relational database system and SQL expert capable of analyzing and opt
 **Security Analyst Prompt**:
 - TODO (check for SQL injections, XSS, unsafe use of eval / pickle, etc.)
 
+## Skills
+Collection of useful agent skills: https://github.com/SeanPedersen/agent-skills
+
 ## MCP Toolbox
 
 While MCP tools are cool they can also bloat your context (costing valuable tokens  -> causing context rot) as there API definitions are always in context. So only install per project and activate MCPs only if needed for the current session.
