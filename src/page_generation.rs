@@ -34,6 +34,8 @@ static CUSTOM_SYNTAXES: Lazy<Option<SyntaxSet>> = Lazy::new(|| {
 pub struct PostMetadata {
     pub date: Option<String>,
     pub icon: Option<String>,
+    pub title: Option<String>,
+    pub tags: Option<Vec<String>>,
 }
 
 #[derive(Debug, Clone)]
@@ -74,7 +76,12 @@ pub fn get_posts_data(_out_dir: &Path) -> Result<Arc<Vec<Post>>> {
 pub fn read_all_posts(posts_dir: &Path) -> Result<Vec<Post>> {
     let entries: Vec<_> = fs::read_dir(posts_dir)?
         .filter_map(|e| e.ok())
-        .filter(|e| e.path().extension().and_then(|s| s.to_str()) == Some("md"))
+        .filter(|e| {
+            matches!(
+                e.path().extension().and_then(|s| s.to_str()),
+                Some("md") | Some("html")
+            )
+        })
         .map(|e| e.path())
         .collect();
 
@@ -83,21 +90,36 @@ pub fn read_all_posts(posts_dir: &Path) -> Result<Vec<Post>> {
         .filter_map(|path| {
             let content = fs::read_to_string(path).ok()?;
             let id = path.file_stem()?.to_str()?.to_string();
-            let (metadata, markdown) = parse_frontmatter(&content);
+            let is_html = path.extension().and_then(|s| s.to_str()) == Some("html");
+            let (metadata, body) = parse_frontmatter(&content);
 
             let (git_first, git_last) = get_git_dates(path);
             let date = metadata.date.or(git_first)?;
             let date_modified = git_last.unwrap_or_else(|| date.clone());
 
-            let title = extract_title(&markdown);
+            let (title, tags, content_html, content_raw) = if is_html {
+                let title = metadata.title.unwrap_or_else(|| {
+                    extract_html_title(&body).unwrap_or_default()
+                });
+                let tags = metadata.tags.unwrap_or_default();
+                (title, tags, body.clone(), body)
+            } else {
+                let title = metadata
+                    .title
+                    .unwrap_or_else(|| extract_title(&body));
+                let tags = metadata
+                    .tags
+                    .unwrap_or_else(|| extract_tags(&content));
+                let content_raw = body.clone();
+                let markdown_without_title = remove_first_h1(&body);
+                let content_html = markdown_to_html(&markdown_without_title, &tags);
+                (title, tags, content_html, content_raw)
+            };
+
             if title.is_empty() {
-                eprintln!("Warning: Skipping post '{}' — no H1 title found", id);
+                eprintln!("Warning: Skipping post '{}' — no title found", id);
                 return None;
             }
-            let tags = extract_tags(&content);
-            let content_raw = markdown.clone();
-            let markdown_without_title = remove_first_h1(&markdown);
-            let content_html = markdown_to_html(&markdown_without_title, &tags);
 
             Some(Post {
                 id,
@@ -190,6 +212,12 @@ fn get_git_dates(file_path: &Path) -> (Option<String>, Option<String>) {
     let first = oldest_time.and_then(|(ts, off)| to_date(ts, off));
     let last = newest_time.and_then(|(ts, off)| to_date(ts, off));
     (first, last)
+}
+
+fn extract_html_title(html: &str) -> Option<String> {
+    let re = Regex::new(r"<h1[^>]*>(.*?)</h1>").ok()?;
+    re.captures(html)
+        .map(|caps| strip_html_tags(&caps[1]).trim().to_string())
 }
 
 fn extract_title(markdown: &str) -> String {
