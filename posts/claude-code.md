@@ -3,7 +3,7 @@ date: '2025-07-03'
 ---
 # Getting started with Claude Code
 
-Claude Code is a powerful CLI based coding agent. It comes with MCP support which enables it to use external tools like web browsers to automatically validate and test new features in web apps. Popular alternatives are OpenAI's [codex](https://openai.com/codex/), [pi-agent](https://pi.dev/) and [opencode](https://opencode.ai/) - which can be used via API billing (https://openrouter.ai/, https://groq.com/pricing).
+Claude Code is a powerful CLI based coding agent. It comes with MCP support which enables it to use external tools like web browsers to automatically validate and test new features in web apps. Popular alternatives are OpenAI's [codex](https://openai.com/codex/), [pi-agent](https://pi.dev/) and [opencode](https://opencode.ai/) - which can be used via API billing (https://opencode.ai/go, https://openrouter.ai/, https://groq.com/pricing).
 
 Simple and popular tech stacks that are fast to validate are the ideal choices for vibe coding (lots of training data available -> less hallucinations and fast / no  compilation -> allows for rapid iteration).
 
