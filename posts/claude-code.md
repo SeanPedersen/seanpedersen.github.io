@@ -47,23 +47,24 @@ Use git working branches to start multiple sub-agents on the same code base.
 
 [Claude Code Cheat Sheet](https://cc.storyfox.cz/)
 
-- `/init`: create inital code documentation of the repo in CLAUDE.md
+- `/init`: Create inital code documentation of the repo in CLAUDE.md
 - Plan mode: SHIFT + TAB (activate to plan complex features - claude asks many clarifying questions)
 - Thinking mode: TAB (activate for complex reasoning)
-- `/clear`: clear context (do it if you are stuck)
+- `/clear`: Clear context (do it if you are stuck)
+- `/model`: Select current model for the sessions (opus: complex task, sonnet: normal task)
 - `/batch`: Execute taks in parallel using agents
 - `/compact <specify what to include in summary>`: summarizes context (do it if stuck or long session)
 - `/simplify`: Simplify code / refactor (remove redundancies)
 - ESC: interrupt, ESC + ESC: revert to previous state
-- `/resume`: resume last session
-- `/context`: show your usage
-- `/export`: save current chat context to clipboard / file
-- `/config`: recommended to disable auto-compact (rarely helps)
-- CTRL + G: edit your input prompt with default text editor
+- `/resume`: Resume last session
+- `/context`: Show your usage
+- `/export`: Save current chat context to clipboard / file
+- `/config`: Recommended to disable auto-compact (rarely helps)
+- CTRL + G: Edit your input prompt with default text editor
 
 ### Custom Commands
 
-By creating a dir ~/.claude/commands and creating markdown files like follow-up.md, we can call them as custom commands in claude using /follow-up - this allows us to inject custom instructions to claude - boosting its performance.
+By creating a dir ~/.claude/commands and creating markdown files like follow-up.md, we can call them as custom commands in claude using /follow-up - this allows us to inject custom instructions to claude - saving time.
 
 /follow-up
 ```
@@ -84,7 +85,7 @@ Try to avoid negative rules like "do not use random data to test the environment
 ```
 You are an expert software architect.
 Ask clarifying questions for unclear / ambiguous specs. If multiple implementations are possible, list them with up- and downsides.
-Sketch out which tech stack you plan to use (Programming languages, package managers, frameworks, etc.).
+Sketch out which tech stack you plan to use (Programming languages, package managers, frameworks, etc.). Default to Python 3.12 with uv (fastapi, niquests) and TypeScript with pnpm (vite 8, svelte 5).
 
 Generate clean, easy to reason about, production-ready code. Strive for compositional code structure that mirrors Information Hierarchy and Iterative complexity. Main files should be small and complexity should be encapsuled in coherent modules - to quickly get an overview of the code execution and structure.
 
