@@ -97,11 +97,11 @@ General coding rules:
 - Never repeat variable values in comments
 - Always update CLAUDE.md / AGENTS.md after major changes are done
 
+Use web search for relevant blog articles when planning complex features (check current date before to fetch latest information).
+
 Always use context7 when I need code generation, setup or configuration steps, or
 library/API documentation. This means you should automatically use the Context7 MCP
 tools to resolve library id and get library docs without me having to explicitly ask.
-
-Use web search for relevant blog articles when planning complex features (check current date before to fetch latest information).
 ```
 
 **Systematic Debugging**:
