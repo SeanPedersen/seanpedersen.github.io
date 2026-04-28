@@ -78,7 +78,7 @@ Your context window is becoming too full - create a brief prompt for yourself th
 By creating a file named CLAUDE.md in ~/.claude/CLAUDE.md we can add system wide instructions (should be general workflow oriented), add CLAUDE.md also in the root of a project, to add custom prompts to providing relevant context for the project. By creating context specific CLAUDE.md files also in subdirectories, we can provide more precise context.
 
 Skills allow us to automatically load relevant text content based on the conversations context and are a powerful way to customize our agents.
-Skills are loaded lazily. Claude's context only receives a brief name and description for each available skill upfront. When a task triggers a skill, Claude reads the full SKILL.md at runtime before writing any code or creating any files. This keeps the context lean while ensuring Claude follows proven patterns when it matters.
+Skills are loaded lazily. Claude's context only receives a brief name and description for each available skill upfront. When a task triggers a skill, Claude reads the full SKILL.md at runtime before writing any code or creating any files. This keeps the context lean while ensuring Claude follows proven patterns when it matters. Some [useful skills](https://github.com/SeanPedersen/agent-skills).
 
 Try to avoid negative rules like "do not use random data to test the environment" as current AI systems have a hard time to follow these kind of instructions. Instead formulate it positively: "Only use deterministic (rule based) data to the test the environment". This way the LLM will not have the thing you are trying to avoid in its context.
 
@@ -102,7 +102,7 @@ Always use context7 when I need code generation, setup or configuration steps, o
 library/API documentation. This means you should automatically use the Context7 MCP
 tools to resolve library id and get library docs without me having to explicitly ask.
 
-Use the Exa MCP to search for relevant blog articles when planning complex features (check current date before to fetch latest information).
+Use web search for relevant blog articles when planning complex features (check current date before to fetch latest information).
 ```
 
 **Systematic Debugging**:
