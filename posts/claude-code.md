@@ -508,17 +508,8 @@ Just like browser control lets claude inspect your Tauri app.
 
 ## Statusbar
 
-Add context window usage for the current session to claude's status bar:
-- Download <https://raw.githubusercontent.com/delexw/claude-code-misc/refs/heads/main/.claude/statusline/ctx_monitor.js> to `~/.claude/statusline` (create dir if non existing)
-- Make executable: `chmod +x ctx_monitor.js`
-- Add to settings (`~/.claude/settings.json`):
-```json
-  "statusLine": {
-    "type": "command",
-    "command": "~/.claude/statusline/ctx_monitor.js",
-    "padding": 0
-  }
-```
+Add usage info (context window + daily / weekly limits) for the current session to claude's status bar (https://github.com/leeguooooo/claude-code-usage-bar):
+- One-line installer: `curl -fsSL "https://raw.githubusercontent.com/leeguooooo/claude-code-usage-bar/main/web-install.sh?v=$(date +%s)" | bash`
 
 ## GUI Apps
 
