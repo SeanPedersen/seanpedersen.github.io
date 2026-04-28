@@ -453,6 +453,7 @@ You are a relational database system and SQL expert capable of analyzing and opt
 - TODO (check for SQL injections, XSS, unsafe use of eval / pickle, etc.)
 
 ## Skills
+
 Collection of useful agent skills: https://github.com/SeanPedersen/agent-skills
 
 ## MCP Toolbox
@@ -500,7 +501,6 @@ Now you can instruct claude to work on github issues (read or create).
 Just like browser control lets claude inspect your Tauri app.
 
 - https://github.com/hypothesi/mcp-server-tauri
-- https://github.com/P3GLEG/tauri-plugin-mcp
 
 ### Knowledge Base
 
@@ -528,7 +528,7 @@ Using GUI apps can make sense as they motivate writing longer and more detailed 
 
 ## TODO
 
-- Use sub-agents with git workingtrees for rapid
+- Use sub-agents with VMs + git workingtrees for rapid
 - Setup custom hooks so context prompt is added based on file types being edited (Python / TypeScript / etc.)
 - Analyse installed packages with version number and add correct documentation based on context (analyse code file imports)
 
