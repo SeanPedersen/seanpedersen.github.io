@@ -4,7 +4,7 @@ Major AI (LLM) companies like Anthropic and OpenAI pride themselves by investing
 
 Instead they are building the most sophisticated mass [digital surveillance machine](/posts/digital-capitalism-alternatives) the world has ever seen. They are normalizing a future where we share every intimate detail of our lives with their free or cheap chatbot service and we let these chatbots not only monitor everything about us but even worse we let us manipulate by them (by consuming their responses / content).
 
-If these companies were truly interested in developing safe AI for humanity they would not build this centralized LLM powered mass manipulation system but instead invest heavily into safe AI deployment via decentral and private LLM inference (using on-device inference or [homomorphic encryption](https://en.wikipedia.org/wiki/Homomorphic_encryption)). Only this way can AI be used without enabling mass surveillance and manipulation.
+If these companies were truly interested in developing safe AI for humanity they would not build this centralized LLM powered mass manipulation system but instead invest heavily into safe AI deployment via decentral and private LLM inference (by publishing open-source models and using on-device inference or [homomorphic encryption](https://en.wikipedia.org/wiki/Homomorphic_encryption)). Only this way can AI be deployed for humanity without enabling mass surveillance and manipulation.
 
 It boils down to:
 AI alignment without decentralization still concentrates power.
