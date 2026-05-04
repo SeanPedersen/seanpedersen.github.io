@@ -5,7 +5,10 @@ date: '2021-05-04'
 
 ## Introduction
 
-This text is devoted to my favorite CS concept I know of (so far): Kolmogorov complexity. It is right up there with graphs, trees and recursion. Its beauty stems from its simple definition and powerful connections to many research fields I fancy. And it is defined as follows: The length of the smallest program producing a given sequence of bits.
+This text is devoted to my favorite CS concept I know of (so far): Kolmogorov complexity. It is right up there with graphs, trees and recursion. Its beauty stems from its simple definition and powerful connections to many research fields I fancy.
+
+And it is defined as follows:
+`The length of the smallest program producing a given sequence of bits.`
 
 This might sound rather unimpressive to the uninitiated reader but hold on, behind this simple concept lies a whole world of deep implications and applications.
 
