@@ -61,5 +61,6 @@ Bad design is therefore not just inconvenient - it is political. It encodes powe
 - [Principles of bad software design](https://digdeeper.club/articles/design.xhtml)
 - [Japanese WebDesign](https://sabrinas.space/)
 - https://component.gallery/components/
+- https://lawsofux.com/
 
 #coding
