@@ -31,6 +31,8 @@ The cognitive benefits might surprise you. Meta-analyses show creatine significa
 
 The standard protocol involves 3 to 5 grams daily for maintenance (I recommend up to 7 grams daily), though you can load with 20 grams daily for the first week to see faster results. Consistency is key for good results - so establish a daily morning routine. Safety data spanning over 20 years shows no adverse effects at recommended doses. The only consistent side effect is temporary water weight gain in the first week as muscles store more water. If you know you will consume alcohol at a given day, be extra careful to consume enough water, as alcohol dehydrates you.
 
+Creapure is a known brand that produces high-quality creatine (regular quality testing -> no heavy metals or other unwanted additions).
+
 ## Magnesium fills a common gap
 
 Nearly half of Americans don't consume enough magnesium, yet this mineral participates in over 300 enzyme reactions in your body. The shortfall creates opportunities for meaningful improvement through supplementation.
