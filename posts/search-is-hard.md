@@ -104,6 +104,17 @@ fast but may contain irrelevant results
 - Document -> LLM (generate descriptive title + summary) -> chunk -> embed (index)
 - Query -> expand / rewrite query using LLM -> embed -> search on chunks -> rerank (filter) -> results
 
+## Tree-Organized Retrieval
+
+An alternative paradigm that builds a hierarchical tree from a document and lets an LLM navigate it via tree search. Retrieval becomes reasoning over structure rather than similarity over vectors. Also marketed as "vectorless RAG".
+
+- [RAPTOR](https://arxiv.org/abs/2401.18059) (ICLR 2024): recursively cluster and summarize chunks bottom-up to build a multi-level summary tree; retrieve across abstraction levels
+- [PageIndex](https://github.com/VectifyAI/PageIndex): generate a "table of contents" tree, then perform agentic tree search with an LLM to locate relevant sections
+    - No vector DB, no chunking - sections are natural document divisions
+    - Traceable retrieval (page and section references) instead of opaque nearest-neighbor matches
+    - Trades retrieval latency and LLM cost for relevance on long, structured professional documents (where similarity ≠ relevance)
+    - Reported sota [98.7% accuracy on FinanceBench](https://github.com/VectifyAI/Mafin2.5-FinanceBench)
+
 ## Scaling Things Up
 
 All of the following techniques trade retrieval accuracy for speed / storage costs. For production use cases, using a [Vector DB](/posts/vector-databases) is the right choice.
