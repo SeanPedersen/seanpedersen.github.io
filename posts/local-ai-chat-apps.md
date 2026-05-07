@@ -10,7 +10,7 @@ A short list of free AI chat apps for local LLM execution that work offline and 
 | [Jan](https://github.com/janhq/jan) | Standalone | Easy | Open source | MCP |
 | [LM Studio](https://lmstudio.ai/) | Standalone | Easy | Closed source | [RAG](https://lmstudio.ai/docs/app/basics/rag), split conversations, [remote access](https://lmstudio.ai/link), MCP |
 | [Msty](https://msty.app/) | Standalone | Easy | Closed source | RAG, split conversations, web search (unreliable) |
-| [Deep Chat](https://deepchat.thinkinai.xyz/) | Standalone | Requires Ollama | Open source | Web search (Brave, Google), MCP |
+| [Deep Chat](https://deepchat.thinkinai.xyz/) | Standalone | Requires API access | Open source | Web search (Brave, Google), MCP, Skills |
 | [ChatBox](https://github.com/chatboxai/chatbox) | Standalone | Easy | Open source | (not yet tested) |
 | [~~GPT4ALL~~](https://github.com/nomic-ai/gpt4all) *(discontinued)* | Standalone | Easy | Open source | RAG |
 | [Onyx](https://github.com/onyx-dot-app/onyx) | Web app | Docker required | Open source | Feature rich |
@@ -21,7 +21,7 @@ A short list of free AI chat apps for local LLM execution that work offline and 
 
 To me Jan and LM Studio stand out. Jan being a functional open-source chat app, that is easy to setup. While LM Studio being also easy to setup but with more advanced features. LM Studio is the most feature rich LLM chat app.
 
-I recommend the Qwen and Gemma model family for local basic use. DeepSeek R1 for advanced reasoning and coding capabilities.
+I recommend the Qwen family for coding and Gemma model family for local basic use.
 
 ## Local Models
 
