@@ -5,29 +5,23 @@ date: '2025-04-17'
 
 A short list of free AI chat apps for local LLM execution that work offline and promise privacy first (no user data collection).
 
-**LM Studio** - <https://lmstudio.ai/>
-
-- Standalone app: easy setup
-- Closed Source
-- Features: [RAG over text files](https://lmstudio.ai/docs/app/basics/rag), split (copy) conversations, [remote access](https://lmstudio.ai/link), MCP support
-
 **Jan** - <https://github.com/janhq/jan>
 
 - Standalone app: easy setup
 - Open source
 - MCP support
 
+**LM Studio** - <https://lmstudio.ai/>
+
+- Standalone app: easy setup
+- Closed Source
+- Features: [RAG over text files](https://lmstudio.ai/docs/app/basics/rag), split (copy) conversations, [remote access](https://lmstudio.ai/link), MCP support
+
 **Msty** - <https://msty.app/>
 
 - Standalone app: easy setup
 - Closed Source
 - Features: RAG over text files, split (copy) conversations, web search (unreliable right now)
-
-**GPT4ALL** - <https://github.com/nomic-ai/gpt4all>
-
-- Standalone app: easy setup
-- Open source
-- Features: RAG over text files
 
 **Deep Chat** - <https://deepchat.thinkinai.xyz/>
 
@@ -40,6 +34,12 @@ A short list of free AI chat apps for local LLM execution that work offline and 
 - Standalone app: easy setup
 - Open source
 - Features: (not yet tested)
+
+**(discontinued) GPT4ALL** - <https://github.com/nomic-ai/gpt4all>
+
+- Standalone app: easy setup
+- Open source
+- Features: RAG over text files
 
 **Onyx** - <https://github.com/onyx-dot-app/onyx>
 
@@ -66,6 +66,7 @@ I recommend the Llama and Gemma model family for local basic use. DeepSeek R1 fo
 ## Local Models
 
 - [LFM2.5](https://huggingface.co/LiquidAI/LFM2.5-1.2B-Instruct) - optimized for mobile CPU/NPU inference (32k context window)
+- Gemma4
 - [Qwen Coder Next](https://huggingface.co/Qwen/Qwen3-Coder-Next) - agentic coding model
 
 ## MCP Server
