@@ -31,6 +31,7 @@ I recommend the Qwen family for coding and Gemma model family for local basic us
 - [LFM2.5](https://huggingface.co/LiquidAI/LFM2.5-1.2B-Instruct) - optimized for mobile CPU/NPU inference (32k context window)
 
 [llama.cpp](https://github.com/ggml-org/llama.cpp) and [vLLM](https://github.com/vllm-project/vllm) are the best choices for local inference.
+
 ## MCP Server
 
 MCP server integration is the most important feature for any of these apps, since it allows to extend them with arbitrary functionality (access files, control programs, etc.).
