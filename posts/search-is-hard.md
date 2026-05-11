@@ -99,7 +99,7 @@ fast but may contain irrelevant results
 - Document -> chunk -> embed (index)
 - Query -> embed -> search on chunks -> rerank (filter) -> results
 
-**LLM**
+**LLM (Agentic Search)**
 
 - Document -> LLM (generate descriptive title + summary) -> chunk -> embed (index)
 - Query -> expand / rewrite query using LLM -> embed -> search on chunks -> rerank (filter) -> results
@@ -134,7 +134,7 @@ All of the following techniques trade retrieval accuracy for speed / storage cos
 
 Excellent article detailing an efficient vector search pipeline: <https://huggingface.co/blog/embedding-quantization>
 
-## Diversification
+## Results Diversification
 
 It often makes sense to present the user for general queries not only the top nearest neighbors but a diverse set of results, so the ambiguity of the query is reflected. Ideally the user can then narrow down (load more relevant results) based on the diverse result set.
 
