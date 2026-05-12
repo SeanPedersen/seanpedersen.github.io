@@ -30,7 +30,7 @@ I recommend the Qwen family for coding and Gemma model family for local basic us
 - [Qwen3 14B](https://huggingface.co/Qwen/Qwen3-14B-GGUF) - very good can run on 16GB VRAM
 - [LFM2.5](https://huggingface.co/LiquidAI/LFM2.5-1.2B-Instruct) - optimized for mobile CPU/NPU inference (32k context window)
 
-[llama.cpp](https://github.com/ggml-org/llama.cpp) and [vLLM](https://github.com/vllm-project/vllm) are the best choices for local inference.
+[llama.cpp](https://github.com/ggml-org/llama.cpp) and [vLLM](https://github.com/vllm-project/vllm) are the best run time servers for local inference.
 
 ## MCP Server
 
