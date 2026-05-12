@@ -7,9 +7,9 @@ A short list of free AI chat apps for local LLM execution that work offline and 
 
 | App | Type | Setup | Source | Features |
 |-----|------|-------|--------|---------|
-| [Deep Chat](https://github.com/thinkinaixyz/deepchat) | Standalone | Requires API access | Open source | MCP, Skills, RAG, Agents |
 | [LM Studio](https://lmstudio.ai/) | Standalone | Easy | Closed source | MCP, [RAG](https://lmstudio.ai/docs/app/basics/rag), split conversations, [remote access](https://lmstudio.ai/link) |
 | [Msty](https://msty.app/) | Standalone | Easy | Closed source | MCP, RAG, split conversations |
+| [Deep Chat](https://github.com/thinkinaixyz/deepchat) | Standalone | Requires API access | Open source | MCP, Skills, RAG, Agents |
 | [ChatBox](https://github.com/chatboxai/chatbox) | Standalone | Easy | Open source | MCP, RAG |
 | [Jan](https://github.com/janhq/jan) | Standalone | Easy | Open source | MCP (broken) |
 | [~~GPT4ALL~~](https://github.com/nomic-ai/gpt4all) *(discontinued)* | Standalone | Easy | Open source | RAG |
