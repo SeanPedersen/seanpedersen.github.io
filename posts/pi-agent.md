@@ -32,7 +32,12 @@ Installed extensions (packages) are in: TODO
 
 - show complete prompt context: https://pi.dev/packages/pi-system-prompt
 - sub-agents: https://pi.dev/packages/pi-subagents
-- plan mode: https://pi.dev/packages/@plannotator/pi-extension
+- plan mode:
+  - https://pi.dev/packages/@plannotator/pi-extension
+  - https://pi.dev/packages/pi-pledit
+- btw command: https://github.com/dbachelder/pi-btw
+- goal command: https://pi.dev/packages/@capyup/pi-goal
+- beads (task management): https://pi.dev/packages/pi-beads-extension
 
 ### Skills
 Skills are useful to dynamically load relevant documents / tools into the prompt context to solve advanced tasks / use pre-defined complex workflows.
