@@ -30,7 +30,9 @@ Install extensions (packages) from the pi packages marketplace (review code befo
 Your custom extensions live in: $home/.pi/agent/extensions
 Installed extensions (packages) are in: TODO
 
-show complete prompt context: https://pi.dev/packages/pi-system-prompt?name=skills
+- show complete prompt context: https://pi.dev/packages/pi-system-prompt
+- sub-agents: https://pi.dev/packages/pi-subagents
+- plan mode: https://pi.dev/packages/@plannotator/pi-extension
 
 ### Skills
 Skills are useful to dynamically load relevant documents / tools into the prompt context to solve advanced tasks / use pre-defined complex workflows.
@@ -38,9 +40,9 @@ Skills are useful to dynamically load relevant documents / tools into the prompt
 Located in $home/.agents/skills
 
 Useful packages to manage skills:
-- https://pi.dev/packages/@kmiyh/pi-skills-menu?name=skills
-- https://pi.dev/packages/pi-skillful?name=skills
-- https://pi.dev/packages/pi-hermes-memory?name=skills
+- https://pi.dev/packages/@kmiyh/pi-skills-menu
+- https://pi.dev/packages/pi-skillful
+- https://pi.dev/packages/pi-hermes-memory
 
 ## References
 - https://pi.dev/
