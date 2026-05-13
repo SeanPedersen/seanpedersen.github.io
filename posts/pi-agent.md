@@ -2,7 +2,8 @@
 icon: "/images/icons/pi.svg"
 ---
 # Pi - Open-Source Coding Agent
-An open-source coding agent rivaling claude code and openai codex. Built to be hackable: [here](https://mariozechner.at/posts/2025-11-30-pi-coding-agent) is a great intro from the creator.
+An open-source coding agent rivaling claude code and openai codex.
+Built to be hackable: [here](https://mariozechner.at/posts/2025-11-30-pi-coding-agent) is a great intro from the creator.
 Vanilla [Pi](https://pi.dev/) is bare bones and should be configured via extensions - or start with a preconfigured version like [oh-my-pi](https://github.com/can1357/oh-my-pi) (though oh-my-pi can feel bloated compared to vanilla Pi with its long system prompt, many features and tools).
 
 ## Install
