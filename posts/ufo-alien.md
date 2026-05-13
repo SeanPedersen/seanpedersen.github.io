@@ -15,11 +15,11 @@ While the modern era of credible military reporting began with the WWII Foo Figh
 
 ### Nuremberg, 14 April 1561
 
-On the morning of 14 April 1561, citizens of Nuremberg reported a mass aerial event at sunrise lasting roughly an hour. A broadsheet printed by Hans Glaser later that month described "globes," "crosses," and cylindrical objects in red, blue, and black moving across the sky. The pamphlet claims the shapes appeared to fight one another, then fell to earth where smoke rose at the impact points. The woodcut is one of the earliest printed records of a UAP style event in Europe and was later popularized in Carl Jung's 1958 book on flying saucers.
+On the morning of 14 April 1561, citizens of Nuremberg reported a mass aerial event at sunrise lasting roughly an hour. A [broadsheet](https://de.wikipedia.org/wiki/N%C3%BCrnberger_Flugblatt_von_1561#/media/Datei:Himmelserscheinung_%C3%BCber_N%C3%BCrnberg_vom_14._April_1561.jpg) printed by Hans Glaser later that month described "globes," "crosses," and cylindrical objects in red, blue, and black moving across the sky. The pamphlet claims the shapes appeared to fight one another, then fell to earth where smoke rose at the impact points. The woodcut is one of the earliest printed records of a UAP style event in Europe and was later popularized in Carl Jung's 1958 book on flying saucers.
 
 ### Basel, 1566
 
-Five years later and a few hundred kilometers south, witnesses in Basel reported similar phenomena on 27 and 28 July and again on 7 August. The historian Samuel Coccius described "large black spheres" moving with great speed in front of the sun, with some appearing to burn red before vanishing. Basel sits in modern Switzerland, but in 1566 it belonged to the German speaking cultural sphere of the Holy Roman Empire, and the report uses the same illustrated pamphlet format common across Reformation era central Europe.
+Five years later and a few hundred kilometers south, witnesses in Basel reported similar phenomena on 27 and 28 July and again on 7 August. The historian Samuel Coccius described "large black spheres" moving with great speed in front of the sun, with some appearing to burn red before vanishing. Basel sits in modern Switzerland, but in 1566 it belonged to the German speaking cultural sphere of the Holy Roman Empire, and the report uses the same [illustrated pamphlet](https://de.wikipedia.org/wiki/Basler_Flugblatt_von_1566#/media/Datei:LinkSeltsame_Gestalt_so_in_disem_MDLXVI_Jar.jpg) format common across Reformation era central Europe.
 
 ### Yangzhou, around 1080
 
@@ -67,8 +67,8 @@ Hal Puthoff — Physicist. Claims: UAPs likely use a warp bubble / space-time en
 
 Brett Feddersen — Former NSC aviation security director / FAA National Security Programs. Claims: The FAA does not track UAPs, putting aviation safety at risk; the US is "behind the power curve" on this technology.
 
-Retired Navy Oceanographer — Claims: 80% of ocean volume is unexplored, making it a plausible hiding place for non-human intelligence.
 Various nuclear weapons witnesses — Multiple Air Force and missile silo personnel claim UAPs have both deactivated and activated US nuclear missiles, and hovered silently over launch facilities.
+
 Although not part of the documentary the story of [Bob Lazar](https://en.wikipedia.org/wiki/Bob_Lazar), seems to fit the narrative of the show.
 
 ## The 4 Hypotheses for UAP
