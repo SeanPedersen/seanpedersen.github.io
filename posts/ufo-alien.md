@@ -9,13 +9,33 @@ The debate shifted fundamentally in 2017 when the Pentagon began declassifying s
 
 Documenteries like the "[The Age of Disclosure](https://en.wikipedia.org/wiki/The_Age_of_Disclosure)" brought to a wider audience the narrative that US government officials say it is real and a real threat to US national security.
 
-## Notable Incidents
+## Historical Sightings
+
+While the modern era of credible military reporting began with the WWII Foo Fighters, civilians and chroniclers recorded strange aerial events centuries earlier. Two regions left especially detailed records: Reformation era Germany, with printed broadsheets and woodcuts, and China, where careful scholars and modern airport authorities both filed reports.
+
+### Nuremberg, 14 April 1561
+
+On the morning of 14 April 1561, citizens of Nuremberg reported a mass aerial event at sunrise lasting roughly an hour. A broadsheet printed by Hans Glaser later that month described "globes," "crosses," and cylindrical objects in red, blue, and black moving across the sky. The pamphlet claims the shapes appeared to fight one another, then fell to earth where smoke rose at the impact points. The woodcut is one of the earliest printed records of a UAP style event in Europe and was later popularized in Carl Jung's 1958 book on flying saucers.
+
+### Basel, 1566
+
+Five years later and a few hundred kilometers south, witnesses in Basel reported similar phenomena on 27 and 28 July and again on 7 August. The historian Samuel Coccius described "large black spheres" moving with great speed in front of the sun, with some appearing to burn red before vanishing. Basel sits in modern Switzerland, but in 1566 it belonged to the German speaking cultural sphere of the Holy Roman Empire, and the report uses the same illustrated pamphlet format common across Reformation era central Europe.
+
+### Yangzhou, around 1080
+
+A century before printing reached Europe, the Chinese polymath Shen Kuo wrote about a recurring aerial object in his "Dream Pool Essays" (1088). Locals in Fanliang, near Yangzhou, said an object "as bright as a pearl" appeared over a lake. Shen reported that the object opened to emit a great light, "like the rising Sun, lighting up the distant sky and woods in red." Witnesses nicknamed it "the Pearl," and a viewing platform called the Pearl Pavilion was built so travelers could watch for it. Shen Kuo is also credited with the first known description of the magnetic compass and a remarkably modern theory of erosion, which makes his account unusually careful for the period.
+
+## Recent Notable Incidents
 ### Nimitz 2004 incident (Tic-Tac UFO)
 - Multiple military witnesses (David Fravor, Alex Dietrich, radar operators on USS Princeton).
 - Separate sensor tracks (F/A-18’s APG-73 radar, AN/SPY-1 ship radar, FLIR video).
 - Chain-of-custody FLIR footage officially released by the Pentagon.
 
 [CBSNEWS: Tic-Tac UFO Article](https://www.cbsnews.com/news/tic-tac-ufo-sighting-uap-video-dave-fravor-alex-dietrich-navy-fighter-pilots-house-testimony/)
+
+### Hangzhou, 7 July 2010
+
+Modern China has a striking civilian aviation case as well. On the evening of 7 July 2010, Xiaoshan International Airport near Hangzhou shut down for about four hours after a flight crew on approach reported an unidentified object in its airspace. Eighteen flights were diverted or delayed. Photographs taken from the ground showed a long glowing trail. Chinese authorities never released a clear official explanation, and the case remains one of the more widely reported civilian airport UAP events of recent decades.
 
 ### Pentagon FLIR videos
 - Declassified and published “GIMBAL”, “GOFAST”, “FLIR1” videos by the U.S. Navy/DoD in 2017-2021.
@@ -68,5 +88,10 @@ The UFO / UAP phenomenon has moved into mainstream focus and warrants more resea
 - https://www.popularmechanics.com/military/research/a36560537/die-glocke-nazi-bell-conspiracy/
 - [More Evidence for UAPs! Scientists Afraid to Speak Out](https://youtu.be/lYVxRHk258g) 
 - https://science.nasa.gov/wp-content/uploads/2023/09/uap-independent-study-team-final-report.pdf
+- [1561 celestial phenomenon over Nuremberg (Wikipedia)](https://en.wikipedia.org/wiki/1561_celestial_phenomenon_over_Nuremberg)
+- [1566 celestial phenomenon over Basel (Wikipedia)](https://en.wikipedia.org/wiki/1566_celestial_phenomenon_over_Basel)
+- [Dream Pool Essays by Shen Kuo (Wikipedia)](https://en.wikipedia.org/wiki/Dream_Pool_Essays)
+- [Shen Kuo, the first Renaissance man? (AAAS)](https://www.aaas.org/membership/scientia/shen-kuo-first-renaissance-man)
+- [Xiaoshan Airport Shutdown Due to UAP (Enigma Labs)](https://enigmalabs.io/library/6b5abeb2-ef4f-43ad-a6de-b8c8ecb40815)
 
 #idea
