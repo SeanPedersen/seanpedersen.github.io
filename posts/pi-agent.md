@@ -5,6 +5,12 @@ icon: "/images/icons/pi.svg"
 An open-source coding agent rivaling claude code and openai codex.
 Vanilla Pi is bare bones and should be configured via extensions - or start with a preconfigured version like [oh-my-pi](https://github.com/can1357/oh-my-pi) (though oh-my-pi can feel bloated compared to vanilla Pi with its long system prompt, many features and tools).
 
+## Install
+`$ npm install -g @earendil-works/pi-coding-agent`
+
+Then run: `$ pi`
+And add your provider with: `/model`
+
 ## Customize Pi
 
 ### Prompts
