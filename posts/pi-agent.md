@@ -10,7 +10,7 @@ Vanilla [Pi](https://pi.dev/) is bare bones and should be configured via extensi
 `$ npm install -g @earendil-works/pi-coding-agent`
 
 Then run: `$ pi`
-And add your provider with: `/model`
+And add your provider with: `/login`
 
 ## Customize Pi
 
