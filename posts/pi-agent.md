@@ -33,11 +33,14 @@ Installed extensions (packages) are in: TODO
 show complete prompt context: https://pi.dev/packages/pi-system-prompt?name=skills
 
 ### Skills
-are useful to dynamically load relevant documents / tools into the prompt context to solve advanced tasks / use pre-defined complex workflows.
+Skills are useful to dynamically load relevant documents / tools into the prompt context to solve advanced tasks / use pre-defined complex workflows.
 
-located in $home/.agents/skills
+Located in $home/.agents/skills
 
-https://pi.dev/packages/pi-skillful?name=skills
+Useful packages to manage skills:
+- https://pi.dev/packages/@kmiyh/pi-skills-menu?name=skills
+- https://pi.dev/packages/pi-skillful?name=skills
+- https://pi.dev/packages/pi-hermes-memory?name=skills
 
 ## References
 - https://pi.dev/
