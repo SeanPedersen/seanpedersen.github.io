@@ -11,7 +11,7 @@ Documenteries like the "[The Age of Disclosure](https://en.wikipedia.org/wiki/Th
 
 ## Historical Sightings
 
-While the modern era of credible military reporting began with the WWII Foo Fighters, civilians and chroniclers recorded strange aerial events centuries earlier. Two regions left especially detailed records: Reformation era Germany, with printed broadsheets and woodcuts, and China, where careful scholars and modern airport authorities both filed reports.
+While the modern era of credible military reporting began with the WWII Foo Fighters, civilians and chroniclers recorded strange aerial events centuries earlier. Two regions left especially detailed records: Reformation era Germany, with printed broadsheets and woodcuts, and China, where careful scholars also filed reports.
 
 ### Nuremberg, 14 April 1561
 
@@ -36,6 +36,8 @@ A century before printing reached Europe, the Chinese polymath Shen Kuo wrote ab
 ### Hangzhou, 7 July 2010
 
 Modern China has a striking civilian aviation case as well. On the evening of 7 July 2010, Xiaoshan International Airport near Hangzhou shut down for about four hours after a flight crew on approach reported an unidentified object in its airspace. Eighteen flights were diverted or delayed. Photographs taken from the ground showed a long glowing trail. Chinese authorities never released a clear official explanation, and the case remains one of the more widely reported civilian airport UAP events of recent decades.
+
+[ChinaDaily: UFO remains a mystery](https://www.chinadaily.com.cn/china/2010-07/10/content_10089831.htm)
 
 ### Pentagon FLIR videos
 - Declassified and published “GIMBAL”, “GOFAST”, “FLIR1” videos by the U.S. Navy/DoD in 2017-2021.
