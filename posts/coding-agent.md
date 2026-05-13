@@ -152,6 +152,7 @@ Existing Agents:
   - https://mariozechner.at/posts/2025-11-30-pi-coding-agent/
   - https://news.ycombinator.com/item?id=46844822
   - https://lucumr.pocoo.org/2026/1/31/pi/
+  - https://rpiv-pi.com/
 - https://github.com/openai/codex
 - https://github.com/jacobsparts/agentlib - really cool project - drops the agent directly into Python repl
 
