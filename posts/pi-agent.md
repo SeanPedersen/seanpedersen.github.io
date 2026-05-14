@@ -12,6 +12,13 @@ Vanilla [Pi](https://pi.dev/) is bare bones and should be configured via extensi
 Then run: `$ pi`
 And add your provider with: `/login`
 
+### LLM Providers
+Best bang for the buck right now:
+- OpenCode Go: https://opencode.ai/go
+- OpenRouter: https://openrouter.ai/
+- Very fast: inceptionlabs.ai
+- Self-host a model on GPU/s
+
 ## Customize Pi
 
 ### Prompts
