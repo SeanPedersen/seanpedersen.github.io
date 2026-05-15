@@ -24,7 +24,8 @@ To me Deep Chat and LM Studio stand out. Deep Chat being a functional open-sourc
 I recommend the Qwen family for coding and Gemma model family for local basic use.
 
 ## Local Models
-Qwen3.6-27B-IQ4_XS
+Run LLM models locally for complete control and privacy.
+
 - [Gemma 4 26B-A4B](https://huggingface.co/google/gemma-4-26B-A4B) - MoE model by Google suited for consumer GPU
 - [Qwen3.6-35B-A3B Q4_K_XL](https://huggingface.co/unsloth/Qwen3.6-35B-A3B-MTP-GGUF): MoE with MTP model fits on 8GB VRAM GPUs
   - https://x.com/witcheer/status/2053809265538678789
