@@ -57,6 +57,10 @@ Useful packages to manage skills:
 - https://pi.dev/packages/pi-skillful
 - https://pi.dev/packages/pi-hermes-memory
 
+## Mobile Access
+https://www.pipulse.dev/
+https://github.com/jademind/pi-statusbar
+
 ## References
 - https://mariozechner.at/posts/2025-11-30-pi-coding-agent
 -  https://pi.dev/
