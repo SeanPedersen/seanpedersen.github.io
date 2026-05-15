@@ -24,7 +24,8 @@ To me Deep Chat and LM Studio stand out. Deep Chat being a functional open-sourc
 I recommend the Qwen family for coding and Gemma model family for local basic use.
 
 ## Local Models
-Run LLM models locally for complete control and privacy.
+
+Run LLM models locally for complete control and privacy. Find compatible models for your hardware: https://www.canirun.ai/ or try https://github.com/AlexsJones/llmfit
 
 - [Gemma 4 26B-A4B](https://huggingface.co/google/gemma-4-26B-A4B) - MoE model by Google suited for consumer GPU
 - [Qwen3.6-35B-A3B Q4_K_XL](https://huggingface.co/unsloth/Qwen3.6-35B-A3B-MTP-GGUF): MoE with MTP model fits on 8GB VRAM GPUs
@@ -46,5 +47,9 @@ Here are some useful ones:
   - `uv run --with 'ddgs[mcp,api]' ddgs mcp`
  - [context7](https://github.com/upstash/context7): free code package documentation
    - `npx -y @upstash/context7-mcp`
+
+## References
+
+- https://artificialanalysis.ai/
 
 #AI #tutorial #privacy
