@@ -30,6 +30,7 @@ Run LLM models locally for complete control and privacy. Find compatible models 
 - [Gemma 4 26B-A4B](https://huggingface.co/google/gemma-4-26B-A4B) - MoE model by Google suited for consumer GPU
 - [Qwen3.6-35B-A3B Q4_K_XL](https://huggingface.co/unsloth/Qwen3.6-35B-A3B-MTP-GGUF): MoE with MTP model fits on 8GB VRAM GPUs
   - https://x.com/witcheer/status/2053809265538678789
+  - https://www.reddit.com/r/LocalLLaMA/comments/1tc132c/llamacpp_docker_images_to_run_mtp_models/
 - [Qwen Coder Next](https://huggingface.co/unsloth/Qwen3-Coder-Next-GGUF) - agentic coding model
 - [Qwen3.6 27B Q3_K_M](https://huggingface.co/unsloth/Qwen3.6-27B-GGUF) - very good can run on 16GB VRAM
 - [LFM2.5](https://huggingface.co/LiquidAI/LFM2.5-1.2B-Instruct) - optimized for mobile CPU/NPU inference (32k context window)
