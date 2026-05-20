@@ -9,6 +9,7 @@ icon: "/images/icons/javascript.webp"
 ## Basics
 
 - Use [pnpm](https://github.com/pnpm/pnpm) instead of npm for a faster and securer package manager.
+- Use [volta](https://docs.volta.sh/guide/getting-started) instead of nvm for sane node version management.
 - Use [vite](https://vite.dev/guide) for sane project bundling.
 - Try out [bun](https://bun.sh/) for great speed and lean apps.
 
