@@ -180,6 +180,7 @@ VectorChord is a good choice - providing superior performance and better develop
 - <https://jkatz05.com/post/postgres/pgvector-scalar-binary-quantization/>
 - <https://zilliz.com/learn/scalar-quantization-and-product-quantization>
 - <https://medium.com/nlp-experiment/product-quantization-d66fdb860047>
-- <https://medium.com/@bavalpreetsinghh/pgvector-hnsw-vs-ivfflat-a-comprehensive-study-21ce0aaab931>
+- https://medium.com/@bavalpreetsinghh/pgvector-hnsw-vs-ivfflat-a-comprehensive-study-21ce0aaab931
+- https://github.com/RyanCodrai/turbovec
 
 #coding #ML
