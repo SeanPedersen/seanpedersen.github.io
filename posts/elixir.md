@@ -3,7 +3,7 @@ date: '2025-11-14'
 ---
 # Elixir
 
-[Elixir](https://elixir-lang.org/docs.html) is [Erlang](/posts/erlang) with syntactic sugar (transpiling to Erlang code).
+[Elixir](https://elixir-lang.org/docs.html) is [Erlang](/posts/erlang) with syntactic sugar (transpiling to Erlang code). Biggest differences to Erlang: Variables are rebindable & strings are UTF-8 encoded by default.
 
 Parallel function process map:
 ```elixir
@@ -60,5 +60,9 @@ end
 
 ## References
 - <https://elixir-lang.org/>
+- <https://joearms.github.io/published/2013-05-31-a-week-with-elixir.html>
+- <https://elixir-lang.org/getting-started/introduction.html>
+- <https://github.com/jonklein/niex>
+- Ash To TypeScript: <https://github.com/ChristianAlexander/ash_typescript_demo>
 
 #coding
