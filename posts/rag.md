@@ -155,11 +155,12 @@ Caveats:
 
 ### Tools
 
+- https://github.com/VectifyAI/Mafin2.5-FinanceBench
+- [KITE](https://github.com/D-Star-AI/KITE/tree/main) - retrieval benchmark
 - [Ragas](https://github.com/explodinggradients/ragas) - faithfulness, answer relevancy, context precision/recall out of the box
 - [TruLens](https://github.com/truera/trulens) - feedback functions and tracing
 - [DeepEval](https://github.com/confident-ai/deepeval) - pytest-style RAG evals
 - [promptfoo](https://github.com/promptfoo/promptfoo) - eval harness with regression tracking
-- [KITE](https://github.com/D-Star-AI/KITE/tree/main) - retrieval benchmark
 - run evals in CI - block PRs that regress recall@k or faithfulness beyond a threshold
 
 ## References
