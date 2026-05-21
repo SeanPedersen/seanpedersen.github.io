@@ -80,6 +80,17 @@ Create representations using deep neural networks - typically dense vectors (emb
 
 Once our set of objects is transformed into useful representations (vectors), we can finally search. We need to transform the user query into the same representation to compare it with the existing set of vectors. The most common metric for this is the cosine distance (angle between two vectors -> 0: identical / very similar vectors, 1: orhogonal / very different vectors).
 
+## Semantic Search Result Scoring
+
+For most semantic search and RAG systems:
+
+Retrieve a candidate set (typically Top 20–100 results) using vector similarity.
+Apply score gap (elbow) analysis to identify the natural relevance cutoff by finding the largest meaningful drop between adjacent scores.
+Enforce sensible bounds (for example, return at least 3 and at most 10 results) to avoid edge cases where too few or too many matches are returned.
+Optionally rerank the remaining candidates using a cross-encoder or LLM reranker and apply a final relevance threshold.
+
+This approach combines the efficiency of vector search with a dynamic, query-specific relevance threshold. Unlike fixed Top-K retrieval or static similarity thresholds, it adapts to the score distribution of each query, returning all strongly related matches while filtering results that fall outside the primary relevance cluster.
+
 ## Reranker Models
 
 Serve the purpose to run a complex (big) model (specialised or LLM) to filter the results (candidates) of the vector similarity search further by computing another similarity score using the reranker model with the query for each candidate.
