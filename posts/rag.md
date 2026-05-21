@@ -79,6 +79,7 @@ Use **Fine-Tuning** when:
 Use dspy to optimise system prompts.
 
 Existing Solutions:
+- https://github.com/Cinnamon/kotaemon: Chat with PDFs
 - https://www.onyx.app/: Integrated solution connecting to many clouds
 - https://github.com/stanford-oval/WikiChat: Minimal hallucinations
 - https://github.com/D-Star-AI/dsRAG: Advanced chunking for text
