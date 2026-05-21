@@ -20,6 +20,12 @@ The key of every search system is to build useful representations of your search
 
 Depending on the use case or query, different levels of information granularity of the search corpus are useful. Searching for a whole book / chapter / paragraph / sentence / word / letter or video / scene / image / objects / textures / colors.
 
+Chunking projects:
+- https://github.com/ekimetrics/adaptive-chunking
+- https://github.com/benbrandt/text-splitter
+- https://github.com/d1pankarmedhi/chunkr
+- https://github.com/idleness76/wg-ragsmith
+
 Tricks:
 - Use LLM to enrich your search corpus with relevant metadata (do the work before the search)
     - Ask LLM to provide a descriptive title and a short summary for each text document
