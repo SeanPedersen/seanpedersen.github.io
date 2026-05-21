@@ -28,11 +28,16 @@ Great introduction: <https://fasterthanli.me/articles/a-half-hour-to-learn-rust>
 - [GPUI](https://www.gpui.rs/): UI lib created by and used in Zed editor
   - [GPUI components](https://github.com/longbridge/gpui-component)
 
-## Text Extraction Libs
+## Text Extraction
 - [pdf_oxide](https://github.com/yfedoseev/pdf_oxide): fast PDF text extraction
 - [ferrules](https://github.com/AmineDiro/ferrules/tree/main): structured text extraction
 - https://github.com/kreuzberg-dev/kreuzberg
 - https://github.com/yobix-ai/extractous
+
+## Text Chunking
+- https://github.com/benbrandt/text-splitter
+- https://github.com/d1pankarmedhi/chunkr
+- https://github.com/idleness76/wg-ragsmith
 
 ## Concurrency
 - [cineyma](https://github.com/pixperk/cineyma): Erlang inspired OTP-style actor framework
