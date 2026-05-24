@@ -16,8 +16,8 @@ And add your provider with: `/login`
 Best bang for the buck right now:
 - OpenCode Go: https://opencode.ai/go
 - OpenRouter: https://openrouter.ai/
-- Very fast: inceptionlabs.ai
-- Self-host a model on GPU/s
+- Very fast: https://inceptionlabs.ai
+- [Self-host](https://seanpedersen.github.io/posts/local-ai-chat-apps/#local-models) a model on GPU/s
 
 ## Customize Pi
 
@@ -46,6 +46,9 @@ Installed extensions (packages) are in: TODO
 - btw command: https://github.com/dbachelder/pi-btw
 - goal command: https://pi.dev/packages/@capyup/pi-goal
 - beads (task management): https://pi.dev/packages/pi-beads-extension
+- code index / search:
+  - https://github.com/colbymchenry/codegraph
+  - https://github.com/MinishLab/semble
 
 ### Skills
 Skills are useful to dynamically load relevant documents / tools into the prompt context to solve advanced tasks / use pre-defined complex workflows.
