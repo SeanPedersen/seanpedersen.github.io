@@ -280,8 +280,7 @@ fn minify_html_file(path: &Path) -> Result<()> {
         keep_html_and_head_opening_tags: true,
         minify_css: false, // Don't minify CSS inside HTML - lightningcss already did it
         minify_js: true,
-        // Don't use keep_closing_tags or keep_spaces_between_attributes
-        // as they interfere with anti-flicker style handling
+        keep_closing_tags: true, // Required for MathML </math> tags to be preserved
         ..Default::default()
     };
 

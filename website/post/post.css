@@ -412,6 +412,16 @@ html[data-theme="light"] .headerLogo {
   gap: 0.6rem;
 }
 
+.markdown-content .math-block {
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  text-align: center;
+}
+
+.markdown-content math {
+  font-size: 1.05em;
+}
+
 .postTitle .postIcon {
   width: 2rem;
   height: 2rem;

@@ -1,6 +1,7 @@
 use anyhow::Result;
 use chrono::NaiveDate;
 use once_cell::sync::Lazy;
+use latex2mathml::{latex_to_mathml, DisplayStyle};
 use pulldown_cmark::{html, CodeBlockKind, Event, Options, Parser, Tag, TagEnd};
 use pulldown_cmark_escape::escape_html;
 use rayon::prelude::*;
@@ -274,11 +275,24 @@ fn find_syntax<'a>(
     syntax_set.find_syntax_by_token(lang)
 }
 
+/// HTML5 parsers don't honor XML self-closing syntax (`/>`) for non-void elements.
+/// latex2mathml emits MathML as XML (e.g. `<mspace width="1em"/>`), which the
+/// minifier strips to `<mspace width=1em>`, leaving the element unclosed.
+/// This converts every self-closing tag to an explicit open+close pair.
+fn expand_mathml_self_closing(mathml: &str) -> String {
+    let re = Regex::new(r"<([a-zA-Z][a-zA-Z0-9]*)([^>]*?)/>").unwrap();
+    re.replace_all(mathml, |caps: &regex::Captures| {
+        format!("<{}{}></{}>", &caps[1], &caps[2], &caps[1])
+    })
+    .to_string()
+}
+
 fn markdown_to_html(markdown: &str, tags: &[String]) -> String {
     let mut options = Options::empty();
     options.insert(Options::ENABLE_TABLES);
     options.insert(Options::ENABLE_STRIKETHROUGH);
     options.insert(Options::ENABLE_TASKLISTS);
+    options.insert(Options::ENABLE_MATH);
 
     let parser = Parser::new_ext(markdown, options);
 
@@ -486,6 +500,29 @@ fn markdown_to_html(markdown: &str, tags: &[String]) -> String {
             Event::End(TagEnd::BlockQuote(_)) => {
                 in_blockquote = false;
                 html_output.push_str("</blockquote>");
+            }
+            Event::InlineMath(latex) => {
+                match latex_to_mathml(&latex, DisplayStyle::Inline) {
+                    Ok(mathml) => html_output.push_str(&expand_mathml_self_closing(&mathml)),
+                    Err(_) => {
+                        let mut escaped = String::new();
+                        escape_html(&mut escaped, &latex).unwrap();
+                        html_output.push_str(&format!(r#"<code class="language-text">{}</code>"#, escaped));
+                    }
+                }
+            }
+            Event::DisplayMath(latex) => {
+                match latex_to_mathml(&latex, DisplayStyle::Block) {
+                    Ok(mathml) => html_output.push_str(&format!(
+                        r#"<div class="math-block">{}</div>"#,
+                        expand_mathml_self_closing(&mathml)
+                    )),
+                    Err(_) => {
+                        let mut escaped = String::new();
+                        escape_html(&mut escaped, &latex).unwrap();
+                        html_output.push_str(&format!(r#"<pre class="language-text"><code>{}</code></pre>"#, escaped));
+                    }
+                }
             }
             Event::SoftBreak => {
                 html_output.push_str("<br>");
