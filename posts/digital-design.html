@@ -1,0 +1,295 @@
+---
+date: '2025-09-24'
+icon: "/images/icons/design.svg"
+title: Digital Design
+tags: [coding]
+---
+
+<style>
+  #site-preview {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    width: 480px;
+    height: 300px;
+    background: var(--color-bg, #fff);
+    border: 1px solid rgba(127, 127, 127, 0.25);
+    border-radius: 10px;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.22);
+    overflow: hidden;
+    pointer-events: auto;
+  }
+
+  #preview-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+  }
+
+  .preview-link {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  @media (max-width: 768px) {
+    #site-preview {
+      display: none !important;
+    }
+  }
+</style>
+
+<div id="site-preview">
+  <img id="preview-img" src="" alt="Website preview">
+</div>
+
+<p>Digital design is concerned with the creation and optimization of user interfaces and experiences across digital
+  platforms (apps, web sites, etc.). At its foundation, effective digital design balances aesthetic appeal with
+  functional usability, ensuring that users can accomplish their goals efficiently while enjoying the interaction. Good
+  design is invisible to the untrained eye because it just works. The design of a product sets the tone and communicates
+  (subconsciously) values to the user.</p>
+
+<h2 id="good-design">Good Design</h2>
+<p>Feels natural — usable without thinking how. Respects the user: increases user agency; bad design extracts it.</p>
+
+<ul>
+  <li>User controls their data
+    <ul>
+      <li>Use common file formats (for export / storage)</li>
+    </ul>
+  </li>
+  <li>Information Hierarchy (pack UI elements together based on their semantics)
+    <ul>
+      <li>Minimizes mouse movement / provide keyboard shortcuts for common inputs</li>
+    </ul>
+  </li>
+  <li>Iterative complexity (progressive disclosure of options)</li>
+  <li>Minimize visual shift / movement (every moving pixel must add value)</li>
+  <li>Use rows instead of boxes for items that have numerical values to compare</li>
+  <li>Use hover highlight effects only for interactive components (links, buttons)</li>
+  <li>Emotional Design: playful / rewards</li>
+  <li>Cultural Differences: Japanese love information-dense UI</li>
+</ul>
+
+<h2 id="design-trends">Design Trends</h2>
+
+<div class="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th>Trend</th>
+        <th>Real examples</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>AI-native UX</td>
+        <td>
+          <a href="https://chatgpt.com" class="preview-link" data-preview-url="/images/previews/chatgpt.webp"
+            target="_blank" rel="noopener noreferrer">ChatGPT</a>,
+          <a href="https://www.perplexity.ai" class="preview-link" data-preview-url="/images/previews/perplexity.webp"
+            target="_blank" rel="noopener noreferrer">Perplexity</a>,
+          <a href="https://www.figma.com/ai" class="preview-link" data-preview-url="/images/previews/figma-ai.webp"
+            target="_blank" rel="noopener noreferrer">Figma AI</a>
+        </td>
+      </tr>
+      <tr>
+        <td>Funky / unique product pages</td>
+        <td>
+          <a href="https://nothing.tech" class="preview-link" data-preview-url="/images/previews/nothing.webp"
+            target="_blank" rel="noopener noreferrer">Nothing</a>,
+          <a href="https://teenage.engineering" class="preview-link"
+            data-preview-url="/images/previews/teenage-engineering.webp" target="_blank"
+            rel="noopener noreferrer">Teenage Engineering</a>,
+          <a href="https://liquiddeath.com" class="preview-link" data-preview-url="/images/previews/liquiddeath.webp"
+            target="_blank" rel="noopener noreferrer">Liquid Death</a>,
+          <a href="https://heydaycanning.com" class="preview-link"
+            data-preview-url="/images/previews/heydaycanning.webp" target="_blank" rel="noopener noreferrer">Heyday
+            Canning Co.</a>
+        </td>
+      </tr>
+      <tr>
+        <td>Bold / playful</td>
+        <td>
+          <a href="https://posthog.com" class="preview-link" data-preview-url="/images/previews/posthog.webp"
+            target="_blank" rel="noopener noreferrer">PostHog</a>
+        </td>
+      </tr>
+      <tr>
+        <td>Neo-brutalism</td>
+        <td>
+          <a href="https://gumroad.com" class="preview-link" data-preview-url="/images/previews/gumroad.webp"
+            target="_blank" rel="noopener noreferrer">Gumroad</a>,
+          <a href="https://www.figma.com" class="preview-link" data-preview-url="/images/previews/figma.webp"
+            target="_blank" rel="noopener noreferrer">Figma</a>
+        </td>
+      </tr>
+      <tr>
+        <td>Liquid glass</td>
+        <td>
+          <a href="https://www.apple.com" class="preview-link" data-preview-url="/images/previews/apple.webp"
+            target="_blank" rel="noopener noreferrer">Apple</a>
+        </td>
+      </tr>
+      <tr>
+        <td>Blueprint / grid aesthetic</td>
+        <td>
+          <a href="https://zed.dev" class="preview-link" data-preview-url="/images/previews/zed.webp" target="_blank"
+            rel="noopener noreferrer">Zed Editor</a>,
+          <a href="https://stripe.com" class="preview-link" data-preview-url="/images/previews/stripe.webp"
+            target="_blank" rel="noopener noreferrer">Stripe</a>
+        </td>
+      </tr>
+      <tr>
+        <td>Anti-design</td>
+        <td>
+          <a href="https://mschf.com" class="preview-link" data-preview-url="/images/previews/mschf.webp"
+            target="_blank" rel="noopener noreferrer">MSCHF</a>,
+          <a href="https://www.adultswim.com" class="preview-link" data-preview-url="/images/previews/adultswim.webp"
+            target="_blank" rel="noopener noreferrer">Adult Swim</a>,
+          <a href="https://www.studiojob.nl" class="preview-link" data-preview-url="/images/previews/studiojob.webp"
+            target="_blank" rel="noopener noreferrer">Studio Job</a>
+        </td>
+      </tr>
+      <tr>
+        <td>Immersive motion / storytelling</td>
+        <td>
+          <a href="https://www.apple.com" class="preview-link" data-preview-url="/images/previews/apple.webp"
+            target="_blank" rel="noopener noreferrer">Apple</a>,
+          <a href="https://www.nike.com" class="preview-link" data-preview-url="/images/previews/nike.webp"
+            target="_blank" rel="noopener noreferrer">Nike</a>,
+          <a href="https://www.tesla.com" class="preview-link" data-preview-url="/images/previews/tesla.webp"
+            target="_blank" rel="noopener noreferrer">Tesla</a>,
+          <a href="https://www.samsung.com" class="preview-link" data-preview-url="/images/previews/samsung.webp"
+            target="_blank" rel="noopener noreferrer">Samsung</a>
+        </td>
+      </tr>
+      <tr>
+        <td>Editorial / mixed-media layouts</td>
+        <td>
+          <a href="https://www.nytimes.com" class="preview-link" data-preview-url="/images/previews/nytimes.webp"
+            target="_blank" rel="noopener noreferrer">The New York Times</a>,
+          <a href="https://www.newyorker.com" class="preview-link" data-preview-url="/images/previews/newyorker.webp"
+            target="_blank" rel="noopener noreferrer">The New Yorker</a>
+        </td>
+      </tr>
+      <tr>
+        <td>Calm minimalism</td>
+        <td>
+          <a href="https://obsidian.md" class="preview-link" data-preview-url="/images/previews/obsidian.webp"
+            target="_blank" rel="noopener noreferrer">Obsidian</a>,
+          <a href="https://www.usbynight.be" class="preview-link" data-preview-url="/images/previews/usbynight.webp"
+            target="_blank" rel="noopener noreferrer">UsByNight</a>,
+          <a href="https://www.aesop.com" class="preview-link" data-preview-url="/images/previews/aesop.webp"
+            target="_blank" rel="noopener noreferrer">Aesop</a>,
+          <a href="https://www.cosstores.com" class="preview-link" data-preview-url="/images/previews/cos.webp"
+            target="_blank" rel="noopener noreferrer">COS</a>,
+          <a href="https://www.dropbox.com" class="preview-link" data-preview-url="/images/previews/dropbox.webp"
+            target="_blank" rel="noopener noreferrer">Dropbox</a>
+        </td>
+      </tr>
+      <tr>
+        <td>Performance-first design</td>
+        <td>
+          <a href="https://www.wikipedia.org" class="preview-link" data-preview-url="/images/previews/wikipedia.webp"
+            target="_blank" rel="noopener noreferrer">Wikipedia</a>,
+          <a href="https://www.craigslist.org" class="preview-link" data-preview-url="/images/previews/craigslist.webp"
+            target="_blank" rel="noopener noreferrer">Craigslist</a>,
+          <a href="https://www.mcmaster.com" class="preview-link" data-preview-url="/images/previews/mcmaster.webp"
+            target="_blank" rel="noopener noreferrer">McMaster</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<h2 id="bad-design">Bad Design</h2>
+<p>In order to produce good design, it is very helpful to just feel bad designs.</p>
+
+<p>Dark UX:</p>
+<ul>
+  <li>Locking up user data (in a server / custom storage format)</li>
+  <li>Infinite scroll feeds (no ending — addictive for the user)</li>
+  <li>Fake urgency (countdown timers, "only 2 left!")</li>
+  <li>Requiring account creation before showing content</li>
+  <li>Hiding the unsubscribe button (small text / many clicks)</li>
+  <li>Forced app downloads to view mobile websites</li>
+</ul>
+
+<p>Bad UX:</p>
+<ul>
+  <li>Pop-ups (visual distractions)</li>
+  <li>Deviating significantly from proven historical UI patterns</li>
+  <li>Inconsistent navigation patterns between pages</li>
+  <li>Overusage of animations (only move UI elements with a clear signal / purpose)</li>
+  <li>Loading spinners that never end / indicate no progress</li>
+  <li>Auto-playing videos with sound</li>
+  <li>Confirmation dialogs for every minor action</li>
+  <li>Non-descriptive error messages</li>
+  <li>Disabling zoom on mobile</li>
+  <li>Missing auto-focus of text input (search bars etc.)</li>
+  <li>Low contrast text (poor accessibility)</li>
+</ul>
+
+<h2 id="impact">Impact</h2>
+<p>Digital interfaces are control surfaces: they don't just enable actions, they shape which actions are likely to
+  occur. Layout, defaults, friction and feedback loops guide attention and influence our behavior — often without the
+  user's conscious awareness.</p>
+
+<p>Because of this, design is never neutral. Repeated interaction patterns become memetic: they train habits, normalize
+  expectations and propagate values across products and cultures. An infinite feed normalizes consumption without
+  closure; an opaque system teaches dependence; a reversible, inspectable UI teaches agency.</p>
+
+<p>Bad design is therefore not just inconvenient — it is political. It encodes power asymmetries into everyday
+  interactions by extracting our attention, data and autonomy. Good design does the opposite: it makes data control
+  explicit and preserves optionality, to give the user the control they deserve.</p>
+
+<h2 id="references">References</h2>
+<ul>
+  <li><a href="https://digdeepers.club/articles/design.xhtml" target="_blank" rel="noopener noreferrer">Principles of
+      bad software design</a></li>
+  <li><a href="https://sabrinas.space/" target="_blank" rel="noopener noreferrer">Japanese WebDesign</a></li>
+  <li><a href="https://component.gallery/components/" target="_blank"
+      rel="noopener noreferrer">component.gallery/components</a></li>
+  <li><a href="https://lawsofux.com/" target="_blank" rel="noopener noreferrer">lawsofux.com</a></li>
+</ul>
+
+<p class="post-hashtags"><a href="/index.html#coding">#coding</a></p>
+
+<script>
+  (function () {
+    var preview = document.getElementById('site-preview');
+    var img = document.getElementById('preview-img');
+    var hideTimer;
+    function show(url, rect) {
+      clearTimeout(hideTimer);
+      if (img.dataset.loadedUrl !== url) {
+        img.src = url;
+        img.dataset.loadedUrl = url;
+      }
+      var w = 480, h = 300, margin = 12;
+      var top = rect.top - h - margin;
+      if (top < 10) top = rect.bottom + margin;
+      var left = rect.left + rect.width / 2 - w / 2;
+      left = Math.max(10, Math.min(left, window.innerWidth - w - 10));
+      preview.style.top = top + 'px';
+      preview.style.left = left + 'px';
+      preview.style.display = 'block';
+    }
+
+    function hide() {
+      hideTimer = setTimeout(function () { preview.style.display = 'none'; }, 120);
+    }
+
+    document.querySelectorAll('.preview-link').forEach(function (link) {
+      link.addEventListener('mouseenter', function () {
+        show(this.dataset.previewUrl, this.getBoundingClientRect());
+      });
+      link.addEventListener('mouseleave', hide);
+    });
+
+    preview.addEventListener('mouseenter', function () { clearTimeout(hideTimer); });
+    preview.addEventListener('mouseleave', hide);
+  })();
+</script>
