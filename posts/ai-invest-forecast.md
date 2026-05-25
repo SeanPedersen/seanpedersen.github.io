@@ -45,7 +45,8 @@ Chip producers, especially [Nvidia](https://en.wikipedia.org/wiki/Nvidia), look 
 
 Nvidia's moat rests on three things: [CUDA](https://en.wikipedia.org/wiki/CUDA) (its proprietary programming framework), its [Mellanox](https://en.wikipedia.org/wiki/Mellanox_Technologies) interconnect technology, and proven Linux drivers. These have supported extraordinary margins and pricing power in data center accelerators. [AMD](https://en.wikipedia.org/wiki/AMD) makes comparable chips on paper but has poor Linux drivers and weak interconnect, which keeps it out of serious data center contention.
 
-**Hardware challengers** are finding ways around the interconnect problem entirely. [Cerebras](https://en.wikipedia.org/wiki/Cerebras_Systems) builds one giant wafer scale chip, eliminating the need for GPU to GPU communication. [Groq](https://en.wikipedia.org/wiki/Groq) uses a deterministic compute architecture that runs inference faster per dollar. Neither needs to beat Nvidia on raw performance. They just need to be good enough at a fraction of the price.
+**Hardware challengers** are finding ways around the interconnect problem entirely. [Cerebras](https://en.wikipedia.org/wiki/Cerebras_Systems) builds one giant wafer scale chip, eliminating the need for GPU to GPU communication. Its four largest customers are the Mohamed bin Zayed University of Artificial Intelligence (62% of 2025 revenues), G42 (24%), OpenAI, and Amazon Web Services, with the latter two signing in 2026. That OpenAI and AWS, two of Nvidia's largest customers, are buying from Cerebras illustrates how seriously the diversification pressure has become.
+[Groq](https://en.wikipedia.org/wiki/Groq) uses a deterministic compute architecture that runs inference faster per dollar. Neither needs to beat Nvidia on raw performance. They just need to be good enough at a fraction of the price. In December 2025, Nvidia and Groq announced an agreement reportedly valued at approximately 20 billion $ to license Groq's AI inference technology and transfer several senior Groq executives to Nvidia, suggesting Nvidia recognized the inference efficiency threat and moved to absorb it rather than outcompete it.
 
 **Big tech is building its own chips.** Google has been on its sixth generation of in house TPUs since 2016. Amazon has Trainium and Inferentia chips powering clusters of over 400,000 chips for [Anthropic](https://en.wikipedia.org/wiki/Anthropic). Microsoft, [OpenAI](https://en.wikipedia.org/wiki/OpenAI), [Meta](https://en.wikipedia.org/wiki/Meta), and [Apple](https://en.wikipedia.org/wiki/Apple_Inc.) all have custom silicon projects underway. Every major Nvidia customer is working to reduce dependence on Nvidia. None of these chips needs to outperform Nvidia. They just need to break even rather than generate extraordinary margins for a rival.
 
@@ -59,7 +60,7 @@ None of this means Nvidia falls tomorrow. If AI scales as fast as the optimists 
 
 The potential economic impact of mass scale deployment of robotics is enormous.
 
-The global industrial robot market hit $16.5 billion in 2025. China installed 276,300 industrial robots in 2023—more than the rest of the world combined. By 2024, that number had risen to 295,000, representing 54% of global deployments, with China's operational robot stock exceeding 2 million. The trend is accelerating.
+The global industrial robot market hit $16.5 billion in 2025. China installed 276,300 industrial robots in 2023, more than the rest of the world combined. By 2024, that number had risen to 295,000, representing 54% of global deployments, with China's operational robot stock exceeding 2 million. The trend is accelerating.
 
 Three things drive it:
 
@@ -73,7 +74,7 @@ That is a massive disruption. The companies that build, program, and maintain th
 
 Investment angle: robot makers, simulation software, [collaborative robot](https://en.wikipedia.org/wiki/Cobot) platforms, and industrial automation companies.
 
-**Key risks:** Robotics hardware carries long sales cycles, high integration costs, and thin margins. Humanoid robots in particular are early—hype currently exceeds deployment. Industrial-grade reliability takes years and significant capital to prove out at scale.
+**Key risks:** Robotics hardware carries long sales cycles, high integration costs, and thin margins. Humanoid robots in particular are early; hype currently exceeds deployment. Industrial-grade reliability takes years and significant capital to prove out at scale.
 
 ## Medicine: Biggest Chance
 
@@ -89,7 +90,7 @@ On the clinical side, a Menlo Ventures survey found healthcare AI adoption jumpe
 
 Investment angle: biotech companies using AI for drug discovery, medical imaging AI, diagnostics, and clinical workflow tools. This sector has real data moats and hard to copy specialized models.
 
-**Key risks:** Clinical failure rates remain high even if AI accelerates discovery. Finding a promising molecule is only the first step—the path through trials is long, expensive, and uncertain. Regulatory timelines and approval risks are unchanged by AI.
+**Key risks:** Clinical failure rates remain high even if AI accelerates discovery. Finding a promising molecule is only the first step; the path through trials is long, expensive, and uncertain. Regulatory timelines and approval risks are unchanged by AI.
 
 ## Weapon Manufacturing
 
