@@ -7,6 +7,12 @@
 .DS_Store
 .playwright-mcp/
 
+# codegraph
+.codegraph/
+
+# cursor
+.cursor/
+
 # local env files
 .env.local
 .env.development.local
