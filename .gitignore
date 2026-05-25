@@ -6,6 +6,7 @@
 # misc
 .DS_Store
 .playwright-mcp/
+.claude/
 
 # codegraph
 .codegraph/
