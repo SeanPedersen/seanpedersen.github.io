@@ -30,10 +30,11 @@ Matrix drawbacks:
 
 Whatsapp and Telegram are security nightmares. WA being centralized and has no metadata encryption. Telegram is centralized and has no encryption by default.
 
-- Signal has best encryption but is centralized -> trust me bro mentality.
-- Matrix has horrible UX and no metadata encryption.
+- [Signal](https://signal.org/) has best encryption but is centralized -> trust me bro mentality.
+- [Matrix](https://matrix.org/) has horrible UX and no metadata encryption.
 - Berty chat based on IPFS https://berty.tech/messenger/
-- Bitchat: P2P bluetooth
+- [Bitchat](https://bitchat.free/): P2P bluetooth
+- https://www.mindtheclub.com/white-paper.html
 
 ## MLS (secure group messaging)
 
