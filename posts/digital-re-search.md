@@ -14,6 +14,10 @@ A short how to (re)search for and access relevant information in the age of sema
 - <https://arxivxplorer.com/>: Semantic search for [arXiv](https://arxiv.org/) papers
 - https://deepwiki.com/: LLM RAG over a github repo (just replace github.com with deepwiki.com)
 
+Open-Source:
+- https://github.com/searxng/searxng
+- https://github.com/asciimoo/hister
+
 ## Free Information Resources
 
 - <https://paperpanda.app/search>: SciHub for free access to papers
