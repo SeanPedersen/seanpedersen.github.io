@@ -3,49 +3,60 @@ date: '2025-09-10'
 ---
 # Understanding Game Theory Fundamentals
 
-We all are players in games though mostly unaware.
-To win at a game (at least maximize the chance of winning) one has to know the rules of the game (what is legal / possible) and be aware of other players intentions by observing and analyzing their moves, in order to adapt their own strategy (exploiting weaknesses of other players).
+We are all players in games, though mostly unaware. Knowing the rules (what is possible) and reading other players' intentions are the two skills that separate good strategists from reactive ones. [Game theory](https://en.wikipedia.org/wiki/Game_theory) gives those instincts a mathematical backbone.
 
-Game theory provides a mathematical framework for analyzing strategic interactions between rational decision makers, helping us understand everything from corporate competition to international climate negotiations. This analytical tool has become essential for making decisions in situations where outcomes depend not just on your choices, but on the choices others make simultaneously.
+More precisely, game theory is a framework for analyzing decisions where outcomes depend not just on your choices, but on what others choose at the same time. This makes it useful for anything from corporate pricing wars to international treaties to everyday negotiations.
 
-At its core, game theory examines how individuals and organizations make decisions when the consequences depend on multiple parties acting strategically. The field emerged from the work of mathematician John von Neumann and economist Oskar Morgenstern in the 1940s, but has since expanded far beyond economics into biology, computer science, political science, and everyday business strategy.
+The core insight is this: **good strategy requires anticipating responses, not merely choosing what looks best in isolation.** Once you see that, you start finding strategic structure everywhere.
 
-The power of game theory lies in its ability to predict behavior in complex situations by identifying stable outcomes where no participant has an incentive to change their strategy unilaterally. This makes it particularly valuable for understanding competitive markets, negotiations, and any scenario involving strategic interdependence.
+## Core concepts
 
-## Core concepts that drive strategic thinking
+Game theory grew from the work of mathematician [John von Neumann](https://en.wikipedia.org/wiki/John_von_Neumann) and economist Oskar Morgenstern, whose 1944 book *Theory of Games and Economic Behavior* laid the foundations. [John Nash](https://en.wikipedia.org/wiki/John_Forbes_Nash_Jr.) later extended the field with the equilibrium concept that bears his name.
 
-Game theory operates through several fundamental building blocks that help structure complex decisions. **A "game" in this context refers to any situation where multiple players make choices that affect everyone's outcomes.** These players can be individuals, companies, countries, or even biological organisms competing for resources.
+A "game" in this context means any situation where multiple players make choices that affect everyone's outcomes. Players can be individuals, companies, countries, or biological organisms.
 
-The most crucial concept is the **Nash equilibrium**, named after mathematician John Nash. This represents a stable state where each player's strategy is optimal given what others are doing. Consider the smartphone market competition between Samsung and Apple. Both companies have reached a Nash equilibrium in their pricing strategies where neither can improve profits by unilaterally changing prices, because each company's optimal strategy depends on maintaining competitive positioning relative to the other.
+The most important concept is the **[Nash equilibrium](https://en.wikipedia.org/wiki/Nash_equilibrium)**. It describes a stable state where no player can improve their outcome by changing strategy alone. Everyone is playing their best response to what everyone else is doing.
 
-**Dominant strategies** represent choices that are optimal regardless of what opponents do. Amazon's aggressive pricing approach exemplifies this concept. The company consistently uses price wars as a dominant strategy because their scale and resources make this approach effective whether competitors respond with price cuts or not.
+Consider a hypothetical duopoly: two airlines serving the same route. If both charge high fares, both profit. If one cuts prices, it steals passengers. If both cut, neither gains much. The stable outcome (where neither airline benefits from moving first) can be interpreted as a Nash equilibrium. Real markets show patterns consistent with this structure, but calling any specific market a Nash equilibrium requires careful analysis of actual costs, margins, and competitive options.
 
-**Payoff matrices** help visualize these strategic interactions by showing the outcomes for each combination of choices. In the recent Trump Georgia election case, defendants faced a classic prisoner's dilemma structure. Each person's best individual strategy was to plea bargain regardless of what co-defendants did, leading to the predicted cascade of plea deals that began in October 2023.
+**[Dominant strategies](https://en.wikipedia.org/wiki/Strategic_dominance)** are choices that are better regardless of what opponents do. Advertising is a textbook example. Coca-Cola benefits from advertising whether Pepsi advertises or not. In practice, most strategic choices are only dominant under certain conditions, not universally.
 
-## Different types of strategic situations
+**[Payoff matrices](https://en.wikipedia.org/wiki/Normal-form_game)** map these interactions visually. Each cell shows the outcome for every combination of choices, making the structure of incentives visible at a glance.
 
-Game theory categorizes interactions based on key characteristics that determine optimal strategies. **Cooperative versus non-cooperative games** distinguish between situations where players can form binding agreements versus those where they cannot.
+## Types of strategic situations
 
-In cooperative games, players can coordinate strategies and share benefits. International climate agreements like the Paris Accord represent attempts to create cooperative frameworks where countries coordinate emission reductions for mutual benefit. However, enforcement challenges often push these situations toward non-cooperative dynamics where countries pursue individual interests.
+**Cooperative vs. non-cooperative games** divide situations where binding agreements are possible from those where they are not. International climate negotiations aim to create cooperative frameworks. Without enforcement, individual countries may still defect for short-term gain, pushing the game toward non-cooperative dynamics.
 
-**Zero-sum versus non-zero-sum games** capture whether players' interests are completely opposed or partially aligned. Traditional examples include poker games where one player's winnings equal others' losses. However, most real-world situations are non-zero-sum, meaning cooperation can benefit everyone.
+**[Zero-sum games](https://en.wikipedia.org/wiki/Zero-sum_game)** are those where one player's gain equals another's loss. Poker is a clean example. Most real-world situations are not zero-sum: trade, for instance, can benefit both sides.
 
-The streaming service industry illustrates non-zero-sum dynamics. While Netflix, Disney+, and HBO Max compete for subscribers, the overall entertainment market can expand, allowing multiple services to succeed simultaneously. This creates opportunities for differentiation strategies rather than pure competition.
+**Sequential vs. simultaneous games** differ in timing. In sequential games, you observe the other player's move before responding. In simultaneous games, you act without knowing what others chose. A sealed-bid auction is roughly simultaneous. A patent race is sequential.
 
-**Sequential versus simultaneous games** distinguish between situations where players act in order versus those where everyone chooses simultaneously. Patent disputes often involve sequential games where companies observe competitors' research directions before making their own investment decisions. In contrast, auction scenarios typically involve simultaneous bidding where participants submit offers without knowing others' bids.
+## The prisoner's dilemma and its extensions
 
-## Mathematical concepts in practice
+The **[prisoner's dilemma](https://en.wikipedia.org/wiki/Prisoner's_dilemma)** is the most studied game in social science. Two players each choose to cooperate or defect. Defecting is individually rational (it is a dominant strategy), but if both defect, both end up worse than if both had cooperated.
 
-The prisoner's dilemma remains the most widely recognized game theory concept because it appears constantly in real-world situations. **This scenario demonstrates how individually rational choices can produce collectively irrational outcomes.**
+A clear business example: two competing firms advertising the same product. Each benefits from advertising whether the other does or not. So both advertise heavily, spending more than they would under mutual restraint. The outcome is a Nash equilibrium, but it is worse for both than cooperation would be. This pattern appears in ad spending between Coca-Cola and Pepsi, between competing airlines, and in many other industries.
 
-Recent cybersecurity scenarios provide clear examples. When companies face ransomware attacks, they encounter prisoner's dilemma dynamics. Paying ransoms might be rational for individual companies trying to minimize downtime costs, but widespread payment encourages more attacks, creating worse outcomes for everyone.
+Legal plea bargaining follows a similar structure. When multiple defendants face the same charges, each may have an individual incentive to cooperate with prosecutors regardless of what the others do. This can push everyone toward deals even when coordinated silence might have served the group better. The logic is structural: it applies across many multi-defendant cases, not to any single one.
 
-The **tragedy of the commons** extends this logic to resource management. Individual drivers choosing personal vehicles over public transportation face this structure. Each person's rational choice to drive creates collectively irrational outcomes like traffic congestion and increased emissions. Understanding this dynamic helps explain why individual environmental choices often require coordination mechanisms to achieve optimal outcomes.
+The **[tragedy of the commons](https://en.wikipedia.org/wiki/Tragedy_of_the_commons)** extends this to shared resources. Each person has an incentive to exploit a common resource (a fishery, a highway, clean air) beyond what is collectively optimal. The result is depletion or congestion. Property rights, quotas, or taxes often realign individual incentives with collective outcomes.
 
-**Evolutionary stable strategies** from biological applications show how game theory principles operate in nature. Animal conflicts typically follow "hawk-dove" game patterns where aggressive and passive strategies coexist in stable proportions. This explains why most animal disputes involve displays rather than fights to the death, as pure aggression strategies prove unstable over time.
+**[Evolutionary stable strategies](https://en.wikipedia.org/wiki/Evolutionarily_stable_strategy)** come from biology. A strategy is evolutionarily stable if a population using it cannot be invaded by a mutant playing something different. This explains why animal conflicts tend toward displays rather than fights: pure aggression destabilizes a population over time.
+
+## What game theory cannot do
+
+Game theory does not predict human behavior perfectly. People cooperate even when defection is dominant (as public goods experiments show), signal to build reputations, and care about fairness. The models are simplifications. A Nash equilibrium describes a stable outcome, not necessarily the one that will occur.
+
+But the framework is still useful. It forces you to ask: who are the players, what can they do, and what do they want? Once the incentive structure is visible, decisions that looked simple often reveal hidden tensions.
+
+We are all playing games. Most of us just never learned to see the board.
 
 ## References
 
-- https://www.youtube.com/watch?v=5I2VPYPJJ68
+1. [Nash Equilibrium - Britannica](https://www.britannica.com/science/Nash-equilibrium)
+2. [Prisoners' Dilemma - EconLib Encyclopedia](https://www.econlib.org/library/Enc/PrisonersDilemma.html)
+3. [Game theory - Wikipedia](https://en.wikipedia.org/wiki/Game_theory)
+4. [Prisoner's dilemma - Wikipedia](https://en.wikipedia.org/wiki/Prisoner%27s_dilemma)
+5. [Game Theory - YouTube](https://www.youtube.com/watch?v=5I2VPYPJJ68)
 
 #idea
