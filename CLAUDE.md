@@ -1,6 +1,6 @@
 # Project Overview
 
-Static site generator for `seanpedersen.github.io` written in Rust.
+Static site generator for the blog `seanpedersen.github.io` written in Rust.
 
 It processes:
 - Markdown posts from `posts/`
@@ -28,6 +28,16 @@ Serve generated output locally:
 
 ```bash
 python3 -m http.server -d out
+```
+
+## Related Posts Behavior
+
+- `--smart-similar` is **not** enabled by default.
+- Default related-post selection uses tag-based fallback logic.
+- Enable embedding-based similarity explicitly with:
+
+```bash
+./target/release/blog-builder --smart-similar
 ```
 
 ## Project Conventions
