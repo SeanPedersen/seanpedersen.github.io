@@ -2,7 +2,7 @@
 
 [Generative AI](https://en.wikipedia.org/wiki/Generative_AI) is a powerful tool. But it lacks one thing: autonomy. It has no taste, no self direction, no awareness of the world beyond its training data. That gap shapes where the real money should go.
 
-## The Infrastructure Bet
+## AI Infrastructure
 
 The safest investment assuming centralized AI wins is energy. Giant data centers eat enormous amounts of power. Microsoft revived the Three Mile Island nuclear reactor just to power AI workloads. Google and Amazon followed with their own nuclear deals.
 
@@ -11,12 +11,12 @@ But decentralized AI cannot be ruled out. The mainframe vs personal computer sto
 Solid bets on either path:
 
 - Energy companies (nuclear, gas, renewables)
-- [Rare earth element](https://en.wikipedia.org/wiki/Rare-earth_element) miners and chip producers (GPU, RAM, CPU)
-- Data center hardware makers
+- [Rare earth element](https://en.wikipedia.org/wiki/Rare-earth_element) miners
+- Chip producers (GPU, RAM, CPU)
 
-## Robotics: Physical AI Goes to Work
+## Robotics: Embodied AI
 
-Robots are where AI leaves the screen and enters the physical world.
+The potential economic impact of mass scale deployment of robotics is enormous.
 
 The global industrial robot market hit $16.5 billion in 2025. China alone installed 276,300 industrial robots in 2023. That is more than the rest of the world combined. The trend is accelerating.
 
@@ -32,7 +32,7 @@ That is a massive disruption. The companies that build, program, and maintain th
 
 Investment angle: robot makers, simulation software, [collaborative robot](https://en.wikipedia.org/wiki/Cobot) platforms, and industrial automation companies.
 
-## Medicine: The Biggest Real Win
+## Medicine: Biggest Chance
 
 [Drug discovery](https://en.wikipedia.org/wiki/Drug_discovery) is where AI might matter most.
 
@@ -46,7 +46,7 @@ On the clinical side, healthcare AI adoption jumped 7x in a single year. Health 
 
 Investment angle: biotech companies using AI for drug discovery, medical imaging AI, diagnostics, and clinical workflow tools. This sector has real data moats and hard to copy specialized models.
 
-## The App Layer Squeeze
+##  App Layer Loss
 
 Companies with no data moat and a thin app layer on top of general AI are in trouble.
 
