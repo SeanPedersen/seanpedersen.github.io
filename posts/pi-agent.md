@@ -48,6 +48,7 @@ Installed extensions (packages) are in: TODO
 - beads (task management): https://pi.dev/packages/pi-beads-extension
 - code index / search:
   - https://github.com/colbymchenry/codegraph
+    - pi extension: https://github.com/SeanPedersen/pi-codegraph
   - https://github.com/MinishLab/semble
 
 ### Skills
