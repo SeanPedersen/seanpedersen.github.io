@@ -91,6 +91,7 @@ Coding agents working on tasks in parallel - working off the task tree backwards
 - use LSP server for precise edits based on TASK problem and context
   - optimal code exploration
   - optimal code editing
+    - use a database of code snippets / functions to save output tokens -> just query with a function signature + natural language description for existing code ([ref](https://seanpedersen.github.io/posts/future-of-programming/))
 
 #### VALIDATOR
 
