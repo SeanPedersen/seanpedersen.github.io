@@ -74,6 +74,12 @@ LLM (+ RL) unsolveable examples:
 - self-awareness (introspection) and ability to self-modify (continuous learning -> update facts / beliefs)
 - reliable printers
 
+## Road to AGI
+
+World models (grounded in perception and real interaction) are the correct approach to produce more robust and general AI systems: current LLMs are locked into pure text perception (vision is just bolted on).
+
+My prediction: true general AI systems will only be possible if they can manipulate an abstract 3D scene and then predict how it will interact over time (world model). For this to work the AI needs a good real world simulator which can be learned from watching lots of video footage from real interactions and grounding it via real-world interactions. Thus companies which mass deploy interactive robots and gather a massive real-world action dataset, might have the ultimate AGI moat.
+
 ## References
 
 - <https://timdettmers.com/2025/12/10/why-agi-will-not-happen/>
