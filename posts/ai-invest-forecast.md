@@ -1,6 +1,3 @@
----
-date: '2025-05-25'
----
 # AI Investment Forecast
 
 [Generative AI](https://en.wikipedia.org/wiki/Generative_AI) is a powerful tool. But it lacks one thing: autonomy. It has no taste, no self direction, no awareness of the world beyond its training data. That gap shapes where the real money should go.
