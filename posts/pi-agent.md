@@ -56,13 +56,16 @@ Skills are useful to dynamically load relevant documents / tools into the prompt
 
 Located in $home/.agents/skills
 
-Useful packages to manage skills:
+#### Contextual Skills
+An extension that selects relevant skills per project on first start of Pi (user may edit skills selection later on) - this saves context, as only skills relevant to the each project are in the agents prompt.
+
+https://github.com/SeanPedersen/pi-context-skills
+
+#### Other skills related packages
 - https://pi.dev/packages/@kmiyh/pi-skills-menu
 - https://pi.dev/packages/pi-skillful
 - https://pi.dev/packages/pi-hermes-memory
 
-### TODO: Dynamic Skills
-Create extension that selects relevant skills per project on first start of Pi (user may edit skills selection later on) - this saves context, as only skills relevant to the each project are in the agents prompt.
 
 ## Mobile Access
 https://www.pipulse.dev/
