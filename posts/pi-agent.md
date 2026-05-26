@@ -62,7 +62,7 @@ Useful packages to manage skills:
 - https://pi.dev/packages/pi-hermes-memory
 
 ### TODO: Dynamic Skills
-Create extension that selects relevant skills per project on first start of Pi (use can edit selection) - this saves context.
+Create extension that selects relevant skills per project on first start of Pi (user may edit skills selection later on) - this saves context, as only skills relevant to the each project are in the agents prompt.
 
 ## Mobile Access
 https://www.pipulse.dev/
