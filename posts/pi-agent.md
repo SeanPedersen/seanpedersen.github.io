@@ -61,6 +61,9 @@ Useful packages to manage skills:
 - https://pi.dev/packages/pi-skillful
 - https://pi.dev/packages/pi-hermes-memory
 
+### TODO: Dynamic Skills
+Create extension that selects relevant skills per project on first start of Pi (use can edit selection) - this saves context.
+
 ## Mobile Access
 https://www.pipulse.dev/
 https://github.com/jademind/pi-statusbar
