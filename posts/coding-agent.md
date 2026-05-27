@@ -128,6 +128,10 @@ User Interface:
 - saves chats as text files (easy to inspect whole context)
 - displays (token usage/context limit) in current session
 
+## GUI UX
+Spawn a webserver that shows current task tree + progress (indicate status for every task). Lets me also viel taks details (context, selected model etc).
+
+## More Ideas
 new:
 when agent sees multiple solutions explore in parallel
 
