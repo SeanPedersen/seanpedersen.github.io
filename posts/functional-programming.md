@@ -3,7 +3,7 @@ date: '2025-06-26'
 ---
 # Functional Programming
 
-A programming paradigm gaining traction with good reasons. The selling point of functional programming are easy to reason about code through simple chains of data transformations.
+A programming paradigm gaining traction with good reasons. The main selling point of functional programming is code that is easier to reason about, built from simple chains of data transformations.
 
 ## Pure Functions vs Dirty Methods
 
@@ -28,9 +28,11 @@ The `add` function is pure. Call it with 2 and 3, and you get 5 every time. The 
 
 ## Why Pure Functions Matter
 
-Pure functions make reasoning about your programs and  debugging easier. When something breaks, you know the problem is either in the inputs or the function itself. You don't have to trace through a web of state changes across your entire application (like you may be used to from object-oriented programming).
+Pure functions make reasoning about your programs and  debugging easier. When something breaks, you know the problem is either in the inputs or the function itself. You don't have to trace through a web of hidden state changes across your entire application (like you may be used to from object-oriented programming).
 
 Testing becomes straightforward too. No need to set up complex scenarios or mock external dependencies. Just pass in some data and verify the output.
+
+This predictability is called referential transparency: a pure function call can be replaced by its result without changing the program. For example, `add(2, 3)` can always be replaced with `5`. This property makes code easier to refactor, test, cache and reason about.
 
 Pure functions also are easy to cache. Since they always return the same output for the same input, you can store results and reuse them later. This technique, called memoization, can dramatically improve performance for expensive computations.
 
