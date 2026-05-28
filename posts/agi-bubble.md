@@ -63,6 +63,7 @@ Any critical task that has no tolerance for high error rates.
 
 LLM (+ RL) unsolveable examples:
 - creating completely new (not merely interpolating) mathematical theorems and proofs in unexplored domains
+  - solving old problems by interpolating existing knowledge is possible though
 - coming up with novel funny jokes
 
 ## Signals for AGI
@@ -76,7 +77,7 @@ LLM (+ RL) unsolveable examples:
 
 ## Road to AGI
 
-World models (grounded in perception and real interaction) are the correct approach to produce more robust and general AI systems: current LLMs are locked into pure text perception (vision is just bolted on).
+World models (grounded in perception and real interaction) are the correct approach to produce more robust and general AI systems: current LLMs are locked into pure text perception (vision is just bolted on) and possess no ability to generalize knowledge into unknown domains that are not present in training data (they learn more by mimicking than generalizing rules).
 
 My prediction: true general AI systems will only be possible if they can manipulate an abstract 3D scene and then predict how it will interact over time (world model). For this to work the AI needs a good real world simulator which can be learned from watching lots of video footage from real interactions and grounding it via real-world interactions. Thus companies which mass deploy interactive robots and gather a massive real-world action dataset, might have the ultimate AGI moat.
 
