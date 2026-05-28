@@ -155,7 +155,8 @@ Caveats:
 
 ### Tools
 
-- https://github.com/VectifyAI/Mafin2.5-FinanceBench
+- [FinanceBench](https://github.com/VectifyAI/Mafin2.5-FinanceBench) - complex multi-hop finance analysis
+- [EnterpriseRAG-Bench](https://github.com/onyx-dot-app/EnterpriseRAG-Bench) - simulates a company
 - [KITE](https://github.com/D-Star-AI/KITE/tree/main) - retrieval benchmark
 - [Ragas](https://github.com/explodinggradients/ragas) - faithfulness, answer relevancy, context precision/recall out of the box
 - [TruLens](https://github.com/truera/trulens) - feedback functions and tracing
