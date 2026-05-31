@@ -25,7 +25,9 @@ I recommend the Qwen family for coding and Gemma model family for local basic us
 
 ## Local Models
 
-Run LLM models locally for complete control and privacy. Find compatible models for your hardware: https://www.canirun.ai/ or try https://github.com/AlexsJones/llmfit
+Run LLM models locally for complete control and privacy.
+Compare model capability: https://artificialanalysis.ai/models
+Find compatible models for your hardware: https://www.canirun.ai/ or try https://github.com/AlexsJones/llmfit
 
 - [Gemma 4 26B-A4B](https://huggingface.co/google/gemma-4-26B-A4B) - MoE model by Google suited for consumer GPU
 - [Qwen3.6-35B-A3B Q4_K_XL](https://huggingface.co/unsloth/Qwen3.6-35B-A3B-MTP-GGUF): MoE with MTP model fits on 8GB VRAM GPUs
@@ -35,7 +37,7 @@ Run LLM models locally for complete control and privacy. Find compatible models 
 - [Qwen3.6 27B Q3_K_M](https://huggingface.co/unsloth/Qwen3.6-27B-GGUF) - very good can run on 16GB VRAM
 - [MiniCPM5-1B](https://huggingface.co/openbmb/MiniCPM5-1B) - optimized for mobile CPU/NPU inference (32k context window)
 
-[llama.cpp](https://github.com/ggml-org/llama.cpp) and [vLLM](https://github.com/vllm-project/vllm) are the best inference run time servers.
+[llama.cpp](https://github.com/ggml-org/llama.cpp) and [vLLM](https://github.com/vllm-project/vllm) are the best inference run time servers for consumer GPUs.
 
 ## MCP Server
 
