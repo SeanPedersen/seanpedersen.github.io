@@ -30,16 +30,11 @@ Fact check using semantic search and fine-tuned LLM: <https://github.com/stanfor
 
 Based on user input query -> use LLM to generate relevant search queries -> use semantic search to find cadidates (below a similarity threshold) -> Reranker to filter (fast) -> use LLM (slow) to filter for relevancy -> use filtered results to generate final answer
 
-### Query Expansion
-HyDE (Hypothetical Document Embeddings): Generate a short hypothetical answer with a tiny LLM (even a 1B local model), embed that instead of the raw query. Dramatically improves recall for factual and multi-hop queries. The embedding of a plausible answer aligns much better with real document embeddings than the question itself.
-
-Query expansion: Augment the BM25 query with synonyms or reformulations. Cheap, effective, no model needed.
-
-  ### Key Points
+### Key Points
 - agentic search - agent decides how to search: hybrid search (semantic + keyword), custom SQL query, etc.
   - LLM should transform user query before search, as user query will not always be the right format to answer the question it entails. f.e. what are the trends in tech? -> is very abstract, LLM can transform it into a format that will match the answer document semantics
-- query expansion
-- embedding chunking strategy
+- [query expansion](/posts/search-is-hard#query-expansion)
+- [embedding chunking strategy](/posts/search-is-hard#granularity-chunking)
 - graph-enhanced retrieval (supermemory etc.)
 - domain specific benchmark (use powerful commercial LLM's to eval answers of local LLM's) to work data driven
 
