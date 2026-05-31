@@ -26,7 +26,7 @@ I recommend the Qwen family for coding and Gemma model family for local basic us
 ## Local Models
 
 Run LLM models locally for complete control and privacy.
-Compare model capability: https://artificialanalysis.ai/models
+Compare model capability: [https://artificialanalysis.ai/models](https://artificialanalysis.ai/models?models=gpt-oss-20b%2Cgpt-oss-120b%2Cgpt-5-5%2Cgemini-3-1-pro-preview%2Cgemma-4-31b%2Cgemma-4-26b-a4b%2Cgemini-3-5-flash%2Cclaude-opus-4-8%2Cclaude-sonnet-4-6-adaptive%2Clfm2-5-1-2b-thinking%2Cminimax-m2-7%2Ckimi-k2-6%2Cmimo-v2-5-pro%2Cqwen3-6-35b-a3b%2Cqwen3-6-27b%2Cqwen3-7-max&intelligence=artificial-analysis-intelligence-index)
 Find compatible models for your hardware: https://www.canirun.ai/ or try https://github.com/AlexsJones/llmfit
 
 Curated Model List:
