@@ -33,7 +33,7 @@ Run LLM models locally for complete control and privacy. Find compatible models 
   - https://www.reddit.com/r/LocalLLaMA/comments/1tc132c/llamacpp_docker_images_to_run_mtp_models/
 - [Qwen Coder Next](https://huggingface.co/unsloth/Qwen3-Coder-Next-GGUF) - agentic coding model
 - [Qwen3.6 27B Q3_K_M](https://huggingface.co/unsloth/Qwen3.6-27B-GGUF) - very good can run on 16GB VRAM
-- [LFM2.5](https://huggingface.co/LiquidAI/LFM2.5-1.2B-Instruct) - optimized for mobile CPU/NPU inference (32k context window)
+- [MiniCPM5-1B](https://huggingface.co/openbmb/MiniCPM5-1B) - optimized for mobile CPU/NPU inference (32k context window)
 
 [llama.cpp](https://github.com/ggml-org/llama.cpp) and [vLLM](https://github.com/vllm-project/vllm) are the best inference run time servers.
 
