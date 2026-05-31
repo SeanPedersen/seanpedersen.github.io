@@ -107,6 +107,7 @@ Depending on your requirements (accuracy and time to response) pipelines of diff
 
 ### Query Expansion
 - classical: use first k hits of og query to find more relevant matches
+- BM25: Augment the BM25 query with synonyms or reformulations from a predefined dict.
 - LLM based: create hypothetical document embeddings (HyDE) by generating a possible query result
   - TODO: generate k possible HyDEs for ambiguous queries, prompt to just generate document keywords to reduce LLM output latency
 
