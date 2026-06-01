@@ -371,7 +371,7 @@ You are an expert Python developer with a preference for concise and expressive 
 ## Web Development
 
 - Use fastapi to create clean and simple REST API's
-- Use httpx for network requests
+- Use niquests for network requests
 
 ## CLI
 
@@ -416,7 +416,7 @@ for number in read_large_file_good("huge_file.txt"):
 
 ## SQLite
 
-SQLite is built into Python and a powerful option to store and analyze relational data.
+SQLite is built into Python and a powerful option to store and analyze relational data. Make sure only one writer per DB is used in multi-proc scenarios to prevent DB corruption.
 
 When creating tables always use the STRICT keyword, to enfore type consistency on INSERT and UPDATE operations.
 
