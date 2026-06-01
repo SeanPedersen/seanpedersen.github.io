@@ -92,9 +92,9 @@ Generate clean, easy to reason about, production-ready code. Strive for composit
 General coding rules:
 - Keep functions pure (no side effects) if possible
 - Use early returns in functions to avoid deep nesting
-- Avoid magic numbers at all costs
-- Only add comments to explain not obvious changes (otherwise let the code speak)
-- Never repeat variable values in comments
+- Use useful variable names (no magic numbers)
+- Add code module doc strings (top of code file) for context but only add comments in code to explain critical paths or not obvious changes (otherwise let the code speak through explicit var names)
+- Never repeat values of variable in comments
 - Always update CLAUDE.md / AGENTS.md after major changes are done
 
 Use web search for relevant blog articles when planning complex features (check current date before to fetch latest information).
