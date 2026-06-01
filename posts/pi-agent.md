@@ -39,6 +39,7 @@ Your custom extensions live in: $home/.pi/agent/extensions
 Installed extensions (packages) are in: TODO
 
 - show complete prompt context: https://pi.dev/packages/pi-system-prompt
+- dynamic workflows (explicit subagent workflow): https://github.com/Michaelliv/pi-dynamic-workflows
 - sub-agents: https://pi.dev/packages/pi-subagents
 - plan mode:
   - https://pi.dev/packages/@plannotator/pi-extension
