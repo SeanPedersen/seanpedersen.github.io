@@ -22,6 +22,8 @@ ranking. <https://medium.com/pinterest-engineering/how-switching-our-domain-stru
 
 AI tools can help with research, outlines, briefs, clustering, internal-link suggestions, and draft acceleration. Do not publish large volumes of generic AI content without editorial review, original value, and clear usefulness.
 
+[Google Search Console](https://search.google.com/search-console/about) is one of the most valuable tools to understand how your website drives traffic.
+
 Google Analytics and Posthog are the most complex and also bloated solutions to track website traffic.
 
 A good open-source alternative (with [MCP support](https://openpanel.dev/docs/mcp)):
