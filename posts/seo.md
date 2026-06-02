@@ -24,7 +24,7 @@ AI tools can help with research, outlines, briefs, clustering, internal-link sug
 
 Google Analytics and Posthog are the most complex and also bloated solutions to track website traffic.
 
-A good open-source alternative (with MCP support):
+A good open-source alternative (with [MCP support](https://openpanel.dev/docs/mcp)):
 https://openpanel.dev/
 
 ## References
