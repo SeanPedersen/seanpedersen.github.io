@@ -14,9 +14,8 @@ And add your provider with: `/login`
 
 ### LLM Providers
 Best bang for the buck right now:
-- OpenCode Go: https://opencode.ai/go
-- OpenRouter: https://openrouter.ai/
-- Very fast: https://inceptionlabs.ai
+- OpenCode Go: https://opencode.ai/go ([pi connector](https://github.com/wahyudichrisdianto/pi-opencode-bridge))
+- OpenRouter (access to all models): https://openrouter.ai/
 - [Self-host](https://seanpedersen.github.io/posts/local-ai-chat-apps/#local-models) a model on GPU/s
 
 ## Customize Pi
