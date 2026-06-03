@@ -32,6 +32,7 @@ Community benchmarks for local LLM: https://localmaxxing.com
 
 Curated Model List:
 - [Qwen3.6-35B-A3B Q4_K_XL](https://huggingface.co/unsloth/Qwen3.6-35B-A3B-MTP-GGUF): Strong MoE (3B active) model with MTP fits on 8GB VRAM GPUs
+  - [Uncensored version](https://huggingface.co/LuffyTheFox/Qwen3.6-35B-A3B-Uncensored-Genesis-V2-APEX-MTP-GGUF) - [Reddit thread](https://www.reddit.com/r/LocalLLaMA/comments/1tm3toi/qwen3635ba3buncensoredgenesisapexmtp/)
   - https://x.com/witcheer/status/2053809265538678789
   - https://www.reddit.com/r/LocalLLaMA/comments/1tc132c/llamacpp_docker_images_to_run_mtp_models/
 - [Qwen3.6 27B Q3_K_M](https://huggingface.co/unsloth/Qwen3.6-27B-GGUF) - dense model, very good can run on 16GB VRAM
