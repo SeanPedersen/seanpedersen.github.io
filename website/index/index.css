@@ -646,3 +646,39 @@ html[data-theme="light"] .speechBubble {
   opacity: 0;
   pointer-events: none;
 }
+
+/* Digger Solo promo (shared with post.css) */
+.diggerPromoLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  border-bottom: none !important;
+  color: inherit;
+  transition: opacity 0.2s;
+}
+
+.diggerPromoLink:hover {
+  opacity: 0.75;
+}
+
+.diggerPromoIcon {
+  width: 1.8rem;
+  height: 1.8rem;
+  border: none !important;
+  border-radius: 0.4rem;
+  flex-shrink: 0;
+}
+
+.diggerPromoText {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.05rem;
+}
+
+.diggerPromoTagline {
+  font-size: 0.75em;
+  font-weight: 400;
+  opacity: 0.75;
+}

@@ -374,6 +374,52 @@ body.has-scrollbar .backToTopLink {
   display: inline-block;
 }
 
+/* Digger Solo promo footer */
+.diggerPromoFooter {
+  border-top: 1px solid var(--related-posts-border);
+  padding: 0.75rem 0 0.5rem;
+  text-align: center;
+  transition: border-top-color 0.3s ease;
+}
+
+.diggerPromoLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  border-bottom: none !important;
+  color: inherit;
+  transition: opacity 0.2s;
+}
+
+.diggerPromoLink:hover {
+  opacity: 0.75;
+}
+
+.diggerPromoIcon {
+  width: 2.5rem;
+  height: 2.5rem;
+  border: none;
+  border-radius: 0.4rem;
+  flex-shrink: 0;
+}
+
+.diggerPromoText {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.1rem;
+}
+
+.diggerPromoText strong {
+  font-size: 1rem;
+  color: var(--primary-color);
+}
+
+.diggerPromoTagline {
+  font-size: 0.85rem;
+  color: var(--light-text-color);
+}
 
 .headerLink {
   display: flex;
