@@ -25,21 +25,7 @@ I recommend the Qwen family for coding and Gemma model family for local basic us
 
 ## Local Models
 
-Run LLM models locally for complete control and privacy.
-Compare model capability: [https://artificialanalysis.ai/models](https://artificialanalysis.ai/models?models=gpt-oss-20b%2Cgpt-oss-120b%2Cgpt-5-5%2Cgemini-3-1-pro-preview%2Cgemma-4-31b%2Cgemma-4-26b-a4b%2Cgemini-3-5-flash%2Cclaude-opus-4-8%2Cclaude-sonnet-4-6-adaptive%2Clfm2-5-1-2b-thinking%2Cminimax-m2-7%2Ckimi-k2-6%2Cmimo-v2-5-pro%2Cqwen3-6-35b-a3b%2Cqwen3-6-27b%2Cqwen3-7-max&intelligence=artificial-analysis-intelligence-index)
-Find compatible models for your hardware: https://www.canirun.ai/ or try https://github.com/AlexsJones/llmfit
-Community benchmarks for local LLM: https://localmaxxing.com
-
-Curated Model List:
-- [Qwen3.6-35B-A3B Q4_K_XL](https://huggingface.co/unsloth/Qwen3.6-35B-A3B-MTP-GGUF): Strong MoE (3B active) model with MTP fits on 8GB VRAM GPUs
-  - [Uncensored version](https://huggingface.co/LuffyTheFox/Qwen3.6-35B-A3B-Uncensored-Genesis-V2-APEX-MTP-GGUF) - [Reddit thread](https://www.reddit.com/r/LocalLLaMA/comments/1tm3toi/qwen3635ba3buncensoredgenesisapexmtp/)
-  - https://x.com/witcheer/status/2053809265538678789
-  - https://www.reddit.com/r/LocalLLaMA/comments/1tc132c/llamacpp_docker_images_to_run_mtp_models/
-- [Qwen3.6 27B Q3_K_M](https://huggingface.co/unsloth/Qwen3.6-27B-GGUF) - dense model, very good can run on 16GB VRAM
-- [LFM2.5-8B-A1B](https://huggingface.co/LiquidAI/LFM2.5-8B-A1B) - very fast MoE model 1.5B active + 128k context (agentic usefulness is limited though...)
-- [MiniCPM5-1B](https://huggingface.co/openbmb/MiniCPM5-1B) - optimized for mobile CPU/NPU inference (32k context window)
-
-[llama.cpp](https://github.com/ggml-org/llama.cpp) and [vLLM](https://github.com/vllm-project/vllm) are the best inference run time servers for consumer GPUs.
+For coding Qwen models are recommended and for general use Gemma models. Here is a more [detailed overview](/posts/local-llm#open-models).
 
 ## MCP Server
 
