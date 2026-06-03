@@ -18,6 +18,12 @@ Every open-source app / program can be easily created / customized with natural 
 - create an app for me so I stay motivated to do fitness -> uses personal (emotional) triggers to keep you going
 - add function X to my TODO app
 
+## Customization through Memory
+
+A good personal agent will use a memory layer to learn facts and preferences about its user and environment to not repeat mistakes twice and enable a deeply customized user experience.
+
+[Hermes agent](https://github.com/nousresearch/hermes-agent) is a right now a popular one known for that.
+
 ## Files
 
 Every file has a semantic embeddings making it discoverable with natural language queries (should be on OS level)
