@@ -43,7 +43,7 @@ Curated Model List:
 
 ## MCP Server
 
-MCP server integration is the most important feature for any of these apps, since it allows to extend them with arbitrary functionality (access files, control programs, etc.).
+MCP server integration or tool use is the most important feature for any of these apps, since it allows to extend them with arbitrary functionality (access files, control programs, etc.).
 
 Here are some useful ones:
 - [youtube-transcript-mcp](https://github.com/SeanPedersen/youtube-transcript-mcp): transcribe and summarize youtube videos
