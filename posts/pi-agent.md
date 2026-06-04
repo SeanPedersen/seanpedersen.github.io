@@ -15,6 +15,7 @@ And add your provider with: `/login`
 ### LLM Providers
 Best bang for the buck right now:
 - OpenCode Go: https://opencode.ai/go ([pi connector](https://github.com/SeanPedersen/pi-opencode-bridge))
+  - Qwen3.7 Plus has best intelligence vs usage limit ratio
 - OpenRouter (access to all models): https://openrouter.ai/
 - [Self-host](https://seanpedersen.github.io/posts/local-ai-chat-apps/#local-models) a model on GPU/s
 
