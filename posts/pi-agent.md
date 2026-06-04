@@ -14,8 +14,8 @@ And add your provider with: `/login`
 
 ### LLM Providers
 Best bang for the buck right now:
-- [OpenCode Go](https://opencode.ai/go)
-  - Qwen3.7 Plus has best intelligence vs usage limit ratio
+- [OpenCode Go](https://opencode.ai/go?ref=G4RTPHMCR6)
+  - [Qwen3.7 Plus](https://artificialanalysis.ai/models/qwen3-7-plus) has best intelligence vs usage limit ratio
 - [OpenRouter](https://openrouter.ai/): one API to access all big models
 - [Self-host](https://seanpedersen.github.io/posts/local-ai-chat-apps/#local-models) a model on GPU/s
 
