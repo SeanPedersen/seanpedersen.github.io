@@ -28,7 +28,9 @@ Performance checklist:
 - Tune KV cache precision:
   - for long context, test q8 KV even with q4 weights
   - aggressively quantized KV can hurt long-context coherence
-- Evaluate KV-cache compression such as TurboQuant for long-context or high-concurrency workloads, but treat it as experimental until benchmarked.
+- Evaluate KV-cache compression for long-context or high-concurrency workloads:
+  - [TurboQuant](https://github.com/0xSero/turboquant)
+  - https://github.com/huawei-csl/KVarN
 
 Performant llama.cpp fork (with advanced features): https://ikawrakow-ik_llama-cpp.mintlify.app/inference/
 
