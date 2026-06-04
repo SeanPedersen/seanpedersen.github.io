@@ -7,19 +7,20 @@ A short list of free AI chat apps for local LLM execution that work offline and 
 
 | App | Type | Setup | Source | Features |
 |-----|------|-------|--------|---------|
-| [LM Studio](https://lmstudio.ai/) | Standalone | Easy | Closed source | MCP, [RAG](https://lmstudio.ai/docs/app/basics/rag), split conversations, [remote access](https://lmstudio.ai/link) |
-| [Msty](https://msty.app/) | Standalone | Easy | Closed source | MCP, RAG, split conversations |
-| [Deep Chat](https://github.com/thinkinaixyz/deepchat) | Standalone | Requires API access | Open source | MCP, Skills, RAG, Agents |
-| [ChatBox](https://github.com/chatboxai/chatbox) | Standalone | Easy | Open source | MCP, RAG |
-| [Jan](https://github.com/janhq/jan) | Standalone | Easy | Open source | MCP (broken) |
-| [~~GPT4ALL~~](https://github.com/nomic-ai/gpt4all) *(discontinued)* | Standalone | Easy | Open source | RAG |
+| [Digger Solo](https://solo.digger.lol) | Desktop | Easy | Closed source | RAG, privacy-first |
+| [LM Studio](https://lmstudio.ai/) | Desktop | Easy | Closed source | MCP, [RAG](https://lmstudio.ai/docs/app/basics/rag), split conversations, [remote access](https://lmstudio.ai/link) |
+| [Msty](https://msty.app/) | Desktop | Easy | Closed source | MCP, RAG, split conversations |
+| [Deep Chat](https://github.com/thinkinaixyz/deepchat) | Desktop | Requires API access | Open source | MCP, Skills, RAG, Agents |
+| [ChatBox](https://github.com/chatboxai/chatbox) | Desktop | Easy | Open source | MCP, RAG |
+| [Jan](https://github.com/janhq/jan) | Desktop | Easy | Open source | MCP (broken) |
+| [~~GPT4ALL~~](https://github.com/nomic-ai/gpt4all) *(discontinued)* | Desktop | Easy | Open source | RAG |
 | [Onyx](https://github.com/onyx-dot-app/onyx) | Web app | Docker required | Open source | Feature rich |
 | [Open WebUI](https://docs.openwebui.com/) | Web app | Complex, requires sign-up | Open source | — |
 | [LibreChat](https://www.librechat.ai/) | Web app | Docker required | Open source | — |
 
 ## Conclusion
 
-To me Deep Chat and LM Studio stand out. Deep Chat being a functional open-source chat app, that is surprisingly feature rich. While LM Studio being very easy to setup with also advanced features (though lacking external provider support - which Msty does though).
+Digger Solo and LM Studio stand out. Digger Solo being a functional privacy focused chat app made for RAG, needing an API key. While LM Studio being very easy to setup (no API key required, run a local model) with also advanced features (though lacking external provider support - which Msty does though).
 
 I recommend the Qwen family for coding and Gemma model family for local basic use.
 
