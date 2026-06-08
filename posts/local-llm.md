@@ -16,6 +16,7 @@ Choose the serving stack based on workload:
 - [llama.cpp](https://github.com/ggml-org/llama.cpp): best general local path, especially GGUF, CPU, Apple Silicon, and mixed CPU/GPU.
 - [vLLM](https://github.com/vllm-project/vllm): strong GPU server for batching, throughput, OpenAI-compatible APIs, and production-style serving for modern GPUs.
 - [SGLang](https://github.com/sgl-project/sglang): good for structured/agentic serving and high-throughput multi-call workloads for modern GPUs.
+- [ZML](https://github.com/zml/zml): Zig based model run time.
 
 Performance checklist:
 - Use the fastest supported attention kernels: FlashAttention, FlashInfer, FlashMLA, etc.
