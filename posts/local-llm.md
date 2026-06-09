@@ -78,6 +78,8 @@ Interesting used GPU options:
 | RTX 3090 | 24 GB GDDR6X | 936 GB/s | 350W | 35.6 | 71.2 Tensor | Often the practical local LLM sweet spot. |
 | AMD BC-250 | 16 GB GDDR6 | 448 GB/s | 220W | 6.9 | 13.8 | Mining card based on PS5 APU, ROCm support varies. |
 
+One or two used Tesla V100 16GB cards are the best bang for the buck.
+
 TODO:
 - Check current Intel Arc and AMD ROCm support.
 - Compare used datacenter GPUs against RTX 3090/4090/5090-class consumer cards.
