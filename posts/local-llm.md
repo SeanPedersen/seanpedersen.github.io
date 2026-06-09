@@ -58,7 +58,8 @@ Most models are too big for consumer GPUs, so quantized versions (compressed par
   - https://x.com/witcheer/status/2053809265538678789
   - https://www.reddit.com/r/LocalLLaMA/comments/1tc132c/llamacpp_docker_images_to_run_mtp_models/
   - Custom thinking grammar (limit overthinking): https://github.com/andthattoo/structured-cot
-- [Qwen3.6 27B Q3_K_M](https://huggingface.co/unsloth/Qwen3.6-27B-GGUF) - dense model, very good can run on 16GB VRAM
+    - TODO: find optimal thinking grammar using [GEPA](https://github.com/gepa-ai/gepa)
+- [Qwen3.6 27B Q3_K_M](https://huggingface.co/unsloth/Qwen3.6-27B-GGUF) - dense model, very good (Sonnet 4.6 performance) can run on 16GB VRAM
 - [Qwen3.5 9B Distilled](https://huggingface.co/mradermacher/Qwen3.5-9B-GLM5.1-Distill-v1-i1-GGUF) - small but capable agentic dense model good for <8GB VRAM
   - [MoQ](https://huggingface.co/w-ahmad/Qwen3.5-9B-GGUF-MoQ/tree/main/MoQ-Quants-Latest) variant (very efficient quantization)
 - [LFM2.5-8B-A1B](https://huggingface.co/LiquidAI/LFM2.5-8B-A1B) - very fast MoE model 1.5B active + 128k context (agentic usefulness is limited though...)
