@@ -10,7 +10,7 @@ Key metrics:
 - Quality at chosen model/quant/context settings
 - Concurrency, if serving multiple users
 
-## Software
+## Software (Inference)
 
 Choose the serving stack based on workload:
 - [llama.cpp](https://github.com/ggml-org/llama.cpp): best general local path, especially GGUF, CPU, Apple Silicon, and mixed CPU/GPU.
@@ -63,15 +63,20 @@ Most models are too big for consumer GPUs, so quantized versions (compressed par
 - [LFM2.5-8B-A1B](https://huggingface.co/LiquidAI/LFM2.5-8B-A1B) - very fast MoE model 1.5B active + 128k context (agentic usefulness is limited though...)
 - [MiniCPM5-1B](https://huggingface.co/openbmb/MiniCPM5-1B) - optimized for mobile CPU/NPU inference (32k context window)
 
-## Hardware
+## Hardware (GPU)
 VRAM matters more than raw TFLOPs for model & context (prompt) size, but memory bandwidth and tensor cores matter for speed. Used datacenter GPUs can be good value, but check form factor, cooling, power, driver support, and PCIe vs SXM.
 
-Interesting used options:
-- Tesla V100 16/32GB: strong used datacenter option, but check PCIe vs SXM and cooling.
-- Tesla P40 24GB: lots of VRAM for cheap, slower and no Tensor Cores.
-- Pascal P100 16GB: cheap, but old and less attractive than V100/P40 depending on workload.
-- GTX 1080 Ti 11GB: cheap but VRAM-limited.
-- RTX 3090 24GB: often the practical local LLM sweet spot if priced well.
+Interesting used GPU options:
+
+| GPU | VRAM | Bandwidth | TDP | FP32 TFLOPS | FP16 TFLOPS | Notes |
+|---|---|---|---|---|---|---|
+| Tesla V100 (SXM2) | 16/32 GB HBM2 | 900 GB/s | 300W | 15.7 | 125 Tensor | Needs SXM board or riser, check cooling. |
+| Tesla V100 (PCIe) | 16/32 GB HBM2 | 750 GB/s | 250W | 14.1 | 112 Tensor | Standard form factor, strong used option. |
+| Tesla P40 | 24 GB GDDR5X | 346 GB/s | 250W | 12.0 | 12.0 | Lots of VRAM for cheap, no Tensor Cores. |
+| Tesla P100 (PCIe) | 16 GB HBM2 | 732 GB/s | 250W | 9.5 | 19.1 | Cheap, but old — less attractive than V100/P40. |
+| GTX 1080 Ti | 11 GB GDDR5X | 484 GB/s | 250W | 11.3 | 11.3 | Cheap but VRAM-limited, no Tensor Cores. |
+| RTX 3090 | 24 GB GDDR6X | 936 GB/s | 350W | 35.6 | 71.2 Tensor | Often the practical local LLM sweet spot. |
+| AMD BC-250 | 16 GB GDDR6 | 448 GB/s | 220W | 6.9 | 13.8 | Mining card based on PS5 APU, ROCm support varies. |
 
 TODO:
 - Check current Intel Arc and AMD ROCm support.
