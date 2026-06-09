@@ -14,6 +14,8 @@ Key metrics:
 
 Choose the serving stack based on workload:
 - [llama.cpp](https://github.com/ggml-org/llama.cpp): best general local path, especially GGUF, CPU, Apple Silicon, and mixed CPU/GPU.
+  - [beelama.cpp](https://github.com/Anbeeld/beellama.cpp): DFlash & TurboQuant in llama.cpp with up to 3x faster generation and 7.5x more KV cache in same VRAM
+  - [ik_llama.cpp](https://github.com/ikawrakow/ik_llama.cpp): llama.cpp fork with additional SOTA quants and improved performance
 - [vLLM](https://github.com/vllm-project/vllm): strong GPU server for batching, throughput, OpenAI-compatible APIs, and production-style serving for modern GPUs.
 - [SGLang](https://github.com/sgl-project/sglang): good for structured/agentic serving and high-throughput multi-call workloads for modern GPUs.
 - [ZML](https://github.com/zml/zml): Zig based model run time.
@@ -29,9 +31,9 @@ Performance checklist:
 - Tune KV cache precision:
   - for long context, test q8 KV even with q4 weights
   - aggressively quantized KV can hurt long-context coherence
-- Evaluate KV-cache compression for long-context or high-concurrency workloads:
-  - [TurboQuant](https://github.com/0xSero/turboquant)
-  - https://github.com/huawei-csl/KVarN
+- Approximate KV-cache compression for long-context or high-concurrency workloads:
+  - [TurboQuant](https://github.com/0xSero/turboquant): developed by Google ([blog article](https://research.google/blog/turboquant-redefining-ai-efficiency-with-extreme-compression/))
+  - [KVarN](https://github.com/huawei-csl/KVarN): claims to beat TurboQuant on all dimensions ([beellama.cpp](https://github.com/Anbeeld/beellama.cpp) supports it)
 
 Performant llama.cpp fork (with advanced features): https://ikawrakow-ik_llama-cpp.mintlify.app/inference/
 
