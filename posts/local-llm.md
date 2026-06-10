@@ -19,6 +19,7 @@ Choose the serving stack based on workload:
 - [vLLM](https://github.com/vllm-project/vllm): strong GPU server for batching, throughput, OpenAI-compatible APIs, and production-style serving for modern GPUs.
 - [SGLang](https://github.com/sgl-project/sglang): good for structured/agentic serving and high-throughput multi-call workloads for modern GPUs.
 - [ZML](https://github.com/zml/zml): Zig based model run time.
+- [LuceBox](https://github.com/Luce-Org/lucebox-hub): Local LLM inference server built for speed. Custom kernels, speculative prefill & decoding. (very advanced optimizations)
 
 Performance checklist:
 - Use the fastest supported attention kernels: FlashAttention, FlashInfer, FlashMLA, etc.
@@ -34,8 +35,6 @@ Performance checklist:
 - Approximate KV-cache compression for long-context or high-concurrency workloads:
   - [TurboQuant](https://github.com/0xSero/turboquant): developed by Google ([blog article](https://research.google/blog/turboquant-redefining-ai-efficiency-with-extreme-compression/))
   - [KVarN](https://github.com/huawei-csl/KVarN): claims to beat TurboQuant on all dimensions ([beellama.cpp](https://github.com/Anbeeld/beellama.cpp) supports it)
-
-Performant llama.cpp fork (with advanced features): https://ikawrakow-ik_llama-cpp.mintlify.app/inference/
 
 Tool-calling reliability:
 - Add middleware for schema repair, retries, validation, and constrained tool loops -> https://github.com/antoinezambelli/forge
