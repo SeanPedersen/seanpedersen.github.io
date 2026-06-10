@@ -78,12 +78,14 @@ Interesting used GPU options:
 | Tesla P100 (PCIe) | 16 GB HBM2 | 732 GB/s | 250W | 9.5 | 19.1 | Cheap, but old — less attractive than V100/P40. |
 | GTX 1080 Ti | 11 GB GDDR5X | 484 GB/s | 250W | 11.3 | 11.3 | Cheap but VRAM-limited, no Tensor Cores. |
 | RTX 3090 | 24 GB GDDR6X | 936 GB/s | 350W | 35.6 | 71.2 Tensor | Often the practical local LLM sweet spot. |
+| Intel Arc A770 | 16 GB GDDR6 | 560 GB/s | 225W | 19.7 | 39.3 XMX | Good llama.cpp SYCL support; get the 16 GB variant. |
+| Intel Arc B580 | 12 GB GDDR6 | 456 GB/s | 190W | 14.4 | 28.8 XMX | Battlemage arch, better perf/watt than A770, solid llama.cpp support. |
 | AMD BC-250 | 16 GB GDDR6 | 448 GB/s | 220W | 6.9 | 13.8 | Mining card based on PS5 APU, ROCm support varies. |
 
 One or two used Tesla V100 16GB cards are the best bang for the buck.
 
 TODO:
-- Check current Intel Arc and AMD ROCm support.
+- Check current AMD ROCm support.
 - Compare used datacenter GPUs against RTX 3090/4090/5090-class consumer cards.
 - Benchmark watts/token, not just tokens/sec.
 
