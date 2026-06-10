@@ -16,7 +16,9 @@ VACUUM FULL rewrites the entire table into a new disk file with no wasted space,
 
 VACUUM FULL alternative (less locking): <https://github.com/reorg/pg_repack>
 
-Backups: <https://github.com/RostislavDugin/postgresus/>
+Backups: 
+- https://github.com/pgbackrest/pgbackrest
+- <https://github.com/RostislavDugin/postgresus/>
 
 ## Scaling & Optimisations
 
