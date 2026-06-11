@@ -13,5 +13,6 @@ Therefore AI deployment architecture is as important as AI model alignment.
 
 References:
 - https://openmined.org/blog/private-machine-learning-explained/
+- https://opensourceaimustwin.com/
 
 #AI #privacy
