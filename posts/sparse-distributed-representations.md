@@ -118,5 +118,6 @@ A different implemenation I found: <https://github.com/dizcza/EmbedderSDR>
 - <https://arxiv.org/abs/1503.07469>
 - <https://arxiv.org/abs/1903.11257>
 - <https://arxiv.org/abs/1511.08855>
+- https://en.wikipedia.org/wiki/Holographic_associative_memory
 
 #ML
