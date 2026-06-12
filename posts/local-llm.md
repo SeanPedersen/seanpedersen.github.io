@@ -20,6 +20,7 @@ Choose the serving stack based on workload:
 - [SGLang](https://github.com/sgl-project/sglang): good for structured/agentic serving and high-throughput multi-call workloads for modern GPUs.
 - [ZML](https://github.com/zml/zml): Zig based model run time.
 - [LuceBox](https://github.com/Luce-Org/lucebox-hub): Local LLM inference server built for speed. Custom kernels, speculative prefill & decoding. (very advanced optimizations like [hot MoE VRAM cache](https://www.lucebox.com/blog/spark))
+- [Uzu](https://github.com/trymirai/uzu): A high-performance inference engine for AI models (optimized for Apple hardware)
 
 Performance checklist:
 - Use the fastest supported attention kernels: FlashAttention, FlashInfer, FlashMLA, etc.
