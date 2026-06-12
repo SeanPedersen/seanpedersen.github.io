@@ -12,6 +12,7 @@ The winning strategy:
 Measure the right target: SEO success should be measured by revenue contribution.
 
 free backlink checker: https://www.seobility.net/en/backlinkchecker/
+free ranking checker: https://tools.searchengineland.com/rank-checker
 
 claude skill: https://github.com/AgriciDaniel/claude-seo
 
