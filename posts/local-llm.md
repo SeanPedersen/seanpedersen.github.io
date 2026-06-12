@@ -47,7 +47,7 @@ TODO:
 Run LLM models locally for complete control and privacy. Open-source (reproducible training) vs open-weight (free model weights) models.
 
 Compare model capability: [https://artificialanalysis.ai/models](https://artificialanalysis.ai/models?models=gpt-oss-20b%2Cgpt-oss-120b%2Cgpt-5-5%2Cgemini-3-1-pro-preview%2Cgemma-4-31b%2Cgemma-4-26b-a4b%2Cgemini-3-5-flash%2Cclaude-opus-4-8%2Cclaude-sonnet-4-6-adaptive%2Clfm2-5-1-2b-thinking%2Cminimax-m2-7%2Ckimi-k2-6%2Cmimo-v2-5-pro%2Cqwen3-6-35b-a3b%2Cqwen3-6-27b%2Cqwen3-7-max&intelligence=artificial-analysis-intelligence-index)
-Find compatible models for your hardware: https://www.canirun.ai/ or try https://github.com/AlexsJones/llmfit
+Find compatible models for your hardware: https://www.canirun.ai/ or try https://github.com/AlexsJones/llmfit -> rule of thumb: plan 70% of VRAM for the model weights (dense) and 20% for the KV-Cache.
 Community benchmarks for local LLM: https://localmaxxing.com
 
 Most models are too big for consumer GPUs, so quantized versions (compressed parameters) are used. [Mixture of Quants](https://huggingface.co/w-ahmad/Qwen3.5-9B-GGUF-MoQ) (MoQ) is a new very efficient quant variant that does not quant weights uniformly but based on importance.
