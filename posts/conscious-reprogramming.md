@@ -76,7 +76,7 @@ Techniques like somatic experiencing, breathwork, or body scanning help discharg
 3. Exposure & Behavioral Rewiring
 Awareness doesn’t automatically change behavior.
 Deliberately placing yourself in mildly triggering situations and responding differently rewires patterns faster than insight alone.
-This mirrors how habits form: repetition under emotional load. The article implies this, but doesn’t emphasize practice under stress as a core mechanism.
+This mirrors how habits form: repetition under emotional load.
 
 3. Identity-Level Reframing
 The focus is on patterns and trauma, but not explicitly on identity narratives.
@@ -85,6 +85,6 @@ This connects to memetics: identity is a high‑level attractor shaping behavior
 
 4. Environmental Design (External Subconscious)
 Your environment programs you continuously (people, media, routines).
-Reducing exposure to reinforcing stimuli is often more effective than willpower. This aligns with other blog themes like Information Hygiene.
+Reducing exposure to reinforcing stimuli is often more effective than willpower. 
 
 #idea
