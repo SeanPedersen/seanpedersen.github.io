@@ -7,7 +7,7 @@ A short list of free AI chat apps for local LLM execution that work offline and 
 
 | App | Type | Setup | Source | Features |
 |-----|------|-------|--------|---------|
-| [Digger Solo](https://solo.digger.lol) | Desktop | Easy | Closed source | RAG, privacy-first |
+| [Digger Solo](https://digger.so/o) | Desktop | Easy | Closed source | RAG, privacy-first |
 | [LM Studio](https://lmstudio.ai/) | Desktop | Easy | Closed source | MCP, [RAG](https://lmstudio.ai/docs/app/basics/rag), split conversations, [remote access](https://lmstudio.ai/link) |
 | [Msty](https://msty.app/) | Desktop | Easy | Closed source | MCP, RAG, split conversations |
 | [Deep Chat](https://github.com/thinkinaixyz/deepchat) | Desktop | Requires API access | Open source | MCP, Skills, RAG, Agents |
