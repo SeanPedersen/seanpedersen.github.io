@@ -2,7 +2,7 @@
 date: '2025-03-24'
 ---
 # Launching Digger Solo
-[Digger Solo](https://solo.digger.lol/) is an AI poweredfile explorer. The two core features are the intuitive file search and file exploration using semantic data maps.
+[Digger Solo](https://digger.so/o) is an AI file explorer. The core features are the intuitive file search, file exploration using semantic maps and LLM RAG chat interface.
 
 ## File Search
 
