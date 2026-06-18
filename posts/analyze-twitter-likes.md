@@ -3,7 +3,7 @@ date: '2025-04-07'
 ---
 # Analyze Your Twitter (X) Likes
 
-A small tutorial how you can easily explore your past Twitter (X) likes using [Digger Solo](https://solo.digger.lol).
+A small tutorial how you can easily explore your past Twitter (X) likes using [Digger Solo](https://digger.so/o).
 
 Export and download your personal Twitter data: Navigate to More -> Settings -> "Your account" -> "Download an archive of your data" and click "Request an archive" button. This will allow you to download an archive of all your Twitter interactions including all posts you ever liked.
 
