@@ -32,6 +32,7 @@ Firefox, Brave etc. also track their users (with default settings). Test [here](
 Search Engine:
 
 - [SearX](https://searx.si/) ([Code](https://github.com/searxng/searxng)) - Privacy-respecting metasearch engine, self-hostable
+- [Digger](https://digger.so/) - Privacy focused search engine
 - [StartPage](https://www.startpage.com/) - Privacy focused search engine
 - [Search Engine Comparison](https://digdeeper.club/articles/search.xhtml#summary)
 
