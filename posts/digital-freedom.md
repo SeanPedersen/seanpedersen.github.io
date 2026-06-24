@@ -15,8 +15,7 @@ Tools to download files:
 - [Download Spotify content](https://github.com/spotDL/spotify-downloader)
 - [Download Youtube Videos](https://github.com/ytdl-org/youtube-dl)
 - [Download web pages as single files](https://github.com/gildas-lormeau/SingleFile)
-- [Download Instagram content](https://chromewebstore.google.com/detail/toolkit-f%C3%BCr-instagram-her/flknhjeojpjfhcgpdaapoldgppnacnhl)
-- [Download X (Twitter) Media Content](https://github.com/EltonChou/TwitterMediaHarvest)
+- [Download social media content (Twitter, Reddit, Instagram)](https://github.com/SeanPedersen/social-media-downloader)
 
 Mobile Apps to view / play files:
 - [foobar2000](https://www.foobar2000.org/): music player
