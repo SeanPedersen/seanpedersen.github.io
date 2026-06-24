@@ -91,7 +91,7 @@ VChord can be configured to not copy all vectors into the index (which is the de
 
 VChord also supports efficient [range filters](https://docs.vectorchord.ai/vectorchord/usage/range-query.html) (limiting results by distance instead of K nearest neighbors).
 
-### VChordG (DiskANN)
+### [VChordG](https://docs.vectorchord.ai/vectorchord/usage/graph-index.html) (DiskANN)
 
 A novel addition (not prodution ready yet): custom implementation of DiskANN index combined with RaBitQ quantization.
 
