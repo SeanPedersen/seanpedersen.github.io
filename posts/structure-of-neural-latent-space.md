@@ -34,11 +34,11 @@ Embeddings represent semantic relationships between objects (like words or image
 - [The Fractured Entangled Representation Hypothesis](https://arxiv.org/abs/2505.11581)
 - [Beta-VAE](/posts/vae#beta-vae)
 
-**Universality Hypothesis**: Neural circuits reappear across different models trained on similar data: models trained on the same modality (text, images, video, etc.) share the same relative semantic structure (angles, distances between concepts) in their embeddings (activations), even if absolute positions/orientations differ. This suggests embeddings converge to a "universal" semantic manifold for a given modality/data distribution.
+**Universality Hypothesis**: Neural circuits reappear across different models trained on similar data: models trained on the same modality (text, images, video, etc.) share the same relative semantic structure (angles, distances between concepts) in their embeddings (activations), even if absolute positions/orientations differ. This suggests embeddings converge to a "universal" semantic manifold for a given modality/data distribution. (Only local neighborhood seems to be preserved across differenet models - see this [paper](https://arxiv.org/abs/2602.14486))
 
 - <https://blog.jxmo.io/p/there-is-only-one-model>
 - [Harnessing the Universal Geometry of Embeddings](https://arxiv.org/abs/2505.12540)
-- [The Platonic Representation Hypothesis](https://arxiv.org/abs/2405.07987)
+- [Revisiting the Platonic Representation Hypothesis: An Aristotelian View](https://arxiv.org/abs/2602.14486) -> disproves: [The Platonic Representation Hypothesis](https://arxiv.org/abs/2405.07987)
 - <https://phillipi.github.io/prh/>
 
 **Smoothness (Lipschitz continuity)**: Small changes in inputs cause proportionally bounded changes in output (latent) space - formally, ||f(x₁) - f(x₂)|| ≤ L||x₁ - x₂|| for some constant L. Well-trained (robust) models should ideally be insensitive to small input changes - which has its limits in praxis (see next point).
