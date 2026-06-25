@@ -41,7 +41,7 @@ Embeddings represent semantic relationships between objects (like words or image
 - [Revisiting the Platonic Representation Hypothesis: An Aristotelian View](https://arxiv.org/abs/2602.14486) -> disproves: [The Platonic Representation Hypothesis](https://arxiv.org/abs/2405.07987)
 - <https://phillipi.github.io/prh/>
 
-**Smoothness (Lipschitz continuity)**: Small changes in inputs cause proportionally bounded changes in output (latent) space - formally, $\|f(x_1) - f(x_2)\| \le L \|x_1 - x_2\|$ for some constant $L$. Robust models should ideally be locally stable to perturbations that preserve task-relevant semantics, while staying sensitive to small but meaningful changes (one pixel can flip a digit, one word can flip sentiment, a small molecular change can change function). A low global Lipschitz constant is not automatically desirable either, since it can reduce expressivity.
+**Smoothness (Lipschitz continuity)**: Small changes in inputs cause proportionally bounded changes in output (latent) space - formally, $\|f(x_1) - f(x_2)\| \leq L \|x_1 - x_2\|$ for some constant $L$. Robust models should ideally be locally stable to perturbations that preserve task-relevant semantics, while staying sensitive to small but meaningful changes (one pixel can flip a digit, one word can flip sentiment, a small molecular change can change function). A low global Lipschitz constant is not automatically desirable either, since it can reduce expressivity.
 
 - [Some Fundamental Aspects about Lipschitz Continuity of Neural Network Functions](https://arxiv.org/abs/2302.10886v2)
 
