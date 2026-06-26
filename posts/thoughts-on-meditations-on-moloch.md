@@ -5,13 +5,11 @@ date: '2026-06-25'
 
 The scary part of *Meditations On Moloch* is not that evil people exist. The scary part is that evil outcomes can happen without evil people.
 
-Scott Alexander uses [Moloch](https://en.wikipedia.org/wiki/Moloch) as a name for bad incentive systems. Not one villain. Not one conspiracy. Not one broken law. A system where each person follows the local pressure in front of them, and the total result is something almost nobody wanted.
-
-That is why the essay still works. It gives a mythic name to a dry problem: coordination failure.
+Scott Alexander uses [Moloch](https://en.wikipedia.org/wiki/Moloch) as a name for bad incentive systems. Not one villain. Not one conspiracy. Not one broken law. A system where each person follows the local pressure in front of them, and the total result is something almost no one individually wanted.
 
 ## The System Has No Mind
 
-The key move is simple. Alexander asks why civilization produces prisons, pollution, war, status races, corruption, fake science, and waste when most people dislike those things.
+The key move is simple. Alexander asks why civilization produces crime, pollution, war, status races, corruption, fake science, and waste when most people dislike those things.
 
 The easy answer is "bad people did it." Sometimes that is true. Often it is too simple.
 
