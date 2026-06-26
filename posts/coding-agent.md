@@ -132,6 +132,11 @@ User Interface:
 Spawn a webserver that shows current task tree + progress (indicate status for every task). Lets me also viel taks details (context, selected model etc).
 
 ## More Ideas
+
+A coding agent could massively save output tokens by outputting compact references to reusable code templates instead of writing everything token by token (and the code registry DB could be [optimized by the whole community](/posts/future-of-programming)).
+A tool would then expand those references into full boilerplate, functions, classes, tests, configs, or scaffolding. The best version is a typed, versioned, parameterized template/macro registry database.
+The LLM becomes the planner and selector, while tools handle expansion, insertion, formatting, and validation.
+
 new:
 when agent sees multiple solutions explore in parallel
 
