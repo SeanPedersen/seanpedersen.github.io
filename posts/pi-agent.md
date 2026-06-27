@@ -44,6 +44,7 @@ Installed extensions (packages) are in: TODO
 - plan mode:
   - https://pi.dev/packages/@plannotator/pi-extension
   - https://pi.dev/packages/pi-pledit
+- hashline edit: https://github.com/RimuruW/pi-hashline-edit
 - btw command: https://github.com/dbachelder/pi-btw
 - goal command: https://pi.dev/packages/@capyup/pi-goal
 - beads (task management): https://pi.dev/packages/pi-beads-extension
