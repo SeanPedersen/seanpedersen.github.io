@@ -56,7 +56,7 @@ Embeddings represent semantic relationships between objects (like words or image
 
 ## Relation to Graphs
 
-Any set of vectors can be viewed as a weighted graph by treating vectors as nodes and similarities/distances (f.e. cosine) as edge weights. Connecting every node to every other node gives a complete weighted graph. In practice one keeps only the K nearest neighbors, sometimes symmetrized, which preserves local neighborhood structure but loses some global metric information (and is directed unless symmetrized).
+Any set of vectors can be viewed as a weighted graph by treating vectors as nodes and similarities/distances (f.e. cosine) as edge weights. Connecting every node to every other node gives a complete weighted graph. In practice one keeps only the K nearest neighbors, which preserves local neighborhood structure but loses global metric information.
 
 ## Limits of Dense Embeddings
 
