@@ -6,43 +6,52 @@ tags: [coding]
 ---
 
 <style>
-  #site-preview {
-    display: none;
-    position: fixed;
-    z-index: 9999;
-    width: 480px;
-    height: 300px;
+  .design-trends-table td {
+    vertical-align: top;
+  }
+
+  .trend-examples {
+    --trend-preview-aspect-ratio: 16 / 10;
+    --trend-preview-width: 9rem;
+
+    align-items: flex-start;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .trend-example {
+    color: inherit;
+    display: block;
+    flex: 0 0 var(--trend-preview-width);
+    min-width: 0;
+    width: var(--trend-preview-width);
+  }
+
+  .trend-example img {
+    aspect-ratio: var(--trend-preview-aspect-ratio);
     background: var(--color-bg, #fff);
     border: 1px solid rgba(127, 127, 127, 0.25);
-    border-radius: 10px;
-    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.22);
-    overflow: hidden;
-    pointer-events: auto;
-  }
-
-  #preview-img {
-    width: 100%;
-    height: 100%;
+    border-radius: 0.5rem;
+    display: block;
     object-fit: cover;
     object-position: top center;
-    display: block;
+    width: 100%;
   }
 
-  .preview-link {
+  .trend-example span {
+    display: block;
+    margin-top: 0.35rem;
     text-decoration: underline;
     text-underline-offset: 2px;
   }
 
   @media (max-width: 768px) {
-    #site-preview {
-      display: none !important;
+    .design-trends-table td {
+      white-space: normal;
     }
   }
 </style>
-
-<div id="site-preview">
-  <img id="preview-img" src="" alt="Website preview">
-</div>
 
 <p>Digital design is concerned with the creation and optimization of user interfaces and experiences across digital
   platforms (apps, web sites, etc.). At its foundation, effective digital design balances aesthetic appeal with
@@ -75,7 +84,7 @@ tags: [coding]
 <h2 id="design-trends">Design Trends</h2>
 
 <div class="table-wrapper">
-  <table>
+  <table class="design-trends-table">
     <thead>
       <tr>
         <th>Trend</th>
@@ -86,116 +95,195 @@ tags: [coding]
       <tr>
         <td>AI-native UX</td>
         <td>
-          <a href="https://chatgpt.com" class="preview-link" data-preview-url="/images/previews/chatgpt.webp"
-            target="_blank" rel="noopener noreferrer">ChatGPT</a>,
-          <a href="https://www.perplexity.ai" class="preview-link" data-preview-url="/images/previews/perplexity.webp"
-            target="_blank" rel="noopener noreferrer">Perplexity</a>,
-          <a href="https://www.figma.com/ai" class="preview-link" data-preview-url="/images/previews/figma-ai.webp"
-            target="_blank" rel="noopener noreferrer">Figma AI</a>
+          <div class="trend-examples">
+            <a href="https://chatgpt.com" class="trend-example" target="_blank" rel="noopener noreferrer">
+              <img src="/images/previews/chatgpt.webp" alt="ChatGPT website preview" loading="lazy">
+              <span>ChatGPT</span>
+            </a>
+            <a href="https://www.perplexity.ai" class="trend-example" target="_blank" rel="noopener noreferrer">
+              <img src="/images/previews/perplexity.webp" alt="Perplexity website preview" loading="lazy">
+              <span>Perplexity</span>
+            </a>
+            <a href="https://www.figma.com/ai" class="trend-example" target="_blank" rel="noopener noreferrer">
+              <img src="/images/previews/figma-ai.webp" alt="Figma AI website preview" loading="lazy">
+              <span>Figma AI</span>
+            </a>
+          </div>
         </td>
       </tr>
       <tr>
         <td>Funky / unique product pages</td>
         <td>
-          <a href="https://nothing.tech" class="preview-link" data-preview-url="/images/previews/nothing.webp"
-            target="_blank" rel="noopener noreferrer">Nothing</a>,
-          <a href="https://teenage.engineering" class="preview-link"
-            data-preview-url="/images/previews/teenage-engineering.webp" target="_blank"
-            rel="noopener noreferrer">Teenage Engineering</a>,
-          <a href="https://liquiddeath.com" class="preview-link" data-preview-url="/images/previews/liquiddeath.webp"
-            target="_blank" rel="noopener noreferrer">Liquid Death</a>,
-          <a href="https://heydaycanning.com" class="preview-link"
-            data-preview-url="/images/previews/heydaycanning.webp" target="_blank" rel="noopener noreferrer">Heyday
-            Canning Co.</a>
+          <div class="trend-examples">
+            <a href="https://nothing.tech" class="trend-example" target="_blank" rel="noopener noreferrer">
+              <img src="/images/previews/nothing.webp" alt="Nothing website preview" loading="lazy">
+              <span>Nothing</span>
+            </a>
+            <a href="https://teenage.engineering" class="trend-example" target="_blank" rel="noopener noreferrer">
+              <img src="/images/previews/teenage-engineering.webp" alt="Teenage Engineering website preview"
+                loading="lazy">
+              <span>Teenage Engineering</span>
+            </a>
+            <a href="https://liquiddeath.com" class="trend-example" target="_blank" rel="noopener noreferrer">
+              <img src="/images/previews/liquiddeath.webp" alt="Liquid Death website preview" loading="lazy">
+              <span>Liquid Death</span>
+            </a>
+            <a href="https://heydaycanning.com" class="trend-example" target="_blank" rel="noopener noreferrer">
+              <img src="/images/previews/heydaycanning.webp" alt="Heyday Canning Co. website preview" loading="lazy">
+              <span>Heyday Canning Co.</span>
+            </a>
+          </div>
         </td>
       </tr>
       <tr>
         <td>Bold / playful</td>
         <td>
-          <a href="https://posthog.com" class="preview-link" data-preview-url="/images/previews/posthog.webp"
-            target="_blank" rel="noopener noreferrer">PostHog</a>
+          <div class="trend-examples">
+            <a href="https://posthog.com" class="trend-example" target="_blank" rel="noopener noreferrer">
+              <img src="/images/previews/posthog.webp" alt="PostHog website preview" loading="lazy">
+              <span>PostHog</span>
+            </a>
+          </div>
         </td>
       </tr>
       <tr>
         <td>Neo-brutalism</td>
         <td>
-          <a href="https://gumroad.com" class="preview-link" data-preview-url="/images/previews/gumroad.webp"
-            target="_blank" rel="noopener noreferrer">Gumroad</a>,
-          <a href="https://www.figma.com" class="preview-link" data-preview-url="/images/previews/figma.webp"
-            target="_blank" rel="noopener noreferrer">Figma</a>
+          <div class="trend-examples">
+            <a href="https://gumroad.com" class="trend-example" target="_blank" rel="noopener noreferrer">
+              <img src="/images/previews/gumroad.webp" alt="Gumroad website preview" loading="lazy">
+              <span>Gumroad</span>
+            </a>
+            <a href="https://www.figma.com" class="trend-example" target="_blank" rel="noopener noreferrer">
+              <img src="/images/previews/figma.webp" alt="Figma website preview" loading="lazy">
+              <span>Figma</span>
+            </a>
+          </div>
         </td>
       </tr>
       <tr>
         <td>Liquid glass</td>
         <td>
-          <a href="https://www.apple.com" class="preview-link" data-preview-url="/images/previews/apple.webp"
-            target="_blank" rel="noopener noreferrer">Apple</a>
+          <div class="trend-examples">
+            <a href="https://www.apple.com" class="trend-example" target="_blank" rel="noopener noreferrer">
+              <img src="/images/previews/apple.webp" alt="Apple website preview" loading="lazy">
+              <span>Apple</span>
+            </a>
+          </div>
         </td>
       </tr>
       <tr>
         <td>Blueprint / grid aesthetic</td>
         <td>
-          <a href="https://zed.dev" class="preview-link" data-preview-url="/images/previews/zed.webp" target="_blank"
-            rel="noopener noreferrer">Zed Editor</a>,
-          <a href="https://stripe.com" class="preview-link" data-preview-url="/images/previews/stripe.webp"
-            target="_blank" rel="noopener noreferrer">Stripe</a>
+          <div class="trend-examples">
+            <a href="https://zed.dev" class="trend-example" target="_blank" rel="noopener noreferrer">
+              <img src="/images/previews/zed.webp" alt="Zed Editor website preview" loading="lazy">
+              <span>Zed Editor</span>
+            </a>
+            <a href="https://stripe.com" class="trend-example" target="_blank" rel="noopener noreferrer">
+              <img src="/images/previews/stripe.webp" alt="Stripe website preview" loading="lazy">
+              <span>Stripe</span>
+            </a>
+          </div>
         </td>
       </tr>
       <tr>
         <td>Anti-design</td>
         <td>
-          <a href="https://mschf.com" class="preview-link" data-preview-url="/images/previews/mschf.webp"
-            target="_blank" rel="noopener noreferrer">MSCHF</a>,
-          <a href="https://www.adultswim.com" class="preview-link" data-preview-url="/images/previews/adultswim.webp"
-            target="_blank" rel="noopener noreferrer">Adult Swim</a>,
-          <a href="https://www.studiojob.nl" class="preview-link" data-preview-url="/images/previews/studiojob.webp"
-            target="_blank" rel="noopener noreferrer">Studio Job</a>
+          <div class="trend-examples">
+            <a href="https://mschf.com" class="trend-example" target="_blank" rel="noopener noreferrer">
+              <img src="/images/previews/mschf.webp" alt="MSCHF website preview" loading="lazy">
+              <span>MSCHF</span>
+            </a>
+            <a href="https://www.adultswim.com" class="trend-example" target="_blank" rel="noopener noreferrer">
+              <img src="/images/previews/adultswim.webp" alt="Adult Swim website preview" loading="lazy">
+              <span>Adult Swim</span>
+            </a>
+            <a href="https://www.studiojob.nl" class="trend-example" target="_blank" rel="noopener noreferrer">
+              <img src="/images/previews/studiojob.webp" alt="Studio Job website preview" loading="lazy">
+              <span>Studio Job</span>
+            </a>
+          </div>
         </td>
       </tr>
       <tr>
         <td>Immersive motion / storytelling</td>
         <td>
-          <a href="https://www.apple.com" class="preview-link" data-preview-url="/images/previews/apple.webp"
-            target="_blank" rel="noopener noreferrer">Apple</a>,
-          <a href="https://www.nike.com" class="preview-link" data-preview-url="/images/previews/nike.webp"
-            target="_blank" rel="noopener noreferrer">Nike</a>,
-          <a href="https://www.tesla.com" class="preview-link" data-preview-url="/images/previews/tesla.webp"
-            target="_blank" rel="noopener noreferrer">Tesla</a>
+          <div class="trend-examples">
+            <a href="https://www.apple.com" class="trend-example" target="_blank" rel="noopener noreferrer">
+              <img src="/images/previews/apple.webp" alt="Apple website preview" loading="lazy">
+              <span>Apple</span>
+            </a>
+            <a href="https://www.nike.com" class="trend-example" target="_blank" rel="noopener noreferrer">
+              <img src="/images/previews/nike.webp" alt="Nike website preview" loading="lazy">
+              <span>Nike</span>
+            </a>
+            <a href="https://www.tesla.com" class="trend-example" target="_blank" rel="noopener noreferrer">
+              <img src="/images/previews/tesla.webp" alt="Tesla website preview" loading="lazy">
+              <span>Tesla</span>
+            </a>
+          </div>
         </td>
       </tr>
       <tr>
         <td>Editorial / mixed-media layouts</td>
         <td>
-          <a href="https://www.nytimes.com" class="preview-link" data-preview-url="/images/previews/nytimes.webp"
-            target="_blank" rel="noopener noreferrer">The New York Times</a>,
-          <a href="https://www.newyorker.com" class="preview-link" data-preview-url="/images/previews/newyorker.webp"
-            target="_blank" rel="noopener noreferrer">The New Yorker</a>,
-          <a href="https://www.bbc.com" class="preview-link" data-preview-url="/images/previews/bbc.webp"
-            target="_blank" rel="noopener noreferrer">BBC</a>
+          <div class="trend-examples">
+            <a href="https://www.nytimes.com" class="trend-example" target="_blank" rel="noopener noreferrer">
+              <img src="/images/previews/nytimes.webp" alt="The New York Times website preview" loading="lazy">
+              <span>The New York Times</span>
+            </a>
+            <a href="https://www.newyorker.com" class="trend-example" target="_blank" rel="noopener noreferrer">
+              <img src="/images/previews/newyorker.webp" alt="The New Yorker website preview" loading="lazy">
+              <span>The New Yorker</span>
+            </a>
+            <a href="https://www.bbc.com" class="trend-example" target="_blank" rel="noopener noreferrer">
+              <img src="/images/previews/bbc.webp" alt="BBC website preview" loading="lazy">
+              <span>BBC</span>
+            </a>
+          </div>
         </td>
       </tr>
       <tr>
         <td>Calm minimalism</td>
         <td>
-          <a href="https://obsidian.md" class="preview-link" data-preview-url="/images/previews/obsidian.webp"
-            target="_blank" rel="noopener noreferrer">Obsidian</a>,
-          <a href="https://www.usbynight.be" class="preview-link" data-preview-url="/images/previews/usbynight.webp"
-            target="_blank" rel="noopener noreferrer">UsByNight</a>,
-          <a href="https://www.cosstores.com" class="preview-link" data-preview-url="/images/previews/cos.webp"
-            target="_blank" rel="noopener noreferrer">COS</a>,
-          <a href="https://www.dropbox.com" class="preview-link" data-preview-url="/images/previews/dropbox.webp"
-            target="_blank" rel="noopener noreferrer">Dropbox</a>
+          <div class="trend-examples">
+            <a href="https://obsidian.md" class="trend-example" target="_blank" rel="noopener noreferrer">
+              <img src="/images/previews/obsidian.webp" alt="Obsidian website preview" loading="lazy">
+              <span>Obsidian</span>
+            </a>
+            <a href="https://www.usbynight.be" class="trend-example" target="_blank" rel="noopener noreferrer">
+              <img src="/images/previews/usbynight.webp" alt="UsByNight website preview" loading="lazy">
+              <span>UsByNight</span>
+            </a>
+            <a href="https://www.cosstores.com" class="trend-example" target="_blank" rel="noopener noreferrer">
+              <img src="/images/previews/cos.webp" alt="COS website preview" loading="lazy">
+              <span>COS</span>
+            </a>
+            <a href="https://www.dropbox.com" class="trend-example" target="_blank" rel="noopener noreferrer">
+              <img src="/images/previews/dropbox.webp" alt="Dropbox website preview" loading="lazy">
+              <span>Dropbox</span>
+            </a>
+          </div>
         </td>
       </tr>
       <tr>
         <td>Performance-first design</td>
         <td>
-          <a href="https://www.wikipedia.org" class="preview-link" data-preview-url="/images/previews/wikipedia.webp"
-            target="_blank" rel="noopener noreferrer">Wikipedia</a>,
-          <a href="https://www.craigslist.org" class="preview-link" data-preview-url="/images/previews/craigslist.webp"
-            target="_blank" rel="noopener noreferrer">Craigslist</a>,
-          <a href="https://www.mcmaster.com" class="preview-link" data-preview-url="/images/previews/mcmaster.webp"
-            target="_blank" rel="noopener noreferrer">McMaster</a>
+          <div class="trend-examples">
+            <a href="https://www.wikipedia.org" class="trend-example" target="_blank" rel="noopener noreferrer">
+              <img src="/images/previews/wikipedia.webp" alt="Wikipedia website preview" loading="lazy">
+              <span>Wikipedia</span>
+            </a>
+            <a href="https://www.craigslist.org" class="trend-example" target="_blank" rel="noopener noreferrer">
+              <img src="/images/previews/craigslist.webp" alt="Craigslist website preview" loading="lazy">
+              <span>Craigslist</span>
+            </a>
+            <a href="https://www.mcmaster.com" class="trend-example" target="_blank" rel="noopener noreferrer">
+              <img src="/images/previews/mcmaster.webp" alt="McMaster website preview" loading="lazy">
+              <span>McMaster</span>
+            </a>
+          </div>
         </td>
       </tr>
     </tbody>
@@ -235,7 +323,8 @@ tags: [coding]
   occur. Layout, defaults, friction and feedback loops guide attention and influence our behavior — often without the
   user's conscious awareness.</p>
 
-<p>Because of this, design is never neutral. Repeated interaction patterns become memetic: they train habits, normalize
+<p>Because of this, design is never neutral. Repeated interaction patterns become <a
+    href="/posts/memetics.html">memetic</a>: they train habits, normalize
   expectations and propagate values across products and cultures. An infinite feed normalizes consumption without
   closure; an opaque system teaches dependence; a reversible, inspectable UI teaches agency.</p>
 
@@ -254,40 +343,3 @@ tags: [coding]
 </ul>
 
 <p class="post-hashtags"><a href="/index.html#coding">#coding</a></p>
-
-<script>
-  (function () {
-    var preview = document.getElementById('site-preview');
-    var img = document.getElementById('preview-img');
-    var hideTimer;
-    function show(url, rect) {
-      clearTimeout(hideTimer);
-      if (img.dataset.loadedUrl !== url) {
-        img.src = url;
-        img.dataset.loadedUrl = url;
-      }
-      var w = 480, h = 300, margin = 12;
-      var top = rect.top - h - margin;
-      if (top < 10) top = rect.bottom + margin;
-      var left = rect.left + rect.width / 2 - w / 2;
-      left = Math.max(10, Math.min(left, window.innerWidth - w - 10));
-      preview.style.top = top + 'px';
-      preview.style.left = left + 'px';
-      preview.style.display = 'block';
-    }
-
-    function hide() {
-      hideTimer = setTimeout(function () { preview.style.display = 'none'; }, 120);
-    }
-
-    document.querySelectorAll('.preview-link').forEach(function (link) {
-      link.addEventListener('mouseenter', function () {
-        show(this.dataset.previewUrl, this.getBoundingClientRect());
-      });
-      link.addEventListener('mouseleave', hide);
-    });
-
-    preview.addEventListener('mouseenter', function () { clearTimeout(hideTimer); });
-    preview.addEventListener('mouseleave', hide);
-  })();
-</script>
