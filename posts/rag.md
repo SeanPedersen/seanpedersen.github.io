@@ -167,5 +167,6 @@ Caveats:
 - <https://maven.com/p/acfa67/improving-rag-embedding-models-representation-learning>
 - <https://softwaredoug.com/blog/2025/12/09/rag-users-want-affordances-not-vectors>
 - https://mksg.lu/blog/gemini-rag-cloudflare-workers
+- https://www.kapa.ai/blog/how-we-prune-rag-context
 
 #ML #coding
