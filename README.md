@@ -22,7 +22,7 @@ Just clone this repo, create a new github project named $your_username.github.io
 - Blog name (etc) in ./website/index/index.html (search heading2Xl)
 - Profile pic in ./website/images/profile.webp
 - Search for "https://github.com/SeanPedersen/seanpedersen.github.io" and change it to your repo so the "Edit on GitHub" link works for your blog
-- Edit / remove Posthog analytics in all html files in ./website
+- Edit / remove openpanel analytics in all html files in ./website
 
 ### Local
 
