@@ -3,7 +3,7 @@ date: '2025-07-03'
 ---
 # Getting started with Claude Code
 
-Claude Code is a powerful CLI based coding agent. It comes with MCP support which enables it to use external tools like web browsers to automatically validate and test new features in web apps. Popular alternatives are OpenAI's [codex](https://openai.com/codex/), [pi-agent](https://pi.dev/) and [opencode](https://opencode.ai/) - which can be used via API billing (https://opencode.ai/go, https://openrouter.ai/, https://groq.com/pricing).
+Claude Code is a powerful CLI based coding agent. It comes with MCP support which enables it to use external tools like web browsers to automatically validate and test new features in web apps. Popular alternatives are OpenAI's [codex](https://openai.com/codex/), [pi-agent](https://pi.dev/) and [opencode](https://opencode.ai/).
 
 Simple and popular tech stacks that are fast to validate are the ideal choices for vibe coding (lots of training data available -> less hallucinations and fast / no  compilation -> allows for rapid iteration).
 
@@ -20,7 +20,7 @@ Now you can ask claude about the project or instruct it to implement a new featu
 It is recommended to use proven code base templates / example repositories that are correctly configured with all needed boilerplate for a project (based on a popular tech stack as mentioned before) - so that the code agents has a working starting point and can not fumble the project setup. Always aim to create tight evaluation / test loops where the agent can verify its progress on its own without you needing to hold hands.
 
 Vibe code project flow:
-- general idea with meta-prompt to act as app designer and to ask clarifying questions
+- general idea with prompt to act as app designer and to ask clarifying questions
 - create technical design with clear specifications
 - ideally find a fitting project code template (boilerplate with basics setup)
 - insert relevant tech stack code documentation (with correct code version)
@@ -30,7 +30,9 @@ Vibe code project flow:
 
 ## General Advice
 
-As with every LLM, Claude Code suffers from context rot - meaning the longer and noisier the context (input context windows) becomes, the worse the performance gets and the more tokens are used. Thus it is best practice to frequently use the `/clear` (deletes whole context) or `/compact` (creates summary of current context)  commands to reduce / reset the context when Claude finished a task or gets stuck on a task - to provide a fresh start. Also try to keep your code files cohesive and small to avoid bloating the context (saving tokens again). Also disable mcp's by default only load when needed (to save context).
+As with every LLM, Claude Code suffers from context rot - meaning the longer and noisier the context (input context windows) becomes, the worse the performance gets and the more tokens are used. Thus it is best practice to frequently use the `/clear` (deletes whole context) or `/compact` (creates summary of current context)  commands to reduce / reset the context when Claude finished a task or gets stuck on a task - to provide a fresh start. Also try to keep your code files cohesive and small to avoid bloating the context (saving tokens again). Also disable mcp's by default only load when needed (to save context token use).
+
+For design work it is recommended to prompt claude to create 10 different variations (f.e. html files) to rapidly explore and then narrow down on a good choice.
 
 Use frequent git commits to save working versions in case Claude gets stuck producing bullshit.
 
@@ -38,10 +40,6 @@ Use frequent git commits to save working versions in case Claude gets stuck prod
 
 YOLO mode: `claude --dangerously-skip-permissions`
 FULL YOLO mode: `IS_SANDBOX=1 claude --dangerously-skip-permissions`
-
-For design work it is recommended to prompt claude to create 10 different variations (f.e. html files) to rapidly explore and then narrow down on a good choice.
-
-Use git working branches to start multiple sub-agents on the same code base.
 
 ### Basic Commands
 
@@ -95,11 +93,6 @@ General coding rules:
 - Avoid magic numbers at all costs
 - Add code module doc strings (top of code file) for context but only add comments in code to explain critical paths or not obvious changes (otherwise let the code speak through explicit var names)
 - Never repeat values of variable in comments
-
-Use context7 for complex code generation, setup or configuration steps, or library/API documentation / planning is done. This means you should automatically use the Context7 MCP tools to resolve library id and get library docs without me having to explicitly ask.
-
-For Python projects use uv for packaging and default to 3.12.
-For JS / TypeScript projects use volta and pnpm 11 and default to node 22.
 
 Never run destructive commands like rm, DB or ufw changes etc. without asking first the user for confirmation.
 ```
