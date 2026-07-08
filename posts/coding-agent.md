@@ -13,7 +13,9 @@ Usage patterns:
   - full coding agent orchestra
 - new project
   - deep research for best tech stack
-  - use proven project template
+  - use proven project code template / snippets
+
+Every code repo should have a SPEC.md file which details in natural language the purpose and capabilities of the project. The code base is then derived from it using coding agents. As coding agents improve in capability the code base will match the specification file more closely, more efficiently and with less bugs.
 
 UX:
 - Provide idea -> discuss
