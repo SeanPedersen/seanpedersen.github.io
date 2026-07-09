@@ -3,12 +3,12 @@ date: '2025-11-17'
 ---
 # Hyper-Primes
 
-A hyper-prime is a prime number p where all prime factors and all exponents in the prime factorization of p-1 are themselves hyper-primes.
+A hyper-prime is a prime number p where all prime factors of p-1 and all exponents in the prime factorization of p-1 are themselves hyper-primes.
 
 ## Definition
 
-For a prime number p, compute N = p - 1 and find its prime factorization:
-N = q₁^e₁ × q₂^e₂ × ... × qₖ^eₖ
+For a prime number p: find prime factorization PF(p-1):
+PF(p-1) = q₁^e₁ × q₂^e₂ × ... × qₖ^eₖ
 The prime p is hyper-prime if and only if:
 - Each prime factor qᵢ is hyper-prime
 - Each exponent eᵢ is hyper-prime
