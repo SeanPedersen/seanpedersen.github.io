@@ -67,6 +67,9 @@ LLM (+ RL) unsolveable examples:
 - novel creative writing
 - coming up with novel funny jokes
 
+> Discovery isn't one thing. It's three. You can induce — generalize from data, which lands you at Newton plus some epicycles to explain Mercury's weird orbit. You can deduce — derive rigorously from axioms you already have, which never gives you new axioms. Or you can jump — invent the frame itself, decide that spacetime curves. That third move is the one that matters, and it's exactly the one induction and deduction can't reach.
+- [Han Xiao on X](https://x.com/hxiao/status/2075180424754757722)
+
 Good ref: [LLM's can't jump](https://philsci-archive.pitt.edu/28024/1/Scientific_Invention_Position_Paper%20(17).pdf)
 
 ## Signals for AGI
