@@ -59,12 +59,14 @@ And anything which has tolerance for errors (hallucinations).
 
 High complexity (very long context / completely novel) tasks with minimal training data available (often limited by needing humans to produce data).
 
-Any critical task that has no tolerance for high error rates.
+Any critical task that has no tolerance for high error rates (and is not easily verifiable).
 
 LLM (+ RL) unsolveable examples:
 - creating completely new (not merely interpolating) mathematical theorems and proofs in unexplored domains
   - solving old problems by interpolating existing knowledge is possible though
 - coming up with novel funny jokes
+
+Good ref: [LLM's can't jump](https://philsci-archive.pitt.edu/28024/1/Scientific_Invention_Position_Paper%20(17).pdf)
 
 ## Signals for AGI
 
