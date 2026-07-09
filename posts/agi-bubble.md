@@ -62,8 +62,9 @@ High complexity (very long context / completely novel) tasks with minimal traini
 Any critical task that has no tolerance for high error rates (and is not easily verifiable).
 
 LLM (+ RL) unsolveable examples:
-- creating completely new (not merely interpolating) mathematical theorems and proofs in unexplored domains
+- creating completely new (not merely interpolating) ideas (mathematical theorems / proofs, physics etc.) in unexplored domains (think outside the box)
   - solving old problems by interpolating existing knowledge is possible though
+- novel creative writing
 - coming up with novel funny jokes
 
 Good ref: [LLM's can't jump](https://philsci-archive.pitt.edu/28024/1/Scientific_Invention_Position_Paper%20(17).pdf)
