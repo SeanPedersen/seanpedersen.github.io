@@ -34,6 +34,7 @@ Whatsapp and Telegram are security nightmares. WA being centralized and has no m
 - [Matrix](https://matrix.org/) has horrible UX and no metadata encryption.
 - Berty chat based on IPFS https://berty.tech/messenger/
 - [Bitchat](https://bitchat.free/): P2P bluetooth
+- [Jami](https://git.jami.net/savoirfairelinux): P2P, https://jami.net/
 - https://www.mindtheclub.com/white-paper.html
 
 ## MLS (secure group messaging)
