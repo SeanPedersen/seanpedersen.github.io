@@ -47,9 +47,10 @@ LLM + RL solveable examples:
 
 LLM solveable examples:
 - coding in popular programming languages
-- anything coding related that is verifiable:
+- anything coding / math related that is verifiable:
   - translate code base from prog. lang A to B (verify input -> output)
   - optimize slow code (f.e. PDF extraction) -> measure speed and verify output
+  - counterexamples, proofs with machine-checkable steps
 - summarizing complicated technical topics (with lots of training data available)
 - generating (interpolating) texts, audio and video
 
