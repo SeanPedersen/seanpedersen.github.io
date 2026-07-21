@@ -3,59 +3,67 @@ date: '2026-07-13'
 ---
 # The EU Parliament Just Passed Chat Control
 
-On 9 July 2026, the [European Parliament](https://en.wikipedia.org/wiki/European_Parliament) passed Chat Control 1.0.
+On 9 July 2026, the [European Parliament](https://en.wikipedia.org/wiki/European_Parliament) let Chat Control 1.0 pass its second reading (enabling mass chat message surveillance legally in the EU).
 
-The vote was absurd. 314 members voted to reject it. Only 276 voted to keep it. Rejection needed an absolute majority of 360 members, so it failed.
+The vote showed a serious flaw in the process. In all, 314 members voted to reject the Council's text. Only 276 voted against rejection. Yet rejection needed an absolute majority of 360 members, so the motion failed.
 
-More members voted against Chat Control than for it. Chat Control still passed the Parliament.
+More members voted to reject the text than to keep it. The text still passed this stage.
 
-This was not one failed proposal revived once. Six consecutive Council presidencies pushed the permanent Chat Control plan. All six failed to secure a majority because of mass surveillance and encryption concerns.
+This was not the first attempt. Six Council presidencies tried to pass the permanent Chat Control plan. Each failed to win enough support amid concerns about mass surveillance and encryption.
 
-Parliament then rejected the temporary extension in March 2026. Four months later, the same institution let it pass through a rule that ignored the majority present.
+Parliament then rejected an extension of the temporary law in March 2026. Four months later, the Council sent the text back for a second reading. A rule that required 360 votes for rejection let it pass despite the vote.
 
-This is lawmaking by attrition. Keep rewriting, renaming, and reviving a rejected surveillance system until a procedural loophole carries it. Calling that democratic would be dishonest. It looks like institutional corruption.
+EU lawmakers kept changing and resubmitting a surveillance plan that lacked enough support. The process followed the rules, but the result did not match the choice of most members who voted.
 
 ## What Just Passed
 
-Chat Control 1.0 is an exception to the [ePrivacy Directive](https://en.wikipedia.org/wiki/EPrivacy_Directive). It lets communication providers scan private messages for child sexual abuse material and grooming.
+Chat Control 1.0 creates an exception to the [ePrivacy Directive](https://en.wikipedia.org/wiki/EPrivacy_Directive). It lets communication providers scan private messages for child sexual abuse material and grooming.
 
-The scanning is called voluntary because providers may choose whether to do it. It is not voluntary for the person whose messages get scanned. No warrant or individual suspicion is required.
+The law calls the scanning voluntary because each provider may choose whether to scan. The person whose messages it scans gets no choice. The provider needs neither a warrant nor a reason to suspect that person.
 
-This temporary law first passed in 2021 and expired on 3 April 2026. Parliament voted against extending it in March. The Council brought it back for a second reading in July.
+The temporary law first took effect in 2021 and expired on 3 April 2026. Parliament rejected an extension in March. The Council sent it back to Parliament for a second reading in July.
 
-Parliament added one vital restriction. Communications protected by [end-to-end encryption](https://en.wikipedia.org/wiki/End-to-end_encryption) are excluded. The Council must now accept or reject that restriction.
+Parliament added one main limit. Its amendment excludes messages that use [end-to-end encryption](https://en.wikipedia.org/wiki/End-to-end_encryption). The Council must now accept or reject that limit.
 
-Chat Control 1.0 is separate from Chat Control 2.0. The second proposal would create a permanent system. Most of that law is already agreed, but negotiations continue over detection orders and encrypted communication.
+Chat Control 1.0 differs from Chat Control 2.0. The second plan would set up a permanent system. Parliament and the Council have agreed on most of that law. They still disagree about detection orders and encrypted messages.
 
 ## What It Means for Your Messenger
 
-The encryption label alone tells you little. The important question is whether the provider can read your message on its servers.
+An encryption label tells you little by itself. Ask whether the provider can read your message on its servers.
 
 ### Matrix
 
-The open, decentralized [Matrix protocol](https://en.wikipedia.org/wiki/Matrix_(protocol)) lets users choose a provider or run their own homeserver. Encrypted rooms should fall under Parliament's exception, while homeservers can read and scan unencrypted rooms. Self-hosting does not hide all [metadata](https://en.wikipedia.org/wiki/Metadata), but a network spread across thousands of operators makes mass surveillance harder to impose.
+The open, decentralized [Matrix protocol](https://en.wikipedia.org/wiki/Matrix_(protocol)) lets you choose a provider or run your own homeserver. Parliament's limit should cover encrypted rooms. Homeservers can still read and scan rooms without encryption.
+
+Self-hosting does not hide all [metadata](https://en.wikipedia.org/wiki/Metadata). Yet thousands of separate operators make one central scanning order harder to carry out across the whole network.
 
 ### Signal
 
-[Signal](https://en.wikipedia.org/wiki/Signal) is a centralized messenger that end-to-end encrypts all messages, calls, and files by default, placing their content outside Chat Control 1.0 under Parliament's amendment. Its central control makes it vulnerable to coercion or compromise, although scanning would require inspecting content on the device before encryption—a form of [client-side scanning](https://en.wikipedia.org/wiki/Regulation_to_Prevent_and_Combat_Child_Sexual_Abuse) that Signal has [already rejected](https://signal.org/blog/pdfs/upload-moderation.pdf).
+[Signal](https://en.wikipedia.org/wiki/Signal) is a centralized messenger. It uses end-to-end encryption for all messages, calls, and files by default. Parliament's amendment places that content outside Chat Control 1.0.
+
+Signal still controls the service. A government could pressure it, or an attacker could breach it. But content scanning would have to happen on the device before encryption. Experts call this method [client-side scanning](https://en.wikipedia.org/wiki/Regulation_to_Prevent_and_Combat_Child_Sexual_Abuse), and Signal has [rejected it](https://signal.org/blog/pdfs/upload-moderation.pdf).
 
 ### WhatsApp
 
-[WhatsApp](https://en.wikipedia.org/wiki/WhatsApp) is a centralized messenger that uses the Signal Protocol to encrypt personal messages, so their content should be excluded under Parliament's amendment. Meta controls the clients, accounts, contact discovery, and surrounding metadata, while user reports can expose recent messages. If the encryption exception disappears, that central control could enable scanning on the device before encryption without removing the lock icon.
+[WhatsApp](https://en.wikipedia.org/wiki/WhatsApp) is a centralized messenger. It uses the Signal Protocol to encrypt personal messages. Chat Control 1.0 should therefore not cover their content.
+
+Meta controls the apps, accounts, contact discovery, and related metadata. User reports can also reveal recent messages. If lawmakers remove the encryption limit, Meta could add scanning before encryption while still showing the lock icon.
 
 ### Telegram
 
-[Telegram](https://en.wikipedia.org/wiki/Telegram) is a centralized messenger that does not end-to-end encrypt normal private chats, groups, or channels, so it holds the messages and keys needed to scan most user content. Only opt-in Secret Chats between two devices are end-to-end encrypted, and they support neither groups nor device syncing. Calling Telegram encrypted is therefore misleading: for most conversations, Telegram remains in the middle.
+[Telegram](https://en.wikipedia.org/wiki/Telegram) is a centralized messenger. It does not use end-to-end encryption for standard private chats, groups, or channels. Telegram therefore holds the messages and keys needed to scan most user content.
 
-## The Encryption Exception Is Not Safe Yet
+Only opt-in Secret Chats between two devices use end-to-end encryption. They do not support groups or device syncing. For most chats, Telegram can read the content. The claim that Telegram encrypts all chats is false.
 
-Parliament's amendment is good, but it is not final. The Council can reject it. The permanent Chat Control 2.0 fight is also still open.
+## The Encryption Limit Is Not Final
 
-Politicians will keep claiming that they can scan messages while protecting encryption. They cannot. Content must exist as readable text somewhere before it gets encrypted.
+Parliament's amendment protects encrypted messages, but the Council can still reject it. Talks on the permanent Chat Control 2.0 plan also continue.
 
-Scanning that point turns every phone into a surveillance device. The encryption may remain mathematically intact, but the private communication is gone. The single biggest reason why mass surveillance is always a bad idea: it is the wet dream of any totalitarian regime and has the potential to be abused in unimaginable ways.
+Some politicians claim that providers can scan messages and still protect encryption. They cannot protect the message content from the scanner. A phone must hold readable content before it encrypts and sends that content.
 
-Use Signal for simple private messaging. Use encrypted Matrix rooms if you want secure private messaging with an open network and the option to self-host. Treat WhatsApp as encrypted but controlled by Meta (aka the Zuck). Do not treat normal Telegram chats as private.
+Client-side scanning checks the message at that point. The encryption may still work as designed, but the scanner can read the message. A government can abuse that access, and a future government can use it for a new purpose.
+
+Use encrypted Matrix rooms if you also want an open network and the option to host it yourself. Use Signal for simple private messages. WhatsApp encrypts personal messages, but Meta (aka the Zuck) controls the service. Do not treat standard Telegram chats as private.
 
 ## References
 
