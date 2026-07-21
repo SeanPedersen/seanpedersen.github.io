@@ -42,7 +42,7 @@ pub fn build_global_html_pages(out_dir: &Path) -> Result<()> {
     }
 
     // Initialize Tera
-    let mut tera = Tera::new("")?;
+    let mut tera = Tera::default();
     for html_path in &html_files {
         tera.add_template_file(
             html_path,
