@@ -112,6 +112,8 @@ Watch companies that:
 - Lack meaningful switching costs, ecosystem effects, or distribution advantages
 - Compete on feature parity rather than data or integration depth
 
+One can argue that companies training LLMs and selling access to their models like OpenAI and Anthropic also lack any real moat, since open-source/weight LLM are rapidly catching up (lowering their margins). A scenario where open LLMs will be run on consumer hardware in a few years, seems likely now. Only if you believe in centralized ASI takeoff, you may want to invest in these companies.
+
 Identifying a business as vulnerable is not the same as identifying a good short. Many mediocre businesses stay expensive to short for years. Valuation, balance sheet analysis, and timing matter as much as the competitive thesis.
 
 ## Ranking of AI Investment Themes
