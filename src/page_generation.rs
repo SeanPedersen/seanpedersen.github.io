@@ -603,18 +603,27 @@ fn add_heading_ids(html: &str) -> String {
         let content = &caps[2];
         let plain_text = strip_html_tags(content);
         let text = decode_html_entities(&plain_text);
-        let id = text
-            .to_lowercase()
-            .chars()
-            .map(|c| if c.is_alphanumeric() { c } else { '-' })
-            .collect::<String>()
-            .split('-')
-            .filter(|s| !s.is_empty())
-            .collect::<Vec<_>>()
-            .join("-");
+        let id = heading_id_from_text(&text);
         format!(r#"<h{} id="{}">{}</h{}>"#, level, id, content, level)
     })
     .to_string()
+}
+
+fn heading_id_from_text(text: &str) -> String {
+    text.to_lowercase()
+        .chars()
+        .map(|character| {
+            if character.is_alphanumeric() {
+                character
+            } else {
+                '-'
+            }
+        })
+        .collect::<String>()
+        .split('-')
+        .filter(|part| !part.is_empty())
+        .collect::<Vec<_>>()
+        .join("-")
 }
 
 #[derive(Debug, Clone, Serialize)]
@@ -625,25 +634,45 @@ pub struct Heading {
 }
 
 pub fn extract_headings(html: &str) -> Vec<Heading> {
-    let re = Regex::new(r"<h([1-6])[^>]*>(.*?)</h[1-6]>").unwrap();
+    let re = Regex::new(r"<h([1-6])([^>]*)>(.*?)</h[1-6]>").unwrap();
+    let id_re = Regex::new(r#"\bid\s*=\s*["']([^"']+)["']"#).unwrap();
     re.captures_iter(html)
         .map(|caps| {
             let level = caps[1].parse::<u8>().unwrap_or(1);
-            let raw_text = &caps[2];
+            let attributes = &caps[2];
+            let raw_text = &caps[3];
             let plain_text = strip_html_tags(raw_text);
             let text = decode_html_entities(&plain_text);
-            let id = text
-                .to_lowercase()
-                .chars()
-                .map(|c| if c.is_alphanumeric() { c } else { '-' })
-                .collect::<String>()
-                .split('-')
-                .filter(|s| !s.is_empty())
-                .collect::<Vec<_>>()
-                .join("-");
+            let id = id_re
+                .captures(attributes)
+                .map(|id_caps| id_caps[1].to_string())
+                .unwrap_or_else(|| heading_id_from_text(&text));
             Heading { level, text, id }
         })
         .collect()
+}
+
+#[cfg(test)]
+mod tests {
+    use super::extract_headings;
+
+    #[test]
+    fn extract_headings_preserves_explicit_ids() {
+        let headings = extract_headings(
+            r#"<h2 id="outlook">Outlook: why this trick stops at the plane</h2>"#,
+        );
+
+        assert_eq!(headings.len(), 1);
+        assert_eq!(headings[0].id, "outlook");
+    }
+
+    #[test]
+    fn extract_headings_generates_ids_when_missing() {
+        let headings = extract_headings("<h2>Why this trick works</h2>");
+
+        assert_eq!(headings.len(), 1);
+        assert_eq!(headings[0].id, "why-this-trick-works");
+    }
 }
 
 fn decode_html_entities(text: &str) -> String {
