@@ -397,6 +397,7 @@ $$
     <li><a href="https://mathworld.wolfram.com/Rotation.html">MathWorld: Rotation</a></li>
     <li><a href="https://encyclopediaofmath.org/wiki/Complex_structure">Encyclopedia of Mathematics: Complex structure</a></li>
     <li><a href="https://encyclopediaofmath.org/wiki/Frobenius_theorem">Encyclopedia of Mathematics: Frobenius theorem</a></li>
+    <li><a href="https://youtu.be/f079K1f2WQk">YouTube: Necessity of complex numbers</a></li>
   </ol>
 
 <script>
