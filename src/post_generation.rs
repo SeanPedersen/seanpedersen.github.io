@@ -1,5 +1,9 @@
+//! Renders individual blog posts and their social metadata.
+
 use anyhow::Result;
+use once_cell::sync::Lazy;
 use rayon::prelude::*;
+use regex::Regex;
 use serde_json::json;
 use std::collections::HashMap;
 use std::fs::{self, File};
@@ -9,7 +13,29 @@ use std::sync::Arc;
 use std::time::Instant;
 use tera::{Tera, Value};
 
-use crate::page_generation::{extract_headings, format_date, strip_html_tags, Post, PostSummary};
+use crate::page_generation::{extract_headings, format_date, Post, PostSummary};
+
+const EXCERPT_MAX_CHARACTERS: usize = 160;
+
+static NON_CONTENT_BLOCK_PATTERN: Lazy<Regex> = Lazy::new(|| {
+    Regex::new(r"(?is)<(style|script)\b[^>]*>.*?</(?:style|script)\s*>")
+        .expect("non-content block regex must be valid")
+});
+static HTML_TAG_PATTERN: Lazy<Regex> =
+    Lazy::new(|| Regex::new(r"<[^>]*>").expect("HTML tag regex must be valid"));
+
+fn extract_excerpt(content_html: &str) -> String {
+    let content_only = NON_CONTENT_BLOCK_PATTERN.replace_all(content_html, " ");
+    let plain_text = HTML_TAG_PATTERN.replace_all(&content_only, " ");
+
+    plain_text
+        .split_whitespace()
+        .collect::<Vec<_>>()
+        .join(" ")
+        .chars()
+        .take(EXCERPT_MAX_CHARACTERS)
+        .collect()
+}
 
 /// Tera function that outputs a placeholder for CSS inlining.
 /// Usage in template: {{ inline_css(path="/styles/global.css") }}
@@ -86,10 +112,7 @@ pub fn generate_post_page(out_dir: &Path, post: &Post, related: &[PostSummary]) 
     // Detect if page has code blocks
     let has_code_blocks = post.content_html.contains("<pre");
 
-    let excerpt = strip_html_tags(&post.content_html)
-        .chars()
-        .take(160)
-        .collect::<String>();
+    let excerpt = extract_excerpt(&post.content_html);
 
     let title_id = post
         .title
@@ -133,7 +156,10 @@ pub fn generate_post_page(out_dir: &Path, post: &Post, related: &[PostSummary]) 
     context.insert("title_id", &title_id);
     context.insert("post_date", &post.date);
     context.insert("post_date_modified", &post.date_modified);
-    context.insert("post_tags_first", &post.tags.first().map(|s| s.as_str()).unwrap_or(""));
+    context.insert(
+        "post_tags_first",
+        &post.tags.first().map(|s| s.as_str()).unwrap_or(""),
+    );
     context.insert("formatted_date", &format_date(&post.date));
     context.insert("content_html", &post.content_html);
     context.insert("related_posts", &related_data);
@@ -172,4 +198,33 @@ pub fn generate_all_post_pages(
     })?;
 
     Ok(())
+}
+
+#[cfg(test)]
+mod tests {
+    use super::extract_excerpt;
+
+    #[test]
+    fn excerpt_ignores_embedded_styles_and_scripts() {
+        let html = r#"
+            <style>.article { color: red; }</style>
+            <script>document.body.dataset.ready = "true";</script>
+            <p>The gradient describes the direction of steepest change.</p>
+        "#;
+
+        assert_eq!(
+            extract_excerpt(html),
+            "The gradient describes the direction of steepest change."
+        );
+    }
+
+    #[test]
+    fn excerpt_normalizes_whitespace() {
+        let html = "<p>Local change\n  becomes easier</p><p>to understand.</p>";
+
+        assert_eq!(
+            extract_excerpt(html),
+            "Local change becomes easier to understand."
+        );
+    }
 }
