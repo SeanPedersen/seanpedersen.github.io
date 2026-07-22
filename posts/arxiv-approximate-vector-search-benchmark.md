@@ -1,7 +1,7 @@
 ---
 date: '2026-07-22'
 ---
-# Five approximate vector indexes on 100,000 arXiv embeddings
+# Approximate Vector Index Benchmark on arXiv Embeddings
 
 The fastest high-recall index in this benchmark answered a query in 1.15 ms at 0.964 recall@10. A 13.4 MiB TurboVec index reached exact recall@10 after reranking 100 candidates with FP16 embeddings. That took 2.53 ms at the median on 100,000 vectors.
 
@@ -105,12 +105,12 @@ Choose zvec HNSW plus RaBitQ when sub-millisecond unfiltered search matters more
 
 ## References
 
-1. [HNSW research paper](https://arxiv.org/abs/1603.09320)
-2. [DiskANN: Fast accurate billion-point nearest neighbor search on a single node](https://www.microsoft.com/en-us/research/publication/diskann-fast-accurate-billion-point-nearest-neighbor-search-on-a-single-node/)
-3. [Faiss wiki](https://github.com/facebookresearch/faiss/wiki)
-4. [arXiv bulk data access and metadata information](https://info.arxiv.org/help/bulk_data.html)
-5. [zvec IVF nprobe regression report](https://github.com/alibaba/zvec/issues/598)
-6. [Approximate vector search benchmark source and results](https://github.com/SeanPedersen/approximate-vector-search-benchmark)
+1. [Benchmark Github: Approximate vector search benchmark source and results](https://github.com/SeanPedersen/approximate-vector-search-benchmark)
+2. [HNSW research paper](https://arxiv.org/abs/1603.09320)
+3. [DiskANN: Fast accurate billion-point nearest neighbor search on a single node](https://www.microsoft.com/en-us/research/publication/diskann-fast-accurate-billion-point-nearest-neighbor-search-on-a-single-node/)
+4. [Faiss wiki](https://github.com/facebookresearch/faiss/wiki)
+5. [arXiv bulk data access and metadata information](https://info.arxiv.org/help/bulk_data.html)
+6. [zvec IVF nprobe regression report](https://github.com/alibaba/zvec/issues/598)
 7. [zvec source repository](https://github.com/alibaba/zvec)
 8. [TurboVec source repository](https://github.com/RyanCodrai/turbovec)
 9. [AsterVec source repository](https://github.com/NTU-Siqiang-Group/AsterVec)
