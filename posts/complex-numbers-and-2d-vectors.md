@@ -64,7 +64,19 @@ tags: [math]
   }
 
   .markdown-content .overline {
-    text-decoration: overline;
+    display: inline-block;
+    padding-top: 0.08em;
+    position: relative;
+    vertical-align: baseline;
+  }
+
+  .markdown-content .overline::before {
+    border-top: 0.06em solid currentColor;
+    content: "";
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
   }
 
   .markdown-content .product-grid {
