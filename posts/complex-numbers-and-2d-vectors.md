@@ -254,7 +254,7 @@ $$
   <p>For two complex numbers in polar form, multiplication multiplies their magnitudes and adds their angles:</p>
 
 $$
-z_1z_2 = \left(r_1e^{i\theta_1}\right)\left(r_2e^{i\theta_2}\right)
+z_1 \cdot z_2 = \left(r_1e^{i\theta_1}\right) \cdot \left(r_2e^{i\theta_2}\right)
         = r_1r_2e^{i(\theta_1 + \theta_2)}
 $$
 
@@ -265,7 +265,7 @@ $$
     <canvas class="diagram complex-canvas" data-diagram="multiplication" role="img"
       aria-label="The vectors w, z, and zw showing that multiplication by z rotates w by theta and scales its length by the modulus of z."></canvas>
     <figcaption>Here w = z<sub>1</sub> and z = z<sub>2</sub>. Normal multiplication produces
-      wz = z<sub>1</sub>z<sub>2</sub> by adding their angles.</figcaption>
+      wz = z<sub>1</sub> · z<sub>2</sub> by adding their angles.</figcaption>
   </figure>
 
   <h2 id="compare-vectors">Conjugation turns multiplication into comparison</h2>
@@ -275,14 +275,14 @@ $$
     complex number acts as a transformation on another:</p>
 
 $$
-z_1z_2 = |z_1||z_2|e^{i(\theta_1+\theta_2)}
+z_1 \cdot z_2 = |z_1||z_2|e^{i(\theta_1+\theta_2)}
 $$
 
   <p>Sometimes we do not want to combine the vectors. We want to compare them. Conjugating z<sub>1</sub> reverses its
     angle from θ<sub>1</sub> to -θ<sub>1</sub>. Multiplication then subtracts the first angle from the second:</p>
 
 $$
-\overline{z_1}z_2 = |z_1||z_2|e^{i(\theta_2-\theta_1)}
+\overline{z_1} \cdot z_2 = |z_1||z_2|e^{i(\theta_2-\theta_1)}
 $$
 
   <p>The result now describes the direction of z<sub>2</sub> relative to z<sub>1</sub>. If both vectors rotate by the same
@@ -294,10 +294,10 @@ $$
     it by z<sub>2</sub>:</p>
 
 $$
-\overline{z_1}z_2 = (a-bi)(c+di) = (ac+bd) + (ad-bc)i
+\overline{z_1} \cdot z_2 = (a-bi)(c+di) = (ac+bd) + (ad-bc)i
 $$
 
-  <p>This is different from the ordinary product z<sub>1</sub>z<sub>2</sub>, whose real part is ac - bd. A
+  <p>This is different from the ordinary product z<sub>1</sub> · z<sub>2</sub>, whose real part is ac - bd. A
     complex conjugate flips the sign of the imaginary part. It is not the multiplicative inverse. The inverse also
     divides by the squared modulus:</p>
 
@@ -326,7 +326,7 @@ $$
     <canvas class="diagram complex-canvas" data-diagram="comparison" role="img"
       aria-label="Vectors z1 and z2 with their angle, projection, signed parallelogram area, and conjugated product z3."></canvas>
     <figcaption>The dot product becomes the horizontal coordinate of z<sub>3</sub>. The signed area becomes its vertical
-      coordinate. Together they form z<sub>3</sub> = <span class="overline">z<sub>1</sub></span>z<sub>2</sub>.</figcaption>
+      coordinate. Together they form z<sub>3</sub> = <span class="overline">z<sub>1</sub></span> · z<sub>2</sub>.</figcaption>
   </figure>
 
   <h2 id="what-is-preserved">Encoded, not conserved</h2>
@@ -339,7 +339,7 @@ $$
     r<sub>2</sub>e<sup>iθ₂</sup>, then Euler's formula gives:</p>
 
 $$
-\overline{z_1}z_2 = r_1r_2e^{i(\theta_2-\theta_1)}
+\overline{z_1} \cdot z_2 = r_1r_2e^{i(\theta_2-\theta_1)}
 $$
 
   <p>Its magnitude is r<sub>1</sub>r<sub>2</sub>. Its argument is the signed angle from
@@ -406,7 +406,7 @@ $$
     <dt>Polar form</dt>
     <dd>A complex number written through its length and angle: z = re<sup>iθ</sup>.</dd>
     <dt>Conjugated product</dt>
-    <dd>The product <span class="overline">z<sub>1</sub></span>z<sub>2</sub>. Its real part is the dot product, and its
+    <dd>The product <span class="overline">z<sub>1</sub></span> · z<sub>2</sub>. Its real part is the dot product, and its
       imaginary part is the signed area.</dd>
   </dl>
 
@@ -581,7 +581,7 @@ $$
       drawVector(context, origin, productEnd, COLORS.orange);
       drawLabel(context, `w = z₁ = (${w.x}, ${w.y})`, { x: wEnd.x + 10, y: wEnd.y - 15 }, COLORS.blue);
       drawLabel(context, `z = z₂ = (${z.x}, ${z.y})`, { x: zEnd.x + 10, y: zEnd.y - 13 }, COLORS.green);
-      drawLabel(context, `wz = z₁z₂ = (${product.x.toFixed(2)}, ${product.y.toFixed(2)})`,
+      drawLabel(context, `wz = z₁ · z₂ = (${product.x.toFixed(2)}, ${product.y.toFixed(2)})`,
         { x: productEnd.x + 12, y: productEnd.y + 10 }, COLORS.orange);
       drawLabel(context, "length × |z₂|", { x: productEnd.x + 30, y: 170 }, foreground);
     };
