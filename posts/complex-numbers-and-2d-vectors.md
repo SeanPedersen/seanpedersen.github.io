@@ -4,9 +4,8 @@ title: "Complex Numbers"
 tags: [math]
 ---
 
-  <p class="lead">A complex number is a 2D vector with an extra rule: it can multiply another point in the plane.
-    That product turns multiplication into rotation and scaling. With conjugation, it also records the angle and signed
-    area between two vectors.</p>
+  <p class="lead">A complex number is a 2D vector (point), which can be multiplied with another point in the plane.
+    That product turns multiplication into rotation and scaling.</p>
 
 <style>
   .markdown-content {
@@ -114,8 +113,8 @@ tags: [math]
   }
 </style>
 
-  <p>This sounds like a small addition. It changes the kind of object we have. A <a
-      href="https://en.wikipedia.org/wiki/Vector_space">2D real vector space</a> gives us addition and multiplication by
+  <p>This seemingly small addition, changes the kind of object we have. A <a
+      href="https://en.wikipedia.org/wiki/Vector_space">2D real vector space</a> gives us addition and only multiplication by
     real scalars. The <a href="https://en.wikipedia.org/wiki/Complex_number">complex numbers</a> also let us multiply and
     divide elements of the plane.</p>
 
@@ -185,7 +184,7 @@ $$a + bi \longleftrightarrow (a, b)$$
 
   <h2 id="complex-multiplication">Complex multiplication rotates and scales</h2>
 
-  <p>A vector space does not tell us what (1, 2)(3, 4) means. We can add these vectors or scale them,
+  <p>A vector space does not tell us what (1, 2) multiplied by (3, 4) means. We can add these vectors or scale them,
     but a product needs a new definition.</p>
 
   <p>Complex numbers come with that definition. Since i<sup>2</sup> = -1:</p>
