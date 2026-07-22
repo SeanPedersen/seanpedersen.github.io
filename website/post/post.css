@@ -460,7 +460,9 @@ html[data-theme="light"] .headerLogo {
 
 .markdown-content .math-block {
   overflow-x: auto;
+  overflow-y: hidden;
   margin: 1.5rem 0;
+  padding-block: 0.25em;
   scrollbar-width: none;
   text-align: center;
 }
