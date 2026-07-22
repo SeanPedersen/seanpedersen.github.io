@@ -1,6 +1,5 @@
 ---
 date: '2026-07-22'
-icon: "/favicon.svg"
 title: "Complex Numbers"
 tags: [math]
 ---
@@ -224,6 +223,20 @@ $$
 z = r(\cos \theta + i\sin \theta) = re^{i\theta}
 $$
 
+  <p>The bridge between the trigonometric and exponential forms is
+    <a href="https://en.wikipedia.org/wiki/Euler%27s_formula">Euler's formula</a>:</p>
+
+$$
+e^{i\theta} = \cos\theta + i\sin\theta
+$$
+
+  <p>When |z| = 1, we have r = 1 and may write z = e<sup>iθ</sup>. For a general complex number, the factor r is still
+    needed. Setting θ = π gives Euler's identity:</p>
+
+$$
+e^{i\pi} + 1 = 0
+$$
+
   <p>Multiplication by z scales every length by r and rotates every angle by θ. If r = 1, it only
     rotates. Multiplying by i rotates 90 degrees counterclockwise.</p>
 
@@ -302,8 +315,7 @@ $$
     original pair.</p>
 
   <p>If z<sub>1</sub> = r<sub>1</sub>e<sup>iθ₁</sup> and z<sub>2</sub> =
-    r<sub>2</sub>e<sup>iθ₂</sup>, then <a href="https://en.wikipedia.org/wiki/Euler%27s_formula">Euler's
-      formula</a> gives:</p>
+    r<sub>2</sub>e<sup>iθ₂</sup>, then Euler's formula gives:</p>
 
 $$
 \overline{z_1}z_2 = r_1r_2e^{i(\theta_2-\theta_1)}
