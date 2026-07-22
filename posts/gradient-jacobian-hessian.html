@@ -1,0 +1,585 @@
+---
+date: '2026-07-22'
+title: 'Gradient, Jacobian, and Hessian: Three Questions About Change'
+tags: [math, optimization, ML, robotics]
+---
+
+<style>
+  .markdown-content {
+    --change-accent: #e15b3d;
+    --change-blue: #2878d0;
+    --change-green: #16856b;
+    --change-grid: rgba(127, 127, 127, 0.2);
+    --change-panel: rgba(127, 127, 127, 0.075);
+    --change-border: rgba(127, 127, 127, 0.28);
+  }
+
+  .markdown-content .change-summary {
+    border-left: 0.25rem solid var(--change-accent);
+    margin: 1.5rem 0 2rem;
+    padding: 0.2rem 0 0.2rem 1rem;
+  }
+
+  .markdown-content .change-summary p {
+    margin: 0.45rem 0;
+  }
+
+  .markdown-content .change-equation {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    margin: 1.2rem 0;
+    overflow-x: auto;
+    padding: 0.75rem 1rem;
+    text-align: center;
+  }
+
+  .markdown-content .change-viz {
+    background: var(--change-panel);
+    border: 1px solid var(--change-border);
+    border-radius: 0.8rem;
+    margin: 1.75rem 0 2.5rem;
+    overflow: hidden;
+  }
+
+  .markdown-content .change-viz-header {
+    border-bottom: 1px solid var(--change-border);
+    padding: 1rem 1.1rem 0.85rem;
+  }
+
+  .markdown-content .change-viz-header h3,
+  .markdown-content .change-viz-header p {
+    margin: 0;
+  }
+
+  .markdown-content .change-viz-header p {
+    font-size: 0.92rem;
+    margin-top: 0.3rem;
+  }
+
+  .markdown-content .change-viz-body {
+    padding: 1rem;
+  }
+
+  .markdown-content canvas {
+    background: rgba(255, 255, 255, 0.62);
+    border: 1px solid var(--change-border);
+    border-radius: 0.55rem;
+    box-sizing: border-box;
+    display: block;
+    height: auto;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .markdown-content .change-readout {
+    display: grid;
+    gap: 0.25rem 1rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-top: 0.85rem;
+  }
+
+  .markdown-content .change-readout div {
+    min-width: 0;
+  }
+
+  .markdown-content .change-readout dt {
+    font-size: 0.76rem;
+    letter-spacing: 0.04em;
+    opacity: 0.7;
+    text-transform: uppercase;
+  }
+
+  .markdown-content .change-readout dd {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    margin: 0.15rem 0 0;
+  }
+
+  .markdown-content .change-controls {
+    display: grid;
+    gap: 0.85rem 1.25rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-bottom: 1rem;
+  }
+
+  .markdown-content .change-control {
+    display: grid;
+    gap: 0.35rem;
+  }
+
+  .markdown-content .change-control-row {
+    align-items: baseline;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .markdown-content .change-control output {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  }
+
+  .markdown-content input[type="range"] {
+    accent-color: var(--change-accent);
+    cursor: pointer;
+    width: 100%;
+  }
+
+  .markdown-content .change-note {
+    font-size: 0.86rem;
+    margin: 0.75rem 0 0;
+    opacity: 0.78;
+  }
+
+  .markdown-content .change-table-wrap {
+    overflow-x: auto;
+  }
+
+  .markdown-content .change-table-wrap table {
+    min-width: 34rem;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .markdown-content canvas {
+      background: rgba(16, 21, 28, 0.9);
+    }
+  }
+
+  @media (max-width: 620px) {
+    .markdown-content .change-controls,
+    .markdown-content .change-readout {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+  <p>The gradient, Jacobian, and Hessian are not three unrelated equations. They describe three layers of local change.</p>
+
+  <div class="change-summary">
+    <p><strong>Gradient:</strong> Which way should I move to increase one value fastest?</p>
+    <p><strong>Jacobian:</strong> If I change the inputs a little, how do all the outputs change?</p>
+    <p><strong>Hessian:</strong> How does the gradient change as I move?</p>
+  </div>
+
+  <p>Once you start with these questions, the notation has a job. It stops looking like a wall of symbols.</p>
+
+  <h2 id="gradient">The Gradient: Which Way Is Uphill?</h2>
+
+  <p>Take a scalar function with several inputs:</p>
+  <div class="change-equation" role="math" aria-label="f maps R n to R">f: ℝ<sup>n</sup> → ℝ</div>
+
+  <p>It may map a position to height, or a set of model weights to loss. Its <a href="https://en.wikipedia.org/wiki/Gradient">gradient</a> collects one <a href="https://en.wikipedia.org/wiki/Partial_derivative">partial derivative</a> for each input.</p>
+
+  <div class="change-equation" role="math" aria-label="The gradient of f is the vector of partial derivatives">∇f(x) = [∂f/∂x<sub>1</sub>, …, ∂f/∂x<sub>n</sub>]<sup>T</sup></div>
+
+  <p>Imagine a mountain. At your current position, the gradient points along the steepest path uphill. Its length tells you how steep that path is. The negative gradient points downhill.</p>
+
+  <p>This is local information. It does not reveal the whole mountain or promise the best route to its highest peak. It tells you what looks steepest from where you stand.</p>
+
+  <section class="change-viz" aria-labelledby="gradient-viz-title">
+    <header class="change-viz-header">
+      <h3 id="gradient-viz-title">Try it: move across the surface</h3>
+      <p>Drag the point. The arrow shows the local gradient, not a route across the whole surface.</p>
+    </header>
+    <div class="change-viz-body">
+      <canvas id="gradient-canvas" width="720" height="420" aria-label="Interactive contour map with a draggable point and gradient arrow">
+        Your browser does not support Canvas. The gradient points toward the steepest local increase.
+      </canvas>
+      <dl class="change-readout" aria-live="polite">
+        <div><dt>Position</dt><dd id="gradient-position">(0.80, -0.50)</dd></div>
+        <div><dt>Gradient</dt><dd id="gradient-value">(1.12, -1.00)</dd></div>
+        <div><dt>Height</dt><dd id="gradient-height">0.70</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <p>This is enough for <a href="https://en.wikipedia.org/wiki/Gradient_descent">gradient descent</a>. When minimizing a loss, the algorithm takes a step against the gradient:</p>
+  <div class="change-equation" role="math" aria-label="x k plus one equals x k minus alpha times the gradient">x<sub>k+1</sub> = x<sub>k</sub> − α∇f(x<sub>k</sub>)</div>
+
+  <h2 id="jacobian">The Jacobian: How Do All Outputs Respond?</h2>
+
+  <p>Now let the function have several inputs and several outputs:</p>
+  <div class="change-equation" role="math" aria-label="F maps R n to R m">F: ℝ<sup>n</sup> → ℝ<sup>m</sup></div>
+
+  <p>Think of a machine with <em>n</em> knobs and <em>m</em> gauges. Turn one knob a little. Several gauges may move. The <a href="https://en.wikipedia.org/wiki/Jacobian_matrix_and_determinant">Jacobian matrix</a> records every input to output response.</p>
+
+  <div class="change-equation" role="math" aria-label="Delta F is approximately the Jacobian times delta x">ΔF ≈ J<sub>F</sub>(x) Δx</div>
+
+  <p>Each row follows one output. Each column follows one input. The Jacobian is the best local linear map between input space and output space.</p>
+
+  <section class="change-viz" aria-labelledby="jacobian-viz-title">
+    <header class="change-viz-header">
+      <h3 id="jacobian-viz-title">Try it: turn the input knobs</h3>
+      <p>One input can affect both outputs. The fixed Jacobian below maps the blue input vector to the orange output vector.</p>
+    </header>
+    <div class="change-viz-body">
+      <div class="change-controls">
+        <label class="change-control" for="jacobian-x">
+          <span class="change-control-row"><span>Input change Δx<sub>1</sub></span><output id="jacobian-x-value">0.70</output></span>
+          <input id="jacobian-x" type="range" min="-1" max="1" value="0.7" step="0.05">
+        </label>
+        <label class="change-control" for="jacobian-y">
+          <span class="change-control-row"><span>Input change Δx<sub>2</sub></span><output id="jacobian-y-value">0.30</output></span>
+          <input id="jacobian-y" type="range" min="-1" max="1" value="0.3" step="0.05">
+        </label>
+      </div>
+      <canvas id="jacobian-canvas" width="720" height="330" aria-label="Interactive diagram showing a Jacobian mapping an input vector to an output vector">
+        Your browser does not support Canvas. This example uses the matrix [[1, 0.6], [-0.4, 0.8]].
+      </canvas>
+      <dl class="change-readout" aria-live="polite">
+        <div><dt>Input Δx</dt><dd id="jacobian-input">(0.70, 0.30)</dd></div>
+        <div><dt>Jacobian J</dt><dd>[[1, 0.6], [-0.4, 0.8]]</dd></div>
+        <div><dt>Output ΔF</dt><dd id="jacobian-output">(0.88, -0.04)</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <p>This matters in <a href="https://en.wikipedia.org/wiki/Robot_kinematics">robot kinematics</a>. A robot arm maps joint angles to the pose of its end effector. Its Jacobian maps joint velocities to the end effector's velocity.</p>
+
+  <p>A gradient is closely related to a Jacobian. For a function with one scalar output, the Jacobian has one row. The gradient usually writes the same derivatives as a column.</p>
+
+  <h2 id="hessian">The Hessian: How Is the Slope Changing?</h2>
+
+  <p>Return to a scalar function. Its <a href="https://en.wikipedia.org/wiki/Hessian_matrix">Hessian matrix</a> takes the derivatives of the gradient:</p>
+
+  <div class="change-equation" role="math" aria-label="The Hessian is the matrix of second partial derivatives">H<sub>f</sub>(x) = ∇²f(x) = [∂²f/∂x<sub>i</sub>∂x<sub>j</sub>]</div>
+
+  <p>As you walk across a mountain, its slope changes from place to place. The ground may flatten, grow steeper, or bend toward another direction. The Hessian describes that local curvature.</p>
+
+  <p>The Hessian does not only say how the gradient's direction changes. It also says how its size changes. It captures how the full gradient changes as you move.</p>
+
+  <section class="change-viz" aria-labelledby="hessian-viz-title">
+    <header class="change-viz-header">
+      <h3 id="hessian-viz-title">Try it: shape the curvature</h3>
+      <p>Adjust the Hessian of f(x, y) = ½(ax² + 2cxy + by²). Color shows height. The arrows show the main curvature directions.</p>
+    </header>
+    <div class="change-viz-body">
+      <div class="change-controls">
+        <label class="change-control" for="hessian-a">
+          <span class="change-control-row"><span>x curvature, a</span><output id="hessian-a-value">1.2</output></span>
+          <input id="hessian-a" type="range" min="-2" max="2" value="1.2" step="0.1">
+        </label>
+        <label class="change-control" for="hessian-b">
+          <span class="change-control-row"><span>y curvature, b</span><output id="hessian-b-value">0.8</output></span>
+          <input id="hessian-b" type="range" min="-2" max="2" value="0.8" step="0.1">
+        </label>
+        <label class="change-control" for="hessian-c">
+          <span class="change-control-row"><span>coupling, c</span><output id="hessian-c-value">0.0</output></span>
+          <input id="hessian-c" type="range" min="-1.5" max="1.5" value="0" step="0.1">
+        </label>
+      </div>
+      <canvas id="hessian-canvas" width="720" height="420" aria-label="Interactive curvature map controlled by the entries of a Hessian matrix">
+        Your browser does not support Canvas. Positive eigenvalues form a bowl, negative eigenvalues form a hill, and mixed signs form a saddle.
+      </canvas>
+      <dl class="change-readout" aria-live="polite">
+        <div><dt>Hessian</dt><dd id="hessian-matrix">[[1.2, 0.0], [0.0, 0.8]]</dd></div>
+        <div><dt>Eigenvalues</dt><dd id="hessian-eigenvalues">(1.2, 0.8)</dd></div>
+        <div><dt>Local shape</dt><dd id="hessian-shape">Bowl: local minimum</dd></div>
+      </dl>
+      <p class="change-note">Set one main curvature below zero to make a saddle. Increase coupling to rotate the main bend directions.</p>
+    </div>
+  </section>
+
+  <p>The Hessian gives a local quadratic model:</p>
+  <div class="change-equation" role="math" aria-label="Second order Taylor approximation of f">f(x + Δx) ≈ f(x) + ∇f(x)<sup>T</sup>Δx + ½Δx<sup>T</sup>H<sub>f</sub>(x)Δx</div>
+
+  <p>The gradient supplies the local slope. The Hessian tells us how that slope bends.</p>
+
+  <p>Second order methods use this curvature to choose better steps. <a href="https://en.wikipedia.org/wiki/Newton%27s_method_in_optimization">Newton's method in optimization</a> scales the gradient using the inverse Hessian.</p>
+
+  <p>Near a suitable minimum, it can converge in fewer steps than plain gradient descent. The tradeoff is cost. A full Hessian becomes expensive when a model has many parameters.</p>
+
+  <h2 id="three-views">One Function, Three Views</h2>
+
+  <p>Consider the bowl f(x, y) = x² + 2y². Its gradient is (2x, 4y). At (1, 1), the gradient is (2, 4). The function rises faster in the y direction.</p>
+
+  <p>Because this function has one output, its Jacobian contains the same first derivatives. Its Hessian is [[2, 0], [0, 4]]. The curvature stays constant everywhere.</p>
+
+  <div class="change-table-wrap">
+    <table>
+      <thead><tr><th>Object</th><th>Function shape</th><th>What it describes</th></tr></thead>
+      <tbody>
+        <tr><td>Gradient</td><td>ℝ<sup>n</sup> → ℝ</td><td>The local slope of one output</td></tr>
+        <tr><td>Jacobian</td><td>ℝ<sup>n</sup> → ℝ<sup>m</sup></td><td>Every output's local response to every input</td></tr>
+        <tr><td>Hessian</td><td>ℝ<sup>n</sup> → ℝ</td><td>The local change of the gradient, or curvature</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 id="engineering">Why Engineers Keep Meeting Them</h2>
+
+  <ul>
+    <li>Machine learning uses gradients to update model weights.</li>
+    <li>Robotics uses Jacobians to connect joint motion with tool motion.</li>
+    <li><a href="https://en.wikipedia.org/wiki/Computer_vision">Computer vision</a> uses Jacobians to adjust camera poses, scene points, and image errors.</li>
+    <li>Second order optimization uses Hessians, or estimates of them, to account for curvature.</li>
+  </ul>
+
+  <p>They are not separate mathematical tricks. They are different questions about change.</p>
+
+  <p>The gradient asks how one value changes. The Jacobian asks how many outputs change. The Hessian asks how the rate of change itself changes.</p>
+
+  <h2 id="references">References</h2>
+  <ol>
+    <li><a href="https://ocw.mit.edu/courses/18-s096-matrix-calculus-for-machine-learning-and-beyond-january-iap-2023/resources/mit18_s096iap23_lec12_pdf/">MIT OpenCourseWare: Second Derivatives, Bilinear Maps, and Hessian Matrices</a></li>
+    <li><a href="https://modernrobotics.northwestern.edu/nu-gm-book-resource/velocity-kinematics-and-statics/">Modern Robotics chapter on velocity kinematics and statics</a></li>
+    <li><a href="https://docs.scipy.org/doc/scipy/tutorial/optimize.html">SciPy guide to local optimization methods</a></li>
+  </ol>
+<script>
+  (() => {
+    'use strict';
+
+    const COLORS = {
+      accent: '#e15b3d',
+      blue: '#2878d0',
+      green: '#16856b',
+      grid: 'rgba(127, 127, 127, 0.28)',
+      ink: '#607080',
+      light: '#f8fafc'
+    };
+    const DOMAIN = 2.5;
+    const EPSILON = 0.0001;
+
+    const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+    const format = value => (Math.abs(value) < EPSILON ? 0 : value).toFixed(2);
+    const byId = id => document.getElementById(id);
+
+    function prepareCanvas(canvas) {
+      const ratio = window.devicePixelRatio || 1;
+      const width = canvas.clientWidth;
+      const height = width * (Number(canvas.getAttribute('height')) / Number(canvas.getAttribute('width')));
+      canvas.width = Math.round(width * ratio);
+      canvas.height = Math.round(height * ratio);
+      const context = canvas.getContext('2d');
+      context.setTransform(ratio, 0, 0, ratio, 0, 0);
+      return { context, width, height };
+    }
+
+    function drawArrow(context, fromX, fromY, toX, toY, color, label) {
+      const angle = Math.atan2(toY - fromY, toX - fromX);
+      const headSize = 10;
+      context.strokeStyle = color;
+      context.fillStyle = color;
+      context.lineWidth = 3;
+      context.beginPath();
+      context.moveTo(fromX, fromY);
+      context.lineTo(toX, toY);
+      context.stroke();
+      context.beginPath();
+      context.moveTo(toX, toY);
+      context.lineTo(toX - headSize * Math.cos(angle - Math.PI / 6), toY - headSize * Math.sin(angle - Math.PI / 6));
+      context.lineTo(toX - headSize * Math.cos(angle + Math.PI / 6), toY - headSize * Math.sin(angle + Math.PI / 6));
+      context.closePath();
+      context.fill();
+      if (!label) return;
+      context.font = '600 13px system-ui, sans-serif';
+      context.fillText(label, toX + 7, toY - 7);
+    }
+
+    function drawAxes(context, centerX, centerY, radius, labelX, labelY) {
+      context.strokeStyle = COLORS.grid;
+      context.lineWidth = 1;
+      context.beginPath();
+      context.moveTo(centerX - radius, centerY);
+      context.lineTo(centerX + radius, centerY);
+      context.moveTo(centerX, centerY - radius);
+      context.lineTo(centerX, centerY + radius);
+      context.stroke();
+      context.fillStyle = COLORS.ink;
+      context.font = '12px system-ui, sans-serif';
+      context.fillText(labelX, centerX + radius - 12, centerY - 7);
+      context.fillText(labelY, centerX + 7, centerY - radius + 13);
+    }
+
+    function surfaceValue(x, y) {
+      return 0.7 * x * x + y * y - 0.35 * x * y;
+    }
+
+    function surfaceGradient(x, y) {
+      return { x: 1.4 * x - 0.35 * y, y: 2 * y - 0.35 * x };
+    }
+
+    function colorForValue(value, range) {
+      const normalized = clamp((value / range + 1) / 2, 0, 1);
+      const red = Math.round(45 + normalized * 190);
+      const green = Math.round(100 + (1 - Math.abs(normalized - 0.5) * 2) * 70);
+      const blue = Math.round(215 - normalized * 145);
+      return `rgb(${red}, ${green}, ${blue})`;
+    }
+
+    function createGradientDemo() {
+      const canvas = byId('gradient-canvas');
+      if (!canvas) return () => {};
+      const state = { x: 0.8, y: -0.5 };
+
+      function draw() {
+        const { context, width, height } = prepareCanvas(canvas);
+        const cellSize = 8;
+        for (let pixelY = 0; pixelY < height; pixelY += cellSize) {
+          for (let pixelX = 0; pixelX < width; pixelX += cellSize) {
+            const x = (pixelX / width * 2 - 1) * DOMAIN;
+            const y = (1 - pixelY / height * 2) * DOMAIN;
+            context.fillStyle = colorForValue(surfaceValue(x, y), 8);
+            context.fillRect(pixelX, pixelY, cellSize + 1, cellSize + 1);
+          }
+        }
+
+        context.strokeStyle = 'rgba(255, 255, 255, 0.58)';
+        context.lineWidth = 1;
+        for (let radius = 0.4; radius <= 2.4; radius += 0.4) {
+          context.beginPath();
+          context.ellipse(width / 2, height / 2, radius / DOMAIN * width / 2, radius / DOMAIN * height / 2.5, -0.18, 0, Math.PI * 2);
+          context.stroke();
+        }
+
+        const pointX = (state.x / DOMAIN + 1) * width / 2;
+        const pointY = (1 - state.y / DOMAIN) * height / 2;
+        const gradient = surfaceGradient(state.x, state.y);
+        const length = Math.hypot(gradient.x, gradient.y) || 1;
+        const arrowLength = clamp(length * 24, 34, 90);
+        const arrowX = pointX + gradient.x / length * arrowLength;
+        const arrowY = pointY - gradient.y / length * arrowLength;
+        drawArrow(context, pointX, pointY, arrowX, arrowY, COLORS.accent, '∇f');
+
+        context.fillStyle = COLORS.light;
+        context.strokeStyle = COLORS.accent;
+        context.lineWidth = 4;
+        context.beginPath();
+        context.arc(pointX, pointY, 8, 0, Math.PI * 2);
+        context.fill();
+        context.stroke();
+
+        byId('gradient-position').textContent = `(${format(state.x)}, ${format(state.y)})`;
+        byId('gradient-value').textContent = `(${format(gradient.x)}, ${format(gradient.y)})`;
+        byId('gradient-height').textContent = format(surfaceValue(state.x, state.y));
+      }
+
+      function setPoint(event) {
+        const bounds = canvas.getBoundingClientRect();
+        state.x = clamp(((event.clientX - bounds.left) / bounds.width * 2 - 1) * DOMAIN, -DOMAIN, DOMAIN);
+        state.y = clamp((1 - (event.clientY - bounds.top) / bounds.height * 2) * DOMAIN, -DOMAIN, DOMAIN);
+        draw();
+      }
+
+      canvas.addEventListener('pointerdown', event => {
+        canvas.setPointerCapture(event.pointerId);
+        setPoint(event);
+      });
+      canvas.addEventListener('pointermove', event => {
+        if (canvas.hasPointerCapture(event.pointerId)) setPoint(event);
+      });
+      draw();
+      return draw;
+    }
+
+    function createJacobianDemo() {
+      const canvas = byId('jacobian-canvas');
+      const inputX = byId('jacobian-x');
+      const inputY = byId('jacobian-y');
+      if (!canvas || !inputX || !inputY) return () => {};
+
+      function draw() {
+        const x = Number(inputX.value);
+        const y = Number(inputY.value);
+        const outputX = x + 0.6 * y;
+        const outputY = -0.4 * x + 0.8 * y;
+        const { context, width, height } = prepareCanvas(canvas);
+        const radius = Math.min(width * 0.18, height * 0.35);
+        const leftX = width * 0.23;
+        const rightX = width * 0.77;
+        const centerY = height * 0.54;
+
+        drawAxes(context, leftX, centerY, radius, 'Δx₁', 'Δx₂');
+        drawAxes(context, rightX, centerY, radius, 'ΔF₁', 'ΔF₂');
+        drawArrow(context, leftX, centerY, leftX + x * radius, centerY - y * radius, COLORS.blue, 'input');
+        drawArrow(context, rightX, centerY, rightX + outputX * radius * 0.72, centerY - outputY * radius * 0.72, COLORS.accent, 'output');
+
+        context.fillStyle = COLORS.ink;
+        context.font = '600 14px ui-monospace, monospace';
+        context.textAlign = 'center';
+        context.fillText('J = [[1, 0.6],', width / 2, centerY - 12);
+        context.fillText('[-0.4, 0.8]]', width / 2, centerY + 10);
+        context.textAlign = 'start';
+        drawArrow(context, width * 0.43, centerY + 48, width * 0.57, centerY + 48, COLORS.green, '');
+
+        byId('jacobian-x-value').textContent = format(x);
+        byId('jacobian-y-value').textContent = format(y);
+        byId('jacobian-input').textContent = `(${format(x)}, ${format(y)})`;
+        byId('jacobian-output').textContent = `(${format(outputX)}, ${format(outputY)})`;
+      }
+
+      inputX.addEventListener('input', draw);
+      inputY.addEventListener('input', draw);
+      draw();
+      return draw;
+    }
+
+    function classifyHessian(a, b, c) {
+      const midpoint = (a + b) / 2;
+      const spread = Math.sqrt(((a - b) / 2) ** 2 + c ** 2);
+      const high = midpoint + spread;
+      const low = midpoint - spread;
+      if (low > 0.04) return { high, low, label: 'Bowl: local minimum' };
+      if (high < -0.04) return { high, low, label: 'Hill: local maximum' };
+      if (low < -0.04 && high > 0.04) return { high, low, label: 'Saddle' };
+      return { high, low, label: 'Flat in at least one direction' };
+    }
+
+    function createHessianDemo() {
+      const canvas = byId('hessian-canvas');
+      const aInput = byId('hessian-a');
+      const bInput = byId('hessian-b');
+      const cInput = byId('hessian-c');
+      if (!canvas || !aInput || !bInput || !cInput) return () => {};
+
+      function draw() {
+        const a = Number(aInput.value);
+        const b = Number(bInput.value);
+        const c = Number(cInput.value);
+        const result = classifyHessian(a, b, c);
+        const { context, width, height } = prepareCanvas(canvas);
+        const cellSize = 7;
+
+        for (let pixelY = 0; pixelY < height; pixelY += cellSize) {
+          for (let pixelX = 0; pixelX < width; pixelX += cellSize) {
+            const x = (pixelX / width * 2 - 1) * DOMAIN;
+            const y = (1 - pixelY / height * 2) * DOMAIN;
+            const value = 0.5 * (a * x * x + 2 * c * x * y + b * y * y);
+            context.fillStyle = colorForValue(value, 7);
+            context.fillRect(pixelX, pixelY, cellSize + 1, cellSize + 1);
+          }
+        }
+
+        const centerX = width / 2;
+        const centerY = height / 2;
+        drawAxes(context, centerX, centerY, Math.min(width, height) * 0.42, 'x', 'y');
+        context.fillStyle = 'rgba(255, 255, 255, 0.9)';
+        context.strokeStyle = COLORS.ink;
+        context.lineWidth = 2;
+        context.beginPath();
+        context.arc(centerX, centerY, 6, 0, Math.PI * 2);
+        context.fill();
+        context.stroke();
+
+        const angle = 0.5 * Math.atan2(2 * c, a - b);
+        const axisLength = Math.min(width, height) * 0.32;
+        drawArrow(context, centerX, centerY, centerX + Math.cos(angle) * axisLength, centerY - Math.sin(angle) * axisLength, COLORS.accent, 'λ₁');
+        drawArrow(context, centerX, centerY, centerX - Math.sin(angle) * axisLength, centerY - Math.cos(angle) * axisLength, COLORS.blue, 'λ₂');
+
+        byId('hessian-a-value').textContent = a.toFixed(1);
+        byId('hessian-b-value').textContent = b.toFixed(1);
+        byId('hessian-c-value').textContent = c.toFixed(1);
+        byId('hessian-matrix').textContent = `[[${a.toFixed(1)}, ${c.toFixed(1)}], [${c.toFixed(1)}, ${b.toFixed(1)}]]`;
+        byId('hessian-eigenvalues').textContent = `(${format(result.high)}, ${format(result.low)})`;
+        byId('hessian-shape').textContent = result.label;
+      }
+
+      [aInput, bInput, cInput].forEach(input => input.addEventListener('input', draw));
+      draw();
+      return draw;
+    }
+
+    const redraw = [createGradientDemo(), createJacobianDemo(), createHessianDemo()];
+    let resizeFrame = 0;
+    window.addEventListener('resize', () => {
+      window.cancelAnimationFrame(resizeFrame);
+      resizeFrame = window.requestAnimationFrame(() => redraw.forEach(draw => draw()));
+    });
+  })();
+</script>
