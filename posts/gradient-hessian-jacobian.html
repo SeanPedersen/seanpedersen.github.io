@@ -70,6 +70,11 @@ tags: [math, ML]
     width: 100%;
   }
 
+  .markdown-content .change-viz canvas {
+    cursor: crosshair;
+    touch-action: none;
+  }
+
   .markdown-content .change-readout {
     display: grid;
     gap: 0.25rem 1rem;
@@ -181,11 +186,12 @@ tags: [math, ML]
 
 <section class="change-viz" aria-label="Interactive gradient visualization">
   <header class="change-viz-header">
-    <p>Drag the point. The arrow shows the local gradient, not a route across the whole surface.</p>
+    <p>Press or drag anywhere to choose a starting point. The orange arrow shows the local gradient; the white path
+      follows gradient descent.</p>
   </header>
   <div class="change-viz-body">
     <canvas id="gradient-canvas" width="720" height="420"
-      aria-label="Interactive contour map with a draggable point and gradient arrow">
+      aria-label="Interactive contour map showing a gradient arrow and gradient descent trajectory">
       Your browser does not support Canvas. The gradient points toward the steepest local increase.
     </canvas>
     <dl class="change-readout" aria-live="polite">
@@ -223,12 +229,12 @@ tags: [math, ML]
 
 <section class="change-viz" aria-label="Interactive Hessian visualization">
   <header class="change-viz-header">
-    <p>Drag the point across a landscape with several peaks and valleys. The orange arrow is the gradient; the crossed
-      lines show the Hessian's principal curvature directions.</p>
+    <p>Press or drag anywhere to choose a starting point. The crossed lines show the Hessian's principal curvature
+      directions; the white path follows damped Newton's method.</p>
   </header>
   <div class="change-viz-body">
     <canvas id="hessian-canvas" width="720" height="420"
-      aria-label="Interactive contour map with a draggable point, gradient, and principal curvature directions">
+      aria-label="Interactive contour map showing principal curvature directions and a Newton's method trajectory">
       Your browser does not support Canvas. The gradient gives local slope and the Hessian gives local curvature.
     </canvas>
     <dl class="change-readout" aria-live="polite">
@@ -245,8 +251,8 @@ tags: [math, ML]
         <dd id="hessian-shape">—</dd>
       </div>
     </dl>
-    <p class="change-note">Orange shows first-order change. Blue and green show the directions of greatest and least
-      second-order change; their signs determine the local shape.</p>
+    <p class="change-note">Blue and green show the directions of greatest and least second-order change. The optimizer
+      adds damping where the surface is not locally bowl-shaped, caps long steps, and backtracks until height falls.</p>
   </div>
 </section>
 
@@ -397,6 +403,17 @@ tags: [math, ML]
     };
     const DOMAIN = 2.5;
     const EPSILON = 0.0001;
+    const OPTIMIZER_MAX_STEPS = 18;
+    const OPTIMIZER_STOP_GRADIENT = 0.025;
+    const GRADIENT_DESCENT_RATE = 0.12;
+    const GRADIENT_DESCENT_MAX_STEP = 0.32;
+    const NEWTON_MAX_STEP = 0.55;
+    const NEWTON_MIN_CURVATURE = 0.2;
+    const NEWTON_BACKTRACK_FACTOR = 0.5;
+    const NEWTON_MAX_BACKTRACKS = 10;
+    const CONTOUR_COLUMNS = 54;
+    const CONTOUR_ROWS = 32;
+    const CONTOUR_LEVELS = [-2.4, -1.8, -1.2, -0.6, 0, 0.6, 1.2, 1.8, 2.4];
     const TERRAIN_BUMPS = [
       { amplitude: 2.8, x: -1.05, y: 0.8, spread: 0.85 },
       { amplitude: 2.1, x: 1.15, y: -0.65, spread: 0.7 },
@@ -498,6 +515,179 @@ tags: [math, ML]
           context.fillRect(pixelX, pixelY, cellSize + 1, cellSize + 1);
         }
       }
+      drawContours(context, width, height);
+    }
+
+    function drawContours(context, width, height) {
+      const cellWidth = width / CONTOUR_COLUMNS;
+      const cellHeight = height / CONTOUR_ROWS;
+      const samples = Array.from({ length: CONTOUR_ROWS + 1 }, (_, row) =>
+        Array.from({ length: CONTOUR_COLUMNS + 1 }, (_, column) => {
+          const x = (column / CONTOUR_COLUMNS * 2 - 1) * DOMAIN;
+          const y = (1 - row / CONTOUR_ROWS * 2) * DOMAIN;
+          return surfaceValue(x, y);
+        })
+      );
+
+      function interpolate(from, to, fromValue, toValue, level) {
+        const difference = toValue - fromValue;
+        const ratio = Math.abs(difference) < EPSILON ? 0.5 : (level - fromValue) / difference;
+        return {
+          x: from.x + (to.x - from.x) * ratio,
+          y: from.y + (to.y - from.y) * ratio
+        };
+      }
+
+      function segmentsForMask(mask, centerIsHigh) {
+        if (mask === 1 || mask === 14) return [['left', 'top']];
+        if (mask === 2 || mask === 13) return [['top', 'right']];
+        if (mask === 3 || mask === 12) return [['left', 'right']];
+        if (mask === 4 || mask === 11) return [['right', 'bottom']];
+        if (mask === 6 || mask === 9) return [['top', 'bottom']];
+        if (mask === 7 || mask === 8) return [['left', 'bottom']];
+        if (mask === 5) {
+          return centerIsHigh
+            ? [['top', 'right'], ['bottom', 'left']]
+            : [['left', 'top'], ['right', 'bottom']];
+        }
+        if (mask === 10) {
+          return centerIsHigh
+            ? [['left', 'top'], ['right', 'bottom']]
+            : [['top', 'right'], ['bottom', 'left']];
+        }
+        return [];
+      }
+
+      context.strokeStyle = 'rgba(255, 255, 255, 0.52)';
+      context.lineWidth = 1.25;
+      CONTOUR_LEVELS.forEach(level => {
+        context.beginPath();
+        for (let row = 0; row < CONTOUR_ROWS; row += 1) {
+          for (let column = 0; column < CONTOUR_COLUMNS; column += 1) {
+            const values = {
+              topLeft: samples[row][column],
+              topRight: samples[row][column + 1],
+              bottomRight: samples[row + 1][column + 1],
+              bottomLeft: samples[row + 1][column]
+            };
+            const mask = (values.topLeft >= level ? 1 : 0)
+              | (values.topRight >= level ? 2 : 0)
+              | (values.bottomRight >= level ? 4 : 0)
+              | (values.bottomLeft >= level ? 8 : 0);
+            if (mask === 0 || mask === 15) continue;
+
+            const left = column * cellWidth;
+            const top = row * cellHeight;
+            const corners = {
+              topLeft: { x: left, y: top },
+              topRight: { x: left + cellWidth, y: top },
+              bottomRight: { x: left + cellWidth, y: top + cellHeight },
+              bottomLeft: { x: left, y: top + cellHeight }
+            };
+            const edges = {
+              top: interpolate(corners.topLeft, corners.topRight, values.topLeft, values.topRight, level),
+              right: interpolate(corners.topRight, corners.bottomRight, values.topRight, values.bottomRight, level),
+              bottom: interpolate(corners.bottomLeft, corners.bottomRight, values.bottomLeft, values.bottomRight, level),
+              left: interpolate(corners.topLeft, corners.bottomLeft, values.topLeft, values.bottomLeft, level)
+            };
+            const centerValue = (values.topLeft + values.topRight + values.bottomRight + values.bottomLeft) / 4;
+            segmentsForMask(mask, centerValue >= level).forEach(([from, to]) => {
+              context.moveTo(edges[from].x, edges[from].y);
+              context.lineTo(edges[to].x, edges[to].y);
+            });
+          }
+        }
+        context.stroke();
+      });
+    }
+
+    function limitStep(step, maxLength) {
+      const length = Math.hypot(step.x, step.y);
+      if (length <= maxLength) return step;
+      return { x: step.x / length * maxLength, y: step.y / length * maxLength };
+    }
+
+    function isInsideTerrain(point) {
+      return Math.abs(point.x) <= DOMAIN && Math.abs(point.y) <= DOMAIN;
+    }
+
+    function gradientDescentPath(start) {
+      const points = [{ ...start }];
+      for (let index = 0; index < OPTIMIZER_MAX_STEPS; index += 1) {
+        const current = points.at(-1);
+        const gradient = surfaceGradient(current.x, current.y);
+        if (Math.hypot(gradient.x, gradient.y) < OPTIMIZER_STOP_GRADIENT) break;
+        const step = limitStep({
+          x: -GRADIENT_DESCENT_RATE * gradient.x,
+          y: -GRADIENT_DESCENT_RATE * gradient.y
+        }, GRADIENT_DESCENT_MAX_STEP);
+        const next = { x: current.x + step.x, y: current.y + step.y };
+        if (!isInsideTerrain(next)) break;
+        points.push(next);
+      }
+      return points;
+    }
+
+    function newtonPath(start) {
+      const points = [{ ...start }];
+      for (let index = 0; index < OPTIMIZER_MAX_STEPS; index += 1) {
+        const current = points.at(-1);
+        const gradient = surfaceGradient(current.x, current.y);
+        if (Math.hypot(gradient.x, gradient.y) < OPTIMIZER_STOP_GRADIENT) break;
+        const hessian = surfaceHessian(current.x, current.y);
+        const lowestCurvature = classifyHessian(hessian).low;
+        const damping = Math.max(0, NEWTON_MIN_CURVATURE - lowestCurvature);
+        const dampedXx = hessian.xx + damping;
+        const dampedYy = hessian.yy + damping;
+        const determinant = dampedXx * dampedYy - hessian.xy ** 2;
+        const proposedStep = limitStep({
+          x: (-dampedYy * gradient.x + hessian.xy * gradient.y) / determinant,
+          y: (hessian.xy * gradient.x - dampedXx * gradient.y) / determinant
+        }, NEWTON_MAX_STEP);
+        const currentValue = surfaceValue(current.x, current.y);
+        let stepScale = 1;
+        let next = current;
+
+        for (let attempt = 0; attempt < NEWTON_MAX_BACKTRACKS; attempt += 1) {
+          const candidate = {
+            x: current.x + proposedStep.x * stepScale,
+            y: current.y + proposedStep.y * stepScale
+          };
+          if (isInsideTerrain(candidate) && surfaceValue(candidate.x, candidate.y) < currentValue) {
+            next = candidate;
+            break;
+          }
+          stepScale *= NEWTON_BACKTRACK_FACTOR;
+        }
+
+        if (next === current) break;
+        points.push(next);
+      }
+      return points;
+    }
+
+    function drawOptimizerPath(context, width, height, points) {
+      if (points.length < 2) return;
+      const toCanvas = point => ({
+        x: (point.x / DOMAIN + 1) * width / 2,
+        y: (1 - point.y / DOMAIN) * height / 2
+      });
+      const canvasPoints = points.map(toCanvas);
+      context.strokeStyle = 'rgba(255, 255, 255, 0.95)';
+      context.lineWidth = 3;
+      context.beginPath();
+      context.moveTo(canvasPoints[0].x, canvasPoints[0].y);
+      canvasPoints.slice(1).forEach(point => context.lineTo(point.x, point.y));
+      context.stroke();
+      canvasPoints.slice(1).forEach(point => {
+        context.fillStyle = COLORS.light;
+        context.strokeStyle = COLORS.ink;
+        context.lineWidth = 1.5;
+        context.beginPath();
+        context.arc(point.x, point.y, 3.5, 0, Math.PI * 2);
+        context.fill();
+        context.stroke();
+      });
     }
 
     function colorForValue(value, range) {
@@ -511,11 +701,12 @@ tags: [math, ML]
     function createGradientDemo() {
       const canvas = byId('gradient-canvas');
       if (!canvas) return () => { };
-      const state = { x: 0.8, y: -0.5 };
+      const state = { x: 0.8, y: -0.5, path: [] };
 
       function draw() {
         const { context, width, height } = prepareCanvas(canvas);
         drawTerrain(context, width, height);
+        drawOptimizerPath(context, width, height, state.path);
 
         const pointX = (state.x / DOMAIN + 1) * width / 2;
         const pointY = (1 - state.y / DOMAIN) * height / 2;
@@ -543,6 +734,7 @@ tags: [math, ML]
         const bounds = canvas.getBoundingClientRect();
         state.x = clamp(((event.clientX - bounds.left) / bounds.width * 2 - 1) * DOMAIN, -DOMAIN, DOMAIN);
         state.y = clamp((1 - (event.clientY - bounds.top) / bounds.height * 2) * DOMAIN, -DOMAIN, DOMAIN);
+        state.path = gradientDescentPath({ x: state.x, y: state.y });
         draw();
       }
 
@@ -613,11 +805,12 @@ tags: [math, ML]
     function createHessianDemo() {
       const canvas = byId('hessian-canvas');
       if (!canvas) return () => { };
-      const state = { x: -0.35, y: 0.25 };
+      const state = { x: -0.35, y: 0.25, path: [] };
 
       function draw() {
         const { context, width, height } = prepareCanvas(canvas);
         drawTerrain(context, width, height);
+        drawOptimizerPath(context, width, height, state.path);
 
         const pointX = (state.x / DOMAIN + 1) * width / 2;
         const pointY = (1 - state.y / DOMAIN) * height / 2;
@@ -668,6 +861,7 @@ tags: [math, ML]
         const bounds = canvas.getBoundingClientRect();
         state.x = clamp(((event.clientX - bounds.left) / bounds.width * 2 - 1) * DOMAIN, -DOMAIN, DOMAIN);
         state.y = clamp((1 - (event.clientY - bounds.top) / bounds.height * 2) * DOMAIN, -DOMAIN, DOMAIN);
+        state.path = newtonPath({ x: state.x, y: state.y });
         draw();
       }
 
