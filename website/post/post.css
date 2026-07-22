@@ -461,7 +461,12 @@ html[data-theme="light"] .headerLogo {
 .markdown-content .math-block {
   overflow-x: auto;
   margin: 1.5rem 0;
+  scrollbar-width: none;
   text-align: center;
+}
+
+.markdown-content .math-block::-webkit-scrollbar {
+  display: none;
 }
 
 .markdown-content math {
