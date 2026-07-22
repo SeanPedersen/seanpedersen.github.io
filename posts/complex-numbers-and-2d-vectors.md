@@ -237,7 +237,14 @@ $$
 e^{i\pi} + 1 = 0
 $$
 
-  <p>Multiplication by z scales every length by r and rotates every angle by θ. If r = 1, it only
+  <p>For two complex numbers in polar form, multiplication multiplies their magnitudes and adds their angles:</p>
+
+$$
+z_1z_2 = \left(r_1e^{i\theta_1}\right)\left(r_2e^{i\theta_2}\right)
+        = r_1r_2e^{i(\theta_1 + \theta_2)}
+$$
+
+  <p>Therefore, multiplication by z scales every length by r and rotates every angle by θ. If r = 1, it only
     rotates. Multiplying by i rotates 90 degrees counterclockwise.</p>
 
   <figure>
