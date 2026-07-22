@@ -1,7 +1,7 @@
 ---
 date: '2026-07-22'
 title: 'Gradient, Jacobian, and Hessian: Three Questions About Change'
-tags: [math, optimization, ML, robotics]
+tags: [math, ML]
 ---
 
 <style>
@@ -142,6 +142,7 @@ tags: [math, optimization, ML, robotics]
   }
 
   @media (max-width: 620px) {
+
     .markdown-content .change-controls,
     .markdown-content .change-readout {
       grid-template-columns: 1fr;
@@ -149,178 +150,262 @@ tags: [math, optimization, ML, robotics]
   }
 </style>
 
-  <p>The gradient, Jacobian, and Hessian are not three unrelated equations. They describe three layers of local change.</p>
+<p>The gradient, Jacobian, and Hessian are not three unrelated equations. They describe three layers of local change.
+</p>
 
-  <div class="change-summary">
-    <p><strong>Gradient:</strong> Which way should I move to increase one value fastest?</p>
-    <p><strong>Jacobian:</strong> If I change the inputs a little, how do all the outputs change?</p>
-    <p><strong>Hessian:</strong> How does the gradient change as I move?</p>
-  </div>
+<div class="change-summary">
+  <p><strong>Gradient:</strong> Which way should I move to increase one value fastest?</p>
+  <p><strong>Jacobian:</strong> If I change the inputs a little, how do all the outputs change?</p>
+  <p><strong>Hessian:</strong> How does the gradient change as I move?</p>
+</div>
 
-  <p>Once you start with these questions, the notation has a job. It stops looking like a wall of symbols.</p>
+<p>Once you start with these questions, the notation has a job. It stops looking like a wall of symbols.</p>
 
-  <h2 id="gradient">The Gradient: Which Way Is Uphill?</h2>
+<h2 id="gradient">The Gradient: Which Way Is Uphill?</h2>
 
-  <p>Take a scalar function with several inputs:</p>
-  <div class="change-equation" role="math" aria-label="f maps R n to R">f: ℝ<sup>n</sup> → ℝ</div>
+<p>Take a scalar function with several inputs:</p>
+<div class="change-equation" role="math" aria-label="f maps R n to R">f: ℝ<sup>n</sup> → ℝ</div>
 
-  <p>It may map a position to height, or a set of model weights to loss. Its <a href="https://en.wikipedia.org/wiki/Gradient">gradient</a> collects one <a href="https://en.wikipedia.org/wiki/Partial_derivative">partial derivative</a> for each input.</p>
+<p>It may map a position to height, or a set of model weights to loss. Its <a
+    href="https://en.wikipedia.org/wiki/Gradient">gradient</a> collects one <a
+    href="https://en.wikipedia.org/wiki/Partial_derivative">partial derivative</a> for each input.</p>
 
-  <div class="change-equation" role="math" aria-label="The gradient of f is the vector of partial derivatives">∇f(x) = [∂f/∂x<sub>1</sub>, …, ∂f/∂x<sub>n</sub>]<sup>T</sup></div>
+<div class="change-equation" role="math" aria-label="The gradient of f is the vector of partial derivatives">∇f(x) =
+  [∂f/∂x<sub>1</sub>, …, ∂f/∂x<sub>n</sub>]<sup>T</sup></div>
 
-  <p>Imagine a mountain. At your current position, the gradient points along the steepest path uphill. Its length tells you how steep that path is. The negative gradient points downhill.</p>
+<p>Imagine a mountain. At your current position, the gradient points along the steepest path uphill. Its length tells
+  you how steep that path is. The negative gradient points downhill.</p>
 
-  <p>This is local information. It does not reveal the whole mountain or promise the best route to its highest peak. It tells you what looks steepest from where you stand.</p>
+<p>This is local information. It does not reveal the whole mountain or promise the best route to its highest peak. It
+  tells you what looks steepest from where you stand.</p>
 
-  <section class="change-viz" aria-labelledby="gradient-viz-title">
-    <header class="change-viz-header">
-      <h3 id="gradient-viz-title">Try it: move across the surface</h3>
-      <p>Drag the point. The arrow shows the local gradient, not a route across the whole surface.</p>
-    </header>
-    <div class="change-viz-body">
-      <canvas id="gradient-canvas" width="720" height="420" aria-label="Interactive contour map with a draggable point and gradient arrow">
-        Your browser does not support Canvas. The gradient points toward the steepest local increase.
-      </canvas>
-      <dl class="change-readout" aria-live="polite">
-        <div><dt>Position</dt><dd id="gradient-position">(0.80, -0.50)</dd></div>
-        <div><dt>Gradient</dt><dd id="gradient-value">(1.12, -1.00)</dd></div>
-        <div><dt>Height</dt><dd id="gradient-height">0.70</dd></div>
-      </dl>
-    </div>
-  </section>
-
-  <p>This is enough for <a href="https://en.wikipedia.org/wiki/Gradient_descent">gradient descent</a>. When minimizing a loss, the algorithm takes a step against the gradient:</p>
-  <div class="change-equation" role="math" aria-label="x k plus one equals x k minus alpha times the gradient">x<sub>k+1</sub> = x<sub>k</sub> − α∇f(x<sub>k</sub>)</div>
-
-  <h2 id="jacobian">The Jacobian: How Do All Outputs Respond?</h2>
-
-  <p>Now let the function have several inputs and several outputs:</p>
-  <div class="change-equation" role="math" aria-label="F maps R n to R m">F: ℝ<sup>n</sup> → ℝ<sup>m</sup></div>
-
-  <p>Think of a machine with <em>n</em> knobs and <em>m</em> gauges. Turn one knob a little. Several gauges may move. The <a href="https://en.wikipedia.org/wiki/Jacobian_matrix_and_determinant">Jacobian matrix</a> records every input to output response.</p>
-
-  <div class="change-equation" role="math" aria-label="Delta F is approximately the Jacobian times delta x">ΔF ≈ J<sub>F</sub>(x) Δx</div>
-
-  <p>Each row follows one output. Each column follows one input. The Jacobian is the best local linear map between input space and output space.</p>
-
-  <section class="change-viz" aria-labelledby="jacobian-viz-title">
-    <header class="change-viz-header">
-      <h3 id="jacobian-viz-title">Try it: turn the input knobs</h3>
-      <p>One input can affect both outputs. The fixed Jacobian below maps the blue input vector to the orange output vector.</p>
-    </header>
-    <div class="change-viz-body">
-      <div class="change-controls">
-        <label class="change-control" for="jacobian-x">
-          <span class="change-control-row"><span>Input change Δx<sub>1</sub></span><output id="jacobian-x-value">0.70</output></span>
-          <input id="jacobian-x" type="range" min="-1" max="1" value="0.7" step="0.05">
-        </label>
-        <label class="change-control" for="jacobian-y">
-          <span class="change-control-row"><span>Input change Δx<sub>2</sub></span><output id="jacobian-y-value">0.30</output></span>
-          <input id="jacobian-y" type="range" min="-1" max="1" value="0.3" step="0.05">
-        </label>
+<section class="change-viz" aria-labelledby="gradient-viz-title">
+  <header class="change-viz-header">
+    <h3 id="gradient-viz-title">Try it: move across the surface</h3>
+    <p>Drag the point. The arrow shows the local gradient, not a route across the whole surface.</p>
+  </header>
+  <div class="change-viz-body">
+    <canvas id="gradient-canvas" width="720" height="420"
+      aria-label="Interactive contour map with a draggable point and gradient arrow">
+      Your browser does not support Canvas. The gradient points toward the steepest local increase.
+    </canvas>
+    <dl class="change-readout" aria-live="polite">
+      <div>
+        <dt>Position</dt>
+        <dd id="gradient-position">(0.80, -0.50)</dd>
       </div>
-      <canvas id="jacobian-canvas" width="720" height="330" aria-label="Interactive diagram showing a Jacobian mapping an input vector to an output vector">
-        Your browser does not support Canvas. This example uses the matrix [[1, 0.6], [-0.4, 0.8]].
-      </canvas>
-      <dl class="change-readout" aria-live="polite">
-        <div><dt>Input Δx</dt><dd id="jacobian-input">(0.70, 0.30)</dd></div>
-        <div><dt>Jacobian J</dt><dd>[[1, 0.6], [-0.4, 0.8]]</dd></div>
-        <div><dt>Output ΔF</dt><dd id="jacobian-output">(0.88, -0.04)</dd></div>
-      </dl>
-    </div>
-  </section>
-
-  <p>This matters in <a href="https://en.wikipedia.org/wiki/Robot_kinematics">robot kinematics</a>. A robot arm maps joint angles to the pose of its end effector. Its Jacobian maps joint velocities to the end effector's velocity.</p>
-
-  <p>A gradient is closely related to a Jacobian. For a function with one scalar output, the Jacobian has one row. The gradient usually writes the same derivatives as a column.</p>
-
-  <h2 id="hessian">The Hessian: How Is the Slope Changing?</h2>
-
-  <p>Return to a scalar function. Its <a href="https://en.wikipedia.org/wiki/Hessian_matrix">Hessian matrix</a> takes the derivatives of the gradient:</p>
-
-  <div class="change-equation" role="math" aria-label="The Hessian is the matrix of second partial derivatives">H<sub>f</sub>(x) = ∇²f(x) = [∂²f/∂x<sub>i</sub>∂x<sub>j</sub>]</div>
-
-  <p>As you walk across a mountain, its slope changes from place to place. The ground may flatten, grow steeper, or bend toward another direction. The Hessian describes that local curvature.</p>
-
-  <p>The Hessian does not only say how the gradient's direction changes. It also says how its size changes. It captures how the full gradient changes as you move.</p>
-
-  <section class="change-viz" aria-labelledby="hessian-viz-title">
-    <header class="change-viz-header">
-      <h3 id="hessian-viz-title">Try it: shape the curvature</h3>
-      <p>Adjust the Hessian of f(x, y) = ½(ax² + 2cxy + by²). Color shows height. The arrows show the main curvature directions.</p>
-    </header>
-    <div class="change-viz-body">
-      <div class="change-controls">
-        <label class="change-control" for="hessian-a">
-          <span class="change-control-row"><span>x curvature, a</span><output id="hessian-a-value">1.2</output></span>
-          <input id="hessian-a" type="range" min="-2" max="2" value="1.2" step="0.1">
-        </label>
-        <label class="change-control" for="hessian-b">
-          <span class="change-control-row"><span>y curvature, b</span><output id="hessian-b-value">0.8</output></span>
-          <input id="hessian-b" type="range" min="-2" max="2" value="0.8" step="0.1">
-        </label>
-        <label class="change-control" for="hessian-c">
-          <span class="change-control-row"><span>coupling, c</span><output id="hessian-c-value">0.0</output></span>
-          <input id="hessian-c" type="range" min="-1.5" max="1.5" value="0" step="0.1">
-        </label>
+      <div>
+        <dt>Gradient</dt>
+        <dd id="gradient-value">(1.12, -1.00)</dd>
       </div>
-      <canvas id="hessian-canvas" width="720" height="420" aria-label="Interactive curvature map controlled by the entries of a Hessian matrix">
-        Your browser does not support Canvas. Positive eigenvalues form a bowl, negative eigenvalues form a hill, and mixed signs form a saddle.
-      </canvas>
-      <dl class="change-readout" aria-live="polite">
-        <div><dt>Hessian</dt><dd id="hessian-matrix">[[1.2, 0.0], [0.0, 0.8]]</dd></div>
-        <div><dt>Eigenvalues</dt><dd id="hessian-eigenvalues">(1.2, 0.8)</dd></div>
-        <div><dt>Local shape</dt><dd id="hessian-shape">Bowl: local minimum</dd></div>
-      </dl>
-      <p class="change-note">Set one main curvature below zero to make a saddle. Increase coupling to rotate the main bend directions.</p>
-    </div>
-  </section>
-
-  <p>The Hessian gives a local quadratic model:</p>
-  <div class="change-equation" role="math" aria-label="Second order Taylor approximation of f">f(x + Δx) ≈ f(x) + ∇f(x)<sup>T</sup>Δx + ½Δx<sup>T</sup>H<sub>f</sub>(x)Δx</div>
-
-  <p>The gradient supplies the local slope. The Hessian tells us how that slope bends.</p>
-
-  <p>Second order methods use this curvature to choose better steps. <a href="https://en.wikipedia.org/wiki/Newton%27s_method_in_optimization">Newton's method in optimization</a> scales the gradient using the inverse Hessian.</p>
-
-  <p>Near a suitable minimum, it can converge in fewer steps than plain gradient descent. The tradeoff is cost. A full Hessian becomes expensive when a model has many parameters.</p>
-
-  <h2 id="three-views">One Function, Three Views</h2>
-
-  <p>Consider the bowl f(x, y) = x² + 2y². Its gradient is (2x, 4y). At (1, 1), the gradient is (2, 4). The function rises faster in the y direction.</p>
-
-  <p>Because this function has one output, its Jacobian contains the same first derivatives. Its Hessian is [[2, 0], [0, 4]]. The curvature stays constant everywhere.</p>
-
-  <div class="change-table-wrap">
-    <table>
-      <thead><tr><th>Object</th><th>Function shape</th><th>What it describes</th></tr></thead>
-      <tbody>
-        <tr><td>Gradient</td><td>ℝ<sup>n</sup> → ℝ</td><td>The local slope of one output</td></tr>
-        <tr><td>Jacobian</td><td>ℝ<sup>n</sup> → ℝ<sup>m</sup></td><td>Every output's local response to every input</td></tr>
-        <tr><td>Hessian</td><td>ℝ<sup>n</sup> → ℝ</td><td>The local change of the gradient, or curvature</td></tr>
-      </tbody>
-    </table>
+      <div>
+        <dt>Height</dt>
+        <dd id="gradient-height">0.70</dd>
+      </div>
+    </dl>
   </div>
+</section>
 
-  <h2 id="engineering">Why Engineers Keep Meeting Them</h2>
+<p>This is enough for <a href="https://en.wikipedia.org/wiki/Gradient_descent">gradient descent</a>. When minimizing a
+  loss, the algorithm takes a step against the gradient:</p>
+<div class="change-equation" role="math" aria-label="x k plus one equals x k minus alpha times the gradient">
+  x<sub>k+1</sub> = x<sub>k</sub> − α∇f(x<sub>k</sub>)</div>
 
-  <ul>
-    <li>Machine learning uses gradients to update model weights.</li>
-    <li>Robotics uses Jacobians to connect joint motion with tool motion.</li>
-    <li><a href="https://en.wikipedia.org/wiki/Computer_vision">Computer vision</a> uses Jacobians to adjust camera poses, scene points, and image errors.</li>
-    <li>Second order optimization uses Hessians, or estimates of them, to account for curvature.</li>
-  </ul>
+<h2 id="jacobian">The Jacobian: How Do All Outputs Respond?</h2>
 
-  <p>They are not separate mathematical tricks. They are different questions about change.</p>
+<p>Now let the function have several inputs and several outputs:</p>
+<div class="change-equation" role="math" aria-label="F maps R n to R m">F: ℝ<sup>n</sup> → ℝ<sup>m</sup></div>
 
-  <p>The gradient asks how one value changes. The Jacobian asks how many outputs change. The Hessian asks how the rate of change itself changes.</p>
+<p>Think of a machine with <em>n</em> knobs and <em>m</em> gauges. Turn one knob a little. Several gauges may move. The
+  <a href="https://en.wikipedia.org/wiki/Jacobian_matrix_and_determinant">Jacobian matrix</a> records every input to
+  output response.</p>
 
-  <h2 id="references">References</h2>
-  <ol>
-    <li><a href="https://ocw.mit.edu/courses/18-s096-matrix-calculus-for-machine-learning-and-beyond-january-iap-2023/resources/mit18_s096iap23_lec12_pdf/">MIT OpenCourseWare: Second Derivatives, Bilinear Maps, and Hessian Matrices</a></li>
-    <li><a href="https://modernrobotics.northwestern.edu/nu-gm-book-resource/velocity-kinematics-and-statics/">Modern Robotics chapter on velocity kinematics and statics</a></li>
-    <li><a href="https://docs.scipy.org/doc/scipy/tutorial/optimize.html">SciPy guide to local optimization methods</a></li>
-  </ol>
+<div class="change-equation" role="math" aria-label="Delta F is approximately the Jacobian times delta x">ΔF ≈
+  J<sub>F</sub>(x) Δx</div>
+
+<p>Each row follows one output. Each column follows one input. The Jacobian is the best local linear map between input
+  space and output space.</p>
+
+<section class="change-viz" aria-labelledby="jacobian-viz-title">
+  <header class="change-viz-header">
+    <h3 id="jacobian-viz-title">Try it: turn the input knobs</h3>
+    <p>One input can affect both outputs. The fixed Jacobian below maps the blue input vector to the orange output
+      vector.</p>
+  </header>
+  <div class="change-viz-body">
+    <div class="change-controls">
+      <label class="change-control" for="jacobian-x">
+        <span class="change-control-row"><span>Input change Δx<sub>1</sub></span><output
+            id="jacobian-x-value">0.70</output></span>
+        <input id="jacobian-x" type="range" min="-1" max="1" value="0.7" step="0.05">
+      </label>
+      <label class="change-control" for="jacobian-y">
+        <span class="change-control-row"><span>Input change Δx<sub>2</sub></span><output
+            id="jacobian-y-value">0.30</output></span>
+        <input id="jacobian-y" type="range" min="-1" max="1" value="0.3" step="0.05">
+      </label>
+    </div>
+    <canvas id="jacobian-canvas" width="720" height="330"
+      aria-label="Interactive diagram showing a Jacobian mapping an input vector to an output vector">
+      Your browser does not support Canvas. This example uses the matrix [[1, 0.6], [-0.4, 0.8]].
+    </canvas>
+    <dl class="change-readout" aria-live="polite">
+      <div>
+        <dt>Input Δx</dt>
+        <dd id="jacobian-input">(0.70, 0.30)</dd>
+      </div>
+      <div>
+        <dt>Jacobian J</dt>
+        <dd>[[1, 0.6], [-0.4, 0.8]]</dd>
+      </div>
+      <div>
+        <dt>Output ΔF</dt>
+        <dd id="jacobian-output">(0.88, -0.04)</dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<p>This matters in <a href="https://en.wikipedia.org/wiki/Robot_kinematics">robot kinematics</a>. A robot arm maps joint
+  angles to the pose of its end effector. Its Jacobian maps joint velocities to the end effector's velocity.</p>
+
+<p>A gradient is closely related to a Jacobian. For a function with one scalar output, the Jacobian has one row. The
+  gradient usually writes the same derivatives as a column.</p>
+
+<h2 id="hessian">The Hessian: How Is the Slope Changing?</h2>
+
+<p>Return to a scalar function. Its <a href="https://en.wikipedia.org/wiki/Hessian_matrix">Hessian matrix</a> takes the
+  derivatives of the gradient:</p>
+
+<div class="change-equation" role="math" aria-label="The Hessian is the matrix of second partial derivatives">
+  H<sub>f</sub>(x) = ∇²f(x) = [∂²f/∂x<sub>i</sub>∂x<sub>j</sub>]</div>
+
+<p>As you walk across a mountain, its slope changes from place to place. The ground may flatten, grow steeper, or bend
+  toward another direction. The Hessian describes that local curvature.</p>
+
+<p>The Hessian does not only say how the gradient's direction changes. It also says how its size changes. It captures
+  how the full gradient changes as you move.</p>
+
+<section class="change-viz" aria-labelledby="hessian-viz-title">
+  <header class="change-viz-header">
+    <h3 id="hessian-viz-title">Try it: shape the curvature</h3>
+    <p>Adjust the Hessian of f(x, y) = ½(ax² + 2cxy + by²). Color shows height. The arrows show the main curvature
+      directions.</p>
+  </header>
+  <div class="change-viz-body">
+    <div class="change-controls">
+      <label class="change-control" for="hessian-a">
+        <span class="change-control-row"><span>x curvature, a</span><output id="hessian-a-value">1.2</output></span>
+        <input id="hessian-a" type="range" min="-2" max="2" value="1.2" step="0.1">
+      </label>
+      <label class="change-control" for="hessian-b">
+        <span class="change-control-row"><span>y curvature, b</span><output id="hessian-b-value">0.8</output></span>
+        <input id="hessian-b" type="range" min="-2" max="2" value="0.8" step="0.1">
+      </label>
+      <label class="change-control" for="hessian-c">
+        <span class="change-control-row"><span>coupling, c</span><output id="hessian-c-value">0.0</output></span>
+        <input id="hessian-c" type="range" min="-1.5" max="1.5" value="0" step="0.1">
+      </label>
+    </div>
+    <canvas id="hessian-canvas" width="720" height="420"
+      aria-label="Interactive curvature map controlled by the entries of a Hessian matrix">
+      Your browser does not support Canvas. Positive eigenvalues form a bowl, negative eigenvalues form a hill, and
+      mixed signs form a saddle.
+    </canvas>
+    <dl class="change-readout" aria-live="polite">
+      <div>
+        <dt>Hessian</dt>
+        <dd id="hessian-matrix">[[1.2, 0.0], [0.0, 0.8]]</dd>
+      </div>
+      <div>
+        <dt>Eigenvalues</dt>
+        <dd id="hessian-eigenvalues">(1.2, 0.8)</dd>
+      </div>
+      <div>
+        <dt>Local shape</dt>
+        <dd id="hessian-shape">Bowl: local minimum</dd>
+      </div>
+    </dl>
+    <p class="change-note">Set one main curvature below zero to make a saddle. Increase coupling to rotate the main bend
+      directions.</p>
+  </div>
+</section>
+
+<p>The Hessian gives a local quadratic model:</p>
+<div class="change-equation" role="math" aria-label="Second order Taylor approximation of f">f(x + Δx) ≈ f(x) +
+  ∇f(x)<sup>T</sup>Δx + ½Δx<sup>T</sup>H<sub>f</sub>(x)Δx</div>
+
+<p>The gradient supplies the local slope. The Hessian tells us how that slope bends.</p>
+
+<p>Second order methods use this curvature to choose better steps. <a
+    href="https://en.wikipedia.org/wiki/Newton%27s_method_in_optimization">Newton's method in optimization</a> scales
+  the gradient using the inverse Hessian.</p>
+
+<p>Near a suitable minimum, it can converge in fewer steps than plain gradient descent. The tradeoff is cost. A full
+  Hessian becomes expensive when a model has many parameters.</p>
+
+<h2 id="three-views">One Function, Three Views</h2>
+
+<p>Consider the bowl f(x, y) = x² + 2y². Its gradient is (2x, 4y). At (1, 1), the gradient is (2, 4). The function rises
+  faster in the y direction.</p>
+
+<p>Because this function has one output, its Jacobian contains the same first derivatives. Its Hessian is [[2, 0], [0,
+  4]]. The curvature stays constant everywhere.</p>
+
+<div class="change-table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th>Object</th>
+        <th>Function shape</th>
+        <th>What it describes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Gradient</td>
+        <td>ℝ<sup>n</sup> → ℝ</td>
+        <td>The local slope of one output</td>
+      </tr>
+      <tr>
+        <td>Jacobian</td>
+        <td>ℝ<sup>n</sup> → ℝ<sup>m</sup></td>
+        <td>Every output's local response to every input</td>
+      </tr>
+      <tr>
+        <td>Hessian</td>
+        <td>ℝ<sup>n</sup> → ℝ</td>
+        <td>The local change of the gradient, or curvature</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<h2 id="engineering">Why Engineers Keep Meeting Them</h2>
+
+<ul>
+  <li>Machine learning uses gradients to update model weights.</li>
+  <li>Robotics uses Jacobians to connect joint motion with tool motion.</li>
+  <li><a href="https://en.wikipedia.org/wiki/Computer_vision">Computer vision</a> uses Jacobians to adjust camera poses,
+    scene points, and image errors.</li>
+  <li>Second order optimization uses Hessians, or estimates of them, to account for curvature.</li>
+</ul>
+
+<p>They are not separate mathematical tricks. They are different questions about change.</p>
+
+<p>The gradient asks how one value changes. The Jacobian asks how many outputs change. The Hessian asks how the rate of
+  change itself changes.</p>
+
+<h2 id="references">References</h2>
+<ol>
+  <li><a
+      href="https://ocw.mit.edu/courses/18-s096-matrix-calculus-for-machine-learning-and-beyond-january-iap-2023/resources/mit18_s096iap23_lec12_pdf/">MIT
+      OpenCourseWare: Second Derivatives, Bilinear Maps, and Hessian Matrices</a></li>
+  <li><a href="https://modernrobotics.northwestern.edu/nu-gm-book-resource/velocity-kinematics-and-statics/">Modern
+      Robotics chapter on velocity kinematics and statics</a></li>
+  <li><a href="https://docs.scipy.org/doc/scipy/tutorial/optimize.html">SciPy guide to local optimization methods</a>
+  </li>
+</ol>
 <script>
   (() => {
     'use strict';
@@ -405,7 +490,7 @@ tags: [math, optimization, ML, robotics]
 
     function createGradientDemo() {
       const canvas = byId('gradient-canvas');
-      if (!canvas) return () => {};
+      if (!canvas) return () => { };
       const state = { x: 0.8, y: -0.5 };
 
       function draw() {
@@ -472,7 +557,7 @@ tags: [math, optimization, ML, robotics]
       const canvas = byId('jacobian-canvas');
       const inputX = byId('jacobian-x');
       const inputY = byId('jacobian-y');
-      if (!canvas || !inputX || !inputY) return () => {};
+      if (!canvas || !inputX || !inputY) return () => { };
 
       function draw() {
         const x = Number(inputX.value);
@@ -526,7 +611,7 @@ tags: [math, optimization, ML, robotics]
       const aInput = byId('hessian-a');
       const bInput = byId('hessian-b');
       const cInput = byId('hessian-c');
-      if (!canvas || !aInput || !bInput || !cInput) return () => {};
+      if (!canvas || !aInput || !bInput || !cInput) return () => { };
 
       function draw() {
         const a = Number(aInput.value);
