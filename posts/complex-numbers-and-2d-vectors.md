@@ -226,17 +226,16 @@ $$
   <p>For z = a + bi, the Cartesian coordinates a and b determine the polar magnitude and angle:</p>
 
 $$
-r = \sqrt{a^2 + b^2}, \qquad \theta = \operatorname{atan2}(b, a)
+r = \sqrt{a^2 + b^2}, \qquad \theta = \mathrm{atan2}(b, a)
 $$
 
   <p>Therefore, the conversion from Cartesian to polar form is:</p>
 
 $$
-a + bi = \sqrt{a^2 + b^2}\;e^{i\operatorname{atan2}(b, a)}
+a + bi = \sqrt{a^2 + b^2}\;e^{i\,\mathrm{atan2}(b, a)}
 $$
 
-  <p>The coordinate b is not itself an angle. The angle depends on both a and b, while the magnitude is generally not
-    equal to a.</p>
+  <p>Here r is the Euclidean norm of the vector (a, b), and θ is its signed angle from the positive real axis.</p>
 
   <p>The bridge between the trigonometric and exponential forms is
     <a href="https://en.wikipedia.org/wiki/Euler%27s_formula">Euler's formula</a>:</p>
