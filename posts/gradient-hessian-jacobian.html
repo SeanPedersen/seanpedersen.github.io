@@ -224,6 +224,15 @@ tags: [math, ML]
 <div class="change-equation" role="math" aria-label="The Hessian is the matrix of second partial derivatives">
   H<sub>f</sub>(x) = ∇²f(x) = [∂²f/∂x<sub>i</sub>∂x<sub>j</sub>]</div>
 
+<p>Put another way: <strong>the Hessian is the Jacobian of the gradient</strong>. The gradient collects the first
+  derivatives into a vector; taking that vector's Jacobian collects all second derivatives into a matrix.</p>
+
+<div class="change-equation" role="math" aria-label="The Hessian of f equals the Jacobian of the gradient of f">
+  H<sub>f</sub>(x) = J<sub>∇f</sub>(x)</div>
+
+<p>Some row-vector conventions write a transpose here. For a sufficiently smooth function, the Hessian is symmetric,
+  so the entries agree either way.</p>
+
 <p>On a landscape, the Hessian describes the local curvature: whether the ground forms a peak, valley, ridge, or
   saddle, and which directions bend most strongly. Unlike the gradient, it describes how the slope itself changes.</p>
 
