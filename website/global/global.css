@@ -34,6 +34,38 @@
   --color-primary: #3399ff;
   --color-hover: #111;
   --color-tag: #333;
+
+  /* Code block colors */
+  --code-bg: #2d2d2d;
+  --code-text: #ccc;
+  --code-comment: #999;
+  --code-punctuation: #ccc;
+  --code-tag: #e2777a;
+  --code-attr-name: #e2777a;
+  --code-namespace: #e2777a;
+  --code-deleted: #e2777a;
+  --code-function-name: #6196cc;
+  --code-boolean: #f08d49;
+  --code-number: #f08d49;
+  --code-function: #f08d49;
+  --code-property: #f8c555;
+  --code-class-name: #f8c555;
+  --code-constant: #f8c555;
+  --code-symbol: #f8c555;
+  --code-selector: #cc99cd;
+  --code-important: #cc99cd;
+  --code-atrule: #cc99cd;
+  --code-keyword: #cc99cd;
+  --code-builtin: #cc99cd;
+  --code-string: #7ec699;
+  --code-char: #7ec699;
+  --code-attr-value: #7ec699;
+  --code-regex: #7ec699;
+  --code-variable: #7ec699;
+  --code-operator: #67cdcc;
+  --code-entity: #67cdcc;
+  --code-url: #67cdcc;
+  --code-inserted: green;
 }
 
 html[data-theme="light"] {
@@ -67,6 +99,38 @@ html[data-theme="light"] {
   --color-primary: #007acc;
   --color-hover: #e0e0e0;
   --color-tag: #ddd;
+
+  /* Code block colors */
+  --code-bg: #f5f5f5;
+  --code-text: #333;
+  --code-comment: #708090;
+  --code-punctuation: #555;
+  --code-tag: #c62828;
+  --code-attr-name: #c62828;
+  --code-namespace: #c62828;
+  --code-deleted: #c62828;
+  --code-function-name: #1565c0;
+  --code-boolean: #e65100;
+  --code-number: #e65100;
+  --code-function: #e65100;
+  --code-property: #f9a825;
+  --code-class-name: #f9a825;
+  --code-constant: #f9a825;
+  --code-symbol: #f9a825;
+  --code-selector: #8e24aa;
+  --code-important: #8e24aa;
+  --code-atrule: #8e24aa;
+  --code-keyword: #8e24aa;
+  --code-builtin: #8e24aa;
+  --code-string: #2e7d32;
+  --code-char: #2e7d32;
+  --code-attr-value: #2e7d32;
+  --code-regex: #2e7d32;
+  --code-variable: #2e7d32;
+  --code-operator: #00838f;
+  --code-entity: #00838f;
+  --code-url: #00838f;
+  --code-inserted: #2e7d32;
 }
 
 /* Base styles */
