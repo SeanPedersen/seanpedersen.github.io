@@ -443,5 +443,7 @@ pg_restore \
   - [HN Discussion](https://news.ycombinator.com/item?id=44071418)
 - [Introduction to Postgres Indexes](https://dlt.github.io/blog/posts/introduction-to-postgresql-indexes/)
 - [Unconventional Postgres Optimizations](https://hakibenita.com/postgresql-unconventional-optimizations)
+- https://hatchet.run/blog/postgres-survival-guide
+  - https://news.ycombinator.com/item?id=49005787
 
 #coding
