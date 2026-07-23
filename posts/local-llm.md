@@ -6,13 +6,15 @@ Key metrics:
 - Prefill speed: prompt/input tokens per second
 - Decode speed: generated tokens per second
 - Time to first token (latency)
-- VRAM usage at target context length
+- Memory usage at target context length
 - Quality at chosen model/quant/context settings
 - Concurrency, if serving multiple users
 
 ## Software (Inference)
 
-Choose the serving stack based on workload:
+Use a local [LLM chat app](/posts/local-ai-chat-apps) for easy setup and usage.
+
+Choose the serving stack based on workload (for tinkerers that want max performance):
 - [llama.cpp](https://github.com/ggml-org/llama.cpp): best general local path, especially GGUF, CPU, Apple Silicon, and mixed CPU/GPU.
   - [beelama.cpp](https://github.com/Anbeeld/beellama.cpp): DFlash & TurboQuant in llama.cpp with up to 3x faster generation and 7.5x more KV cache in same VRAM
   - [ik_llama.cpp](https://github.com/ikawrakow/ik_llama.cpp): llama.cpp fork with additional SOTA quants and improved performance
@@ -53,14 +55,18 @@ Community benchmarks for local LLM: https://localmaxxing.com
 Most models are too big for consumer GPUs, so quantized versions (compressed parameters) are used. [Mixture of Quants](https://huggingface.co/w-ahmad/Qwen3.5-9B-GGUF-MoQ) (MoQ) is a new very efficient quant variant that does not quant weights uniformly but based on importance.
 
 **Curated open model list**:
-- [Qwen3.6-35B-A3B Q4_K_XL](https://huggingface.co/unsloth/Qwen3.6-35B-A3B-MTP-GGUF): Strong MoE (3B active) model with MTP can run even on 8GB VRAM GPU with CPU offloading
+
+<16 GB VRAM (dense needs fast GPU):
+- [Qwen3.6 27B Q3_K_M](https://huggingface.co/unsloth/Qwen3.6-27B-GGUF) - dense model, very good (Sonnet 4.6 performance)
+
+<8GB VRAM / CPU:
+- [Qwen3.6-35B-A3B Q4_K_XL](https://huggingface.co/unsloth/Qwen3.6-35B-A3B-MTP-GGUF): Strong MoE (3B active) model with MTP can run even on 8GB VRAM GPU with CPU offloading (the local king)
   - [Uncensored version](https://huggingface.co/LuffyTheFox/Qwen3.6-35B-A3B-Uncensored-Genesis-V2-APEX-MTP-GGUF) - [Reddit thread](https://www.reddit.com/r/LocalLLaMA/comments/1tm3toi/qwen3635ba3buncensoredgenesisapexmtp/)
   - https://x.com/witcheer/status/2053809265538678789
   - https://www.reddit.com/r/LocalLLaMA/comments/1tc132c/llamacpp_docker_images_to_run_mtp_models/
   - Custom thinking grammar (limit overthinking): https://github.com/andthattoo/structured-cot
     - TODO: find optimal thinking grammar using [GEPA](https://github.com/gepa-ai/gepa)
-- [Qwen3.6 27B Q3_K_M](https://huggingface.co/unsloth/Qwen3.6-27B-GGUF) - dense model, very good (Sonnet 4.6 performance) can run on 16GB VRAM
-  - [Ternary Bonsai 27B](https://huggingface.co/prism-ml/Ternary-Bonsai-27B-gguf) - ternary bit distilled model (~7.2 GB, 95% of FP16 intelligence retained)
+- [Ternary Bonsai 27B](https://huggingface.co/prism-ml/Ternary-Bonsai-27B-gguf) - ternary bit distilled model (~7.2 GB, 95% of FP16 intelligence retained)
 - [Qwen3.5 9B Distilled](https://huggingface.co/mradermacher/Qwen3.5-9B-GLM5.1-Distill-v1-i1-GGUF) - small but capable agentic dense model good for <8GB VRAM
   - [MoQ](https://huggingface.co/w-ahmad/Qwen3.5-9B-GGUF-MoQ/tree/main/MoQ-Quants-Latest) variant (very efficient quantization)
 - [LFM2.5-8B-A1B](https://huggingface.co/LiquidAI/LFM2.5-8B-A1B) - very fast MoE model 1.5B active + 128k context (agentic usefulness is limited though...)
@@ -89,6 +95,10 @@ TODO:
 - Check current AMD ROCm support.
 - Compare used datacenter GPUs against RTX 3090/4090/5090-class consumer cards.
 - Benchmark watts/token, not just tokens/sec.
+
+## Gossary
+
+**Mixture of Experts (MoE):** Only a fraction of the model’s parameters are activated for each token, allowing a model to have a much larger total parameter count without a proportional increase in computation. Compared with a similarly sized dense model, this can make training and inference more compute-efficient while maintaining comparable quality.
 
 ## References
 - https://vllm.ai/blog/2026-05-11-turboquant
