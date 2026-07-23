@@ -54,7 +54,7 @@ Community benchmarks for local LLM: https://localmaxxing.com
 
 Most models are too big for consumer GPUs, so quantized versions (compressed parameters) are used. [Mixture of Quants](https://huggingface.co/w-ahmad/Qwen3.5-9B-GGUF-MoQ) (MoQ) is a new very efficient quant variant that does not quant weights uniformly but based on importance.
 
-**Curated open model list**:
+**Curated open model list:** Qwen3.6 models are king for coding; Gemma4 models are better for general knowledge / writing. I recommend Qwen3.6 35B A3B.
 
 <16 GB VRAM (dense needs fast GPU):
 - [Qwen3.6 27B Q3_K_M](https://huggingface.co/unsloth/Qwen3.6-27B-GGUF) - dense model, very good (Sonnet 4.6 performance)
@@ -66,11 +66,12 @@ Most models are too big for consumer GPUs, so quantized versions (compressed par
   - https://www.reddit.com/r/LocalLLaMA/comments/1tc132c/llamacpp_docker_images_to_run_mtp_models/
   - Custom thinking grammar (limit overthinking): https://github.com/andthattoo/structured-cot
     - TODO: find optimal thinking grammar using [GEPA](https://github.com/gepa-ai/gepa)
+- [Gemma4-26B-A4B](https://huggingface.co/unsloth/gemma-4-26B-A4B-it-GGUF): MoE (4B active) model with MTP, good for general knowledge and multi-modal (image) queries
 - [Ternary Bonsai 27B](https://huggingface.co/prism-ml/Ternary-Bonsai-27B-gguf) - ternary bit distilled model (~7.2 GB, 95% of FP16 intelligence retained)
 - [Qwen3.5 9B Distilled](https://huggingface.co/mradermacher/Qwen3.5-9B-GLM5.1-Distill-v1-i1-GGUF) - small but capable agentic dense model good for <8GB VRAM
   - [MoQ](https://huggingface.co/w-ahmad/Qwen3.5-9B-GGUF-MoQ/tree/main/MoQ-Quants-Latest) variant (very efficient quantization)
 - [LFM2.5-8B-A1B](https://huggingface.co/LiquidAI/LFM2.5-8B-A1B) - very fast MoE model 1.5B active + 128k context (agentic usefulness is limited though...)
-- [MiniCPM5-1B](https://huggingface.co/openbmb/MiniCPM5-1B) - optimized for mobile CPU/NPU inference (32k context window)
+- [MiniCPM5-1B](https://huggingface.co/openbmb/MiniCPM5-1B) - tiny model, optimized for mobile CPU/NPU inference (32k context window)
 
 ## Hardware (GPU)
 VRAM matters more than raw TFLOPs for model & context (prompt) size, but memory bandwidth and tensor cores matter for speed. Used datacenter GPUs can be good value, but check form factor, cooling, power, driver support, and PCIe vs SXM.
