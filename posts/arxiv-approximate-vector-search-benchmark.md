@@ -20,7 +20,7 @@ I benchmarked five implementations of [approximate nearest neighbor search](http
 | AsterVec | 36.9 s | 0.854 | 1.26 ms | 3.86 ms | 161.8 MiB | 299.2 MiB |
 | aisaq DiskANN | 308.7 s | 0.978 | 20.58 ms | 28.50 ms | 164.8 MiB | 709.9 MiB |
 
-The TurboVec rerank results were measured on 22 July 2026 with the same 100K corpus and protocol. Each fetches 100 candidates before scoring them with FP32, FP16, or INT8 vectors. The latency includes that work. The FP16 and INT8 vector files require 48.8 MiB and 24.4 MiB for 100K vectors.
+The TurboVec rerank results were measured with the same 100K corpus and protocol. Each fetches 100 candidates before scoring them with FP32, FP16, or INT8 vectors. The latency includes that work. The FP16 and INT8 vector files require 48.8 MiB and 24.4 MiB for 100K vectors.
 
 zvec [HNSW](https://en.wikipedia.org/wiki/Hierarchical_navigable_small_world) plus RaBitQ gave the best speed and near-best recall. It is the natural default here when the index can stay in memory and the application does not need a very small artifact.
 
@@ -107,6 +107,7 @@ TODO:
 - check how RAM usage of diskann based indexes scales when using full dataset (3 mill)
 - check how diskann params can reduce RAM usage
 - measure data distribution drift recall impact (insert and delete drifting vectors)
+- check rerank candidate ranges (how much more candidates are needed for INT8 rerank to work well -> add exact k-NN for FP16 and INT8 first as this is the limit)
 
 ## References
 
