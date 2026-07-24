@@ -111,15 +111,16 @@ TODO:
 ## References
 
 1. [Benchmark Github: Approximate vector search benchmark source and results](https://github.com/SeanPedersen/approximate-vector-search-benchmark)
-2. [HNSW research paper](https://arxiv.org/abs/1603.09320)
-3. [DiskANN: Fast accurate billion-point nearest neighbor search on a single node](https://www.microsoft.com/en-us/research/publication/diskann-fast-accurate-billion-point-nearest-neighbor-search-on-a-single-node/)
-4. [Faiss wiki](https://github.com/facebookresearch/faiss/wiki)
-5. [arXiv bulk data access and metadata information](https://info.arxiv.org/help/bulk_data.html)
-6. [zvec IVF nprobe regression report](https://github.com/alibaba/zvec/issues/598)
-7. [zvec source repository](https://github.com/alibaba/zvec)
-8. [TurboVec source repository](https://github.com/RyanCodrai/turbovec)
-9. [AsterVec source repository](https://github.com/NTU-Siqiang-Group/AsterVec)
-10. [AiSAQ-DiskANN source repository](https://github.com/kioxia-jp/aisaq-diskann)
-11. [Microsoft DiskANN source repository](https://github.com/microsoft/DiskANN)
+2. The gold standard ANN benchmark: https://github.com/erikbern/ann-benchmarks
+3. [HNSW research paper](https://arxiv.org/abs/1603.09320)
+4. [DiskANN: Fast accurate billion-point nearest neighbor search on a single node](https://www.microsoft.com/en-us/research/publication/diskann-fast-accurate-billion-point-nearest-neighbor-search-on-a-single-node/)
+5. [Faiss wiki](https://github.com/facebookresearch/faiss/wiki)
+6. [arXiv bulk data access and metadata information](https://info.arxiv.org/help/bulk_data.html)
+7. [zvec IVF nprobe regression report](https://github.com/alibaba/zvec/issues/598)
+8. [zvec source repository](https://github.com/alibaba/zvec)
+9. [TurboVec source repository](https://github.com/RyanCodrai/turbovec)
+10. [AsterVec source repository](https://github.com/NTU-Siqiang-Group/AsterVec)
+11. [AiSAQ-DiskANN source repository](https://github.com/kioxia-jp/aisaq-diskann)
+12. [Microsoft DiskANN source repository](https://github.com/microsoft/DiskANN)
 
 #coding #ML
