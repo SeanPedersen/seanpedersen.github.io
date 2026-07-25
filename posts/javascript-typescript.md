@@ -17,6 +17,8 @@ icon: "/images/icons/javascript.webp"
 
 Use [React](/posts/react.html) for a popular framework, with many resources (both knowledge and developers) available. Use [Svelte](https://svelte.dev/), [SolidJS](https://www.solidjs.com/) or [MarkoJS](https://markojs.com/) for smaller and better alternatives - while SolidJS being closest to React in terms of developer experience. Read [this article](https://www.lorenstew.art/blog/10-kanban-boards/) for an excellent comparison of frontend state management frameworks. Checkout [pretext](https://github.com/chenglou/pretext) for fast text rendering. Try [Three.js](https://github.com/mrdoob/three.js/) for 3D rendering like games and [D3.js](https://github.com/d3/d3) for 2D data visualization.
 
+Build desktop apps with [electrobun](https://github.com/blackboardsh/electrobun).
+
 ## Promises (async)
 
 JavaScript uses promises to handle asynchronous operations like API calls, file operations, or timers. A promise represents a value that may be available now, in the future or never and is returned by async functions (return values of async functions are always wrapped in a promise). The await keyword unwraps the value of the promise.
