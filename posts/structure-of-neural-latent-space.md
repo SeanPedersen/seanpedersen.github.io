@@ -87,5 +87,6 @@ This would make them easier to interpret for humans and potentially offer some o
 TODO:
 - How do image (continuous input space) and text (discrete input space) embedding spaces differ (number of clusters, density, etc.)?
 - How sparse are dense embeddings (how much information do they lose if sparsified -> compare different embeddings based on layer depth)?
+- Analyse if fractal dimensionality (Hausdorff dimension) can relate to finding a submanifold (https://youtu.be/tL9Lw250spc?t=969)
 
 #ML
