@@ -29,19 +29,19 @@ Special relativity joins electric and magnetic fields into one electromagnetic f
 
 This leads to the phrase "magnetism is electricity viewed through relativity." It contains real insight, but it does not explain a permanent magnet by itself. Permanent magnets also depend on intrinsic quantum spin and the collective behavior of many electrons.
 
-## Each atom can carry a magnetic moment
+## Atoms can carry a magnetic moment
 
 An electron has electric charge. Its orbital state around an atomic nucleus can give it orbital angular momentum and a magnetic moment.
 
-An electron also has [spin](https://en.wikipedia.org/wiki/Spin_(physics)). The name is misleading. An electron is not a small charged ball turning around an axis. Spin is an intrinsic quantum property with no exact everyday match. It still carries angular momentum and a magnetic moment.
+An electron also has [spin](https://en.wikipedia.org/wiki/Spin_(physics)) (do not read too much into the name). An electron is not a small charged ball turning around an axis. Spin is an intrinsic quantum property (with no good real-world analogy). It still carries angular momentum and a magnetic moment.
 
-Atoms contain several electrons. Their spin and orbital moments add as vectors. Two electrons in a filled state often have opposite spins, so their spin moments cancel. Many atoms therefore have little or no lasting magnetic moment.
+Atoms contain several electrons. Their spin and orbital moments add as vectors. Two electrons in a filled state often have opposite spins, so their spin moments cancel out. Many atoms therefore have little or no lasting magnetic moment.
 
 Atoms with unpaired electrons can retain a net moment. Iron, cobalt, nickel, and some of their alloys have the right electronic structure for strong magnetic order. Yet unpaired electrons alone do not make a permanent magnet. Oxygen has unpaired electrons, for example, but it is only weakly attracted to a field under ordinary conditions.
 
 The missing part is an interaction that makes many atomic moments order together.
 
-## Why neighboring moments line up
+## Neighboring moments line up
 
 The small magnetic fields of neighboring electron moments are too weak to explain ferromagnetism. The main cause is the [exchange interaction](https://en.wikipedia.org/wiki/Exchange_interaction).
 
@@ -57,9 +57,7 @@ So "spins align" describes the result. Exchange explains why.
 
 ## Domains explain the whole object
 
-Why is an ordinary piece of iron not always a strong magnet? Local alignment does not require the entire object to choose one direction.
-
-A ferromagnet divides into regions called [magnetic domains](https://en.wikipedia.org/wiki/Magnetic_domain). Moments within one domain share a direction. Other domains point elsewhere. Their fields can largely cancel, leaving little net field outside the object.
+Why is an ordinary piece of iron not always a strong magnet? Local alignment does not require the entire object to choose one direction. A ferromagnet divides into regions called [magnetic domains](https://en.wikipedia.org/wiki/Magnetic_domain). Moments within one domain share a direction. Other domains point elsewhere. Their fields can largely cancel, leaving little net field outside the object.
 
 This split saves energy. One huge domain would create a strong field far outside the material. Several domains reduce that field, though their boundaries also cost energy. The actual pattern balances exchange, crystal direction, shape, defects, and external fields.
 
@@ -67,7 +65,7 @@ Apply a strong field and domains already pointing near it grow. Domain walls mov
 
 This memory is [hysteresis](https://en.wikipedia.org/wiki/Hysteresis). It explains why hard magnetic materials can become permanent magnets. Soft magnetic materials let domain walls move more easily, so they magnetize and demagnetize with little resistance. Transformers use soft magnets. Motors, speakers, and fridge magnets need harder ones.
 
-## What heating and cooling do to a magnet
+##  Heating and cooling a magnet
 
 Heat adds random motion and magnetic fluctuations. As temperature rises, those fluctuations fight the exchange-driven order.
 
@@ -81,7 +79,7 @@ Cooling through the transition inside a strong field favors domains along that f
 
 You do not always need to reach the Curie temperature to weaken a real magnet. Heat below that point can help domain walls escape their pinned positions. Strong opposing fields, shocks, and long-term aging can also reduce the stored alignment.
 
-## How superconductors fit in
+## Superconductors
 
 A superconductor is not just a better ferromagnet. It is a different collective quantum state.
 
@@ -99,7 +97,7 @@ A superconducting magnet is something else again. It is usually a coil made from
 
 Too much heat, current, or magnetic field breaks the superconducting state. Conventional superconductors have a solid microscopic theory. Many high-temperature superconductors still lack a complete explanation.
 
-## The deepest useful picture
+## The deep picture
 
 At the classical level, Maxwell's equations describe electric and magnetic fields. Special relativity shows that these fields are two parts of one object.
 
