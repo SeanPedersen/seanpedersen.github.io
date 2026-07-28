@@ -30,6 +30,24 @@
   <link rel="alternate" type="application/rss+xml" href="/rss.xml" title="RSS Feed">
   {{ inline_css(path="/styles/global.css") | safe }}
   {{ inline_css(path="/styles/index.css") | safe }}
+  <style>
+    {% for tag in tags %}
+    #tag-{{ tag }}:checked ~ .list .listItem:not(.tag-{{ tag }}) {
+      display: none;
+    }
+
+    #tag-{{ tag }}:checked ~ .searchTagsWrapper .tagsContainer label[for="tag-{{ tag }}"] {
+      background-color: var(--primary-color);
+      color: var(--tag-selected-text);
+      border-color: var(--primary-color);
+    }
+
+    #tag-{{ tag }}:checked ~ .searchTagsWrapper .tagsContainer label[for="tag-{{ tag }}"]:hover {
+      background-color: var(--tag-selected-hover-bg);
+      color: var(--tag-selected-text);
+    }
+    {% endfor %}
+  </style>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
