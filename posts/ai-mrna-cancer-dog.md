@@ -19,4 +19,4 @@ It took about three months and extensive paperwork to obtain ethics approval for
 - [India Today tech article](https://www.indiatoday.in/technology/news/story/man-uses-chatgpt-and-alphafold-to-build-diy-mrna-cancer-vaccine-saves-dog-2882198-2026-03-15)
 - [NDTV article](https://www.ndtv.com/feature/australian-entrepreneur-uses-chatgpt-to-create-customised-vaccine-to-cure-dogs-cancer-11219043)
 ​
-​#idea
+​#science
