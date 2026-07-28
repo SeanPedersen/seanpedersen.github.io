@@ -38,4 +38,4 @@ The gut talks to the brain through the [vagus nerve](https://en.wikipedia.org/wi
 13. [Fecal Microbiota Transplantation as an Adjunctive Therapy for Depression Case Report](https://www.frontiersin.org/journals/psychiatry/articles/10.3389/fpsyt.2022.815422/full)
 14. [Effect of fecal microbiota transplant on symptoms of psychiatric disorders systematic review](https://pmc.ncbi.nlm.nih.gov/articles/PMC7294648/)
 
-#idea
+#science

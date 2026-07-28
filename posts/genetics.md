@@ -112,4 +112,4 @@ TODO:
 - <https://www.scientificamerican.com/article/lifes-evil-twins-mirror-cells-could-doom-earth-if-scientists-dont-stop-them/>
 - <https://en.wikipedia.org/wiki/Artificially_Expanded_Genetic_Information_System>
 
-#idea
+#science

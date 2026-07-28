@@ -89,4 +89,4 @@ The new paper does not take dark energy out of cosmology. It shows a path by whi
 4. [What is Dark Energy?, NASA](https://science.nasa.gov/dark-energy/)
 5. [New DESI Results Strengthen Hints That Dark Energy May Evolve, Berkeley Lab](https://newscenter.lbl.gov/2025/03/19/new-desi-results-strengthen-hints-that-dark-energy-may-evolve/)
 
-#physics
+#science

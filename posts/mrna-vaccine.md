@@ -83,4 +83,4 @@ mRNA vaccines are not a narrow tool for infectious disease. They are a general p
 - https://www.nejm.org/doi/full/10.1056/NEJMoa2034577
 - https://www.nature.com/articles/s41586-023-06063-y
 
-#idea
+#science
