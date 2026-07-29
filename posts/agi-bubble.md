@@ -88,6 +88,15 @@ World models (grounded in perception and real interaction) are the correct appro
 
 My prediction: true general AI systems will only be possible if they can manipulate an abstract 3D scene and then predict how it will interact over time (world model). For this to work the AI needs a good real world simulator which can be learned from watching lots of video footage from real interactions and grounding it via real-world interactions. Thus companies which mass deploy interactive robots and gather a massive real-world action dataset, might have the ultimate AGI moat (another promising angle: just mine all published YT videos for human real-world interactions to pre-train a general real-world-interaction model).
 
+## Coming AI Evolution
+Since inherent limitations of the technology behind the coming AI evolution (deep learning aka artificial neural networks) remain unsolved (like hallucinations, adversarial exmaples), it is likely that it will unfold like it has for self-driving cars (one amazing jump and then long stagnation).
+
+Level 5 autonomous driving (drive anywhere, anytime without human supervision) is still unsolved. It only works in fully mapped out small regions like certain metropols.
+
+Daily driving still needs human supervision because the technology is still unreliable. The same arc will happen for all coming AI applications (media, robots, etc). It will be useful (autonomous) in controlled environments but in novel situations humans will need to supervise the AI (unless endless training data can cheaply be generated like for chess etc).
+
+Just like vibe-coding enables software-engineers to output much more work (by automating the boring stuff), the same will happen to most industries. Workers will become by a factor of 5-20x more productive and only monitor and supervise their AI workers (digital agents or physical robots) when they get stuck.
+
 ## References
 
 - <https://timdettmers.com/2025/12/10/why-agi-will-not-happen/>
