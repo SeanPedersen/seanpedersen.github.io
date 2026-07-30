@@ -91,11 +91,11 @@ My prediction: true general AI systems will only be possible if they can manipul
 ## Coming AI Evolution
 Since inherent limitations of the technology behind the coming AI evolution (deep learning aka artificial neural networks) remain unsolved (like hallucinations, adversarial exmaples), it is likely that it will unfold like it has for self-driving cars (one amazing jump and then long stagnation).
 
-Level 5 autonomous driving (drive anywhere, anytime without human supervision) is still unsolved. It only works in fully mapped out small regions like certain metropols.
+Level 5 autonomous driving (drive anywhere, anytime without human supervision) is still unsolved. It only works in fully mapped out small regions like in certain cities (where a lot of training data is available).
 
-Daily driving still needs human supervision because the technology is still unreliable. The same arc will happen for all coming AI applications (media, robots, etc). It will be useful (autonomous) in controlled environments but in novel situations humans will need to supervise the AI (unless endless training data can cheaply be generated like for chess etc).
+Daily driving still needs human supervision because the technology is still unreliable. The same arc will likely happen for all coming AI applications (media, robots, etc). It will be useful (autonomous) in controlled environments but in novel situations humans will need to supervise the AI (unless endless training data can cheaply be generated like for chess etc).
 
-Just like vibe-coding enables software-engineers to output much more work (by automating the boring stuff), the same will happen to most industries. Workers will become by a factor of 5-20x more productive and only monitor and supervise their AI workers (digital agents or physical robots) when they get stuck.
+Just like vibe-coding enables software-engineers to output much more work (by automating the boring stuff), the same will happen to most industries. Workers will become more productive (as AI agent managers) and only monitor and supervise their AI workers (digital agents or physical robots) when they get stuck.
 
 ## References
 
