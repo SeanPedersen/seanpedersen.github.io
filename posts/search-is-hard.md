@@ -143,16 +143,18 @@ An alternative paradigm that builds a hierarchical tree from a document and lets
 All of the following techniques trade retrieval accuracy for speed / storage costs. For production use cases, using a [Vector DB](/posts/vector-databases) is the right choice.
 
 - Approximate Nearest Neighbor (Search Index) - [benchmark](https://github.com/erikbern/ann-benchmarks)
-    - HNSW: builds a hierachical graph, good data drift handling -> high RAM usage
-    - IVFFlat: low RAM usage, bad data drift handling -> needs frequent rebuilds
-    - DiskANN: low RAM usage, achieved by using disk (needs fast disk read)
+    - HNSW: Builds a hierachical graph, good data drift handling -> high RAM usage
+    - IVFFlat: Low RAM usage, bad data drift handling -> needs frequent rebuilds
+    - DiskANN: Low RAM usage, achieved by using disk (needs fast disk read)
     - TODO (eval): <https://github.com/yichuan-w/LEANN>
-- Vector Dimensionality Reduction
-    - Matryoshka Embeddings: dim. red. baked into training via loss function
-    - PCA (linear)
-    - t-SNE / UMAP (non-linear)
-- Vector Quantization
-    - Reduce bit representation (f.e. to INT8 instead of FP32)
+- Geometric Vector Dimensionality Reduction
+    - Matryoshka Embeddings: Dimensionality reduction baked into training via the loss function
+    - PCA: Linear
+    - t-SNE / UMAP (non-linear): Primarily useful for visualization rather than ANN retrieval
+- Vector Representation Quantization / Compression
+    - Scalar quantization: Independently quantize each dimension, e.g. FP32 down to FP16, INT8 or even binary
+    - [Product Quantization](https://www.pinecone.io/learn/series/faiss/product-quantization/) (PQ): Split the vector into subvectors and replace each subvector with the index of a learned codebook centroid. Small codebooks enable fast approximate distance computation via lookup tables, without full decompression.
+      - Optimized PQ (OPQ): Rotate/transform vectors before PQ to reduce quantization error
     - [Near-lossless compression for unit-norm embedding vectors using spherical coordinates](https://jina.ai/embedding-compression.pdf) - [code](https://github.com/jina-ai/jzip-compressor)
 
 Excellent article detailing an efficient vector search pipeline: <https://huggingface.co/blog/embedding-quantization>
