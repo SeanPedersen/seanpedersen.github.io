@@ -31,7 +31,7 @@ Allowed:                    Allowed:
 ```
    value                       value
   ▲  ▲  ▲                        ▲
-  │     │     │                         │
+  │  │  │                        │
  &a &b &c                     &mut x
  N readers                    1 writer
 ```
