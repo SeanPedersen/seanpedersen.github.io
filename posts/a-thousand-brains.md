@@ -47,5 +47,8 @@ On Page 186: Hawkins gives a false sense of evolution IMO, invoking the sense th
 - [YouTube - Jeff Hawkins NAISys: How the Brain Uses Reference Frames](https://youtu.be/mGSG7I9VKDU)
 - https://www.youtube.com/@thousandbrainsproject/videos
 - https://direct.mit.edu/neco/article/38/6/845/136222/Thousand-Brains-Systems-Sensorimotor-Intelligence
+- https://www.lesswrong.com/posts/ixZLTmFfnKRbaStA5/book-review-a-thousand-brains-by-jeff-hawkins
+- https://www.numenta.com/resources/research-publications/papers/
+- https://lexfridman.com/jeff-hawkins/
 
 #book #AI
