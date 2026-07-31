@@ -48,6 +48,7 @@ On Page 186: Hawkins gives a false sense of evolution IMO, invoking the sense th
 - https://www.youtube.com/@thousandbrainsproject/videos
 - https://direct.mit.edu/neco/article/38/6/845/136222/Thousand-Brains-Systems-Sensorimotor-Intelligence
 - https://www.lesswrong.com/posts/ixZLTmFfnKRbaStA5/book-review-a-thousand-brains-by-jeff-hawkins
+  - https://news.ycombinator.com/item?id=26794286
 - https://www.numenta.com/resources/research-publications/papers/
 - https://lexfridman.com/jeff-hawkins/
 
