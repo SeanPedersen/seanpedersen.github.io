@@ -22,13 +22,14 @@ A useful way to visualize Rust’s borrow checker is as a graph of ownership and
         value
        ▲  ▲  ▲
        │  │  │
-      &a &b &c     many shared/read-only borrows
+      &a  &b &c     many shared/read-only borrows
 ```
 
 The key rule is many readers or one writer. Rust permits any number of immutable references (&T) at the same time, but if an exclusive mutable reference (&mut T) exists, no other readable or writable reference may overlap with it. You can think of this as a compile-time read/write lock. The borrow checker proves that conflicting edges are never active simultaneously and that no reference outlives the value it points to. This is useful even in single-threaded programs, and it also forms an important foundation for Rust’s prevention of data races in concurrent code.
 
-Allowed:                    Allowed:
+
 ```
+Allowed:                    Allowed:
    value                       value
   ▲  ▲  ▲                        ▲
   │  │  │                        │
