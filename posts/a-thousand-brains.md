@@ -5,7 +5,7 @@ date: '2025-12-27'
 
 ## Reference Frames
 
-Identifies so called reference frames (grids / maps) as key concept unifying all biological neural processing for robust / invariant sequence prediction (allowing sequence prediction in changing environments by using relative positions).
+In his book, Jeff Hawkins identifies so called cortical columns (unit of neurons size of a grain of rice) as the functional building block of the brain. Further he proposes reference frames (grids / maps) as key concept unifying all biological neural processing for robust / invariant sequence prediction (allowing sequence prediction in changing environments by using relative positions).
 
 Key points:
 - Grid cells: Each cortical column uses grid cell-like mechanisms (from the entorhinal cortex) to create reference frames anchored to objects, not just spatial locations.
@@ -41,6 +41,10 @@ Hawkins maybe too focused on some specifics of the human / mammal brain structur
 Mammals, corvids and octopi all share a columnar brain structure, while less intelligent species like goldfish and reptiles lack these and instead have nuclear neural clusters. Parrots have less pronounced columnar brain structure like corvids while showing similar cognitive abilities (but corvids seem smarter w.r.t. tool use / metacognition). Hawkins theory would be falsified by identifying a species with advanced cognition that lacks similarity to cortical columnar brain structure found in mammals.
 
 On Page 186: Hawkins gives a false sense of evolution IMO, invoking the sense that evolution always optimizes traits of individuals but it is more random: many things stick that do not create a disadvantage to procreate instead of only traits that increase procreation chance.
+
+## Open Questions
+Are cortical columns singular semantic processing units, meaning every column does one cohesive task?
+Are cortical columns near to each other processing similar tasks (semantic co-location)?
 
 ## References
 
