@@ -12,38 +12,70 @@ Rust also shines through its ergnomic package manager cargo that provides a smoo
 
 Great introduction: <https://fasterthanli.me/articles/a-half-hour-to-learn-rust>
 
-## HTTP Server
+## Borrow-Checker
+A useful way to visualize Rust’s borrow checker is as a graph of ownership and temporary access. A value has one owner (variable), while references create temporary edges pointing back to that value. Ownership itself can move from one variable to another, but it is not duplicated unless you explicitly copy or clone the value. Borrowing means “I want access to this value without taking ownership of it,” and Rust checks that every reference remains valid for as long as it is used.
+
+        owner
+          │
+          ▼
+        value
+       ▲  ▲  ▲
+       │  │  │
+      &a &b &c     many shared/read-only borrows
+
+The key rule is many readers or one writer. Rust permits any number of immutable references (&T) at the same time, but if an exclusive mutable reference (&mut T) exists, no other readable or writable reference may overlap with it. You can think of this as a compile-time read/write lock. The borrow checker proves that conflicting edges are never active simultaneously and that no reference outlives the value it points to. This is useful even in single-threaded programs, and it also forms an important foundation for Rust’s prevention of data races in concurrent code.
+
+Allowed:                    Allowed:
+
+   value                       value
+  ▲  ▲  ▲                        ▲
+  │     │     │                         │
+ &a &b &c                     &mut x
+ N readers                    1 writer
+
+
+Not allowed:
+
+        value
+       ▲     ▲
+       │     │
+      &a   &mut x
+    reader + writer
+       at the same time
+       
+## Crates
+### HTTP Server
 - <https://github.com/actix/actix-web>
 - <https://github.com/tokio-rs/axum>
 - <https://github.com/poem-web/poem>
 
-## Machine Learning
+### Machine Learning
 - [ndarray](https://docs.rs/ndarray/latest/ndarray/doc/ndarray_for_numpy_users/index.html): numpy equivalent
   - [loading npy files](https://docs.rs/npy/latest/npy/) (from Python numpy)
  - [ORT](https://github.com/pykeio/ort): ONNX run time
 
-## GUI
+### GUI
 - [Tauri](https://tauri.app/): Use Rust in backend and web stack in frontend to build desktop and mobile apps
   - [Tauri MCP Server](https://github.com/hypothesi/mcp-server-tauri)
 - [GPUI](https://www.gpui.rs/): UI lib created by and used in Zed editor
   - [GPUI components](https://github.com/longbridge/gpui-component)
 
-## Text Extraction
+### Text Extraction
 - [pdf_oxide](https://github.com/yfedoseev/pdf_oxide): fast PDF text extraction
 - [ferrules](https://github.com/AmineDiro/ferrules/tree/main): structured text extraction
 - https://github.com/kreuzberg-dev/kreuzberg
 - https://github.com/yobix-ai/extractous
 
-## Text Chunking
+### Text Chunking
 - https://github.com/benbrandt/text-splitter
 - https://github.com/d1pankarmedhi/chunkr
 - https://github.com/idleness76/wg-ragsmith
 
-## Concurrency
+### Concurrency
 - [cineyma](https://github.com/pixperk/cineyma): Erlang inspired OTP-style actor framework
 - [asupersync](https://github.com/Dicklesworthstone/asupersync): Async runtime for Rust where correctness is structural: region-owned tasks, cancel-correct protocols, capability-gated effects, and deterministic replay testing
 
-## Coding Agents
+### Coding Agents
 - [OpenAI Codex](https://github.com/openai/codex)
 - [pi_agent_rust](https://github.com/Dicklesworthstone/pi_agent_rust): Rust port of [pi agent](https://github.com/badlogic/pi-mono)
 
