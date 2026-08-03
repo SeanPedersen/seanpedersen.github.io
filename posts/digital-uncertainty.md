@@ -17,6 +17,7 @@ Following services claim to detect AI generated content but their goal is imposs
 Text AI Detection:
 - https://gptzero.me/
 - https://gowinston.ai/ai-content-detector/
+- https://www.pangram.com/
 
 Image AI Detection:
 - https://originality.ai/
