@@ -100,6 +100,7 @@ Just like vibe-coding enables software-engineers to output much more work (by au
 ## References
 
 - <https://timdettmers.com/2025/12/10/why-agi-will-not-happen/>
+- https://www.wheresyoured.at/ai-is-slowing-down/
 - <https://wonderfall.dev/autoregressive/>
 - [Collapse of Self-trained Language Models](https://arxiv.org/abs/2404.02305v1)
 - [The wall confronting large language models](https://arxiv.org/abs/2507.19703)
