@@ -159,6 +159,7 @@ All of the following techniques trade retrieval accuracy for speed / storage cos
     - t-SNE / UMAP (non-linear): Primarily useful for visualization rather than ANN retrieval
 - Vector Representation Quantization / Compression
     - Scalar quantization: Independently quantize each dimension, e.g. FP32 down to FP16, INT8 or even binary
+      - [Asymmetric Quantization](https://www.mixedbread.com/blog/asymmetric-quant): Query int8, documents binary
     - [Product Quantization](https://www.pinecone.io/learn/series/faiss/product-quantization/) (PQ): Split the vector into subvectors and replace each subvector with the index of a learned codebook centroid. Small codebooks enable fast approximate distance computation via lookup tables, without full decompression.
       - Optimized PQ (OPQ): Rotate/transform vectors before PQ to reduce quantization error
     - [Near-lossless compression for unit-norm embedding vectors using spherical coordinates](https://jina.ai/embedding-compression.pdf) - [code](https://github.com/jina-ai/jzip-compressor)
