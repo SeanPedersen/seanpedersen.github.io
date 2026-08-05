@@ -12,6 +12,12 @@ Search is the process of finding useful matches in a (large) set of objects (sea
 - Recommender Systems (for similar movies, products, etc.)
 - [Retrieval Augemented Generation](/posts/rag) (provide relevant context for LLM's)
 
+## Optimization Criteria
+1. **Retrieval accuracy**: quality of search results.
+2. **Search latency**: how quickly search return results.
+3. **Index size**: storage required for the search index (representations).
+4. **Index build time**: time to construct the search index from the documents.
+
 ## Representations
 
 The key of every search system is to build useful representations of your search corpus, so you can (quickly) find what you search for. Thus one should spend spend good time on finding the right representation for the search problem and how to enrich it with useful information.
