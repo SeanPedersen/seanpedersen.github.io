@@ -4,7 +4,7 @@ icon: "/images/icons/erlang.svg"
 ---
 # Erlang
 
-Erlang is a powerful functional programming language developed in Sweden at Ericsson during the 1980s that excels at distributed, concurrent and fault-tolerant systems. Erlang processes are lightweight and share no memory (mutable state) and thus can scale easily across CPU cores and distributed machines. 
+Erlang is a powerful and elegant functional programming language developed in Sweden at Ericsson during the 1980s that excels at distributed, concurrent and fault-tolerant systems. Erlang processes are lightweight and share no memory (mutable state) and thus can scale easily across CPU cores and distributed machines. 
 
 Processes communicate by sending messages to one another. Each process has a mailbox, and receive expressions use pattern matching to select and process messages. Erlang/OTP supervision trees provide structured error management based on the “let it crash” philosophy (supervisor processes restart crashed children), helping developers build robust production applications.
 
@@ -14,9 +14,10 @@ The BEAM (Erlang VM) powers big apps like WhatsApp and Discord, demonstrating it
 
 [Elixir](/posts/elixir) and [Gleam](https://gleam.run/) are notable modern dialects of Erlang that transpile straight to Erlang. Elixir offers syntactic sugar and a thriving open-source community with popular frameworks like Phoenix. Gleam is a type-safe alternative.
 
-## Show me some code
+## Example Code
 
-Quicksort using list comprehension:
+### Quicksort
+Very concise using list comprehension (filter list elements with condition):
 ```erlang
 quicksort([]) -> [];
 quicksort([Pivot | T]) ->
@@ -25,7 +26,8 @@ quicksort([Pivot | T]) ->
     quicksort([X || X <- T, X >= Pivot]).
 ```
 
-Fibonacci:
+## Fibonacci
+Head vs tail recursion
 ```erlang
 -module(fibo).
 -author("Sean Pedersen").
@@ -43,7 +45,8 @@ fib_tail(1, _First, Second) -> Second;
 fib_tail(N, First, Second) when N > 1 -> fib_tail(N-1, Second, First+Second).
 ```
 
-Message passing (with functions):
+### Universal Server
+Just message passing (with functions)
 ```erlang
 -module(uniserver).
 -author("Joe Armstrong").
