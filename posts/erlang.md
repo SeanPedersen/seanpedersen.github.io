@@ -26,7 +26,7 @@ quicksort([Pivot | T]) ->
     quicksort([X || X <- T, X >= Pivot]).
 ```
 
-## Fibonacci
+### Fibonacci
 Head vs tail recursion
 ```erlang
 -module(fibo).
