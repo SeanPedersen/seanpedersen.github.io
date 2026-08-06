@@ -1,3 +1,6 @@
+---
+icon: "/images/icons/physics.svg"
+---
 # Physics
 Physical systems tend toward stable equilibrium configurations that minimize free energy or equivalently maximize total entropy under the relevant constraints.
 
