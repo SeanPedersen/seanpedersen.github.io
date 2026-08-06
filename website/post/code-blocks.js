@@ -25,7 +25,7 @@
         wrapper.appendChild(pre);
 
         // Add copy button to wrapper (outside scrollable pre)
-        addCopyButton(wrapper, code, false, false);
+        addCopyButton(wrapper, code, false);
         return;
       }
 
@@ -55,7 +55,7 @@
       container.appendChild(overlay);
 
       // Add copy button
-      addCopyButton(codeBlock, code, true, false);
+      addCopyButton(codeBlock, code, true);
 
       // Add expand button
       const expandBtn = document.createElement('button');
@@ -72,33 +72,19 @@
           codeBlock.classList.remove('collapsed');
           overlay.style.display = 'none';
           expandBtn.textContent = 'Show Less';
-
-          // Update copy button position
-          const copyBtn = codeBlock.querySelector('.copyButton, .copyButtonExpanded');
-          if (copyBtn) {
-            copyBtn.classList.remove('copyButton');
-            copyBtn.classList.add('copyButtonExpanded');
-          }
         } else {
           codeBlock.classList.add('collapsed');
           overlay.style.display = 'block';
           expandBtn.textContent = `Show More (${lineCount} lines)`;
-
-          // Update copy button position
-          const copyBtn = codeBlock.querySelector('.copyButton, .copyButtonExpanded');
-          if (copyBtn) {
-            copyBtn.classList.remove('copyButtonExpanded');
-            copyBtn.classList.add('copyButton');
-          }
         }
       });
     });
   }
 
   // Add copy button to code block
-  function addCopyButton(parent, code, isExpandable, isExpanded) {
+  function addCopyButton(parent, code, isExpandable) {
     const copyBtn = document.createElement('button');
-    copyBtn.className = isExpandable ? (isExpanded ? 'copyButtonExpanded' : 'copyButton') : 'copyButtonNormal';
+    copyBtn.className = isExpandable ? 'copyButton' : 'copyButtonNormal';
     copyBtn.title = 'Copy code';
     copyBtn.innerHTML = `
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

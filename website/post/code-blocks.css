@@ -14,50 +14,17 @@
   padding-top: 0;
 }
 
-.copyButtonNormal {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  background: rgba(128, 128, 128, 0.2);
-  backdrop-filter: blur(8px);
-  color: var(--code-text);
-  border: 1px solid rgba(128, 128, 128, 0.3);
-  border-radius: 8px;
-  padding: 8px;
-  cursor: pointer;
-  z-index: 20;
-  transition: all 0.2s ease;
-  opacity: 0.8;
-  width: 44px;
-  height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* The wrappers own the vertical spacing; a margin on the pre would collapse out
+   of .codeBlock as soon as it loses its BFC on expand and shift the code up.
+   Scoped to .markdown-content to outrank prism's `pre[class*="language-"]`. */
+.markdown-content .codeBlockWrapper pre,
+.markdown-content .codeBlockSimple pre {
+  margin: 0;
 }
 
+.copyButtonNormal,
 .copyButton {
   position: absolute;
-  top: 20px;
-  right: 12px;
-  background: rgba(128, 128, 128, 0.2);
-  backdrop-filter: blur(8px);
-  color: var(--code-text);
-  border: 1px solid rgba(128, 128, 128, 0.3);
-  border-radius: 8px;
-  padding: 8px;
-  cursor: pointer;
-  z-index: 20;
-  transition: all 0.2s ease;
-  opacity: 0.8;
-  width: 44px;
-  height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.copyButtonExpanded {
-  position: absolute;
   top: 12px;
   right: 12px;
   background: rgba(128, 128, 128, 0.2);
@@ -77,6 +44,7 @@
   justify-content: center;
 }
 
+.copyButtonNormal:hover,
 .copyButton:hover {
   opacity: 1;
   background: rgba(128, 128, 128, 0.3);
