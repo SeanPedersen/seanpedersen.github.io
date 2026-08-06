@@ -88,6 +88,7 @@ start(PingNode) ->
 
 ## References
 
+- https://joearms.github.io/published/2013-11-21-My-favorite-erlang-program.html
 - <http://www.erlang.org/>
 - <https://learnyousomeerlang.com/content>
 - <https://www.erlang-in-anger.com/>
