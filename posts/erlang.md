@@ -48,14 +48,14 @@ Message passing (with functions):
 -module(uniserver).
 -author("Joe Armstrong").
 
-% it just sits and waits for a {become, F} message and then it becomes an F server
+% mailbox of the universal server waits for a {become, F} message and then it becomes an F server
 universal_server() ->
     receive
        {become, F} ->
            F()
     end.
 
-% waits for an integer and sends back the factorial of an integer
+% waits for an integer, sends back the factorial of an integer and waits again
 factorial_server() ->
     receive
        {From, N} ->
