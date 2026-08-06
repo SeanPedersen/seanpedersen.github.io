@@ -70,8 +70,7 @@ factorial_server() ->
 factorial(0) -> 1;
 factorial(N) -> N * factorial(N-1).
 
-
-% creates a universal server, send it a “become a factorial server” message, then send an integer, wait for the response and print the response
+% create a universal server, send it a “become a factorial server” message, then send an integer, wait for the response and print the response
 test() ->
     Pid = spawn(fun universal_server/0),
     Pid ! {become, fun factorial_server/0},
