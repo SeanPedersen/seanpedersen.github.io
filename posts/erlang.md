@@ -41,49 +41,39 @@ fib(1, _First, Second) -> Second;
 fib(N, First, Second) when N > 1 -> fib(N-1, Second, First+Second).
 ```
 
-Message passing:
+Message passing (with functions):
 ```erlang
-% Ping pong across two machines/nodes in the same local network
-% pingpong.erl must be compiled in working dir of the erlang shells on both machines!
-% ---STARTUP INSTRUCTIONS---
-% node1:
-% $ erl -compile pingpong
-% $ erl -sname pong -setcookie we_have_cookies
-% node2:
-% $ erl -compile pingpong
-% $ erl -sname ping -setcookie we_have_cookies
-% pong@node2> pingpong:start(ping@welle).
+-module(uniserver).
+-author("Joe Armstrong").
 
--module(pingpong).
--export([start/1,  ping/3, pong/0]).
-
-ping(0, PongName, PongNode) ->
-    {PongName, PongNode} ! finished,
-    io:format("Ping finished~n", []);
-
-ping(N, PongName, PongNode) ->
-    {PongName, PongNode} ! {ping, self()},
+% it just sits and waits for a {become, F} message and then it becomes an F server
+universal_server() ->
     receive
-        pong ->
-            io:format("Ping received pong~n", [])
-    end,
-    ping(N - 1, PongName, PongNode).
-
-pong() ->
-    receive
-        finished ->
-            io:format("Pong finished~n", []);
-        {ping, PingPID} -> % Note that PingPID is enough to reply (PID contains info about its node)
-            io:format("Pong received ping~n", []),
-            PingPID ! pong,
-            pong()
+       {become, F} ->
+           F()
     end.
 
-start(PingNode) ->
-    PongName = pong,
-    register(PongName, spawn(pingpong, pong, [])),
-    % Spawn function ping/3 remotely on PingNode machine
-    spawn(PingNode, pingpong, ping, [3, PongName, node()]).
+% waits for an integer and sends back the factorial of an integer
+factorial_server() ->
+    receive
+       {From, N} ->
+           From ! factorial(N),
+           factorial_server()
+    end.
+
+
+factorial(0) -> 1;
+factorial(N) -> N * factorial(N-1).
+
+
+% creates a universal server, sends it a “become a factorial server” message, then I'll sent it an integer, wait for the response and print the response
+test() ->
+    Pid = spawn(fun universal_server/0),
+    Pid ! {become, fun factorial_server/0},
+    Pid ! {self(), 42},
+    receive
+        X -> X
+    end.
 ```
 
 ## References
