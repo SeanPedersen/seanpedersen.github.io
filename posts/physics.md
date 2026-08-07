@@ -69,6 +69,41 @@ electron degeneracy pressure
 white dwarfs
 neutron degeneracy pressure in neutron stars
 
+## Cosmology
+The study of big structures like stars, planets and black holes.
+
+### Black Holes
+How is it made? Just mass squashed into a tiny space? Is every black hole capable to grow infinitely? Hawking radiation?
+
+#### Schwarzschild radius
+Schwarzschild radius (what a coincidence that name is!) defined as the radius matter or light can not escape the pull of a blackhole.
+
+$r_s = \frac{2GM}{c^2}$
+
+If you compress a mass M inside that radius, an event horizon forms. For the Sun, $r_s$ is about 3 km. For Earth, it’s only about 9 mm. So if Earth’s entire mass were somehow compressed into roughly a marble-sized region, it would become a black hole.
+
+#### Hawking radiation
+
+Quantum effects imply that black holes are not perfectly black: they emit approximately thermal **Hawking radiation** with temperature
+
+$T_H=\frac{\hbar c^3}{8\pi G M k_B}$
+
+so, most importantly,
+
+$T_H\propto\frac{1}{M}$.
+
+Thus **smaller black holes are hotter and evaporate faster**, while larger black holes are colder and radiate extremely slowly. A solar-mass black hole has a temperature of only about
+
+$6\times10^{-8},\mathrm{K}$,
+
+far below the cosmic microwave background temperature of about $2.7,\mathrm{K}$, so present-day astrophysical black holes generally absorb more energy than they lose.
+
+As a black hole loses mass, it gets hotter, causing faster radiation and accelerating evaporation. A stellar-mass black hole would take roughly $10^{67}\ \mathrm{years}$ to evaporate.
+
+Hawking radiation is a strong theoretical prediction, but it has not yet been directly observed from a real gravitational black hole. The familiar “particle-antiparticle pair” explanation is only a simplified analogy, not the full quantum-field-theory derivation.
+
+Because of this mechanism, we expect **tiny (hypothetical) black holes to evaporate extremely quickly**, potentially disappearing almost instantly after forming.
+
 ## Questions
 Why do electrons not repel but build bonds (in molecules)? Because positive attraction from nuclei protons dominates and the total quantum-mechanical energy of the combined system is lower.
 
