@@ -2,30 +2,24 @@
 date: '2025-07-04'
 ---
 # Personal Agent
-
 A personal agent (PA) powered by an LLM agent via chat and voice interface
 - informs you every day what is happening (daily agenda)
 - executes tasks for you (setup a blog for me, order my favorite pizza, make me rich, make world peace  etc.)
 
-## Integrations
+Even if raw capabilities of LLM would plateau, we can be sure our hardware and software will not - our top models will run 100x faster in a few years from now. Any digital task involving LLM calls will not be bottlenecked by API costs anymore.
 
-Instead of having separate apps installed or navigating to specialized websites to order products / food, find events, plan my next travel trip, etc. - we will use one unified chat interface (LLM agent) with integrations for services / data sources that enable your agent to do all these things for you.
+## Integrations
+Instead of having separate apps installed or navigating to specialized websites to order products / food, find events, plan my next travel trip, etc. - we will use one unified chat interface (LLM agent) with integrations for services / data sources that enable your agent to do all these things for you (including general computer use).
 
 ## Custom Apps
-
-Every open-source app / program can be easily created / customized with natural language.
-
-- create an app for me so I stay motivated to do fitness -> uses personal (emotional) triggers to keep you going
-- add function X to my TODO app
+Every open-source app / program can be easily created / customized with natural language. Soon any binary can be modified. The value of most software will go to zero.
 
 ## Customization through Memory
-
 A good personal agent will use a memory layer to learn facts and preferences about its user and environment to not repeat mistakes twice and enable a deeply customized user experience.
 
 [Hermes agent](https://github.com/nousresearch/hermes-agent) is a right now a popular one known for that.
 
 ## Files
-
 Every file has a semantic embeddings making it discoverable with natural language queries (should be on OS level)
 
 Every media file can be manipulated with natural language
@@ -34,11 +28,9 @@ Every media file can be manipulated with natural language
 - create completely new custom videos (including spin-offs of your favorite TV shows)
 
 ## Ethics
-
-This unified interface has immense abuse potential and thus it is of importance to build a local privacy first version of this - fuck off privacy invading kraken services.
+This unified interface has immense abuse potential and thus it is of importance to build a local privacy first version of this - fuck off privacy invading kraken services like OpenAI, Google and Anthropic. Open models and local AI must win.
 
 ## Security
-
 Projects like OpenClaw have shown the first glimpse of LLM powered personal assistant but the security concerns are real: all personal information your personal LLM agent has access to can be potentially exposed via prompt injection and other exploit techniques.
 
 A good agent security layer would let me scope data access for every agent running + ask me via notifications to approve / deny data access in ongoing tasks.
