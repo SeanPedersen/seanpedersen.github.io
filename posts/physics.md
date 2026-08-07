@@ -75,12 +75,14 @@ The study of big structures like stars, planets and black holes.
 ### Black Holes
 How is it made? Just mass squashed into a tiny space? Is every black hole capable to grow infinitely? Hawking radiation?
 
+Most black holes form when a very massive star reaches the end of its life. A star normally balances two forces: gravity pulling inward and pressure from nuclear fusion pushing outward. When a massive star runs out of usable fuel, that outward pressure drops. Its core can then collapse extremely rapidly under its own gravity. If the collapsed core is massive enough, it is compressed inside a region bounded by an event horizon (where gravity is so strong that even light cannot escape). A black hole is born.
+
 #### Schwarzschild radius
-Schwarzschild radius (what a coincidence that name is!) defined as the radius matter or light can not escape the pull of a blackhole.
+Schwarzschild radius (what a coincidence that name is!) defined as the radius matter or light can not escape the gravitational pull of a black hole.
 
 $r_s = \frac{2GM}{c^2}$
 
-If you compress a mass M inside that radius, an event horizon forms. For the Sun, $r_s$ is about 3 km. For Earth, it’s only about 9 mm. So if Earth’s entire mass were somehow compressed into roughly a marble-sized region, it would become a black hole.
+If you compress a mass M inside that radius, an event horizon forms. For the Sun, $r_s$ is about 3 km. For Earth, it’s only about 9 mm. So if Earth was compressed into a marble, it would become a black hole.
 
 #### Hawking radiation
 
@@ -98,7 +100,7 @@ $6\times10^{-8},\mathrm{K}$,
 
 far below the cosmic microwave background temperature of about $2.7,\mathrm{K}$, so present-day astrophysical black holes generally absorb more energy than they lose.
 
-As a black hole loses mass, it gets hotter, causing faster radiation and accelerating evaporation. A stellar-mass black hole would take roughly $10^{67}\ \mathrm{years}$ to evaporate.
+As a black hole loses mass, it gets hotter, causing faster radiation and accelerating evaporation. A stellar-mass black hole would take roughly $10^{67}$ years to evaporate.
 
 Hawking radiation is a strong theoretical prediction, but it has not yet been directly observed from a real gravitational black hole. The familiar “particle-antiparticle pair” explanation is only a simplified analogy, not the full quantum-field-theory derivation.
 
