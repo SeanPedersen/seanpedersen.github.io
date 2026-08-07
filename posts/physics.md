@@ -14,7 +14,7 @@ Intuitively, the motion of an object with mass through spacetime forms a velocit
 
 $G_{\mu\nu}+\Lambda g_{\mu\nu}=\frac{8\pi G}{c^4}T_{\mu\nu}$
 
-**Schrödinger’s equation:** governs the time evolution of a nonrelativistic quantum wavefunction.
+**Schrödinger’s equation:** describes the time evolution of a nonrelativistic quantum wavefunction.
 
 $i\hbar\frac{\partial}{\partial t}\lvert\psi(t)\rangle=\hat{H}\lvert\psi(t)\rangle$
 
@@ -22,19 +22,20 @@ $i\hbar\frac{\partial}{\partial t}\lvert\psi(t)\rangle=\hat{H}\lvert\psi(t)\rang
 
 $\Delta x \cdot \Delta p \ge \frac{\hbar}{2}$
 
-## Forces
-Gravity
+## Fundamental Interactions
+
+**Gravity**
 Gravity is the interaction of mass-energy with spacetime. In general relativity, mass-energy curves spacetime, and objects follow paths through that curved spacetime.
 
-Electromagnetism
+**Electromagnetism**
 Electromagnetism acts between electrically charged particles. It causes both: attraction between opposite charges, repulsion between like charges.
 Electrons have negative point charge and spin causing magnetic moment (aligned spins make a material magnetic). (attraction and repulsion)
 
-Strong interaction
+**Strong interaction**
 The strong interaction binds quarks together inside protons, neutrons and other hadrons.
 A leftover effect called the residual strong force binds protons and neutrons together inside atomic nuclei, overcoming the electrical repulsion between positively charged protons at short distances. (attraction and repulsion)
 
-Weak interaction
+**Weak interaction**
 The weak interaction acts over extremely short distances and allows elementary particles to change type. For example, during beta decay, a neutron can transform into a proton while emitting an electron and an antineutrino.
 
 ## Quantum Physics
@@ -102,8 +103,7 @@ Why do protons build atomic nuclei and not repel? Protons do repel electrically,
 
 What is the max mass (atoms in a sphere) for a given element before it starts to collapse into a black hole?
 
-## Open questions in physics itself
-
+## Open questions in physics
 Gaps in current physics:
 - No experimentally established quantum theory of gravity
 - Unknown nature of dark matter
@@ -113,6 +113,5 @@ Gaps in current physics:
 - Interpretation of quantum measurement
 - Why fundamental constants have their observed values
 - Whether the Standard Model is part of a deeper unified theory
-- What happened at or before the earliest meaningful moments of the universe
 
 #science
