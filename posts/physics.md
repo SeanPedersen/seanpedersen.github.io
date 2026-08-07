@@ -8,7 +8,7 @@ Physical systems tend toward stable equilibrium configurations that minimize fre
 
 **Einstein’s special relativity:** describes how measurements of space and time depend on an observer’s relative motion, while the laws of physics and the speed of light remain the same for all inertial observers; it also relates mass to energy: $E_0 = mc^2$
 
-Intuitively, the motion of an object with mass through space-time forms a four-velocity vector (composed of t,x,y,z) whose spacetime magnitude stays always c (speed of light).
+Intuitively, the motion of an object with mass through spacetime forms a velocity vector describing how its t,x,y,z coordinates change, whose spacetime magnitude is always c (speed of light).
 
 **Einstein’s general relativity:** extends relativity to accelerating observers and describes gravity as spacetime curvature caused by mass-energy and momentum.
 
@@ -24,7 +24,7 @@ $\Delta x \cdot \Delta p \ge \frac{\hbar}{2}$
 
 ## Forces
 Gravity
-Gravity is the interaction of mass-energy with spacetime. In general relativity, mass-energy curves spacetime, and objects follow paths through that curved spacetime. (attraction and repulsion -> only in universe expansion)
+Gravity is the interaction of mass-energy with spacetime. In general relativity, mass-energy curves spacetime, and objects follow paths through that curved spacetime.
 
 Electromagnetism
 Electromagnetism acts between electrically charged particles. It causes both: attraction between opposite charges, repulsion between like charges.
@@ -41,7 +41,7 @@ The weak interaction acts over extremely short distances and allows elementary p
 
 In quantum field theory, particles are understood as localized, quantized excitations of underlying quantum fields (electron, quark, photon, gluon, Higgs fields, etc.).
 
-A quantum system is described by a quantum state, often represented by a wavefunction. The wavefunction is not itself a probability distribution; it contains probability amplitudes. Its squared magnitude, $|\psi|^2$ gives the probability distribution for possible measurement outcomes.
+A quantum system is described by a quantum state, often represented by a wavefunction. The wavefunction is not itself a probability distribution; it contains probability amplitudes. Its squared magnitude, $|\psi|^2$ gives probabilities for measurement outcomes.
 
 For a nonrelativistic isolated system, the wavefunction evolves over time according to the Schrödinger equation.
 
@@ -69,7 +69,7 @@ electron degeneracy pressure
 white dwarfs
 neutron degeneracy pressure in neutron stars
 
-## Cosmology
+## Astrophysics
 The study of big structures like stars, planets and black holes.
 
 ### Black Holes
@@ -85,22 +85,20 @@ $r_s = \frac{2GM}{c^2}$
 If you compress a mass M inside that radius, an event horizon forms. For the Sun, $r_s$ is about 3 km. For Earth, it’s only about 9 mm. So if Earth was compressed into a marble, it would become a black hole.
 
 #### Hawking radiation
-Quantum effects imply that black holes are not perfectly black: they emit approximately thermal **Hawking radiation** with temperature
+Quantum effects imply that black holes are not perfectly black: they emit approximately thermal Hawking radiation with temperature $T_H=\frac{\hbar c^3}{8\pi G M k_B}$ so, most importantly, $T_H\propto\frac{1}{M}$.
 
-$T_H=\frac{\hbar c^3}{8\pi G M k_B}$ so, most importantly, $T_H\propto\frac{1}{M}$.
-
-Thus **smaller black holes are hotter and evaporate faster**, while larger black holes are colder and radiate extremely slowly. A solar-mass black hole has a temperature of only about $6\times10^{-8},\mathrm{K}$, far below the cosmic microwave background temperature of about $2.7,\mathrm{K}$, so present-day astrophysical black holes generally absorb more energy than they lose.
+Thus smaller black holes are hotter and evaporate faster, while larger black holes are colder and radiate extremely slowly. A solar-mass black hole has a temperature of only about $6\times10^{-8},\mathrm{K}$, far below the cosmic microwave background temperature of about $2.7,\mathrm{K}$, so present-day astrophysical black holes generally absorb more energy than they lose.
 
 As a black hole loses mass, it gets hotter, causing faster radiation and accelerating evaporation. A stellar-mass black hole would take roughly $10^{67}$ years to evaporate.
 
 Hawking radiation is a strong theoretical prediction, but it has not yet been directly observed from a real gravitational black hole. The familiar “particle-antiparticle pair” explanation is only a simplified analogy, not the full quantum-field-theory derivation.
 
-Because of this mechanism, we expect **tiny (hypothetical) black holes to evaporate extremely quickly**, potentially disappearing almost instantly after forming.
+Because of this mechanism, we expect tiny (hypothetical) black holes to evaporate extremely quickly.
 
 ## Questions
-Why do electrons not repel but build bonds (in molecules)? Because positive attraction from nuclei protons dominates and the total quantum-mechanical energy of the combined system is lower.
+Why do electrons not repel but build bonds (in molecules)? Electrons do repel each other, but attraction to the positive nuclei and quantum effects can make the total energy of the bonded molecule lower than that of the separated atoms.
 
-Why do protons build atomic nuclei and not repel? Strong interaction binds them on small distances in the nuclei.
+Why do protons build atomic nuclei and not repel? Protons do repel electrically, but at the tiny distances inside nuclei, the strong interaction between protons and neutrons can overcome that repulsion.
 
 What is the max mass (atoms in a sphere) for a given element before it starts to collapse into a black hole?
 
