@@ -474,12 +474,6 @@ Allows claude to fetch uptodate code documentation for your projects - greatly r
 - [Ref Tools](https://ref.tools/)
 - [Context 7](https://github.com/upstash/context7)
 
-### Web Search
-
-- [Exa Search](https://exa.ai/search): <https://github.com/exa-labs/exa-mcp-server>
-
-`claude mcp add exa -e EXA_API_KEY=YOUR_API_KEY -- npx -y exa-mcp-server`
-
 ### Github
 
 (not an MCP just a CLI tool that claude can use)
