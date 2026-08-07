@@ -102,6 +102,8 @@ Why do electrons not repel but build bonds (in molecules)? Because positive attr
 
 Why do protons build atomic nuclei and not repel? Strong interaction binds them on small distances in the nuclei.
 
+What is the max mass (atoms in a sphere) for a given element before it starts to collapse into a black hole?
+
 ## Open questions in physics itself
 
 Gaps in current physics:
