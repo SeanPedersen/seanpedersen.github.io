@@ -13,7 +13,7 @@ mod inner {
     use crate::page_generation::{Post, PostSummary};
 
     const MODEL_NAME: &str = "minishlab/potion-multilingual-128M";
-    const EMBED_TEXT_CHAR_LIMIT: usize = 500;
+    const EMBED_TEXT_CHAR_LIMIT: usize = 1024;
     const TOP_SIMILAR_COUNT: usize = 3;
 
     pub fn compute_similar_posts(posts: &[Post]) -> Result<HashMap<String, Vec<PostSummary>>> {
