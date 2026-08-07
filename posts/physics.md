@@ -2,7 +2,7 @@
 icon: "/images/icons/physics.svg"
 ---
 # Physics
-Physical systems tend toward stable equilibrium configurations that minimize free energy or equivalently maximize total entropy under the relevant constraints.
+Physical systems naturally tend toward stable equilibrium states, generally moving toward lower free energy or greater entropy under the relevant constraints.
 
 ## Equations
 
