@@ -1,6 +1,7 @@
 mod class_minifier;
 mod global_generation;
 mod index_generation;
+mod math;
 mod optimization;
 mod page_generation;
 mod post_generation;

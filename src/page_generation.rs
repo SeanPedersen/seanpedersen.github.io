@@ -1,7 +1,8 @@
+use crate::math;
 use anyhow::Result;
 use chrono::NaiveDate;
+use latex2mathml::DisplayStyle;
 use once_cell::sync::Lazy;
-use latex2mathml::{latex_to_mathml, DisplayStyle};
 use pulldown_cmark::{html, CodeBlockKind, Event, Options, Parser, Tag, TagEnd};
 use pulldown_cmark_escape::escape_html;
 use rayon::prelude::*;
@@ -99,18 +100,14 @@ pub fn read_all_posts(posts_dir: &Path) -> Result<Vec<Post>> {
             let date_modified = git_last.unwrap_or_else(|| date.clone());
 
             let (title, tags, content_html, content_raw) = if is_html {
-                let title = metadata.title.unwrap_or_else(|| {
-                    extract_html_title(&body).unwrap_or_default()
-                });
+                let title = metadata
+                    .title
+                    .unwrap_or_else(|| extract_html_title(&body).unwrap_or_default());
                 let tags = metadata.tags.unwrap_or_default();
                 (title, tags, body.clone(), body)
             } else {
-                let title = metadata
-                    .title
-                    .unwrap_or_else(|| extract_title(&body));
-                let tags = metadata
-                    .tags
-                    .unwrap_or_else(|| extract_tags(&content));
+                let title = metadata.title.unwrap_or_else(|| extract_title(&body));
+                let tags = metadata.tags.unwrap_or_else(|| extract_tags(&content));
                 let content_raw = body.clone();
                 let markdown_without_title = remove_first_h1(&body);
                 let content_html = markdown_to_html(&markdown_without_title, &tags);
@@ -273,18 +270,6 @@ fn find_syntax<'a>(
 
     // Fall back to defaults
     syntax_set.find_syntax_by_token(lang)
-}
-
-/// HTML5 parsers don't honor XML self-closing syntax (`/>`) for non-void elements.
-/// latex2mathml emits MathML as XML (e.g. `<mspace width="1em"/>`), which the
-/// minifier strips to `<mspace width=1em>`, leaving the element unclosed.
-/// This converts every self-closing tag to an explicit open+close pair.
-fn expand_mathml_self_closing(mathml: &str) -> String {
-    let re = Regex::new(r"<([a-zA-Z][a-zA-Z0-9]*)([^>]*?)/>").unwrap();
-    re.replace_all(mathml, |caps: &regex::Captures| {
-        format!("<{}{}></{}>", &caps[1], &caps[2], &caps[1])
-    })
-    .to_string()
 }
 
 fn markdown_to_html(markdown: &str, tags: &[String]) -> String {
@@ -501,29 +486,30 @@ fn markdown_to_html(markdown: &str, tags: &[String]) -> String {
                 in_blockquote = false;
                 html_output.push_str("</blockquote>");
             }
-            Event::InlineMath(latex) => {
-                match latex_to_mathml(&latex, DisplayStyle::Inline) {
-                    Ok(mathml) => html_output.push_str(&expand_mathml_self_closing(&mathml)),
-                    Err(_) => {
-                        let mut escaped = String::new();
-                        escape_html(&mut escaped, &latex).unwrap();
-                        html_output.push_str(&format!(r#"<code class="language-text">{}</code>"#, escaped));
-                    }
+            Event::InlineMath(latex) => match math::to_mathml(&latex, DisplayStyle::Inline) {
+                Some(mathml) => html_output.push_str(&mathml),
+                None => {
+                    let mut escaped = String::new();
+                    escape_html(&mut escaped, &latex).unwrap();
+                    html_output.push_str(&format!(
+                        r#"<code class="language-text">{}</code>"#,
+                        escaped
+                    ));
                 }
-            }
-            Event::DisplayMath(latex) => {
-                match latex_to_mathml(&latex, DisplayStyle::Block) {
-                    Ok(mathml) => html_output.push_str(&format!(
-                        r#"<div class="math-block">{}</div>"#,
-                        expand_mathml_self_closing(&mathml)
-                    )),
-                    Err(_) => {
-                        let mut escaped = String::new();
-                        escape_html(&mut escaped, &latex).unwrap();
-                        html_output.push_str(&format!(r#"<pre class="language-text"><code>{}</code></pre>"#, escaped));
-                    }
+            },
+            Event::DisplayMath(latex) => match math::to_mathml(&latex, DisplayStyle::Block) {
+                Some(mathml) => {
+                    html_output.push_str(&format!(r#"<div class="math-block">{}</div>"#, mathml))
                 }
-            }
+                None => {
+                    let mut escaped = String::new();
+                    escape_html(&mut escaped, &latex).unwrap();
+                    html_output.push_str(&format!(
+                        r#"<pre class="language-text"><code>{}</code></pre>"#,
+                        escaped
+                    ));
+                }
+            },
             Event::SoftBreak => {
                 html_output.push_str("<br>");
             }
@@ -658,9 +644,8 @@ mod tests {
 
     #[test]
     fn extract_headings_preserves_explicit_ids() {
-        let headings = extract_headings(
-            r#"<h2 id="outlook">Outlook: why this trick stops at the plane</h2>"#,
-        );
+        let headings =
+            extract_headings(r#"<h2 id="outlook">Outlook: why this trick stops at the plane</h2>"#);
 
         assert_eq!(headings.len(), 1);
         assert_eq!(headings[0].id, "outlook");
