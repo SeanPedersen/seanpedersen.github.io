@@ -18,16 +18,16 @@ Software that treats you as a human - respectful.
   - [Server](https://github.com/matrix-construct/tuwunel) - Rust
   - [Bot SDK](https://codeberg.org/imbev/simplematrixbotlib) - Python
 - [BitChat](https://bitchat.free/) - decentralized chat app via bluetooth
-- [Signal](https://signal.org/) - Privacy focused messenger
 - [Messenger Comparison](https://www.messenger-matrix.de/messenger-matrix.html)
 
 Web Browser:
 
-Firefox, Brave etc. also track their users (with default settings). Test [here](https://coveryourtracks.eff.org/) how trackable your browser is.
+Firefox, Brave etc. also track their users (with default settings). Test [here](https://coveryourtracks.eff.org/) how trackable your browser is. (latest technique is to playout changed favicons to track you)
 
 - [Mullvad](https://mullvad.net/en/browser) - Privacy focused Firefox fork (basically Tor browser without Tor network)
 - [LibreWolf](https://librewolf.net/) - Privacy focused Firefox fork
 - [Ungoogled Chromium](https://github.com/ungoogled-software/ungoogled-chromium) - Chromium without Google Services (spy ware)
+  - needs some [more tweaks](https://github.com/ungoogled-software/ungoogled-chromium/issues/3912) to beat https://coveryourtracks.eff.org
 - [Browser Comparison](https://digdeeper.club/articles/browsers.xhtml#fullsummary)
 
 Search Engine:
