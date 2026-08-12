@@ -1,6 +1,8 @@
 # Messenger
 Humanity is in need of a fun to use, secure, privacy-respecting and decentral messenger.
 
+Protocol: The client owns the identity and message history. It uses end-to-end encryption for content and relationship metadata, direct peer-to-peer transport when possible, and optional relays or federation when direct delivery fails.
+
 - User account via username (no phone number needed)
 - Decentralized (device to device works) + federated (optional servers help make the network go fast)
 - E2EE message content (msg, sticker, etc.) + metadata (who msgs whom)
@@ -9,11 +11,16 @@ Humanity is in need of a fun to use, secure, privacy-respecting and decentral me
 - Default: use internet, fallback: Wi-Fi Mesh; Bluetooth (like bitchat)
 
 Chat Features ([Telegram](https://github.com/telegramdesktop/tdesktop) has best chat UX):
+
+Protocol: Messages use one encrypted envelope format for text, files, and stickers. Group membership changes update the group key, while relays store and forward only encrypted data.
+
 - group chats
 - file transfer
 - stickers
 
 ## Existing Chat Shitshow
+
+Protocol: The main trade-off is where identity, routing, and metadata live. Centralized services simplify delivery, while peer-to-peer and federated protocols distribute trust across devices or servers.
 
 Whatsapp and Telegram are security nightmares. WA being centralized and has no metadata encryption. Telegram is centralized and has no encryption by default.
 
@@ -28,6 +35,8 @@ Whatsapp and Telegram are security nightmares. WA being centralized and has no m
 
 ### Jami
 
+Protocol: Jami uses distributed accounts based on X.509 certificates and OpenDHT for peer discovery. Calls and messaging use SIP over TLS, with direct peer connections when possible.
+
 [Jami](https://git.jami.net/savoirfairelinux) is a P2P messenger. The project website is https://jami.net/.
 
 Jami actually seems like it has done many things right - only downside is the design of its clients (which can be fixed).
@@ -36,17 +45,23 @@ Clients: [official downloads](https://jami.net/download/). Repo: [jami-client-qt
 
 ### Berty
 
+Protocol: Berty's Wesh protocol stores encrypted group events in append-only logs. It can sync those logs through IPFS or direct transports such as Bluetooth Low Energy.
+
 Berty is a chat app based on IPFS: https://berty.tech/messenger/
 
 Clients: [iOS App Store (legacy)](https://apps.apple.com/ie/app/berty-messenger/id1535500412). The Android app is currently unavailable. See the [official status](https://berty.tech/features).
 
 ### Bitchat
 
+Protocol: Bitchat sends compact packets through a Bluetooth Low Energy mesh. Private messages use the Noise Protocol Framework, with Nostr used as an internet fallback.
+
 [Bitchat](https://bitchat.free/) is a P2P messenger that uses Bluetooth.
 
 Clients: [iOS](https://apps.apple.com/us/app/bitchat-mesh/id6748219622), [Android](https://play.google.com/store/apps/details?id=com.bitchat.droid), and [Android releases](https://github.com/permissionlesstech/bitchat-android/releases).
 
 ### Matrix
+
+Protocol: Matrix uses HTTPS APIs and server-to-server federation to replicate room events. Optional end-to-end encryption uses Olm for device sessions and Megolm for group messages.
 
 [Matrix](https://matrix.org/) is federated (not P2P) and has horrible UX and no metadata encryption.
 
@@ -61,17 +76,23 @@ Matrix drawbacks:
 
 ### Mindtheclub
 
+Protocol: MindTheClub uses WebRTC to create encrypted direct connections between devices. Its group design uses gossip, so members relay messages to other members.
+
 https://www.mindtheclub.com/white-paper.html
 
 Client: [Google Play beta](https://play.google.com/store/apps/details?id=com.bolimot.mindtheclub).
 
 ### Signal
 
+Protocol: Signal uses a pre-key handshake to start a session, then the Double Ratchet to derive new keys for each message. Its servers relay ciphertext and help devices find one another.
+
 [Signal](https://signal.org/) has good encryption, but it is centralized, so users have to trust the service (single point of failure -> easy to compromise).
 
 Clients: [official downloads](https://signal.org/download/).
 
 ## MLS (secure group messaging)
+
+Protocol: Messaging Layer Security is a tree-based authenticated group key agreement protocol. Members commit membership changes and derive fresh epoch keys, providing forward secrecy and post-compromise security.
 
 **MLS = a standardized group key agreement + encryption protocol**  
 (RFC 9420, finalized 2023)
