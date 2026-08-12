@@ -30,6 +30,8 @@ Whatsapp and Telegram are security nightmares. WA being centralized and has no m
 
 [Jami](https://git.jami.net/savoirfairelinux) is a P2P messenger. The project website is https://jami.net/.
 
+Jami actually seems like it has done many things right - only downside is the design of its clients (which can be fixed).
+
 Clients: [official downloads](https://jami.net/download/). Repo: [jami-client-qt](https://git.jami.net/savoirfairelinux/jami-client-qt)
 
 ### Berty
