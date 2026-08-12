@@ -8,7 +8,7 @@ Humanity is in need of a fun to use, secure, privacy-respecting and decentral me
 - Thick client (user keeps message history - default is 2 months) + thin server (just relay messages)
 - Default: use internet, fallback: Wi-Fi Mesh; Bluetooth (like bitchat)
 
-Chat Features (Telegram has best chat UX):
+Chat Features ([Telegram](https://github.com/telegramdesktop/tdesktop) has best chat UX):
 - group chats
 - file transfer
 - stickers
