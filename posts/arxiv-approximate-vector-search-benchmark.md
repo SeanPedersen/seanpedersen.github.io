@@ -11,6 +11,7 @@ I benchmarked five implementations of [approximate nearest neighbor search](http
 
 | Algorithm | Build | Recall@10 | Search p50 | Search p95 | Index | Max RAM |
 |---|---:|---:|---:|---:|---:|---:|
+| NumPy full linear scan, bruteforce | 0.0 s | 1.000 | 6.38 ms | 12.55 ms | 0 B | 248.9 MiB |
 | zvec HNSW + RaBitQ | 72.3 s | 0.964 | 1.15 ms | 1.39 ms | 148.9 MiB | 617.1 MiB |
 | zvec DiskANN + PQ | 77.5 s | 0.912 | 44.71 ms | 115.27 ms | 138.4 MiB | 1.10 GiB |
 | TurboVec, 4-bit | 0.6 s | 0.880 | 2.37 ms | 3.09 ms | 13.4 MiB | 249.0 MiB |
@@ -51,6 +52,7 @@ Vector search systems often need a metadata condition as well as semantic simila
 
 | Algorithm | Filter mode | Recall@10 | Search p50 |
 |---|---|---:|---:|
+| NumPy full linear scan, bruteforce | Exact scan of filtered vectors | 1.000 | 1.23 ms |
 | TurboVec | Native ID allowlist | 0.900 | 9.49 ms |
 | TurboVec + FP16 rerank, 100 candidates | Native ID allowlist + FP16 rerank | 1.000 | 9.65 ms |
 | AsterVec | Native payload filter | 0.700 | 160.61 ms |
