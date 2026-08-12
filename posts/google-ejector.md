@@ -10,14 +10,15 @@ Is closed source, centralized, privacy invading software still part of your digi
 
 Software that treats you as a human - respectful.
 
-Messenger:
+[Messenger](/posts/messenger):
 
-- [Signal](https://signal.org/) - Privacy focused messenger
+- [Jami](https://jami.net/) - P2P, end-to-end encrypted
 - [Matrix](https://matrix.org/) - end-to-end encrypted, federated, self-hostable
   - [Clients](https://matrix.org/ecosystem/clients/): Mobile (Element X), Desktop (Cinny, Nheko)
   - [Server](https://github.com/matrix-construct/tuwunel) - Rust
   - [Bot SDK](https://codeberg.org/imbev/simplematrixbotlib) - Python
 - [BitChat](https://bitchat.free/) - decentralized chat app via bluetooth
+- [Signal](https://signal.org/) - Privacy focused messenger
 - [Messenger Comparison](https://www.messenger-matrix.de/messenger-matrix.html)
 
 Web Browser:
