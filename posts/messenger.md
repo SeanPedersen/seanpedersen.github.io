@@ -35,19 +35,19 @@ Whatsapp and Telegram are security nightmares. WA being centralized and has no m
 
 ### Jami
 
-Protocol: Jami uses distributed accounts based on X.509 certificates and OpenDHT for peer discovery. Calls and messaging use SIP over TLS, with direct peer connections when possible.
+Protocol: Jami uses distributed accounts based on X.509 certificates and [OpenDHT](https://git.jami.net/savoirfairelinux/opendht) for peer discovery. Calls and messaging use SIP over TLS, with direct peer connections when possible.
 
 [Jami](https://git.jami.net/savoirfairelinux) is a P2P messenger. The project website is https://jami.net/.
 
-Jami actually seems like it has done many things right - only downside is the design of its clients (which can be fixed).
+Jami actually seems like it has done many things right - only downside is the UI design of its clients (which can be fixed) and missing offline message delivery.
 
-Clients: [official downloads](https://jami.net/download/). Repo: [jami-client-qt](https://git.jami.net/savoirfairelinux/jami-client-qt)
+Clients: [official downloads](https://jami.net/download/). Repo: [jami repos](https://git.jami.net/savoirfairelinux)
 
 ### Berty
 
 Protocol: Berty's Wesh protocol stores encrypted group events in append-only logs. It can sync those logs through IPFS or direct transports such as Bluetooth Low Energy.
 
-Berty is a chat app based on IPFS: https://berty.tech/messenger/
+Berty is a chat app based on IPFS: https://berty.tech/messenger/ - [berty repo](https://github.com/berty/berty)
 
 Clients: [iOS App Store (legacy)](https://apps.apple.com/ie/app/berty-messenger/id1535500412). The Android app is currently unavailable. See the [official status](https://berty.tech/features).
 
