@@ -39,13 +39,13 @@ Protocol: Jami uses distributed accounts based on X.509 certificates and [OpenDH
 
 [Jami](https://git.jami.net/savoirfairelinux) is a P2P messenger. The project website is https://jami.net/.
 
-Jami actually seems like it has done many things right - only downside is the UI design of its clients (which can be fixed) and missing offline message delivery.
+Jami actually seems like it has done many things right - only downside is the UI design of its clients (which can be fixed) and missing offline message delivery (can be fixed via decentral peer replication).
 
 Clients: [official downloads](https://jami.net/download/). Repo: [jami repos](https://git.jami.net/savoirfairelinux)
 
 ### Berty
 
-Protocol: Berty's Wesh protocol stores encrypted group events in append-only logs. It can sync those logs through IPFS or direct transports such as Bluetooth Low Energy.
+Protocol: Berty's Wesh protocol stores encrypted group events in append-only logs. It can sync those logs through IPFS or direct transports such as Bluetooth Low Energy. Berty has offline message delivery via a central replication service.
 
 Berty is a chat app based on IPFS: https://berty.tech/messenger/ - [berty repo](https://github.com/berty/berty)
 
