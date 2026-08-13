@@ -27,6 +27,7 @@ Whatsapp and Telegram are security nightmares. WA being centralized and has no m
 | Messenger | Network | Clients / downloads |
 | --- | --- | --- |
 | [Jami](https://jami.net/) | P2P | [Official downloads](https://jami.net/download/) |
+| [SimpleX Chat](https://simplex.chat/) | Decentralized relay network | [Official downloads](https://simplex.chat/downloads/) |
 | [Berty](https://berty.tech/messenger/) | P2P, IPFS | [iOS App Store (legacy)](https://apps.apple.com/ie/app/berty-messenger/id1535500412), [official status](https://berty.tech/features) |
 | [Bitchat](https://bitchat.free/) | Bluetooth mesh | [iOS](https://apps.apple.com/us/app/bitchat-mesh/id6748219622), [Android](https://play.google.com/store/apps/details?id=com.bitchat.droid), [Android releases](https://github.com/permissionlesstech/bitchat-android/releases) |
 | [Matrix](https://matrix.org/) | Federated | [Official client list](https://matrix.org/ecosystem/clients/) |
@@ -42,6 +43,14 @@ Protocol: Jami uses distributed accounts based on X.509 certificates and [OpenDH
 Jami actually seems like it has done many things right - only downside is the UI design of its clients (which can be fixed) and missing offline message delivery (can be fixed via decentral peer replication).
 
 Clients: [official downloads](https://jami.net/download/). Repo: [jami repos](https://git.jami.net/savoirfairelinux)
+
+### SimpleX Chat
+
+Protocol: SimpleX uses pairs of unidirectional message queues on configurable relay servers. Connections have pairwise queue identifiers instead of global user identifiers, while double-ratchet end-to-end encryption protects messages and relays hold them only until delivery.
+
+[SimpleX Chat](https://simplex.chat/) is a decentralized messenger without phone numbers, usernames, or other global user identifiers. Users connect through invitation links or QR codes and can use the default relay servers, choose other operators, or host their own.
+
+Clients: [official downloads](https://simplex.chat/downloads/) for Android, iOS, Linux, macOS, Windows, and the terminal.
 
 ### Berty
 
