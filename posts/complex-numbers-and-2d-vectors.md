@@ -113,7 +113,13 @@ tags: [math]
   }
 </style>
 
-  <p>This seemingly small addition, changes the kind of object we have. A <a
+  <h2 id="introduction">Introduction</h2>
+
+  <p>Complex numbers extend the real numbers with the <em>imaginary unit</em> i, defined as the square root of -1:
+    i = √-1, so i<sup>2</sup> = -1. Every complex number can be written as a + bi, where a and b are real numbers. The
+    real part a and imaginary part b give the same two coordinates as the point (a, b) in a plane.</p>
+
+  <p>This seemingly small addition changes the kind of object we have. A <a
       href="https://en.wikipedia.org/wiki/Vector_space">2D real vector space</a> gives us addition and only multiplication by
     real scalars. The <a href="https://en.wikipedia.org/wiki/Complex_number">complex numbers</a> also let us multiply and
     divide elements of the plane.</p>
@@ -166,8 +172,6 @@ $$
       </tbody>
     </table>
   </div>
-
-  <h2 id="same-plane">The same plane</h2>
 
   <p>The match between them is exact if we only look at addition and real scaling:</p>
 
