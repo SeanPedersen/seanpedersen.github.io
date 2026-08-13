@@ -4,10 +4,10 @@ Humanity is in need of a fun to use, secure, privacy-respecting and decentral me
 Protocol: The client owns the identity and message history. It uses end-to-end encryption for content and relationship metadata, direct peer-to-peer transport when possible, and optional relays or federation when direct delivery fails.
 
 - User account via username (no phone number needed)
-- Decentralized (device to device works) + federated (optional servers help make the network go fast)
-- E2EE message content (msg, sticker, etc.) + metadata (who msgs whom)
+- Decentralized P2P discovery and messaging (device to device just works) + federated (optional relay servers make the network faster and more reliable)
+- E2EE message content (txt, file, etc.) + metadata (who msgs whom)
 - Connect (share keys) by scanning QR Code - “Invite link” fallback
-- Thick client (user keeps message history - default is 2 months) + thin server (just relay messages)
+- Thick client (user keeps message history - default is 2 months) + thin optional servers (just relay messages)
 - Default: use internet, fallback: Wi-Fi Mesh; Bluetooth (like bitchat)
 
 Chat Features ([Telegram](https://github.com/telegramdesktop/tdesktop) has best chat UX):
@@ -36,7 +36,7 @@ Whatsapp and Telegram are security nightmares. WA being centralized and has no m
 
 ### Jami
 
-Protocol: Jami uses distributed accounts based on X.509 certificates and [OpenDHT](https://git.jami.net/savoirfairelinux/opendht) for peer discovery. Calls and messaging use SIP over TLS, with direct peer connections when possible.
+Protocol: Jami uses distributed accounts based on [X.509 certificates](https://en.wikipedia.org/wiki/X.509#Certificates) and [OpenDHT](https://git.jami.net/savoirfairelinux/opendht) for peer discovery. Calls and messaging use [SIP](https://www.rfc-editor.org/info/rfc3261/) over TLS, with direct peer connections when possible.
 
 [Jami](https://git.jami.net/savoirfairelinux) is a P2P messenger. The project website is https://jami.net/.
 
@@ -46,7 +46,7 @@ Clients: [official downloads](https://jami.net/download/). Repo: [jami repos](ht
 
 ### SimpleX Chat
 
-Protocol: SimpleX uses pairs of unidirectional message queues on configurable relay servers. Connections have pairwise queue identifiers instead of global user identifiers, while double-ratchet end-to-end encryption protects messages and relays hold them only until delivery.
+Protocol: SimpleX uses pairs of unidirectional message queues on configurable relay servers. Connections have pairwise queue identifiers instead of global user identifiers, while [double-ratchet end-to-end encryption](https://en.wikipedia.org/wiki/Double_Ratchet_Algorithm) protects messages and relays hold them only until delivery.
 
 [SimpleX Chat](https://simplex.chat/) is a decentralized messenger without phone numbers, usernames, or other global user identifiers. Users connect through invitation links or QR codes and can use the default relay servers, choose other operators, or host their own.
 
