@@ -26,7 +26,7 @@ Choose the serving stack based on workload (for tinkerers that want max performa
 
 Performance checklist:
 - Use the fastest supported attention kernels: FlashAttention, FlashInfer, FlashMLA, etc.
-- Try speculative decoding / MTP / EAGLE-style decoding when supported, but benchmark with your actual model and sampling settings.
+- Try speculative decoding / MTP / EAGLE / DFlash decoding when supported, but benchmark with your actual model and sampling settings.
 - Preserve prefix/KV cacheability:
   - keep the system prompt byte-identical
   - append new messages rather than rebuilding/changing history
