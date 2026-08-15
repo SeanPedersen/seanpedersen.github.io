@@ -33,13 +33,14 @@ Head vs tail recursion
 -author("Sean Pedersen").
 -compile(export_all).
 
-% Head recursion is inefficient: builds up exponentially growing function calls O(2^N)
+% Head recursion is inefficient: exponentially growing function calls result in O(2^N) in time complexity
+% Space complexity stays linear O(N)
 fib(1) -> 1;
 fib(2) -> 1;
 fib(N) when N > 2 -> fib(N-1) + fib(N-2).
 
 % Tail recursion (efficient: behaves like a loop)
-% The tail recursive optimization lets the function call stack not grow at all
+% The tail recursive optimization lets the function call stack not grow at all - O(N) time and O(1) space complexity
 fib_tail(N) -> fib_tail(N, 0, 1).
 fib_tail(1, _First, Second) -> Second;
 fib_tail(N, First, Second) when N > 1 -> fib_tail(N-1, Second, First+Second).
