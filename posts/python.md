@@ -28,7 +28,7 @@ Use [uv](https://github.com/astral-sh/uv) (preferred and popular) or [pixi](http
 
 Great for prototyping, one-off analysis scripts and literate programming.
 
-[Jupyter Notebook](https://jupyter.org/) and [Marimo](https://marimo.io/). Prefer Marimo when possible: notebooks are plain Python files with clean Git diffs and reactive cells help keep results consistent as code changes.
+[Jupyter Notebook](https://jupyter.org/) and [Marimo](https://marimo.io/). Prefer Marimo when possible: notebooks are plain Python files with clean Git diffs and reactive cells (cells automatically update when the variables they depend on change) help keep results consistent as code changes.
 
 ## Web Development
 
