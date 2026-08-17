@@ -4,7 +4,7 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-gix = { version = "0.72", default-features = false, features = ["revision", "max-performance"] }
+gix = { version = "0.72", default-features = false, features = ["revision", "blob-diff", "max-performance"] }
 pulldown-cmark = "0.13"
 pulldown-cmark-escape = "0.11"
 latex2mathml = "0.2"

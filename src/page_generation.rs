@@ -1,6 +1,7 @@
 use crate::math;
 use anyhow::Result;
 use chrono::NaiveDate;
+use gix::object::tree::diff::{Action, Change};
 use latex2mathml::DisplayStyle;
 use once_cell::sync::Lazy;
 use pulldown_cmark::{html, CodeBlockKind, Event, Options, Parser, Tag, TagEnd};
@@ -8,9 +9,9 @@ use pulldown_cmark_escape::escape_html;
 use rayon::prelude::*;
 use regex::Regex;
 use serde::{Deserialize, Serialize};
-use std::collections::HashSet;
+use std::collections::{HashMap, HashSet};
 use std::fs;
-use std::path::Path;
+use std::path::{Path, PathBuf};
 use std::sync::Arc;
 use std::time::Instant;
 use syntect::html::{ClassStyle, ClassedHTMLGenerator};
@@ -31,6 +32,26 @@ static CUSTOM_SYNTAXES: Lazy<Option<SyntaxSet>> = Lazy::new(|| {
         None
     }
 });
+
+// Load default syntaxes once at startup (avoids reparsing the whole set per post)
+static DEFAULT_SYNTAXES: Lazy<SyntaxSet> = Lazy::new(SyntaxSet::load_defaults_newlines);
+
+static FRONTMATTER_RE: Lazy<Regex> =
+    Lazy::new(|| Regex::new(r"(?s)^---\s*\n(.*?)\n---\s*\n(.*)$").unwrap());
+static HTML_TITLE_RE: Lazy<Regex> = Lazy::new(|| Regex::new(r"<h1[^>]*>(.*?)</h1>").unwrap());
+static HASHTAG_RE: Lazy<Regex> = Lazy::new(|| Regex::new(r"#([a-zA-Z0-9_-]+)").unwrap());
+static SYNTAX_CLASS_RE: Lazy<Regex> =
+    Lazy::new(|| Regex::new(r#"<span class="([^"]+)">"#).unwrap());
+static HEADING_RE: Lazy<Regex> = Lazy::new(|| Regex::new(r"<h([1-6])>(.*?)</h[1-6]>").unwrap());
+static HEADING_WITH_ATTRS_RE: Lazy<Regex> =
+    Lazy::new(|| Regex::new(r"<h([1-6])([^>]*)>(.*?)</h[1-6]>").unwrap());
+static ID_ATTR_RE: Lazy<Regex> =
+    Lazy::new(|| Regex::new(r#"\bid\s*=\s*["']([^"']+)["']"#).unwrap());
+static ENTITY_RE: Lazy<Regex> =
+    Lazy::new(|| Regex::new(r"&(#(?:x[0-9a-fA-F]+|\d+)|[a-zA-Z]+);").unwrap());
+static HTML_TAG_RE: Lazy<Regex> = Lazy::new(|| Regex::new(r"<[^>]*>").unwrap());
+static URL_RE: Lazy<Regex> =
+    Lazy::new(|| Regex::new(r"(https?://[^\s<>]+?)([.,;:!?)]*(?:\s|$))").unwrap());
 
 #[derive(Debug, Clone, Serialize, Deserialize, Default)]
 pub struct PostMetadata {
@@ -87,6 +108,8 @@ pub fn read_all_posts(posts_dir: &Path) -> Result<Vec<Post>> {
         .map(|e| e.path())
         .collect();
 
+    let git_dates = get_all_git_dates(&entries);
+
     let posts: Vec<Post> = entries
         .par_iter()
         .filter_map(|path| {
@@ -95,7 +118,7 @@ pub fn read_all_posts(posts_dir: &Path) -> Result<Vec<Post>> {
             let is_html = path.extension().and_then(|s| s.to_str()) == Some("html");
             let (metadata, body) = parse_frontmatter(&content);
 
-            let (git_first, git_last) = get_git_dates(path);
+            let (git_first, git_last) = git_dates.get(path).cloned().unwrap_or_default();
             let date = metadata.date.or(git_first)?;
             let date_modified = git_last.unwrap_or_else(|| date.clone());
 
@@ -142,9 +165,7 @@ pub fn read_all_posts(posts_dir: &Path) -> Result<Vec<Post>> {
 }
 
 fn parse_frontmatter(content: &str) -> (PostMetadata, String) {
-    let re = Regex::new(r"(?s)^---\s*\n(.*?)\n---\s*\n(.*)$").unwrap();
-
-    if let Some(caps) = re.captures(content) {
+    if let Some(caps) = FRONTMATTER_RE.captures(content) {
         let yaml = caps.get(1).unwrap().as_str();
         let markdown = caps.get(2).unwrap().as_str();
         let metadata: PostMetadata = serde_yaml::from_str(yaml).unwrap_or_default();
@@ -154,19 +175,33 @@ fn parse_frontmatter(content: &str) -> (PostMetadata, String) {
     }
 }
 
-fn get_git_dates(file_path: &Path) -> (Option<String>, Option<String>) {
-    let repo = match gix::open(".") {
+fn ts_to_date(ts: i64, offset: i32) -> Option<String> {
+    let local_ts = ts + offset as i64;
+    chrono::DateTime::from_timestamp(local_ts, 0).map(|dt| dt.format("%Y-%m-%d").to_string())
+}
+
+// Cache for decoded tree/commit objects while walking history (adjacent commits share most trees).
+const GIT_OBJECT_CACHE_SIZE: usize = 64 * 1024 * 1024;
+
+fn get_all_git_dates(paths: &[PathBuf]) -> HashMap<PathBuf, (Option<String>, Option<String>)> {
+    let mut repo = match gix::open(".") {
         Ok(r) => r,
-        Err(_) => return (None, None),
+        Err(_) => return HashMap::new(),
     };
+    repo.object_cache_size(GIT_OBJECT_CACHE_SIZE);
     let head = match repo.head_commit() {
         Ok(h) => h,
-        Err(_) => return (None, None),
+        Err(_) => return HashMap::new(),
     };
 
-    let mut oldest_time: Option<(i64, i32)> = None;
-    let mut newest_time: Option<(i64, i32)> = None;
-    let mut file_found = false;
+    let wanted: HashSet<PathBuf> = paths.iter().cloned().collect();
+    // (oldest_ts, oldest_offset, newest_ts, newest_offset); walking newest -> oldest commits,
+    // the first change seen for a path is its newest, later changes update the oldest.
+    let mut dates: HashMap<PathBuf, (i64, i32, i64, i32)> = HashMap::new();
+    let mut resource_cache = match repo.diff_resource_cache_for_tree_diff() {
+        Ok(c) => c,
+        Err(_) => return HashMap::new(),
+    };
 
     for info in head.ancestors().all().ok().into_iter().flatten().flatten() {
         let Some(commit) = info
@@ -177,44 +212,87 @@ fn get_git_dates(file_path: &Path) -> (Option<String>, Option<String>) {
         else {
             continue;
         };
-        let Some(tree) = commit.tree().ok() else {
+        let Ok(tree) = commit.tree() else {
             continue;
         };
+        let parent_tree = match commit.parent_ids().next() {
+            Some(parent_id) => match parent_id
+                .object()
+                .ok()
+                .and_then(|o| o.try_into_commit().ok())
+                .and_then(|c| c.tree().ok())
+            {
+                Some(t) => t,
+                None => continue,
+            },
+            None => repo.empty_tree(),
+        };
 
-        if tree
-            .lookup_entry_by_path(file_path)
-            .ok()
-            .flatten()
-            .is_some()
+        let mut platform = match parent_tree.changes() {
+            Ok(p) => p,
+            Err(_) => continue,
+        };
+        platform.options(|opts| {
+            opts.track_rewrites(None);
+            opts.track_path();
+        });
+
+        let mut changed: Vec<PathBuf> = Vec::new();
+        if platform
+            .for_each_to_obtain_tree_with_cache(&tree, &mut resource_cache, |change| {
+                let location = match change {
+                    Change::Addition { location, .. }
+                    | Change::Deletion { location, .. }
+                    | Change::Modification { location, .. } => location,
+                    Change::Rewrite { .. } => {
+                        return Ok::<_, std::convert::Infallible>(Action::Continue)
+                    }
+                };
+                let path = PathBuf::from(std::str::from_utf8(location).unwrap_or(""));
+                if wanted.contains(&path) {
+                    changed.push(path);
+                }
+                Ok::<_, std::convert::Infallible>(Action::Continue)
+            })
+            .is_err()
         {
-            file_found = true;
-            if let Ok(time) = commit.time() {
-                let ts = time.seconds;
-                if oldest_time.is_none() || ts < oldest_time.unwrap().0 {
-                    oldest_time = Some((ts, time.offset));
-                }
-                if newest_time.is_none() || ts > newest_time.unwrap().0 {
-                    newest_time = Some((ts, time.offset));
-                }
+            continue;
+        }
+
+        if changed.is_empty() {
+            continue;
+        }
+        let Ok(time) = commit.time() else {
+            continue;
+        };
+        for path in changed {
+            let entry =
+                dates
+                    .entry(path)
+                    .or_insert((time.seconds, time.offset, time.seconds, time.offset));
+            if time.seconds < entry.0 {
+                entry.0 = time.seconds;
+                entry.1 = time.offset;
             }
-        } else if file_found {
-            break;
         }
     }
 
-    let to_date = |ts: i64, offset: i32| {
-        let local_ts = ts + offset as i64;
-        chrono::DateTime::from_timestamp(local_ts, 0).map(|dt| dt.format("%Y-%m-%d").to_string())
-    };
-
-    let first = oldest_time.and_then(|(ts, off)| to_date(ts, off));
-    let last = newest_time.and_then(|(ts, off)| to_date(ts, off));
-    (first, last)
+    paths
+        .iter()
+        .map(|path| {
+            let (first, last) = dates
+                .get(path)
+                .map_or((None, None), |&(o_ts, o_off, n_ts, n_off)| {
+                    (ts_to_date(o_ts, o_off), ts_to_date(n_ts, n_off))
+                });
+            (path.clone(), (first, last))
+        })
+        .collect()
 }
 
 fn extract_html_title(html: &str) -> Option<String> {
-    let re = Regex::new(r"<h1[^>]*>(.*?)</h1>").ok()?;
-    re.captures(html)
+    HTML_TITLE_RE
+        .captures(html)
         .map(|caps| strip_html_tags(&caps[1]).trim().to_string())
 }
 
@@ -230,8 +308,7 @@ fn extract_title(markdown: &str) -> String {
 fn extract_tags(content: &str) -> Vec<String> {
     let lines: Vec<&str> = content.lines().filter(|l| !l.trim().is_empty()).collect();
     if let Some(last_line) = lines.last() {
-        let re = Regex::new(r"#([a-zA-Z0-9_-]+)").unwrap();
-        return re
+        return HASHTAG_RE
             .captures_iter(last_line)
             .map(|cap| cap[1].to_string())
             .collect();
@@ -240,6 +317,14 @@ fn extract_tags(content: &str) -> Vec<String> {
 }
 
 fn remove_first_h1(markdown: &str) -> String {
+    if let Some(first_line) = markdown.lines().next() {
+        if first_line.starts_with("# ") {
+            let mut rest = &markdown[first_line.len()..];
+            rest = rest.strip_prefix('\n').unwrap_or(rest);
+            return rest.to_string();
+        }
+    }
+
     let lines: Vec<&str> = markdown.lines().collect();
     let mut found_h1 = false;
 
@@ -281,8 +366,7 @@ fn markdown_to_html(markdown: &str, tags: &[String]) -> String {
 
     let parser = Parser::new_ext(markdown, options);
 
-    // Load syntax highlighting assets
-    let syntax_set = SyntaxSet::load_defaults_newlines();
+    let syntax_set = &*DEFAULT_SYNTAXES;
 
     let mut html_output = String::new();
     let mut in_code_block = false;
@@ -313,7 +397,7 @@ fn markdown_to_html(markdown: &str, tags: &[String]) -> String {
                     if let Some(lang) = &code_block_lang {
                         // Use syntect for syntax highlighting with CSS classes
                         // Try to find syntax in custom syntaxes first, then defaults
-                        if let Some(syntax) = find_syntax(&syntax_set, lang) {
+                        if let Some(syntax) = find_syntax(syntax_set, lang) {
                             // Determine which syntax set to use for the generator
                             let (syntax_ref, syntax_set_ref) = if let Some(custom_set) =
                                 &*CUSTOM_SYNTAXES
@@ -321,10 +405,10 @@ fn markdown_to_html(markdown: &str, tags: &[String]) -> String {
                                 if let Some(custom_syntax) = custom_set.find_syntax_by_token(lang) {
                                     (custom_syntax, custom_set)
                                 } else {
-                                    (syntax, &syntax_set)
+                                    (syntax, syntax_set)
                                 }
                             } else {
-                                (syntax, &syntax_set)
+                                (syntax, syntax_set)
                             };
 
                             let mut html_generator = ClassedHTMLGenerator::new_with_class_style(
@@ -545,8 +629,7 @@ fn convert_syntect_classes_to_prism(html: &str) -> String {
     let result = html.to_string();
 
     // Replace all class attributes with Prism-compatible ones
-    let re = Regex::new(r#"<span class="([^"]+)">"#).unwrap();
-    let result = re.replace_all(&result, |caps: &regex::Captures| {
+    let result = SYNTAX_CLASS_RE.replace_all(&result, |caps: &regex::Captures| {
         let class_content = &caps[1];
 
         // Determine the appropriate Prism token class based on syntect scopes
@@ -583,16 +666,16 @@ fn convert_syntect_classes_to_prism(html: &str) -> String {
 }
 
 fn add_heading_ids(html: &str) -> String {
-    let re = Regex::new(r"<h([1-6])>(.*?)</h[1-6]>").unwrap();
-    re.replace_all(html, |caps: &regex::Captures| {
-        let level = &caps[1];
-        let content = &caps[2];
-        let plain_text = strip_html_tags(content);
-        let text = decode_html_entities(&plain_text);
-        let id = heading_id_from_text(&text);
-        format!(r#"<h{} id="{}">{}</h{}>"#, level, id, content, level)
-    })
-    .to_string()
+    HEADING_RE
+        .replace_all(html, |caps: &regex::Captures| {
+            let level = &caps[1];
+            let content = &caps[2];
+            let plain_text = strip_html_tags(content);
+            let text = decode_html_entities(&plain_text);
+            let id = heading_id_from_text(&text);
+            format!(r#"<h{} id="{}">{}</h{}>"#, level, id, content, level)
+        })
+        .to_string()
 }
 
 fn heading_id_from_text(text: &str) -> String {
@@ -620,16 +703,15 @@ pub struct Heading {
 }
 
 pub fn extract_headings(html: &str) -> Vec<Heading> {
-    let re = Regex::new(r"<h([1-6])([^>]*)>(.*?)</h[1-6]>").unwrap();
-    let id_re = Regex::new(r#"\bid\s*=\s*["']([^"']+)["']"#).unwrap();
-    re.captures_iter(html)
+    HEADING_WITH_ATTRS_RE
+        .captures_iter(html)
         .map(|caps| {
             let level = caps[1].parse::<u8>().unwrap_or(1);
             let attributes = &caps[2];
             let raw_text = &caps[3];
             let plain_text = strip_html_tags(raw_text);
             let text = decode_html_entities(&plain_text);
-            let id = id_re
+            let id = ID_ATTR_RE
                 .captures(attributes)
                 .map(|id_caps| id_caps[1].to_string())
                 .unwrap_or_else(|| heading_id_from_text(&text));
@@ -661,36 +743,35 @@ mod tests {
 }
 
 fn decode_html_entities(text: &str) -> String {
-    let re = Regex::new(r"&(#(?:x[0-9a-fA-F]+|\d+)|[a-zA-Z]+);").unwrap();
-    re.replace_all(text, |caps: &regex::Captures| {
-        let code = &caps[1];
-        if code.starts_with('#') {
-            let is_hex = code.starts_with("#x") || code.starts_with("#X");
-            let num_str = if is_hex { &code[2..] } else { &code[1..] };
-            if let Ok(num) = u32::from_str_radix(num_str, if is_hex { 16 } else { 10 }) {
-                if let Some(ch) = char::from_u32(num) {
-                    return ch.to_string();
+    ENTITY_RE
+        .replace_all(text, |caps: &regex::Captures| {
+            let code = &caps[1];
+            if code.starts_with('#') {
+                let is_hex = code.starts_with("#x") || code.starts_with("#X");
+                let num_str = if is_hex { &code[2..] } else { &code[1..] };
+                if let Ok(num) = u32::from_str_radix(num_str, if is_hex { 16 } else { 10 }) {
+                    if let Some(ch) = char::from_u32(num) {
+                        return ch.to_string();
+                    }
+                }
+                caps[0].to_string()
+            } else {
+                match code {
+                    "amp" => "&".to_string(),
+                    "lt" => "<".to_string(),
+                    "gt" => ">".to_string(),
+                    "quot" => "\"".to_string(),
+                    "apos" => "'".to_string(),
+                    "nbsp" => "\u{00A0}".to_string(),
+                    _ => caps[0].to_string(),
                 }
             }
-            caps[0].to_string()
-        } else {
-            match code {
-                "amp" => "&".to_string(),
-                "lt" => "<".to_string(),
-                "gt" => ">".to_string(),
-                "quot" => "\"".to_string(),
-                "apos" => "'".to_string(),
-                "nbsp" => "\u{00A0}".to_string(),
-                _ => caps[0].to_string(),
-            }
-        }
-    })
-    .to_string()
+        })
+        .to_string()
 }
 
 pub fn strip_html_tags(html: &str) -> String {
-    let re = Regex::new(r"<[^>]*>").unwrap();
-    re.replace_all(html, "").to_string()
+    HTML_TAG_RE.replace_all(html, "").to_string()
 }
 
 fn convert_hashtags_to_links(html: &str, tags: &[String]) -> String {
@@ -708,8 +789,7 @@ fn convert_hashtags_to_links(html: &str, tags: &[String]) -> String {
 
     re.replace_all(html, |caps: &regex::Captures| {
         let hashtags_text = &caps[1];
-        let hashtag_re = Regex::new(r"#([a-zA-Z0-9_-]+)").unwrap();
-        let links = hashtag_re.replace_all(hashtags_text, |c: &regex::Captures| {
+        let links = HASHTAG_RE.replace_all(hashtags_text, |c: &regex::Captures| {
             let tag = &c[1];
             format!(
                 r#"<a href="/index.html#{}">{}</a>"#,
@@ -724,11 +804,10 @@ fn convert_hashtags_to_links(html: &str, tags: &[String]) -> String {
 
 fn linkify_bare_urls(text: &str) -> String {
     // Match http/https URLs; stop before trailing punctuation that's likely not part of the URL
-    let url_re = Regex::new(r"(https?://[^\s<>]+?)([.,;:!?)]*(?:\s|$))").unwrap();
     let mut result = String::with_capacity(text.len());
     let mut last = 0;
 
-    for caps in url_re.captures_iter(text) {
+    for caps in URL_RE.captures_iter(text) {
         let full_match = caps.get(0).unwrap();
         let url = &caps[1];
         let trailing = &caps[2];
