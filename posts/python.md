@@ -15,8 +15,7 @@ Just some notes on how to use Python effectively. Python strives to be simple an
 - Use [pathlib](https://docs.python.org/3/library/pathlib.html#basic-use) module for dealing with file system paths
 - No magic numbers (use expressive variable names e.g. waiting_time_ms)
 - Use [f-strings](https://docs.python.org/3/tutorial/inputoutput.html#formatted-string-literals) for formatting strings
-- Validate variable types from external (untrustworthy) inputs, e.g. user input, web requests
-  - try attrs and cattrs instead of pydantic
+- Validate and parse data at trust boundaries (HTTP requests, config files, deserialized data, etc.). [cattrs + attrs](https://threeofwands.com/why-i-use-attrs-instead-of-pydantic/) is a lightweight option; [Pydantic](https://pydantic.dev/docs/validation/latest/get-started/) is a popular alternative.
 - Use caching for heavy computations
 - Use [pytest](https://docs.pytest.org/en/stable/) for unit testing
 
@@ -47,9 +46,9 @@ Great for prototyping, one-off analysis scripts and literate programming.
 
 ## Concurrency
 
-Python is a single threaded language with a Global Interpreter Lock (GIL). Meaning only multi-processing enables real parallel execution of non IO code. Multi-threading or async in Python thus only allows for concurrent IO operations (network / file system read and writes).
+Standard CPython traditionally uses a Global Interpreter Lock (GIL), which prevents multiple threads from executing CPU-bound Python code in parallel within a single interpreter. For CPU-bound Python code, multiprocessing is therefore commonly used for parallel execution. Threads and async are primarily used for concurrent I/O, such as network and filesystem operations.
 
-Python 3.13 has added experimental support for a no-GIL build flag, enabling true multi-threading support, which may become the default in the future.
+CPython 3.13 introduced free-threaded builds that can run without the GIL, allowing Python threads to execute in parallel across CPU cores. Traditional GIL-enabled builds remain the default for now.
 
 - On multi-threading: <https://glyph.twistedmatrix.com/2014/02/unyielding.html>
 - Good ref on Python multiprocessing: <https://pythonspeed.com/articles/python-multiprocessing/>
