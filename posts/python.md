@@ -24,11 +24,11 @@ Just some notes on how to use Python effectively. Python strives to be simple an
 
 Use [uv](https://github.com/astral-sh/uv) (preferred and popular) or [pixi](https://pixi.sh/latest/python/tutorial/) (can install conda packages - useful for GPU/CUDA stuff) for fast and sane package management.
 
-## Interactive Development
+## Interactive Notebook Development
 
 Great for prototyping, one-off analysis scripts and literate programming.
 
-[Jupyter Notebook](https://jupyter.org/) and [Marimo](https://marimo.io/).
+[Jupyter Notebook](https://jupyter.org/) and [Marimo](https://marimo.io/). Prefer Marimo when possible: notebooks are plain Python files with clean Git diffs and reactive cells help keep results consistent as code changes.
 
 ## Web Development
 
