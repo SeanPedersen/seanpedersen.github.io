@@ -4,9 +4,9 @@ icon: "/images/icons/erlang.svg"
 ---
 # Erlang
 
-Erlang is a powerful and elegant functional programming language developed in Sweden at Ericsson during the 1980s that excels at distributed, concurrent and fault-tolerant systems. Erlang processes are lightweight and share no memory (mutable state) and thus can scale easily across CPU cores and distributed machines. 
+Erlang is a powerful and elegant functional programming language developed in Sweden at Ericsson during the 1980s that excels at distributed, concurrent and fault-tolerant systems. Erlang processes are lightweight and do not share mutable memory/state with each other - avoiding many common concurrency bugs and thus can scale easily across CPU cores and distributed machines. 
 
-Processes communicate by sending messages to one another. Each process has a mailbox, and receive expressions use pattern matching to select and process messages. Erlang/OTP supervision trees provide structured error management based on the “let it crash” philosophy (supervisor processes restart crashed children), helping developers build robust production applications.
+Processes communicate by sending messages to one another. Each process has a mailbox, and receive expressions use pattern matching to select and process messages. Erlang/OTP supervision trees provide structured error management based on the “let it crash” philosophy (supervisor processes may restart crashed children), helping developers build robust production applications.
 
 Erlang is not made for math heavy computations but can easily call C or other faster languages for that.
 
