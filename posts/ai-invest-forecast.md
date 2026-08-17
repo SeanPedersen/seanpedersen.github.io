@@ -126,7 +126,7 @@ Identifying a business as vulnerable is not the same as identifying a good short
 | Nvidia long-term dominance | Medium | Valuation, custom silicon, inference efficiency |
 | Humanoid robotics | Medium | Hype exceeds current deployment |
 | Weapon manufacturing | Medium | Procurement cycles, classified opacity |
-| Application layer | High vulnerability | Misidentifying apps with genuine moats as vulnerable |
+| Application layer | Low | Misidentifying apps with genuine moats as vulnerable |
 
 **Highest confidence:** Data center electrical infrastructure, grid equipment, networking, and custom silicon chip supply chains. These benefit from AI capex regardless of which AI applications win.
 
