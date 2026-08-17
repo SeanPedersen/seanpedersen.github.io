@@ -27,7 +27,7 @@ Every new data center requires transformers, switchgear, cooling systems, and gr
 
 Investment angle: electrical equipment makers, cooling technology companies, grid infrastructure suppliers.
 
-**Key risks:** This is cyclical capital goods with long order backlogs. Lead times for transformers and switchgear can stretch years, meaning demand signals today reflect capex plans that could shift if AI investment slows.
+**Key risks:** This is cyclical capital goods with long order backlogs. Lead times for transformers and switchgear can stretch years, meaning demand signals today reflect capex plans that could shift if AI investment slows. Decentral AI winning is another counter thesis.
 
 ## Networking
 
@@ -121,14 +121,14 @@ Identifying a business as vulnerable is not the same as identifying a good short
 | Theme | Confidence | Main risk |
 | --- | --- | --- |
 | Grid and electrical infrastructure | High | Permitting delays, regulated returns |
-| Data center networking | High | Commoditization over time |
+| Chip producers | High | Commoditization over time |
 | AI drug discovery | Medium-high | Clinical failure still dominates |
 | Nvidia long-term dominance | Medium | Valuation, custom silicon, inference efficiency |
-| Humanoid robotics | Low-medium | Hype exceeds current deployment |
-| Weapon manufacturing | Low-medium | Procurement cycles, classified opacity |
-| Thin AI apps without moats | High vulnerability | Misidentifying apps with genuine moats as vulnerable |
+| Humanoid robotics | Medium | Hype exceeds current deployment |
+| Weapon manufacturing | Medium | Procurement cycles, classified opacity |
+| Application layer | High vulnerability | Misidentifying apps with genuine moats as vulnerable |
 
-**Highest confidence:** Data center electrical infrastructure, grid equipment, networking, and custom silicon supply chains. These benefit from AI capex regardless of which AI applications win.
+**Highest confidence:** Data center electrical infrastructure, grid equipment, networking, and custom silicon chip supply chains. These benefit from AI capex regardless of which AI applications win.
 
 **Highest upside, highest uncertainty:** AI drug discovery, humanoid robotics, defense autonomy. Long timelines with transformative potential if execution follows.
 
