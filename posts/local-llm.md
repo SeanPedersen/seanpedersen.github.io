@@ -1,3 +1,6 @@
+---
+icon: "/images/icons/flash.svg"
+---
 # Making Local LLM Go Brrr
 
 How to run your local LLM well: fast, reliable and with good quality.
