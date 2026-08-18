@@ -163,8 +163,6 @@ pub fn generate_post_page(out_dir: &Path, post: &Post, related: &[PostSummary]) 
     context.insert("formatted_date", &format_date(&post.date));
     context.insert("content_html", &post.content_html);
     context.insert("related_posts", &related_data);
-    context.insert("post_title_json", &serde_json::to_string(&post.title)?);
-    context.insert("title_id_json", &serde_json::to_string(&title_id)?);
 
     let html = tera.render("post.html", &context)?;
 

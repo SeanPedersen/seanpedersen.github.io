@@ -40,6 +40,15 @@ python3 -m http.server -d out
 ./target/release/blog-builder --smart-similar
 ```
 
+## Typography & Layout
+
+Both knobs live as CSS variables in `website/global/global.css` (`:root`):
+
+- `--font-sans` — system-font stack, no webfont files or external requests.
+- `--article-measure` — width of the article's text column (644px); `--article-width`
+  adds the article padding/border on top and is what `article` / `.postContainer` set
+  their `max-width` to.
+
 ## Project Conventions
 
 - Prefer small, focused Rust modules and functions.

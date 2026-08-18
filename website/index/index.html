@@ -118,7 +118,7 @@
             </div>
             <div class="speechBubble">
               <a href="https://solo.digger.lol/" target="_blank" rel="noopener noreferrer" class="diggerPromoLink">
-                <img src="https://solo.digger.lol/digger-logo.png" alt="Digger Solo" class="diggerPromoIcon">
+                <img data-src="https://solo.digger.lol/digger-logo.png" width="40" height="40" alt="Digger Solo" class="diggerPromoIcon">
                 <span class="diggerPromoText">
                   <strong>Digger Solo</strong>
                   <span class="diggerPromoTagline">The AI File Explorer from the future</span>
@@ -407,7 +407,44 @@
       trackAttributes: true,
     });
   </script>
-  <script src="https://openpanel.dev/op1.js" defer async></script>
+  <script>
+    // Everything third-party here is best-effort and must not touch this page's load
+    // event: it starts only once the page itself is done, and gives up after a second
+    // so an unreachable host never leaves a request hanging.
+    addEventListener('load', function () {
+      var BUDGET_MS = 1000;
+
+      var controller = new AbortController();
+      var analyticsGiveUp = setTimeout(function () { controller.abort(); }, BUDGET_MS);
+      fetch('https://openpanel.dev/op1.js', { signal: controller.signal })
+        .then(function (response) {
+          return response.ok ? response.text() : Promise.reject(new Error('HTTP ' + response.status));
+        })
+        .then(function (source) {
+          var script = document.createElement('script');
+          script.textContent = source;
+          document.body.appendChild(script);
+        })
+        .catch(function (error) {
+          var reason = error && error.name === 'AbortError'
+            ? 'timed out after ' + BUDGET_MS + 'ms'
+            : (error && error.message) || error;
+          console.warn('OpenPanel did not load (' + reason + '); queued events were dropped.');
+        })
+        .finally(function () { clearTimeout(analyticsGiveUp); });
+
+      // Clearing src is what aborts an image fetch -- removing the node does not.
+      var icon = document.querySelector('img[data-src]');
+      if (!icon) return;
+      var iconGiveUp = setTimeout(function () {
+        icon.removeAttribute('src');
+        icon.remove();
+      }, BUDGET_MS);
+      icon.addEventListener('load', function () { clearTimeout(iconGiveUp); });
+      icon.addEventListener('error', function () { clearTimeout(iconGiveUp); icon.remove(); });
+      icon.src = icon.dataset.src;
+    });
+  </script>
 </body>
 
 </html>

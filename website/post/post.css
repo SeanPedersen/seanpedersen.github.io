@@ -12,7 +12,7 @@
 @media (min-width: 768px) {
   .postContainer {
     width: 100%;
-    max-width: 48rem;
+    max-width: var(--article-width);
     padding: 0 1rem;
     position: relative;
     box-sizing: border-box;
@@ -504,4 +504,9 @@ html[data-theme="light"] .postTitle .postIcon {
 
 html[data-theme="light"] .relatedPostLink .postIcon {
   filter: none;
+}
+
+/* Loaded lazily by JS, so it starts without a src -- keep its box, hide the alt text */
+.diggerPromoIcon:not([src]) {
+  visibility: hidden;
 }

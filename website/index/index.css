@@ -650,3 +650,8 @@ html[data-theme="light"] .speechBubble {
   font-weight: 400;
   opacity: 0.75;
 }
+
+/* Loaded lazily by JS, so it starts without a src -- keep its box, hide the alt text */
+.diggerPromoIcon:not([src]) {
+  visibility: hidden;
+}
