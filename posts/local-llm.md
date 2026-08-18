@@ -104,6 +104,7 @@ TODO:
 ## References
 - https://vllm.ai/blog/2026-05-11-turboquant
 - https://blog.tymscar.com/posts/v100localllm/
+- https://esologic.com/benchmarking-tesla-gpus/
 - https://quesma.com/blog/quantization-hurts-knowledge/
 
 #AI #tutorial
