@@ -1,0 +1,8 @@
+{
+  // website/*.html are Tera templates, not plain HTML. VS Code's built-in formatter
+  // (js-beautify) does not honor {{ }} by default: inside a <script> block it hands
+  // the body to the JS beautifier, which reads {{ as two nested object literals and
+  // rewrites it as "{ {". That silently broke every post page in d0cccac.
+  "html.format.templating": true,
+  "html.format.contentUnformatted": "pre,code,textarea,script"
+}
