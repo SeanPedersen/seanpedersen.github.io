@@ -31,5 +31,9 @@ Just clone this repo, create a new github project named $your_username.github.io
 - Build: `./target/release/blog-builder` (generates `out/` directory)
 - Serve locally: `python3 -m http.server -d out` (http://localhost:8000)
 
+## Usage
+
+Just add a markdown file in posts/ dir. The first markdown h1 block (# title) is used as blog title. Create date is inferred from git. Frontmatter metadata is optional to add an icon or change the date. Commit and push the new markdown file and the post is online.
+
 ## Credits
 - Icons by <https://www.svgrepo.com/>
