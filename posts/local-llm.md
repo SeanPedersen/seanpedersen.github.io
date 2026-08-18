@@ -90,7 +90,7 @@ Interesting used GPU options:
 | Intel Arc B580 | 12 GB GDDR6 | 456 GB/s | 190W | 14.4 | 28.8 XMX | Battlemage arch, better perf/watt than A770, solid llama.cpp support. |
 | AMD BC-250 | 16 GB GDDR6 | 448 GB/s | 220W | 6.9 | 13.8 | Mining card based on PS5 APU, ROCm support varies. |
 
-One or two used Tesla V100 16GB cards are the best bang for the buck.
+The Tesla V100 16 / 32GB cards are the best bang for the buck. Next come P100 and P40 but both are very old, much slower and support will get worse for these.
 
 TODO:
 - Check current AMD ROCm support.
