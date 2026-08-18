@@ -97,9 +97,9 @@ TODO:
 - Compare used datacenter GPUs against RTX 3090/4090/5090-class consumer cards.
 - Benchmark watts/token, not just tokens/sec.
 
-## Gossary
+## Glossary
 
-**Mixture of Experts (MoE):** Only a fraction of the model’s parameters are activated for each token, allowing a model to have a much larger total parameter count without a proportional increase in computation (memory use stays the same). Compared with a similarly sized dense model, this can make training and inference more compute-efficient while maintaining comparable quality.
+**Mixture of Experts (MoE):** Only a fraction of the model’s parameters are activated for each token, allowing a model to have a much larger total parameter count without a proportional increase in computation (memory use stays the same though). Compared with a similarly sized dense model, this can make training and inference more compute-efficient while maintaining comparable quality.
 
 ## References
 - https://vllm.ai/blog/2026-05-11-turboquant
