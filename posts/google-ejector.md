@@ -33,14 +33,16 @@ Firefox, Brave etc. also track their users (with default settings). Test [here](
 Search Engine:
 
 - [SearX](https://searx.si/) ([Code](https://github.com/searxng/searxng)) - Privacy-respecting metasearch engine, self-hostable
-- [Digger](https://digger.so/) - Privacy focused search engine
-- [StartPage](https://www.startpage.com/) - Privacy focused search engine
+- [Digger](https://digger.so/) - EU based privacy focused
+- [Qwant](https://www.qwant.com/) - EU based privacy focused 
+- [StartPage](https://www.startpage.com/) - Privacy focused
 - [Search Engine Comparison](https://digdeeper.club/articles/search.xhtml#summary)
 
 E-Mail Provider:
 
 - [Protonmail](https://proton.me/mail) - privacy focused
 - [TutaMail](https://tuta.com/) - privacy focused
+- TODO: self-host
 - [E-Mail Comparison](https://digdeeper.club/articles/email.xhtml#Summary)
 
 Global Maps:
