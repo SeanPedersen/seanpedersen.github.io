@@ -60,6 +60,7 @@ Most models are too big for consumer GPUs, so quantized versions (compressed par
 **Curated open model list:** Qwen3.6 models are king for coding; Gemma4 models are better for general knowledge / writing. I recommend Qwen3.6 35B A3B.
 
 <16 GB VRAM (dense needs fast GPU):
+- [Qwen3.8 27B](https://huggingface.co/unsloth/Qwen3.8-27B-GGUF) Q3 - dense model (sota intelligence per size)
 - [Qwen3.6 27B Q3_K_M](https://huggingface.co/unsloth/Qwen3.6-27B-GGUF) - dense model, very good (Sonnet 4.6 performance)
 
 <8GB VRAM / CPU:
