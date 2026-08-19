@@ -81,8 +81,14 @@ test() ->
     end.
 ```
 
+## Error Handling
+Erlang produces robust distributed systems by keeping clear and useful boundaries. Processes should fail fast (let it crash) while logging why (error message) and let other processes deal with the error by f.e. restarting the failed process.
+
+A process becomes a supervisor of other(s) by linking them. A link links two processes so that if either crashes the other one gets notified via an error message (birectional link). A monitor does the same as a link but unidirectional - so only one process gets notified if the other crashes.
+
 ## References
 
+- "Programming Erlang - Second Edition" by Joe Armstrong
 - https://joearms.github.io/published/2013-11-21-My-favorite-erlang-program.html
 - <http://www.erlang.org/>
 - <https://learnyousomeerlang.com/content>
