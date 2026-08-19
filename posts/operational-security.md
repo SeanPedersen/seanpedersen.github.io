@@ -18,7 +18,7 @@ How to secure a VPS running in production (important service + customer data)
 - Setup fail2ban (ban IP's failing ssh login attempts)
 - Use docker for your services
 - Setup regular automatic updates
-- Setup append only backups (whole server or DB) with regular validity tests (restore the backup)
+- Setup append only backups (whole server or DB) with regular validity tests (restore the backup on another server and validate it matches PROD server)
 - Setup notification (via E-Mail) critical events: high disk or RAM usage, unusual network traffic
 - Advanced: Setup disk level encryption (f.e. LUKS) - in case the hard drives will be resold: customer data can not be recovered
 - Advanced: Setup SELinux / AppArmor for fine-grained service permissions
