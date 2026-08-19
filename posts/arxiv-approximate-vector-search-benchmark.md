@@ -27,7 +27,7 @@ zvec [HNSW](https://en.wikipedia.org/wiki/Hierarchical_navigable_small_world) pl
 
 aisaq DiskANN found the most exact neighbors, at 0.978 recall@10. That result cost more than five minutes of build time and about 20 ms per median search. It is a reasonable choice when recall matters more than interactive latency.
 
-TurboVec is the storage and build-time outlier. Its 4-bit index occupied 13.4 MiB, compared with roughly 138 to 165 MiB for the other valid indexes. It also built in well under a second. Its native recall was 0.880. FP16 reranking nearly recovered the full top ten, while FP32 reranking did so exactly.
+TurboVec is the storage and build-time outlier. Its 4-bit index occupied 13.4 MiB, compared with roughly 138 to 165 MiB for the other valid indexes. It also built in well under a second. Its native recall was 0.880. FP16 reranking nearly recovered the full top ten, while FP32 reranking did so exactly. ([turbovec vs rabitq review](https://openreview.net/forum?id=tO3ASKZlok))
 
 AsterVec matched HNSW's median latency surprisingly closely, while using less peak RAM during the run. Its recall was the lowest in this group, at 0.854.
 
