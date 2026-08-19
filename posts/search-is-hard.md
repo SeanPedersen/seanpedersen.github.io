@@ -109,7 +109,8 @@ Serve the purpose to run a complex (big) model (specialised or LLM) to filter th
 
 ## Modern Search Pipelines
 
-Depending on your requirements (accuracy and time to response) pipelines of different complexity are possible.
+Depending on your requirements (accuracy and time to response) pipelines of different complexity are possible. For text retrieval combing semantic search with BM25 via RRF (Reciprocal Rank Fusion) is popular practice - since it allows to combine general semantic (embedding) with exact token based (BM25) matches.
+Since BM25 scores are not normalized we need rank based results fusion via RRF to combine it with the normalized semantic search distances.
 
 ### Query Expansion
 - classical: use first k hits of og query to find more relevant matches
