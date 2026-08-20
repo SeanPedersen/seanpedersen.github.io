@@ -86,6 +86,6 @@ save_tweets_to_files(file_path)
 
 ## Importing the data
 
-Just import the created twitter-likes directory containing your likes as text files using [Digger Solo](https://solo.digger.lol) and dig in! Use the powerful search to find specific tweets or use the semantic data map to freely explore all of your likes clustered by content similarity.
+Just import the created twitter-likes directory containing your likes as text files using [Digger Solo](https://solo.digger.so) and dig in! Use the powerful search to find specific tweets or use the semantic data map to freely explore all of your likes clustered by content similarity.
 
 #tutorial

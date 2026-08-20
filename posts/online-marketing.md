@@ -33,7 +33,7 @@ Building sharing functionality directly into your product is the fundament for o
 
 Let influencers / customers directly profit from sharing and recommending your product by offering a share of each sale they generate for you. Find influencers that have followers matching your ideal customer groups and send out partnership offers.
 
-- <https://trends.digger.lol>: semantic search engine for instagram profiles
+- <https://trends.digger.so>: semantic search engine for instagram profiles
 - <https://refgrow.com/>: integrate affiliate program for your saas
 
 ### Community Building
