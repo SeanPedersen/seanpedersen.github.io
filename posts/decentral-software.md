@@ -27,6 +27,8 @@ We need cryptographic user identities to verify it is us and we want to own our 
 
 Marko Polo: broadcast your content and collab on projects P2P.
 
+Decentral ID app: [Nostr](https://nostr.org/) and [OrbitDB](https://orbitdb.org/) look like a promising combination to realize this.
+
 Interplanetary Memory System : use file embeddings to discover content instead of brittle crypto hashes (IPMS is a decentral search engine - Anyone can run a node and contribute content. Embeddings are verified by peers.)
 
 Interplanetary Trust System: Rate and discover services based on your local peers you trust -> learn which services your peers (and peers of peers) praise or dislike.
