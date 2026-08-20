@@ -258,13 +258,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1rem;
-  }
-}
-
-@media (min-width: 1400px) {
-  .list {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    max-width: calc(280px * 3 + 1rem * 2);
+    max-width: calc(250px * 3 + 1rem * 2);
     margin: 0 auto;
   }
 }
