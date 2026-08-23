@@ -70,6 +70,13 @@ electron degeneracy pressure
 white dwarfs
 neutron degeneracy pressure in neutron stars
 
+## States of Matter
+Plasma: Extremely hot, ionized matter where electrons are separated from atoms; found in stars and lightning.
+Gas: Has no fixed shape or volume. Example: air.
+Liquid: Has a fixed volume but takes the shape of its container. Example: water.
+Solid: Has a fixed shape and volume. Example: rock.
+Einstein-Bose-condensate: Matter cooled to temperatures near absolute zero, where particles occupy the same quantum state and behave collectively like a single quantum system.
+
 ## Astrophysics
 The study of big structures like stars, planets and black holes.
 
