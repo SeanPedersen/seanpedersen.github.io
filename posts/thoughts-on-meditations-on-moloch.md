@@ -7,7 +7,7 @@ Scott Alexander uses [Moloch](https://en.wikipedia.org/wiki/Moloch) as a name fo
 
 ## The System Has No Mind
 
-The key move is simple. Alexander asks why civilization produces crime, pollution, war, status races, corruption, fake science and waste when most people dislike those things. The easy answer is "bad people did it." Sometimes that is true. Often it is too simple.
+The essay asks why civilization produces crime, pollution, war, status races, corruption and fake science when most people dislike those things. The easy answer is "bad people did it." Sometimes that is true. Often it is too simple.
 
 A factory owner may dislike pollution, but if filters make his products more expensive, cleaner production may kill the company. A researcher may dislike weak science, but if flashy positive results get published and careful negative results do not, the career path is clear. A parent may dislike school pressure, but if every other parent competes for status schools, opting out can punish the child.
 
