@@ -172,6 +172,7 @@ Existing Agents:
 
 - https://agent-flywheel.com/flywheel
 [Verified Spec-Driven Development](https://gist.github.com/dollspace-gay/d8d3bc3ecf4188df049d7a4726bb2a00)
+- https://fzakaria.com/2020/04/02/parallel-task-execution
 
 - replace claude code with cheaper + faster alternatives
   - https://steipete.me/posts/2025/self-hosting-ai-models
