@@ -15,47 +15,47 @@ Applications to real systems (politics etc.)
 ## Dimensions of Systems
 Useful dimensions to classify the complexity of a system.
 
-### Dynamics: static ↔ dynamic
+**Dynamics: static ↔ dynamic**
 Does the system's state change over time?
 
-#### Dynamical sensitivity: stable ↔ chaotic
+**Dynamical sensitivity: stable ↔ chaotic**
 How sensitive is the system's evolution to small changes in its initial state?
 
-### Behavior: non-emergent ↔ emergent
+**Behavior: non-emergent ↔ emergent**
 What properties arise at the system level that are not directly specified by the component-level rules?
 
-### Determinism: deterministic ↔ stochastic
+**Determinism: deterministic ↔ stochastic**
 Does the current state uniquely determine the future state, or are transitions probabilistic?
 
-### Mathematical behavior: linear ↔ nonlinear
+**Mathematical behavior: linear ↔ nonlinear**
 Do effects combine linearly, or can interactions produce nonlinear effects?
 
-### Algorithmic complexity
+**Algorithmic complexity**
 
-### Rules: fixed ↔ self-modifying
+**Rules: fixed ↔ self-modifying**
 Can the rules governing state transitions change as a consequence of the system's evolution?
 
-#### Adaptation: non-adaptive ↔ adaptive
+**Adaptation: non-adaptive ↔ adaptive**
 Can the system change its behavior in response to its environment or experience? (self-modification with goal / intent)
 
-### Boundary: closed ↔ open
+**Boundary: closed ↔ open**
 Does the system exchange matter, energy, or information with its environment?
 
-### Representation: continuous ↔ discrete
+**Representation: continuous ↔ discrete**
 Are relevant states and/or transitions continuous or discrete?
 
-### Thermodynamics: equilibrium ↔ far-from-equilibrium
+**Thermodynamics: equilibrium ↔ far-from-equilibrium**
 How far is the system from thermodynamic equilibrium?
 
-### Modularity: Hierarchical / modular organization
+**Modularity: Hierarchical / modular organization**
 
-### Scale: few-body ↔ many-body
+**Scale: few-body ↔ many-body**
 How many interacting components or degrees of freedom does the system contain?
 
-### Organization: centralized ↔ decentralized
+**Organization: centralized ↔ decentralized**
 Is coordination primarily concentrated in a central component or distributed across the system?
 
-### Interactivity: Local ↔ long-range interactions
+**Interactivity: Local ↔ long-range interactions**
 
 ## References
 - https://www.weltderphysik.de/mediathek/podcast/komplexitaet-und-chaos/
