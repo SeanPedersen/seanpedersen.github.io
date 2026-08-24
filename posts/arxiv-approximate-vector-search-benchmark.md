@@ -106,6 +106,8 @@ Use TurboVec with native ID allowlists and FP16 reranking when the original embe
 Choose zvec HNSW plus RaBitQ when sub-millisecond unfiltered search matters more than index size. Do not use post-filtering when recall inside the filtered set matters. The aisaq result shows why: a large unfiltered candidate set can still miss nearly all of the relevant filtered neighbors.
 
 TODO:
+- check asymmetric vector similarity (store bit vectors, query with int8)
+- eval TurboVec vs RaBitQ
 - check how RAM usage of diskann based indexes scales when using full dataset (3 mill)
 - check how diskann params can reduce RAM usage
 - measure data distribution drift recall impact (insert and delete drifting vectors)
