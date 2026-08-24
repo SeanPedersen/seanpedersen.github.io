@@ -101,12 +101,6 @@ Coding agents working on tasks in parallel - working off the task tree backwards
   - yes: task done
   - no: retry task with modified context (add failures / learnings)
 
-#### REFLECTOR
-
-- uses REPL / MCP to inspect live vars of code produced by CREATOR
-- fixes any issues spotted by VALIDATOR
-- persist learnings in knowledge base for future reference
-
 ## TASK Life Cycle
 
 State: defined, open, busy, trial, done, fail
