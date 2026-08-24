@@ -202,6 +202,7 @@ User steered semantic search by selecting N matches and finding the common subsp
 
 ## References
 
+- https://videolectures.net/wsdm09_dean_cblirs/
 - [https://github.com/frutik/awesome-search](https://github.com/frutik/awesome-search)
 - [What is Presentation Bias in search?](https://softwaredoug.com/blog/2022/07/16/what-is-presentation-bias-in-search)
 - [What AI Engineers Should Know about Search](https://softwaredoug.com/blog/2024/06/25/what-ai-engineers-need-to-know-search)
