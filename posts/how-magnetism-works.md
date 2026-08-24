@@ -97,26 +97,6 @@ A superconducting magnet is something else again. It is usually a coil made from
 
 Too much heat, current, or magnetic field breaks the superconducting state. Conventional superconductors have a solid microscopic theory. Many high-temperature superconductors still lack a complete explanation.
 
-## The deep picture
-
-At the classical level, Maxwell's equations describe electric and magnetic fields. Special relativity shows that these fields are two parts of one object.
-
-At the quantum level, charged particles and the electromagnetic field obey quantum electrodynamics. The electron's spin and magnetic moment arise naturally in relativistic quantum theory. Interactions with the quantized electromagnetic field can be described in terms of photons.
-
-A block of iron, however, contains far too many interacting particles for that description to stay simple. Solid-state physics uses effective models for the collective behavior. Exchange interactions, energy bands, crystal symmetry, spin-orbit coupling, and thermal motion determine the magnetic phase.
-
-This gives a useful chain of explanation:
-
-1. Electric charge and the electromagnetic field provide the basic interaction.
-2. Quantum theory gives electrons spin, orbital states, and magnetic moments.
-3. Pauli symmetry and electric repulsion produce exchange effects.
-4. Exchange can order moments inside a material.
-5. Domains control whether that order becomes a visible permanent magnet.
-6. Heat competes with the order and can erase its large-scale memory.
-7. Superconductors organize electrons in another way and push out or pin magnetic flux.
-
-So the original idea is mostly right. Permanent magnetism does involve aligned electron spins. The alignment exists because quantum mechanics changes the energy of many-electron states. Domains then decide whether we can feel that order at the scale of a bar magnet.
-
 ## References
 
 1. [OpenStax: Magnetism in Matter](https://openstax.org/books/university-physics-volume-2/pages/12-7-magnetism-in-matter)
