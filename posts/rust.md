@@ -68,7 +68,7 @@ println!("{r}");         // r is still needed here
 ### GUI
 - [Tauri](https://tauri.app/): Use Rust in backend and web stack in frontend to build desktop and mobile apps
   - [Tauri MCP Server](https://github.com/hypothesi/mcp-server-tauri)
-- [Dioxus](https://github.com/DioxusLabs/dioxus): Use Rust in backend and web stack in frontend to build desktop and mobile apps (embed native Blitz rendered for consistency and performance)
+- [Dioxus](https://github.com/DioxusLabs/dioxus): Use Rust in backend and web stack in frontend to build desktop and mobile apps (beta: embed native Blitz rendered for consistency, lower RAM and performance)
 - [GPUI](https://www.gpui.rs/): Fast UI lib created by and used in Zed editor
   - [GPUI components](https://github.com/longbridge/gpui-component)
 
