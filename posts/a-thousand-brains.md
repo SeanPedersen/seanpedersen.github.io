@@ -43,8 +43,9 @@ Mammals, corvids and octopi all share a columnar brain structure, while less int
 On Page 186: Hawkins gives a false sense of evolution IMO, invoking the sense that evolution always optimizes traits of individuals but it is more random: many things stick that do not create a disadvantage to procreate instead of only traits that increase procreation chance.
 
 ## Open Questions
-Are cortical columns singular semantic processing units, meaning every column does one cohesive task?
-Are cortical columns near to each other processing similar tasks (semantic co-location)?
+- Are cortical columns singular semantic processing units, meaning every column does one cohesive task?
+- Are cortical columns near to each other processing similar tasks (semantic co-location)?
+- "knowing a few bits of a location, allows us to fetch the correct map & location" -> can we build a useful self-supervised training method for language and text from this?
 
 ## References
 
