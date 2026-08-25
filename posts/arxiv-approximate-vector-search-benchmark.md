@@ -107,7 +107,7 @@ Choose zvec HNSW plus RaBitQ when sub-millisecond unfiltered search matters more
 
 TODO:
 - check asymmetric vector similarity (store bit vectors, query with int8)
-- eval TurboVec vs RaBitQ
+- eval TurboVec vs [RaBitQ](https://github.com/VectorDB-NTU/RaBitQ-Library) ([ref](https://openreview.net/forum?id=tO3ASKZlok))
 - check how RAM usage of diskann based indexes scales when using full dataset (3 mill)
 - check how diskann params can reduce RAM usage
 - measure data distribution drift recall impact (insert and delete drifting vectors)
