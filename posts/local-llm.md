@@ -111,5 +111,6 @@ TODO:
 - https://esologic.com/benchmarking-tesla-gpus/
 - https://quesma.com/blog/quantization-hurts-knowledge/
 - https://aminediro.com/posts/flash_attn/
+- https://forum.level1techs.com/t/why-your-local-llm-feels-dumber-than-it-is/253917
 
 #AI #tutorial
