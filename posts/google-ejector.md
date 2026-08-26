@@ -24,8 +24,8 @@ Web Browser:
 
 Firefox, Brave etc. also track their users (with default settings). Test [here](https://coveryourtracks.eff.org/) how trackable your browser is. (latest technique is to playout changed favicons to track you)
 
+- [LibreWolf](https://librewolf.net/) - Privacy focused Firefox fork with strong anti-fingerprinting and good UX
 - [Mullvad](https://mullvad.net/en/browser) - Privacy focused Firefox fork (basically Tor browser without Tor network)
-- [LibreWolf](https://librewolf.net/) - Privacy focused Firefox fork
 - [Ungoogled Chromium](https://github.com/ungoogled-software/ungoogled-chromium) - Chromium without Google Services (spy ware)
   - needs some [more tweaks](https://github.com/ungoogled-software/ungoogled-chromium/issues/3912) to beat https://coveryourtracks.eff.org
 - [Browser Comparison](https://digdeeper.club/articles/browsers.xhtml#fullsummary)
