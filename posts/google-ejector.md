@@ -109,7 +109,7 @@ Mobile OS:
 
 Operating System:
 
-- [CachyOS](https://cachyos.org/) (Arch Linux)
+- [CachyOS](https://cachyos.org/) ([Arch Linux](https://archlinux.org/))
 - [Fedora Linux](https://fedoraproject.org/workstation/download/)
   - [Nobara](https://nobaraproject.org/) (optimized for gaming / streaming)
 - [Mint](https://linuxmint.com/) (Ubuntu Linux)
