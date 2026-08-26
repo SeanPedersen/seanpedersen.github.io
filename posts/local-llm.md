@@ -85,9 +85,9 @@ Interesting used GPU options:
 | GPU | VRAM | Bandwidth | TDP | FP32 TFLOPS | FP16 TFLOPS | Notes |
 |---|---|---|---|---|---|---|
 | Volta V100 (SXM2) | 16/32 GB HBM2 | 900 GB/s | 300W | 15.7 | 125 Tensor | Needs SXM board or riser, check cooling. |
-| Volta V100 (PCIe) | 16/32 GB HBM2 | 750 GB/s | 250W | 14.1 | 112 Tensor | Standard form factor, strong used option. |
+| Volta V100 (PCIe) | 16/32 GB HBM2 | 900 GB/s | 250W | 14.1 | 112 Tensor | Standard form factor, strong used option. |
 | Tesla P40 | 24 GB GDDR5X | 346 GB/s | 250W | 12.0 | 12.0 | Lots of VRAM for cheap, no Tensor Cores. |
-| Tesla P100 (PCIe) | 16 GB HBM2 | 732 GB/s | 250W | 9.5 | 19.1 | Cheap, but old — less attractive than V100/P40. |
+| Tesla P100 (PCIe) | 16 GB HBM2 | 732 GB/s | 250W | 9.3 | 18.7 | Cheap, but old — less attractive than V100/P40. |
 | GTX 1080 Ti | 11 GB GDDR5X | 484 GB/s | 250W | 11.3 | 11.3 | Cheap but VRAM-limited, no Tensor Cores. |
 | RTX 3090 | 24 GB GDDR6X | 936 GB/s | 350W | 35.6 | 71.2 Tensor | Often the practical local LLM sweet spot. |
 | Intel Arc A770 | 16 GB GDDR6 | 560 GB/s | 225W | 19.7 | 39.3 XMX | Good llama.cpp SYCL support; get the 16 GB variant. |
