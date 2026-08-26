@@ -4,7 +4,7 @@ icon: "/images/icons/internet-security.webp"
 ---
 # Google & Co Ejector
 
-Is closed source, centralized, privacy invading software still part of your digital life? Eject now and start using user privacy respecting software. This is a small curated collection of awesome FOSS and privacy respecting services, capable of replacing many popular, centralized, privacy invading software services so you can sleep better at night. Stop feeding giant invasive data kraken like Google and Meta - export your data and delete your accounts to stop feeding them your personal data.
+Is closed source, centralized, privacy invading software still part of your digital life? Eject now and start using user privacy respecting software. This is a small curated collection of awesome FOSS and privacy respecting services, capable of replacing many popular, centralized, privacy invading software services so you can sleep better at night. Stop feeding giant invasive data kraken like Google, OpenAI, Anthropic, Meta and others - export your data and delete your accounts to stop feeding them your personal data.
 
 ## Awesome Software
 
