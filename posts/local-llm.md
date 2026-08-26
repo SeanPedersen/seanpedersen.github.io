@@ -65,12 +65,13 @@ Most models are too big for consumer GPUs, so quantized versions (compressed par
 
 <8GB VRAM / CPU:
 - [Qwen3.6-35B-A3B Q4_K_XL](https://huggingface.co/unsloth/Qwen3.6-35B-A3B-MTP-GGUF): Strong MoE (3B active) model with MTP can run even on 8GB VRAM GPU with CPU offloading (the local king)
-  - [Uncensored version](https://huggingface.co/LuffyTheFox/Qwen3.6-35B-A3B-Uncensored-Genesis-V2-APEX-MTP-GGUF) - [Reddit thread](https://www.reddit.com/r/LocalLLaMA/comments/1tm3toi/qwen3635ba3buncensoredgenesisapexmtp/)
+  - [Uncensored version](https://huggingface.co/HauhauCS/Qwen3.6-35B-A3B-Uncensored-HauhauCS-Aggressive)
   - https://x.com/witcheer/status/2053809265538678789
   - https://www.reddit.com/r/LocalLLaMA/comments/1tc132c/llamacpp_docker_images_to_run_mtp_models/
   - Custom thinking grammar (limit overthinking): https://github.com/andthattoo/structured-cot
     - TODO: find optimal thinking grammar using [GEPA](https://github.com/gepa-ai/gepa)
 - [Gemma4-26B-A4B](https://huggingface.co/unsloth/gemma-4-26B-A4B-it-GGUF): MoE (4B active) model with MTP, good for general knowledge and multi-modal (image) queries
+  - [Uncensored version](https://huggingface.co/HauhauCS/Gemma4-26B-A4B-QAT-Uncensored-HauhauCS-Balanced-MTP)
 - [Ternary Bonsai 27B](https://huggingface.co/prism-ml/Ternary-Bonsai-27B-gguf) - ternary bit distilled model (~7.2 GB, 95% of FP16 intelligence retained)
 - [Qwen3.5 9B Distilled](https://huggingface.co/mradermacher/Qwen3.5-9B-GLM5.1-Distill-v1-i1-GGUF) - small but capable agentic dense model good for <8GB VRAM
   - [MoQ](https://huggingface.co/w-ahmad/Qwen3.5-9B-GGUF-MoQ/tree/main/MoQ-Quants-Latest) variant (very efficient quantization)
