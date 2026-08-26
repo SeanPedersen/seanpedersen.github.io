@@ -84,8 +84,8 @@ Interesting used GPU options:
 
 | GPU | VRAM | Bandwidth | TDP | FP32 TFLOPS | FP16 TFLOPS | Notes |
 |---|---|---|---|---|---|---|
-| Tesla V100 (SXM2) | 16/32 GB HBM2 | 900 GB/s | 300W | 15.7 | 125 Tensor | Needs SXM board or riser, check cooling. |
-| Tesla V100 (PCIe) | 16/32 GB HBM2 | 750 GB/s | 250W | 14.1 | 112 Tensor | Standard form factor, strong used option. |
+| Volta V100 (SXM2) | 16/32 GB HBM2 | 900 GB/s | 300W | 15.7 | 125 Tensor | Needs SXM board or riser, check cooling. |
+| Volta V100 (PCIe) | 16/32 GB HBM2 | 750 GB/s | 250W | 14.1 | 112 Tensor | Standard form factor, strong used option. |
 | Tesla P40 | 24 GB GDDR5X | 346 GB/s | 250W | 12.0 | 12.0 | Lots of VRAM for cheap, no Tensor Cores. |
 | Tesla P100 (PCIe) | 16 GB HBM2 | 732 GB/s | 250W | 9.5 | 19.1 | Cheap, but old — less attractive than V100/P40. |
 | GTX 1080 Ti | 11 GB GDDR5X | 484 GB/s | 250W | 11.3 | 11.3 | Cheap but VRAM-limited, no Tensor Cores. |
@@ -94,7 +94,7 @@ Interesting used GPU options:
 | Intel Arc B580 | 12 GB GDDR6 | 456 GB/s | 190W | 14.4 | 28.8 XMX | Battlemage arch, better perf/watt than A770, solid llama.cpp support. |
 | AMD BC-250 | 16 GB GDDR6 | 448 GB/s | 220W | 6.9 | 13.8 | Mining card based on PS5 APU, ROCm support varies. |
 
-The Tesla V100 16 / 32GB cards are the best bang for the buck. Next come P100 and P40 but both are very old, much slower and support will get worse for these.
+The Volta V100 16 / 32GB cards are the best bang for the buck. Next come P100 and P40 but both are very old, much slower and support will get worse for these.
 
 TODO:
 - Check current AMD ROCm support.
@@ -110,5 +110,6 @@ TODO:
 - https://blog.tymscar.com/posts/v100localllm/
 - https://esologic.com/benchmarking-tesla-gpus/
 - https://quesma.com/blog/quantization-hurts-knowledge/
+- https://aminediro.com/posts/flash_attn/
 
 #AI #tutorial
