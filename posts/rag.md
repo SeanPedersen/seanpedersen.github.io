@@ -168,5 +168,6 @@ Caveats:
 - <https://softwaredoug.com/blog/2025/12/09/rag-users-want-affordances-not-vectors>
 - https://mksg.lu/blog/gemini-rag-cloudflare-workers
 - https://www.kapa.ai/blog/how-we-prune-rag-context
+- https://www.lighthousenewsletter.com/p/rag-is-simpler-than-you-think
 
 #ML #coding
