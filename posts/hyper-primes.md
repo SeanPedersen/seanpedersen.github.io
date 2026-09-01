@@ -203,6 +203,9 @@ def generate_hyper_primes_debug(limit):
 generate_hyper_primes_debug(420)
 ```
 
+TODO:
+- Possible extension: replace factors of p-1 recursively until composed only of twos, then count number of twos again.
+
 ## References
 - <https://en.wikipedia.org/wiki/Super-prime>
 
