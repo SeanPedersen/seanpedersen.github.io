@@ -14,7 +14,7 @@ $$x_{l+1} = x_l + F(x_l)$$
 **Do skip connections fix vanishing / exploding gradient problem?**
 Skip connections change the optimization problem so that very deep networks have a much healthier gradient pathway. They don't make vanishing/exploding gradients mathematically impossible.
 
-**Prior art:** Very deep networks were trained before ResNets. He et al. demonstrated extremely deep plain rectifier networks using careful initialization designed to preserve signal variance through the network. Schmidhuber et al then introduced Highway Networks, which used learned gates to provide an identity-like information pathway through hundreds of layers.
+**Prior art:** Very deep networks were trained before ResNets. He et al. demonstrated extremely deep plain rectifier networks using careful initialization designed to preserve signal variance through the network. Schmidhuber et al. then introduced Highway Networks, which used learned gates to provide an identity-like information pathway through hundreds of layers (inspired by LSTM).
 
 ## References
 
