@@ -6,7 +6,7 @@ Adding more layers to deep neural networks increases their representational capa
 
 Instead of learning a completely new transformation at every layer, just learn the residual (updates to the existing input). So the representation is not repeatedly overwritten but instead progressively updated - allowing stable training of very deep neural networks.
 
-So instead of a normal layer (where F is feed-forward / convolution + activation):
+So instead of a normal layer (where F is dense / convolution + activation):
 $$x_{l+1} = F(x_l)$$
 
 a residual layer also adds the input directly to the transformation's output:
