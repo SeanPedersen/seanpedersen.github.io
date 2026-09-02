@@ -2,12 +2,14 @@
 
 Adding more layers to deep neural networks increases their representational capacity but also destabilizes learning. Skip connections unlocked training of very deep neural networks by adding identity inputs to layers (called skip connections).
 
-The residual stream: instead of learning a completely new transformation for every layer, just learn the residual (updates to the existing input). So the representation is not repeatedly overwritten but instead progressively updated - stabilizing training of deep neural networks.
+## The Residual Stream 
 
-So instead of normal (where F is MLP / convolution + activation):
+Instead of learning a completely new transformation at every layer, just learn the residual (updates to the existing input). So the representation is not repeatedly overwritten but instead progressively updated - allowing stable training of very deep neural networks.
+
+So instead of a normal layer (where F is feed-forward / convolution + activation):
 $$x_{l+1} = F(x_l)$$
 
-the residual version is:
+a residual layer also adds the input directly to the transformation's output:
 $$x_{l+1} = x_l + F(x_l)$$
 
 
