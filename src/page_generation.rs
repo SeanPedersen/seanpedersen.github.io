@@ -131,10 +131,9 @@ pub fn read_all_posts(posts_dir: &Path) -> Result<Vec<Post>> {
             } else {
                 let title = metadata.title.unwrap_or_else(|| extract_title(&body));
                 let tags = metadata.tags.unwrap_or_else(|| extract_tags(&content));
-                let content_raw = body.clone();
                 let markdown_without_title = remove_first_h1(&body);
                 let content_html = markdown_to_html(&markdown_without_title, &tags);
-                (title, tags, content_html, content_raw)
+                (title, tags, content_html, markdown_without_title)
             };
 
             if title.is_empty() {

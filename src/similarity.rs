@@ -13,7 +13,6 @@ mod inner {
     use crate::page_generation::{Post, PostSummary};
 
     const MODEL_NAME: &str = "minishlab/potion-multilingual-128M";
-    const EMBED_TEXT_CHAR_LIMIT: usize = 1024;
     const TOP_SIMILAR_COUNT: usize = 3;
 
     pub fn compute_similar_posts(posts: &[Post]) -> Result<HashMap<String, Vec<PostSummary>>> {
@@ -63,8 +62,7 @@ mod inner {
     }
 
     fn build_embed_text(title: &str, raw_markdown: &str) -> String {
-        let truncated: String = raw_markdown.chars().take(EMBED_TEXT_CHAR_LIMIT).collect();
-        format!("{}. {}", title, truncated)
+        format!("{}. {}", title, raw_markdown)
     }
 
     fn post_to_summary(post: &Post) -> PostSummary {
@@ -86,6 +84,21 @@ mod inner {
             return 0.0;
         }
         dot / denominator
+    }
+
+    #[cfg(test)]
+    mod tests {
+        use super::build_embed_text;
+
+        #[test]
+        fn embed_text_includes_the_title_once_and_the_full_body() {
+            let body = format!("Body {}", "x".repeat(1024));
+
+            assert_eq!(
+                build_embed_text("Post title", &body),
+                format!("Post title. {body}")
+            );
+        }
     }
 }
 
