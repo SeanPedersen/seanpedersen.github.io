@@ -48,6 +48,8 @@ For a nonrelativistic isolated system, the wavefunction evolves over time accord
 
 When a measurement is made, an exact outcome is observed from the range of possible outcomes (superposition). In the traditional Copenhagen interpretation, this is described as wavefunction collapse. However, whether collapse is a literal physical process depends on the interpretation of quantum mechanics.
 
+**Quantum entanglement**, produces what Einstein famously called “spooky action at a distance”: measurements made on entangled particles can show correlations across large separations that appear to arise instantaneously, even faster than light could travel between them. However, these correlations cannot be used to transmit controllable information faster than the speed of light, because each individual measurement result is fundamentally unpredictable; only when the results are later compared through ordinary, light-speed-limited communication does the correlation become apparent. Thus, entanglement is nonlocal in its correlations but does not violate relativity or permit faster-than-light communication.
+
 **Planck Length, Time and Quantum Unit of Action**
 
 The Planck length $l_P$ is approximately 1.616×10−35 meters and represents an extremely small scale at which quantum effects of gravity are expected to become important. The Planck time $t_P$ is approximately 5.39×10−44 seconds. The quantum unit of action, represented by Planck’s constant $h$, is approximately 6.626×10−34 joule-seconds and relates Energy and frequency of light $E=hf$.
@@ -115,6 +117,8 @@ Why do electrons not repel but build bonds (in molecules)? Electrons do repel ea
 Why do protons build atomic nuclei and not repel? Protons do repel electrically, but at the tiny distances inside nuclei, the strong interaction between protons and neutrons can overcome that repulsion.
 
 What is the max mass (atoms in a sphere) for a given element before it starts to collapse into a black hole?
+
+Warp drive? A warp drive is a hypothetical method of faster-than-light travel based on manipulating spacetime itself rather than accelerating a spacecraft through space beyond the speed of light. In the best-known proposal, the Alcubierre drive, spacetime would contract in front of a spacecraft and expand behind it, creating a “warp bubble” that could effectively carry the craft between distant locations faster than light could travel through normal space. Because the spacecraft would remain locally at rest inside the bubble, it would not technically exceed the speed of light in its immediate surroundings, potentially avoiding a direct violation of special relativity. However, current models require exotic forms of negative energy, raise serious stability and causality problems, and have no known practical method of construction, so warp drive remains a speculative concept rather than an established technology.
 
 ## Open questions in physics
 Gaps in current physics:
