@@ -48,6 +48,12 @@ For a nonrelativistic isolated system, the wavefunction evolves over time accord
 
 When a measurement is made, an exact outcome is observed from the range of possible outcomes (superposition). In the traditional Copenhagen interpretation, this is described as wavefunction collapse. However, whether collapse is a literal physical process depends on the interpretation of quantum mechanics.
 
+**Planck Length, Time and Quantum Unit of Action**
+
+The Planck length $l_P$ is approximately 1.616×10−35 meters and represents an extremely small scale at which quantum effects of gravity are expected to become important. The Planck time $t_P$ is approximately 5.39×10−44 seconds. The quantum unit of action, represented by Planck’s constant $h$, is approximately 6.626×10−34 joule-seconds and relates Energy and frequency of light $E=hf$.
+
+Fun fact: speed of light $c$ can be expressed as $c=\frac{l_P}{t_P}$, meaning light travels exactly one Planck length in one Planck time.
+
 ## Symmetry and conservation laws
 Continuous symmetries correspond to conservation laws.
 
@@ -71,11 +77,11 @@ white dwarfs
 neutron degeneracy pressure in neutron stars
 
 ## States of Matter
-Plasma: Extremely hot, ionized matter where electrons are separated from atoms; found in stars and lightning.
-Gas: Has no fixed shape or volume. Example: air.
-Liquid: Has a fixed volume but takes the shape of its container. Example: water.
-Solid: Has a fixed shape and volume. Example: rock.
-Einstein-Bose-condensate: Matter cooled to temperatures near absolute zero, where particles occupy the same quantum state and behave collectively like a single quantum system.
+**Plasma**: Extremely hot, ionized matter where electrons are separated from atoms; found in stars and lightning.
+**Gas**: Has no fixed shape or volume. Example: air.
+**Liquid**: Has a fixed volume but takes the shape of its container. Example: water.
+**Solid**: Has a fixed shape and volume. Example: rock.
+**Einstein-Bose-condensate**: Matter cooled to temperatures near absolute zero, where particles occupy the same quantum state and behave collectively like a single quantum system.
 
 ## Astrophysics
 The study of big structures like stars, planets and black holes.
