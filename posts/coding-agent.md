@@ -61,6 +61,9 @@ Refs:
 - https://github.com/Dicklesworthstone/beads_viewer
 - [Why decentral task orchestration wins](https://x.com/doodlestein/status/2013683966495084814)
 - Claude Code released tasks feature (similar to beads)
+- https://github.com/SeanPedersen/agent-deck
+- https://github.com/ZinkLu/Orca-Orchestration
+- https://github.com/toby1123yjh/easy-vibe-kanban
 
 #### INSTRUCTOR
 
