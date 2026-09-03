@@ -4,7 +4,7 @@ icon: "/images/icons/robot-golem.webp"
 # Optimal Coding Agent
 
 My blueprint for the optimal coding agent (team).
-Keeping LLMs in the smart zone using short and relevant context.
+Keeping LLMs in the smart zone using short and relevant context. An orchestrator also allows to use different harnesses / models in the same execution graph.
 
 Usage patterns:
 - quick (small) edit
