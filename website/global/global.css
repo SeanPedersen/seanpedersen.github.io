@@ -3,7 +3,7 @@
 /* CSS Variables */
 :root {
   /* Typography */
-  --font-sans: "Source Sans Pro", "Source Sans 3", system-ui, -apple-system, "Segoe UI", "Adwaita Sans", Cantarell, Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, segoe ui, Roboto, Oxygen, Ubuntu, Cantarell, open sans, helvetica neue, sans-serif;
 
   /* Reading measure: width of the text column itself, excluding the article's padding and border */
   --article-measure: 644px;
@@ -76,7 +76,7 @@
 }
 
 html[data-theme="light"] {
-  --background-color: #f0f0f0;
+  --background-color: #fff;
   --text-color: #111;
   --primary-color: #007acc;
   --border-color: #333;
