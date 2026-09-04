@@ -156,6 +156,11 @@ These don’t add conceptual weight—they reduce entropy over time.
 
 Update: latest feature workflows of claude code is similar - it adds a workflow language that allows to explicitely plan parallel execution flows of agents.
 
+Papers:
+- https://arxiv.org/abs/2608.16890
+- https://arxiv.org/abs/2502.14563
+- https://arxiv.org/abs/2602.17100
+
 Existing Agents:
 - https://www.mihaileric.com/The-Emperor-Has-No-Clothes/
   - https://news.ycombinator.com/item?id=46545620
