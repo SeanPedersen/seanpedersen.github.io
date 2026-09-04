@@ -209,6 +209,24 @@
         </section>
       </main>
     </div>
+    <script>
+      (function () {
+        const fragment = window.location.hash.slice(1);
+        if (!fragment) return;
+
+        let tag;
+        try {
+          tag = decodeURIComponent(fragment);
+        } catch (error) {
+          return;
+        }
+
+        if (!tag) return;
+
+        const tagInput = document.getElementById('tag-' + tag);
+        if (tagInput) tagInput.checked = true;
+      })();
+    </script>
     <footer class="footer">
       <p><a href="https://github.com/SeanPedersen/seanpedersen.github.io">Copy©at</a> ᓚᘏᗢ {{ year }} | All lights served
         .:. | <a href="/impressum.html">Impressum</a></p>
