@@ -420,8 +420,8 @@
   <script>
     window.op = window.op || function () { var n = []; return new Proxy(function () { arguments.length && n.push([].slice.call(arguments)) }, { get: function (t, r) { return "q" === r ? n : function () { n.push([r].concat([].slice.call(arguments))) } }, has: function (t, r) { return "q" === r } }) }();
     window.op('init', {
-      clientId: '1edeec6b-891d-439f-b440-fd0cdcee9fbc',
-      apiUrl: 'https://openpanel.digger.so',
+      apiUrl: 'https://openpanel.digger.so/api',
+      clientId: '83a051c6-8d61-44aa-b7b5-3038d46460d2',
       trackScreenViews: true,
       trackOutgoingLinks: true,
       trackAttributes: true,
