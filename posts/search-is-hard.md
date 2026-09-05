@@ -39,19 +39,19 @@ Tricks:
 
 ### Token Based Representations
 
-* **Word Level (BM25 / normalized TF-IDF)**
-  * Tokenization: standard words
-  * Purpose: relevance scoring for full-text search
-  * Strengths: scales efficiently to very large text corpora
-  * Limitation: cannot match partial words, abbreviations, or morphological variants
+**Word Level (BM25 / TF-IDF)**
+- Tokenization: typically word/token based
+- Purpose: lexical relevance scoring for full-text search
+- Strengths: efficient and scalable to very large text corpora
+- Limitations: scores are query- and corpus-dependent rather than normalized; partial words, abbreviations, and morphological variants require appropriate analyzers such as n-grams, synonyms, stemming, or lemmatization
 
-* **Subword Level (Corpus-Derived Subword Index – CDSI)**
+**Subword Level (Corpus-Derived Subword Index – CDSI)**
   * Tokenization: greedy longest-match subwords mined from frequent corpus substrings
   * Purpose: partial-word and compound-word matching in full text
   * Strengths: captures abbreviations and morphemes (e.g., `"neural net"` matches `"neural network"`), smaller posting lists than tri-grams, deterministic and interpretable
   * Limitation: requires offline vocabulary build and periodic rebuilds
 
-* **Character Level (Tri-gram Index)**
+**Character Level (Tri-gram Index)**
   * Tokenization: overlapping 3-character sequences
   * Purpose: substring and fuzzy search
   * Strengths: handles typos, partial matches, and short strings (filenames, codes, IDs)
