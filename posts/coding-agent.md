@@ -3,8 +3,8 @@ icon: "/images/icons/robot-golem.webp"
 ---
 # Optimal Coding Agent
 
-My blueprint for the optimal coding agent (team).
-Keeping LLMs in the smart zone using short and relevant context. An orchestrator also allows to use different harnesses / models in the same execution graph.
+My blueprint for the optimal coding agent (army): the basic idea is divide and conquer - instead of letting a single agent eat through its whole context for complex tasks, create a plan that partitions the task into smaller subtasks connected as an task execution graph.
+This keeps LLMs in the smart zone using short and relevant context. An orchestrator also allows to use different harnesses / models in the same execution graph.
 
 Usage patterns:
 - quick (small) edit
