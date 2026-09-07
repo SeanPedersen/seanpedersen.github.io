@@ -31,7 +31,7 @@ Pi loads `AGENTS.md` or `CLAUDE.md` at startup from:
   - parent directories, walking up from the current working directory
   - the current directory
 
-### Packages
+### Extensions
 
 Install extensions (packages) from the pi packages marketplace (review code before you use them): https://pi.dev/packages
 
@@ -39,19 +39,23 @@ Your custom extensions live in: $home/.pi/agent/extensions
 Installed extensions (packages) are in: TODO
 
 - show complete prompt context: https://pi.dev/packages/pi-system-prompt
-- dynamic workflows (explicit subagent workflow): https://github.com/Michaelliv/pi-dynamic-workflows
-- sub-agents: https://pi.dev/packages/pi-subagents
-- plan mode:
-  - https://pi.dev/packages/@plannotator/pi-extension
-  - https://pi.dev/packages/pi-pledit
+- compact tool calls: https://pi.dev/packages/@pi-kaush/pi-tool-call-markers
 - hashline edit: https://github.com/RimuruW/pi-hashline-edit
-- btw command: https://github.com/dbachelder/pi-btw
-- goal command: https://pi.dev/packages/@capyup/pi-goal
-- beads (task management): https://pi.dev/packages/pi-beads-extension
 - code index / search:
   - https://github.com/colbymchenry/codegraph
     - pi extension: https://github.com/SeanPedersen/pi-codegraph
   - https://github.com/MinishLab/semble
+
+- plan mode:
+  - https://pi.dev/packages/@plannotator/pi-extension
+  - https://pi.dev/packages/pi-pledit
+
+- btw command: https://github.com/dbachelder/pi-btw
+- goal command: https://pi.dev/packages/@capyup/pi-goal
+- beads (task management): https://pi.dev/packages/pi-beads-extension
+
+- dynamic workflows (explicit subagent workflow): https://github.com/Michaelliv/pi-dynamic-workflows
+- sub-agents: https://pi.dev/packages/pi-subagents
 
 ### Skills
 Skills are useful to dynamically load relevant documents / tools into the prompt context to solve advanced tasks / use pre-defined complex workflows.
