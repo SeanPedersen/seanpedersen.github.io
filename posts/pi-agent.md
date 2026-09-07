@@ -40,7 +40,7 @@ Installed extensions (packages) are in: TODO
 
 - show complete prompt context: https://pi.dev/packages/pi-system-prompt
 - compact tool calls: https://pi.dev/packages/@pi-kaush/pi-tool-call-markers
-- hashline edit: https://github.com/RimuruW/pi-hashline-edit
+- hashline edit: https://github.com/YuGiMob/pi-hashline-edit-pro
 - code index / search:
   - https://github.com/colbymchenry/codegraph
     - pi extension: https://github.com/SeanPedersen/pi-codegraph
