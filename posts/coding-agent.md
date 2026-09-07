@@ -15,7 +15,7 @@ Usage patterns:
   - deep research for best tech stack
   - use proven project code template / snippets
 
-Every code repo should have a SPEC.md file which details in natural language the purpose and capabilities of the project. The code base is then derived from it using coding agents. As coding agents improve in capability the code base will match the specification file more closely, more efficiently and with less bugs.
+Every code repo should have a SPEC.md file which details in natural language the purpose and capabilities of the project (instead of an implicit spec by only the code itself). The code base is then derived from it using coding agents. As coding agents improve in capability the code base will match the specification file more closely, more efficiently and with less bugs.
 
 UX:
 - Provide idea -> discuss
@@ -61,7 +61,7 @@ Refs:
 - https://github.com/Dicklesworthstone/beads_viewer
 - [Why decentral task orchestration wins](https://x.com/doodlestein/status/2013683966495084814)
 - Claude Code released tasks feature (similar to beads)
-- https://github.com/SeanPedersen/agent-deck
+- https://github.com/SeanPedersen/commander-graf
 - https://github.com/ZinkLu/Orca-Orchestration
 - https://github.com/toby1123yjh/easy-vibe-kanban
 
