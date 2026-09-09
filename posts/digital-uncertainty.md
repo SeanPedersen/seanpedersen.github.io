@@ -7,7 +7,7 @@ We are entering the age of digital uncertainty. An age where any digital artifac
 
 Any attempt to build AI generated content (deep fake) detection systems is flawed, since the outputs of such a system may be used to train an even better fake data generator. This leads to an equilibrium state of digital uncertainty: nothing in the digital realm can be deemed as real anymore - only as digital.
 
-I do not care if a digital artifact is human or AI made - I only care if it is useful to me. Useful content is on point, factual and at best surprising (teaches something new).
+I do not care if a digital artifact is human or AI made - I only care if it is useful to me. Useful content is on point, factual and at best surprising (teaches something new). Relevant [XKCD](https://xkcd.com/810/).
 
 The danger of mass manipulation of online communities via LLM powered bots is real and already happening (exploiting human “herd animal”-like social pressure opinion formation). We are in need of decentral solutions which respect user privacy, to solve this urgent problem.
 
