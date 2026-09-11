@@ -42,10 +42,6 @@ Useful Daemons:
 - [Syncthing](https://syncthing.net/)
 - [IPFS](/posts/ipfs)
 
-Tweaks & more:
-- [ananicy-cpp](https://gitlab.com/ananicy-cpp/ananicy-cpp): prevents system slow down on high disk usage (CachyOS ships with it)
-- [OpenZFS](https://openzfs.org/wiki/Main_Page): durable file system with useful features
-
 ## Honorable Mentions
 
 Distros:
@@ -67,5 +63,12 @@ Budgie DE is a buggy shit show.
 ## TO TRY
 - XFCE: promising low resource DE (though no wayland support yet)
 - NixOS
+
+Low RAM macOS config (<600MB): Arch → Labwc → lxqt-panel → PCManFM-Qt → mako → swaybg → dock → macOS theme.
+
+## Tweaks & more
+- [ananicy-cpp](https://gitlab.com/ananicy-cpp/ananicy-cpp): prevents system slow down on high disk usage (CachyOS ships with it)
+- [OpenZFS](https://openzfs.org/wiki/Main_Page): durable file system with useful features
+- Limit systemd-coredump via `sudoedit /etc/systemd/coredump.conf`
 
 #coding
