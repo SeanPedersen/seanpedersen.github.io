@@ -3,11 +3,13 @@ date: '2025-06-26'
 ---
 # Functional Programming
 
-A programming paradigm gaining traction with good reasons. The main selling point of functional programming is code that is easier to reason about, built from simple chains of data transformations. The cognitive complexity of code can be roughly attributed to the number of branches and state transitions it can enter. Functional programming makes it easy to keep this complexity low and is thus good for your head.
+A programming paradigm gaining traction with good reasons. The main selling point of functional programming is code that is easier to reason about, built from simple chains of data transformations. The cognitive complexity of code can be roughly attributed to the number of branches and state transitions it can enter. Functional programming makes it easy to keep this complexity low, reducing the potential for bugs to creep in and is thus good for your head.
 
 ## Pure Functions vs Dirty Methods
 
-The core difference between functional and other programming paradigms lies in how we handle state and behavior. Pure functions are predictable. Give them the same input, and they always return the same output. No surprises, no hidden state changes, no mysterious side effects.
+The core difference between functional and other programming paradigms lies in how we handle state and behavior. Pure functions are predictable. Give them the same input, and they always return the same output. No surprises, no hidden state changes, no mysterious side effects. Objects on the other hand hold state that can be mutated by many methods in arbitrary order and thus has the potential to create very hard to reason about (bad) code.
+
+A toy example:
 
 ```python
 # Pure function
