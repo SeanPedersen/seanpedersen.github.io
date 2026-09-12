@@ -28,7 +28,7 @@ LLM's trained on their own outputs suffer from model collapse - their performanc
 
 ### Fractured Embeddings
 
-The knowledge representation (weight matrices) in neural networks is fractured / entangled leading to issues like adversarial examples and hallucinations.
+The knowledge representation (weight matrices) in neural networks is not well formed but consists of fractured entangled representations leading to issues like adversarial examples and hallucinations.
 
 ## Problem Classes
 
