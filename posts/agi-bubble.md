@@ -26,7 +26,7 @@ True progress requires a paradigm shift toward architectures that form and manip
 
 LLM's trained on their own outputs suffer from model collapse - their performance degrades. Thus the trend of more and more LLM generated content (slop) being published on the web, will degrade their performance in the long run.
 
-### Fractured Embeddings
+### Fractured Representations
 
 The knowledge representation (weight matrices) in neural networks is not well formed but consists of fractured entangled representations leading to issues like adversarial examples and hallucinations.
 
