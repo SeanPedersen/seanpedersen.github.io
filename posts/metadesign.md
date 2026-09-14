@@ -26,6 +26,7 @@ Finally describe each module as deeply as necessary but not deeper, so that inte
 
 ## References
 
+- https://refactoringenglish.com/excerpts/write-an-effective-design-doc/
 - <https://learnhowtolearn.org/how-to-build-extremely-quickly/>
 
 #idea
