@@ -198,40 +198,8 @@
   <script src="/js/prefetch.js" defer></script>
   <script defer src="https://glance.digger.so/glance.js" data-site="site_y4ehgunsvzt6gbff"></script>
   <script>
-    window.op = window.op || function () { var n = []; return new Proxy(function () { arguments.length && n.push([].slice.call(arguments)) }, { get: function (t, r) { return "q" === r ? n : function () { n.push([r].concat([].slice.call(arguments))) } }, has: function (t, r) { return "q" === r } }) }();
-    window.op('init', {
-      apiUrl: 'https://openpanel.digger.so/api',
-      clientId: '83a051c6-8d61-44aa-b7b5-3038d46460d2',
-      trackScreenViews: true,
-      trackOutgoingLinks: true,
-      trackAttributes: true,
-    });
-  </script>
-  <script>
-    // Everything third-party here is best-effort and must not touch this page's load
-    // event: it starts only once the page itself is done, and gives up after a second
-    // so an unreachable host never leaves a request hanging.
     addEventListener('load', function () {
       var BUDGET_MS = 1000;
-
-      var controller = new AbortController();
-      var analyticsGiveUp = setTimeout(function () { controller.abort(); }, BUDGET_MS);
-      fetch('https://openpanel.dev/op1.js', { signal: controller.signal })
-        .then(function (response) {
-          return response.ok ? response.text() : Promise.reject(new Error('HTTP ' + response.status));
-        })
-        .then(function (source) {
-          var script = document.createElement('script');
-          script.textContent = source;
-          document.body.appendChild(script);
-        })
-        .catch(function (error) {
-          var reason = error && error.name === 'AbortError'
-            ? 'timed out after ' + BUDGET_MS + 'ms'
-            : (error && error.message) || error;
-          console.warn('OpenPanel did not load (' + reason + '); queued events were dropped.');
-        })
-        .finally(function () { clearTimeout(analyticsGiveUp); });
 
       // Clearing src is what aborts an image fetch -- removing the node does not.
       var icon = document.querySelector('img[data-src]');
