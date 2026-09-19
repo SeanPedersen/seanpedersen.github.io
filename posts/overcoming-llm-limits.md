@@ -31,6 +31,8 @@ One could spin this idea even further and train several models with radically di
 
 I hope to see more research exploring this consistent data bootstrapping approach for LLM.
 
+[LLMs Will Always Hallucinate, and We Need to Live With This](https://arxiv.org/abs/2409.05746)
+
 ## Other Hallucination Mitigation Strategies
 
 **Entropy Based**: Analyze the entropy (variance) of the logits. High-variance should indicate uncertainty. <https://github.com/xjdr-alt/entropix>
