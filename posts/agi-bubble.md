@@ -113,5 +113,6 @@ Just like vibe-coding enables software-engineers to output much more work (by au
 - <https://machine-bullshit.github.io/>
 - <https://unherd.com/2025/08/is-the-ai-bubble-about-to-burst/?lang=us>
 - <https://dlants.me/agi-not-imminent.html>
+- [LLMs Will Always Hallucinate, and We Need to Live With This](https://arxiv.org/abs/2409.05746)
 
 #AI
