@@ -107,4 +107,8 @@ Protocol: Messaging Layer Security is a tree-based authenticated group key agree
 
 > Secure group messaging with **forward secrecy**, **post-compromise security**, and **efficient membership changes**.
 
+## P2P projects
+
+- https://github.com/n0-computer/iroh
+
 #coding #privacy
