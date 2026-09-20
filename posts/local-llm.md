@@ -72,7 +72,7 @@ Most models are too big for consumer GPUs, so quantized versions (compressed par
     - TODO: find optimal thinking grammar using [GEPA](https://github.com/gepa-ai/gepa)
 - [Gemma4-26B-A4B](https://huggingface.co/unsloth/gemma-4-26B-A4B-it-GGUF): MoE (4B active) model with MTP, good for general knowledge and multi-modal (image) queries
   - [Uncensored version](https://huggingface.co/HauhauCS/Gemma4-26B-A4B-QAT-Uncensored-HauhauCS-Balanced-MTP)
-- [Ternary Bonsai 27B](https://huggingface.co/prism-ml/Ternary-Bonsai-27B-gguf) - ternary bit distilled model (~7.2 GB, 95% of FP16 intelligence retained)
+- [Ternary Bonsai 2 - Qwen3.8 27B](https://huggingface.co/prism-ml/Ternary-Bonsai-2-27B-gguf) - ternary bit distilled model (~7.2 GB, 95% of FP16 intelligence retained)
 - [Qwen3.5 9B Distilled](https://huggingface.co/mradermacher/Qwen3.5-9B-GLM5.1-Distill-v1-i1-GGUF) - small but capable agentic dense model good for <8GB VRAM
   - [MoQ](https://huggingface.co/w-ahmad/Qwen3.5-9B-GGUF-MoQ/tree/main/MoQ-Quants-Latest) variant (very efficient quantization)
 - [LFM2.5-8B-A1B](https://huggingface.co/LiquidAI/LFM2.5-8B-A1B) - very fast MoE model 1.5B active + 128k context (agentic usefulness is limited though...)
