@@ -61,7 +61,6 @@ Most models are too big for consumer GPUs, so quantized versions (compressed par
 
 <16 GB VRAM (dense needs fast GPU):
 - [Qwen3.8 27B](https://huggingface.co/unsloth/Qwen3.8-27B-GGUF) Q3 - dense model (sota intelligence per size)
-- [Qwen3.6 27B Q3_K_M](https://huggingface.co/unsloth/Qwen3.6-27B-GGUF) - dense model, very good (Sonnet 4.6 performance)
 
 <8GB VRAM / CPU:
 - [Qwen3.6-35B-A3B Q4_K_XL](https://huggingface.co/unsloth/Qwen3.6-35B-A3B-MTP-GGUF): Strong MoE (3B active) model with MTP can run even on 8GB VRAM GPU with CPU offloading (the local king)
