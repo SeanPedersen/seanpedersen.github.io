@@ -4,7 +4,7 @@ icon: "/images/icons/surveillance-camera.webp"
 ---
 # Digital Surveillance Capitalism
 
-Digital sureveillance capitalism shapes how we interact with technology, the world and even how we understand its role in society. These mechanisms tend to hide the true power relations while presenting inhumane, privacy violating technological developments as neutral, natural progress.
+Digital surveillance capitalism is the dominant force of the 21st century - shaping our global society. Players like Alphabet (Google), Meta (Instagram, Facebook), Tiktok and co are all building sticky spider webs that trap their victims (users) to extract their valuable innerts (personal user data). These inhumane, privacy violating technological developments are often presented and thus also viewed as neutral, natural progress but they are not. It is time to break free from these sticky privacy extracting spider webs.
 
 ## Core Mechanisms
 
@@ -14,7 +14,7 @@ Tech firms recast hard social problems as simple tech tasks. Debate over law and
 Example: using filters and bots to police hate speech instead of asking who should set speech rules. This story defends deregulation, giant scale and ignores waste, labor abuse and social harm.
 
 ### Forced Transparency and Self Tracking
-People are scored nonstop: credit, clicks, steps, ratings. Being watched makes us adjust to please the watcher.
+People are scored and monitored nonstop: credit, clicks, steps, ratings. Being watched makes us adjust to please the watcher.
 Users are exposed; while platforms algorithms and business aims stay hidden. Long legal pages, secret algorithms and many confusing company layers. 
 Self tracking is sold as freedom; it becomes self discipline to meet outside targets: fitness badges, five‑star gig ratings. Trust is demanded; proof is withheld.
 
@@ -27,9 +27,16 @@ Dataism: Numbers are treated as pure truth; method bias is ignored. Tech inevita
 ### Results
 Power pools in a few firms. Risk shifts to users and workers: algorithmic gig control, data leaks, biased automation. This is masked as efficiency and empowerment. Design choices are political choices.
 
+These giant pools of personal data are at best used to make giant profits and save human lives (through responsible law-enforcement access) but they hold a much darker risk: a totalitarian / fascist regime may use them to identify, track and persecute political opponents, journalists, activists, minorities and anyone deemed a threat to the established order.
+
+**The infrastructure of commercial surveillance can become the infrastructure of political repression.**
+
 ## Human Centered Technology
 
 ...serving humans instead of exploiting them for maximum profits.
+
+### Privacy by Design
+Collect the least data. Encrypt end to end. Use techniques that hide individuals in stats. Make abuse hard by architecture, not fragile policy.
 
 ### Open Source
 Code you can read, verify and change. True digital independence. In the future everyone may change their apps using local LLM's.
@@ -39,9 +46,6 @@ Data lives on your devices; sync only when you choose. Works offline. Cuts surve
 
 ### Open Standards and Interoperability
 Systems talk through public protocols. You can move and keep contacts and data. Stops lock‑in. Forces competition on quality.
-
-### Privacy by Design
-Collect the least data. Encrypt end to end. Use techniques that hide individuals in stats. Make abuse hard by architecture, not fragile policy.
 
 ### Democratic Governance
 Co‑ops, user boards, multi‑stakeholder councils. Invite affected groups into rule making. Example: civic platforms that enable public debate and consensus.

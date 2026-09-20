@@ -1,10 +1,11 @@
 ---
 date: '2024-10-19'
 ---
-# Launching digger.so
+# Launching digger.lol
 
+this project is outdated and superseded by digger.so
 
-[digger.so](https://digger.so/) is a visual search & exploration engine, allowing users to browse efficiently and intuitively giant pools of data.
+[digger.so](https://digger.lol/) is a visual search & exploration engine, allowing users to browse efficiently and intuitively giant pools of data.
 
 The goal is to create beautiful and useful maps of interesting data, empowering the user to explore more intuitively guided by semantic similarity. No user data needs to be tracked for this to work, the data speaks for itself.
 
