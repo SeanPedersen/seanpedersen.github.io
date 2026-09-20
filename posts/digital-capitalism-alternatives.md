@@ -91,4 +91,4 @@ Human tech serves people, not extracts from them. It shares power, not hoards it
 - <https://joinmastodon.org/>
 - <https://www.fairphone.com/>
 
-#idea
+#idea #privacy
