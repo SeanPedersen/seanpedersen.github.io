@@ -4,7 +4,7 @@ icon: "/images/icons/surveillance-camera.webp"
 ---
 # Digital Surveillance Capitalism
 
-Digital surveillance capitalism is the dominant force of the 21st century - shaping our global society. Players like Alphabet (Google), Meta (Instagram, Facebook), Tiktok and co are all building sticky spider webs that trap their victims (users) to extract their valuable innerts (personal user data). These inhumane, privacy violating technological developments are often presented and thus also viewed as neutral, natural progress but they are not. It is time to break free from these sticky privacy extracting spider webs.
+Digital surveillance capitalism is the dominant force of the 21st century - shaping our global society. Players like Alphabet (Google), Meta (Instagram, Facebook), Tiktok, OpenAI (ChatGPT), Anthropic (Claude) and co are all building sticky spider webs that trap their victims (users) to extract their valuable innerts (personal user data). These inhumane, privacy violating technological developments are often presented and thus also viewed as neutral, natural progress but they are not. It is time to break free from these sticky privacy extracting spider webs.
 
 ## Core Mechanisms
 
