@@ -1,7 +1,7 @@
 # Messenger
 Humanity is in need of a fun to use, secure, privacy-respecting and decentral messenger.
 
-Protocol: The client owns the identity and message history. It uses end-to-end encryption for content and relationship metadata, direct peer-to-peer transport when possible, and optional relays or federation when direct delivery fails.
+Protocol: The client owns the identity and message history. It uses end-to-end encryption for content and relationship metadata, direct peer-to-peer transport when possible and also temporarily stores and relays messages when direct delivery fails.
 
 - User account via username (no phone number needed)
 - Decentralized P2P discovery and messaging (device to device just works) + federated (optional relay servers make the network faster and more reliable)
@@ -10,10 +10,9 @@ Protocol: The client owns the identity and message history. It uses end-to-end e
 - Thick client (user keeps message history - default is 2 months) + thin optional servers (just relay messages)
 - Default: use internet, fallback: Wi-Fi Mesh; Bluetooth (like bitchat)
 
-Chat Features ([Telegram](https://github.com/telegramdesktop/tdesktop) has best chat UX):
-
 Protocol: Messages use one encrypted envelope format for text, files, and stickers. Group membership changes update the group key, while relays store and forward only encrypted data.
 
+Chat Features ([Telegram](https://github.com/telegramdesktop/tdesktop) has best chat UX):
 - group chats
 - file transfer
 - stickers
