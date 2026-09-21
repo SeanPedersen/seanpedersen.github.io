@@ -36,7 +36,7 @@ These giant pools of personal data are at best used to make giant profits and sa
 ...serving humans instead of exploiting them for maximum profits.
 
 ### Privacy by Design
-Collect the least data. Encrypt end to end. Use techniques that hide individuals in stats. Make abuse hard by architecture, not fragile policy.
+Collect the least data. Encrypt end to end. Use techniques that hide individuals in stats. Make abuse hard by architecture, not fragile policy. Build federated and decentral software - reduce centralized data silos of personal data.
 
 ### Open Source
 Code you can read, verify and change. True digital independence. In the future everyone may change their apps using local LLM's.
