@@ -91,9 +91,10 @@ Interesting used GPU options:
 | Tesla P100 (PCIe) | 16 GB HBM2 | 732 GB/s | 250W | 9.3 | 18.7 | Cheap, but old — less attractive than V100/P40. |
 | GTX 1080 Ti | 11 GB GDDR5X | 484 GB/s | 250W | 11.3 | 11.3 | Cheap but VRAM-limited, no Tensor Cores. |
 | RTX 3090 | 24 GB GDDR6X | 936 GB/s | 350W | 35.6 | 71.2 Tensor | Often the practical local LLM sweet spot. |
+| AMD MI50 | 32 GB HBM2 | 1000 GB/s | 300W | 13.3 | 26.5 | Server workload card. |
+| AMD BC-250 | 16 GB GDDR6 | 448 GB/s | 220W | 6.9 | 13.8 | Mining card based on PS5 APU, ROCm support varies. |
 | Intel Arc A770 | 16 GB GDDR6 | 560 GB/s | 225W | 19.7 | 39.3 XMX | Good llama.cpp SYCL support; get the 16 GB variant. |
 | Intel Arc B580 | 12 GB GDDR6 | 456 GB/s | 190W | 14.4 | 28.8 XMX | Battlemage arch, better perf/watt than A770, solid llama.cpp support. |
-| AMD BC-250 | 16 GB GDDR6 | 448 GB/s | 220W | 6.9 | 13.8 | Mining card based on PS5 APU, ROCm support varies. |
 
 The Volta V100 16 / 32GB cards are the best bang for the buck. Next come P100 and P40 but both are very old, much slower and support will get worse for these.
 
