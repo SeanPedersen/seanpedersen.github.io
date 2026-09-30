@@ -26,7 +26,7 @@ Firefox, Brave etc. also track their users (with default settings). Test [here](
 
 - [LibreWolf](https://librewolf.net/) - Privacy focused Firefox fork with strong anti-fingerprinting and good UX
 - [Mullvad](https://mullvad.net/en/browser) - Privacy focused Firefox fork (basically Tor browser without Tor network)
-- [Cromite](https://github.com/uazo/cromite) - Chromium without Google and with strong anti-fingerprinting
+- [Cromite](https://github.com/uazo/cromite) - Chromium without Google and with strong anti-fingerprinting (outdated)
 - [Ungoogled Chromium](https://github.com/ungoogled-software/ungoogled-chromium) - Chromium without Google (spy ware)
   - needs some [more tweaks](https://github.com/ungoogled-software/ungoogled-chromium/issues/3912) to beat https://coveryourtracks.eff.org
 - [Browser Comparison](https://digdeeper.club/articles/browsers.xhtml#fullsummary)
@@ -48,7 +48,7 @@ E-Mail Provider:
 
 Global Maps:
 
-- [OpenStreetMap](https://www.openstreetmap.org/) - open data, privacy focused
+- [OpenStreetMap App](https://osmapp.org) - open data, privacy focused
 
 ChatBot:
 
