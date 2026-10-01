@@ -15,11 +15,29 @@ Keep an OpenAI-compatible [API](https://en.wikipedia.org/wiki/API) for inference
 
 The OpenAI [models endpoint](https://developers.openai.com/api/reference/resources/models/methods/list) lists model IDs and basic metadata. Extend `/v1/models` with an `architecture` object for each model.
 
-[OpenRouter's model catalog](https://openrouter.ai/api/v1/models) already uses the `architecture` object with `input_modalities` and `output_modalities`. Build on that idea with embedding-specific metadata:
+[OpenRouter's model catalog](https://openrouter.ai/api/v1/models) already uses the `architecture` object with `input_modalities` and `output_modalities`. 
+
+For LLMs from OpenRouter:
+```json
+{
+  "id": "aswesome/llm-model",
+  "description": "The best LLM on planet earth",
+  "architecture": {
+    "modality":	"text+image+file->text",
+    "input_modalities": ["text", "image", "file"],
+    "output_modalities": ["text"],
+    "tokenizer": "GPT",
+    "instruct_type": null
+  }
+}
+```
+
+Build on that idea with embedding-specific metadata:
 
 ```json
 {
   "id": "siglip-clip-text-vision",
+  "description": "A CLIP text and image embedding model for search",
   "architecture": {
     "input_modalities": ["text", "image"],
     "output_modalities": ["embedding"],
