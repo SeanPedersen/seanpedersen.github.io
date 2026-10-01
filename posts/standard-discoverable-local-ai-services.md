@@ -1,6 +1,7 @@
 ---
 date: '2026-10-01'
 ---
+
 # A Standard for Discoverable Local AI Services
 
 One service on your local computer or on a home or office network can serve several AI applications. Serving LLMs, text and image embedding models, speech transcription, image generation and much more.
@@ -9,21 +10,49 @@ But [local AI apps](/posts/local-ai-chat-apps) still need too much setup: a serv
 
 A standard should answer two questions: **Where is the service? What can its models do?**
 
-Keep an OpenAI-compatible [API](https://en.wikipedia.org/wiki/API) for inference, then add service discovery and per-model architecture metadata. The names and metadata below are proposals, not an existing standard.
+Publish an OpenAPI document so applications can discover the API versions, endpoints, and schemas a service supports. Use the OpenAI models endpoint to describe which models are currently available and what each model can do. When the server address is not already known, DNS-based service discovery can make the service discoverable on the local machine and network.
 
-## Discover model inputs and outputs
+The names and metadata below are proposals, not an existing standard.
+
+## Discover the API
+
+The standard does not need to define every request and response format itself. Instead, a service can publish an [OpenAPI](https://www.openapis.org/) document describing the API versions, endpoints, and schemas it supports.
+
+```text
+GET /openapi.json
+```
+
+The OpenAPI document should specify the OpenAI models endpoint and how text, image, and audio inputs are represented, which parameters an endpoint accepts, its response schema, error responses, service-specific extensions, and the available API versions.
+
+It describes what the server API knows how to speak. It does not need to list which models are currently loaded or available (done by OpenAI models endpoint).
+
+This avoids forcing every local AI server to implement exactly the same set of inference APIs, although broad compatibility would still be desirable. Applications or agents can inspect the OpenAPI document when they need the precise wire format for a particular operation.
+
+Keep familiar inference routes:
+
+```text
+POST /v1/chat/completions
+POST /v1/embeddings
+POST /v1/audio/transcriptions
+POST /v1/audio/speech
+```
+
+A future version could expose different routes under `/v2` without changing the stable discovery location at `/openapi.json`.
+
+## Discover models with inputs and outputs
 
 The OpenAI [models endpoint](https://developers.openai.com/api/reference/resources/models/methods/list) lists model IDs and basic metadata. Extend `/v1/models` with an `architecture` object for each model.
 
-[OpenRouter's model catalog](https://openrouter.ai/api/v1/models) already uses the `architecture` object with `input_modalities` and `output_modalities`. 
+[OpenRouter's model catalog](https://openrouter.ai/api/v1/models) already uses the `architecture` object with `input_modalities` and `output_modalities`.
 
-For LLMs from OpenRouter:
+For LLMs based on OpenRouter /v1/models endpoint:
+
 ```json
 {
   "id": "aswesome/llm-model",
   "description": "The best LLM on planet earth",
   "architecture": {
-    "modality":	"text+image+file->text",
+    "modality": "text+image+file->text",
     "input_modalities": ["text", "image", "file"],
     "output_modalities": ["text"],
     "tokenizer": "GPT",
@@ -41,9 +70,11 @@ Build on that idea with embedding-specific metadata:
   "architecture": {
     "input_modalities": ["text", "image"],
     "output_modalities": ["embedding"],
-    "embedding": {
-      "dimensions": 768,
-      "shared_space": true
+    "output": {
+      "embedding": {
+        "shape": [null, 768],
+        "shared_space": true
+      }
     }
   }
 }
@@ -57,24 +88,19 @@ A text search app could select models with `text` input and `embedding` output. 
 
 The nested `embedding` object is a proposed extension to the OpenRouter-inspired structure. Other model details, such as tool support, can live in separate metadata fields.
 
-Keep familiar inference routes:
+The distinction between `/openapi.json` and `/v1/models` is useful:
 
 ```text
-POST /v1/chat/completions
-POST /v1/embeddings
-POST /v1/audio/transcriptions
-POST /v1/audio/speech
+/openapi.json
+    What can this server/API implementation speak?
+
+/v1/models
+    Which models are available right now, and what can they do?
 ```
 
-The standard does not need to define every request and response format itself. Instead, the service can publish an [OpenAPI](https://www.openapis.org/) document describing the endpoints and schemas it supports.
+Loading or unloading a model only needs to change `/v1/models`. The OpenAPI document only needs to change when the API contract itself changes, for example when a new modality requires a new request format or a new endpoint.
 
-```text
-GET /v1/openapi.json
-```
-
-The OpenAPI document can specify how text, image and audio inputs are represented, which parameters an endpoint accepts, its response schema, error responses, and any service-specific extensions.
-
-This also avoids forcing every local AI server to implement exactly the same set of inference APIs (but that would be nice). Applications or agents can discover the service and its models, then inspect the OpenAPI document when they need the precise wire format for an operation.
+This keeps the API schema relatively stable while allowing the model catalog to reflect the server's current runtime inventory.
 
 ## Find the server automatically
 
@@ -99,10 +125,7 @@ Keep discovery records small. Put detailed metadata in [HTTP](https://en.wikiped
 {
   "protocol": "local-ai",
   "version": "1",
-  "api": {
-    "type": "openai-compatible",
-    "base": "/v1"
-  }
+  "openapi": "/openapi.json"
 }
 ```
 
@@ -114,16 +137,18 @@ The full flow stays small:
 DNS-SD / mDNS: _local-ai._tcp.local.
     ↓ hostname + port
 GET /.well-known/ai
-    ↓ protocol + API base
+    ↓ protocol + OpenAPI location
+GET /openapi.json
+    ↓ API versions + endpoints + schemas
 GET /v1/models
-    ↓ models + architecture metadata
+    ↓ current models + architecture metadata
 POST /v1/*
     ↓ inference
 ```
 
 Managed networks can publish DNS-SD records through unicast DNS in a configured browsing domain. This supports discovery across routed networks where local mDNS does not reach.
 
-**DNS-SD finds the service. The discovery document identifies the protocol. Model architecture describes inputs and outputs. The inference API runs the request.**
+**DNS-SD finds the service. The discovery document identifies the protocol. The OpenAPI document describes the API. Model architecture describes the models currently available and their inputs and outputs. The inference API runs the request.**
 
 Together, these pieces could let applications share local AI infrastructure without asking users to manage server addresses, ports, or model-specific setup.
 
