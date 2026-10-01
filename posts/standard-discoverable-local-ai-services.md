@@ -380,6 +380,8 @@ An [embedding](https://en.wikipedia.org/wiki/Word_embedding) turns an input into
 
 Here, the model entry says that text input uses the `EmbeddingTextInput` schema, image input uses the `EmbeddingImageInput` schema, and the model produces vectors described by `EmbeddingOutput768`.
 
+Possible optional extra fields for "embeddings" key: matryoshka_dims: list<int>, type: sparse / dense, similarity: L2 / cosine / dot
+
 The OpenAPI document tells the application how those schemas are used by actual operations:
 
 ```text
