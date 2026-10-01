@@ -66,7 +66,15 @@ POST /v1/audio/transcriptions
 POST /v1/audio/speech
 ```
 
-The standard must also define how these inputs and outputs map to request and response formats. Image and audio embeddings need agreed extensions beyond the text input format.
+The standard does not need to define every request and response format itself. Instead, the service can publish an [OpenAPI](https://www.openapis.org/) document describing the endpoints and schemas it supports.
+
+```text
+GET /v1/openapi.json
+```
+
+The OpenAPI document can specify how text, image and audio inputs are represented, which parameters an endpoint accepts, its response schema, error responses, and any service-specific extensions.
+
+This also avoids forcing every local AI server to implement exactly the same set of inference APIs (but that would be nice). Applications or agents can discover the service and its models, then inspect the OpenAPI document when they need the precise wire format for an operation.
 
 ## Find the server automatically
 
