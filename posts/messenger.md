@@ -111,4 +111,6 @@ Protocol: Messaging Layer Security is a tree-based authenticated group key agree
 
 - https://github.com/n0-computer/iroh
 
+TODO: fork [zapfast](https://github.com/crmne/zapfast) and build one unified messenger for all messengers that creates new chats with highest possible security if possible but still supports messenging with other chat apps protocols.
+
 #coding #privacy
