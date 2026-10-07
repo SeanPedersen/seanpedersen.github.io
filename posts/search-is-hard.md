@@ -196,6 +196,14 @@ As you see there are many knobs to tune a modern search pipeline and thus we nee
 - Use when: Comparing systems with different precision/recall trade-offs
 - Key insight: Penalizes systems that optimize only one metric
 
+### nDCG@K
+
+- What: Ranking quality of the top K results, rewarding relevant documents placed higher
+- Formula: DCG@K ÷ IDCG@K, where DCG@K = Σᵢ₌₁ᴷ relᵢ ÷ log₂(i + 1) and IDCG@K is the DCG of the ideal ranking
+- Use when: Result order matters and relevance is graded (e.g. 0/1/2)
+- Limitation: Needs graded relevance labels to be most useful, and ignores relevant documents ranked below K
+- Key insight: Normalized to 0–1, so scores are comparable across queries; standard on benchmarks like BEIR and MTEB
+
 ## Ideas to Explore
 
 User steered semantic search by selecting N matches and finding the common subspace in their embeddings
