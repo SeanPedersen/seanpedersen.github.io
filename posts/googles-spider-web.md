@@ -5,6 +5,6 @@ Main thesis: Google and co turned the open web into sticky isolated spider webs 
 
 This fitting metaphor of sticky spider webs describes perfectly the current state of the WWW. Most people are trapped in closed ecosystems, that exploit their attention for profit and manipulate their thoughts for hopefully also just profits...
 
-We need privacy respecting services and more decentralised infrastructure - returning to an open, non-sticky web.
+We need privacy respecting services and more decentralised infrastructure - returning to an open, non-sticky web. I am doing my part with [digger.so](https://digger.so/) - a privacy respecting discovery engine.
 
 #privacy #books
