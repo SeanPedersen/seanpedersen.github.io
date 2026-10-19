@@ -31,6 +31,7 @@ Default to [net/http](https://pkg.go.dev/net/http). Since Go 1.22, the standard 
 
 ## Desktop GUI
 - [Wails](https://wails.io/): Go backend with a web frontend (like [Tauri](https://tauri.app/) for [Rust](/posts/rust)) to build desktop apps
+- [MyGo](https://mygo.egoist.dev/): Tiny Go desktop apps
 - [Fyne](https://fyne.io/): pure Go, native cross-platform GUI toolkit
 
 ## Database
