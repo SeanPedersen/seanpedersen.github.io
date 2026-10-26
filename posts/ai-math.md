@@ -14,4 +14,4 @@ Tao also emphasizes that LLM written proofs show lack of human understanding: th
 
 -  [The paradox at the heart of AI and science | Terence Tao](https://www.youtube.com/watch?v=svl_1upFpQo)
 
-#ai #math
+#AI #math
