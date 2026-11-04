@@ -65,11 +65,14 @@ To distinguish genuine advancement from incremental improvements, watch for thes
 
 Quantum computing remains in its early stages, but the fundamentals are sound and progress is measurable. While real-world applications remain still years away, the field has moved beyond pure research into engineering challenges of scaling, error correction, and integration. The next five years will likely determine whether quantum computing transitions from a promising laboratory curiosity to a truly transformative technology with real impact.
 
+Update: it seems not like quantum computing will become a useful technology in the next 5-10 years.
+
 ## References
 
 - [Quantum Computing: Between Hope and Hype](https://scottaaronson.blog/?p=8329)
 - [A Cryptography Engineer’s Perspective on Quantum Computing Timelines](https://words.filippo.io/crqc-timeline/)
 - [YouTube: Post Quantum Cryptography - Computerphile](https://www.youtube.com/watch?v=_MoRcYLN-7U)
 - Excellent in-depth intro: <https://quantum.country/>
+-  [Quantum Computing Finally Got Its Numbers, and They’re Bad](https://www.youtube.com/watch?v=t3CvQRH-mFg)
 
 #AI
