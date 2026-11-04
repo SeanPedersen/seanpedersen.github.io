@@ -442,6 +442,7 @@ pg_restore \
 - <https://www.pixelstech.net/article/1747708863-openai%3a-scaling-postgresql-to-the-next-level>
   - [HN Discussion](https://news.ycombinator.com/item?id=44071418)
 - [Introduction to Postgres Indexes](https://dlt.github.io/blog/posts/introduction-to-postgresql-indexes/)
+- [Internals of PostgreSQL](https://www.interdb.jp/pg/index.html)
 - [Unconventional Postgres Optimizations](https://hakibenita.com/postgresql-unconventional-optimizations)
 - https://hatchet.run/blog/postgres-survival-guide
   - https://news.ycombinator.com/item?id=49005787
