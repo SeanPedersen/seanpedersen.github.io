@@ -19,11 +19,12 @@ TieredQ first subtracts a learned centroid from each vector, rotates the residua
 
 So TieredQ exploits the skewed eigenvalue spectrum found in most embeddings. Where the variance of embeddings is concentrated in the leading PCA directions rather than spread evenly.
 
-## Experiments (Benchmarks)
+## Benchmark
+TODO (will follow soon)
 
 setup: compute recall baseline (full linear scan), compute recall on compressed vectors (full linear scan)
 
-relevant metrics: compression time, query latency, retrieval performance (recall etc.) per compression data (recall per compressed vector data)
+relevant metrics: compression (index build) time, query latency, QPS, recall per compressed vector data (both disk and max RAM usage)
 
 Based on: https://github.com/VectorDB-NTU/rabitq-turboquant-comparison/
 
