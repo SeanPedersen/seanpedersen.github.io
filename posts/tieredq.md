@@ -15,9 +15,9 @@ TieredQ core algorithm:
 2. Variance-aware greedy bit allocation per dimension (principal component)
 3. Scalar quantization per dimension with allocated bit budget
 
-TieredQ first subtracts a learned centroid from each vector, rotates the residual with PCA, and then hands out bits greedily to each dimension (0-8 per dim based on variance), wherever each extra bit reduces the expected error most.
+TieredQ first subtracts a learned centroid from each vector, rotates the residual with PCA, and then hands out bits greedily to each dimension (0-12 bits per dim based on variance), wherever each extra bit reduces the expected error most.
 
-So TieredQ exploits a skewed eigenvalue spectrum of most embeddings. Embedding variance is concentrated in the leading PCA directions rather than spread evenly.
+So TieredQ exploits a skewed eigenvalue spectrum found in most embeddings. Embedding variance is concentrated in the leading PCA directions rather than spread evenly.
 
 ## Experiments (Benchmarks)
 
@@ -46,8 +46,6 @@ This is closely related to techniques used in JPEG, audio compression, and other
 For approximately Gaussian data, allocating bits according to the variance of each transformed dimension is well motivated by classical rate–distortion theory.
 
 ### Transform Coding for Nearest Neighbor Search
-
-Interestingly, this approach was already explored specifically for approximate nearest neighbor search.
 
 **Brandt (2010) — [Transform Coding for Fast Approximate Nearest Neighbor Search in High Dimensions](https://research.adobe.com/publication/transform-coding-for-fast-approximate-nearest-neighbor-search-in-high-dimensions/)**
 
@@ -80,7 +78,7 @@ RaBitQ relies on randomized rotation and binary quantization, while TurboQuant u
 
 TieredQ instead makes a different tradeoff: **spend more effort learning the structure of the dataset to make better use of every stored bit.**
 
-Compared with earlier transform coding methods, TieredQ is less a fundamentally new algorithm and more a modern implementation of an established idea, evaluated against a new generation of ANN quantizers and embedding distributions.
+Compared with earlier transform coding methods, TieredQ is less a fundamentally new algorithm and more a modern optimized implementation of an established idea, evaluated against a new generation of ANN quantizers and embedding distributions.
 
 ### Why Is This Interesting?
 
@@ -93,8 +91,6 @@ And that's exactly what I'm seeing in my experiments.
 **On my benchmarks, TieredQ achieves better retrieval recall at comparable compressed vector sizes than both RaBitQ and TurboQuant.**
 
 That doesn't mean TieredQ is universally better. PCA requires dataset-specific training, the learned transform introduces additional costs, and my results currently measure compression efficiency rather than end-to-end query throughput.
-
-But they suggest that a relatively simple, data-aware transform coder can still be highly competitive with modern ANN compression techniques.
 
 ## References
 - https://github.com/SeanPedersen/TieredQ
