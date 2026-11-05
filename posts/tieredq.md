@@ -72,11 +72,11 @@ TieredQ instead makes a different tradeoff: **spend more effort learning the str
 
 Compared with earlier transform coding methods, TieredQ is less a fundamentally new algorithm and more a modern optimized implementation of an established idea, evaluated against a new generation of ANN quantizers and embedding distributions.
 
-### Conclusion
+## Conclusion
 
 Modern embeddings can have highly non-uniform variance distributions. That creates an opportunity for techniques that allocate their precision unevenly instead of treating all dimensions equally.
 
-**On my benchmarks, TieredQ achieves better retrieval recall at comparable compressed vector sizes than both RaBitQ and TurboQuant.**
+**On my benchmarks, TieredQ achieves better retrieval recall at comparable compressed vector sizes (+40% lower RAM use) than both RaBitQ and TurboQuant.**
 
 That doesn't mean TieredQ is universally better. PCA requires dataset-specific training and the learned transform introduces additional costs. So TieredQ is a good choice in RAM limited use cases.
 
