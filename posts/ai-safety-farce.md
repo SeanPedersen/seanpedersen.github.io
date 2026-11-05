@@ -11,7 +11,7 @@ AI alignment without decentralization still concentrates power.
 Concentrated AI power is a societal risk.
 Therefore AI deployment architecture is as important as AI model alignment.
 
-Open-source AI must win.
+Local (open-source) AI must win.
 
 References:
 - https://openmined.org/blog/private-machine-learning-explained/
