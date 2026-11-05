@@ -6,7 +6,7 @@ Why compress all dimensions of a vector uniformly (lowering all dimensions to th
 
 After some experiments my vector quantization technique TieredQ was born and it is beating both TurboQuant and RaBitQ on all my benchmarks (recall compression ratio wise - but not always throughput QPS and index build time).
 
-[TieredQ github repo](https://github.com/SeanPedersen/TieredQ)
+[TieredQ Github Repo](https://github.com/SeanPedersen/TieredQ)
 
 ## How it works
 
@@ -17,7 +17,7 @@ TieredQ core algorithm:
 
 TieredQ first subtracts a learned centroid from each vector, rotates the residual with PCA, and then hands out bits greedily to each dimension (0-12 bits per dim based on variance), wherever each extra bit reduces the expected error most.
 
-So TieredQ exploits a skewed eigenvalue spectrum found in most embeddings. Embedding variance is concentrated in the leading PCA directions rather than spread evenly.
+So TieredQ exploits the skewed eigenvalue spectrum found in most embeddings. Where the variance of embeddings is concentrated in the leading PCA directions rather than spread evenly.
 
 ## Experiments (Benchmarks)
 
@@ -35,7 +35,7 @@ Based on: https://github.com/VectorDB-NTU/rabitq-turboquant-comparison/
 
 ## Previous Work: Transform Coding for ANN
 
-After building TieredQ, I looked into whether variance-aware bit allocation had been explored before. As it turns out, the underlying idea has a surprisingly long history.
+After building TieredQ, I looked into whether variance-aware bit allocation had been explored before and found the following earlier related work.
 
 ### Transform Coding
 
@@ -57,20 +57,9 @@ This is conceptually very close to TieredQ: rather than spending the same number
 
 This follow-up work improved transform coding by identifying a weakness in variance-based bit allocation: dimensions with similar variance don't necessarily have the same quantization error.
 
-Instead of relying solely on a theoretical variance model, Optimized Transform Coding (OTC) uses actual quantization distortion to make better allocation decisions.
+Instead of relying solely on a theoretical variance model, Optimized Transform Coding (OTC) uses actual quantization distortion to make better allocation decisions. The underlying optimization idea of TieredQ is therefore not new either.
 
-This is particularly relevant to TieredQ, since it also allocates bits greedily based on the expected reduction in reconstruction error. The underlying optimization idea is therefore not new either.
-
-### How TieredQ Differs
-
-TieredQ builds on these ideas but applies them to modern embeddings, with an emphasis on practical retrieval quality at a given compression ratio.
-
-Its implementation combines:
-
-1. **Centroid-centered PCA:** Learn a centroid from the dataset, subtract it, and rotate the residual vectors into PCA space to expose the variance structure.
-2. **Greedy bit allocation:** Assign between 0 and 8 bits per principal component, prioritizing whichever additional bit produces the largest expected reduction in quantization error.
-3. **Per-dimension scalar quantization:** Quantize each component independently using its assigned precision, rather than using a fixed number of bits across all dimensions.
-4. **Retrieval-focused evaluation:** Compare recall at equivalent compressed vector sizes against modern approaches such as RaBitQ and TurboQuant, rather than looking only at reconstruction MSE.
+### How TieredQ Differs from RaBitQ & TurboQuant
 
 The biggest difference from **RaBitQ and TurboQuant** is that TieredQ explicitly learns where the dataset's information is concentrated and distributes its bit budget accordingly.
 
@@ -80,17 +69,13 @@ TieredQ instead makes a different tradeoff: **spend more effort learning the str
 
 Compared with earlier transform coding methods, TieredQ is less a fundamentally new algorithm and more a modern optimized implementation of an established idea, evaluated against a new generation of ANN quantizers and embedding distributions.
 
-### Why Is This Interesting?
+### Conclusion
 
-Historically, transform coding competed with Product Quantization (PQ), which often performed better at very low bit rates because it quantizes groups of dimensions jointly.
-
-But modern embeddings can have highly non-uniform variance distributions. That creates an opportunity for techniques that allocate their precision unevenly instead of treating all dimensions equally.
-
-And that's exactly what I'm seeing in my experiments.
+Modern embeddings can have highly non-uniform variance distributions. That creates an opportunity for techniques that allocate their precision unevenly instead of treating all dimensions equally.
 
 **On my benchmarks, TieredQ achieves better retrieval recall at comparable compressed vector sizes than both RaBitQ and TurboQuant.**
 
-That doesn't mean TieredQ is universally better. PCA requires dataset-specific training, the learned transform introduces additional costs, and my results currently measure compression efficiency rather than end-to-end query throughput.
+That doesn't mean TieredQ is universally better. PCA requires dataset-specific training and the learned transform introduces additional costs. So TieredQ is a good choice in RAM limited use cases.
 
 ## References
 - https://github.com/SeanPedersen/TieredQ
