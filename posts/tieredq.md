@@ -109,4 +109,4 @@ But they suggest that a relatively simple, data-aware transform coder can still 
 - https://github.com/VectorDB-NTU/rabitq-turboquant-comparison/
 - [Quantization Beyond Uniform Bit Allocation](https://arxiv.org/abs/2608.19388) (found this very similar ref while writing this post up at 21. Oct 2026)
 
-#AI #coding #math
+#ML #coding #math
