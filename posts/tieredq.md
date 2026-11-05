@@ -17,6 +17,8 @@ TieredQ core algorithm:
 
 TieredQ first subtracts a learned centroid from each vector, rotates the residual with PCA, and then hands out bits greedily to each dimension (0-8 per dim based on variance), wherever each extra bit reduces the expected error most.
 
+So TieredQ exploits a skewed eigenvalue spectrum of most embeddings. Embedding variance is concentrated in the leading PCA directions rather than spread evenly.
+
 ## Experiments (Benchmarks)
 
 setup: compute recall baseline (full linear scan), compute recall on compressed vectors (full linear scan)
