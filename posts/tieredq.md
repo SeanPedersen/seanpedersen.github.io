@@ -4,7 +4,9 @@ While building my own ANN index for digger.so, I was evaluating existing vector 
 
 Why compress all dimensions of a vector uniformly (lowering all dimensions to the same number of bits)? My intuition was that using a custom amount of bits per dimension based on its importance (variance) could improve retrieval performance (with respect to compressed vector data size).
 
-After some experiments my vector quantization technique TieredQ was born and it is beating both TurboQuant and RaBitQ on all my benchmarks (recall compression ratio wise - but not always throughput QPS and index build time).
+After some experiments my vector quantization technique TieredQ was born and it is beating both TurboQuant and RaBitQ on all my benchmarks: reaching same recall per bit at +40% lower RAM & disk usage.
+
+So a clear win recall compression ratio wise - but not always throughput QPS and index build time.
 
 [TieredQ Github Repo](https://github.com/SeanPedersen/TieredQ)
 
