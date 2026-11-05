@@ -73,6 +73,10 @@ ORDER BY t.vector <=> %s::halfvec(512)
 LIMIT 100;
 ```
 
+## [PG_VectorSearch](https://github.com/timescale/pg_vectorsearch)
+
+new kid on the block by the creators of PGVectorScale (they saw DiskANN as a dead end)
+
 ## [PGVectorScale](https://github.com/timescale/pgvectorscale)
 
 ### DiskANN
