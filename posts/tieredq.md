@@ -1,6 +1,6 @@
 # TieredQ - Beating RaBitQ with Variance-Aware Bit Allocation
 
-While building my own ANN index for digger.so, I was evaluating existing vector quantization algorithms to reduce RAM usage and storage costs. After playing around with [TurboQuant](https://research.google/blog/turboquant-redefining-ai-efficiency-with-extreme-compression/) and [RaBitQ](https://github.com/VectorDB-NTU/RaBitQ-Library) on some text embeddings I had the following idea for a new vector quantization approach:
+While building my own ANN index for [digger.so](https://digger.so/), I was evaluating existing vector quantization algorithms to reduce RAM usage and storage costs. After playing around with [TurboQuant](https://research.google/blog/turboquant-redefining-ai-efficiency-with-extreme-compression/) and [RaBitQ](https://github.com/VectorDB-NTU/RaBitQ-Library) on some text embeddings I had the following idea for a new vector quantization approach:
 
 Why compress all dimensions of a vector uniformly (lowering all dimensions to the same number of bits)? My intuition was that using a custom amount of bits per dimension based on its importance (variance) could improve retrieval performance (with respect to compressed vector data size).
 
