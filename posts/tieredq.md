@@ -26,7 +26,7 @@ TODO (will follow soon)
 
 setup: compute recall baseline (full linear scan), compute recall on compressed vectors (full linear scan)
 
-relevant metrics: compression (index build) time, query latency, QPS, recall per compressed vector data (both disk and max RAM usage)
+relevant metrics: compression (index build) time, index build peak RAM, query latency, QPS, recall per compressed vector data (both disk and max RAM usage)
 
 Based on: https://github.com/VectorDB-NTU/rabitq-turboquant-comparison/
 
