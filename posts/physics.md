@@ -78,12 +78,28 @@ electron degeneracy pressure
 white dwarfs
 neutron degeneracy pressure in neutron stars
 
+## Standard Model
+Quarks, electrons and co
+
 ## States of Matter
 **Plasma**: Extremely hot, ionized matter where electrons are separated from atoms; found in stars and lightning.
 **Gas**: Has no fixed shape or volume. Example: air.
 **Liquid**: Has a fixed volume but takes the shape of its container. Example: water.
 **Solid**: Has a fixed shape and volume. Example: rock.
 **Einstein-Bose-condensate**: Matter cooled to temperatures near absolute zero, where particles occupy the same quantum state and behave collectively like a single quantum system.
+
+## Visibility of Matter
+
+1. Ordinary colored matter: Selectively absorbs certain wavelengths of visible light and reflects/scatters others, giving the object its perceived color. It doesn’t necessarily absorb most visible light.
+2. Mirror: Reflects most of the visible spectrum. Its smooth surface ensures coherent, directional reflection (angle of incidence = angle of reflection), preserving an image.
+3. Fluorescence: Absorbs photons, creating real electronic excitations, then emits new photons, usually at a longer wavelength (lower energy). The absorbed light can also be ultraviolet rather than visible.
+4. Glass: Absorbs very little visible light because visible photons generally cannot cause real electronic transitions across its energy gap. Light is transmitted through the glass, but still interacts with its electrons, causing polarization and refraction. It doesn’t literally pass through electron orbitals without interaction.
+
+**Key properties**
+- Reflection: Coherent electromagnetic response; photon energy is generally preserved.
+- Absorption: Photon energy is transferred into the material.
+- Fluorescence: Absorption followed by emission of a new photon.
+- Transmission: Light propagates through the material without substantial absorption, while interacting with its electrons.
 
 ## Astrophysics
 The study of big structures like stars, planets and black holes.
