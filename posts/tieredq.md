@@ -6,6 +6,8 @@ Why compress all dimensions of a vector uniformly (lowering all dimensions to th
 
 After some experiments my vector quantization technique TieredQ was born and it is beating both TurboQuant and RaBitQ on all my benchmarks (recall compression ratio wise - but not always throughput QPS and index build time).
 
+[TieredQ github repo](https://github.com/SeanPedersen/TieredQ)
+
 ## How it works
 
 TieredQ core algorithm:
