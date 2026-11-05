@@ -35,6 +35,9 @@ Update 2025:
 - LLM's could be used to automatically search for optimized functions based on their behavior
 - LLM's could also be used to generate context aware test cases, that minimize fuzzing (brute force testing) by focusing on edge cases (which generalize)
 
+Update 2026:
+- [Bend](https://bend2.dev/learn/proofs/) is a new programming language offering native support for formal verification, making it a promising foundation for a specification-addressable, formally verified, and performance-indexed global code registry. Instead of defining a function's behavior only through test cases and fuzzing, developers could define formal specifications that describe what a function must do for all valid inputs. Anyone could then submit alternative implementations alongside machine-checkable proofs that they satisfy the same specification. These implementations could be content-addressed, automatically benchmarked, and ranked by runtime and memory usage. Simple test cases would still be useful for validating that the formal specification actually captures the intended behavior. This could take behavior-addressable programming one step further: from finding implementations that appear equivalent based on tests to finding implementations with mathematically verified behavioral guarantees.
+
 TODO:
 - check out related concept of "reproducible builds"
 
