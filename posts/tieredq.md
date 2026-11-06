@@ -4,7 +4,7 @@ While building my own ANN index for [digger.so](https://digger.so/), I was evalu
 
 Why compress all dimensions of a vector uniformly (lowering all dimensions to the same number of bits)? My intuition was that using a custom amount of bits per dimension based on its importance (variance) could improve retrieval performance (with respect to compressed vector data size).
 
-After some experiments my vector quantization technique TieredQ was born and it is beating both TurboQuant and RaBitQ on all my benchmarks: reaching same recall per bit at +40% lower RAM & disk usage.
+After some experiments my vector quantization technique TieredQ was born. In my latest six-dataset benchmark, it achieves higher recall than RaBitQ and Qdrant's TurboQuant implementation (TQ+) at matched storage and serving RAM budgets. At a Recall@10 target of 0.95, it uses about 36–52% less serialized storage on the OpenAI, Gemini and MS MARCO datasets than the smallest evaluated reference configurations reaching that target.
 
 So a clear win recall compression ratio wise - but not always throughput QPS and index build time.
 
@@ -22,13 +22,37 @@ TieredQ first subtracts a learned centroid from each vector, rotates the residua
 So TieredQ exploits the skewed eigenvalue spectrum found in most embeddings. Where the variance of embeddings is concentrated in the leading PCA directions rather than spread evenly.
 
 ## Benchmark
-TODO (will follow soon)
 
-setup: compute recall baseline (full linear scan), compute recall on compressed vectors (full linear scan)
+The [refreshed benchmark for issue #4](https://github.com/SeanPedersen/TieredQ/issues/4#issuecomment-6677173430) compares TieredQ against the official RaBitQ library and Qdrant TQ+ across six datasets. It measures flat compressed top-10 search against exact FP32 ground truth, without an ANN index or FP32 reranking. TieredQ uses its default flat fast index with fine tiers enabled, including their query-time rescoring costs.
 
-relevant metrics: compression (index build) time, index build peak RAM, query latency, QPS, recall per compressed vector data (both disk and max RAM usage)
+| Dataset | Dimensions | Base vectors | Metric |
+| --- | ---: | ---: | --- |
+| SIFT1M | 128 | 1,000,000 | L2 |
+| GloVe-200 | 200 | 1,000,000 | Cosine |
+| OpenAI-1536 100K | 1,536 | 100,000 | Cosine |
+| Gemini-768 | 768 | 99,000 | Cosine |
+| OpenAI-1536 1M | 1,536 | 999,000 | Cosine |
+| MS MARCO-1M | 1,024 | 1,000,000 | Cosine |
 
-Based on: https://github.com/VectorDB-NTU/rabitq-turboquant-comparison/
+Each dataset uses 1,000 queries; MS MARCO uses real dev questions, while Gemini uses held-out document vectors. Recall is reported as the mean over three seeds. The reference configurations use 1, 2 and 4 nominal bits per dimension; comparisons account for actual storage or measured RAM rather than nominal bit widths alone.
+
+[![Recall@10 versus serialized bits per original dimension for TieredQ, RaBitQ and Qdrant TQ+ across six datasets](/images/tieredq-recall-storage.png)](/images/tieredq-recall-storage.png)
+
+The horizontal axis includes the complete serialized index: vector codes, metadata, padding and shared model state, amortized over the base vectors. Lower is smaller; higher Recall@10 is better. Error bars show standard deviation across seeds, and the dotted line marks 0.95 recall. Click the image to view it at full size.
+
+**TieredQ achieved higher mean Recall@10 in all 108 resource-matched comparisons.** Disk, steady serving RAM and peak serving RAM were matched independently:
+
+| Matched resource | Higher recall | Recall advantage |
+| --- | ---: | ---: |
+| Serialized storage | 36/36 | +1.42–34.37 percentage points |
+| Steady serving RAM | 36/36 | +1.41–34.37 percentage points |
+| Peak serving RAM | 36/36 | +1.01–27.46 percentage points |
+
+At **Recall@10 ≥ 0.95**, the smallest evaluated TieredQ configurations used about **36–52% less serialized storage** than the smallest evaluated qualifying reference configurations on OpenAI, Gemini and MS MARCO. TieredQ also reached 0.95 on SIFT and GloVe, where neither reference reached it within the evaluated 1/2/4-bit configurations. These are savings at a common recall threshold: reference recall can overshoot 0.95. They do not establish a universal 40% saving in RAM or disk usage.
+
+Speed depends on the comparison. At equal recall, **eight-thread, batch-32 throughput was 0.76–3.36× RaBitQ and 3.32–13.36× Qdrant TQ+**, using each reference's fastest evaluated budget reaching the target. At equal 4-bit steady RAM budgets, RaBitQ was faster on all six datasets, while TieredQ delivered higher recall. Build speed was also mixed: RaBitQ's 1-bit builds were especially fast; TieredQ was competitive at higher budgets.
+
+The benchmark ran on an Intel i9-7980XE with 64 GiB RAM, using library revision [`c74b4e3`](https://github.com/SeanPedersen/TieredQ/commit/c74b4e354b92d848a004e0f50199c3f7db7e0ca4). Timing covers query preparation, scanning, fine-tier rescoring and top-k, with matching thread/batch settings and three repeats. Full recall, storage, serving RAM, build cost, QPS and p50/p95 latency measurements are in the [benchmark report](https://github.com/SeanPedersen/TieredQ/blob/main/docs/benchmark-report.md), with raw measurements and provenance in the [results bundle](https://github.com/SeanPedersen/TieredQ/tree/main/benchmark/results/issue4-current-20261105).
 
 ## Limits
 - Training and drift: PCA requires representative training data; its allocation can become less suitable as the distribution changes.
@@ -76,7 +100,7 @@ Compared with earlier transform coding methods, TieredQ is less a fundamentally 
 
 Modern embeddings can have highly non-uniform variance distributions. That creates an opportunity for techniques that allocate their precision unevenly instead of treating all dimensions equally.
 
-**On my benchmarks, TieredQ achieves better retrieval recall at comparable compressed vector sizes (+40% lower RAM use) than both RaBitQ and TurboQuant.**
+**On these six datasets, TieredQ achieves higher recall at matched storage and serving RAM budgets than RaBitQ and Qdrant TQ+.** At the 0.95 recall target, its serialized storage savings are about 36–52% on OpenAI, Gemini and MS MARCO, relative to the smallest evaluated qualifying reference configurations.
 
 That doesn't mean TieredQ is universally better. PCA requires dataset-specific training and the learned transform introduces additional costs. So TieredQ is a good choice in RAM limited use cases.
 
