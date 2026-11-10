@@ -1,0 +1,1490 @@
+---
+date: '2026-11-10'
+title: 'Navier–Stokes: Physics of Fluid Motion'
+tags: [math, science]
+---
+
+<style>
+  .markdown-content {
+    --ns-accent: #e15b3d;
+    --ns-blue: #2878d0;
+    --ns-green: #16856b;
+    --ns-grey: #7a8794;
+    --ns-panel: rgba(127, 127, 127, 0.075);
+    --ns-border: rgba(127, 127, 127, 0.28);
+  }
+
+  .markdown-content .ns-equation {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    margin: 1.2rem 0;
+    overflow-x: auto;
+    padding: 0.75rem 1rem;
+    text-align: center;
+  }
+
+  .markdown-content .ns-inertia { color: var(--ns-blue); }
+  .markdown-content .ns-pressure { color: var(--ns-accent); }
+  .markdown-content .ns-viscous { color: var(--ns-green); }
+  .markdown-content .ns-body { color: var(--ns-grey); }
+
+  .markdown-content .ns-viz {
+    background: var(--ns-panel);
+    border: 1px solid var(--ns-border);
+    border-radius: 0.8rem;
+    margin: 1.75rem 0 2.5rem;
+    overflow: hidden;
+  }
+
+  .markdown-content .ns-viz-header {
+    border-bottom: 1px solid var(--ns-border);
+    padding: 1rem 1.1rem 0.85rem;
+  }
+
+  .markdown-content .ns-viz-header p {
+    font-size: 0.92rem;
+    margin: 0;
+  }
+
+  .markdown-content .ns-viz-body {
+    padding: 1rem;
+  }
+
+  .markdown-content canvas {
+    background: rgba(255, 255, 255, 0.62);
+    border: 1px solid var(--ns-border);
+    border-radius: 0.55rem;
+    box-sizing: border-box;
+    display: block;
+    height: auto;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .markdown-content .ns-readout {
+    display: grid;
+    gap: 0.25rem 1rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-top: 0.85rem;
+  }
+
+  .markdown-content .ns-readout div {
+    min-width: 0;
+  }
+
+  .markdown-content .ns-readout dt {
+    font-size: 0.76rem;
+    letter-spacing: 0.04em;
+    opacity: 0.7;
+    text-transform: uppercase;
+  }
+
+  .markdown-content .ns-readout dd {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    margin: 0.15rem 0 0;
+  }
+
+  .markdown-content .ns-controls {
+    display: grid;
+    gap: 0.85rem 1.25rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-bottom: 1rem;
+  }
+
+  .markdown-content .ns-controls-triple {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .markdown-content .ns-control {
+    display: grid;
+    gap: 0.35rem;
+  }
+
+  .markdown-content .ns-control-row {
+    align-items: baseline;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .markdown-content .ns-control output {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  }
+
+  .markdown-content input[type="range"] {
+    accent-color: var(--ns-accent);
+    cursor: pointer;
+    width: 100%;
+  }
+
+  .markdown-content .ns-button {
+    background: transparent;
+    border: 1px solid var(--ns-border);
+    border-radius: 0.4rem;
+    color: inherit;
+    cursor: pointer;
+    font: inherit;
+    font-size: 0.9rem;
+    justify-self: start;
+    padding: 0.3rem 0.8rem;
+  }
+
+  .markdown-content .ns-note {
+    font-size: 0.86rem;
+    margin: 0.75rem 0 0;
+    opacity: 0.78;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .markdown-content canvas {
+      background: rgba(16, 21, 28, 0.9);
+    }
+  }
+
+  @media (max-width: 620px) {
+    .markdown-content .ns-controls,
+    .markdown-content .ns-controls-triple,
+    .markdown-content .ns-readout {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<p>The <strong>Navier–Stokes equations</strong> describe how liquids and gases move. Developed by Claude-Louis Navier
+  and George Gabriel Stokes in the 19th century, they apply conservation of mass and Newton's second law to a small
+  parcel of fluid, accounting for pressure, viscosity and external forces such as gravity.</p>
+
+<p>They are a continuum model: fluids are treated as smooth matter, not as individual molecules. That assumption fails
+  at small scales (see <a href="#limits">Limits</a>).</p>
+
+<h2 id="equations">The equations</h2>
+
+<p>For an incompressible, Newtonian fluid with constant density and viscosity:</p>
+
+<div class="ns-equation" role="math"
+  aria-label="rho times the material derivative of u equals minus grad p plus mu laplacian u plus rho g">
+  <span class="ns-inertia">ρ(∂<b>u</b>/∂t + (<b>u</b>·∇)<b>u</b>)</span> =
+  <span class="ns-pressure">−∇p</span> + <span class="ns-viscous">μ∇²<b>u</b></span> +
+  <span class="ns-body">ρ<b>g</b></span>
+</div>
+
+<div class="ns-equation" role="math" aria-label="divergence of u equals zero">∇·<b>u</b> = 0</div>
+
+<ul>
+  <li><i>ρ</i>: density</li>
+  <li><b>u</b>: velocity field</li>
+  <li><i>t</i>: time</li>
+  <li><i>p</i>: pressure</li>
+  <li><i>μ</i>: dynamic viscosity</li>
+  <li><b>g</b>: external acceleration (e.g. gravity)</li>
+</ul>
+
+<h3 id="momentum">Momentum equation</h3>
+
+<ul>
+  <li><strong class="ns-inertia">Inertia</strong> ρ(∂<sub>t</sub><b>u</b> + (<b>u</b>·∇)<b>u</b>): the acceleration of
+    a fluid parcel. The first term is the local change of velocity at a fixed point, the second is the convective change
+    as the parcel moves into regions of different velocity.</li>
+  <li><strong class="ns-pressure">Pressure</strong> −∇p: pushes fluid from high towards low pressure.</li>
+  <li><strong class="ns-viscous">Viscosity</strong> μ∇²<b>u</b>: diffuses momentum between neighbouring layers and
+    smooths out velocity differences.</li>
+  <li><strong class="ns-body">Body forces</strong> ρ<b>g</b>: external forces such as gravity.</li>
+</ul>
+
+<h3 id="continuity">Continuity equation</h3>
+
+<p>∇·<b>u</b> = 0 states that incompressible fluid is neither created nor destroyed locally: what flows into a region
+  flows out. For compressible fluids the general form lets density vary:</p>
+
+<div class="ns-equation" role="math" aria-label="partial rho by partial t plus divergence of rho u equals zero">
+  ∂ρ/∂t + ∇·(ρ<b>u</b>) = 0</div>
+
+<section class="ns-viz" aria-label="Interactive converging pipe demonstrating continuity">
+  <header class="ns-viz-header">
+    <p>Water flows through a pipe that narrows. The same amount of fluid must pass every cross-section each second, so
+      where the pipe is narrower the fluid moves faster. Narrow the throat and watch the dots speed up.</p>
+  </header>
+  <div class="ns-viz-body">
+    <div class="ns-controls">
+      <label class="ns-control" for="nozzle-inflow">
+        <span class="ns-control-row"><span>Inflow speed</span><output id="nozzle-inflow-value">1.00</output></span>
+        <input id="nozzle-inflow" type="range" min="0.4" max="2" value="1" step="0.05">
+      </label>
+      <label class="ns-control" for="nozzle-throat">
+        <span class="ns-control-row"><span>Throat width</span><output id="nozzle-throat-value">0.50</output></span>
+        <input id="nozzle-throat" type="range" min="0.2" max="1" value="0.5" step="0.05">
+      </label>
+    </div>
+    <canvas id="nozzle-canvas" width="720" height="300"
+      aria-label="Animated fluid particles flowing through a pipe that narrows and widens again">
+      Your browser does not support Canvas. Fluid speeds up in the narrow part of the pipe and slows down again after it.
+    </canvas>
+    <dl class="ns-readout" aria-live="polite">
+      <div>
+        <dt>① Wide: width × speed</dt>
+        <dd id="nozzle-flux-in">1.00 × 1.00 = 1.00</dd>
+      </div>
+      <div>
+        <dt>② Throat: width × speed</dt>
+        <dd id="nozzle-flux-out">0.50 × 2.00 = 1.00</dd>
+      </div>
+      <div>
+        <dt>Speed-up ②/①</dt>
+        <dd id="nozzle-speedup">2.00×</dd>
+      </div>
+    </dl>
+    <p class="ns-note">Widths are relative to the wide section. Width × speed is the flow rate, and it is identical at ①
+      and ② however you set the sliders, which is exactly what ∇·<b>u</b> = 0 demands. Halving the width doubles the
+      speed. The arrows show the speed at each marked cross-section; the dots slow down again where the pipe widens.</p>
+  </div>
+</section>
+
+<h2 id="viscosity">What viscosity does</h2>
+
+<p>The viscous term μ∇²<b>u</b> acts like diffusion of momentum: neighbouring layers of fluid drag on each other, so
+  sharp differences in speed get smoothed out. Think of a fast stream running alongside a slow one. In the simplest
+  case, with flow only along one direction, the term reduces to the heat equation, ∂u/∂t = ν ∂²u/∂y², with kinematic
+  viscosity ν = μ/ρ.</p>
+
+<section class="ns-viz" aria-label="Interactive viscous mixing of a fast and a slow stream">
+  <header class="ns-viz-header">
+    <p>Seen from the average flow, the top layers move right and the bottom layers move left, with a sharp edge
+      between them. Viscosity makes neighbouring layers drag on each other, so the motion fades away from the edge
+      outwards until everything moves together. Solved numerically with a finite-difference scheme.</p>
+  </header>
+  <div class="ns-viz-body">
+    <div class="ns-controls">
+      <label class="ns-control" for="viscosity-nu">
+        <span class="ns-control-row"><span>Kinematic viscosity ν</span><output
+            id="viscosity-nu-value">0.10</output></span>
+        <input id="viscosity-nu" type="range" min="0.03" max="0.4" value="0.1" step="0.01">
+      </label>
+      <button class="ns-button" id="viscosity-restart" type="button">Restart</button>
+    </div>
+    <canvas id="viscosity-canvas" width="720" height="280"
+      aria-label="Animated fluid layers moving in opposite directions that gradually slow each other to rest">
+      Your browser does not support Canvas. Viscosity smooths the speed difference between neighbouring layers.
+    </canvas>
+    <dl class="ns-readout" aria-live="polite">
+      <div>
+        <dt>Viscosity ν</dt>
+        <dd id="viscosity-readout-nu">0.10</dd>
+      </div>
+      <div>
+        <dt>Time</dt>
+        <dd id="viscosity-time">0.00</dd>
+      </div>
+      <div>
+        <dt>Profile</dt>
+        <dd id="viscosity-state">blending</dd>
+      </div>
+    </dl>
+    <p class="ns-note">Orange streaks move right, blue streaks move left; longer and stronger means faster. The arrows
+      on the left show each layer's speed relative to the average, and the dashed line marks rest. Raise ν (honey) to
+      blend within seconds, lower it (water) to watch it take much longer.</p>
+  </div>
+</section>
+
+<h2 id="applications">Applications</h2>
+
+<ul>
+  <li><strong>Aerospace:</strong> lift, drag, pressure distributions and boundary layers, used to design efficient and
+    stable aircraft.</li>
+  <li><strong>Weather and climate:</strong> numerical weather prediction solves forms of the equations coupled with
+    thermodynamics and moisture; climate models use them for atmospheric and ocean circulation.</li>
+  <li><strong>Civil and mechanical engineering:</strong> pipe pressure losses, pumps, turbines, HVAC, flow around
+    bridges, dams and channels.</li>
+  <li><strong>Biomedicine:</strong> blood flow, pressure variations and the effect of vessel narrowing. Blood is
+    non-Newtonian, so this needs additional constitutive models.</li>
+  <li><strong><a href="https://en.wikipedia.org/wiki/Computational_fluid_dynamics">Computational Fluid Dynamics
+      (CFD)</a>:</strong> analytical solutions rarely exist for realistic geometries, so CFD discretises the domain into
+    cells and solves numerically for velocity, pressure, temperature, turbulence and forces, replacing many expensive
+    physical experiments.</li>
+</ul>
+
+<section class="ns-viz" aria-label="Interactive flow around a wing profile">
+  <header class="ns-viz-header">
+    <p>Air flows around a wing profile. Where the streamlines bunch together the air moves faster. Blue is slow,
+      orange is fast.</p>
+  </header>
+  <div class="ns-viz-body">
+    <div class="ns-controls">
+      <label class="ns-control" for="flow-speed">
+        <span class="ns-control-row"><span>Air speed U</span><output id="flow-speed-value">1.00</output></span>
+        <input id="flow-speed" type="range" min="0.3" max="2" value="1" step="0.05">
+      </label>
+      <label class="ns-control" for="flow-angle">
+        <span class="ns-control-row"><span>Angle of attack</span><output id="flow-angle-value">6</output></span>
+        <input id="flow-angle" type="range" min="0" max="14" value="6" step="1">
+      </label>
+    </div>
+    <canvas id="flow-canvas" width="720" height="405"
+      aria-label="Animated tracer particles flowing around a wing profile">
+      Your browser does not support Canvas. Streamlines bunch together where the flow accelerates over the wing.
+    </canvas>
+    <dl class="ns-readout" aria-live="polite">
+      <div>
+        <dt>Angle of attack</dt>
+        <dd id="flow-angle-readout">6°</dd>
+      </div>
+      <div>
+        <dt>Peak air speed</dt>
+        <dd id="flow-peak">1.00 × U</dd>
+      </div>
+      <div>
+        <dt>Lift coefficient</dt>
+        <dd id="flow-lift">0.00</dd>
+      </div>
+    </dl>
+    <p class="ns-note">The air over the top moves faster than the air below. By Bernoulli's principle, faster flow
+      means lower pressure, so the wing is pushed up, and tilting it further increases lift. The speed difference comes
+      from the circulation that develops around the wing, not from continuity alone. This is ideal flow, with no
+      viscosity, so it cannot show the wake or the stall a real wing suffers at steep angles.</p>
+  </div>
+</section>
+
+<h2 id="graph-theory">Connection to graph theory</h2>
+
+<p>A pipe network is a directed graph: junctions, reservoirs and pumps are vertices, pipes are edges carrying a flow
+  <i>q<sub>e</sub></i>. Maximizing throughput from a source <i>S</i> to a sink <i>T</i> is the classical <a
+    href="https://en.wikipedia.org/wiki/Maximum_flow_problem">max-flow problem</a>. Navier–Stokes enters through the
+  edge capacities.</p>
+
+<h3 id="conservation">Conservation: incidence matrix as discrete divergence</h3>
+
+<p>Flow conservation at every internal vertex reads <i>Bq</i> = 0, where <i>B</i> is the graph's incidence matrix. This
+  is the discrete counterpart of ∇·<b>u</b> = 0. The link is exact in finite-volume methods: the divergence theorem
+  turns mass conservation over a cell Ω into a sum of face fluxes,</p>
+
+<div class="ns-equation" role="math"
+  aria-label="The surface integral of u dot n over the boundary of Omega equals zero becomes the sum of edge flows q e over the boundary equals zero">
+  ∮<sub>∂Ω</sub> <b>u</b>·<b>n</b> dS = 0 &nbsp;⟶&nbsp; Σ<sub>e∈∂Ω</sub> q<sub>e</sub> = 0</div>
+
+<p>so a CFD mesh is itself a graph with cells as vertices and faces as edges. <a
+    href="https://en.wikipedia.org/wiki/Discrete_exterior_calculus">Discrete exterior calculus</a> formalizes this
+  correspondence.</p>
+
+<h3 id="capacity">Capacity: physics instead of a fixed number</h3>
+
+<p>Max-flow assumes fixed capacities 0 ≤ <i>q<sub>e</sub></i> ≤ <i>c<sub>e</sub></i>. In a fluid network, flow depends
+  on pressure, geometry, viscosity and flow regime. For steady laminar flow in a cylindrical pipe, the <a
+    href="https://en.wikipedia.org/wiki/Hagen%E2%80%93Poiseuille_equation">Hagen–Poiseuille equation</a> (derived from
+  Navier–Stokes) gives:</p>
+
+<div class="ns-equation" role="math" aria-label="Q equals pi R to the fourth over 8 mu L times delta P">
+  Q = (π R<sup>4</sup> / 8μL) · ΔP</div>
+
+<p>Flow scales with <i>R</i><sup>4</sup>, so small changes in radius dominate capacity. It also mirrors Ohm's law, with
+  ΔP as voltage, <i>Q</i> as current and 8μL / (π<i>R</i><sup>4</sup>) as resistance, which is why pipe networks can be
+  solved like electrical circuits (Kirchhoff's laws).</p>
+
+<section class="ns-viz" aria-label="Interactive pipe network with Hagen–Poiseuille flow">
+  <header class="ns-viz-header">
+    <p>One source feeds two parallel pipes under the same pressure drop. Change a radius and watch the flow re-split:
+      the total always equals the sum of the branches (conservation), but each branch scales with <i>R</i><sup>4</sup>.
+    </p>
+  </header>
+  <div class="ns-viz-body">
+    <div class="ns-controls ns-controls-triple">
+      <label class="ns-control" for="pipe-radius-top">
+        <span class="ns-control-row"><span>Top radius R₁</span><output id="pipe-radius-top-value">1.00</output></span>
+        <input id="pipe-radius-top" type="range" min="0.4" max="1.5" value="1" step="0.05">
+      </label>
+      <label class="ns-control" for="pipe-radius-bottom">
+        <span class="ns-control-row"><span>Bottom radius R₂</span><output
+            id="pipe-radius-bottom-value">0.70</output></span>
+        <input id="pipe-radius-bottom" type="range" min="0.4" max="1.5" value="0.7" step="0.05">
+      </label>
+      <label class="ns-control" for="pipe-pressure">
+        <span class="ns-control-row"><span>Pressure drop ΔP</span><output id="pipe-pressure-value">1.00</output></span>
+        <input id="pipe-pressure" type="range" min="0.2" max="2" value="1" step="0.05">
+      </label>
+    </div>
+    <canvas id="pipe-canvas" width="720" height="330"
+      aria-label="Animated particles flowing from a source through two parallel pipes of different radii to a sink">
+      Your browser does not support Canvas. Flow through each pipe scales with the fourth power of its radius.
+    </canvas>
+    <dl class="ns-readout" aria-live="polite">
+      <div>
+        <dt>Flow Q₁ (top)</dt>
+        <dd id="pipe-flow-top">1.00</dd>
+      </div>
+      <div>
+        <dt>Flow Q₂ (bottom)</dt>
+        <dd id="pipe-flow-bottom">0.24</dd>
+      </div>
+      <div>
+        <dt>Total Q₁ + Q₂</dt>
+        <dd id="pipe-flow-total">1.24</dd>
+      </div>
+    </dl>
+    <p class="ns-note">Particles in each pipe move with the parabolic Hagen–Poiseuille profile: fastest in the centre,
+      still at the wall. Flow units are arbitrary. Doubling a radius multiplies that branch's flow by 16.</p>
+  </div>
+</section>
+
+<p>The throughput problem becomes: maximize outflow subject to conservation at each vertex, edge relations
+  <i>q<sub>e</sub></i> = <i>f<sub>e</sub></i>(Δp<sub>e</sub>, R<sub>e</sub>, L<sub>e</sub>, μ) and a pump power limit
+  P<sub>pump</sub> ≤ P<sub>max</sub>.</p>
+
+<h3 id="not-carried-over">What does not carry over</h3>
+
+<p>Max-flow is a combinatorial problem. The full fluid problem is continuous, nonlinear and constrained by momentum
+  transport, viscosity and turbulence, none of which graph flow captures. Optimizing outflow under the full equations is
+  PDE-constrained optimization:</p>
+
+<div class="ns-equation" role="math"
+  aria-label="maximize Q out over u, p and theta subject to Navier–Stokes, continuity, and boundary and design constraints">
+  max<sub><b>u</b>,p,θ</sub> Q<sub>out</sub> &nbsp; s.t. &nbsp; Navier–Stokes, ∇·<b>u</b> = 0, boundary and design
+  constraints</div>
+
+<p>where θ are design variables such as pipe diameters, topology or pump settings. Graph models suit water
+  distribution, vascular networks, industrial piping and microfluidics. An open question is whether max-flow solutions
+  can initialize or approximate the optimal design of a Navier–Stokes-governed network, and whether flows on ever finer
+  graphs converge to the continuous optimal-control problem.</p>
+
+<h2 id="limits">Limits</h2>
+
+<h3 id="continuum">Continuum assumption</h3>
+
+<p>The continuum model holds when the flow's length scale <i>L</i> is much larger than the molecular mean free path λ.
+  In micro- and nanochannels or rarefied gases this no longer holds. The Knudsen number quantifies it:</p>
+
+<div class="ns-equation" role="math" aria-label="Knudsen number equals lambda over L">Kn = λ / L</div>
+
+<ul>
+  <li>Kn &lt; 0.001: continuum mechanics is valid.</li>
+  <li>0.001 &lt; Kn &lt; 0.1: slip-flow effects matter; the no-slip boundary condition becomes unreliable.</li>
+  <li>0.1 &lt; Kn &lt; 10: transition regime, requires kinetic modelling.</li>
+  <li>Kn &gt; 10: free-molecular flow.</li>
+</ul>
+
+<section class="ns-viz" aria-label="Interactive Knudsen number demonstration">
+  <header class="ns-viz-header">
+    <p>Gas molecules travel a random distance (on average λ) before colliding with each other, and bounce off the
+      channel walls. Shrink the channel or lengthen the mean free path and the walls take over from the neighbours.</p>
+  </header>
+  <div class="ns-viz-body">
+    <div class="ns-controls">
+      <label class="ns-control" for="knudsen-length">
+        <span class="ns-control-row"><span>Channel height L</span><output
+            id="knudsen-length-value">6.0</output></span>
+        <input id="knudsen-length" type="range" min="1" max="10" value="6" step="0.5">
+      </label>
+      <label class="ns-control" for="knudsen-path">
+        <span class="ns-control-row"><span>Mean free path λ</span><output
+            id="knudsen-path-value">0.10</output></span>
+        <input id="knudsen-path" type="range" min="-3" max="1" value="-1" step="0.1">
+      </label>
+    </div>
+    <canvas id="knudsen-canvas" width="720" height="300"
+      aria-label="Animated gas molecules colliding with each other and with the walls of a channel">
+      Your browser does not support Canvas. The Knudsen number is the mean free path divided by the channel height.
+    </canvas>
+    <dl class="ns-readout" aria-live="polite">
+      <div>
+        <dt>Knudsen number</dt>
+        <dd id="knudsen-number">0.017</dd>
+      </div>
+      <div>
+        <dt>Regime</dt>
+        <dd id="knudsen-regime">slip flow</dd>
+      </div>
+      <div>
+        <dt>Collisions with walls</dt>
+        <dd id="knudsen-wall-share">0%</dd>
+      </div>
+    </dl>
+    <p class="ns-note">The wall share is measured from the simulation. In the continuum regime nearly every collision is
+      with another molecule, which is what justifies averaging them into pressure and viscosity. Mean free path is on a
+      logarithmic scale.</p>
+  </div>
+</section>
+
+<p>When the molecular scale matters, alternatives are:</p>
+
+<ul>
+  <li><strong><a href="https://en.wikipedia.org/wiki/Molecular_dynamics">Molecular Dynamics (MD)</a>:</strong>
+    simulates individual atoms and their forces; suited to nanoscale transport.</li>
+  <li><strong><a href="https://en.wikipedia.org/wiki/Boltzmann_equation">Boltzmann equation</a>:</strong> describes the
+    statistical distribution of molecular velocities and links molecular motion to macroscopic flow. Direct Simulation
+    Monte Carlo (DSMC) solves it for rarefied gases.</li>
+</ul>
+
+<h3 id="turbulence">Turbulence</h3>
+
+<p>Turbulent flow has fluctuations across a wide range of spatial and temporal scales. The equations describe it, but
+  resolving it is extremely expensive. Engineering practice trades cost against accuracy:</p>
+
+<ul>
+  <li><strong>Reynolds-Averaged Navier–Stokes (RANS):</strong> models only the averaged flow; cheapest.</li>
+  <li><strong>Large Eddy Simulation (LES):</strong> resolves large eddies, models small ones.</li>
+  <li><strong>Direct Numerical Simulation (DNS):</strong> resolves all scales; only feasible for small,
+    low-Reynolds-number problems.</li>
+</ul>
+
+<h3 id="millennium-problem">Open mathematical problem</h3>
+
+<p>For 3D incompressible flow, it is unknown whether smooth initial conditions always yield smooth solutions for all
+  time, or whether singularities can form in finite time. This is one of the Clay Institute's <a
+    href="https://en.wikipedia.org/wiki/Millennium_Prize_Problems">Millennium Prize Problems</a>.</p>
+
+<p>OpenAI claims its AI produced a proof, formalized in Lean, that finite-time singularities do form under the
+  problem's permitted conditions. It has not yet passed independent scrutiny or been recognized by the Clay Institute,
+  so it remains a claim, not an accepted solution. See also <a href="/posts/ai-math">Are LLMs Solving Math?</a></p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>A compact set of equations covers a vast range of phenomena, from airflow over wings to blood in arteries. Knowing
+  where they stop applying (molecular scales, rarefied gases) and where they are merely hard to solve (turbulence,
+  global regularity) matters as much as knowing how to use them.</p>
+
+<h2 id="references">References</h2>
+
+<p><strong>Graph theory and discrete operators</strong></p>
+<ul>
+  <li>Mohamed, Hirani, Samtaney: <a href="https://arxiv.org/abs/1508.01166">Discrete exterior calculus discretization
+      of incompressible Navier–Stokes equations over surface simplicial meshes</a></li>
+  <li>Nitschke, Reuther, Voigt: <a href="https://arxiv.org/abs/1611.04392">Discrete exterior calculus (DEC) for the
+      surface Navier–Stokes equation</a></li>
+  <li>Beltman, Anthonissen, Koren: <a href="https://ir.cwi.nl/pub/29295/29295.pdf">Mimetic staggered discretization on
+      barycentric dual meshes (CWI)</a></li>
+  <li><a href="https://arxiv.org/abs/2111.15350">Adaptive Hagen–Poiseuille flows on graphs</a></li>
+  <li><a href="https://arxiv.org/abs/1103.3726">Flow with Nonlinear Potential in General Networks: Simulation,
+      Optimization, Control, Risk and Stability Analysis</a></li>
+  <li><a href="https://arxiv.org/abs/1709.00694">Minimal transport networks with general boundary conditions</a></li>
+</ul>
+
+<p><strong>PDE-constrained optimization</strong></p>
+<ul>
+  <li>Olesen, Okkels, Bruus: <a href="https://arxiv.org/abs/physics/0410086">A high-level programming-language
+      implementation of topology optimization applied to steady-state Navier–Stokes flow</a></li>
+</ul>
+
+<p><strong>Millennium Problem</strong></p>
+<ul>
+  <li>Tao: <a href="https://arxiv.org/abs/1402.0290">Finite time blowup for an averaged three-dimensional Navier–Stokes
+      equation</a></li>
+  <li>Miller: <a href="https://arxiv.org/abs/2103.12237">Finite-time blowup for smooth solutions of the Navier–Stokes
+      equations on the whole space with linear growth at infinity</a></li>
+  <li>OpenAI: <a href="https://cdn.openai.com/pdf/32d9f210-8b73-45e0-91bc-82a30aef8a9a/navier-stokes.pdf">Navier–Stokes
+      preprint</a></li>
+  <li>AI Weekly: <a href="https://aiweekly.co/alerts/openai-claims-navier-stokes-proof-as-rival-teams-post-their-own">OpenAI
+      claims Navier-Stokes proof as rival teams post their own</a></li>
+  <li>Emergent Mind: <a
+      href="https://www.emergentmind.com/open-problems/navier-stokes-3d-global-regularity-clay-problem">Global
+      regularity or blow-up for 3D incompressible Navier–Stokes</a></li>
+</ul>
+
+<script>
+  (() => {
+    'use strict';
+
+    const COLORS = {
+      accent: '#e15b3d',
+      blue: '#2878d0',
+      green: '#16856b',
+      grid: 'rgba(127, 127, 127, 0.28)',
+      ink: '#607080'
+    };
+    const SLOW_RGB = [40, 120, 208];
+    const FAST_RGB = [225, 91, 61];
+    const MAX_FRAME_SECONDS = 0.05;
+    const STATIC_WARMUP_STEPS = 120;
+    const STATIC_STEP_SECONDS = 1 / 60;
+
+    const darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const byId = id => document.getElementById(id);
+    const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+    const randomBetween = (min, max) => min + Math.random() * (max - min);
+    const surfaceColor = () => (darkQuery.matches ? '#10151c' : '#ffffff');
+    const wallColor = () => (darkQuery.matches ? '#4a5563' : '#aab4bf');
+
+    function mixColor(amount) {
+      const channel = index => Math.round(SLOW_RGB[index] + (FAST_RGB[index] - SLOW_RGB[index]) * amount);
+      return `rgb(${channel(0)}, ${channel(1)}, ${channel(2)})`;
+    }
+
+    /** Sizes the backing store for the display and maps drawing to the canvas' attribute coordinates. */
+    function prepareCanvas(canvas) {
+      const logicalWidth = Number(canvas.getAttribute('width'));
+      const logicalHeight = Number(canvas.getAttribute('height'));
+      const ratio = window.devicePixelRatio || 1;
+      const displayWidth = canvas.clientWidth || logicalWidth;
+      const scale = displayWidth / logicalWidth;
+      canvas.width = Math.round(displayWidth * ratio);
+      canvas.height = Math.round(logicalHeight * scale * ratio);
+      const context = canvas.getContext('2d');
+      context.setTransform(ratio * scale, 0, 0, ratio * scale, 0, 0);
+      return { context, width: logicalWidth, height: logicalHeight };
+    }
+
+    /**
+     * Drives a demo ({ step(seconds), draw(view) }) only while its canvas is on screen.
+     * With reduced motion it renders settled static frames instead of animating.
+     */
+    function runDemo(canvas, demo) {
+      let view = prepareCanvas(canvas);
+      let visible = false;
+      let frameId = 0;
+      let lastTime = 0;
+
+      function tick(time) {
+        const seconds = Math.min((time - lastTime) / 1000, MAX_FRAME_SECONDS);
+        lastTime = time;
+        demo.step(seconds);
+        demo.draw(view);
+        frameId = visible ? window.requestAnimationFrame(tick) : 0;
+      }
+
+      function start() {
+        if (frameId || motionQuery.matches) return;
+        lastTime = performance.now();
+        frameId = window.requestAnimationFrame(tick);
+      }
+
+      function stop() {
+        window.cancelAnimationFrame(frameId);
+        frameId = 0;
+      }
+
+      function refresh() {
+        if (motionQuery.matches) {
+          for (let index = 0; index < STATIC_WARMUP_STEPS; index += 1) demo.step(STATIC_STEP_SECONDS);
+        }
+        demo.draw(view);
+      }
+
+      new IntersectionObserver(entries => {
+        visible = entries[0].isIntersecting;
+        if (visible) start();
+        else stop();
+      }).observe(canvas);
+      window.addEventListener('resize', () => {
+        view = prepareCanvas(canvas);
+        demo.draw(view);
+      });
+      refresh();
+      return refresh;
+    }
+
+    function bindSlider(id, onChange, decimals = 2) {
+      const input = byId(id);
+      const output = byId(`${id}-value`);
+      const apply = () => {
+        const value = Number(input.value);
+        output.textContent = value.toFixed(decimals);
+        onChange(value);
+      };
+      input.addEventListener('input', apply);
+      apply();
+      return input;
+    }
+
+    /* ---------- Continuity: pipe that narrows ---------- */
+
+    function createNozzleDemo() {
+      const CENTER_Y = 150;
+      const PIPE_LEFT = 30;
+      const PIPE_RIGHT = 690;
+      const WIDE_HALF_HEIGHT = 80;
+      const WALL_THICKNESS = 16;
+      const CONTRACTION = { start: 190, end: 300 };
+      const EXPANSION = { start: 430, end: 540 };
+      const STATION_WIDE_X = 110;
+      const STATION_THROAT_X = 365;
+      const PARTICLE_COUNT = 170;
+      const SPEED_PIXELS = 130;
+      const MAX_SPEEDUP_FOR_COLOR = 3;
+      const ARROW_PIXELS = 38;
+      const WALL_SAMPLE_STEP = 4;
+      const params = { inflow: 1, throat: 0.5 };
+
+      const smoothstep = t => t * t * (3 - 2 * t);
+      const throatHalfHeight = () => WIDE_HALF_HEIGHT * params.throat;
+
+      function halfHeightAt(x) {
+        const narrow = throatHalfHeight();
+        if (x < CONTRACTION.start || x >= EXPANSION.end) return WIDE_HALF_HEIGHT;
+        if (x < CONTRACTION.end) {
+          const t = smoothstep((x - CONTRACTION.start) / (CONTRACTION.end - CONTRACTION.start));
+          return WIDE_HALF_HEIGHT + (narrow - WIDE_HALF_HEIGHT) * t;
+        }
+        if (x < EXPANSION.start) return narrow;
+        const t = smoothstep((x - EXPANSION.start) / (EXPANSION.end - EXPANSION.start));
+        return narrow + (WIDE_HALF_HEIGHT - narrow) * t;
+      }
+
+      /** Continuity: width times speed is constant, so speed scales with the inverse of the local width. */
+      const speedAt = x => params.inflow * WIDE_HALF_HEIGHT / halfHeightAt(x);
+
+      function spawn(anywhere) {
+        return {
+          x: anywhere ? randomBetween(PIPE_LEFT, PIPE_RIGHT) : PIPE_LEFT,
+          lane: randomBetween(-0.95, 0.95)
+        };
+      }
+
+      const particles = Array.from({ length: PARTICLE_COUNT }, () => spawn(true));
+
+      function step(seconds) {
+        particles.forEach((particle, index) => {
+          particle.x += speedAt(particle.x) * SPEED_PIXELS * seconds;
+          if (particle.x > PIPE_RIGHT) particles[index] = spawn(false);
+        });
+      }
+
+      function wallPath(context, direction) {
+        context.beginPath();
+        context.moveTo(PIPE_LEFT, CENTER_Y + direction * (WIDE_HALF_HEIGHT + WALL_THICKNESS));
+        for (let x = PIPE_LEFT; x <= PIPE_RIGHT; x += WALL_SAMPLE_STEP) {
+          context.lineTo(x, CENTER_Y + direction * halfHeightAt(x));
+        }
+        context.lineTo(PIPE_RIGHT, CENTER_Y + direction * (WIDE_HALF_HEIGHT + WALL_THICKNESS));
+        context.closePath();
+      }
+
+      function drawWalls(context) {
+        context.fillStyle = wallColor();
+        [-1, 1].forEach(direction => {
+          wallPath(context, direction);
+          context.fill();
+        });
+      }
+
+      function drawStation(context, x, label) {
+        const half = halfHeightAt(x);
+        context.setLineDash([4, 4]);
+        context.strokeStyle = COLORS.grid;
+        context.lineWidth = 1.5;
+        context.beginPath();
+        context.moveTo(x, CENTER_Y - half);
+        context.lineTo(x, CENTER_Y + half);
+        context.stroke();
+        context.setLineDash([]);
+        const length = speedAt(x) * ARROW_PIXELS;
+        context.strokeStyle = COLORS.ink;
+        context.fillStyle = COLORS.ink;
+        context.lineWidth = 2.5;
+        context.beginPath();
+        context.moveTo(x, CENTER_Y);
+        context.lineTo(x + length, CENTER_Y);
+        context.stroke();
+        context.beginPath();
+        context.moveTo(x + length, CENTER_Y);
+        context.lineTo(x + length - 8, CENTER_Y - 5);
+        context.lineTo(x + length - 8, CENTER_Y + 5);
+        context.closePath();
+        context.fill();
+        context.font = '700 14px system-ui, sans-serif';
+        context.textAlign = 'center';
+        context.fillText(label, x, CENTER_Y - WIDE_HALF_HEIGHT - WALL_THICKNESS - 6);
+        context.textAlign = 'start';
+      }
+
+      function draw({ context, width, height }) {
+        context.clearRect(0, 0, width, height);
+        particles.forEach(particle => {
+          const speedup = speedAt(particle.x) / params.inflow;
+          context.fillStyle = mixColor(clamp((speedup - 1) / (MAX_SPEEDUP_FOR_COLOR - 1), 0, 1));
+          context.beginPath();
+          context.arc(particle.x, CENTER_Y + particle.lane * halfHeightAt(particle.x), 2.8, 0, Math.PI * 2);
+          context.fill();
+        });
+        drawWalls(context);
+        drawStation(context, STATION_WIDE_X, '①');
+        drawStation(context, STATION_THROAT_X, '②');
+      }
+
+      function updateReadout() {
+        const wideSpeed = params.inflow;
+        const throatSpeed = params.inflow / params.throat;
+        const flux = value => value.toFixed(2);
+        byId('nozzle-flux-in').textContent = `1.00 × ${flux(wideSpeed)} = ${flux(wideSpeed)}`;
+        byId('nozzle-flux-out').textContent =
+          `${flux(params.throat)} × ${flux(throatSpeed)} = ${flux(params.throat * throatSpeed)}`;
+        byId('nozzle-speedup').textContent = `${(throatSpeed / wideSpeed).toFixed(2)}×`;
+      }
+
+      const refresh = runDemo(byId('nozzle-canvas'), { step, draw });
+      const onInput = () => { updateReadout(); refresh(); };
+      bindSlider('nozzle-inflow', value => { params.inflow = value; onInput(); });
+      bindSlider('nozzle-throat', value => { params.throat = value; onInput(); });
+    }
+
+    /* ---------- Flow around a wing profile (ideal flow) ---------- */
+
+    /** Minimal complex arithmetic on { re, im } pairs. */
+    const complex = {
+      add: (a, b) => ({ re: a.re + b.re, im: a.im + b.im }),
+      sub: (a, b) => ({ re: a.re - b.re, im: a.im - b.im }),
+      mul: (a, b) => ({ re: a.re * b.re - a.im * b.im, im: a.re * b.im + a.im * b.re }),
+      div: (a, b) => {
+        const denominator = b.re * b.re + b.im * b.im;
+        return { re: (a.re * b.re + a.im * b.im) / denominator, im: (a.im * b.re - a.re * b.im) / denominator };
+      },
+      scale: (a, factor) => ({ re: a.re * factor, im: a.im * factor }),
+      abs: a => Math.hypot(a.re, a.im),
+      expi: angle => ({ re: Math.cos(angle), im: Math.sin(angle) }),
+      sqrt: a => {
+        const magnitude = Math.hypot(a.re, a.im);
+        const re = Math.sqrt((magnitude + a.re) / 2);
+        const im = Math.sqrt(Math.max((magnitude - a.re) / 2, 0));
+        return { re, im: a.im < 0 ? -im : im };
+      }
+    };
+
+    /**
+     * Potential flow past a Joukowski airfoil: flow past a circle, mapped to a wing shape by z = ζ + c²/ζ.
+     * The circulation is fixed by the Kutta condition (smooth flow off the trailing edge), which produces lift.
+     */
+    function createWingModel() {
+      const MAP_SCALE = 0.7;
+      const THICKNESS_OFFSET = -0.06;
+      const CAMBER_OFFSET = 0.05;
+      const OUTLINE_POINTS = 240;
+      const MIN_MAP_DERIVATIVE = 0.05;
+      const MAX_SPEED_RATIO = 6;
+      const SURFACE_NUDGE = 1e-6;
+      const mapSquared = { re: MAP_SCALE ** 2, im: 0 };
+      const centre = { re: THICKNESS_OFFSET, im: CAMBER_OFFSET };
+      const radius = Math.hypot(MAP_SCALE - centre.re, centre.im);
+      const camberAngle = Math.asin(centre.im / radius);
+
+      const joukowski = zeta => complex.add(zeta, complex.div(mapSquared, zeta));
+      const mapDerivative = zeta =>
+        complex.sub({ re: 1, im: 0 }, complex.div(mapSquared, complex.mul(zeta, zeta)));
+      const circlePoint = angle => complex.add(centre, complex.scale(complex.expi(angle), radius));
+      const outline = Array.from({ length: OUTLINE_POINTS }, (_, index) =>
+        joukowski(circlePoint(index / OUTLINE_POINTS * Math.PI * 2)));
+      const xs = outline.map(point => point.re);
+      const chord = Math.max(...xs) - Math.min(...xs);
+
+      /** Of the two circle-plane preimages of z, the one outside the circle. */
+      function preimage(z) {
+        const root = complex.sqrt(complex.sub(complex.mul(z, z), complex.scale(mapSquared, 4)));
+        const first = complex.scale(complex.add(z, root), 0.5);
+        const second = complex.scale(complex.sub(z, root), 0.5);
+        return complex.abs(complex.sub(first, centre)) >= complex.abs(complex.sub(second, centre)) ? first : second;
+      }
+
+      /** Velocity at z for stream speed `speed` at angle of attack `alpha`; null inside the wing. */
+      function velocityAt(z, speed, alpha) {
+        const zeta = preimage(z);
+        const offset = complex.sub(zeta, centre);
+        if (complex.abs(offset) < radius) return null;
+        const circulation = 4 * Math.PI * speed * radius * Math.sin(alpha + camberAngle);
+        const stream = complex.sub(
+          complex.scale(complex.expi(-alpha), speed),
+          complex.div(complex.scale(complex.expi(alpha), speed * radius ** 2), complex.mul(offset, offset))
+        );
+        const vortex = complex.div({ re: 0, im: circulation / (2 * Math.PI) }, offset);
+        const conjugateVelocity = complex.div(complex.add(stream, vortex), mapDerivative(zeta));
+        const maxSpeed = MAX_SPEED_RATIO * speed;
+        const x = clamp(conjugateVelocity.re, -maxSpeed, maxSpeed);
+        const y = clamp(-conjugateVelocity.im, -maxSpeed, maxSpeed);
+        return { x, y, speed: Math.hypot(x, y) };
+      }
+
+      /** Fastest speed on the wing surface, as a multiple of the stream speed. */
+      function peakSpeedRatio(alpha) {
+        let peak = 0;
+        for (let index = 0; index < OUTLINE_POINTS; index += 1) {
+          const zeta = circlePoint(index / OUTLINE_POINTS * Math.PI * 2);
+          if (complex.abs(mapDerivative(zeta)) < MIN_MAP_DERIVATIVE) continue;
+          const flow = velocityAt(joukowski(complex.scale(zeta, 1 + SURFACE_NUDGE)), 1, alpha);
+          if (flow) peak = Math.max(peak, flow.speed);
+        }
+        return peak;
+      }
+
+      const liftCoefficient = alpha => 8 * Math.PI * radius * Math.sin(alpha + camberAngle) / chord;
+
+      return { outline, velocityAt, peakSpeedRatio, liftCoefficient };
+    }
+
+    function createFlowDemo() {
+      const HALF_WIDTH = 4;
+      const HALF_HEIGHT = 2.25;
+      const PIXELS_PER_UNIT = 90;
+      const PARTICLE_COUNT = 280;
+      const TRAIL_LENGTH = 10;
+      const SUBSTEPS = 2;
+      const TIME_SCALE = 0.9;
+      const SPEED_FOR_FULL_COLOR_RATIO = 2;
+      const wing = createWingModel();
+      const params = { speed: 1, alpha: 6 * Math.PI / 180 };
+
+      const toScreenX = x => x * PIXELS_PER_UNIT + (HALF_WIDTH * PIXELS_PER_UNIT);
+      const toScreenY = y => HALF_HEIGHT * PIXELS_PER_UNIT - y * PIXELS_PER_UNIT;
+
+      /** Velocity at a point in the flow-aligned frame (stream along +x); null inside the wing. */
+      function flowAt(x, y) {
+        const wingPoint = complex.mul(complex.expi(params.alpha), { re: x, im: y });
+        const flow = wing.velocityAt(wingPoint, params.speed, params.alpha);
+        if (!flow) return null;
+        const aligned = complex.mul(complex.expi(-params.alpha), { re: flow.x, im: flow.y });
+        return { x: aligned.re, y: aligned.im, speed: flow.speed };
+      }
+
+      function spawn(anywhere) {
+        return {
+          x: anywhere ? randomBetween(-HALF_WIDTH, HALF_WIDTH) : -HALF_WIDTH,
+          y: randomBetween(-HALF_HEIGHT, HALF_HEIGHT),
+          trail: []
+        };
+      }
+
+      const particles = Array.from({ length: PARTICLE_COUNT }, () => spawn(true));
+
+      function step(seconds) {
+        const subStep = seconds * TIME_SCALE / SUBSTEPS;
+        particles.forEach((particle, index) => {
+          let inside = false;
+          for (let count = 0; count < SUBSTEPS && !inside; count += 1) {
+            const flow = flowAt(particle.x, particle.y);
+            inside = flow === null;
+            if (flow) {
+              particle.x += flow.x * subStep;
+              particle.y += flow.y * subStep;
+            }
+          }
+          particle.trail.push({ x: particle.x, y: particle.y });
+          if (particle.trail.length > TRAIL_LENGTH) particle.trail.shift();
+          const lost = inside || particle.x > HALF_WIDTH || Math.abs(particle.y) > HALF_HEIGHT;
+          if (lost) particles[index] = spawn(false);
+        });
+      }
+
+      function drawWing(context) {
+        const rotation = complex.expi(-params.alpha);
+        context.beginPath();
+        wing.outline.forEach((point, index) => {
+          const aligned = complex.mul(rotation, point);
+          const screenX = toScreenX(aligned.re);
+          const screenY = toScreenY(aligned.im);
+          if (index === 0) context.moveTo(screenX, screenY);
+          else context.lineTo(screenX, screenY);
+        });
+        context.closePath();
+        context.fillStyle = wallColor();
+        context.fill();
+        context.strokeStyle = COLORS.ink;
+        context.lineWidth = 2;
+        context.stroke();
+      }
+
+      function draw({ context, width, height }) {
+        context.clearRect(0, 0, width, height);
+        context.lineWidth = 2.2;
+        context.lineCap = 'round';
+        context.lineJoin = 'round';
+        particles.forEach(particle => {
+          if (particle.trail.length < 2) return;
+          const flow = flowAt(particle.x, particle.y);
+          const ratio = flow ? flow.speed / (params.speed * SPEED_FOR_FULL_COLOR_RATIO) : 0;
+          context.strokeStyle = mixColor(clamp(ratio, 0, 1));
+          context.globalAlpha = 0.85;
+          context.beginPath();
+          particle.trail.forEach((point, index) => {
+            const screenX = toScreenX(point.x);
+            const screenY = toScreenY(point.y);
+            if (index === 0) context.moveTo(screenX, screenY);
+            else context.lineTo(screenX, screenY);
+          });
+          context.stroke();
+        });
+        context.globalAlpha = 1;
+        drawWing(context);
+      }
+
+      function updateReadout() {
+        byId('flow-angle-readout').textContent = `${Math.round(params.alpha * 180 / Math.PI)}°`;
+        byId('flow-peak').textContent = `${wing.peakSpeedRatio(params.alpha).toFixed(2)} × U`;
+        byId('flow-lift').textContent = wing.liftCoefficient(params.alpha).toFixed(2);
+      }
+
+      const refresh = runDemo(byId('flow-canvas'), { step, draw });
+      const onInput = () => { updateReadout(); refresh(); };
+      bindSlider('flow-speed', value => { params.speed = value; onInput(); });
+      bindSlider('flow-angle', value => { params.alpha = value * Math.PI / 180; onInput(); }, 0);
+    }
+
+    /* ---------- Viscous mixing of two streams ---------- */
+
+    function createViscosityDemo() {
+      const LAYERS = 48;
+      const TIME_SPEEDUP = 0.35;
+      const STABILITY_FACTOR = 0.4;
+      const SETTLED_TOLERANCE = 0.04;
+      const HOLD_SECONDS = 1.5;
+      const TRACER_COUNT = 190;
+      const TRACER_SPEED_PIXELS = 130;
+      const STREAK_SECONDS = 0.12;
+      const FLUID_TOP = 30;
+      const FLUID_HEIGHT = 220;
+      const AXIS_X = 110;
+      const PROFILE_SCALE = 80;
+      const TRACER_LEFT = 230;
+      const TRACER_RIGHT = 700;
+      const ARROW_ROWS = 11;
+      const MIN_ARROW_LENGTH = 6;
+      const layerSpacing = 1 / LAYERS;
+      const state = { nu: 0.1, time: 0, holdTime: 0, velocity: new Float64Array(LAYERS + 1) };
+      const tracers = Array.from({ length: TRACER_COUNT }, () => ({
+        x: randomBetween(TRACER_LEFT, TRACER_RIGHT),
+        height: Math.random()
+      }));
+
+      // Velocities are measured relative to the average flow: the top half starts moving right (+1), the bottom half left (-1).
+      function reset() {
+        state.velocity.forEach((_, layer) => {
+          state.velocity[layer] = layer > LAYERS / 2 ? 1 : -1;
+        });
+        state.time = 0;
+        state.holdTime = 0;
+      }
+
+      function velocityAt(height) {
+        const position = clamp(height, 0, 1) * LAYERS;
+        const lower = Math.floor(position);
+        const upper = Math.min(lower + 1, LAYERS);
+        const blend = position - lower;
+        return state.velocity[lower] * (1 - blend) + state.velocity[upper] * blend;
+      }
+
+      function isSettled() {
+        return state.velocity.every(value => Math.abs(value) < SETTLED_TOLERANCE);
+      }
+
+      function diffuse(simulatedSeconds) {
+        const maxStableStep = STABILITY_FACTOR * layerSpacing ** 2 / state.nu;
+        const substeps = Math.ceil(simulatedSeconds / maxStableStep);
+        const stepSize = simulatedSeconds / substeps;
+        const factor = state.nu * stepSize / layerSpacing ** 2;
+        for (let count = 0; count < substeps; count += 1) {
+          const previous = state.velocity.slice();
+          for (let layer = 0; layer <= LAYERS; layer += 1) {
+            // Mirror the end layers so no momentum leaks out of the domain.
+            const below = previous[Math.max(layer - 1, 0)];
+            const above = previous[Math.min(layer + 1, LAYERS)];
+            state.velocity[layer] = previous[layer] + factor * (above - 2 * previous[layer] + below);
+          }
+        }
+        state.time += simulatedSeconds;
+      }
+
+      function wrap(x) {
+        const span = TRACER_RIGHT - TRACER_LEFT;
+        return TRACER_LEFT + ((x - TRACER_LEFT) % span + span) % span;
+      }
+
+      function step(seconds) {
+        if (isSettled()) {
+          state.holdTime += seconds;
+          if (state.holdTime > HOLD_SECONDS) reset();
+        } else {
+          diffuse(seconds * TIME_SPEEDUP);
+        }
+        tracers.forEach(tracer => {
+          tracer.x = wrap(tracer.x + velocityAt(tracer.height) * TRACER_SPEED_PIXELS * seconds);
+        });
+      }
+
+      const heightToY = height => FLUID_TOP + FLUID_HEIGHT * (1 - height);
+      /** Diverging colour: blue for leftward, orange for rightward, neutral at rest. */
+      const directionColor = velocity => (velocity >= 0 ? COLORS.accent : COLORS.blue);
+
+      function drawLabels(context) {
+        context.fillStyle = COLORS.ink;
+        context.font = '12px system-ui, sans-serif';
+        context.textAlign = 'right';
+        context.fillText('top layers flow right →', TRACER_RIGHT, FLUID_TOP - 10);
+        context.fillText('← bottom layers flow left', TRACER_RIGHT, FLUID_TOP + FLUID_HEIGHT + 20);
+        context.textAlign = 'center';
+        context.fillText('rest', AXIS_X, FLUID_TOP - 10);
+        context.textAlign = 'start';
+      }
+
+      function drawArrow(context, length, y) {
+        const direction = Math.sign(length);
+        const tip = AXIS_X + length;
+        context.strokeStyle = directionColor(length);
+        context.fillStyle = directionColor(length);
+        context.lineWidth = 1.5;
+        context.beginPath();
+        context.moveTo(AXIS_X, y);
+        context.lineTo(tip, y);
+        context.stroke();
+        context.beginPath();
+        context.moveTo(tip, y);
+        context.lineTo(tip - direction * 7, y - 4);
+        context.lineTo(tip - direction * 7, y + 4);
+        context.closePath();
+        context.fill();
+      }
+
+      function drawProfile(context) {
+        context.setLineDash([5, 5]);
+        context.strokeStyle = COLORS.grid;
+        context.lineWidth = 2;
+        context.beginPath();
+        context.moveTo(AXIS_X, heightToY(0));
+        context.lineTo(AXIS_X, heightToY(1));
+        context.stroke();
+        context.setLineDash([]);
+        for (let row = 0; row < ARROW_ROWS; row += 1) {
+          const height = row / (ARROW_ROWS - 1);
+          const length = PROFILE_SCALE * velocityAt(height);
+          if (Math.abs(length) >= MIN_ARROW_LENGTH) drawArrow(context, length, heightToY(height));
+        }
+        context.strokeStyle = COLORS.ink;
+        context.lineWidth = 2.5;
+        context.beginPath();
+        for (let layer = 0; layer <= LAYERS; layer += 1) {
+          const x = AXIS_X + PROFILE_SCALE * state.velocity[layer];
+          const y = heightToY(layer * layerSpacing);
+          if (layer === 0) context.moveTo(x, y);
+          else context.lineTo(x, y);
+        }
+        context.stroke();
+      }
+
+      function drawTracers(context) {
+        context.lineCap = 'round';
+        tracers.forEach(tracer => {
+          const velocity = velocityAt(tracer.height);
+          const y = heightToY(tracer.height);
+          const streak = velocity * TRACER_SPEED_PIXELS * STREAK_SECONDS;
+          context.strokeStyle = directionColor(velocity);
+          context.globalAlpha = 0.25 + 0.75 * Math.min(Math.abs(velocity), 1);
+          context.lineWidth = 3;
+          context.beginPath();
+          context.moveTo(tracer.x - streak, y);
+          context.lineTo(tracer.x, y);
+          context.stroke();
+        });
+        context.globalAlpha = 1;
+      }
+
+      function draw({ context, width, height }) {
+        context.clearRect(0, 0, width, height);
+        drawLabels(context);
+        drawTracers(context);
+        drawProfile(context);
+        byId('viscosity-time').textContent = state.time.toFixed(2);
+        byId('viscosity-state').textContent = isSettled() ? 'at rest' : 'blending';
+      }
+
+      reset();
+      const refresh = runDemo(byId('viscosity-canvas'), { step, draw });
+      bindSlider('viscosity-nu', value => {
+        state.nu = value;
+        byId('viscosity-readout-nu').textContent = value.toFixed(2);
+        refresh();
+      });
+      byId('viscosity-restart').addEventListener('click', () => { reset(); refresh(); });
+    }
+
+    /* ---------- Pipe network with Hagen–Poiseuille flow ---------- */
+
+    function createPipeDemo() {
+      const SOURCE = { x: 70, y: 165 };
+      const SINK = { x: 650, y: 165 };
+      const BRANCH_OFFSET = 85;
+      const BRANCH_INSET = 80;
+      const PIXELS_PER_RADIUS = 14;
+      const PARTICLES_PER_UNIT_AREA = 50;
+      const SPEED_PIXELS = 80;
+      const WALL_THICKNESS = 8;
+      const params = { topRadius: 1, bottomRadius: 0.7, pressure: 1 };
+
+      function buildPipe(side) {
+        const branchY = SOURCE.y + side * BRANCH_OFFSET;
+        const points = [
+          SOURCE,
+          { x: SOURCE.x + BRANCH_INSET, y: branchY },
+          { x: SINK.x - BRANCH_INSET, y: branchY },
+          SINK
+        ];
+        const lengths = points.slice(1).map((point, index) =>
+          Math.hypot(point.x - points[index].x, point.y - points[index].y));
+        return { points, lengths, total: lengths.reduce((sum, length) => sum + length, 0), particles: [] };
+      }
+
+      const pipes = { top: buildPipe(-1), bottom: buildPipe(1) };
+
+      const flowRate = radius => radius ** 4 * params.pressure;
+
+      function positionOn(pipe, fraction, lateral) {
+        let remaining = fraction * pipe.total;
+        for (let index = 0; index < pipe.lengths.length; index += 1) {
+          if (remaining <= pipe.lengths[index] || index === pipe.lengths.length - 1) {
+            const from = pipe.points[index];
+            const to = pipe.points[index + 1];
+            const ratio = clamp(remaining / pipe.lengths[index], 0, 1);
+            const tangentX = (to.x - from.x) / pipe.lengths[index];
+            const tangentY = (to.y - from.y) / pipe.lengths[index];
+            return {
+              x: from.x + (to.x - from.x) * ratio - tangentY * lateral,
+              y: from.y + (to.y - from.y) * ratio + tangentX * lateral
+            };
+          }
+          remaining -= pipe.lengths[index];
+        }
+        return pipe.points[0];
+      }
+
+      function syncParticleCount(pipe, radius) {
+        const target = Math.round(PARTICLES_PER_UNIT_AREA * radius ** 2);
+        while (pipe.particles.length < target) {
+          pipe.particles.push({ fraction: Math.random(), lateral: randomBetween(-1, 1) });
+        }
+        pipe.particles.length = target;
+      }
+
+      function stepPipe(pipe, radius, seconds) {
+        syncParticleCount(pipe, radius);
+        const meanSpeed = SPEED_PIXELS * radius ** 2 * params.pressure;
+        pipe.particles.forEach(particle => {
+          const centreFactor = 2 * (1 - particle.lateral ** 2);
+          particle.fraction += meanSpeed * centreFactor * seconds / pipe.total;
+          if (particle.fraction > 1) {
+            particle.fraction -= 1;
+            particle.lateral = randomBetween(-1, 1);
+          }
+        });
+      }
+
+      function step(seconds) {
+        stepPipe(pipes.top, params.topRadius, seconds);
+        stepPipe(pipes.bottom, params.bottomRadius, seconds);
+      }
+
+      function drawPipe(context, pipe, radius) {
+        const path = new Path2D();
+        pipe.points.forEach((point, index) => {
+          if (index === 0) path.moveTo(point.x, point.y);
+          else path.lineTo(point.x, point.y);
+        });
+        context.lineJoin = 'round';
+        context.lineCap = 'round';
+        context.strokeStyle = wallColor();
+        context.lineWidth = 2 * PIXELS_PER_RADIUS * radius + WALL_THICKNESS;
+        context.stroke(path);
+        context.strokeStyle = surfaceColor();
+        context.lineWidth = 2 * PIXELS_PER_RADIUS * radius;
+        context.stroke(path);
+        pipe.particles.forEach(particle => {
+          const position = positionOn(pipe, particle.fraction, particle.lateral * PIXELS_PER_RADIUS * radius);
+          context.fillStyle = mixColor(clamp(1 - particle.lateral ** 2, 0, 1));
+          context.beginPath();
+          context.arc(position.x, position.y, 2.4, 0, Math.PI * 2);
+          context.fill();
+        });
+      }
+
+      function drawNode(context, node, label, caption) {
+        context.beginPath();
+        context.arc(node.x, node.y, 15, 0, Math.PI * 2);
+        context.fillStyle = surfaceColor();
+        context.fill();
+        context.strokeStyle = COLORS.ink;
+        context.lineWidth = 2.5;
+        context.stroke();
+        context.fillStyle = COLORS.ink;
+        context.font = '700 14px system-ui, sans-serif';
+        context.textAlign = 'center';
+        context.fillText(label, node.x, node.y + 5);
+        context.font = '12px system-ui, sans-serif';
+        context.fillText(caption, node.x, node.y + 38);
+        context.textAlign = 'start';
+      }
+
+      function updateReadout() {
+        const topFlow = flowRate(params.topRadius);
+        const bottomFlow = flowRate(params.bottomRadius);
+        byId('pipe-flow-top').textContent = topFlow.toFixed(2);
+        byId('pipe-flow-bottom').textContent = bottomFlow.toFixed(2);
+        byId('pipe-flow-total').textContent = (topFlow + bottomFlow).toFixed(2);
+      }
+
+      function draw({ context, width, height }) {
+        context.clearRect(0, 0, width, height);
+        drawPipe(context, pipes.top, params.topRadius);
+        drawPipe(context, pipes.bottom, params.bottomRadius);
+        drawNode(context, SOURCE, 'S', 'pressure P + ΔP');
+        drawNode(context, SINK, 'T', 'pressure P');
+      }
+
+      const refresh = runDemo(byId('pipe-canvas'), { step, draw });
+      const onInput = () => { updateReadout(); refresh(); };
+      bindSlider('pipe-radius-top', value => { params.topRadius = value; onInput(); });
+      bindSlider('pipe-radius-bottom', value => { params.bottomRadius = value; onInput(); });
+      bindSlider('pipe-pressure', value => { params.pressure = value; onInput(); });
+    }
+
+    /* ---------- Knudsen number ---------- */
+
+    function createKnudsenDemo() {
+      const MOLECULE_COUNT = 70;
+      const MOLECULE_SPEED = 130;
+      const PIXELS_PER_UNIT = 24;
+      const CHANNEL_CENTER_Y = 150;
+      const CHANNEL_WIDTH = 720;
+      const MIN_FREE_PATH_PIXELS = 0.001;
+      const MAX_EVENTS_PER_STEP = 200;
+      const COLLISION_MEMORY_SECONDS = 2;
+      const REGIME_THRESHOLDS = [
+        { below: 0.001, label: 'continuum' },
+        { below: 0.1, label: 'slip flow' },
+        { below: 10, label: 'transition' },
+        { below: Infinity, label: 'free molecular' }
+      ];
+      const params = { length: 6, freePath: 0.1 };
+      const collisions = { wall: 0, molecule: 0 };
+
+      const channelHeight = () => params.length * PIXELS_PER_UNIT;
+      const freePathPixels = () => params.freePath * PIXELS_PER_UNIT;
+      const drawFreePath = () => Math.max(-Math.log(1 - Math.random()) * freePathPixels(), MIN_FREE_PATH_PIXELS);
+
+      function createMolecule() {
+        const half = channelHeight() / 2;
+        return {
+          x: randomBetween(0, CHANNEL_WIDTH),
+          y: CHANNEL_CENTER_Y + randomBetween(-half, half),
+          angle: randomBetween(0, Math.PI * 2),
+          remaining: drawFreePath(),
+          previousX: 0,
+          previousY: 0
+        };
+      }
+
+      const molecules = Array.from({ length: MOLECULE_COUNT }, createMolecule);
+
+      function advance(molecule, seconds) {
+        const half = channelHeight() / 2;
+        const top = CHANNEL_CENTER_Y - half;
+        const bottom = CHANNEL_CENTER_Y + half;
+        let distance = MOLECULE_SPEED * seconds;
+        for (let events = 0; distance > 0 && events < MAX_EVENTS_PER_STEP; events += 1) {
+          const travel = Math.min(distance, molecule.remaining);
+          molecule.x = (molecule.x + Math.cos(molecule.angle) * travel + CHANNEL_WIDTH) % CHANNEL_WIDTH;
+          molecule.y += Math.sin(molecule.angle) * travel;
+          molecule.remaining -= travel;
+          distance -= travel;
+          if (molecule.y <= top || molecule.y >= bottom) {
+            const hitTop = molecule.y <= top;
+            molecule.y = hitTop ? top : bottom;
+            const away = randomBetween(0.05, Math.PI - 0.05);
+            molecule.angle = hitTop ? away : -away;
+            molecule.remaining = drawFreePath();
+            collisions.wall += 1;
+          } else if (molecule.remaining <= 0) {
+            molecule.angle = randomBetween(0, Math.PI * 2);
+            molecule.remaining = drawFreePath();
+            collisions.molecule += 1;
+          }
+        }
+      }
+
+      function confineToChannel() {
+        const half = channelHeight() / 2;
+        molecules.forEach(molecule => {
+          molecule.y = clamp(molecule.y, CHANNEL_CENTER_Y - half + 1, CHANNEL_CENTER_Y + half - 1);
+        });
+      }
+
+      function step(seconds) {
+        const decay = Math.exp(-seconds / COLLISION_MEMORY_SECONDS);
+        collisions.wall *= decay;
+        collisions.molecule *= decay;
+        molecules.forEach(molecule => {
+          molecule.previousX = molecule.x;
+          molecule.previousY = molecule.y;
+          advance(molecule, seconds);
+        });
+      }
+
+      function regimeFor(knudsen) {
+        return REGIME_THRESHOLDS.find(regime => knudsen < regime.below).label;
+      }
+
+      function updateReadout() {
+        const knudsen = params.freePath / params.length;
+        byId('knudsen-number').textContent = knudsen < 0.01 ? knudsen.toExponential(1) : knudsen.toFixed(3);
+        byId('knudsen-regime').textContent = regimeFor(knudsen);
+      }
+
+      function drawWalls(context) {
+        const half = channelHeight() / 2;
+        context.fillStyle = wallColor();
+        context.fillRect(0, CHANNEL_CENTER_Y - half - 10, CHANNEL_WIDTH, 10);
+        context.fillRect(0, CHANNEL_CENTER_Y + half, CHANNEL_WIDTH, 10);
+        context.strokeStyle = COLORS.accent;
+        context.lineWidth = 1.5;
+        context.beginPath();
+        const arrowY = CHANNEL_CENTER_Y + half + 26;
+        context.moveTo(CHANNEL_WIDTH - 130, CHANNEL_CENTER_Y - half);
+        context.lineTo(CHANNEL_WIDTH - 130, CHANNEL_CENTER_Y + half);
+        context.stroke();
+        context.fillStyle = COLORS.accent;
+        context.font = '12px system-ui, sans-serif';
+        context.fillText('L', CHANNEL_WIDTH - 122, CHANNEL_CENTER_Y + 4);
+        context.fillStyle = COLORS.ink;
+        context.fillText(`λ = ${freePathPixels().toFixed(1)} px mean free path`, 16, arrowY);
+      }
+
+      function drawMolecules(context) {
+        molecules.forEach(molecule => {
+          const wrapped = Math.abs(molecule.x - molecule.previousX) > CHANNEL_WIDTH / 2;
+          if (!wrapped) {
+            context.strokeStyle = 'rgba(40, 120, 208, 0.35)';
+            context.lineWidth = 2;
+            context.beginPath();
+            context.moveTo(molecule.previousX, molecule.previousY);
+            context.lineTo(molecule.x, molecule.y);
+            context.stroke();
+          }
+          context.fillStyle = COLORS.blue;
+          context.beginPath();
+          context.arc(molecule.x, molecule.y, 3.2, 0, Math.PI * 2);
+          context.fill();
+        });
+      }
+
+      function draw({ context, width, height }) {
+        context.clearRect(0, 0, width, height);
+        drawWalls(context);
+        drawMolecules(context);
+        const total = collisions.wall + collisions.molecule;
+        const share = total > 0 ? collisions.wall / total : 0;
+        byId('knudsen-wall-share').textContent = `${Math.round(share * 100)}%`;
+      }
+
+      const refresh = runDemo(byId('knudsen-canvas'), { step, draw });
+      bindSlider('knudsen-length', value => {
+        params.length = value;
+        confineToChannel();
+        updateReadout();
+        refresh();
+      }, 1);
+      const pathInput = byId('knudsen-path');
+      const onPathInput = () => {
+        params.freePath = 10 ** Number(pathInput.value);
+        byId('knudsen-path-value').textContent = params.freePath < 1
+          ? params.freePath.toPrecision(2)
+          : params.freePath.toFixed(1);
+        updateReadout();
+        refresh();
+      };
+      pathInput.addEventListener('input', onPathInput);
+      onPathInput();
+    }
+
+    createNozzleDemo();
+    createFlowDemo();
+    createViscosityDemo();
+    createPipeDemo();
+    createKnudsenDemo();
+  })();
+</script>
