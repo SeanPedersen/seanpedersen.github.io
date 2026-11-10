@@ -63,6 +63,7 @@ Avoid [oh-my-zsh](https://ohmyz.sh/) it is bloated and slow.
 ## TO TRY
 - [XFCE](https://www.xfce.org/): promising low resource DE (though no wayland support yet)
 - [NixOS](https://nixos.org/)
+- [Omarchy](https://omarchy.org/): new polished linux distro
 
 Low RAM macOS config (<600MB): [Arch](https://archlinux.org/) → [Labwc](https://labwc.github.io/) → [lxqt-panel](https://github.com/lxqt/lxqt-panel) → [PCManFM-Qt](https://github.com/lxqt/pcmanfm-qt) → [mako](https://github.com/emersion/mako) → [swaybg](https://github.com/swaywm/swaybg) → dock → macOS theme.
 
