@@ -4,7 +4,11 @@ icon: "/images/icons/bubbles.svg"
 ---
 # Popping the AGI Bubble
 
+>The Verification Bottleneck: Why ASI Will Arrive Unevenly
+
 It is becoming clearer and clearer that scaling up LLM's will not solve their fundamental limits like hallucinations (making up bullshit) and context rot (decreasing performance with growing noisy input context). While LLM companies are still slashing benchmarks (often by training on test data directly or guessing the test data) - users of LLM's know the truth: LLM's are a useful tool but nowhere near a robust AGI (that can reliably solve complex tasks without human supervision) and there is nothing in sight suggesting this will change soon.
+
+Update 11/2026: Hallucinations and context rot are still a problem but not as much, complex (easily verifiable) tasks are solvable. We are heading for ASI in all easy to verify domains (cheap to generate training signal / rewards). Easy to verify: Compiled programs, math proofs, speed optimizations, anything you can simulate in silico. Hard to verify: Good product design, creative writing & problems needing conceptual quantum leaps (like P equals NP likely needs). Current AI allows powerful search over solution spaces for problems where solution candidates are easy to verify, delivering impressive results.
 
 ## Fundamental Limits
 
