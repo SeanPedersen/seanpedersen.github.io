@@ -12,6 +12,7 @@ Tao also emphasizes that LLM written proofs show lack of human understanding: th
 
 ## References
 
--  [The paradox at the heart of AI and science | Terence Tao](https://www.youtube.com/watch?v=svl_1upFpQo)
+- [The paradox at the heart of AI and science | Terence Tao](https://www.youtube.com/watch?v=svl_1upFpQo)
+- [AI Crisis in Math: Navier-Stokes, Riemann Hypothesis & Complexity Theory | Lex Fridman Podcast #503](https://www.youtube.com/watch?v=ZAzWPE9CItg)
 
 #AI #math
