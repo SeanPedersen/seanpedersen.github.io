@@ -10,7 +10,6 @@ The Navier–Stokes equations are based on fundamental physical principles, part
 
 Despite their broad applicability, the equations are not a complete description of fluid behaviour at every scale. They rely on the continuum assumption, which treats fluids as continuously distributed matter rather than collections of individual molecules. At sufficiently small scales, this assumption breaks down, and molecular-level models become necessary.
 
-This article explores the mathematical structure of the Navier–Stokes equations, their physical interpretation, their real-world applications, and their limitations.
 
 ## Understanding the Navier–Stokes Equations
 
@@ -41,7 +40,7 @@ Here, the variables represent:
 - $\mathbf{g}$: External acceleration, such as gravity.
 - $\nabla$: Spatial differential operator.
 
-### he meaning of each term
+### The meaning of each term
 
 **Fluid inertia (left-hand side)**
 
@@ -85,7 +84,7 @@ $$
 
 This term represents body forces acting on the fluid, such as gravity.
 
-### 2.2 The continuity equation: Conservation of mass
+### The continuity equation: Conservation of mass
 
 $$
 \nabla\cdot\mathbf{u}=0
@@ -104,13 +103,7 @@ $$
 
 This allows density to vary with position and time.
 
-## Why Are the Navier–Stokes Equations Important?
-
-The importance of the Navier–Stokes equations lies in their ability to describe an enormous variety of fluid-flow phenomena using a common mathematical framework.
-
-They are used to predict fluid behaviour in situations ranging from relatively simple pipe flows to highly complex turbulent flows.
-
-Some important applications include:
+## Applications
 
 ### Aerospace engineering
 
@@ -162,13 +155,13 @@ The equations are then solved numerically to estimate quantities such as:
 
 CFD has become an essential engineering tool because it allows researchers to investigate fluid behaviour without relying entirely on expensive physical experiments.
 
-## Limitations of the Navier–Stokes Equations
+## Limits
 
 Although the Navier–Stokes equations are extremely powerful, they are not universally applicable without modification.
 
-Their limitations arise partly from the assumptions used to derive them and partly from the mathematical and computational challenges associated with solving them.
+Their linits arise partly from the assumptions used to derive them and partly from the mathematical and computational challenges associated with solving them.
 
-### The continuum assumption
+### Continuum assumption
 
 One of the most important assumptions behind classical fluid mechanics is that matter can be treated as a continuous medium.
 
@@ -202,7 +195,7 @@ As a general guideline:
 
 As the Knudsen number increases, conventional Navier–Stokes equations with standard no-slip boundary conditions become progressively less reliable.
 
-### 4.2 Breakdown at the molecular scale
+### Breakdown at the molecular scale
 
 At the molecular level, fluids are not continuous materials. They consist of discrete particles that move, collide, exchange energy, and interact through intermolecular forces.
 
@@ -253,6 +246,8 @@ For three-dimensional incompressible flow, an important unresolved question conc
 This is one of the famous Millennium Prize Problems identified by the Clay Mathematics Institute.
 
 The problem highlights that, despite the equations' extensive practical use, important questions about their mathematical behaviour remain unanswered.
+
+OpenAI claims that its AI has produced a proof resolving the 3D Navier–Stokes Millennium Problem by demonstrating finite-time singularity formation under the problem's permitted conditions. The proof has been formalized using Lean, but it has not yet completed independent mathematical scrutiny or received formal Clay Institute recognition. Therefore, it is a claimed solution, not yet an officially accepted solution.
 
 ## Conclusion
 
