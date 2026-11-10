@@ -112,7 +112,7 @@ One of the biggest open questions in computer science is:
 
 In simpler terms:
 
-If a solution to a problem can be verified efficiently, can that solution also be found efficiently?
+If a candidate solution to a problem can be verified efficiently, can a valid solution also be found efficiently?
 
 ### P: Problems That Are Easy to Solve
 
