@@ -4,8 +4,8 @@ Computational complexity is the study of how much computational resources an alg
 
 The two primary resources we measure are:
 
-- **Time complexity:** How the number of operations grows with input size.
-- **Space complexity:** How the memory / disk requirements grow with input size.
+- **Time complexity:** How the number of computational operations grows with input size.
+- **Space complexity:** How the storage requirements grow with input size.
 
 Rather than measuring execution time in seconds, we use asymptotic notation (Big O) to describe how an algorithm scales.
 
@@ -13,7 +13,7 @@ Rather than measuring execution time in seconds, we use asymptotic notation (Big
 
 Big O notation describes the upper bound of an algorithm's growth rate.
 
-For example, an algorithm with O(n) complexity grows linearly: doubling the input size approximately doubles the number of operations.
+For example, an algorithm with O(n) complexity grows linearly (proportional): doubling the input size approximately doubles the number of operations.
 
 ### Common Time Complexities
 
@@ -23,8 +23,8 @@ For example, an algorithm with O(n) complexity grows linearly: doubling the inpu
 | O(log n) | Logarithmic | Binary search |
 | O(n) | Linear | Linear search |
 | O(n log n) | Linearithmic | Merge sort, average-case quicksort |
-| O(n²) | Quadratic | Insertion sort |
-| O(n³) | Cubic | Naive matrix multiplication |
+| O(n²) | Polynomial (quadratic) | Insertion sort |
+| O(n³) | Polynomial (cubic) | Naive matrix multiplication |
 | O(2ⁿ) | Exponential | Brute-force subset enumeration |
 | O(n!) | Factorial | Brute-force travelling salesperson |
 
