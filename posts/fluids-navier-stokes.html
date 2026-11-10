@@ -175,6 +175,26 @@ tags: [math, science]
   <li><i>p</i>: pressure</li>
   <li><i>μ</i>: dynamic viscosity</li>
   <li><b>g</b>: external acceleration (e.g. gravity)</li>
+  <li>∇ (nabla): the vector of spatial derivatives (∂/∂x, ∂/∂y, ∂/∂z), explained below</li>
+</ul>
+
+<h3 id="nabla">The ∇ operator</h3>
+
+<p>∇ ("nabla" or "del") is a vector of partial derivatives, (∂/∂<i>x</i>, ∂/∂<i>y</i>, ∂/∂<i>z</i>). On its own it means
+  nothing; it becomes a concrete operation once applied to a field. The equations use it in four ways:</p>
+
+<ul>
+  <li><strong>Gradient</strong> ∇<i>p</i>: applied to a scalar field, it yields a vector pointing in the direction of
+    steepest increase. For pressure, −∇<i>p</i> therefore points from high to low pressure.</li>
+  <li><strong>Divergence</strong> ∇·<b>u</b> = ∂<i>u</i><sub>x</sub>/∂<i>x</i> + ∂<i>u</i><sub>y</sub>/∂<i>y</i> +
+    ∂<i>u</i><sub>z</sub>/∂<i>z</i>: a scalar measuring how much a vector field spreads out of (positive) or flows
+    into (negative) a point. Zero means no net source or sink.</li>
+  <li><strong>Advection</strong> (<b>u</b>·∇)<b>u</b>: the operator <b>u</b>·∇ = <i>u</i><sub>x</sub>∂/∂<i>x</i> +
+    <i>u</i><sub>y</sub>∂/∂<i>y</i> + <i>u</i><sub>z</sub>∂/∂<i>z</i> is the rate of change along the flow
+    direction. Applied to <b>u</b>, it says how the velocity changes as the fluid carries itself along.</li>
+  <li><strong>Laplacian</strong> ∇²<b>u</b> = ∇·(∇<b>u</b>) = ∂²<b>u</b>/∂<i>x</i>² + ∂²<b>u</b>/∂<i>y</i>² +
+    ∂²<b>u</b>/∂<i>z</i>²: compares the value at a point with the average of its surroundings. It is positive where
+    the field is lower than its neighbours, so it smooths differences out (diffusion).</li>
 </ul>
 
 <h3 id="momentum">Momentum equation</h3>
