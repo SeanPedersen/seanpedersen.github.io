@@ -4,7 +4,7 @@ icon: "/images/icons/surveillance-camera.webp"
 ---
 # Digital Surveillance Capitalism
 
-Digital surveillance capitalism is the dominant force of the 21st century - shaping our global society. Players like Alphabet (Google), Meta (Instagram, Facebook), Tiktok, OpenAI (ChatGPT), Anthropic (Claude) and co are all building sticky spider webs that trap their victims (users) to extract their valuable innerts (personal user data). These inhumane, privacy violating technological developments are often presented and thus also viewed as neutral, natural progress but they are not. It is time to break free from these sticky privacy extracting spider webs.
+Digital surveillance capitalism is the dominant force of the 21st century - shaping our global society. Players like Alphabet (Google), Meta (Instagram, Facebook), Tiktok, OpenAI (ChatGPT), Anthropic (Claude) and co are all building sticky spider webs that trap their victims (users) to extract their valuable innerts (personal user data). These inhumane, privacy violating technological developments are often presented and thus also viewed as neutral, natural progress but they are not. It is time to break free from these sticky privacy extracting spider webs and rebuild a humane and open world wide web.
 
 ## Core Mechanisms
 
@@ -22,7 +22,10 @@ Self tracking is sold as freedom; it becomes self discipline to meet outside tar
 Likes, followers, ranks, streaks keep users chasing status. Games and rewards drive time on site and data flow. This is not random manipulation; it is the profit engine. Engagement feeds ads and prediction. People stay not from weakness but because exit costs social ties.
 
 ### Supporting Stories
-Dataism: Numbers are treated as pure truth; method bias is ignored. Tech inevitability: "Tech will happen anyway," killing democratic choice. Disruption myth: Breaking rules is praised as innovation; law evasion is rebranded. Sharing talk: Extractive platforms pose as neutral "sharing" spaces. Security frame: More surveillance is sold as safety; emergency logic never ends.
+Dataism: Numbers are treated as pure truth; method bias is ignored. Tech inevitability: "Tech will happen anyway," killing democratic choice.
+Disruption myth: Breaking rules is praised as innovation; law evasion is rebranded.
+Sharing talk: Extractive platforms pose as neutral "sharing" spaces.
+Security frame: More surveillance is sold as safety; emergency logic never ends.
 
 ### Results
 Power pools in a few firms. Risk shifts to users and workers: algorithmic gig control, data leaks, biased automation. This is masked as efficiency and empowerment. Design choices are political choices.
@@ -31,11 +34,11 @@ These giant pools of personal data are at best used to make giant profits and sa
 
 **The infrastructure of commercial surveillance can become the infrastructure of political repression.**
 
-## Human Centered Technology
+## Humane Technology
 
 ...serving humans instead of exploiting them for maximum profits.
 
-### Privacy by Design
+### Private by Design
 Collect the least data. Encrypt end to end. Use techniques that hide individuals in stats. Make abuse hard by architecture, not fragile policy. Build federated and decentral software - reduce centralized data silos of personal data.
 
 ### Open Source
@@ -75,7 +78,7 @@ Mastodon: Decentralized social network; users pick servers and rules. Signal: En
 
 Change needs tools, laws, ownership shifts and new norms together. Nothing is inevitable. We can choose designs that cut surveillance, spread power, support democracy and respect dignity.
 
-Human tech serves people, not extracts from them. It shares power, not hoards it. It grows under public oversight, not private decree. Choose and build accordingly.
+Humane tech serves the people, instead of only extracting maximal profits from them. It shares power, not hoards it. It grows under public oversight, not private decree. Choose and build accordingly.
 
 ## References
 
