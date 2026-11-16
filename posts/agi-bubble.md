@@ -105,6 +105,8 @@ Just like vibe-coding enables software-engineers to output much more work (by au
 
 TODO:
 - Even if assuming the fundamental architectural limits can be overcome sooner than later, there are still physical limits left (in terms of energy, compute and time).
+- Things in software that would impress me (raise my ASI incoming probability): robust knowledge representation (fix adversarial examples / hallucinations), make extreme generalization work (likely connected to knowledge representation), raise learning efficiency (sample efficiency and energy efficiency to human levels), run profitable business
+- Things in hardware (robotics): reliable printers, cook a coffee in any kitchen (same time as a human would need)
 
 ## References
 
