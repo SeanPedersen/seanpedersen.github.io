@@ -122,5 +122,8 @@ TODO:
 - <https://dlants.me/agi-not-imminent.html>
 - [LLMs Will Always Hallucinate, and We Need to Live With This](https://arxiv.org/abs/2409.05746)
 - [The Scaling Paradox - Toby Ord](https://www.tobyord.com/writing/the-scaling-paradox)
+- https://andrewtrask.substack.com/p/the-bitter-lessons-bitter-lesson
+- https://www.dwarkesh.com/p/timelines-june-2025
+- https://www.dwarkesh.com/p/rsi
 
 #AI
