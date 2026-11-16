@@ -101,6 +101,9 @@ Daily driving still needs human supervision because the technology is still unre
 
 Just like vibe-coding enables software-engineers to output much more work (by automating the boring stuff), the same will happen to most industries. Workers will become more productive (as AI agent managers) and only monitor and supervise their AI workers (digital agents or physical robots) when they get stuck.
 
+TODO:
+- Even if assuming the fundamental architectural limits can be overcome sooner than later, there are still physical limits left (in terms of energy, compute and time).
+
 ## References
 
 - <https://timdettmers.com/2025/12/10/why-agi-will-not-happen/>
@@ -118,5 +121,6 @@ Just like vibe-coding enables software-engineers to output much more work (by au
 - <https://unherd.com/2025/08/is-the-ai-bubble-about-to-burst/?lang=us>
 - <https://dlants.me/agi-not-imminent.html>
 - [LLMs Will Always Hallucinate, and We Need to Live With This](https://arxiv.org/abs/2409.05746)
+- [The Scaling Paradox - Toby Ord](https://www.tobyord.com/writing/the-scaling-paradox)
 
 #AI
