@@ -12,6 +12,8 @@ Update 11/2026: Hallucinations and context rot are still a problem but not as mu
 
 ## Fundamental Limits
 
+The following are current limits of transformer architectures that can be overcome with more research innovations. The most challenging one with the least progress seems to be the "Fractured Representations" problem.
+
 ### Lacking a World Model
 
 LLM's are not designed with a world model (allowing to predict 3D physical scenarios over time). LLM only have a token (text) model which only entails a brittle world model that does not generalize well (since it is not grounded directly in 4D reality). Read this [post](/posts/a-thousand-brains/#road-to-agi) on necessary modules for AGI identified by Jeff Hawkins.
