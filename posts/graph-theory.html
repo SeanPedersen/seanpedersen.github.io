@@ -1,0 +1,1159 @@
+---
+date: '2026-11-17'
+title: 'Graph Theory: Nodes, Edges and Matrices'
+tags: [math, coding]
+---
+
+<style>
+  :is(.markdown-content, body) {
+    --graph-blue: #2f80d8;
+    --graph-orange: #e2673f;
+    --graph-green: #1f9a78;
+    --graph-panel: rgba(127, 127, 127, 0.08);
+    --graph-border: rgba(127, 127, 127, 0.32);
+    --graph-muted: rgba(127, 127, 127, 0.55);
+    --graph-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  }
+
+  :is(.markdown-content, body) .graph-summary {
+    border-left: 0.25rem solid var(--graph-orange);
+    margin: 1.5rem 0 2rem;
+    padding: 0.2rem 0 0.2rem 1rem;
+  }
+
+  :is(.markdown-content, body) .graph-summary p {
+    margin: 0.45rem 0;
+  }
+
+  :is(.markdown-content, body) .graph-eq {
+    font-family: var(--graph-mono);
+    margin: 1.2rem 0;
+    overflow-x: auto;
+    padding: 0.5rem 1rem;
+    text-align: center;
+  }
+
+  :is(.markdown-content, body) .graph-viz {
+    background: var(--graph-panel);
+    border: 1px solid var(--graph-border);
+    border-radius: 0.8rem;
+    margin: 1.75rem 0 2.5rem;
+    overflow: hidden;
+  }
+
+  :is(.markdown-content, body) .graph-viz-header {
+    border-bottom: 1px solid var(--graph-border);
+    padding: 0.9rem 1.1rem 0.8rem;
+  }
+
+  :is(.markdown-content, body) .graph-viz-header p {
+    margin: 0;
+  }
+
+  :is(.markdown-content, body) .graph-viz-body {
+    padding: 1rem;
+  }
+
+  :is(.markdown-content, body) .graph-viz svg {
+    display: block;
+    height: auto;
+    max-width: 100%;
+    user-select: none;
+    width: 100%;
+  }
+
+  :is(.markdown-content, body) .graph-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.9rem;
+  }
+
+  :is(.markdown-content, body) .graph-controls button {
+    background: transparent;
+    border: 1px solid var(--graph-border);
+    border-radius: 0.4rem;
+    color: inherit;
+    cursor: pointer;
+    font: inherit;
+    font-size: 0.9rem;
+    padding: 0.3rem 0.75rem;
+  }
+
+  :is(.markdown-content, body) .graph-controls button:hover {
+    border-color: var(--graph-blue);
+  }
+
+  :is(.markdown-content, body) .graph-controls button[aria-pressed="true"] {
+    background: var(--graph-blue);
+    border-color: var(--graph-blue);
+    color: #fff;
+  }
+
+  :is(.markdown-content, body) .graph-readout {
+    display: grid;
+    gap: 0.4rem 1rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin: 0.85rem 0 0;
+  }
+
+  :is(.markdown-content, body) .graph-readout div {
+    min-width: 0;
+  }
+
+  :is(.markdown-content, body) .graph-readout dt {
+    font-size: 0.76rem;
+    letter-spacing: 0.04em;
+    opacity: 0.7;
+    text-transform: uppercase;
+  }
+
+  :is(.markdown-content, body) .graph-readout dd {
+    font-family: var(--graph-mono);
+    font-size: 0.9rem;
+    margin: 0.15rem 0 0;
+    overflow-wrap: anywhere;
+  }
+
+  :is(.markdown-content, body) .graph-note {
+    font-size: 0.86rem;
+    margin: 0.75rem 0 0;
+    opacity: 0.78;
+  }
+
+  /* SVG graph styling, shared by all three demos */
+  :is(.markdown-content, body) .g-edge {
+    stroke: var(--graph-muted);
+    stroke-width: 2;
+  }
+
+  :is(.markdown-content, body) .g-edge.is-tree {
+    stroke: var(--graph-green);
+    stroke-width: 4;
+  }
+
+  :is(.markdown-content, body) .g-edge.is-cut {
+    stroke: var(--graph-orange);
+    stroke-dasharray: 7 5;
+    stroke-width: 3;
+  }
+
+  :is(.markdown-content, body) .g-edge.is-hot {
+    stroke: var(--graph-orange);
+    stroke-width: 4;
+  }
+
+  :is(.markdown-content, body) .g-weight-bg {
+    fill: var(--background-color, Canvas);
+  }
+
+  :is(.markdown-content, body) .g-weight {
+    fill: currentColor;
+    font-family: var(--graph-mono);
+    font-size: 13px;
+    text-anchor: middle;
+  }
+
+  :is(.markdown-content, body) .hide-weights .g-weight,
+  :is(.markdown-content, body) .hide-weights .g-weight-bg {
+    opacity: 0.25;
+  }
+
+  :is(.markdown-content, body) .g-node circle {
+    fill: var(--background-color, Canvas);
+    stroke: currentColor;
+    stroke-width: 2;
+    transition: fill 0.2s;
+  }
+
+  :is(.markdown-content, body) .g-node text {
+    fill: currentColor;
+    font-size: 15px;
+    font-weight: 600;
+    pointer-events: none;
+    text-anchor: middle;
+  }
+
+  :is(.markdown-content, body) .g-node {
+    cursor: pointer;
+  }
+
+  :is(.markdown-content, body) .g-node.is-frontier circle {
+    fill: var(--graph-orange);
+    fill-opacity: 0.35;
+    stroke: var(--graph-orange);
+  }
+
+  :is(.markdown-content, body) .g-node.is-current circle {
+    fill: var(--graph-orange);
+    stroke: var(--graph-orange);
+  }
+
+  :is(.markdown-content, body) .g-node.is-done circle {
+    fill: var(--graph-green);
+    stroke: var(--graph-green);
+  }
+
+  :is(.markdown-content, body) .g-node.is-hot circle {
+    fill: var(--graph-orange);
+    stroke: var(--graph-orange);
+  }
+
+  :is(.markdown-content, body) .g-node.side-a circle {
+    fill: var(--graph-blue);
+    stroke: var(--graph-blue);
+  }
+
+  :is(.markdown-content, body) .g-node.side-b circle {
+    fill: var(--graph-orange);
+    stroke: var(--graph-orange);
+  }
+
+  :is(.markdown-content, body) .g-node.is-selected circle {
+    stroke: currentColor;
+    stroke-width: 4;
+  }
+
+  :is(.markdown-content, body) .g-node.is-current text,
+  :is(.markdown-content, body) .g-node.is-done text,
+  :is(.markdown-content, body) .g-node.is-hot text,
+  :is(.markdown-content, body) .g-node.side-a text,
+  :is(.markdown-content, body) .g-node.side-b text {
+    fill: #fff;
+  }
+
+  :is(.markdown-content, body) .g-dist {
+    fill: currentColor;
+    font-family: var(--graph-mono);
+    font-size: 13px;
+    text-anchor: middle;
+  }
+
+  :is(.markdown-content, body) .g-bar.side-a {
+    fill: var(--graph-blue);
+  }
+
+  :is(.markdown-content, body) .g-bar.side-b {
+    fill: var(--graph-orange);
+  }
+
+  :is(.markdown-content, body) .g-axis {
+    stroke: var(--graph-muted);
+    stroke-width: 1;
+  }
+
+  :is(.markdown-content, body) .g-bar-label {
+    fill: currentColor;
+    font-size: 11px;
+    opacity: 0.75;
+    text-anchor: middle;
+  }
+
+  /* Adjacency matrix demo */
+  :is(.markdown-content, body) .graph-matrix-layout {
+    align-items: center;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  :is(.markdown-content, body) .graph-matrix {
+    border-collapse: collapse;
+    font-family: var(--graph-mono);
+    margin: 0 auto;
+  }
+
+  :is(.markdown-content, body) .graph-matrix th,
+  :is(.markdown-content, body) .graph-matrix td {
+    border: none;
+    font-size: 0.9rem;
+    height: 2rem;
+    padding: 0;
+    text-align: center;
+    width: 2rem;
+  }
+
+  :is(.markdown-content, body) .graph-matrix td {
+    border: 1px solid var(--graph-border);
+    cursor: pointer;
+  }
+
+  :is(.markdown-content, body) .graph-matrix td.is-zero {
+    opacity: 0.35;
+  }
+
+  :is(.markdown-content, body) .graph-matrix td.is-line {
+    background: rgba(47, 128, 216, 0.18);
+  }
+
+  :is(.markdown-content, body) .graph-matrix td.is-hot {
+    background: var(--graph-orange);
+    color: #fff;
+    opacity: 1;
+  }
+
+  @media (max-width: 620px) {
+    :is(.markdown-content, body) .graph-readout,
+    :is(.markdown-content, body) .graph-matrix-layout {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<p>In 1736 <a href="https://en.wikipedia.org/wiki/Leonhard_Euler">Leonhard Euler</a> proved that nobody could walk
+  through the town of Königsberg and cross each of its <a
+    href="https://en.wikipedia.org/wiki/Seven_Bridges_of_K%C3%B6nigsberg">seven bridges</a> exactly once. To do it, he
+  threw away the map. Only two things mattered: the land masses and the bridges between them. That step started graph
+  theory.</p>
+
+<p>A graph is the simplest structure that can hold relations. Roads between cities, links between web pages, friends in
+  a social network, atoms in a molecule and neurons in a brain all fit the same mold. Learn the tools once and you can
+  use them on all of these.</p>
+
+<div class="graph-summary">
+  <p><strong>Part 1:</strong> the words you need to talk about graphs.</p>
+  <p><strong>Part 2:</strong> the classic algorithms, from search to shortest paths to flows.</p>
+  <p><strong>Part 3:</strong> the surprise. A graph is also a matrix, and the matrix knows where the clusters are.</p>
+</div>
+
+<h2 id="basics">The Basics</h2>
+
+<p>A <a href="https://en.wikipedia.org/wiki/Graph_(discrete_mathematics)">graph</a> G = (V, E) is a set of
+  <strong>vertices</strong> (or nodes) V and a set of <strong>edges</strong> E. Each edge joins two vertices. We write n
+  for the number of vertices and m for the number of edges.</p>
+
+<ul>
+  <li><strong>Degree:</strong> the number of edges that touch a vertex. Every edge has two ends, so the degrees of all
+    vertices add up to 2m. This is the handshake lemma, and it explains why the number of odd degree vertices is
+    always even.</li>
+  <li><strong>Directed or undirected:</strong> a follow on a social network goes one way (directed). A friendship goes
+    both ways (undirected).</li>
+  <li><strong>Weighted or unweighted:</strong> edges can carry a number, such as a distance, a cost or a capacity.</li>
+  <li><strong>Path:</strong> a sequence of edges that leads from one vertex to another. A <strong>cycle</strong> is a
+    path that returns to where it started.</li>
+  <li><strong>Connected component:</strong> a largest group of vertices where any vertex can reach any other.</li>
+</ul>
+
+<p>A few kinds of graphs show up again and again:</p>
+
+<ul>
+  <li><a href="https://en.wikipedia.org/wiki/Tree_(graph_theory)">Trees</a> are connected and have no cycles. A tree
+    with n vertices always has n − 1 edges. File systems, family trees and parse trees are all trees.</li>
+  <li><a href="https://en.wikipedia.org/wiki/Directed_acyclic_graph">DAGs</a> (directed acyclic graphs) have
+    directions but no cycles. Task dependencies, git histories and spreadsheet formulas form DAGs.</li>
+  <li><a href="https://en.wikipedia.org/wiki/Bipartite_graph">Bipartite graphs</a> split their vertices into two groups
+    so that every edge crosses between them: users and products, workers and jobs. A graph is bipartite exactly when it
+    has no cycle of odd length.</li>
+  <li><strong>Complete graphs</strong> connect every pair of vertices and have n(n − 1)/2 edges.</li>
+  <li><a href="https://en.wikipedia.org/wiki/Planar_graph">Planar graphs</a> can be drawn on paper with no crossing
+    edges. Every map of countries is one, which is why four colors always suffice to color a map.</li>
+</ul>
+
+<h3 id="representation">Storing a Graph</h3>
+
+<p>Computers store graphs in two main ways. An <a href="https://en.wikipedia.org/wiki/Adjacency_list">adjacency
+    list</a> keeps, for each vertex, a list of its neighbors. It needs memory proportional to n + m. An <a
+    href="https://en.wikipedia.org/wiki/Adjacency_matrix">adjacency matrix</a> A is an n × n table where
+  A<sub>ij</sub> = 1 if an edge joins i and j, and 0 if not. It needs n² cells, but it answers "are i and j linked?" in
+  one lookup.</p>
+
+<p>Most real graphs are sparse. A social network may have a billion users, but each user has a few hundred friends.
+  So programs mostly use lists (or compressed sparse matrices). The dense matrix still matters, because it lets us
+  bring linear algebra to graphs. Keep it in mind for part 3.</p>
+
+<section class="graph-viz" aria-label="Interactive adjacency matrix">
+  <header class="graph-viz-header">
+    <p>Hover a node or a matrix cell. Switch the power k to see what A<sup>k</sup> counts.</p>
+  </header>
+  <div class="graph-viz-body">
+    <div class="graph-controls" id="matrix-controls">
+      <button type="button" data-power="1" aria-pressed="true">A¹</button>
+      <button type="button" data-power="2" aria-pressed="false">A²</button>
+      <button type="button" data-power="3" aria-pressed="false">A³</button>
+    </div>
+    <div class="graph-matrix-layout">
+      <svg id="matrix-graph" viewBox="0 0 300 260" role="img"
+        aria-label="Graph with five nodes A to E and six edges"></svg>
+      <table class="graph-matrix" id="matrix-table" aria-label="Adjacency matrix power"></table>
+    </div>
+    <dl class="graph-readout" aria-live="polite">
+      <div>
+        <dt>Selected entry</dt>
+        <dd id="matrix-entry">Hover a cell</dd>
+      </div>
+      <div>
+        <dt>Walks it counts</dt>
+        <dd id="matrix-walks">None selected</dd>
+      </div>
+      <div>
+        <dt>Adjacency list</dt>
+        <dd id="matrix-list"></dd>
+      </div>
+      <div>
+        <dt>Triangles, trace(A³) / 6</dt>
+        <dd id="matrix-triangles"></dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<h2 id="algorithms">Common Algorithms</h2>
+
+<h3 id="traversal">Breadth-First and Depth-First Search</h3>
+
+<p>Most graph algorithms build on one of two ways to explore a graph. <a
+    href="https://en.wikipedia.org/wiki/Breadth-first_search">Breadth-first search</a> (BFS) visits the start, then all
+  its neighbors, then all their neighbors, and so on, ring by ring. It keeps the waiting vertices in a queue. In an
+  unweighted graph, BFS finds the path with the fewest edges.</p>
+
+<p><a href="https://en.wikipedia.org/wiki/Depth-first_search">Depth-first search</a> (DFS) instead follows one path as
+  far as it goes and only then backs up. It keeps a stack (or uses recursion). DFS finds cycles, finds connected
+  components, and solves mazes. Both run in O(n + m) time, which is as fast as reading the graph at all. See <a
+    href="/posts/computational-complexity">computational complexity</a> for what this notation means.</p>
+
+<h3 id="topological-sort">Topological Sort</h3>
+
+<p>Given a DAG of tasks, in which order can you run them so that each task comes after everything it depends on? A
+  <a href="https://en.wikipedia.org/wiki/Topological_sorting">topological sort</a> answers this. One way: run DFS and
+  list vertices in reverse order of when you finish them. Another way (Kahn's algorithm): keep removing a vertex with
+  no incoming edges. Build tools like make, package managers and spreadsheet engines all do this. If the sort fails,
+  the graph has a cycle, which means a circular dependency.</p>
+
+<h3 id="shortest-paths">Shortest Paths</h3>
+
+<p>Once edges have weights, the path with the fewest edges may not be the cheapest. <a
+    href="https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm">Dijkstra's algorithm</a> grows a set of settled
+  vertices whose shortest distance it knows for sure. Each round it settles the closest unsettled vertex, then checks
+  whether going through it gives any neighbor a shorter route. With a binary heap it runs in O((n + m) log n). It only
+  works when no weight is negative.</p>
+
+<p>Try both below. Notice how BFS ignores the weights, while Dijkstra happily takes a longer detour of cheap edges.</p>
+
+<section class="graph-viz" aria-label="Interactive BFS and Dijkstra visualization">
+  <header class="graph-viz-header">
+    <p>Click a node to make it the start. Step through the search or let it play. Numbers under nodes show the best
+      known distance, green edges show the tree of best paths.</p>
+  </header>
+  <div class="graph-viz-body">
+    <div class="graph-controls">
+      <button type="button" id="path-bfs" aria-pressed="true">BFS</button>
+      <button type="button" id="path-dijkstra" aria-pressed="false">Dijkstra</button>
+      <button type="button" id="path-step">Step</button>
+      <button type="button" id="path-play">Play</button>
+      <button type="button" id="path-reset">Reset</button>
+    </div>
+    <svg id="path-graph" viewBox="0 0 640 370" role="img"
+      aria-label="Weighted graph with nine nodes A to I used to compare BFS and Dijkstra"></svg>
+    <dl class="graph-readout" aria-live="polite">
+      <div>
+        <dt>Visited in order</dt>
+        <dd id="path-order">none yet</dd>
+      </div>
+      <div>
+        <dt id="path-frontier-label">Queue</dt>
+        <dd id="path-frontier"></dd>
+      </div>
+    </dl>
+    <p class="graph-note">Orange: waiting in the queue. Filled orange: being processed. Green: done. For BFS the number
+      counts edges, for Dijkstra it sums weights.</p>
+  </div>
+</section>
+
+<p>Two relatives fill the gaps. The <a
+    href="https://en.wikipedia.org/wiki/Bellman%E2%80%93Ford_algorithm">Bellman-Ford algorithm</a> handles negative
+  weights. It relaxes every edge n − 1 times, which costs O(n·m). If a further round still improves some distance, the
+  graph has a negative cycle. Currency traders use this trick: take the negative log of each exchange rate, and a
+  negative cycle becomes a loop of trades that makes money.</p>
+
+<p><a href="https://en.wikipedia.org/wiki/A*_search_algorithm">A* search</a> adds a guess of the remaining distance
+  to each vertex, such as the straight line distance on a map. It then explores the most promising vertices first. As
+  long as the guess never overestimates, A* still finds the shortest path, usually after looking at far fewer
+  vertices. Route planners and game characters use it.</p>
+
+<h3 id="spanning-trees">Minimum Spanning Trees</h3>
+
+<p>Suppose you want to connect a set of towns with power lines at the lowest total cost. You need a <a
+    href="https://en.wikipedia.org/wiki/Minimum_spanning_tree">minimum spanning tree</a>: a tree that touches every
+  vertex and has the smallest total weight. Two greedy algorithms find it.</p>
+
+<ul>
+  <li><a href="https://en.wikipedia.org/wiki/Kruskal%27s_algorithm">Kruskal's algorithm</a> sorts all edges by weight
+    and adds each edge unless it would close a cycle. A <a
+      href="https://en.wikipedia.org/wiki/Disjoint-set_data_structure">union-find</a> structure checks that in almost
+    constant time. Total cost: O(m log m).</li>
+  <li><a href="https://en.wikipedia.org/wiki/Prim%27s_algorithm">Prim's algorithm</a> grows one tree from a start
+    vertex and always adds the cheapest edge leaving it. It looks a lot like Dijkstra.</li>
+</ul>
+
+<p>Here is a first hint of clustering. Build the minimum spanning tree of your data points, then delete its k − 1
+  longest edges. The tree falls apart into k groups. This is single linkage clustering.</p>
+
+<h3 id="flows">Maximum Flow and Minimum Cut</h3>
+
+<p>Treat each edge as a pipe with a capacity. How much water can flow from a source s to a sink t? The <a
+    href="https://en.wikipedia.org/wiki/Ford%E2%80%93Fulkerson_algorithm">Ford-Fulkerson method</a> keeps finding a path
+  with spare capacity and pushes flow along it. The Edmonds-Karp version picks those paths with BFS and runs in
+  O(n·m²).</p>
+
+<p>The <a href="https://en.wikipedia.org/wiki/Max-flow_min-cut_theorem">max-flow min-cut theorem</a> says the maximum
+  flow equals the capacity of the smallest set of pipes whose removal separates s from t. Flows match workers to jobs,
+  plan logistics and cut images into foreground and background. Remember the word "cut". It comes back.</p>
+
+<h3 id="hard-problems">Where It Gets Hard</h3>
+
+<p>Back to Euler. A walk that uses every <em>edge</em> once exists exactly when the graph is connected and has zero or
+  two vertices of odd degree. Königsberg had four, so no such walk existed. You can check this in linear time.</p>
+
+<p>Change one word and the problem becomes much harder. A path that visits every <em>vertex</em> once is a <a
+    href="https://en.wikipedia.org/wiki/Hamiltonian_path">Hamiltonian path</a>, and deciding whether one exists is
+  NP-complete. Its weighted cousin, the <a href="https://en.wikipedia.org/wiki/Travelling_salesman_problem">travelling
+    salesman problem</a>, asks for the cheapest round trip through all cities. No one knows a fast algorithm for
+  either.</p>
+
+<p><a href="https://en.wikipedia.org/wiki/Graph_coloring">Graph coloring</a> follows the same pattern. Can you give each
+  vertex a color so that no edge joins two vertices of the same color? Two colors: easy, run BFS and check that the
+  graph is bipartite. Three colors: NP-complete. Compilers still color graphs to assign variables to CPU registers, and
+  schools do it to schedule exams without clashes. They rely on good heuristics.</p>
+
+<h2 id="linear-algebra">Graphs Are Matrices</h2>
+
+<p>Now take the adjacency matrix seriously. Not as storage, but as a linear map. Many facts about the graph turn into
+  facts about the matrix, and the tools of linear algebra (products, <a
+    href="https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors">eigenvalues and eigenvectors</a>) start to
+  answer graph questions.</p>
+
+<h3 id="walks">Matrix Powers Count Walks</h3>
+
+<p>Look at an entry of A²:</p>
+
+<div class="graph-eq" role="math" aria-label="A squared i j equals the sum over k of A i k times A k j">
+  (A²)<sub>ij</sub> = Σ<sub>k</sub> A<sub>ik</sub>A<sub>kj</sub></div>
+
+<p>Each term is 1 only when i links to k and k links to j. So the sum counts walks of length 2 from i to j. The same
+  argument works for any power: (A<sup>k</sup>)<sub>ij</sub> counts the walks of length k. The diagonal of A³ counts
+  walks that return home in three steps, which are triangles. Each triangle shows up six times (three start points, two
+  directions), so the number of triangles is trace(A³) / 6. Go back to the matrix demo above and try it.</p>
+
+<p>This view goes further. One BFS step is a matrix times a vector: multiply A by the indicator vector of the current
+  frontier and you get the next one. Swap ordinary arithmetic for (min, +) and the same product computes shortest
+  paths. The <a href="https://graphblas.org/">GraphBLAS</a> standard builds a whole graph library on this idea, so
+  graph code can run on fast sparse matrix routines.</p>
+
+<h3 id="pagerank">Eigenvectors Rank Nodes</h3>
+
+<p>Which vertex is most important? A simple answer: you are important if important vertices link to you. Write each
+  vertex's score as x<sub>i</sub> and demand that it is proportional to the sum of its neighbors' scores:</p>
+
+<div class="graph-eq" role="math" aria-label="A x equals lambda x">Ax = λx</div>
+
+<p>That is an eigenvector equation. This <a href="https://en.wikipedia.org/wiki/Eigenvector_centrality">eigenvector
+    centrality</a> uses the eigenvector of the largest eigenvalue. For a connected graph, the <a
+    href="https://en.wikipedia.org/wiki/Perron%E2%80%93Frobenius_theorem">Perron-Frobenius theorem</a> promises that
+  this eigenvector has only positive entries, so the scores make sense.</p>
+
+<p><a href="https://en.wikipedia.org/wiki/PageRank">PageRank</a>, the idea that started Google, adds a random surfer.
+  The surfer follows a random link on each page, and with probability 1 − d (d is about 0.85) jumps to a random page
+  instead. Let P be the matrix that moves the surfer one step. PageRank is the eigenvector with eigenvalue 1 of</p>
+
+<div class="graph-eq" role="math" aria-label="G equals d P plus one minus d over n times the all ones matrix">
+  G = dP + (1 − d)/n · 𝟙𝟙<sup>T</sup></div>
+
+<p>It tells you what share of its time the surfer spends on each page in the long run. Google computed it with power
+  iteration: start with any vector and keep multiplying by G until it stops changing.</p>
+
+<h3 id="laplacian">The Laplacian Finds Clusters</h3>
+
+<p>Let D be the diagonal matrix of degrees. The <a href="https://en.wikipedia.org/wiki/Laplacian_matrix">graph
+    Laplacian</a> is</p>
+
+<div class="graph-eq" role="math" aria-label="L equals D minus A">L = D − A</div>
+
+<p>It looks plain, but it hides a useful identity. Put a number x<sub>i</sub> on each vertex. Then</p>
+
+<div class="graph-eq" role="math"
+  aria-label="x transpose L x equals the sum over edges i j of x i minus x j squared">
+  x<sup>T</sup>Lx = Σ<sub>(i,j) ∈ E</sub> (x<sub>i</sub> − x<sub>j</sub>)²</div>
+
+<p>This sum is small when linked vertices get similar numbers. Three facts follow.</p>
+
+<ul>
+  <li><strong>No eigenvalue is negative</strong>, since the sum of squares can't be. The smallest eigenvalue is always
+    0, with the constant vector (1, 1, …, 1) as its eigenvector.</li>
+  <li><strong>The number of zero eigenvalues equals the number of connected components.</strong> Give every vertex of
+    one component the same value and every other vertex 0: each edge then adds 0 to the sum. Pure linear algebra
+    counts the pieces of a graph.</li>
+  <li><strong>The second smallest eigenvalue λ<sub>2</sub> measures how well connected the graph is.</strong> Miroslav
+    Fiedler called it the <a href="https://en.wikipedia.org/wiki/Algebraic_connectivity">algebraic connectivity</a>.
+    It is above 0 exactly when the graph is connected, and small when a few edges hold the graph together.</li>
+</ul>
+
+<p>Now the payoff. Say we want to split the vertices into two groups and cut as few edges as possible. Label one group
+  x<sub>i</sub> = +1 and the other −1. Each cut edge adds (1 − (−1))² = 4 to the sum and every other edge adds 0, so
+  x<sup>T</sup>Lx = 4 · (number of cut edges). Finding the best balanced cut this way is NP-hard. So we cheat: let
+  x<sub>i</sub> take any real value, require x to have unit length, and keep it orthogonal to the constant vector (so it
+  can't just put everything in one group). The best x under these rules is the eigenvector of λ<sub>2</sub>, the
+  <strong>Fiedler vector</strong>. Round it back by its signs and you get the split.</p>
+
+<p>A hard counting problem became an eigenvalue problem. Below, the Fiedler vector finds the bridge between two
+  communities without being told anything about them.</p>
+
+<section class="graph-viz" aria-label="Interactive spectral partitioning">
+  <header class="graph-viz-header">
+    <p>Nodes take blue or orange from the sign of their entry in the Fiedler vector. Click two nodes to add or remove
+      the edge between them, or pick a preset.</p>
+  </header>
+  <div class="graph-viz-body">
+    <div class="graph-controls">
+      <button type="button" data-preset="0">No bridge</button>
+      <button type="button" data-preset="1" aria-pressed="true">One bridge</button>
+      <button type="button" data-preset="3">Three bridges</button>
+      <button type="button" data-preset="mixed">Tangled</button>
+    </div>
+    <svg id="spectral-graph" viewBox="0 0 640 330" role="img"
+      aria-label="Graph of two communities colored by the Fiedler vector"></svg>
+    <svg id="spectral-bars" viewBox="0 0 640 150" role="img"
+      aria-label="Bar chart of the Fiedler vector entries per node"></svg>
+    <dl class="graph-readout" aria-live="polite">
+      <div>
+        <dt>Smallest eigenvalues of L</dt>
+        <dd id="spectral-eigs"></dd>
+      </div>
+      <div>
+        <dt>Zero eigenvalues = components</dt>
+        <dd id="spectral-components"></dd>
+      </div>
+      <div>
+        <dt>Algebraic connectivity λ₂</dt>
+        <dd id="spectral-lambda"></dd>
+      </div>
+      <div>
+        <dt>Edges cut by the split</dt>
+        <dd id="spectral-cut"></dd>
+      </div>
+    </dl>
+    <p class="graph-note">Dashed orange edges cross the split. Watch λ₂ grow as you add bridges and drop to 0 when you
+      remove the last one. The bars show each node's entry in the Fiedler vector.</p>
+  </div>
+</section>
+
+<h3 id="spectral-clustering">Spectral Clustering</h3>
+
+<p><a href="https://en.wikipedia.org/wiki/Spectral_clustering">Spectral clustering</a> turns this into a general method
+  for data points, not just graphs:</p>
+
+<ol>
+  <li>Build a similarity graph. Link each point to its nearest neighbors, or weight every pair by
+    w<sub>ij</sub> = exp(−‖x<sub>i</sub> − x<sub>j</sub>‖² / 2σ²).</li>
+  <li>Compute the Laplacian and its k eigenvectors with the smallest eigenvalues.</li>
+  <li>Stack them as the columns of an n × k matrix. Each row is now a new point in k dimensions.</li>
+  <li>Run <a href="https://en.wikipedia.org/wiki/K-means_clustering">k-means</a> on those rows.</li>
+</ol>
+
+<p>Why bother? Plain k-means assumes round blobs. It fails on two interleaved half moons or a ring around a dot.
+  The similarity graph only cares about who is close to whom, so it follows the shape of the data. In the eigenvector
+  space, the clusters turn into tight, easy to separate blobs. In practice people often use a normalized Laplacian,
+  which gives balanced cuts and plays well with uneven degrees.</p>
+
+<p>The same matrix shows up in more places. The heat equation on a graph reads dx/dt = −Lx, so the Laplacian describes
+  how things spread along edges, from rumors to heat. The <a
+    href="https://en.wikipedia.org/wiki/Kirchhoff%27s_theorem">matrix tree theorem</a> counts spanning trees with one
+  determinant of L. And a layer of a <a href="https://en.wikipedia.org/wiki/Graph_neural_network">graph neural
+    network</a> is little more than H' = σ(ÂHW): a normalized adjacency matrix Â mixes each node's features with its
+  neighbors', and a learned matrix W transforms them. That is a sparse matrix product with a learned twist, close kin to
+  the <a href="/posts/gradient-hessian-jacobian">Jacobians</a> that train it.</p>
+
+<p>Graphs also help the other way around. <a href="/posts/vector-databases">Vector databases</a> index millions of
+  embeddings in HNSW graphs, where a search hops greedily from neighbor to neighbor towards the query.</p>
+
+<p>Euler threw away the map and kept the graph. Write that graph as a matrix, and the eigenvalues tell you how many
+  pieces it has, how tightly they hold together, and where to cut.</p>
+
+<h2 id="references">References</h2>
+<ol>
+  <li><a
+      href="https://arxiv.org/abs/0711.0189">Ulrike
+      von Luxburg: A Tutorial on Spectral Clustering</a></li>
+  <li><a href="https://www.cs.yale.edu/homes/spielman/eigs/">Daniel Spielman: Spectral Graph Theory and its
+      Applications</a></li>
+  <li><a href="https://research.google/pubs/the-anatomy-of-a-large-scale-hypertextual-web-search-engine/">Brin and
+      Page: The Anatomy of a Large-Scale Hypertextual Web Search Engine</a></li>
+  <li><a href="https://graphblas.org/">GraphBLAS: graph algorithms in the language of linear algebra</a></li>
+</ol>
+
+<script>
+  (() => {
+    'use strict';
+
+    const SVG_NS = 'http://www.w3.org/2000/svg';
+    const NODE_RADIUS = 17;
+    const ZERO_TOLERANCE = 1e-9;
+    const PLAY_INTERVAL_MS = 700;
+    const MAX_LISTED_WALKS = 6;
+
+    const byId = id => document.getElementById(id);
+    const formatNumber = value => (Math.abs(value) < 0.005 ? 0 : value).toFixed(2);
+
+    function svgElement(tag, attributes, parent) {
+      const element = document.createElementNS(SVG_NS, tag);
+      for (const [name, value] of Object.entries(attributes)) element.setAttribute(name, value);
+      if (parent) parent.appendChild(element);
+      return element;
+    }
+
+    function setPressed(buttons, activeButton) {
+      for (const button of buttons) button.setAttribute('aria-pressed', String(button === activeButton));
+    }
+
+    /* Draws edges first, then nodes on top. Returns element lookups so demos only toggle classes. */
+    function drawGraph(svg, nodes, edges, { showWeights = false } = {}) {
+      svg.replaceChildren();
+      const position = new Map(nodes.map(node => [node.id, node]));
+      const edgeLayer = svgElement('g', {}, svg);
+      const nodeLayer = svgElement('g', {}, svg);
+      const edgeElements = new Map();
+      const nodeElements = new Map();
+
+      for (const [from, to, weight] of edges) {
+        const a = position.get(from);
+        const b = position.get(to);
+        const line = svgElement('line', { class: 'g-edge', x1: a.x, y1: a.y, x2: b.x, y2: b.y }, edgeLayer);
+        edgeElements.set(edgeKey(from, to), line);
+        if (!showWeights) continue;
+        const midX = (a.x + b.x) / 2;
+        const midY = (a.y + b.y) / 2;
+        svgElement('circle', { class: 'g-weight-bg', cx: midX, cy: midY, r: 10 }, edgeLayer);
+        svgElement('text', { class: 'g-weight', x: midX, y: midY + 4.5 }, edgeLayer).textContent = weight;
+      }
+
+      for (const node of nodes) {
+        const group = svgElement('g', { class: 'g-node', 'data-id': node.id }, nodeLayer);
+        svgElement('circle', { cx: node.x, cy: node.y, r: NODE_RADIUS }, group);
+        svgElement('text', { x: node.x, y: node.y + 5 }, group).textContent = node.label ?? node.id;
+        nodeElements.set(node.id, group);
+      }
+      return { edgeElements, nodeElements, nodeLayer };
+    }
+
+    function edgeKey(a, b) {
+      return a < b ? `${a}|${b}` : `${b}|${a}`;
+    }
+
+    function buildAdjacency(nodes, edges) {
+      const adjacency = new Map(nodes.map(node => [node.id, []]));
+      for (const [from, to, weight = 1] of edges) {
+        adjacency.get(from).push({ to, weight });
+        adjacency.get(to).push({ to: from, weight });
+      }
+      for (const neighbors of adjacency.values()) neighbors.sort((a, b) => String(a.to).localeCompare(String(b.to)));
+      return adjacency;
+    }
+
+    /* ---------- Demo 1: adjacency matrix and its powers ---------- */
+
+    function matrixDemo() {
+      const nodes = [
+        { id: 'A', x: 50, y: 70 }, { id: 'B', x: 150, y: 30 }, { id: 'C', x: 150, y: 150 },
+        { id: 'D', x: 245, y: 95 }, { id: 'E', x: 245, y: 220 }
+      ];
+      const edges = [['A', 'B'], ['A', 'C'], ['B', 'C'], ['B', 'D'], ['C', 'D'], ['D', 'E']];
+      const ids = nodes.map(node => node.id);
+      const adjacency = buildAdjacency(nodes, edges);
+      const base = ids.map(row => ids.map(column => (adjacency.get(row).some(n => n.to === column) ? 1 : 0)));
+      const powers = [null, base, multiply(base, base), multiply(multiply(base, base), base)];
+      const { edgeElements, nodeElements } = drawGraph(byId('matrix-graph'), nodes, edges);
+      const table = byId('matrix-table');
+      const buttons = [...byId('matrix-controls').querySelectorAll('button')];
+      let power = 1;
+
+      byId('matrix-list').textContent = ids
+        .map(id => `${id}: ${adjacency.get(id).map(n => n.to).join(',')}`).join('  ');
+      const trace = powers[3].reduce((sum, row, index) => sum + row[index], 0);
+      byId('matrix-triangles').textContent = `${trace} / 6 = ${trace / 6}`;
+
+      function renderTable() {
+        table.replaceChildren();
+        const header = table.insertRow();
+        header.appendChild(document.createElement('th'));
+        for (const id of ids) header.appendChild(document.createElement('th')).textContent = id;
+        powers[power].forEach((row, rowIndex) => {
+          const tableRow = table.insertRow();
+          tableRow.appendChild(document.createElement('th')).textContent = ids[rowIndex];
+          row.forEach((value, columnIndex) => {
+            const cell = tableRow.insertCell();
+            cell.textContent = value;
+            cell.dataset.row = rowIndex;
+            cell.dataset.column = columnIndex;
+            cell.classList.toggle('is-zero', value === 0);
+          });
+        });
+      }
+
+      function clearHighlight() {
+        for (const element of [...nodeElements.values(), ...edgeElements.values()]) element.classList.remove('is-hot');
+        for (const cell of table.querySelectorAll('td')) cell.classList.remove('is-hot', 'is-line');
+      }
+
+      function highlightCell(rowIndex, columnIndex) {
+        clearHighlight();
+        const from = ids[rowIndex];
+        const to = ids[columnIndex];
+        nodeElements.get(from).classList.add('is-hot');
+        nodeElements.get(to).classList.add('is-hot');
+        const value = powers[power][rowIndex][columnIndex];
+        if (power === 1 && value) edgeElements.get(edgeKey(from, to)).classList.add('is-hot');
+        table.querySelector(`td[data-row="${rowIndex}"][data-column="${columnIndex}"]`).classList.add('is-hot');
+        byId('matrix-entry').textContent = `A${power > 1 ? superscript(power) : ''}[${from}][${to}] = ${value}`;
+        const walks = listWalks(adjacency, from, to, power);
+        const shown = walks.slice(0, MAX_LISTED_WALKS).map(walk => walk.join('')).join(', ');
+        byId('matrix-walks').textContent = walks.length ? shown + (walks.length > MAX_LISTED_WALKS ? ', …' : '') : 'none';
+      }
+
+      function highlightNode(id) {
+        clearHighlight();
+        const index = ids.indexOf(id);
+        nodeElements.get(id).classList.add('is-hot');
+        for (const cell of table.querySelectorAll('td')) {
+          if (Number(cell.dataset.row) === index || Number(cell.dataset.column) === index) cell.classList.add('is-line');
+        }
+        byId('matrix-entry').textContent = `row and column ${id}, degree ${adjacency.get(id).length}`;
+        byId('matrix-walks').textContent = 'Hover a cell';
+      }
+
+      table.addEventListener('pointerover', event => {
+        const cell = event.target.closest('td');
+        if (cell) highlightCell(Number(cell.dataset.row), Number(cell.dataset.column));
+      });
+      byId('matrix-graph').addEventListener('pointerover', event => {
+        const node = event.target.closest('.g-node');
+        if (node) highlightNode(node.dataset.id);
+      });
+      for (const button of buttons) {
+        button.addEventListener('click', () => {
+          power = Number(button.dataset.power);
+          setPressed(buttons, button);
+          clearHighlight();
+          renderTable();
+        });
+      }
+      renderTable();
+    }
+
+    function multiply(left, right) {
+      return left.map(row => right[0].map((_, column) => row.reduce((sum, value, k) => sum + value * right[k][column], 0)));
+    }
+
+    function superscript(number) {
+      const digits = '⁰¹²³⁴⁵⁶⁷⁸⁹';
+      return String(number).split('').map(digit => digits[Number(digit)]).join('');
+    }
+
+    function listWalks(adjacency, from, to, length) {
+      if (length === 0) return from === to ? [[from]] : [];
+      const walks = [];
+      for (const { to: next } of adjacency.get(from)) {
+        for (const rest of listWalks(adjacency, next, to, length - 1)) walks.push([from, ...rest]);
+      }
+      return walks;
+    }
+
+    /* ---------- Demo 2: BFS vs Dijkstra ---------- */
+
+    /* Both searches return a list of snapshots so the view can step through them. */
+    function bfsSteps(adjacency, start) {
+      const distance = { [start]: 0 };
+      const previous = {};
+      const order = [];
+      const queue = [start];
+      const steps = [{ current: null, order: [], frontier: [start], distance: { ...distance }, previous: {} }];
+      while (queue.length) {
+        const current = queue.shift();
+        order.push(current);
+        for (const { to } of adjacency.get(current)) {
+          if (to in distance) continue;
+          distance[to] = distance[current] + 1;
+          previous[to] = current;
+          queue.push(to);
+        }
+        steps.push({ current, order: [...order], frontier: [...queue], distance: { ...distance }, previous: { ...previous } });
+      }
+      return steps;
+    }
+
+    function dijkstraSteps(adjacency, start) {
+      const distance = { [start]: 0 };
+      const previous = {};
+      const settled = new Set();
+      const order = [];
+      const steps = [{ current: null, order: [], frontier: [start], distance: { ...distance }, previous: {} }];
+      const unsettled = () => Object.keys(distance).filter(id => !settled.has(id)).sort((a, b) => distance[a] - distance[b]);
+      for (let candidates = unsettled(); candidates.length; candidates = unsettled()) {
+        const current = candidates[0];
+        settled.add(current);
+        order.push(current);
+        for (const { to, weight } of adjacency.get(current)) {
+          if (settled.has(to)) continue;
+          const offer = distance[current] + weight;
+          if (to in distance && offer >= distance[to]) continue;
+          distance[to] = offer;
+          previous[to] = current;
+        }
+        steps.push({ current, order: [...order], frontier: unsettled(), distance: { ...distance }, previous: { ...previous } });
+      }
+      return steps;
+    }
+
+    function pathDemo() {
+      const nodes = [
+        { id: 'A', x: 55, y: 185 }, { id: 'B', x: 175, y: 75 }, { id: 'C', x: 175, y: 295 },
+        { id: 'D', x: 315, y: 45 }, { id: 'E', x: 315, y: 185 }, { id: 'F', x: 315, y: 320 },
+        { id: 'G', x: 455, y: 95 }, { id: 'H', x: 455, y: 275 }, { id: 'I', x: 585, y: 185 }
+      ];
+      const edges = [
+        ['A', 'B', 4], ['A', 'C', 2], ['B', 'C', 1], ['B', 'D', 5], ['B', 'E', 9], ['C', 'F', 3],
+        ['D', 'G', 3], ['E', 'F', 2], ['E', 'G', 1], ['E', 'H', 4], ['F', 'H', 2], ['G', 'I', 7], ['H', 'I', 2]
+      ];
+      const svg = byId('path-graph');
+      const adjacency = buildAdjacency(nodes, edges);
+      const { edgeElements, nodeElements } = drawGraph(svg, nodes, edges, { showWeights: true });
+      const distanceLabels = new Map(nodes.map(node => [node.id,
+        svgElement('text', { class: 'g-dist', x: node.x, y: node.y + NODE_RADIUS + 16 }, svg)]));
+      const algorithmButtons = [byId('path-bfs'), byId('path-dijkstra')];
+      const playButton = byId('path-play');
+      const state = { algorithm: 'bfs', start: 'A', steps: [], index: 0, timer: null };
+
+      function restart() {
+        stop();
+        const search = state.algorithm === 'bfs' ? bfsSteps : dijkstraSteps;
+        state.steps = search(adjacency, state.start);
+        state.index = 0;
+        svg.classList.toggle('hide-weights', state.algorithm === 'bfs');
+        byId('path-frontier-label').textContent = state.algorithm === 'bfs' ? 'Queue' : 'Priority queue (by distance)';
+        render();
+      }
+
+      function render() {
+        const step = state.steps[state.index];
+        for (const [id, element] of nodeElements) {
+          const isCurrent = id === step.current;
+          element.classList.toggle('is-current', isCurrent);
+          element.classList.toggle('is-done', !isCurrent && step.order.includes(id));
+          element.classList.toggle('is-frontier', step.frontier.includes(id));
+          distanceLabels.get(id).textContent = id in step.distance ? step.distance[id] : '∞';
+        }
+        for (const element of edgeElements.values()) element.classList.remove('is-tree');
+        for (const [child, parent] of Object.entries(step.previous)) edgeElements.get(edgeKey(child, parent)).classList.add('is-tree');
+        byId('path-order').textContent = step.order.join(' → ') || 'none yet';
+        byId('path-frontier').textContent = step.frontier
+          .map(id => (state.algorithm === 'bfs' ? id : `${id}(${step.distance[id]})`)).join(', ') || 'empty';
+      }
+
+      function advance() {
+        if (state.index >= state.steps.length - 1) return stop();
+        state.index += 1;
+        render();
+      }
+
+      function stop() {
+        clearInterval(state.timer);
+        state.timer = null;
+        playButton.textContent = 'Play';
+      }
+
+      function togglePlay() {
+        if (state.timer) return stop();
+        if (state.index >= state.steps.length - 1) restart();
+        state.timer = setInterval(advance, PLAY_INTERVAL_MS);
+        playButton.textContent = 'Pause';
+      }
+
+      for (const button of algorithmButtons) {
+        button.addEventListener('click', () => {
+          state.algorithm = button === algorithmButtons[0] ? 'bfs' : 'dijkstra';
+          setPressed(algorithmButtons, button);
+          restart();
+        });
+      }
+      byId('path-step').addEventListener('click', () => { stop(); advance(); });
+      playButton.addEventListener('click', togglePlay);
+      byId('path-reset').addEventListener('click', restart);
+      svg.addEventListener('click', event => {
+        const node = event.target.closest('.g-node');
+        if (!node) return;
+        state.start = node.dataset.id;
+        restart();
+      });
+      restart();
+    }
+
+    /* ---------- Demo 3: spectral partitioning with the Fiedler vector ---------- */
+
+    const JACOBI_MAX_SWEEPS = 60;
+    const JACOBI_TOLERANCE = 1e-20;
+
+    /* Cyclic Jacobi rotations: fine for a dozen nodes and needs no library. Returns pairs sorted by eigenvalue. */
+    function symmetricEigen(matrix) {
+      const size = matrix.length;
+      const a = matrix.map(row => [...row]);
+      const vectors = a.map((_, i) => a.map((__, j) => (i === j ? 1 : 0)));
+      for (let sweep = 0; sweep < JACOBI_MAX_SWEEPS; sweep += 1) {
+        let offDiagonal = 0;
+        for (let p = 0; p < size; p += 1) for (let q = p + 1; q < size; q += 1) offDiagonal += a[p][q] ** 2;
+        if (offDiagonal < JACOBI_TOLERANCE) break;
+        for (let p = 0; p < size; p += 1) {
+          for (let q = p + 1; q < size; q += 1) {
+            if (Math.abs(a[p][q]) < 1e-15) continue;
+            const theta = (a[q][q] - a[p][p]) / (2 * a[p][q]);
+            const t = Math.sign(theta || 1) / (Math.abs(theta) + Math.sqrt(theta * theta + 1));
+            const c = 1 / Math.sqrt(t * t + 1);
+            const s = t * c;
+            for (let k = 0; k < size; k += 1) {
+              const [kp, kq] = [a[k][p], a[k][q]];
+              a[k][p] = c * kp - s * kq;
+              a[k][q] = s * kp + c * kq;
+            }
+            for (let k = 0; k < size; k += 1) {
+              const [pk, qk] = [a[p][k], a[q][k]];
+              a[p][k] = c * pk - s * qk;
+              a[q][k] = s * pk + c * qk;
+            }
+            for (let k = 0; k < size; k += 1) {
+              const [vp, vq] = [vectors[k][p], vectors[k][q]];
+              vectors[k][p] = c * vp - s * vq;
+              vectors[k][q] = s * vp + c * vq;
+            }
+          }
+        }
+      }
+      return a.map((row, i) => ({ value: row[i], vector: vectors.map(vectorRow => vectorRow[i]) }))
+        .sort((x, y) => x.value - y.value);
+    }
+
+    function laplacian(size, edges) {
+      const matrix = Array.from({ length: size }, () => new Array(size).fill(0));
+      for (const [i, j] of edges) {
+        matrix[i][j] -= 1;
+        matrix[j][i] -= 1;
+        matrix[i][i] += 1;
+        matrix[j][j] += 1;
+      }
+      return matrix;
+    }
+
+    /* With several components the null space has several eigenvectors; take the one least like a constant. */
+    function fiedlerVector(eigenpairs, zeroCount) {
+      const candidates = zeroCount > 1 ? eigenpairs.slice(0, zeroCount) : [eigenpairs[1]];
+      const centered = candidates.map(({ vector }) => {
+        const mean = vector.reduce((sum, v) => sum + v, 0) / vector.length;
+        return vector.map(v => v - mean);
+      });
+      const spread = vector => vector.reduce((sum, v) => sum + v * v, 0);
+      const best = centered.reduce((a, b) => (spread(b) > spread(a) ? b : a));
+      const anchor = best.find(v => Math.abs(v) > ZERO_TOLERANCE) ?? 1;
+      return anchor > 0 ? best.map(v => -v) : best;
+    }
+
+    function spectralDemo() {
+      const CLUSTER_SIZE = 6;
+      const CLUSTER_RADIUS = 95;
+      const CENTERS = [{ x: 170, y: 165 }, { x: 470, y: 165 }];
+      const nodes = [];
+      CENTERS.forEach((center, cluster) => {
+        for (let k = 0; k < CLUSTER_SIZE; k += 1) {
+          const angle = (2 * Math.PI * k) / CLUSTER_SIZE + (cluster ? Math.PI : 0);
+          const index = cluster * CLUSTER_SIZE + k;
+          nodes.push({ id: index, label: index + 1, x: center.x + CLUSTER_RADIUS * Math.cos(angle), y: center.y + CLUSTER_RADIUS * Math.sin(angle) });
+        }
+      });
+      const clusterEdges = offset => [[0, 1], [1, 2], [2, 3], [3, 4], [4, 5], [5, 0], [0, 2], [1, 4], [3, 5], [2, 5]]
+        .map(([i, j]) => [i + offset, j + offset]);
+      const insideEdges = [...clusterEdges(0), ...clusterEdges(CLUSTER_SIZE)];
+      const presets = {
+        0: insideEdges,
+        1: [...insideEdges, [0, 6]],
+        3: [...insideEdges, [0, 6], [1, 11], [5, 7]],
+        mixed: [...insideEdges, [0, 6], [1, 11], [5, 7], [3, 9], [4, 8], [2, 10]]
+      };
+      const graphSvg = byId('spectral-graph');
+      const barSvg = byId('spectral-bars');
+      const presetButtons = [...document.querySelectorAll('[data-preset]')];
+      const state = { edges: new Map(), selected: null };
+
+      function loadPreset(name) {
+        state.edges = new Map(presets[name].map(([i, j]) => [edgeKey(i, j), [i, j]]));
+        state.selected = null;
+        render();
+      }
+
+      function render() {
+        const edges = [...state.edges.values()];
+        const eigenpairs = symmetricEigen(laplacian(nodes.length, edges));
+        const zeroCount = eigenpairs.filter(pair => Math.abs(pair.value) < ZERO_TOLERANCE).length;
+        const fiedler = fiedlerVector(eigenpairs, zeroCount);
+        const side = fiedler.map(v => (v < 0 ? 'side-a' : 'side-b'));
+        const { edgeElements, nodeElements } = drawGraph(graphSvg, nodes, edges);
+        let cutCount = 0;
+        for (const [i, j] of edges) {
+          const isCut = side[i] !== side[j];
+          if (isCut) cutCount += 1;
+          edgeElements.get(edgeKey(i, j)).classList.toggle('is-cut', isCut);
+        }
+        for (const [id, element] of nodeElements) {
+          element.classList.add(side[id]);
+          element.classList.toggle('is-selected', id === state.selected);
+        }
+        drawBars(fiedler, side);
+        byId('spectral-eigs').textContent = eigenpairs.slice(0, 4).map(pair => formatNumber(pair.value)).join(', ');
+        byId('spectral-components').textContent = zeroCount;
+        byId('spectral-lambda').textContent = formatNumber(eigenpairs[1].value);
+        byId('spectral-cut').textContent = cutCount;
+      }
+
+      function drawBars(values, side) {
+        barSvg.replaceChildren();
+        const width = 640;
+        const baseline = 65;
+        const maxHeight = 55;
+        const slot = width / values.length;
+        const scale = Math.max(...values.map(Math.abs)) || 1;
+        svgElement('line', { class: 'g-axis', x1: 0, y1: baseline, x2: width, y2: baseline }, barSvg);
+        values.forEach((value, index) => {
+          const height = (Math.abs(value) / scale) * maxHeight;
+          svgElement('rect', {
+            class: `g-bar ${side[index]}`, x: index * slot + slot * 0.2, width: slot * 0.6,
+            y: value < 0 ? baseline : baseline - height, height: Math.max(height, 1)
+          }, barSvg);
+          svgElement('text', { class: 'g-bar-label', x: index * slot + slot / 2, y: 140 }, barSvg).textContent = index + 1;
+        });
+      }
+
+      graphSvg.addEventListener('click', event => {
+        const element = event.target.closest('.g-node');
+        if (!element) return;
+        const id = Number(element.dataset.id);
+        if (state.selected === null) {
+          state.selected = id;
+        } else if (state.selected === id) {
+          state.selected = null;
+        } else {
+          const key = edgeKey(state.selected, id);
+          if (state.edges.has(key)) state.edges.delete(key);
+          else state.edges.set(key, [state.selected, id]);
+          state.selected = null;
+        }
+        setPressed(presetButtons, null);
+        render();
+      });
+      for (const button of presetButtons) {
+        button.addEventListener('click', () => {
+          setPressed(presetButtons, button);
+          loadPreset(button.dataset.preset);
+        });
+      }
+      loadPreset('1');
+    }
+
+    matrixDemo();
+    pathDemo();
+    spectralDemo();
+  })();
+</script>
