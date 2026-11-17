@@ -5,7 +5,19 @@ icon: "/images/icons/flash.svg"
 
 How to run your local LLM well: fast, reliable and with good quality.
 
-Key metrics:
+**TL;DR**:
+Download opencode, claude or codex etc. and point it here:
+```
+Setup the best possible local LLM model on my hardware using llama.cpp
+```
+
+For maximum performance:
+```
+Setup the best possible local LLM model on my hardware using this skill:
+https://github.com/sybil-solutions/inference-optimisation-skill
+```
+
+**Key metrics**:
 - Prefill speed: prompt/input tokens per second
 - Decode speed: generated tokens per second
 - Time to first token (latency)
