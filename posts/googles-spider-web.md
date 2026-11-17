@@ -7,4 +7,4 @@ This fitting metaphor of sticky spider webs describes perfectly the current stat
 
 We need privacy respecting services and more decentralised infrastructure - returning to an open, non-sticky web. I am doing my part with [digger.so](https://digger.so/) - a privacy respecting discovery engine.
 
-#privacy #books
+#privacy #book
