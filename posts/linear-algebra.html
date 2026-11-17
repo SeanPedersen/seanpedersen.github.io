@@ -1,0 +1,1935 @@
+---
+date: '2026-11-17'
+title: 'Linear Algebra: Matrices Move Space'
+tags: [math, ML]
+---
+
+<style>
+  :is(.markdown-content, body) {
+    --la-blue: #2f80d8;
+    --la-orange: #e2673f;
+    --la-green: #1f9a78;
+    --la-purple: #8a5cd0;
+    --la-gold: #c99a1e;
+    --la-panel: rgba(127, 127, 127, 0.08);
+    --la-border: rgba(127, 127, 127, 0.32);
+    --la-muted: rgba(127, 127, 127, 0.55);
+    --la-faint: rgba(127, 127, 127, 0.2);
+    --la-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  }
+
+  :is(.markdown-content, body) .la-summary {
+    border-left: 0.25rem solid var(--la-blue);
+    margin: 1.5rem 0 2rem;
+    padding: 0.2rem 0 0.2rem 1rem;
+  }
+
+  :is(.markdown-content, body) .la-summary p {
+    margin: 0.45rem 0;
+  }
+
+  :is(.markdown-content, body) .la-eq {
+    font-family: var(--la-mono);
+    margin: 1.2rem 0;
+    overflow-x: auto;
+    padding: 0.5rem 1rem;
+    text-align: center;
+  }
+
+  :is(.markdown-content, body) .la-viz {
+    background: var(--la-panel);
+    border: 1px solid var(--la-border);
+    border-radius: 0.8rem;
+    margin: 1.75rem 0 2.5rem;
+    overflow: hidden;
+  }
+
+  :is(.markdown-content, body) .la-viz-header {
+    border-bottom: 1px solid var(--la-border);
+    padding: 0.9rem 1.1rem 0.8rem;
+  }
+
+  :is(.markdown-content, body) .la-viz-header p {
+    margin: 0;
+  }
+
+  :is(.markdown-content, body) .la-viz-body {
+    padding: 1rem;
+  }
+
+  :is(.markdown-content, body) .la-viz svg {
+    display: block;
+    height: auto;
+    max-width: 100%;
+    user-select: none;
+    width: 100%;
+  }
+
+  :is(.markdown-content, body) .la-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.9rem;
+  }
+
+  :is(.markdown-content, body) .la-controls button {
+    background: transparent;
+    border: 1px solid var(--la-border);
+    border-radius: 0.4rem;
+    color: inherit;
+    cursor: pointer;
+    font: inherit;
+    font-size: 0.9rem;
+    padding: 0.3rem 0.75rem;
+  }
+
+  :is(.markdown-content, body) .la-controls button:hover {
+    border-color: var(--la-blue);
+  }
+
+  :is(.markdown-content, body) .la-controls button[aria-pressed="true"] {
+    background: var(--la-blue);
+    border-color: var(--la-blue);
+    color: #fff;
+  }
+
+  :is(.markdown-content, body) .la-controls .la-divider {
+    border-left: 1px solid var(--la-border);
+    margin: 0 0.2rem;
+  }
+
+  :is(.markdown-content, body) .la-slider {
+    align-items: center;
+    display: flex;
+    font-size: 0.9rem;
+    gap: 0.75rem;
+    margin: 0 0 0.9rem;
+  }
+
+  :is(.markdown-content, body) .la-slider input {
+    accent-color: var(--la-blue);
+    flex: 1;
+    min-width: 0;
+  }
+
+  :is(.markdown-content, body) .la-slider output {
+    font-family: var(--la-mono);
+    min-width: 3.5rem;
+    text-align: right;
+  }
+
+  :is(.markdown-content, body) .la-readout {
+    display: grid;
+    gap: 0.4rem 1rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin: 0.85rem 0 0;
+  }
+
+  :is(.markdown-content, body) .la-readout div {
+    min-width: 0;
+  }
+
+  :is(.markdown-content, body) .la-readout dt {
+    font-size: 0.76rem;
+    letter-spacing: 0.04em;
+    opacity: 0.7;
+    text-transform: uppercase;
+  }
+
+  :is(.markdown-content, body) .la-readout dd {
+    font-family: var(--la-mono);
+    font-size: 0.9rem;
+    margin: 0.15rem 0 0;
+    overflow-wrap: anywhere;
+  }
+
+  :is(.markdown-content, body) .la-note {
+    font-size: 0.86rem;
+    margin: 0.75rem 0 0;
+    opacity: 0.78;
+  }
+
+  /* 2 × 2 matrix readout: columns colored like the basis vectors they hold */
+  :is(.markdown-content, body) .la-matrix {
+    border-left: 2px solid currentColor;
+    border-right: 2px solid currentColor;
+    border-radius: 0.3rem;
+    display: inline-grid;
+    gap: 0 0.9rem;
+    grid-template-columns: auto auto;
+    padding: 0.1rem 0.45rem;
+    text-align: right;
+  }
+
+  :is(.markdown-content, body) .la-col-i {
+    color: var(--la-blue);
+  }
+
+  :is(.markdown-content, body) .la-col-j {
+    color: var(--la-orange);
+  }
+
+  /* Shared SVG styling */
+  :is(.markdown-content, body) .la-grid-static {
+    fill: none;
+    stroke: var(--la-faint);
+    stroke-width: 1;
+  }
+
+  :is(.markdown-content, body) .la-grid {
+    fill: none;
+    stroke: var(--la-blue);
+    stroke-opacity: 0.35;
+    stroke-width: 1;
+  }
+
+  :is(.markdown-content, body) .la-axes {
+    fill: none;
+    stroke: currentColor;
+    stroke-opacity: 0.6;
+    stroke-width: 1.5;
+  }
+
+  :is(.markdown-content, body) .la-square {
+    fill: var(--la-blue);
+    fill-opacity: 0.18;
+    stroke: var(--la-blue);
+    stroke-width: 1.5;
+  }
+
+  :is(.markdown-content, body) .la-square.is-flipped {
+    fill: var(--la-orange);
+    stroke: var(--la-orange);
+  }
+
+  :is(.markdown-content, body) .la-shape {
+    fill: currentColor;
+    fill-opacity: 0.75;
+  }
+
+  :is(.markdown-content, body) .la-circle {
+    fill: none;
+    stroke: currentColor;
+    stroke-dasharray: 4 4;
+    stroke-opacity: 0.4;
+  }
+
+  :is(.markdown-content, body) .la-ellipse {
+    fill: var(--la-orange);
+    fill-opacity: 0.08;
+    stroke: var(--la-orange);
+    stroke-opacity: 0.6;
+    stroke-width: 1.5;
+  }
+
+  :is(.markdown-content, body) .la-eigenline {
+    stroke: var(--la-green);
+    stroke-dasharray: 6 5;
+    stroke-width: 1.5;
+  }
+
+  :is(.markdown-content, body) .la-arrow {
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 3;
+  }
+
+  :is(.markdown-content, body) .c-blue {
+    --c: var(--la-blue);
+  }
+
+  :is(.markdown-content, body) .c-orange {
+    --c: var(--la-orange);
+  }
+
+  :is(.markdown-content, body) .c-green,
+  :is(.markdown-content, body) .is-aligned {
+    --c: var(--la-green);
+  }
+
+  :is(.markdown-content, body) .c-purple {
+    --c: var(--la-purple);
+  }
+
+  :is(.markdown-content, body) .la-arrow {
+    fill: var(--c);
+    stroke: var(--c);
+  }
+
+  :is(.markdown-content, body) .la-label {
+    fill: var(--c, currentColor);
+    font-family: var(--la-mono);
+    font-size: 15px;
+    font-weight: 600;
+    pointer-events: none;
+  }
+
+  :is(.markdown-content, body) .la-handle {
+    cursor: grab;
+    fill: var(--background-color, Canvas);
+    stroke: var(--c);
+    stroke-width: 3;
+    touch-action: none;
+  }
+
+  :is(.markdown-content, body) .la-handle:active {
+    cursor: grabbing;
+  }
+
+  :is(.markdown-content, body) .la-hit {
+    cursor: crosshair;
+  }
+
+  /* Regression demo */
+  :is(.markdown-content, body) .la-point {
+    cursor: grab;
+    fill: var(--la-blue);
+    stroke: var(--background-color, Canvas);
+    stroke-width: 1.5;
+    touch-action: none;
+  }
+
+  :is(.markdown-content, body) .la-residual {
+    stroke: var(--la-orange);
+    stroke-width: 1.5;
+  }
+
+  :is(.markdown-content, body) .la-residual-square {
+    fill: var(--la-orange);
+    fill-opacity: 0.14;
+    stroke: var(--la-orange);
+    stroke-opacity: 0.5;
+  }
+
+  :is(.markdown-content, body) .la-fit {
+    stroke: var(--c, var(--la-blue));
+    stroke-linecap: round;
+    stroke-width: 3;
+  }
+
+  :is(.markdown-content, body) .la-fit.is-ghost {
+    stroke-dasharray: 7 6;
+    stroke-opacity: 0.55;
+    stroke-width: 2;
+  }
+
+  :is(.markdown-content, body) .la-tick {
+    fill: currentColor;
+    font-family: var(--la-mono);
+    font-size: 11px;
+    opacity: 0.6;
+    text-anchor: middle;
+  }
+
+  /* PCA demo */
+  :is(.markdown-content, body) .la-dot {
+    fill: var(--la-blue);
+    fill-opacity: 0.75;
+  }
+
+  :is(.markdown-content, body) .la-project {
+    stroke: currentColor;
+    stroke-opacity: 0.22;
+  }
+
+  :is(.markdown-content, body) .la-pc-line {
+    stroke: var(--la-green);
+    stroke-opacity: 0.45;
+    stroke-width: 1.5;
+  }
+
+  /* k-means demo: one color token per cluster */
+  :is(.markdown-content, body) .cl-0 {
+    --cl: var(--la-blue);
+  }
+
+  :is(.markdown-content, body) .cl-1 {
+    --cl: var(--la-orange);
+  }
+
+  :is(.markdown-content, body) .cl-2 {
+    --cl: var(--la-green);
+  }
+
+  :is(.markdown-content, body) .cl-3 {
+    --cl: var(--la-purple);
+  }
+
+  :is(.markdown-content, body) .cl-4 {
+    --cl: var(--la-gold);
+  }
+
+  :is(.markdown-content, body) .la-cell {
+    fill: var(--cl);
+    fill-opacity: 0.12;
+  }
+
+  :is(.markdown-content, body) .la-kpoint {
+    fill: var(--cl, var(--la-muted));
+  }
+
+  :is(.markdown-content, body) .la-spoke {
+    stroke: var(--cl);
+    stroke-opacity: 0.3;
+  }
+
+  :is(.markdown-content, body) .la-trail {
+    fill: none;
+    stroke: var(--cl);
+    stroke-dasharray: 3 4;
+    stroke-width: 2;
+  }
+
+  :is(.markdown-content, body) .la-centroid {
+    cursor: grab;
+    fill: var(--cl);
+    stroke: var(--background-color, Canvas);
+    stroke-width: 3;
+    touch-action: none;
+  }
+
+  :is(.markdown-content, body) .la-centroid-ring {
+    fill: none;
+    pointer-events: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+  }
+
+  @media (max-width: 620px) {
+    :is(.markdown-content, body) .la-readout {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<p>Most people pass linear algebra without learning what a matrix does. They learn to multiply rows by columns, to
+  expand determinants and to solve det(A − λI) = 0. They get the right numbers and no picture. The picture is simple:
+  <strong>a matrix moves space</strong>. It takes every arrow in the plane and sends it somewhere else, and it keeps
+  straight lines straight while doing so. Once you see that, the rest of the subject turns into questions about motion.
+  How much does it stretch areas? Can you undo it? Which directions does it leave alone?</p>
+
+<p>The same picture runs much of machine learning. A dataset is a matrix. Fitting a line means dropping a
+  perpendicular. Finding the main trends in data means finding the directions a matrix only stretches.</p>
+
+<div class="la-summary">
+  <p><strong>Part 1:</strong> vectors, and matrices as motions of the plane.</p>
+  <p><strong>Part 2:</strong> eigenvectors, the directions a matrix doesn't turn, and why they make hard matrices
+    easy.</p>
+  <p><strong>Part 3:</strong> linear regression, PCA and k-means, seen as geometry.</p>
+</div>
+
+<h2 id="vectors">Vectors</h2>
+
+<p>A vector is an arrow from the origin. In two dimensions you write it as a pair of numbers, v = (x, y): go x to the
+  right and y up. You can do two things with arrows. Add them (put them tip to tail) and scale them (make them longer,
+  shorter, or flip them around). That is all linear algebra allows, and it is enough.</p>
+
+<p>A sum of scaled vectors, like 2a − 3b, is a <strong>linear combination</strong>. All the linear combinations of
+  some vectors form their <strong>span</strong>. Two arrows that don't lie on the same line span the whole plane:
+  every point is some mix of them. Such a pair is a <a
+    href="https://en.wikipedia.org/wiki/Basis_(linear_algebra)">basis</a>. The standard basis uses î = (1, 0) and
+  ĵ = (0, 1), so v = (x, y) really means x·î + y·ĵ. The coordinates of a vector tell you how much of each basis vector
+  to take. Pick a different basis and the same arrow gets different coordinates.</p>
+
+<p>The <a href="https://en.wikipedia.org/wiki/Dot_product">dot product</a> a · b = a₁b₁ + a₂b₂ measures how much two
+  arrows agree. It equals |a| |b| cos θ, where θ is the angle between them. Same direction: large and positive. Right
+  angle: zero. Opposite: negative. Divide by the two lengths and you get cosine similarity, the score that <a
+    href="/posts/vector-databases">vector databases</a> use to compare embeddings. The dot product also gives you
+  <strong>projection</strong>: the shadow of b on the line through a unit vector u has length b · u. Projection comes
+  back three times in the machine learning part.</p>
+
+<h2 id="matrices">Matrices Move Space</h2>
+
+<p>Here is the key fact. A <a href="https://en.wikipedia.org/wiki/Linear_map">linear map</a> must respect sums and
+  scaling: A(v + w) = Av + Aw and A(cv) = c·Av. So once you know where î and ĵ land, you know where every vector lands.
+  The vector x·î + y·ĵ has to land on x·(new î) + y·(new ĵ).</p>
+
+<p>A 2 × 2 matrix stores exactly those two landing spots, as its columns:</p>
+
+<div class="la-eq" role="math" aria-label="A equals a b c d, it sends i hat to a c and j hat to b d">
+  A = [<span class="la-col-i">a</span> <span class="la-col-j">b</span> ; <span class="la-col-i">c</span> <span
+    class="la-col-j">d</span>] &nbsp; sends &nbsp; <span class="la-col-i">î → (a, c)</span> &nbsp; and &nbsp; <span
+    class="la-col-j">ĵ → (b, d)</span></div>
+
+<p>Matrix times vector is then no mystery:</p>
+
+<div class="la-eq" role="math" aria-label="A v equals x times a c plus y times b d">
+  Av = x·<span class="la-col-i">(a, c)</span> + y·<span class="la-col-j">(b, d)</span> = (ax + by, cx + dy)</div>
+
+<p>The row times column rule from school is this sum, written out. Seen as a picture, the grid of the plane moves, but
+  its lines stay straight, parallel and evenly spaced, and the origin stays put. Drag the tips of î and ĵ below, or
+  pick a preset and slide from "nothing happens" to the full map.</p>
+
+<section class="la-viz" aria-label="Interactive linear transformation">
+  <header class="la-viz-header">
+    <p>Drag the blue and orange handles. The columns of the matrix are where î and ĵ land.</p>
+  </header>
+  <div class="la-viz-body">
+    <div class="la-controls" id="transform-presets">
+      <button type="button" data-preset="rotate">Rotate</button>
+      <button type="button" data-preset="shear" aria-pressed="true">Shear</button>
+      <button type="button" data-preset="stretch">Stretch</button>
+      <button type="button" data-preset="reflect">Reflect</button>
+      <button type="button" data-preset="squash">Squash</button>
+      <button type="button" data-preset="symmetric">[[2, 1], [1, 2]]</button>
+      <span class="la-divider" aria-hidden="true"></span>
+      <button type="button" id="transform-play">Play</button>
+    </div>
+    <label class="la-slider">
+      <span>I → A</span>
+      <input type="range" id="transform-t" min="0" max="1" step="0.01" value="1">
+      <output id="transform-t-value">1.00</output>
+    </label>
+    <svg id="transform-plane" viewBox="0 0 640 400" role="img"
+      aria-label="Plane with a grid, the unit square and the letter F, moved by a 2 by 2 matrix"></svg>
+    <dl class="la-readout" aria-live="polite">
+      <div>
+        <dt>Matrix</dt>
+        <dd id="transform-matrix"></dd>
+      </div>
+      <div>
+        <dt>Determinant ad − bc</dt>
+        <dd id="transform-det"></dd>
+      </div>
+      <div>
+        <dt>What it does</dt>
+        <dd id="transform-effect"></dd>
+      </div>
+    </dl>
+    <p class="la-note">The faint grid is the plane before the move. The shaded square is the unit square spanned by î
+      and ĵ. It turns orange when the map flips the plane over.</p>
+  </div>
+</section>
+
+<h3 id="determinant">The Determinant Measures Area</h3>
+
+<p>Watch the shaded unit square. It starts with area 1. After the map it becomes a parallelogram with area |ad − bc|.
+  Every other shape grows or shrinks by the same factor, since you can tile any shape with tiny squares. That factor
+  is the <a href="https://en.wikipedia.org/wiki/Determinant">determinant</a>:</p>
+
+<div class="la-eq" role="math" aria-label="det A equals a d minus b c">det A = ad − bc</div>
+
+<p>A negative determinant means the map flips the plane, like a mirror: the F turns into its mirror image. A
+  determinant of zero means the map squashes the plane onto a line or a point. Try the squash preset. Whole lines of
+  points now land on the same spot, so no map can send them back. That is why a matrix has an inverse exactly when its
+  determinant is not zero.</p>
+
+<h3 id="composition">Multiplying Matrices Chains Moves</h3>
+
+<p>Do one map, then another. The result is again a linear map, and its matrix is the product. BA means "first A, then
+  B", read right to left as in f(g(x)). The odd rule for multiplying matrices follows from this: column j of BA is B
+  applied to column j of A, which is where A sent the j-th basis vector.</p>
+
+<p>Order matters. Rotate then shear gives a different picture than shear then rotate, so AB ≠ BA in general. The
+  inverse A⁻¹ undoes A, so A⁻¹A = I, the identity map that leaves everything alone.</p>
+
+<h3 id="equations">Solving Equations</h3>
+
+<p>Ax = b asks: which input lands on b? If det A ≠ 0, exactly one does, x = A⁻¹b. If A squashes the plane onto a line,
+  two things can happen. If b lies off that line, no input works. If b lies on it, infinitely many do, because a whole
+  line of inputs (the <strong>null space</strong>) lands on 0, and you can add any of them to a solution. The <a
+    href="https://en.wikipedia.org/wiki/Rank_(linear_algebra)">rank</a> counts the dimensions that survive the map: 2
+  onto the plane, 1 onto a line, 0 onto a point. A system with a million unknowns has the same three outcomes: one
+  solution, none, or infinitely many.</p>
+
+<h2 id="eigenvectors">Eigenvectors: Directions That Don't Turn</h2>
+
+<p>Follow a single arrow while a matrix moves it. Most arrows get turned to a new direction and stretched. A few
+  special ones only get stretched. The matrix leaves their direction alone. Those are the <a
+    href="https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors">eigenvectors</a>, and the stretch factor λ is
+  their eigenvalue:</p>
+
+<div class="la-eq" role="math" aria-label="A v equals lambda v">Av = λv</div>
+
+<p>The equation says that, on this one arrow, the whole matrix acts like multiplying by a single number. Drag v below
+  and look for the spots where v and Av line up.</p>
+
+<section class="la-viz" aria-label="Interactive eigenvector search">
+  <header class="la-viz-header">
+    <p>Drag v (blue) or click anywhere. Av (orange) shows where the matrix sends it. When the two line up, both turn
+      green: you found an eigenvector.</p>
+  </header>
+  <div class="la-viz-body">
+    <div class="la-controls" id="eigen-presets">
+      <button type="button" data-preset="symmetric" aria-pressed="true">[[2, 1], [1, 2]]</button>
+      <button type="button" data-preset="lopsided">Lopsided</button>
+      <button type="button" data-preset="flip">[[1, 2], [2, 1]]</button>
+      <button type="button" data-preset="shear">Shear</button>
+      <button type="button" data-preset="rotate">Rotate</button>
+      <span class="la-divider" aria-hidden="true"></span>
+      <button type="button" id="eigen-sweep">Sweep</button>
+    </div>
+    <svg id="eigen-plane" viewBox="0 0 640 400" role="img"
+      aria-label="Plane with a draggable vector v and its image A v"></svg>
+    <dl class="la-readout" aria-live="polite">
+      <div>
+        <dt>v → Av</dt>
+        <dd id="eigen-vectors"></dd>
+      </div>
+      <div>
+        <dt>Status</dt>
+        <dd id="eigen-status"></dd>
+      </div>
+      <div>
+        <dt>Matrix</dt>
+        <dd id="eigen-matrix"></dd>
+      </div>
+      <div>
+        <dt>Eigenvalues</dt>
+        <dd id="eigen-values"></dd>
+      </div>
+    </dl>
+    <p class="la-note">Dashed green lines mark the eigenvector directions. The dashed circle holds every vector as long
+      as v. The orange ellipse is where the matrix sends that circle.</p>
+  </div>
+</section>
+
+<p>Take A = [[2, 1], [1, 2]]. Its eigenvectors are (1, 1) with λ = 3 and (1, −1) with λ = 1. Check:
+  A(1, 1) = (3, 3) and A(1, −1) = (1, −1). This matrix stretches one diagonal by 3 and leaves the other diagonal as it
+  is. Those two facts describe the whole matrix. Every vector is a mix of the two eigenvectors, and the matrix just
+  scales each part. That is why the circle turns into an ellipse whose axes lie along the eigenvectors.</p>
+
+<p>How do you find them by hand? Av = λv means (A − λI)v = 0. A nonzero v can only land on 0 if A − λI squashes the
+  plane, so its determinant must be zero:</p>
+
+<div class="la-eq" role="math" aria-label="det of A minus lambda I equals lambda squared minus a plus d times lambda plus a d minus b c equals 0">
+  det(A − λI) = λ² − (a + d)λ + (ad − bc) = 0</div>
+
+<p>Now the old recipe has a meaning. You look for the stretch factors that make A − λI flatten some direction, and
+  that flattened direction is the eigenvector. The two roots multiply to the determinant and add up to the trace
+  a + d.</p>
+
+<p>Not every matrix has real eigenvectors. A rotation turns every arrow, so no direction stays put. Its eigenvalues
+  come out as <a href="/posts/complex-numbers-and-2d-vectors">complex numbers</a>, which fits, since complex numbers
+  describe rotations. A shear keeps only one direction: it slides the plane along the x axis. And [[1, 2], [2, 1]] has
+  λ = −1 along (1, −1). A negative eigenvalue flips that direction, so Av points the opposite way.</p>
+
+<p>Symmetric matrices (equal to their own transpose, A = Aᵀ) behave best. The <a
+    href="https://en.wikipedia.org/wiki/Spectral_theorem">spectral theorem</a> says their eigenvalues are real and
+  their eigenvectors stand at right angles to each other. Compare the symmetric preset with the lopsided one above,
+  whose eigenvectors meet at a slant. This fact will carry PCA later.</p>
+
+<h3 id="diagonalization">Diagonalization: Change the Basis, Keep Only Stretches</h3>
+
+<p>If a matrix has enough eigenvectors to form a basis, describe it in that basis. There it only stretches. Put the
+  eigenvectors in the columns of P and the eigenvalues on the diagonal of D. Then the matrix is <a
+    href="https://en.wikipedia.org/wiki/Diagonalizable_matrix">diagonalizable</a>:</p>
+
+<div class="la-eq" role="math" aria-label="A equals P D P inverse">A = P D P⁻¹</div>
+
+<p>Read it right to left. P⁻¹ turns the eigenvectors onto the axes. D stretches each axis by its eigenvalue. P turns
+  everything back. Three easy moves replace one confusing one. Step through them below and compare with applying A
+  directly.</p>
+
+<section class="la-viz" aria-label="Interactive diagonalization">
+  <header class="la-viz-header">
+    <p>Step through A = P D P⁻¹ one factor at a time. Green and purple are the two eigenvectors.</p>
+  </header>
+  <div class="la-viz-body">
+    <div class="la-controls" id="diagonal-presets">
+      <button type="button" data-preset="positive" aria-pressed="true">[[2, 1], [1, 2]]</button>
+      <button type="button" data-preset="negative">[[1, 2], [2, 1]]</button>
+      <span class="la-divider" aria-hidden="true"></span>
+      <button type="button" id="diagonal-step">Step</button>
+      <button type="button" id="diagonal-play">Play all</button>
+      <button type="button" id="diagonal-direct">Apply A at once</button>
+      <button type="button" id="diagonal-reset">Reset</button>
+    </div>
+    <svg id="diagonal-plane" viewBox="0 0 640 400" role="img"
+      aria-label="Plane showing the three steps of diagonalization"></svg>
+    <dl class="la-readout" aria-live="polite">
+      <div>
+        <dt>Stage</dt>
+        <dd id="diagonal-stage"></dd>
+      </div>
+      <div>
+        <dt>Total map so far</dt>
+        <dd id="diagonal-matrix"></dd>
+      </div>
+      <div>
+        <dt>D (eigenvalues)</dt>
+        <dd id="diagonal-d"></dd>
+      </div>
+      <div>
+        <dt>P (eigenvectors as columns)</dt>
+        <dd>(1, 1)/√2 and (−1, 1)/√2</dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<p>Why bother? Because diagonal matrices are easy. A<sup>k</sup> = P D<sup>k</sup> P⁻¹, and D<sup>k</sup> just raises
+  each eigenvalue to the k-th power. Apply A a hundred times and the direction with the largest |λ| wins, since
+  3<sup>100</sup> dwarfs 1<sup>100</sup>. Start with almost any vector, keep multiplying by A, and it swings toward the
+  top eigenvector. This trick, <a href="https://en.wikipedia.org/wiki/Power_iteration">power iteration</a>, is how
+  Google first computed <a href="/posts/graph-theory">PageRank</a>. It also explains growth in recurrences: the
+  Fibonacci numbers grow like φ<sup>n</sup> because φ ≈ 1.618 is the largest eigenvalue of [[1, 1], [1, 0]].</p>
+
+<h3 id="svd">SVD: Every Matrix Is Rotate, Stretch, Rotate</h3>
+
+<p>What about matrices that aren't square, or lack a full set of eigenvectors? The <a
+    href="https://en.wikipedia.org/wiki/Singular_value_decomposition">singular value decomposition</a> works for every
+  matrix:</p>
+
+<div class="la-eq" role="math" aria-label="A equals U Sigma V transpose">A = U Σ Vᵀ</div>
+
+<p>Every linear map is a rotation (Vᵀ), then a stretch along the axes (Σ), then another rotation (U). Reflections may
+  sneak into the rotations. The stretch factors σ on the diagonal of Σ are the singular values. You saw this in the
+  eigen demo: the circle always turns into an ellipse, even for the shear and the rotation. The singular values are
+  the half lengths of that ellipse.</p>
+
+<p>Keep only the few largest singular values and you get the best low rank copy of the matrix. This compresses
+  images, fills in missing ratings in recommender systems, and inspired LoRA, which fine tunes large language models
+  by learning a small low rank update instead of the full weight matrix.</p>
+
+<h2 id="machine-learning">Machine Learning Is Geometry</h2>
+
+<p>A dataset is a matrix. Put one sample per row and one feature per column, so n houses with d features each give an
+  n × d matrix X. Each row is a point in d dimensional space. Machine learning then asks questions about that cloud of
+  points. Which line runs through it? In which directions does it spread? Where are its clumps? Three classic methods
+  answer these three questions, and each one reuses the tools above.</p>
+
+<h3 id="regression">Linear Regression: Drop a Perpendicular</h3>
+
+<p><a href="https://en.wikipedia.org/wiki/Linear_regression">Linear regression</a> fits a line y = wx + b through
+  points. Which line? <a href="https://en.wikipedia.org/wiki/Least_squares">Least squares</a>, which Legendre and Gauss
+  worked out around 1805, picks the line with the smallest sum of squared errors. Each error is the vertical gap
+  between a point and the line. Draw each squared error as a real square, and the best line is the one with the least
+  total orange area. Try to beat it.</p>
+
+<section class="la-viz" aria-label="Interactive least squares fit">
+  <header class="la-viz-header">
+    <p>Drag points, click empty space to add one, double click a point to remove it. Switch to "Your line" and drag
+      its two green handles to try to beat least squares.</p>
+  </header>
+  <div class="la-viz-body">
+    <div class="la-controls">
+      <button type="button" id="regression-best" aria-pressed="true">Best fit</button>
+      <button type="button" id="regression-manual" aria-pressed="false">Your line</button>
+      <span class="la-divider" aria-hidden="true"></span>
+      <button type="button" id="regression-squares" aria-pressed="true">Squares</button>
+      <button type="button" id="regression-outlier">Add outlier</button>
+      <button type="button" id="regression-reset">Reset</button>
+    </div>
+    <svg id="regression-plot" viewBox="0 0 640 360" role="img"
+      aria-label="Scatter plot with a fitted line and squared errors drawn as squares"></svg>
+    <dl class="la-readout" aria-live="polite">
+      <div>
+        <dt>Line shown</dt>
+        <dd id="regression-line"></dd>
+      </div>
+      <div>
+        <dt>Its squared error</dt>
+        <dd id="regression-error"></dd>
+      </div>
+      <div>
+        <dt>Least squares error</dt>
+        <dd id="regression-best-error"></dd>
+      </div>
+      <div>
+        <dt>R² of best fit</dt>
+        <dd id="regression-r2"></dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<p>For one input the best slope has a short formula, w = cov(x, y) / var(x). The linear algebra view is better,
+  because it works for any number of features. Stack the inputs in X (plus a column of ones for b) and the targets in
+  y. We want Xw = y. With more points than unknowns, no exact solution exists: y lies outside the set of vectors that
+  Xw can reach, the <strong>column space</strong> of X. So we settle for the closest point we can reach, the
+  projection of y onto the column space. At that point the error vector stands at a right angle to every column,
+  Xᵀ(y − Xw) = 0. Rearranged, these are the normal equations:</p>
+
+<div class="la-eq" role="math" aria-label="X transpose X w equals X transpose y">XᵀX w = Xᵀy</div>
+
+<p>Fitting a line is dropping a perpendicular, just in n dimensions instead of two. Now press "Add outlier". One far
+  point adds one huge square, so it drags the whole line toward itself. Squares punish big misses hard. When X gets
+  too large to solve directly, <a href="/posts/gradient-hessian-jacobian">gradient descent</a> walks downhill on the
+  same squared error and lands on the same answer.</p>
+
+<h3 id="pca">PCA: Find the Axes of the Cloud</h3>
+
+<p><a href="https://en.wikipedia.org/wiki/Principal_component_analysis">Principal component analysis</a> asks a
+  different question: along which directions does the data spread most? First center the data by subtracting the
+  mean. Then build the <a href="https://en.wikipedia.org/wiki/Covariance_matrix">covariance matrix</a>:</p>
+
+<div class="la-eq" role="math" aria-label="C equals X transpose X over n minus 1">C = XᵀX / (n − 1)</div>
+
+<p>With two features, C holds the variance of x and of y on its diagonal and their covariance off it. The variance
+  of the data along any unit direction u is uᵀCu. We want the u that makes it largest. C is symmetric, so the spectral
+  theorem applies. Its eigenvectors stand at right angles, and the top one is the best direction. Its eigenvalue is
+  the variance along it. The second eigenvector catches the most spread of what remains, and so on. These are the
+  principal components: a new set of axes that fit the data.</p>
+
+<section class="la-viz" aria-label="Interactive principal component analysis">
+  <header class="la-viz-header">
+    <p>Turn and squeeze the cloud with the sliders. The arrows are the eigenvectors of the covariance matrix, each two
+      standard deviations long.</p>
+  </header>
+  <div class="la-viz-body">
+    <div class="la-controls">
+      <button type="button" id="pca-project" aria-pressed="false">Project onto PC1</button>
+      <button type="button" id="pca-regression" aria-pressed="false">Regression line</button>
+      <button type="button" id="pca-sample">New sample</button>
+    </div>
+    <label class="la-slider">
+      <span>Angle</span>
+      <input type="range" id="pca-angle" min="0" max="180" step="1" value="30">
+      <output id="pca-angle-value">30°</output>
+    </label>
+    <label class="la-slider">
+      <span>Width</span>
+      <input type="range" id="pca-ratio" min="0.05" max="1" step="0.01" value="0.35">
+      <output id="pca-ratio-value">0.35</output>
+    </label>
+    <svg id="pca-plot" viewBox="0 0 640 400" role="img"
+      aria-label="Cloud of points with its two principal component arrows"></svg>
+    <dl class="la-readout" aria-live="polite">
+      <div>
+        <dt>Covariance matrix C</dt>
+        <dd id="pca-cov"></dd>
+      </div>
+      <div>
+        <dt>Eigenvalues (variances)</dt>
+        <dd id="pca-eigs"></dd>
+      </div>
+      <div>
+        <dt>Variance kept by PC1</dt>
+        <dd id="pca-explained"></dd>
+      </div>
+      <div>
+        <dt>PC1 direction</dt>
+        <dd id="pca-direction"></dd>
+      </div>
+    </dl>
+    <p class="la-note">Green: PC1, the direction of most spread. Orange: PC2. The ellipse spans two standard deviations
+      along each.</p>
+  </div>
+</section>
+
+<p>Projecting onto the top k components gives the best k dimensional summary of the data. It keeps the most variance
+  and moves the points the least, in squared distance. That is how you plot data with a thousand features in two
+  dimensions, strip noise, or shrink inputs before a slower method. In practice you compute it with the SVD of the
+  centered X: the right singular vectors are the components, and the squared singular values divided by n − 1 are the
+  variances. A linear <a href="/posts/vae">autoencoder</a> trained to compress and rebuild data ends up learning the
+  same subspace.</p>
+
+<p>Turn on the regression line and compare. Regression measures errors straight up and down, because it predicts y
+  from x. PCA measures them at right angles to the line, because it treats both features alike. The two lines agree
+  when the cloud is thin. Make it wider and turn it toward upright, and they part ways: the regression line stays
+  flatter than the cloud.</p>
+
+<h3 id="kmeans">k-means: Split Space by Distance</h3>
+
+<p><a href="https://en.wikipedia.org/wiki/K-means_clustering">k-means</a> looks for clumps. Pick k centers, then
+  repeat two steps:</p>
+
+<ol>
+  <li><strong>Assign:</strong> give each point to its nearest center. This cuts the plane into regions, one per center,
+    with straight borders between them: a <a href="https://en.wikipedia.org/wiki/Voronoi_diagram">Voronoi
+      diagram</a>.</li>
+  <li><strong>Update:</strong> move each center to the mean of its points.</li>
+</ol>
+
+<p>Neither step can raise the total squared distance from points to their centers, so the loop has to settle. The
+  mean is no accident: of all points in space, the mean has the smallest sum of squared distances to a group. Stuart
+  Lloyd wrote the method down at Bell Labs in 1957.</p>
+
+<section class="la-viz" aria-label="Interactive k-means clustering">
+  <header class="la-viz-header">
+    <p>Step through k-means or let it play. Drag a center to move it, and watch the shaded regions follow.</p>
+  </header>
+  <div class="la-viz-body">
+    <div class="la-controls" id="kmeans-k">
+      <button type="button" data-k="2">k = 2</button>
+      <button type="button" data-k="3" aria-pressed="true">k = 3</button>
+      <button type="button" data-k="4">k = 4</button>
+      <button type="button" data-k="5">k = 5</button>
+    </div>
+    <div class="la-controls">
+      <button type="button" id="kmeans-step">Step</button>
+      <button type="button" id="kmeans-play">Play</button>
+      <button type="button" id="kmeans-centers">New centers</button>
+      <button type="button" id="kmeans-data">New data</button>
+    </div>
+    <svg id="kmeans-plot" viewBox="0 0 640 400" role="img"
+      aria-label="Points colored by cluster, with cluster centers and their regions"></svg>
+    <dl class="la-readout" aria-live="polite">
+      <div>
+        <dt>Iteration</dt>
+        <dd id="kmeans-iteration"></dd>
+      </div>
+      <div>
+        <dt>Next step</dt>
+        <dd id="kmeans-next"></dd>
+      </div>
+      <div>
+        <dt>Total squared distance</dt>
+        <dd id="kmeans-inertia"></dd>
+      </div>
+      <div>
+        <dt>Status</dt>
+        <dd id="kmeans-status"></dd>
+      </div>
+    </dl>
+    <p class="la-note">Gray points have no cluster yet. Dashed trails show the path of each center.</p>
+  </div>
+</section>
+
+<p>Press "New centers" a few times, or drag a center into a bad spot. k-means stops at a local best, not always the
+  global one. In practice you run it several times, or pick spread out starting centers (k-means++). It also assumes
+  round clumps of similar size, because "nearest" uses plain distance. For stretched or curved clusters, run PCA first
+  or use <a href="/posts/graph-theory#spectral-clustering">spectral clustering</a>, which runs k-means on the
+  eigenvectors of a graph.</p>
+
+<h2 id="neural-networks">The Same Pieces, Stacked</h2>
+
+<p>Neural networks stack these pieces. A layer computes σ(Wx + b): a matrix moves the input, and a simple bend σ
+  (such as ReLU, max(0, x)) breaks the straight lines. Without the bend, a hundred layers would collapse into one
+  matrix, since a product of matrices is just another matrix. Training runs on the chain rule, which multiplies one <a
+    href="/posts/gradient-hessian-jacobian">Jacobian</a> matrix per layer. Embeddings, attention and vector search
+  all come down to dot products between long vectors. The geometry of those vectors is a subject of its own, see <a
+    href="/posts/structure-of-neural-latent-space">the structure of neural latent space</a>.</p>
+
+<p>A matrix moves space. Its determinant says how areas change, its eigenvectors say which directions it keeps, and
+  its SVD says that every such move is rotate, stretch, rotate. Least squares drops a perpendicular, PCA finds the
+  axes of an ellipse, and k-means splits space by distance. The rest is the same moves in more dimensions.</p>
+
+<h2 id="references">References</h2>
+<ol>
+  <li><a href="https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab">3Blue1Brown: Essence of linear
+      algebra</a></li>
+  <li><a href="https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/">Gilbert Strang: MIT 18.06 Linear
+      Algebra</a></li>
+  <li><a href="http://immersivemath.com/ila/index.html">Immersive Linear Algebra</a></li>
+  <li><a href="https://mml-book.github.io/">Deisenroth, Faisal, Ong: Mathematics for Machine Learning</a></li>
+  <li><a href="https://arxiv.org/abs/1404.1100">Jonathon Shlens: A Tutorial on Principal Component Analysis</a></li>
+  <li><a href="https://scikit-learn.org/stable/modules/clustering.html#k-means">scikit-learn: K-means clustering</a>
+  </li>
+</ol>
+
+<script>
+  (() => {
+    'use strict';
+
+    const SVG_NS = 'http://www.w3.org/2000/svg';
+    const PLANE = { width: 640, height: 400, scale: 40 };
+    const GRID_RANGE = 14;
+    const ARROW_HEAD = 12;
+    const EPSILON = 1e-9;
+    const DEGREE = Math.PI / 180;
+    const REDUCED_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const byId = id => document.getElementById(id);
+    const formatNumber = (value, digits = 2) => (Math.abs(value) < 0.005 ? 0 : value).toFixed(digits);
+    const formatVector = ([x, y]) => `(${formatNumber(x)}, ${formatNumber(y)})`;
+    const clamp = (value, low, high) => Math.min(Math.max(value, low), high);
+    const easeInOut = t => t * t * (3 - 2 * t);
+
+    function svgElement(tag, attributes, parent) {
+      const element = document.createElementNS(SVG_NS, tag);
+      for (const [name, value] of Object.entries(attributes)) element.setAttribute(name, value);
+      if (parent) parent.appendChild(element);
+      return element;
+    }
+
+    function setAttributes(element, attributes) {
+      for (const [name, value] of Object.entries(attributes)) element.setAttribute(name, value);
+    }
+
+    function setPressed(buttons, activeButton) {
+      for (const button of buttons) button.setAttribute('aria-pressed', String(button === activeButton));
+    }
+
+    /* Runs onFrame(t) with eased t from 0 to 1. Returns a cancel function. */
+    function animate(duration, onFrame, onDone) {
+      if (REDUCED_MOTION) {
+        onFrame(1);
+        onDone?.();
+        return () => {};
+      }
+      const startTime = performance.now();
+      let frame = 0;
+      const tick = now => {
+        const progress = Math.min((now - startTime) / duration, 1);
+        onFrame(easeInOut(progress));
+        if (progress < 1) frame = requestAnimationFrame(tick);
+        else onDone?.();
+      };
+      frame = requestAnimationFrame(tick);
+      return () => cancelAnimationFrame(frame);
+    }
+
+    function mulberry32(seed) {
+      let state = seed >>> 0;
+      return () => {
+        state = (state + 0x6d2b79f5) >>> 0;
+        let t = state;
+        t = Math.imul(t ^ (t >>> 15), t | 1);
+        t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+        return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+      };
+    }
+
+    function gaussian(random) {
+      const u = 1 - random();
+      const v = random();
+      return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
+    }
+
+    /* ---------- 2 × 2 matrices, stored row by row as [a, b, c, d] = [[a, b], [c, d]] ---------- */
+
+    const IDENTITY = [1, 0, 0, 1];
+    const apply = ([a, b, c, d], [x, y]) => [a * x + b * y, c * x + d * y];
+    const compose = ([a, b, c, d], [e, f, g, h]) => [a * e + b * g, a * f + b * h, c * e + d * g, c * f + d * h];
+    const determinant = ([a, b, c, d]) => a * d - b * c;
+    const lerpMatrix = (from, to, t) => from.map((value, i) => value + (to[i] - value) * t);
+    const rotation = angle => [Math.cos(angle), -Math.sin(angle), Math.sin(angle), Math.cos(angle)];
+    const diagonal = (x, y) => [x, 0, 0, y];
+    const dot = ([a, b], [c, d]) => a * c + b * d;
+    const length = vector => Math.hypot(vector[0], vector[1]);
+    const scaleVector = ([x, y], factor) => [x * factor, y * factor];
+    const addVectors = ([a, b], [c, d]) => [a + c, b + d];
+    const subtractVectors = ([a, b], [c, d]) => [a - c, b - d];
+    const normalize = vector => scaleVector(vector, 1 / length(vector));
+
+    /* Real eigenpairs of a 2 × 2 matrix, or the complex pair re ± im·i when there are none. */
+    function eigen2(matrix) {
+      const half = (matrix[0] + matrix[3]) / 2;
+      const discriminant = half * half - determinant(matrix);
+      if (discriminant < -EPSILON) return { real: false, re: half, im: Math.sqrt(-discriminant), pairs: [] };
+      const root = Math.sqrt(Math.max(discriminant, 0));
+      const values = root < 1e-6 ? [half] : [half + root, half - root];
+      const pairs = values.flatMap(value => eigenvectorsFor(matrix, value).map(vector => ({ value, vector })));
+      return { real: true, pairs };
+    }
+
+    /* Solves (A − λI)v = 0 from whichever row is not all zero. */
+    function eigenvectorsFor([a, b, c, d], value) {
+      if (Math.abs(b) > EPSILON) return [normalize([b, value - a])];
+      if (Math.abs(c) > EPSILON) return [normalize([value - d, c])];
+      const vectors = [];
+      if (Math.abs(a - value) < 1e-6) vectors.push([1, 0]);
+      if (Math.abs(d - value) < 1e-6) vectors.push([0, 1]);
+      return vectors;
+    }
+
+    function renderMatrix(element, [a, b, c, d], colored = true) {
+      const cell = (value, column) => `<span class="${colored ? column : ''}">${formatNumber(value)}</span>`;
+      element.innerHTML = `<span class="la-matrix">${cell(a, 'la-col-i')}${cell(b, 'la-col-j')}` +
+        `${cell(c, 'la-col-i')}${cell(d, 'la-col-j')}</span>`;
+    }
+
+    /* ---------- Coordinate plane: maps math coordinates (y up) to SVG coordinates ---------- */
+
+    function createPlane(svg, { width, height, scale, origin = [width / 2, height / 2] }) {
+      const [originX, originY] = origin;
+      const toSvg = ([x, y]) => [originX + x * scale, originY - y * scale];
+      function fromPointer(event) {
+        const point = new DOMPoint(event.clientX, event.clientY).matrixTransform(svg.getScreenCTM().inverse());
+        return [(point.x - originX) / scale, (originY - point.y) / scale];
+      }
+      const bounds = {
+        left: -originX / scale, right: (width - originX) / scale,
+        bottom: (originY - height) / scale, top: originY / scale
+      };
+      return { svg, scale, toSvg, fromPointer, bounds };
+    }
+
+    function pathFromPoints(plane, points, closed = false) {
+      const commands = points.map((point, index) => {
+        const [x, y] = plane.toSvg(point);
+        return `${index ? 'L' : 'M'}${x.toFixed(1)},${y.toFixed(1)}`;
+      });
+      return commands.join('') + (closed ? 'Z' : '');
+    }
+
+    function gridPath(plane, matrix, includeAxes = false) {
+      const segments = [];
+      for (let k = -GRID_RANGE; k <= GRID_RANGE; k += 1) {
+        if (k === 0 && !includeAxes) continue;
+        segments.push([[k, -GRID_RANGE], [k, GRID_RANGE]], [[-GRID_RANGE, k], [GRID_RANGE, k]]);
+      }
+      return segments.map(([p, q]) => pathFromPoints(plane, [apply(matrix, p), apply(matrix, q)])).join('');
+    }
+
+    function axesPath(plane, matrix) {
+      const ends = [[[-GRID_RANGE, 0], [GRID_RANGE, 0]], [[0, -GRID_RANGE], [0, GRID_RANGE]]];
+      return ends.map(([p, q]) => pathFromPoints(plane, [apply(matrix, p), apply(matrix, q)])).join('');
+    }
+
+    /* Shaft plus a filled head, as one path so a single class colors both. */
+    function arrowPath(plane, from, to) {
+      const [x1, y1] = plane.toSvg(from);
+      const [x2, y2] = plane.toSvg(to);
+      const span = Math.hypot(x2 - x1, y2 - y1);
+      if (span < 1) return '';
+      const [ux, uy] = [(x2 - x1) / span, (y2 - y1) / span];
+      const head = Math.min(ARROW_HEAD, span * 0.5);
+      const [bx, by] = [x2 - ux * head, y2 - uy * head];
+      const wing = head * 0.45;
+      const f = value => value.toFixed(1);
+      return `M${f(x1)},${f(y1)}L${f(bx)},${f(by)}` +
+        `M${f(bx + uy * wing)},${f(by - ux * wing)}L${f(x2)},${f(y2)}L${f(bx - uy * wing)},${f(by + ux * wing)}Z`;
+    }
+
+    function placeLabel(label, plane, tip, offset = 14) {
+      const [x, y] = plane.toSvg(tip);
+      const direction = length(tip) > EPSILON ? normalize(tip) : [1, 0];
+      setAttributes(label, { x: x + direction[0] * offset - 5, y: y - direction[1] * offset + 5 });
+    }
+
+    /* Pointer drags on an SVG. start() returns a context to begin a drag, or undefined to ignore the press. */
+    function delegateDrag(plane, { start, move, end }) {
+      const svg = plane.svg;
+      svg.addEventListener('pointerdown', event => {
+        if (event.button !== 0) return;
+        const context = start(event.target, plane.fromPointer(event));
+        if (context === undefined) return;
+        event.preventDefault();
+        svg.setPointerCapture(event.pointerId);
+        const onMove = moveEvent => move(context, plane.fromPointer(moveEvent));
+        const onUp = () => {
+          svg.removeEventListener('pointermove', onMove);
+          svg.removeEventListener('pointerup', onUp);
+          svg.removeEventListener('pointercancel', onUp);
+          end?.(context);
+        };
+        svg.addEventListener('pointermove', onMove);
+        svg.addEventListener('pointerup', onUp);
+        svg.addEventListener('pointercancel', onUp);
+      });
+    }
+
+    const CIRCLE_POINTS = Array.from({ length: 96 }, (_, i) => [Math.cos(i * Math.PI / 48), Math.sin(i * Math.PI / 48)]);
+    const UNIT_SQUARE = [[0, 0], [1, 0], [1, 1], [0, 1]];
+    const F_OFFSET = [-1.8, 0.3];
+    const F_SHAPE = [
+      [0, 0], [0.25, 0], [0.25, 0.55], [0.6, 0.55], [0.6, 0.8], [0.25, 0.8],
+      [0.25, 1.05], [0.75, 1.05], [0.75, 1.3], [0, 1.3]
+    ].map(point => addVectors(point, F_OFFSET));
+
+    /* ---------- Demo 1: a matrix moves the plane ---------- */
+
+    const HANDLE_SNAP = 0.12;
+    const snapCoordinate = value => {
+      const whole = Math.round(value);
+      return Math.abs(value - whole) < HANDLE_SNAP ? whole : Math.round(value * 10) / 10;
+    };
+
+    function describeMap(matrix) {
+      const area = determinant(matrix);
+      if (Math.abs(area) < 0.01) return 'squashes the plane onto a line, no way back';
+      const factor = `areas × ${formatNumber(Math.abs(area))}`;
+      return area < 0 ? `flips the plane over, ${factor}` : `keeps orientation, ${factor}`;
+    }
+
+    function transformDemo() {
+      const svg = byId('transform-plane');
+      const plane = createPlane(svg, PLANE);
+      const presets = {
+        rotate: rotation(45 * DEGREE), shear: [1, 1, 0, 1], stretch: [2, 0, 0, 0.5],
+        reflect: [-1, 0, 0, 1], squash: [1, 2, 0.5, 1], symmetric: [2, 1, 1, 2]
+      };
+      svgElement('path', { class: 'la-grid-static', d: gridPath(plane, IDENTITY, true) }, svg);
+      const layers = {
+        grid: svgElement('path', { class: 'la-grid' }, svg),
+        axes: svgElement('path', { class: 'la-axes' }, svg),
+        square: svgElement('path', { class: 'la-square' }, svg),
+        shape: svgElement('path', { class: 'la-shape' }, svg),
+        iArrow: svgElement('path', { class: 'la-arrow c-blue' }, svg),
+        jArrow: svgElement('path', { class: 'la-arrow c-orange' }, svg),
+        iLabel: svgElement('text', { class: 'la-label c-blue' }, svg),
+        jLabel: svgElement('text', { class: 'la-label c-orange' }, svg),
+        iHandle: svgElement('circle', { class: 'la-handle c-blue', r: 9, 'data-handle': 'i' }, svg),
+        jHandle: svgElement('circle', { class: 'la-handle c-orange', r: 9, 'data-handle': 'j' }, svg)
+      };
+      layers.iLabel.textContent = 'î';
+      layers.jLabel.textContent = 'ĵ';
+      const slider = byId('transform-t');
+      const presetButtons = [...byId('transform-presets').querySelectorAll('[data-preset]')];
+      const state = { target: [...presets.shear], t: 1, cancel: () => {} };
+
+      function render() {
+        const matrix = lerpMatrix(IDENTITY, state.target, state.t);
+        const iTip = [matrix[0], matrix[2]];
+        const jTip = [matrix[1], matrix[3]];
+        layers.grid.setAttribute('d', gridPath(plane, matrix));
+        layers.axes.setAttribute('d', axesPath(plane, matrix));
+        layers.square.setAttribute('d', pathFromPoints(plane, UNIT_SQUARE.map(p => apply(matrix, p)), true));
+        layers.square.classList.toggle('is-flipped', determinant(matrix) < 0);
+        layers.shape.setAttribute('d', pathFromPoints(plane, F_SHAPE.map(p => apply(matrix, p)), true));
+        layers.iArrow.setAttribute('d', arrowPath(plane, [0, 0], iTip));
+        layers.jArrow.setAttribute('d', arrowPath(plane, [0, 0], jTip));
+        placeLabel(layers.iLabel, plane, iTip, 20);
+        placeLabel(layers.jLabel, plane, jTip, 20);
+        const [ix, iy] = plane.toSvg(iTip);
+        const [jx, jy] = plane.toSvg(jTip);
+        setAttributes(layers.iHandle, { cx: ix, cy: iy });
+        setAttributes(layers.jHandle, { cx: jx, cy: jy });
+        slider.value = state.t;
+        byId('transform-t-value').textContent = formatNumber(state.t);
+        renderMatrix(byId('transform-matrix'), matrix);
+        byId('transform-det').textContent = formatNumber(determinant(matrix));
+        byId('transform-effect').textContent = describeMap(matrix);
+      }
+
+      function play() {
+        state.cancel();
+        state.cancel = animate(1600, t => { state.t = t; render(); });
+      }
+
+      delegateDrag(plane, {
+        start: target => target.dataset?.handle,
+        move: (handle, [x, y]) => {
+          state.cancel();
+          state.t = 1;
+          const column = handle === 'i' ? 0 : 1;
+          state.target[column] = snapCoordinate(clamp(x, plane.bounds.left, plane.bounds.right));
+          state.target[column + 2] = snapCoordinate(clamp(y, plane.bounds.bottom, plane.bounds.top));
+          setPressed(presetButtons, null);
+          render();
+        }
+      });
+      for (const button of presetButtons) {
+        button.addEventListener('click', () => {
+          setPressed(presetButtons, button);
+          state.target = [...presets[button.dataset.preset]];
+          state.t = 0;
+          play();
+        });
+      }
+      slider.addEventListener('input', () => {
+        state.cancel();
+        state.t = Number(slider.value);
+        render();
+      });
+      byId('transform-play').addEventListener('click', play);
+      render();
+    }
+
+    /* ---------- Demo 2: searching for eigenvectors ---------- */
+
+    const ALIGN_TOLERANCE = Math.sin(1.2 * DEGREE);
+    const EIGEN_SNAP_ANGLE = 3.5 * DEGREE;
+    const SWEEP_SPEED = 0.9 * DEGREE;
+    const MIN_VECTOR_LENGTH = 0.4;
+    const MAX_VECTOR_LENGTH = 4.5;
+
+    function angleBetween(from, to) {
+      return Math.atan2(from[0] * to[1] - from[1] * to[0], dot(from, to));
+    }
+
+    /* Pulls v onto an eigen direction when it gets close, so lining up by hand is easy. */
+    function snapToEigen(vector, pairs) {
+      const size = length(vector);
+      for (const { vector: direction } of pairs) {
+        for (const sign of [1, -1]) {
+          const candidate = scaleVector(direction, sign);
+          if (Math.abs(angleBetween(vector, candidate)) < EIGEN_SNAP_ANGLE) return scaleVector(candidate, size);
+        }
+      }
+      return vector;
+    }
+
+    function describeEigenvalues(info) {
+      if (!info.real) return `${formatNumber(info.re)} ± ${formatNumber(info.im)}i (complex)`;
+      const values = [...new Set(info.pairs.map(pair => pair.value))];
+      if (values.length === 1 && info.pairs.length === 1) return `λ = ${formatNumber(values[0])}, one direction only`;
+      return values.map((value, index) => `λ${'₁₂'[index]} = ${formatNumber(value)}`).join(', ');
+    }
+
+    function eigenDemo() {
+      const svg = byId('eigen-plane');
+      const plane = createPlane(svg, PLANE);
+      const presets = {
+        symmetric: [2, 1, 1, 2], lopsided: [1.5, 1, 0.25, 1], flip: [1, 2, 2, 1],
+        shear: [1, 1, 0, 1], rotate: rotation(36 * DEGREE)
+      };
+      svgElement('rect', { class: 'la-hit', x: 0, y: 0, width: PLANE.width, height: PLANE.height, fill: 'transparent' }, svg);
+      svgElement('path', { class: 'la-grid-static', d: gridPath(plane, IDENTITY) }, svg);
+      svgElement('path', { class: 'la-axes', d: axesPath(plane, IDENTITY) }, svg);
+      const layers = {
+        eigenLines: svgElement('path', { class: 'la-eigenline' }, svg),
+        circle: svgElement('path', { class: 'la-circle' }, svg),
+        ellipse: svgElement('path', { class: 'la-ellipse' }, svg),
+        imageArrow: svgElement('path', { class: 'la-arrow c-orange' }, svg),
+        vectorArrow: svgElement('path', { class: 'la-arrow c-blue' }, svg),
+        imageLabel: svgElement('text', { class: 'la-label c-orange' }, svg),
+        vectorLabel: svgElement('text', { class: 'la-label c-blue' }, svg),
+        handle: svgElement('circle', { class: 'la-handle c-blue', r: 9, 'data-handle': 'v' }, svg)
+      };
+      layers.imageLabel.textContent = 'Av';
+      layers.vectorLabel.textContent = 'v';
+      for (const element of [svg.querySelector('.la-grid-static'), svg.querySelector('.la-axes'), layers.eigenLines,
+        layers.circle, layers.ellipse, layers.imageArrow, layers.vectorArrow]) element.style.pointerEvents = 'none';
+      const presetButtons = [...byId('eigen-presets').querySelectorAll('[data-preset]')];
+      const sweepButton = byId('eigen-sweep');
+      const state = { matrix: presets.symmetric, info: eigen2(presets.symmetric), vector: [1.6, 0.5], sweepFrame: 0 };
+
+      function render() {
+        const { matrix, info, vector } = state;
+        const image = apply(matrix, vector);
+        const radius = length(vector);
+        const circle = CIRCLE_POINTS.map(point => scaleVector(point, radius));
+        layers.circle.setAttribute('d', pathFromPoints(plane, circle, true));
+        layers.ellipse.setAttribute('d', pathFromPoints(plane, circle.map(point => apply(matrix, point)), true));
+        layers.eigenLines.setAttribute('d', info.pairs.map(({ vector: direction }) =>
+          pathFromPoints(plane, [scaleVector(direction, -GRID_RANGE), scaleVector(direction, GRID_RANGE)])).join(''));
+        layers.vectorArrow.setAttribute('d', arrowPath(plane, [0, 0], vector));
+        layers.imageArrow.setAttribute('d', arrowPath(plane, [0, 0], image));
+        placeLabel(layers.vectorLabel, plane, vector, 18);
+        placeLabel(layers.imageLabel, plane, image, 22);
+        const [hx, hy] = plane.toSvg(vector);
+        setAttributes(layers.handle, { cx: hx, cy: hy });
+
+        const turn = angleBetween(vector, image);
+        const isAligned = length(image) < EPSILON || Math.abs(Math.sin(turn)) < ALIGN_TOLERANCE;
+        for (const element of [layers.vectorArrow, layers.imageArrow, layers.vectorLabel, layers.imageLabel, layers.handle]) {
+          element.classList.toggle('is-aligned', isAligned);
+        }
+        const stretch = dot(vector, image) / dot(vector, vector);
+        byId('eigen-vectors').textContent = `${formatVector(vector)} → ${formatVector(image)}`;
+        byId('eigen-status').textContent = isAligned
+          ? `eigenvector: Av = ${formatNumber(stretch)}·v`
+          : `A turns v by ${Math.abs(turn / DEGREE).toFixed(0)}°`;
+        renderMatrix(byId('eigen-matrix'), matrix);
+        byId('eigen-values').textContent = describeEigenvalues(info);
+      }
+
+      function setVector(point) {
+        const size = clamp(length(point), MIN_VECTOR_LENGTH, MAX_VECTOR_LENGTH);
+        const direction = length(point) > EPSILON ? normalize(point) : [1, 0];
+        state.vector = snapToEigen(scaleVector(direction, size), state.info.pairs);
+        render();
+      }
+
+      function stopSweep() {
+        cancelAnimationFrame(state.sweepFrame);
+        state.sweepFrame = 0;
+        sweepButton.textContent = 'Sweep';
+      }
+
+      /* Slows down near eigen directions so the moment of alignment is visible. */
+      function sweepTick() {
+        const image = apply(state.matrix, state.vector);
+        const misalignment = Math.abs(Math.sin(angleBetween(state.vector, image)));
+        const speed = SWEEP_SPEED * (0.12 + 0.88 * Math.min(1, misalignment * 8));
+        state.vector = apply(rotation(speed), state.vector);
+        render();
+        state.sweepFrame = requestAnimationFrame(sweepTick);
+      }
+
+      delegateDrag(plane, {
+        start: (_, point) => {
+          stopSweep();
+          setVector(point);
+          return 'v';
+        },
+        move: (_, point) => setVector(point)
+      });
+      sweepButton.addEventListener('click', () => {
+        if (state.sweepFrame) return stopSweep();
+        sweepButton.textContent = 'Stop';
+        state.sweepFrame = requestAnimationFrame(sweepTick);
+      });
+      for (const button of presetButtons) {
+        button.addEventListener('click', () => {
+          setPressed(presetButtons, button);
+          state.matrix = presets[button.dataset.preset];
+          state.info = eigen2(state.matrix);
+          render();
+        });
+      }
+      render();
+    }
+
+    /* ---------- Demo 3: A = P D P⁻¹, one factor at a time ---------- */
+
+    const EIGEN_ANGLE = 45 * DEGREE;
+    const STEP_DURATION_MS = 1100;
+    const DIAGONAL_STAGES = [
+      'start, nothing has moved',
+      'after P⁻¹: eigenvectors lie on the axes',
+      'after D: each axis stretched by its eigenvalue',
+      'after P: turned back, same as A'
+    ];
+    const DIAGONAL_RUNNING = ['applying P⁻¹ (turn by −45°)', 'applying D (stretch the axes)', 'applying P (turn by +45°)'];
+
+    function diagonalDemo() {
+      const svg = byId('diagonal-plane');
+      const plane = createPlane(svg, PLANE);
+      const eigenBasis = [[Math.SQRT1_2, Math.SQRT1_2], [-Math.SQRT1_2, Math.SQRT1_2]];
+      const presets = { positive: [3, 1], negative: [3, -1] };
+      svgElement('path', { class: 'la-grid-static', d: gridPath(plane, IDENTITY, true) }, svg);
+      const layers = {
+        grid: svgElement('path', { class: 'la-grid' }, svg),
+        axes: svgElement('path', { class: 'la-axes' }, svg),
+        ellipse: svgElement('path', { class: 'la-ellipse' }, svg),
+        shape: svgElement('path', { class: 'la-shape' }, svg),
+        firstArrow: svgElement('path', { class: 'la-arrow c-green' }, svg),
+        secondArrow: svgElement('path', { class: 'la-arrow c-purple' }, svg)
+      };
+      const presetButtons = [...byId('diagonal-presets').querySelectorAll('[data-preset]')];
+      const state = { eigenvalues: presets.positive, stage: 0, running: -1, matrix: IDENTITY, cancel: () => {} };
+
+      const steps = () => {
+        const [first, second] = state.eigenvalues;
+        return [
+          t => rotation(-EIGEN_ANGLE * t),
+          t => diagonal(1 + (first - 1) * t, 1 + (second - 1) * t),
+          t => rotation(EIGEN_ANGLE * t)
+        ];
+      };
+      const stageMatrix = stage => steps().slice(0, stage).reduce((total, step) => compose(step(1), total), IDENTITY);
+
+      function render() {
+        const { matrix } = state;
+        layers.grid.setAttribute('d', gridPath(plane, matrix));
+        layers.axes.setAttribute('d', axesPath(plane, matrix));
+        layers.ellipse.setAttribute('d', pathFromPoints(plane, CIRCLE_POINTS.map(p => apply(matrix, p)), true));
+        layers.shape.setAttribute('d', pathFromPoints(plane, F_SHAPE.map(p => apply(matrix, p)), true));
+        layers.firstArrow.setAttribute('d', arrowPath(plane, [0, 0], apply(matrix, eigenBasis[0])));
+        layers.secondArrow.setAttribute('d', arrowPath(plane, [0, 0], apply(matrix, eigenBasis[1])));
+        byId('diagonal-stage').textContent = state.running >= 0 ? DIAGONAL_RUNNING[state.running] : DIAGONAL_STAGES[state.stage];
+        renderMatrix(byId('diagonal-matrix'), matrix);
+        byId('diagonal-d').textContent = `diag(${state.eigenvalues.join(', ')})`;
+      }
+
+      function reset() {
+        state.cancel();
+        Object.assign(state, { stage: 0, running: -1, matrix: IDENTITY });
+        render();
+      }
+
+      function runStep(onDone) {
+        if (state.stage >= steps().length) return;
+        state.cancel();
+        const base = stageMatrix(state.stage);
+        const step = steps()[state.stage];
+        state.running = state.stage;
+        state.cancel = animate(STEP_DURATION_MS, t => {
+          state.matrix = compose(step(t), base);
+          render();
+        }, () => {
+          state.stage += 1;
+          state.running = -1;
+          state.matrix = stageMatrix(state.stage);
+          render();
+          onDone?.();
+        });
+      }
+
+      function playAll() {
+        reset();
+        const next = () => runStep(next);
+        next();
+      }
+
+      function applyDirectly() {
+        reset();
+        const target = stageMatrix(steps().length);
+        state.cancel = animate(STEP_DURATION_MS * 1.5, t => {
+          state.matrix = lerpMatrix(IDENTITY, target, t);
+          render();
+        }, () => {
+          state.stage = steps().length;
+          render();
+        });
+      }
+
+      byId('diagonal-step').addEventListener('click', () => {
+        if (state.running >= 0) return;
+        if (state.stage >= steps().length) reset();
+        runStep();
+      });
+      byId('diagonal-play').addEventListener('click', playAll);
+      byId('diagonal-direct').addEventListener('click', applyDirectly);
+      byId('diagonal-reset').addEventListener('click', reset);
+      for (const button of presetButtons) {
+        button.addEventListener('click', () => {
+          setPressed(presetButtons, button);
+          state.eigenvalues = presets[button.dataset.preset];
+          reset();
+        });
+      }
+      render();
+    }
+
+    /* ---------- Demo 4: least squares ---------- */
+
+    const REGRESSION_POINTS = [[1, 1.2], [2, 1.9], [3, 1.6], [4, 2.8], [5, 2.5], [6, 3.6], [7, 3.2], [8, 4.4], [9, 4.0]];
+    const MAX_POINTS = 30;
+    const MIN_POINTS = 2;
+    const HANDLE_X = [1, 9];
+    const OUTLIER = [9.6, 0.4];
+
+    function fitLine(points) {
+      if (points.length < MIN_POINTS) return null;
+      const meanX = points.reduce((sum, [x]) => sum + x, 0) / points.length;
+      const meanY = points.reduce((sum, [, y]) => sum + y, 0) / points.length;
+      let spreadX = 0;
+      let spreadXY = 0;
+      for (const [x, y] of points) {
+        spreadX += (x - meanX) ** 2;
+        spreadXY += (x - meanX) * (y - meanY);
+      }
+      if (spreadX < EPSILON) return null;
+      const slope = spreadXY / spreadX;
+      return { slope, intercept: meanY - slope * meanX };
+    }
+
+    const lineThrough = ([x1, y1], [x2, y2]) => ({ slope: (y2 - y1) / (x2 - x1), intercept: y1 - ((y2 - y1) / (x2 - x1)) * x1 });
+    const predict = (line, x) => line.slope * x + line.intercept;
+    const squaredError = (line, points) => points.reduce((sum, [x, y]) => sum + (y - predict(line, x)) ** 2, 0);
+    const describeLine = line => `y = ${formatNumber(line.slope)}x ${line.intercept < 0 ? '−' : '+'} ${formatNumber(Math.abs(line.intercept))}`;
+
+    function regressionDemo() {
+      const svg = byId('regression-plot');
+      const plane = createPlane(svg, { width: 640, height: 360, scale: 56, origin: [36, 330] });
+      const { bounds } = plane;
+      const xMax = Math.floor(bounds.right);
+      const yMax = Math.floor(bounds.top);
+      svgElement('rect', { class: 'la-hit', x: 0, y: 0, width: 640, height: 360, fill: 'transparent' }, svg);
+      const gridLines = [];
+      for (let x = 1; x <= xMax; x += 1) gridLines.push([[x, 0], [x, bounds.top]]);
+      for (let y = 1; y <= yMax; y += 1) gridLines.push([[0, y], [bounds.right, y]]);
+      svgElement('path', { class: 'la-grid-static', d: gridLines.map(segment => pathFromPoints(plane, segment)).join('') }, svg);
+      svgElement('path', { class: 'la-axes', d: pathFromPoints(plane, [[0, bounds.top], [0, 0], [bounds.right, 0]]) }, svg);
+      for (let x = 2; x <= xMax; x += 2) {
+        const [tx, ty] = plane.toSvg([x, 0]);
+        svgElement('text', { class: 'la-tick', x: tx, y: ty + 16 }, svg).textContent = x;
+      }
+      for (const element of svg.children) element.style.pointerEvents = element.classList.contains('la-hit') ? '' : 'none';
+      const layers = {
+        squares: svgElement('g', { style: 'pointer-events:none' }, svg),
+        residuals: svgElement('path', { class: 'la-residual', style: 'pointer-events:none' }, svg),
+        ghost: svgElement('path', { class: 'la-fit is-ghost', style: 'pointer-events:none' }, svg),
+        fit: svgElement('path', { class: 'la-fit', style: 'pointer-events:none' }, svg),
+        points: svgElement('g', {}, svg),
+        handles: svgElement('g', {}, svg)
+      };
+      const handles = HANDLE_X.map((_, index) =>
+        svgElement('circle', { class: 'la-handle c-green', r: 9, 'data-handle': index }, layers.handles));
+      const modeButtons = [byId('regression-best'), byId('regression-manual')];
+      const squaresButton = byId('regression-squares');
+      const state = { points: REGRESSION_POINTS.map(p => [...p]), manual: [1, 3], mode: 'best', showSquares: true };
+
+      function render() {
+        const best = fitLine(state.points);
+        const manual = lineThrough([HANDLE_X[0], state.manual[0]], [HANDLE_X[1], state.manual[1]]);
+        const shown = state.mode === 'manual' ? manual : best;
+        layers.fit.style.setProperty('--c', state.mode === 'manual' ? 'var(--la-green)' : 'var(--la-blue)');
+        const linePath = line => (line ? pathFromPoints(plane, [[0, predict(line, 0)], [bounds.right, predict(line, bounds.right)]]) : '');
+        layers.fit.setAttribute('d', linePath(shown));
+        layers.ghost.setAttribute('d', state.mode === 'manual' ? linePath(best) : '');
+
+        layers.squares.replaceChildren();
+        let residualPath = '';
+        if (shown) {
+          for (const [x, y] of state.points) {
+            const fitted = predict(shown, x);
+            residualPath += pathFromPoints(plane, [[x, y], [x, fitted]]);
+            if (!state.showSquares) continue;
+            const side = Math.abs(y - fitted);
+            const [left, top] = plane.toSvg([x, Math.max(y, fitted)]);
+            svgElement('rect', { class: 'la-residual-square', x: left, y: top, width: side * plane.scale, height: side * plane.scale }, layers.squares);
+          }
+        }
+        layers.residuals.setAttribute('d', residualPath);
+
+        layers.points.replaceChildren();
+        state.points.forEach((point, index) => {
+          const [cx, cy] = plane.toSvg(point);
+          svgElement('circle', { class: 'la-point', cx, cy, r: 7, 'data-index': index }, layers.points);
+        });
+        layers.handles.style.display = state.mode === 'manual' ? '' : 'none';
+        handles.forEach((handle, index) => {
+          const [cx, cy] = plane.toSvg([HANDLE_X[index], state.manual[index]]);
+          setAttributes(handle, { cx, cy });
+        });
+
+        const meanY = state.points.reduce((sum, [, y]) => sum + y, 0) / state.points.length;
+        const totalSpread = state.points.reduce((sum, [, y]) => sum + (y - meanY) ** 2, 0);
+        byId('regression-line').textContent = shown ? describeLine(shown) : 'need two points';
+        byId('regression-error').textContent = shown ? formatNumber(squaredError(shown, state.points)) : 'n/a';
+        byId('regression-best-error').textContent = best ? formatNumber(squaredError(best, state.points)) : 'n/a';
+        byId('regression-r2').textContent = best && totalSpread > EPSILON
+          ? formatNumber(1 - squaredError(best, state.points) / totalSpread) : 'n/a';
+      }
+
+      const clampPoint = ([x, y]) => [clamp(x, 0.1, bounds.right - 0.1), clamp(y, 0.05, bounds.top - 0.1)];
+
+      delegateDrag(plane, {
+        start: (target, point) => {
+          if (target.dataset?.index !== undefined) return { kind: 'point', index: Number(target.dataset.index) };
+          if (target.dataset?.handle !== undefined) return { kind: 'handle', index: Number(target.dataset.handle) };
+          if (state.points.length >= MAX_POINTS) return undefined;
+          state.points.push(clampPoint(point));
+          render();
+          return { kind: 'point', index: state.points.length - 1 };
+        },
+        move: ({ kind, index }, point) => {
+          if (kind === 'point') state.points[index] = clampPoint(point);
+          else state.manual[index] = clamp(point[1], bounds.bottom, bounds.top);
+          render();
+        }
+      });
+      svg.addEventListener('dblclick', event => {
+        const index = event.target.dataset?.index;
+        if (index === undefined || state.points.length <= MIN_POINTS) return;
+        state.points.splice(Number(index), 1);
+        render();
+      });
+      modeButtons.forEach(button => button.addEventListener('click', () => {
+        state.mode = button === modeButtons[1] ? 'manual' : 'best';
+        setPressed(modeButtons, button);
+        render();
+      }));
+      squaresButton.addEventListener('click', () => {
+        state.showSquares = !state.showSquares;
+        squaresButton.setAttribute('aria-pressed', String(state.showSquares));
+        render();
+      });
+      byId('regression-outlier').addEventListener('click', () => {
+        if (state.points.length >= MAX_POINTS) return;
+        state.points.push([...OUTLIER]);
+        render();
+      });
+      byId('regression-reset').addEventListener('click', () => {
+        state.points = REGRESSION_POINTS.map(p => [...p]);
+        state.manual = [1, 3];
+        render();
+      });
+      render();
+    }
+
+    /* ---------- Demo 5: principal component analysis ---------- */
+
+    const PCA_SAMPLE_SIZE = 140;
+    const PCA_MAJOR_SPREAD = 2.3;
+    const PCA_CENTER = [0.8, 0.3];
+    const PCA_SIGMAS = 2;
+    const PROJECT_DURATION_MS = 900;
+
+    function covarianceStats(points) {
+      const mean = scaleVector(points.reduce(addVectors, [0, 0]), 1 / points.length);
+      let xx = 0;
+      let xy = 0;
+      let yy = 0;
+      for (const point of points) {
+        const [dx, dy] = subtractVectors(point, mean);
+        xx += dx * dx;
+        xy += dx * dy;
+        yy += dy * dy;
+      }
+      const denominator = points.length - 1;
+      const covariance = [xx / denominator, xy / denominator, xy / denominator, yy / denominator];
+      const pairs = eigen2(covariance).pairs.sort((a, b) => b.value - a.value);
+      const flipToRight = vector => (vector[0] < 0 ? scaleVector(vector, -1) : vector);
+      const components = pairs.map(({ value, vector }) => ({ value: Math.max(value, 0), vector: flipToRight(vector) }));
+      // A perfectly round cloud has one repeated eigenvalue; any perpendicular pair of axes works then.
+      if (components.length === 1) {
+        const [x, y] = components[0].vector;
+        components.push({ value: components[0].value, vector: [-y, x] });
+      }
+      return { mean, covariance, components };
+    }
+
+    function pcaDemo() {
+      const svg = byId('pca-plot');
+      const plane = createPlane(svg, { width: 640, height: 400, scale: 34 });
+      const angleSlider = byId('pca-angle');
+      const ratioSlider = byId('pca-ratio');
+      const projectButton = byId('pca-project');
+      const regressionButton = byId('pca-regression');
+      svgElement('path', { class: 'la-grid-static', d: gridPath(plane, IDENTITY) }, svg);
+      svgElement('path', { class: 'la-axes', d: axesPath(plane, IDENTITY) }, svg);
+      const layers = {
+        ellipse: svgElement('path', { class: 'la-ellipse' }, svg),
+        pcLine: svgElement('path', { class: 'la-pc-line' }, svg),
+        regression: svgElement('path', { class: 'la-fit is-ghost' }, svg),
+        projections: svgElement('path', { class: 'la-project' }, svg),
+        dots: svgElement('g', {}, svg),
+        secondArrow: svgElement('path', { class: 'la-arrow c-orange' }, svg),
+        firstArrow: svgElement('path', { class: 'la-arrow c-green' }, svg)
+      };
+      const state = { seed: 11, standard: [], dots: [], projectT: 0, showRegression: false, cancel: () => {} };
+
+      function sample() {
+        const random = mulberry32(state.seed);
+        state.standard = Array.from({ length: PCA_SAMPLE_SIZE }, () => [gaussian(random), gaussian(random)]);
+        layers.dots.replaceChildren();
+        state.dots = state.standard.map(() => svgElement('circle', { class: 'la-dot', r: 3.5 }, layers.dots));
+      }
+
+      function currentPoints() {
+        const angle = Number(angleSlider.value) * DEGREE;
+        const shape = diagonal(PCA_MAJOR_SPREAD, PCA_MAJOR_SPREAD * Number(ratioSlider.value));
+        const mix = compose(rotation(angle), shape);
+        return state.standard.map(z => addVectors(apply(mix, z), PCA_CENTER));
+      }
+
+      function render() {
+        byId('pca-angle-value').textContent = `${angleSlider.value}°`;
+        byId('pca-ratio-value').textContent = Number(ratioSlider.value).toFixed(2);
+        const points = currentPoints();
+        const { mean, covariance, components } = covarianceStats(points);
+        const [first, second] = components;
+        const axes = components.map(({ value, vector }) => scaleVector(vector, PCA_SIGMAS * Math.sqrt(value)));
+        const ellipse = CIRCLE_POINTS.map(([c, s]) => addVectors(mean, addVectors(scaleVector(axes[0], c), scaleVector(axes[1], s))));
+        layers.ellipse.setAttribute('d', pathFromPoints(plane, ellipse, true));
+        layers.pcLine.setAttribute('d', pathFromPoints(plane, [
+          addVectors(mean, scaleVector(first.vector, -GRID_RANGE)), addVectors(mean, scaleVector(first.vector, GRID_RANGE))]));
+        layers.firstArrow.setAttribute('d', arrowPath(plane, mean, addVectors(mean, axes[0])));
+        layers.secondArrow.setAttribute('d', arrowPath(plane, mean, addVectors(mean, axes[1])));
+
+        const slope = covariance[1] / covariance[0];
+        const regressionAt = x => mean[1] + slope * (x - mean[0]);
+        const { left, right } = plane.bounds;
+        layers.regression.setAttribute('d', state.showRegression
+          ? pathFromPoints(plane, [[left, regressionAt(left)], [right, regressionAt(right)]]) : '');
+
+        let projectionPath = '';
+        points.forEach((point, index) => {
+          const shadow = addVectors(mean, scaleVector(first.vector, dot(subtractVectors(point, mean), first.vector)));
+          const shown = addVectors(point, scaleVector(subtractVectors(shadow, point), state.projectT));
+          if (state.projectT > 0) projectionPath += pathFromPoints(plane, [point, shown]);
+          const [cx, cy] = plane.toSvg(shown);
+          setAttributes(state.dots[index], { cx: cx.toFixed(1), cy: cy.toFixed(1) });
+        });
+        layers.projections.setAttribute('d', projectionPath);
+
+        const total = first.value + second.value;
+        const direction = Math.atan2(first.vector[1], first.vector[0]) / DEGREE;
+        renderMatrix(byId('pca-cov'), covariance, false);
+        byId('pca-eigs').textContent = `λ₁ = ${formatNumber(first.value)}, λ₂ = ${formatNumber(second.value)}`;
+        byId('pca-explained').textContent = `${(100 * first.value / total).toFixed(1)}%`;
+        byId('pca-direction').textContent = `${formatVector(first.vector)}, ${direction.toFixed(0)}°`;
+      }
+
+      projectButton.addEventListener('click', () => {
+        const projecting = projectButton.getAttribute('aria-pressed') !== 'true';
+        projectButton.setAttribute('aria-pressed', String(projecting));
+        const from = state.projectT;
+        const to = projecting ? 1 : 0;
+        state.cancel();
+        state.cancel = animate(PROJECT_DURATION_MS, t => {
+          state.projectT = from + (to - from) * t;
+          render();
+        });
+      });
+      regressionButton.addEventListener('click', () => {
+        state.showRegression = !state.showRegression;
+        regressionButton.setAttribute('aria-pressed', String(state.showRegression));
+        render();
+      });
+      byId('pca-sample').addEventListener('click', () => {
+        state.seed += 1;
+        sample();
+        render();
+      });
+      angleSlider.addEventListener('input', render);
+      ratioSlider.addEventListener('input', render);
+      sample();
+      render();
+    }
+
+    /* ---------- Demo 6: k-means ---------- */
+
+    const KMEANS_SIZE = { width: 640, height: 400, scale: 40 };
+    const KMEANS_MARGIN = 1.6;
+    const KMEANS_BLOB_POINTS = 45;
+    const KMEANS_MIN_BLOB_GAP = 3.2;
+    const KMEANS_PLAY_INTERVAL_MS = 650;
+
+    const squaredDistance = (a, b) => (a[0] - b[0]) ** 2 + (a[1] - b[1]) ** 2;
+
+    function nearestIndex(point, centers) {
+      let best = 0;
+      for (let i = 1; i < centers.length; i += 1) {
+        if (squaredDistance(point, centers[i].position) < squaredDistance(point, centers[best].position)) best = i;
+      }
+      return best;
+    }
+
+    /* Keeps the part of a convex polygon closer to `center` than to `other` (one Sutherland-Hodgman pass). */
+    function clipToCloser(polygon, center, other) {
+      const normal = subtractVectors(other, center);
+      const midpoint = scaleVector(addVectors(center, other), 0.5);
+      const side = point => dot(subtractVectors(point, midpoint), normal);
+      const result = [];
+      polygon.forEach((current, index) => {
+        const previous = polygon[(index + polygon.length - 1) % polygon.length];
+        const [currentSide, previousSide] = [side(current), side(previous)];
+        if ((currentSide <= 0) !== (previousSide <= 0)) {
+          const t = previousSide / (previousSide - currentSide);
+          result.push(addVectors(previous, scaleVector(subtractVectors(current, previous), t)));
+        }
+        if (currentSide <= 0) result.push(current);
+      });
+      return result;
+    }
+
+    function voronoiCells(centers, frame) {
+      return centers.map(({ position }, index) => centers.reduce((cell, other, otherIndex) =>
+        (otherIndex === index ? cell : clipToCloser(cell, position, other.position)), frame));
+    }
+
+    function kmeansDemo() {
+      const svg = byId('kmeans-plot');
+      const { width, height, scale } = KMEANS_SIZE;
+      const plane = createPlane(svg, { width, height, scale, origin: [0, height] });
+      const extent = [width / scale, height / scale];
+      const layers = {
+        cells: svgElement('g', {}, svg),
+        spokes: svgElement('g', {}, svg),
+        trails: svgElement('g', {}, svg),
+        points: svgElement('g', {}, svg),
+        centers: svgElement('g', {}, svg)
+      };
+      const frame = [[0, 0], [extent[0], 0], [extent[0], extent[1]], [0, extent[1]]];
+      const kButtons = [...byId('kmeans-k').querySelectorAll('[data-k]')];
+      const playButton = byId('kmeans-play');
+      const random = mulberry32(5);
+      const state = { k: 3, points: [], centers: [], next: 'assign', iteration: 0, converged: false, timer: 0 };
+
+      function newData() {
+        const blobCount = 3 + Math.floor(random() * 3);
+        const blobCenters = [];
+        for (let attempt = 0; blobCenters.length < blobCount && attempt < 500; attempt += 1) {
+          const candidate = [KMEANS_MARGIN + random() * (extent[0] - 2 * KMEANS_MARGIN),
+            KMEANS_MARGIN + random() * (extent[1] - 2 * KMEANS_MARGIN)];
+          if (blobCenters.every(center => Math.sqrt(squaredDistance(center, candidate)) > KMEANS_MIN_BLOB_GAP)) blobCenters.push(candidate);
+        }
+        state.points = blobCenters.flatMap(center => {
+          const spread = [0.45 + random() * 0.6, 0.45 + random() * 0.6];
+          return Array.from({ length: KMEANS_BLOB_POINTS }, () => ({
+            position: [clamp(center[0] + gaussian(random) * spread[0], 0.2, extent[0] - 0.2),
+              clamp(center[1] + gaussian(random) * spread[1], 0.2, extent[1] - 0.2)],
+            cluster: -1
+          }));
+        });
+        layers.points.replaceChildren();
+        for (const point of state.points) {
+          const [cx, cy] = plane.toSvg(point.position);
+          point.element = svgElement('circle', { class: 'la-kpoint', cx, cy, r: 3.5 }, layers.points);
+        }
+        newCenters();
+      }
+
+      /* Forgy start: k distinct data points become the first centers. */
+      function newCenters() {
+        stop();
+        const chosen = new Set();
+        while (chosen.size < state.k) chosen.add(Math.floor(random() * state.points.length));
+        state.centers = [...chosen].map(index => {
+          const position = [...state.points[index].position];
+          return { position, trail: [position] };
+        });
+        for (const point of state.points) point.cluster = -1;
+        Object.assign(state, { next: 'assign', iteration: 0, converged: false });
+        render();
+      }
+
+      function step() {
+        if (state.converged) return stop();
+        if (state.next === 'assign') {
+          let changed = false;
+          for (const point of state.points) {
+            const cluster = nearestIndex(point.position, state.centers);
+            if (cluster !== point.cluster) changed = true;
+            point.cluster = cluster;
+          }
+          state.converged = !changed;
+          state.next = 'update';
+        } else {
+          state.centers.forEach((center, index) => {
+            const members = state.points.filter(point => point.cluster === index);
+            if (!members.length) return;
+            center.position = scaleVector(members.reduce((sum, point) => addVectors(sum, point.position), [0, 0]), 1 / members.length);
+            center.trail.push(center.position);
+          });
+          state.iteration += 1;
+          state.next = 'assign';
+        }
+        if (state.converged) stop();
+        render();
+      }
+
+      function render() {
+        layers.cells.replaceChildren();
+        voronoiCells(state.centers, frame).forEach((cell, index) => {
+          if (cell.length) svgElement('path', { class: `la-cell cl-${index}`, d: pathFromPoints(plane, cell, true) }, layers.cells);
+        });
+        layers.spokes.replaceChildren();
+        layers.trails.replaceChildren();
+        layers.centers.replaceChildren();
+        let inertia = 0;
+        for (const point of state.points) {
+          point.element.setAttribute('class', point.cluster < 0 ? 'la-kpoint' : `la-kpoint cl-${point.cluster}`);
+          if (point.cluster < 0) continue;
+          inertia += squaredDistance(point.position, state.centers[point.cluster].position);
+          if (state.next !== 'update') continue;
+          const [x1, y1] = plane.toSvg(point.position);
+          const [x2, y2] = plane.toSvg(state.centers[point.cluster].position);
+          svgElement('line', { class: `la-spoke cl-${point.cluster}`, x1, y1, x2, y2 }, layers.spokes);
+        }
+        state.centers.forEach((center, index) => {
+          if (center.trail.length > 1) svgElement('path', { class: `la-trail cl-${index}`, d: pathFromPoints(plane, center.trail) }, layers.trails);
+          const [cx, cy] = plane.toSvg(center.position);
+          svgElement('circle', { class: `la-centroid cl-${index}`, cx, cy, r: 10, 'data-center': index }, layers.centers);
+          svgElement('circle', { class: 'la-centroid-ring', cx, cy, r: 12.5 }, layers.centers);
+        });
+        byId('kmeans-iteration').textContent = state.iteration;
+        byId('kmeans-next').textContent = state.next === 'assign' ? 'assign points to nearest center' : 'move centers to their mean';
+        byId('kmeans-inertia').textContent = state.points.some(point => point.cluster >= 0) ? formatNumber(inertia, 1) : 'n/a';
+        byId('kmeans-status').textContent = state.converged ? 'converged, nothing changes any more' : 'running';
+      }
+
+      function stop() {
+        clearInterval(state.timer);
+        state.timer = 0;
+        playButton.textContent = 'Play';
+      }
+
+      function togglePlay() {
+        if (state.timer) return stop();
+        if (state.converged) newCenters();
+        playButton.textContent = 'Pause';
+        state.timer = setInterval(step, REDUCED_MOTION ? 0 : KMEANS_PLAY_INTERVAL_MS);
+      }
+
+      delegateDrag(plane, {
+        start: target => (target.dataset?.center === undefined ? undefined : Number(target.dataset.center)),
+        move: (index, [x, y]) => {
+          stop();
+          const position = [clamp(x, 0, extent[0]), clamp(y, 0, extent[1])];
+          state.centers[index] = { position, trail: [position] };
+          Object.assign(state, { next: 'assign', converged: false });
+          render();
+        }
+      });
+      for (const button of kButtons) {
+        button.addEventListener('click', () => {
+          setPressed(kButtons, button);
+          state.k = Number(button.dataset.k);
+          newCenters();
+        });
+      }
+      byId('kmeans-step').addEventListener('click', () => { stop(); step(); });
+      playButton.addEventListener('click', togglePlay);
+      byId('kmeans-centers').addEventListener('click', newCenters);
+      byId('kmeans-data').addEventListener('click', newData);
+      newData();
+    }
+
+    transformDemo();
+    eigenDemo();
+    diagonalDemo();
+    regressionDemo();
+    pcaDemo();
+    kmeansDemo();
+  })();
+</script>
