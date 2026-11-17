@@ -15,6 +15,11 @@ Language is abstract and compresses perception. So it always is a learned projec
 LLMs "thoughts" are constrained by language currently.
 But there is interesting work of passing vectors that represent inner states of these models between models as a richer alternative than discrete symbols (human language) to communicate thoughts between agents.
 
-When a new generation of AI agents arrives that is not limited to think by human language anymore but can imagine any scenario in spacetime, we will reach a new level of AI that may truly be named AGI or ASI.
+When a new generation of AI agents arrives that is not limited to think by human language anymore but can imagine any scenario in spacetime, we will reach a new level of AI that may truly deserve to be named AGI or ASI.
+
+To illustrate the difference between language and world model based AI, lets see how this question would be answered: "What would happen if Earth's gravitational constant suddenly doubled?"
+A language-based AI (LLM) will retrieve relevant physics knowledge and reason through the consequences in text.
+A world-model-based approach would construct an internal simulation, change the gravitational parameter and observe the resulting dynamics.
+(Though what about an LLM not answering from its internal language based physics knowledge but instead it running an external simulation it programs?)
 
 #idea
