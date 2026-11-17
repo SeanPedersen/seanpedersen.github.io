@@ -10,7 +10,7 @@ Modern deep learning architectures are dominated by dense embeddings. While spar
 
 An SDR is a sparse binary vector that represents features by a small set of active distributed bits.
 
-For this posts we extend the classical SDR as a sparse, positive matrices with spatially meaningful dimensions - the nearer two dimensions (cells) are the closer the concepts (vectors) they represent are. This gives SDRs many useful properties over dense embeddings.
+For this posts we extend classical SDRs as sparse, positive matrices with spatially meaningful dimensions - the nearer two dimensions (cells) are the closer the concepts (vectors) they represent are. This gives SDRs many useful properties over dense embeddings.
 
 Why "distributed"? The semantic meaning of a concept is distributed across the pattern of active bits.
 
