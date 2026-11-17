@@ -9,6 +9,12 @@ Can imagination actually produce knowledge before language, mathematics or forma
 
 Language forces continuous experience into discrete categories.
 
-Language is abstract and compresses perception. So it always is a learned projection of our perception.
+Language is abstract and compresses perception. So it always is a learned projection of our perception. Language is useful because it allows us to communicate thoughts and feelings.
+
+## AI Agents
+LLMs "thoughts" are constrained by language currently.
+But there is interesting work of passing vectors that represent inner states of these models between models as a richer alternative than discrete symbols (human language) to communicate thoughts between agents.
+
+When a new generation of AI agents arrives that is not limited to think by human language anymore but can imagine any scenario in spacetime, we will reach a new level of AI that may truly be named AGI or ASI.
 
 #idea
