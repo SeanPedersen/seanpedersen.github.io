@@ -312,7 +312,7 @@ tags: [math, coding]
 
 <div class="graph-summary">
   <p><strong>Part 1:</strong> the words you need to talk about graphs.</p>
-  <p><strong>Part 2:</strong> the classic algorithms, from search to shortest paths to flows.</p>
+  <p><strong>Part 2:</strong> the classic algorithms, from search to shortest paths, flows and communities.</p>
   <p><strong>Part 3:</strong> the surprise. A graph is also a matrix, and the matrix knows where the clusters are.</p>
 </div>
 
@@ -499,6 +499,38 @@ tags: [math, coding]
   flow equals the capacity of the smallest set of pipes whose removal separates s from t. Flows match workers to jobs,
   plan logistics and cut images into foreground and background. Remember the word "cut". It comes back.</p>
 
+<h3 id="communities">Community Detection</h3>
+
+<p>Social networks, citation graphs and protein interactions all have communities: groups of vertices with many edges
+  inside and few edges between them. But how many edges count as "many"? A popular answer is <a
+    href="https://en.wikipedia.org/wiki/Modularity_(networks)">modularity</a>. It compares the edges inside each group
+  with the number you would expect if the same vertices, with the same degrees, were wired at random:</p>
+
+<div class="graph-eq" role="math"
+  aria-label="Q equals 1 over 2 m times the sum over i j of A i j minus k i k j over 2 m, counted only when i and j are in the same community">
+  Q = (1 / 2m) · Σ<sub>i,j</sub> [A<sub>ij</sub> − k<sub>i</sub>k<sub>j</sub> / 2m] · [c<sub>i</sub> = c<sub>j</sub>]
+</div>
+
+<p>Here m is the number of edges, k<sub>i</sub> the degree of vertex i and c<sub>i</sub> its community. A random
+  split scores about 0. Clear communities push Q towards 1.</p>
+
+<p>The <a href="https://en.wikipedia.org/wiki/Louvain_method">Louvain method</a> maximizes Q greedily. Every vertex
+  starts in its own community. Each vertex then moves to the neighboring community that raises Q the most, until no
+  move helps. Next, every community shrinks into a single vertex, and the same steps run again on this smaller graph.
+  Each round zooms out one level, until the graph stops changing.</p>
+
+<p>Louvain has a flaw. A vertex that holds a community together can move out, and the rest stays labeled as one
+  community even though it has fallen into pieces. The <a
+    href="https://en.wikipedia.org/wiki/Leiden_algorithm">Leiden algorithm</a> fixes this with a refinement step
+  before each zoom out. It re-splits every community into well-connected parts and merges only those. So every
+  community it returns is guaranteed to be connected. Leiden also only revisits vertices whose neighborhood just
+  changed, which usually makes it faster than Louvain. It scales to graphs with millions of edges, and single-cell
+  genomics tools like Scanpy use it to group cells by type.</p>
+
+<p>Unlike k-means or the spectral clustering of Part 3, neither algorithm needs to know the number of communities in advance. A resolution
+  parameter γ, which multiplies the random-wiring term, decides whether you get many small groups or a few large
+  ones. Both are still heuristics, because finding the split with the highest modularity is NP-hard.</p>
+
 <h3 id="hard-problems">Where It Gets Hard</h3>
 
 <p>Back to Euler. A walk that uses every <em>edge</em> once exists exactly when the graph is connected and has zero or
@@ -675,6 +707,8 @@ tags: [math, coding]
       von Luxburg: A Tutorial on Spectral Clustering</a></li>
   <li><a href="https://www.cs.yale.edu/homes/spielman/eigs/">Daniel Spielman: Spectral Graph Theory and its
       Applications</a></li>
+  <li><a href="https://arxiv.org/abs/1810.08473">Traag, Waltman and van Eck: From Louvain to Leiden: guaranteeing
+      well-connected communities</a></li>
   <li><a href="https://research.google/pubs/the-anatomy-of-a-large-scale-hypertextual-web-search-engine/">Brin and
       Page: The Anatomy of a Large-Scale Hypertextual Web Search Engine</a></li>
   <li><a href="https://graphblas.org/">GraphBLAS: graph algorithms in the language of linear algebra</a></li>
