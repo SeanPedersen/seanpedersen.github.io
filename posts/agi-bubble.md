@@ -10,6 +10,13 @@ It is becoming clearer and clearer that scaling up LLM's will not solve their fu
 
 Update 11/2026: Hallucinations and context rot are still a problem but not as much, complex (easily verifiable) tasks are solvable. We are heading for ASI in all easy to verify domains (cheap to generate training signal / rewards). Easy to verify: Compiled programs, math proofs, speed optimizations, anything you can simulate in silico. Hard to verify: Good product design, creative writing & problems needing conceptual quantum leaps (like P equals NP likely needs). Current AI allows powerful search over solution spaces for problems where solution candidates are easy to verify, delivering impressive results.
 
+Good ASI indicator:
+Every new model release should come with more and more and harder open math problems solved (assuming ASI is rly incoming). If that is not the case recent models only solved problems that were ripe (enough previous human work to start from). Let’s see…
+
+https://epoch.ai/frontiermath/open-problems
+
+Does every new generation of AI models independently push the boundary of mathematical knowledge further than the previous generation, at an accelerating rate? If ASI incoming: yes, if not: we are in a capability plateau.
+
 ## Fundamental Limits
 
 The following are current limits of transformer architectures that can be overcome with more research innovations. The most challenging one with the least progress seems to be the "Fractured Representations" problem.
