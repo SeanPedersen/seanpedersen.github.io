@@ -67,6 +67,7 @@ println!("{r}");         // r is still needed here
 
 ### GUI
 - [egui](https://github.com/emilk/egui): simple and most popular (low RAM)
+- [FerroUI](https://github.com/wieslawsoltes/FerroUI): compiles to all platforms
 - [Tauri](https://tauri.app/): Use Rust in backend and web stack in frontend to build desktop and mobile apps
   - [Tauri MCP Server](https://github.com/hypothesi/mcp-server-tauri)
 - [Dioxus](https://github.com/DioxusLabs/dioxus): Use Rust in backend and web stack in frontend to build desktop and mobile apps (beta: embed native Blitz rendered for consistency, lower RAM and performance)
