@@ -15,7 +15,7 @@ Every new model release should come with more and more and harder open math prob
 
 https://epoch.ai/frontiermath/open-problems
 
-Does every new generation of AI models independently push the boundary of mathematical knowledge further than the previous generation, at an accelerating rate? If ASI incoming: yes, if not: we are in a capability plateau.
+Does every new generation of AI models independently push the boundary of mathematical knowledge further than the previous generation, at an accelerating rate? If yes: ASI is incoming, if not: we are in a capability plateau. The next months will paint the picture.
 
 ## Fundamental Limits
 
