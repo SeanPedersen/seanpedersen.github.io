@@ -60,7 +60,7 @@ The benchmark ran on an Intel i9-7980XE with 64 GiB RAM, using library revision 
 - Objective mismatch: minimizing reconstruction MSE does not always maximize nearest-neighbor recall.
 - Dataset dependence: a flat PCA spectrum offers less opportunity for variance-aware allocation.
 
-## Previous Work: Transform Coding for ANN
+## Previous Work
 
 After building TieredQ, I looked into whether variance-aware bit allocation had been explored before and found the following earlier related work.
 
