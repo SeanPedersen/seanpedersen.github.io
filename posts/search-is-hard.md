@@ -173,7 +173,7 @@ It often makes sense to present the user for general queries not only the top ne
 
 ## Evaluation Metrics
 
-As you see there are many knobs to tune a modern search pipeline and thus we need hard evaluation metrics to judge the quality of our search pipeline. Creating a custom dataset that mirrors our real world search use case as closely and diversely as possible is essential to improving our search. Relevant [post](https://x.com/bo_wangbo/status/2011075744978649199) - recommends optimizing for recall with K > 100.
+As you see there are many knobs to tune a modern search pipeline and thus we need hard evaluation metrics to judge the quality of our search pipeline. Creating a custom dataset that mirrors our real world search use case as closely and diversely as possible is essential to improving our search. Relevant [post](https://x.com/bo_wangbo/status/2011075744978649199) - recommends optimizing for recall with K > 100. Also eval the tail of the distribution, not just the mean ([see why](https://www.kshivendu.dev/blog/stop-averaging-evals)).
 
 ### Precision@K
 
@@ -225,5 +225,6 @@ User steered semantic search by selecting N matches and finding the common subsp
 - [Full Unicode Search at 50× ICU Speed with AVX‑512](https://ashvardanian.com/posts/search-utf8/)
 - https://softwaredoug.com/blog/2026/03/06/probabilistic-bm25-utopia
 - https://p.migdal.pl/blog/2025/01/dont-use-cosine-similarity/
+- https://www.kshivendu.dev/blog/stop-averaging-evals
 
 #coding #ML
