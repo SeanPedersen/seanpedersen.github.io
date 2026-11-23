@@ -74,17 +74,50 @@ For approximately Gaussian data, allocating bits according to the variance of ea
 
 ### Transform Coding for Nearest Neighbor Search
 
-**Brandt (2010) — [Transform Coding for Fast Approximate Nearest Neighbor Search in High Dimensions](https://research.adobe.com/publication/transform-coding-for-fast-approximate-nearest-neighbor-search-in-high-dimensions/)**
+**Brandt (2010): [Transform Coding for Fast Approximate Nearest Neighbor Search in High Dimensions](https://research.adobe.com/publication/transform-coding-for-fast-approximate-nearest-neighbor-search-in-high-dimensions/)**
 
 Brandt proposed using PCA together with non-uniform bit allocation and scalar quantization to produce compact vector representations for nearest neighbor search.
 
 This is conceptually very close to TieredQ: rather than spending the same number of bits on every dimension, the algorithm allocates more bits to components carrying more information.
 
-**Park et al. (2014) — [Optimized Transform Coding for Approximate KNN Search](https://bmva-archive.org.uk/bmvc/2014/papers/paper001/index.html)**
+**Park et al. (2014): [Optimized Transform Coding for Approximate KNN Search](https://bmva-archive.org.uk/bmvc/2014/papers/paper001/index.html)**
 
 This follow-up work improved transform coding by identifying a weakness in variance-based bit allocation: dimensions with similar variance don't necessarily have the same quantization error.
 
 Instead of relying solely on a theoretical variance model, Optimized Transform Coding (OTC) uses actual quantization distortion to make better allocation decisions. The underlying optimization idea of TieredQ is therefore not new either.
+
+### SAQ: Code Adjustment and Dimension Segmentation
+
+**Li et al. (2025): [SAQ: Pushing the Limits of Vector Quantization through Code Adjustment and Dimension Segmentation](https://arxiv.org/abs/2509.12086)**
+
+SAQ (accepted at SIGMOD) is the closest modern relative of TieredQ, and it also targets RaBitQ. It rests on the same observation: after PCA, a few leading dimensions hold most of the variance, so they should get more bits. The authors report up to 80% lower quantization error and over 80x faster encoding than Extended RaBitQ.
+
+What it shares with TieredQ:
+- PCA rotation to concentrate variance in the leading dimensions.
+- A total bit quota per vector, spent unevenly: more bits for high-variance dimensions, fewer (or none) for the tail.
+- Per-dimension scalar quantization of the PCA-projected values.
+- The same weak spot: with a flat eigenvalue spectrum there is little to gain. In that case SAQ falls back to one segment, which matches its uniform base method (CAQ).
+
+Where it differs:
+- **Granularity:** SAQ groups neighboring dimensions into segments, and every dimension in a segment gets the same bits. Segment sizes are multiples of 64 to fit cache lines and SIMD. TieredQ picks bits per dimension (0-12), so its allocation is finer. The SAQ authors note that this coarse step hurts on low-dimensional data like DEEP.
+- **Allocation search:** SAQ models the error of a plan (relative error shrinks by about half per extra bit) and finds the best plan with dynamic programming in O(D² · quota), under one second on their datasets. TieredQ uses a greedy search: give the next bit to the dimension where it cuts the expected error most.
+- **Encoding:** SAQ quantizes each segment after a random orthonormal rotation (as RaBitQ does), then refines the codes with a coordinate-descent-like step ("code adjustment"). This keeps RaBitQ's accuracy while cutting encoding cost from O(2^B · D log D) to O(D) per vector. TieredQ rounds each PCA coordinate directly and has no refinement step.
+- **Search-time tricks:** SAQ has a multi-stage distance estimator. It scores the high-variance segments first and prunes candidates early using distance bounds. It also ships SIMD kernels. TieredQ's query path is simpler (fast flat scan plus fine-tier rescoring).
+- **Evaluation:** SAQ measures quantization error and graph-based ANN throughput against LVQ, PCA, PQ-style methods and Extended RaBitQ. My main benchmark is a flat scan against RaBitQ and Qdrant TQ+, so I ran a separate head-to-head with SAQ (see below).
+
+#### TieredQ vs SAQ
+
+In [issue #60](https://github.com/SeanPedersen/TieredQ/issues/60) I built IVF indexes with both on Arxiv-nomic-768 (1.34M rows, 2,048 lists, 32 threads, rows already in RAM):
+
+| bits (SAQ / TieredQ) | SAQ build | TieredQ build | recall@100 at nprobe 256 (SAQ / TieredQ) |
+| --- | ---: | ---: | --- |
+| 1 / 1.25 | 44.7 s | 17.7 s | 0.849 / 0.912 |
+| 2 / 2 | 42.2 s | 19.5 s | 0.951 / 0.951 |
+| 2 / 2.5 | 42.2 s | 21.5 s | 0.951 / 0.969 |
+| 3 / 3 | 42.1 s | 22.8 s | 0.976 / 0.976 |
+| 4 / 4 | 47.0 s | 27.0 s | 0.985 / 0.983 |
+
+TieredQ builds 1.7-2.5x faster. Assignment costs the same (about 3.7 s). The gap is encoding: SAQ's construct step takes 29-34 s, longer than TieredQ's whole build at every bit width. At equal bits, recall ties at 2 and 3 bits and SAQ is 0.002 ahead at 4 bits. At the lower budgets TieredQ reaches more recall with less RAM than SAQ's width (rows 1/1.25 and 2/2.5). This is one dataset and one index type, so it shows a trend, not a general ranking.
 
 ### How TieredQ Differs from RaBitQ & TurboQuant
 
@@ -115,6 +148,7 @@ That doesn't mean TieredQ is universally better. PCA requires dataset-specific t
 - https://github.com/RyanCodrai/turbovec
 - [Some RaBitQ vs TurboQuant drama](https://dev.to/gaoj0017/turboquant-and-rabitq-what-the-public-story-gets-wrong-1i00)
 - https://github.com/VectorDB-NTU/rabitq-turboquant-comparison/
+- [SAQ: Pushing the Limits of Vector Quantization through Code Adjustment and Dimension Segmentation](https://arxiv.org/abs/2509.12086) ([code](https://github.com/howarlii/saq/))
 - [Quantization Beyond Uniform Bit Allocation](https://arxiv.org/abs/2608.19388) (found this very similar ref while writing this post up at 21. Oct 2026)
 
 #ML #coding #math
