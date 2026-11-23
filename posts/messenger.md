@@ -1,6 +1,8 @@
 # Messenger
 Humanity is in need of a fun to use, secure, privacy-respecting and decentral messenger.
 
+I made one: [brumm](https://github.com/SeanPedersen/brumm) - a fun, decentral, open-source chat messenger.
+
 Protocol: The client owns the identity and message history. It uses end-to-end encryption for content and relationship metadata, direct peer-to-peer transport when possible and also temporarily stores and relays messages when direct delivery fails.
 
 - User account via username (no phone number needed)
