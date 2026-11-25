@@ -22,6 +22,8 @@ A language-based AI (LLM) will retrieve relevant physics knowledge and reason th
 A world-model-based approach would construct an internal simulation, change the gravitational parameter and observe the resulting dynamics.
 (Though what about an LLM not answering from its internal language based physics knowledge but instead it running an external simulation it programs?)
 
+The most promising way to train a world model: use realistic 3D game engines to produce video data from which the 3D scene is reconstructed (endless verifiable training data).
+
 ## References
 - [Fei-Fei Li’s $8B World Model ](https://www.youtube.com/watch?v=hORDMRY_bZ0)
 
