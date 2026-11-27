@@ -7,7 +7,7 @@ We need cryptographic user identities to verify it is us and we want to own our 
 
 ## Existing Apps
 
-[Jami](https://jami.net/) is a peer-to-peer messenger with end-to-end encrypted calls and messages. It can connect users directly without requiring a central account server.
+[Brumm](https://github.com/SeanPedersen/brumm) is a peer-to-peer messenger with end-to-end encrypted calls and messages. It can connect users directly without requiring a central account server.
 
 [BitTorrent](https://www.bittorrent.com/) distributes files between users instead of serving every download from one central server. Popular files become easier to download as more people share them.
 
