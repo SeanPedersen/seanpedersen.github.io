@@ -4,7 +4,7 @@ icon: "/images/icons/python.svg"
 ---
 # Python
 
-Just some notes on how to use Python effectively. Python strives to be simple and concise and is a good choice for rapid software development. The average execution speed is rather slow, which is ok because it nicely interacts with C, C++ and Rust which are fast. Another major selling point is the rich ecosystem of useful packages, spanning web development, data science and much more.
+Just some notes on how to use Python effectively. Python strives to be simple and concise and is a good choice for rapid software development. The average execution speed is rather slow, which is ok because it nicely interacts with C, C++, Rust and [Mojo](https://mojolang.org/) which are fast. Another major selling point is the rich ecosystem of useful packages, spanning web development, data science and much more.
 
 ## General Tips
 
@@ -168,6 +168,6 @@ Use [loguru](https://github.com/Delgan/loguru) (comes with a multi-processing qu
 
 Use a profiler ([pyinstrument](https://github.com/joerick/pyinstrument)) to find slow or RAM consuming code paths.
 
-Use C / C++ / Rust / Zig / Mojo etc. for performance critical code or try [PyPy](https://pypy.org/) and [Cython](https://cython.org/) first. Or check out a transpiler <https://github.com/py2many/py2many> / <https://github.com/paiml/depyler>.
+Use C / C++ / Rust / Zig / [Mojo](https://mojolang.org/) etc. for performance critical code or try [PyPy](https://pypy.org/) and [Cython](https://cython.org/) first. Or check out a transpiler <https://github.com/py2many/py2many> / <https://github.com/paiml/depyler>.
 
 #coding
