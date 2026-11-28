@@ -33,7 +33,7 @@ Interplanetary Memory System : use file embeddings to discover content instead o
 
 Interplanetary Trust System: Rate and discover services based on your local peers you trust -> learn which services your peers (and peers of peers) praise or dislike.
 
-Interplanetary Messaging System: A decentral, secure [messenger](/posts/messenger/) that just works.
+Interplanetary Messaging System: A decentral, secure [messenger](/posts/messenger/) that just works -> [brumm](https://github.com/SeanPedersen/brumm).
 
 ## References
 
