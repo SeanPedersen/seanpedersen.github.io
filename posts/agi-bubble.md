@@ -93,7 +93,7 @@ Good ref: [LLM's can't jump](https://philsci-archive.pitt.edu/28024/1/Scientific
   - LLM's possess clearly no human like intelligence as they make obvious logical and factual mistakes (very brittle; context dependent problem solving ability) and hallucinate without being capable to self-correct through self-inspection -> LLM's output will always have to be validated using human supervision for critical tasks (just like for self-driving cars)
   - when humans make little slips (errors) while speaking / writing a thought out - the whole sentence (thought) stays consistent (if the thought was consistent in the first place) -> hinting that thoughts form in an abstract space before being verbalized. OTOH LLM's "thoughts" are directly influenced by each previous token (word) and thus a few small slips can quickly throw them off completely (context rot) -> leading to more hallucinations in longer texts.
 - self-awareness (introspection) and ability to self-modify (continuous learning -> update facts / beliefs)
-- reliable printers
+- reliable printers, useful embodied AI (robots that work)
 
 ## Road to AGI
 
@@ -136,5 +136,6 @@ TODO:
 - https://andrewtrask.substack.com/p/the-bitter-lessons-bitter-lesson
 - https://www.dwarkesh.com/p/timelines-june-2025
 - https://www.dwarkesh.com/p/rsi
+- https://people.idsia.ch/~juergen/deep-learning-history.html#future
 
 #AI
