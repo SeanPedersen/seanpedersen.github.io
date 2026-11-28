@@ -2,10 +2,9 @@
 icon: "/images/icons/linux.webp"
 ---
 # Linux Desktop
-My choice: [CachyOS](https://cachyos.org/) ([Arch Linux](https://archlinux.org/)) with [GNOME](https://www.gnome.org/) DE
+My choice: [CachyOS](https://cachyos.org/) ([Arch Linux](https://archlinux.org/)) with [labwc](https://github.com/labwc/labwc) + my [lowram-shell](https://github.com/SeanPedersen/lowram-shell) provides macOS inspired UX with minimal RAM usage (<1GB) and is snappy (compared to [GNOME](https://www.gnome.org/) DE).
 
 - CachyOS is tweaked for performance, has a GUI installer + easy disk encryption setup
-- GNOME looks shiny and can easily be stripped down to avoid bloat
 
 ## Awesome Software
 File Manager:
