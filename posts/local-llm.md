@@ -76,6 +76,7 @@ Most models are too big for consumer GPUs, so quantized versions (compressed par
 - [Qwen3.8 27B](https://huggingface.co/unsloth/Qwen3.8-27B-GGUF) Q3 - dense model (sota intelligence per size)
 
 <8GB VRAM / CPU:
+- [Inkling-2-Mini](https://huggingface.co/thinkingmachines/Inkling-2-Mini): Newest strongest MoE model by Thinking Machines ([uncensored version](https://huggingface.co/SC117/Inkling-2-Mini-abliterated-Strata), [improved version with less overthinking](https://huggingface.co/nokeepai/Inkling-2-Mini-Unbound))
 - [Qwen3.6-35B-A3B Q4_K_XL](https://huggingface.co/unsloth/Qwen3.6-35B-A3B-MTP-GGUF): Strong MoE (3B active) model with MTP can run even on 8GB VRAM GPU with CPU offloading (the local king)
   - [Uncensored version](https://huggingface.co/HauhauCS/Qwen3.6-35B-A3B-Uncensored-HauhauCS-Aggressive)
   - https://x.com/witcheer/status/2053809265538678789
